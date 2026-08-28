@@ -21,7 +21,7 @@ chmod +x PCEdit-*-x86_64.AppImage
 ./PCEdit-*-x86_64.AppImage
 ```
 
-If your distro has no FUSE, run `./PCEdit-*-x86_64.AppImage --appimage-extract-and-run`.
+If your distro has no FUSE or libicu, either install fuse and libicu for your distro or run `./PCEdit-*-x86_64.AppImage --appimage-extract-and-run`.
 For CJK menus, install your distro's Noto CJK font package.
 
 **Windows:** Just grab the appropriate zip file, extract and run PCEdit.exe
