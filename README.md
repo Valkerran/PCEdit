@@ -84,6 +84,8 @@ Below are the expected default paths for save files
 
 - **Linux - Steam** - ~/.steam/steam/steamapps/compatdata/1284190/pfx/drive_c/users/steamuser/AppData/LocalLow/MijuGames/Planet Crafter/
 
+- **macOS** - ~/Library/Application Support/MijuGames/Planet Crafter
+
 ### Notes
 
 The xbox save files do not use world names for the file name. Instead they use a random alpha numeric name that is regenerated with a new name each time it is saved.
