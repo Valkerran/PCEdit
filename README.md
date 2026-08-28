@@ -24,11 +24,15 @@ chmod +x PCEdit-*-x86_64.AppImage
 If your distro has no FUSE, run `./PCEdit-*-x86_64.AppImage --appimage-extract-and-run`.
 For CJK menus, install your distro's Noto CJK font package.
 
-**Windows / macOS:** no packaged build yet — run from source (below).
+**Windows:** Just grab the appropriate zip file, extract and run PCEdit.exe
+
+**MacOs:** This is untested at the moment as I do not have access to a Mac.
 
 The UI ships in 15 languages (English (US/UK), French, German, Spanish, Simplified &
 Traditional Chinese, Russian, Polish, Portuguese (PT/BR), Korean, Japanese, Italian,
 Turkish); it follows the OS language on first run and can be switched in-app.
+
+**Note** - all non-english languages are AI translated. If anyone spots any translation issues, raise an issue request.
 
 ## Run from source
 
