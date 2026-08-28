@@ -1,0 +1,37 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:PCEdit.App.Core.ViewModels;assembly=PCEdit.App.Core"
+             xmlns:m="using:PCEdit.Desktop.Markup"
+             xmlns:conv="using:PCEdit.Desktop.Converters"
+             x:Class="PCEdit.Desktop.Views.OpenFileView"
+             x:DataType="vm:OpenFileViewModel">
+
+    <ScrollViewer>
+        <StackPanel Margin="32" Spacing="18" MaxWidth="760" HorizontalAlignment="Center">
+            <TextBlock Text="{m:Loc OpenFile_Heading}" Classes="h1" />
+            <TextBlock Text="{m:Loc OpenFile_Intro}" TextAlignment="Center" />
+            <TextBlock Text="{m:Loc Disclaimer_ShortNotice}" Classes="caption" TextAlignment="Center" />
+
+            <TextBlock HorizontalAlignment="Center"
+                       Text="{m:LocFormat Key=OpenFile_CurrentlyLoaded, Path=Workspace.FilePath, FallbackKey=OpenFile_NoFileLoaded}" />
+
+            <Button Classes="accent" HorizontalAlignment="Center"
+                    Content="{m:Loc OpenFile_ChooseButton}"
+                    Command="{Binding PickAndLoadCommand}"
+                    IsEnabled="{Binding IsBusy, Converter={StaticResource InvertedBool}}"
+                    ToolTip.Tip="{m:Loc OpenFile_ChooseHint}" />
+
+            <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center"
+                        IsVisible="{Binding IsBusy}">
+                <ProgressBar IsIndeterminate="True" Width="120" />
+                <TextBlock Text="{m:Loc OpenFile_LoadingInline}" VerticalAlignment="Center" />
+            </StackPanel>
+
+            <TextBlock HorizontalAlignment="Center"
+                       Text="{Binding StatusMessage}"
+                       IsVisible="{Binding StatusMessage, Converter={StaticResource StringNotEmpty}}"
+                       Foreground="{Binding StatusKind, Converter={StaticResource StatusBrush}}" />
+        </StackPanel>
+    </ScrollViewer>
+
+</UserControl>

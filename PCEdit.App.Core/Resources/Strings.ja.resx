@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+
+  <data name="Common_Save" xml:space="preserve"><value>保存</value></data>
+  <data name="Common_Cancel" xml:space="preserve"><value>キャンセル</value></data>
+  <data name="Common_Ok" xml:space="preserve"><value>OK</value></data>
+  <data name="Common_Discard" xml:space="preserve"><value>破棄</value></data>
+  <data name="Common_NoFileLoadedGoOpen" xml:space="preserve"><value>セーブファイルが読み込まれていません。</value></data>
+  <data name="Common_OpenSaveFile" xml:space="preserve"><value>セーブファイルを開く…</value></data>
+  <data name="Common_CloseWithoutSaving" xml:space="preserve"><value>保存せずに閉じる</value></data>
+  <data name="Common_KeepEditing" xml:space="preserve"><value>編集を続ける</value></data>
+  <data name="Quit_DiscardTitle" xml:space="preserve"><value>未保存の変更</value></data>
+  <data name="Quit_DiscardBody" xml:space="preserve"><value>ここで PCEdit を閉じると、保存していない編集は破棄されます。ディスク上のセーブファイルは変更されません。</value></data>
+  <data name="Shell_Title" xml:space="preserve"><value>Planet Crafter セーブエディター</value></data>
+  <data name="Shell_Brand" xml:space="preserve"><value>PCEdit</value></data>
+  <data name="Shell_File" xml:space="preserve"><value>ファイル: {0}</value></data>
+  <data name="Shell_FileA11y" xml:space="preserve"><value>読み込み済みファイル: {0}</value></data>
+  <data name="Shell_NoFileLoaded" xml:space="preserve"><value>ファイルが読み込まれていません</value></data>
+  <data name="Shell_SaveHint" xml:space="preserve"><value>編集内容をディスク上のセーブファイルに書き戻します</value></data>
+  <data name="Shell_NavA11y" xml:space="preserve"><value>メインナビゲーション</value></data>
+  <data name="Nav_OpenFile" xml:space="preserve"><value>ファイルを開く</value></data>
+  <data name="Nav_Overview" xml:space="preserve"><value>概要</value></data>
+  <data name="Nav_Inventories" xml:space="preserve"><value>インベントリ</value></data>
+  <data name="Nav_TerraTokens" xml:space="preserve"><value>テラトークン</value></data>
+  <data name="Nav_Teleport" xml:space="preserve"><value>テレポート</value></data>
+  <data name="Nav_About" xml:space="preserve"><value>情報</value></data>
+  <data name="Dirty_Unsaved" xml:space="preserve"><value>未保存の変更</value></data>
+  <data name="Dirty_Saved" xml:space="preserve"><value>すべての変更を保存しました</value></data>
+  <data name="Save_Ok" xml:space="preserve"><value>保存しました。</value></data>
+  <data name="Save_OkAnnounce" xml:space="preserve"><value>セーブファイルを書き込みました。</value></data>
+  <data name="Save_Failed" xml:space="preserve"><value>保存に失敗しました。ファイルは変更されていません。</value></data>
+  <data name="Save_FailedAnnounce" xml:space="preserve"><value>エラー: 保存に失敗しました。ファイルは変更されていません。</value></data>
+  <data name="Announce_ErrorPrefix" xml:space="preserve"><value>エラー: {0}</value></data>
+  <data name="OpenFile_Title" xml:space="preserve"><value>ファイルを開く</value></data>
+  <data name="OpenFile_Heading" xml:space="preserve"><value>Planet Crafter セーブエディター</value></data>
+  <data name="OpenFile_Intro" xml:space="preserve"><value>Planet Crafter のセーブファイルを開いて、プレイヤー、ワールドのテラフォーミング、インベントリ、テラトークン、テレポート地点を表示・編集します。</value></data>
+  <data name="OpenFile_CurrentlyLoaded" xml:space="preserve"><value>現在読み込み中: {0}</value></data>
+  <data name="OpenFile_NoFileLoaded" xml:space="preserve"><value>ファイルが読み込まれていません。</value></data>
+  <data name="OpenFile_ChooseButton" xml:space="preserve"><value>セーブファイルを選択…</value></data>
+  <data name="OpenFile_ChooseHint" xml:space="preserve"><value>Planet Crafter のセーブを読み込むファイル選択画面を開きます</value></data>
+  <data name="OpenFile_LoadingInline" xml:space="preserve"><value>セーブファイルを読み込み中…</value></data>
+  <data name="OpenFile_LoadingA11y" xml:space="preserve"><value>セーブファイルを読み込み中</value></data>
+  <data name="OpenFile_PickerTitle" xml:space="preserve"><value>Planet Crafter のセーブファイルを選択してください</value></data>
+  <data name="OpenFile_LoadingAnnounce" xml:space="preserve"><value>セーブファイルを読み込み中。</value></data>
+  <data name="OpenFile_Loaded" xml:space="preserve"><value>{0} を読み込みました。</value></data>
+  <data name="OpenFile_LoadFailed" xml:space="preserve"><value>そのファイルを読み込めませんでした。有効な Planet Crafter のセーブではない可能性があります。</value></data>
+  <data name="OpenFile_DiscardTitle" xml:space="preserve"><value>未保存の変更</value></data>
+  <data name="OpenFile_DiscardBody" xml:space="preserve"><value>新しいファイルを読み込むと未保存の変更は破棄されます。続行しますか？</value></data>
+  <data name="Overview_Title" xml:space="preserve"><value>概要</value></data>
+  <data name="Overview_Players" xml:space="preserve"><value>プレイヤー</value></data>
+  <data name="Overview_WorldTerraforming" xml:space="preserve"><value>ワールドのテラフォーミング</value></data>
+  <data name="Overview_NoTerraforming" xml:space="preserve"><value>このセーブにはテラフォーミングのデータがありません。</value></data>
+  <data name="Overview_HostBadge" xml:space="preserve"><value>ホスト</value></data>
+  <data name="Overview_HostA11y" xml:space="preserve"><value>ホストプレイヤー</value></data>
+  <data name="Overview_PlayerLocation" xml:space="preserve"><value>惑星 {0}  ·  位置 {1}</value></data>
+  <data name="Overview_Vital_Oxygen" xml:space="preserve"><value>酸素</value></data>
+  <data name="Overview_Vital_Thirst" xml:space="preserve"><value>水分</value></data>
+  <data name="Overview_Vital_Health" xml:space="preserve"><value>体力</value></data>
+  <data name="Overview_Vital_Toxicity" xml:space="preserve"><value>毒性</value></data>
+  <data name="Overview_PlayerProgress" xml:space="preserve"><value>作成したオブジェクト {0}  ·  獲得したテラトークン {1}</value></data>
+  <data name="Vital_Ok" xml:space="preserve"><value>良好</value></data>
+  <data name="Vital_Low" xml:space="preserve"><value>低下</value></data>
+  <data name="Vital_Critical" xml:space="preserve"><value>危険</value></data>
+  <data name="Terraform_Apply" xml:space="preserve"><value>変更を適用</value></data>
+  <data name="Terraform_ApplyA11y" xml:space="preserve"><value>{0} にテラフォーミングの変更を適用</value></data>
+  <data name="Terraform_Oxygen" xml:space="preserve"><value>酸素</value></data>
+  <data name="Terraform_Heat" xml:space="preserve"><value>熱</value></data>
+  <data name="Terraform_Pressure" xml:space="preserve"><value>気圧</value></data>
+  <data name="Terraform_Plants" xml:space="preserve"><value>植物</value></data>
+  <data name="Terraform_Insects" xml:space="preserve"><value>昆虫</value></data>
+  <data name="Terraform_Animals" xml:space="preserve"><value>動物</value></data>
+  <data name="Terraform_Purification" xml:space="preserve"><value>浄化</value></data>
+  <data name="Terraform_HintCollapsed" xml:space="preserve"><value>折りたたみ中。展開するには有効化してください。</value></data>
+  <data name="Terraform_HintExpanded" xml:space="preserve"><value>展開中。折りたたむには有効化してください。</value></data>
+  <data name="Terraform_InvalidLevels" xml:space="preserve"><value>1 つ以上のテラフォーミング値が有効な数値ではありません。</value></data>
+  <data name="Terraform_InvalidPurification" xml:space="preserve"><value>浄化値が有効な数値ではありません。</value></data>
+  <data name="Terraform_Updated" xml:space="preserve"><value>{0} のテラフォーミング値を更新しました。</value></data>
+  <data name="Inventories_Title" xml:space="preserve"><value>インベントリ</value></data>
+  <data name="Inventories_Heading" xml:space="preserve"><value>インベントリ</value></data>
+  <data name="Inventories_None" xml:space="preserve"><value>このセーブにはインベントリがありません。</value></data>
+  <data name="Inventories_Empty" xml:space="preserve"><value>空</value></data>
+  <data name="Inventories_Move" xml:space="preserve"><value>移動…</value></data>
+  <data name="Inventories_MoveA11y" xml:space="preserve"><value>{0} を別のインベントリに移動</value></data>
+  <data name="Inventories_CapacityA11y" xml:space="preserve"><value>容量 {0} 個</value></data>
+  <data name="Inventories_Search" xml:space="preserve"><value>インベントリとアイテムを検索</value></data>
+  <data name="Inventories_SearchA11y" xml:space="preserve"><value>名前または内容でインベントリ一覧を絞り込む</value></data>
+  <data name="Inventories_NoMatch" xml:space="preserve"><value>検索に一致するインベントリやアイテムはありません。</value></data>
+  <data name="Inventories_FilterAll" xml:space="preserve"><value>すべて</value></data>
+  <data name="Inventories_FilterPlayers" xml:space="preserve"><value>プレイヤー</value></data>
+  <data name="Inventories_FilterEquipment" xml:space="preserve"><value>装備</value></data>
+  <data name="Inventories_FilterContainers" xml:space="preserve"><value>コンテナ</value></data>
+  <data name="Inventories_FilterA11y" xml:space="preserve"><value>表示するインベントリの種類</value></data>
+  <data name="Inv_PlayerInventory" xml:space="preserve"><value>{0} のインベントリ</value></data>
+  <data name="Inv_PlayerEquipment" xml:space="preserve"><value>{0} の装備</value></data>
+  <data name="Inv_Container" xml:space="preserve"><value>{0}（オブジェクト #{1}）</value></data>
+  <data name="Inv_Fallback" xml:space="preserve"><value>インベントリ #{0}</value></data>
+  <data name="Inv_NotInInventory" xml:space="preserve"><value>このアイテムは現在どのインベントリにもありません。</value></data>
+  <data name="Inv_AlreadyThere" xml:space="preserve"><value>このアイテムはすでにそのインベントリにあります。</value></data>
+  <data name="Inv_DestNotFound" xml:space="preserve"><value>移動先のインベントリが見つかりませんでした。</value></data>
+  <data name="Inv_DestFull" xml:space="preserve"><value>移動先のインベントリが満杯です（{0}/{1}）。</value></data>
+  <data name="SelectInv_Title" xml:space="preserve"><value>アイテムを移動</value></data>
+  <data name="SelectInv_Heading" xml:space="preserve"><value>移動先のインベントリを選択</value></data>
+  <data name="SelectInv_Search" xml:space="preserve"><value>移動先を検索</value></data>
+  <data name="SelectInv_None" xml:space="preserve"><value>他に利用できるインベントリがありません。</value></data>
+  <data name="SelectInv_MoveFailedTitle" xml:space="preserve"><value>移動に失敗しました</value></data>
+  <data name="SelectInv_MoveIncomplete" xml:space="preserve"><value>移動を完了できませんでした。</value></data>
+  <data name="SelectInv_Moved" xml:space="preserve"><value>アイテムを {0} に移動しました。</value></data>
+  <data name="TerraTokens_Title" xml:space="preserve"><value>テラトークン</value></data>
+  <data name="TerraTokens_Heading" xml:space="preserve"><value>テラトークンを付与</value></data>
+  <data name="TerraTokens_CurrentBalance" xml:space="preserve"><value>現在の残高</value></data>
+  <data name="TerraTokens_AllTimeEarned" xml:space="preserve"><value>累計獲得数</value></data>
+  <data name="TerraTokens_CurrentBalanceA11y" xml:space="preserve"><value>現在の残高: {0} テラトークン</value></data>
+  <data name="TerraTokens_AllTimeEarnedA11y" xml:space="preserve"><value>累計獲得数: {0} テラトークン</value></data>
+  <data name="TerraTokens_Player" xml:space="preserve"><value>プレイヤー</value></data>
+  <data name="TerraTokens_SelectPlayer" xml:space="preserve"><value>プレイヤーを選択</value></data>
+  <data name="TerraTokens_PlayerA11y" xml:space="preserve"><value>トークンを付与するプレイヤー</value></data>
+  <data name="TerraTokens_Amount" xml:space="preserve"><value>付与する数量</value></data>
+  <data name="TerraTokens_AmountHint" xml:space="preserve"><value>正の整数のテラトークン</value></data>
+  <data name="TerraTokens_Grant" xml:space="preserve"><value>付与</value></data>
+  <data name="TerraTokens_ChoosePlayer" xml:space="preserve"><value>トークンを付与するプレイヤーを選択してください。</value></data>
+  <data name="TerraTokens_InvalidAmount" xml:space="preserve"><value>付与するトークンの正の整数を入力してください。</value></data>
+  <data name="TerraTokens_Granted" xml:space="preserve"><value>{1} に {0} テラトークンを付与しました。</value></data>
+  <data name="Teleport_Title" xml:space="preserve"><value>テレポート</value></data>
+  <data name="Teleport_Heading" xml:space="preserve"><value>プレイヤーをテレポート</value></data>
+  <data name="Teleport_Player" xml:space="preserve"><value>プレイヤー</value></data>
+  <data name="Teleport_SelectPlayer" xml:space="preserve"><value>プレイヤーを選択</value></data>
+  <data name="Teleport_PlayerA11y" xml:space="preserve"><value>テレポートするプレイヤー</value></data>
+  <data name="Teleport_Planet" xml:space="preserve"><value>惑星</value></data>
+  <data name="Teleport_SelectPlanet" xml:space="preserve"><value>惑星を選択</value></data>
+  <data name="Teleport_PlanetA11y" xml:space="preserve"><value>移動先の惑星</value></data>
+  <data name="Teleport_CustomPlanet" xml:space="preserve"><value>カスタム惑星 ID</value></data>
+  <data name="Teleport_CustomPlanetPlaceholder" xml:space="preserve"><value>例: Prime</value></data>
+  <data name="Teleport_CustomPlanetHint" xml:space="preserve"><value>リストにない惑星 ID を入力します</value></data>
+  <data name="Teleport_CoordXA11y" xml:space="preserve"><value>X 座標</value></data>
+  <data name="Teleport_CoordYA11y" xml:space="preserve"><value>Y 座標</value></data>
+  <data name="Teleport_CoordZA11y" xml:space="preserve"><value>Z 座標</value></data>
+  <data name="Teleport_Teleport" xml:space="preserve"><value>テレポート</value></data>
+  <data name="Teleport_UseCurrentPosition" xml:space="preserve"><value>プレイヤーの現在位置に戻す</value></data>
+  <data name="Teleport_PositionReset" xml:space="preserve"><value>位置を {0} の現在地にリセットしました。</value></data>
+  <data name="Teleport_LandmarksHeading" xml:space="preserve"><value>ランドマーク</value></data>
+  <data name="Teleport_LandmarksHelp" xml:space="preserve"><value>ランドマークを選ぶと、その位置から X / Y / Z が入力されます。</value></data>
+  <data name="Teleport_NoLandmarks" xml:space="preserve"><value>利用できるランドマークがありません。</value></data>
+  <data name="Teleport_UsePosition" xml:space="preserve"><value>位置を使用</value></data>
+  <data name="Teleport_UsePositionA11y" xml:space="preserve"><value>{0} の位置を使用</value></data>
+  <data name="Teleport_OtherPlanet" xml:space="preserve"><value>その他…</value></data>
+  <data name="Teleport_PositionFromLandmark" xml:space="preserve"><value>{0} から位置を設定しました。X {1}、Y {2}、Z {3}。</value></data>
+  <data name="Teleport_ChoosePlayer" xml:space="preserve"><value>テレポートするプレイヤーを選択してください。</value></data>
+  <data name="Teleport_ChoosePlanet" xml:space="preserve"><value>惑星 ID を入力または選択してください。</value></data>
+  <data name="Teleport_InvalidCoords" xml:space="preserve"><value>X、Y、Z は有効な数値である必要があります。</value></data>
+  <data name="Teleport_Done" xml:space="preserve"><value>{0} を {1} にテレポートしました（{2}）。</value></data>
+  <data name="Teleport_LandmarkPlanetHash" xml:space="preserve"><value>ワールドハッシュ {0}</value></data>
+  <data name="Teleport_LandmarkNoPlanetHash" xml:space="preserve"><value>ワールドハッシュは記録されていません</value></data>
+  <data name="Disclaimer_Title" xml:space="preserve"><value>自己責任でご利用ください</value></data>
+  <data name="Disclaimer_Body" xml:space="preserve"><value>PCEdit は Planet Crafter のセーブファイルを直接編集します。誤った編集はセーブを破損させ、進行状況を失う可能性があります。編集前には必ずセーブファイルのバックアップを保管してください。本ソフトウェアは「現状のまま」提供され、いかなる保証もありません。</value></data>
+  <data name="Disclaimer_Acknowledge" xml:space="preserve"><value>理解しました</value></data>
+  <data name="Disclaimer_ShortNotice" xml:space="preserve"><value>編集はセーブを破損させる可能性があります。まずファイルをバックアップしてください。自己責任でご利用ください。</value></data>
+  <data name="About_Title" xml:space="preserve"><value>情報</value></data>
+  <data name="About_Heading" xml:space="preserve"><value>PCEdit</value></data>
+  <data name="About_Tagline" xml:space="preserve"><value>The Planet Crafter 用のセーブファイルエディター。</value></data>
+  <data name="About_Version" xml:space="preserve"><value>バージョン {0}</value></data>
+  <data name="About_Language" xml:space="preserve"><value>言語</value></data>
+  <data name="About_LanguageA11y" xml:space="preserve"><value>アプリケーションの言語</value></data>
+</root>

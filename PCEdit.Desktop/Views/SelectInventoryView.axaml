@@ -1,0 +1,51 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:PCEdit.App.Core.ViewModels;assembly=PCEdit.App.Core"
+             xmlns:models="clr-namespace:PCEdit.App.Core.Models;assembly=PCEdit.App.Core"
+             xmlns:m="using:PCEdit.Desktop.Markup"
+             xmlns:conv="using:PCEdit.Desktop.Converters"
+             x:Class="PCEdit.Desktop.Views.SelectInventoryView"
+             x:DataType="vm:SelectInventoryViewModel"
+             x:Name="Root">
+
+    <DockPanel Margin="20">
+        <StackPanel DockPanel.Dock="Top" Spacing="10" Margin="0,0,0,12">
+            <StackPanel Orientation="Horizontal" Spacing="10">
+                <Border Classes="headingRule" />
+                <TextBlock Text="{m:Loc SelectInv_Heading}" Classes="h2" VerticalAlignment="Center" />
+            </StackPanel>
+            <TextBox Text="{Binding Query, Mode=TwoWay}" PlaceholderText="{m:Loc SelectInv_Search}" />
+        </StackPanel>
+
+        <StackPanel DockPanel.Dock="Bottom" Spacing="12" Margin="0,12,0,0">
+            <TextBlock Text="{Binding StatusMessage}"
+                       IsVisible="{Binding StatusMessage, Converter={StaticResource StringNotEmpty}}"
+                       Foreground="{Binding StatusKind, Converter={StaticResource StatusBrush}}" />
+            <Button HorizontalAlignment="Left" Content="{m:Loc Common_Cancel}" Command="{Binding CancelCommand}" />
+        </StackPanel>
+
+        <ScrollViewer>
+            <StackPanel Spacing="8">
+                <TextBlock Text="{m:Loc SelectInv_None}" Classes="caption" HorizontalAlignment="Center"
+                           IsVisible="{Binding Options.Count, Converter={StaticResource CountIsZero}}" />
+                <ItemsControl ItemsSource="{Binding FilteredOptions}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="models:InventoryOptionView">
+                            <Button Classes="link" HorizontalAlignment="Stretch" Margin="0,0,0,6"
+                                    IsEnabled="{Binding !IsFull}"
+                                    Command="{Binding #Root.DataContext.SelectCommand}"
+                                    CommandParameter="{Binding}"
+                                    AutomationProperties.Name="{Binding AccessibleLabel}">
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <TextBlock Grid.Column="0" Text="{Binding Label}" />
+                                    <TextBlock Grid.Column="1" Text="{Binding CapacityLabel}" Classes="caption" />
+                                </Grid>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
+    </DockPanel>
+
+</UserControl>

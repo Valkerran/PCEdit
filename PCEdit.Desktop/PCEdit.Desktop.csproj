@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <RootNamespace>PCEdit.Desktop</RootNamespace>
+        <!-- Ship the executable / avares:// asset root as "PCEdit" (not "PCEdit.Desktop"). -->
+        <AssemblyName>PCEdit</AssemblyName>
+        <ApplicationManifest>app.manifest</ApplicationManifest>
+
+        <!-- Version comes from <VersionPrefix> in the repo-root Directory.Build.props.
+             The packaging scripts / Release workflow override it with -p:Version=<tag>. -->
+        <AvaloniaUseCompiledBindingsByDefault>false</AvaloniaUseCompiledBindingsByDefault>
+        <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+        <RuntimeIdentifiers>linux-x64;win-x64;osx-x64;osx-arm64</RuntimeIdentifiers>
+        <!-- All 15 UI-language satellites of PCEdit.App.Core must ship. -->
+        <SatelliteResourceLanguages>en;en-GB;fr;de;es-ES;zh-Hans;ru;pl;pt-PT;ko;ja;pt-BR;it;zh-Hant;tr</SatelliteResourceLanguages>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <AvaloniaResource Include="Assets/**" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Avalonia" Version="12.1.1" />
+        <PackageReference Include="Avalonia.Desktop" Version="12.1.1" />
+        <PackageReference Include="Avalonia.Themes.Fluent" Version="12.1.1" />
+        <PackageReference Include="Avalonia.Fonts.Inter" Version="12.1.1" />
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\PCEdit.App.Core\PCEdit.App.Core.csproj" />
+    </ItemGroup>
+
+</Project>

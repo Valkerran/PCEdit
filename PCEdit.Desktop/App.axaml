@@ -1,0 +1,99 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:PCEdit.Desktop"
+             xmlns:conv="using:PCEdit.Desktop.Converters"
+             x:Class="PCEdit.Desktop.App"
+             RequestedThemeVariant="Default">
+
+    <Application.DataTemplates>
+        <local:ViewLocator />
+    </Application.DataTemplates>
+
+    <Application.Styles>
+        <FluentTheme />
+        <StyleInclude Source="avares://PCEdit/Styles/Controls.axaml" />
+    </Application.Styles>
+
+    <Application.Resources>
+      <ResourceDictionary>
+
+        <!--
+          Palette derived from The Planet Crafter's terraforming arc: a dead rust-coloured
+          world turned to blue sky and green biosphere. Brand accent is a muted biosphere
+          green (not an acid green); the terraform "spectrum" (rust -> sky -> green) shows
+          only on the nav selection indicator. Token KEYS must stay stable - StatusPalette
+          and the value converters resolve them by name.
+        -->
+
+        <!-- FluentTheme selection / focus visuals follow the brand green. -->
+        <Color x:Key="SystemAccentColor">#5BA46B</Color>
+        <Color x:Key="SystemAccentColorDark1">#4E9760</Color>
+        <Color x:Key="SystemAccentColorDark2">#3F7D4E</Color>
+        <Color x:Key="SystemAccentColorDark3">#2F6A3F</Color>
+        <Color x:Key="SystemAccentColorLight1">#7CBB8A</Color>
+        <Color x:Key="SystemAccentColorLight2">#9DD0A8</Color>
+        <Color x:Key="SystemAccentColorLight3">#BFE3C7</Color>
+
+        <ResourceDictionary.ThemeDictionaries>
+
+          <ResourceDictionary x:Key="Dark">
+            <SolidColorBrush x:Key="SurfacePage" Color="#12171A" />
+            <SolidColorBrush x:Key="SurfaceCard" Color="#1B2327" />
+            <SolidColorBrush x:Key="SurfaceBadge" Color="#2C373C" />
+            <!-- Nav selection fill: a clearly brand-green-tinted step up from SurfaceCard,
+                 not the near-invisible neutral tint SurfaceBadge gave. -->
+            <SolidColorBrush x:Key="SurfaceNavSelected" Color="#2F4A3A" />
+            <SolidColorBrush x:Key="TextPrimary" Color="#EAF0EC" />
+            <SolidColorBrush x:Key="TextSecondary" Color="#9FB0AA" />
+            <SolidColorBrush x:Key="TextOnBrand" Color="#0C130F" />
+            <SolidColorBrush x:Key="BrandText" Color="#8FD39B" />
+            <SolidColorBrush x:Key="BrandFill" Color="#5BA46B" />
+            <SolidColorBrush x:Key="Divider" Color="#33403F" />
+            <SolidColorBrush x:Key="FocusOutline" Color="#8FD39B" />
+            <SolidColorBrush x:Key="StatusInfoText" Color="#7FB9DE" />
+            <SolidColorBrush x:Key="StatusSuccessText" Color="#6FCF87" />
+            <SolidColorBrush x:Key="StatusWarningText" Color="#E0A106" />
+            <SolidColorBrush x:Key="StatusErrorText" Color="#E8907A" />
+          </ResourceDictionary>
+
+          <ResourceDictionary x:Key="Light">
+            <SolidColorBrush x:Key="SurfacePage" Color="#EEF1EC" />
+            <SolidColorBrush x:Key="SurfaceCard" Color="#FBFCFA" />
+            <SolidColorBrush x:Key="SurfaceBadge" Color="#E1E7E0" />
+            <SolidColorBrush x:Key="SurfaceNavSelected" Color="#CFE6D5" />
+            <SolidColorBrush x:Key="TextPrimary" Color="#16201B" />
+            <SolidColorBrush x:Key="TextSecondary" Color="#4C5A52" />
+            <SolidColorBrush x:Key="TextOnBrand" Color="#FFFFFF" />
+            <SolidColorBrush x:Key="BrandText" Color="#22633A" />
+            <SolidColorBrush x:Key="BrandFill" Color="#2F7343" />
+            <SolidColorBrush x:Key="Divider" Color="#CBD4CC" />
+            <SolidColorBrush x:Key="FocusOutline" Color="#2F7343" />
+            <SolidColorBrush x:Key="StatusInfoText" Color="#1F5FA8" />
+            <SolidColorBrush x:Key="StatusSuccessText" Color="#1B6B2E" />
+            <SolidColorBrush x:Key="StatusWarningText" Color="#8A5300" />
+            <SolidColorBrush x:Key="StatusErrorText" Color="#B3261E" />
+          </ResourceDictionary>
+
+        </ResourceDictionary.ThemeDictionaries>
+
+        <!-- The terraform-arc gradient: the one flourish, used on the nav selection indicator. -->
+        <LinearGradientBrush x:Key="TerraformSpectrum" StartPoint="0%,0%" EndPoint="0%,100%">
+          <GradientStop Offset="0" Color="#C6703C" />
+          <GradientStop Offset="0.5" Color="#4E9CC4" />
+          <GradientStop Offset="1" Color="#5BA46B" />
+        </LinearGradientBrush>
+
+        <conv:InvertedBoolConverter x:Key="InvertedBool" />
+        <conv:StringNotEmptyConverter x:Key="StringNotEmpty" />
+        <conv:DirtyStateTextConverter x:Key="DirtyStateText" />
+        <conv:VitalStatusTextConverter x:Key="VitalText" />
+        <conv:VitalStatusColorConverter x:Key="VitalBrush" />
+        <conv:StatusKindToColorConverter x:Key="StatusBrush" />
+        <conv:IconPathConverter x:Key="Icon" />
+        <conv:CountConverter x:Key="CountIsZero" Zero="True" />
+        <conv:InventoryFilterConverter x:Key="InvFilter" />
+
+      </ResourceDictionary>
+    </Application.Resources>
+
+</Application>

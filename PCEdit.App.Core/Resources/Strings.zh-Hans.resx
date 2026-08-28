@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+
+  <data name="Common_Save" xml:space="preserve"><value>保存</value></data>
+  <data name="Common_Cancel" xml:space="preserve"><value>取消</value></data>
+  <data name="Common_Ok" xml:space="preserve"><value>确定</value></data>
+  <data name="Common_Discard" xml:space="preserve"><value>放弃</value></data>
+  <data name="Common_NoFileLoadedGoOpen" xml:space="preserve"><value>未加载存档文件。</value></data>
+  <data name="Common_OpenSaveFile" xml:space="preserve"><value>打开存档文件…</value></data>
+  <data name="Common_CloseWithoutSaving" xml:space="preserve"><value>不保存并关闭</value></data>
+  <data name="Common_KeepEditing" xml:space="preserve"><value>继续编辑</value></data>
+  <data name="Quit_DiscardTitle" xml:space="preserve"><value>未保存的更改</value></data>
+  <data name="Quit_DiscardBody" xml:space="preserve"><value>现在关闭 PCEdit 将放弃未保存的更改。磁盘上的存档文件不会改变。</value></data>
+  <data name="Shell_Title" xml:space="preserve"><value>Planet Crafter 存档编辑器</value></data>
+  <data name="Shell_Brand" xml:space="preserve"><value>PCEdit</value></data>
+  <data name="Shell_File" xml:space="preserve"><value>文件：{0}</value></data>
+  <data name="Shell_FileA11y" xml:space="preserve"><value>已加载文件：{0}</value></data>
+  <data name="Shell_NoFileLoaded" xml:space="preserve"><value>未加载文件</value></data>
+  <data name="Shell_SaveHint" xml:space="preserve"><value>将你的修改写回磁盘上的存档文件</value></data>
+  <data name="Shell_NavA11y" xml:space="preserve"><value>主导航</value></data>
+  <data name="Nav_OpenFile" xml:space="preserve"><value>打开文件</value></data>
+  <data name="Nav_Overview" xml:space="preserve"><value>概览</value></data>
+  <data name="Nav_Inventories" xml:space="preserve"><value>库存</value></data>
+  <data name="Nav_TerraTokens" xml:space="preserve"><value>地球化代币</value></data>
+  <data name="Nav_Teleport" xml:space="preserve"><value>传送</value></data>
+  <data name="Nav_About" xml:space="preserve"><value>关于</value></data>
+  <data name="Dirty_Unsaved" xml:space="preserve"><value>未保存的更改</value></data>
+  <data name="Dirty_Saved" xml:space="preserve"><value>所有更改已保存</value></data>
+  <data name="Save_Ok" xml:space="preserve"><value>已保存。</value></data>
+  <data name="Save_OkAnnounce" xml:space="preserve"><value>存档文件已写入。</value></data>
+  <data name="Save_Failed" xml:space="preserve"><value>保存失败。你的文件未被更改。</value></data>
+  <data name="Save_FailedAnnounce" xml:space="preserve"><value>错误：保存失败。你的文件未被更改。</value></data>
+  <data name="Announce_ErrorPrefix" xml:space="preserve"><value>错误：{0}</value></data>
+  <data name="OpenFile_Title" xml:space="preserve"><value>打开文件</value></data>
+  <data name="OpenFile_Heading" xml:space="preserve"><value>Planet Crafter 存档编辑器</value></data>
+  <data name="OpenFile_Intro" xml:space="preserve"><value>打开 Planet Crafter 存档文件以查看和编辑玩家、世界地球化、库存、地球化代币和传送地点。</value></data>
+  <data name="OpenFile_CurrentlyLoaded" xml:space="preserve"><value>当前已加载：{0}</value></data>
+  <data name="OpenFile_NoFileLoaded" xml:space="preserve"><value>未加载文件。</value></data>
+  <data name="OpenFile_ChooseButton" xml:space="preserve"><value>选择存档文件…</value></data>
+  <data name="OpenFile_ChooseHint" xml:space="preserve"><value>打开文件选择器以加载 Planet Crafter 存档</value></data>
+  <data name="OpenFile_LoadingInline" xml:space="preserve"><value>正在加载存档…</value></data>
+  <data name="OpenFile_LoadingA11y" xml:space="preserve"><value>正在加载存档</value></data>
+  <data name="OpenFile_PickerTitle" xml:space="preserve"><value>选择一个 Planet Crafter 存档文件</value></data>
+  <data name="OpenFile_LoadingAnnounce" xml:space="preserve"><value>正在加载存档。</value></data>
+  <data name="OpenFile_Loaded" xml:space="preserve"><value>已加载 {0}。</value></data>
+  <data name="OpenFile_LoadFailed" xml:space="preserve"><value>无法加载该文件。它可能不是有效的 Planet Crafter 存档。</value></data>
+  <data name="OpenFile_DiscardTitle" xml:space="preserve"><value>未保存的更改</value></data>
+  <data name="OpenFile_DiscardBody" xml:space="preserve"><value>加载新文件将放弃你未保存的更改。是否继续？</value></data>
+  <data name="Overview_Title" xml:space="preserve"><value>概览</value></data>
+  <data name="Overview_Players" xml:space="preserve"><value>玩家</value></data>
+  <data name="Overview_WorldTerraforming" xml:space="preserve"><value>世界地球化</value></data>
+  <data name="Overview_NoTerraforming" xml:space="preserve"><value>此存档中没有地球化数据。</value></data>
+  <data name="Overview_HostBadge" xml:space="preserve"><value>主机</value></data>
+  <data name="Overview_HostA11y" xml:space="preserve"><value>主机玩家</value></data>
+  <data name="Overview_PlayerLocation" xml:space="preserve"><value>行星 {0}  ·  位置 {1}</value></data>
+  <data name="Overview_Vital_Oxygen" xml:space="preserve"><value>氧气</value></data>
+  <data name="Overview_Vital_Thirst" xml:space="preserve"><value>口渴</value></data>
+  <data name="Overview_Vital_Health" xml:space="preserve"><value>生命</value></data>
+  <data name="Overview_Vital_Toxicity" xml:space="preserve"><value>毒性</value></data>
+  <data name="Overview_PlayerProgress" xml:space="preserve"><value>已制作 {0} 个物品  ·  已获得 {1} 个地球化代币</value></data>
+  <data name="Vital_Ok" xml:space="preserve"><value>正常</value></data>
+  <data name="Vital_Low" xml:space="preserve"><value>偏低</value></data>
+  <data name="Vital_Critical" xml:space="preserve"><value>危急</value></data>
+  <data name="Terraform_Apply" xml:space="preserve"><value>应用更改</value></data>
+  <data name="Terraform_ApplyA11y" xml:space="preserve"><value>将地球化更改应用到 {0}</value></data>
+  <data name="Terraform_Oxygen" xml:space="preserve"><value>氧气</value></data>
+  <data name="Terraform_Heat" xml:space="preserve"><value>热量</value></data>
+  <data name="Terraform_Pressure" xml:space="preserve"><value>气压</value></data>
+  <data name="Terraform_Plants" xml:space="preserve"><value>植物</value></data>
+  <data name="Terraform_Insects" xml:space="preserve"><value>昆虫</value></data>
+  <data name="Terraform_Animals" xml:space="preserve"><value>动物</value></data>
+  <data name="Terraform_Purification" xml:space="preserve"><value>净化</value></data>
+  <data name="Terraform_HintCollapsed" xml:space="preserve"><value>已折叠。激活以展开。</value></data>
+  <data name="Terraform_HintExpanded" xml:space="preserve"><value>已展开。激活以折叠。</value></data>
+  <data name="Terraform_InvalidLevels" xml:space="preserve"><value>一个或多个地球化数值不是有效数字。</value></data>
+  <data name="Terraform_InvalidPurification" xml:space="preserve"><value>净化数值不是有效数字。</value></data>
+  <data name="Terraform_Updated" xml:space="preserve"><value>已更新 {0} 的地球化数值。</value></data>
+  <data name="Inventories_Title" xml:space="preserve"><value>库存</value></data>
+  <data name="Inventories_Heading" xml:space="preserve"><value>库存</value></data>
+  <data name="Inventories_None" xml:space="preserve"><value>此存档中没有库存。</value></data>
+  <data name="Inventories_Empty" xml:space="preserve"><value>空</value></data>
+  <data name="Inventories_Move" xml:space="preserve"><value>移动…</value></data>
+  <data name="Inventories_MoveA11y" xml:space="preserve"><value>将 {0} 移动到另一个库存</value></data>
+  <data name="Inventories_CapacityA11y" xml:space="preserve"><value>容量 {0} 件物品</value></data>
+  <data name="Inventories_Search" xml:space="preserve"><value>搜索库存和物品</value></data>
+  <data name="Inventories_SearchA11y" xml:space="preserve"><value>按名称或内容筛选库存列表</value></data>
+  <data name="Inventories_NoMatch" xml:space="preserve"><value>没有与搜索匹配的库存或物品。</value></data>
+  <data name="Inventories_FilterAll" xml:space="preserve"><value>全部</value></data>
+  <data name="Inventories_FilterPlayers" xml:space="preserve"><value>玩家</value></data>
+  <data name="Inventories_FilterEquipment" xml:space="preserve"><value>装备</value></data>
+  <data name="Inventories_FilterContainers" xml:space="preserve"><value>容器</value></data>
+  <data name="Inventories_FilterA11y" xml:space="preserve"><value>显示哪些库存类型</value></data>
+  <data name="Inv_PlayerInventory" xml:space="preserve"><value>{0} 的库存</value></data>
+  <data name="Inv_PlayerEquipment" xml:space="preserve"><value>{0} 的装备</value></data>
+  <data name="Inv_Container" xml:space="preserve"><value>{0}（物体 #{1}）</value></data>
+  <data name="Inv_Fallback" xml:space="preserve"><value>库存 #{0}</value></data>
+  <data name="Inv_NotInInventory" xml:space="preserve"><value>该物品当前不在任何库存中。</value></data>
+  <data name="Inv_AlreadyThere" xml:space="preserve"><value>该物品已在该库存中。</value></data>
+  <data name="Inv_DestNotFound" xml:space="preserve"><value>未找到目标库存。</value></data>
+  <data name="Inv_DestFull" xml:space="preserve"><value>目标库存已满（{0}/{1}）。</value></data>
+  <data name="SelectInv_Title" xml:space="preserve"><value>移动物品</value></data>
+  <data name="SelectInv_Heading" xml:space="preserve"><value>选择目标库存</value></data>
+  <data name="SelectInv_Search" xml:space="preserve"><value>搜索目标</value></data>
+  <data name="SelectInv_None" xml:space="preserve"><value>没有其他可用库存。</value></data>
+  <data name="SelectInv_MoveFailedTitle" xml:space="preserve"><value>移动失败</value></data>
+  <data name="SelectInv_MoveIncomplete" xml:space="preserve"><value>无法完成移动。</value></data>
+  <data name="SelectInv_Moved" xml:space="preserve"><value>物品已移动到 {0}。</value></data>
+  <data name="TerraTokens_Title" xml:space="preserve"><value>地球化代币</value></data>
+  <data name="TerraTokens_Heading" xml:space="preserve"><value>发放地球化代币</value></data>
+  <data name="TerraTokens_CurrentBalance" xml:space="preserve"><value>当前余额</value></data>
+  <data name="TerraTokens_AllTimeEarned" xml:space="preserve"><value>历史获得</value></data>
+  <data name="TerraTokens_CurrentBalanceA11y" xml:space="preserve"><value>当前余额：{0} 个地球化代币</value></data>
+  <data name="TerraTokens_AllTimeEarnedA11y" xml:space="preserve"><value>历史获得：{0} 个地球化代币</value></data>
+  <data name="TerraTokens_Player" xml:space="preserve"><value>玩家</value></data>
+  <data name="TerraTokens_SelectPlayer" xml:space="preserve"><value>选择玩家</value></data>
+  <data name="TerraTokens_PlayerA11y" xml:space="preserve"><value>要发放代币的玩家</value></data>
+  <data name="TerraTokens_Amount" xml:space="preserve"><value>发放数量</value></data>
+  <data name="TerraTokens_AmountHint" xml:space="preserve"><value>正整数的地球化代币</value></data>
+  <data name="TerraTokens_Grant" xml:space="preserve"><value>发放</value></data>
+  <data name="TerraTokens_ChoosePlayer" xml:space="preserve"><value>选择要发放代币的玩家。</value></data>
+  <data name="TerraTokens_InvalidAmount" xml:space="preserve"><value>输入要发放的正整数代币数量。</value></data>
+  <data name="TerraTokens_Granted" xml:space="preserve"><value>已向 {1} 发放 {0} 个地球化代币。</value></data>
+  <data name="Teleport_Title" xml:space="preserve"><value>传送</value></data>
+  <data name="Teleport_Heading" xml:space="preserve"><value>传送玩家</value></data>
+  <data name="Teleport_Player" xml:space="preserve"><value>玩家</value></data>
+  <data name="Teleport_SelectPlayer" xml:space="preserve"><value>选择玩家</value></data>
+  <data name="Teleport_PlayerA11y" xml:space="preserve"><value>要传送的玩家</value></data>
+  <data name="Teleport_Planet" xml:space="preserve"><value>星球</value></data>
+  <data name="Teleport_SelectPlanet" xml:space="preserve"><value>选择星球</value></data>
+  <data name="Teleport_PlanetA11y" xml:space="preserve"><value>目标星球</value></data>
+  <data name="Teleport_CustomPlanet" xml:space="preserve"><value>自定义星球 ID</value></data>
+  <data name="Teleport_CustomPlanetPlaceholder" xml:space="preserve"><value>例如 Prime</value></data>
+  <data name="Teleport_CustomPlanetHint" xml:space="preserve"><value>输入列表中没有的星球 ID</value></data>
+  <data name="Teleport_CoordXA11y" xml:space="preserve"><value>X 坐标</value></data>
+  <data name="Teleport_CoordYA11y" xml:space="preserve"><value>Y 坐标</value></data>
+  <data name="Teleport_CoordZA11y" xml:space="preserve"><value>Z 坐标</value></data>
+  <data name="Teleport_Teleport" xml:space="preserve"><value>传送</value></data>
+  <data name="Teleport_UseCurrentPosition" xml:space="preserve"><value>重置为玩家当前位置</value></data>
+  <data name="Teleport_PositionReset" xml:space="preserve"><value>位置已重置为 {0} 的当前位置。</value></data>
+  <data name="Teleport_LandmarksHeading" xml:space="preserve"><value>地标</value></data>
+  <data name="Teleport_LandmarksHelp" xml:space="preserve"><value>选择一个地标，用其位置填充 X / Y / Z。</value></data>
+  <data name="Teleport_NoLandmarks" xml:space="preserve"><value>没有可用的地标。</value></data>
+  <data name="Teleport_UsePosition" xml:space="preserve"><value>使用位置</value></data>
+  <data name="Teleport_UsePositionA11y" xml:space="preserve"><value>使用 {0} 的位置</value></data>
+  <data name="Teleport_OtherPlanet" xml:space="preserve"><value>其他…</value></data>
+  <data name="Teleport_PositionFromLandmark" xml:space="preserve"><value>已根据 {0} 设置位置。X {1}，Y {2}，Z {3}。</value></data>
+  <data name="Teleport_ChoosePlayer" xml:space="preserve"><value>选择要传送的玩家。</value></data>
+  <data name="Teleport_ChoosePlanet" xml:space="preserve"><value>输入或选择星球 ID。</value></data>
+  <data name="Teleport_InvalidCoords" xml:space="preserve"><value>X、Y 和 Z 必须是有效数字。</value></data>
+  <data name="Teleport_Done" xml:space="preserve"><value>已将 {0} 传送到 {1}（{2}）。</value></data>
+  <data name="Teleport_LandmarkPlanetHash" xml:space="preserve"><value>世界哈希 {0}</value></data>
+  <data name="Teleport_LandmarkNoPlanetHash" xml:space="preserve"><value>未记录世界哈希</value></data>
+  <data name="Disclaimer_Title" xml:space="preserve"><value>使用风险自负</value></data>
+  <data name="Disclaimer_Body" xml:space="preserve"><value>PCEdit 直接编辑 Planet Crafter 存档文件。错误的编辑可能损坏存档并丢失进度。编辑前请务必保留存档文件的备份。本软件按“原样”提供，不作任何形式的担保。</value></data>
+  <data name="Disclaimer_Acknowledge" xml:space="preserve"><value>我明白</value></data>
+  <data name="Disclaimer_ShortNotice" xml:space="preserve"><value>编辑可能损坏存档。请先备份你的文件——使用风险自负。</value></data>
+  <data name="About_Title" xml:space="preserve"><value>关于</value></data>
+  <data name="About_Heading" xml:space="preserve"><value>PCEdit</value></data>
+  <data name="About_Tagline" xml:space="preserve"><value>一款用于 The Planet Crafter 的存档文件编辑器。</value></data>
+  <data name="About_Version" xml:space="preserve"><value>版本 {0}</value></data>
+  <data name="About_Language" xml:space="preserve"><value>语言</value></data>
+  <data name="About_LanguageA11y" xml:space="preserve"><value>应用程序语言</value></data>
+</root>

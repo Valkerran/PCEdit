@@ -1,0 +1,153 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:PCEdit.App.Core.ViewModels;assembly=PCEdit.App.Core"
+             xmlns:m="using:PCEdit.Desktop.Markup"
+             xmlns:conv="using:PCEdit.Desktop.Converters"
+             x:Class="PCEdit.Desktop.Views.OverviewView"
+             x:DataType="vm:OverviewViewModel">
+
+    <Panel>
+        <ScrollViewer IsVisible="{Binding IsLoaded}">
+            <StackPanel Margin="24" Spacing="20">
+
+                <StackPanel Orientation="Horizontal" Spacing="10">
+                    <Border Classes="headingRule" />
+                    <TextBlock Text="{m:Loc Overview_Players}" Classes="h2" VerticalAlignment="Center" />
+                </StackPanel>
+                <ItemsControl ItemsSource="{Binding Players}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate><StackPanel Spacing="12" /></ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="vm:PlayerOverviewRow">
+                            <Border Classes="card">
+                                <StackPanel Spacing="10">
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <TextBlock Grid.Column="0" Text="{Binding Name}" FontWeight="Bold" FontSize="17"
+                                                   VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                                        <Border Grid.Column="1" Classes="badge" IsVisible="{Binding IsHost}">
+                                            <TextBlock Text="{m:Loc Overview_HostBadge}" FontSize="12" FontWeight="Bold"
+                                                       AutomationProperties.Name="{m:Loc Overview_HostA11y}" />
+                                        </Border>
+                                    </Grid>
+
+                                    <TextBlock Classes="caption" Text="{Binding LocationText}" />
+
+                                    <Border Classes="divider" />
+
+                                    <Grid ColumnDefinitions="*,*,*,*" ColumnSpacing="8">
+                                        <StackPanel Grid.Column="0" Spacing="2">
+                                            <TextBlock Text="{m:Loc Overview_Vital_Oxygen}" Classes="micro" TextTrimming="CharacterEllipsis" />
+                                            <TextBlock Text="{Binding Oxygen, StringFormat='{}{0:0.#}'}" FontSize="16" FontWeight="Bold"
+                                                       Foreground="{Binding Oxygen, Converter={StaticResource VitalBrush}}" />
+                                            <TextBlock Text="{Binding Oxygen, Converter={StaticResource VitalText}}" Classes="caption" FontSize="12" />
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1" Spacing="2">
+                                            <TextBlock Text="{m:Loc Overview_Vital_Thirst}" Classes="micro" TextTrimming="CharacterEllipsis" />
+                                            <TextBlock Text="{Binding Thirst, StringFormat='{}{0:0.#}'}" FontSize="16" FontWeight="Bold"
+                                                       Foreground="{Binding Thirst, Converter={StaticResource VitalBrush}}" />
+                                            <TextBlock Text="{Binding Thirst, Converter={StaticResource VitalText}}" Classes="caption" FontSize="12" />
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="2" Spacing="2">
+                                            <TextBlock Text="{m:Loc Overview_Vital_Health}" Classes="micro" TextTrimming="CharacterEllipsis" />
+                                            <TextBlock Text="{Binding Health, StringFormat='{}{0:0.#}'}" FontSize="16" FontWeight="Bold"
+                                                       Foreground="{Binding Health, Converter={StaticResource VitalBrush}}" />
+                                            <TextBlock Text="{Binding Health, Converter={StaticResource VitalText}}" Classes="caption" FontSize="12" />
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="3" Spacing="2">
+                                            <TextBlock Text="{m:Loc Overview_Vital_Toxicity}" Classes="micro" TextTrimming="CharacterEllipsis" />
+                                            <TextBlock Text="{Binding Toxicity, StringFormat='{}{0:0.#}'}" FontSize="16" FontWeight="Bold"
+                                                       Foreground="{Binding Toxicity, Converter={StaticResource VitalBrush}, ConverterParameter=HighIsBad}" />
+                                            <TextBlock Text="{Binding Toxicity, Converter={StaticResource VitalText}, ConverterParameter=HighIsBad}" Classes="caption" FontSize="12" />
+                                        </StackPanel>
+                                    </Grid>
+
+                                    <TextBlock Classes="caption" Text="{Binding ProgressText}" />
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <StackPanel Orientation="Horizontal" Spacing="10">
+                    <Border Classes="headingRule" />
+                    <TextBlock Text="{m:Loc Overview_WorldTerraforming}" Classes="h2" VerticalAlignment="Center" />
+                </StackPanel>
+                <TextBlock Text="{m:Loc Overview_NoTerraforming}" Classes="caption" HorizontalAlignment="Center"
+                           IsVisible="{Binding Terraforms.Count, Converter={StaticResource CountIsZero}}" />
+                <ItemsControl ItemsSource="{Binding Terraforms}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate><StackPanel Spacing="12" /></ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="vm:PlanetTerraformViewModel">
+                            <Border Classes="card" Padding="0">
+                                <StackPanel>
+                                    <Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                                            Background="Transparent" Padding="16,14"
+                                            Command="{Binding ToggleExpandedCommand}"
+                                            AutomationProperties.Name="{Binding HeaderText}"
+                                            AutomationProperties.HelpText="{Binding ExpandHint}">
+                                        <StackPanel Orientation="Horizontal" Spacing="10">
+                                            <TextBlock Text="›" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"
+                                                       Foreground="{DynamicResource BrandText}">
+                                                <TextBlock.RenderTransform>
+                                                    <RotateTransform Angle="{Binding ChevronRotation}" />
+                                                </TextBlock.RenderTransform>
+                                            </TextBlock>
+                                            <TextBlock Text="{Binding HeaderText}" FontWeight="Bold" FontSize="15" VerticalAlignment="Center" />
+                                        </StackPanel>
+                                    </Button>
+
+                                    <StackPanel IsVisible="{Binding IsExpanded}" Margin="16" Spacing="12">
+                                        <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                                              RowSpacing="8" ColumnSpacing="12">
+                                            <TextBlock Grid.Row="0" Grid.Column="0" Text="{m:Loc Terraform_Oxygen}" VerticalAlignment="Center" />
+                                            <TextBox   Grid.Row="0" Grid.Column="1" Text="{Binding OxygenLevel}"
+                                                       AutomationProperties.Name="{m:Loc Terraform_Oxygen}" />
+                                            <TextBlock Grid.Row="1" Grid.Column="0" Text="{m:Loc Terraform_Heat}" VerticalAlignment="Center" />
+                                            <TextBox   Grid.Row="1" Grid.Column="1" Text="{Binding HeatLevel}"
+                                                       AutomationProperties.Name="{m:Loc Terraform_Heat}" />
+                                            <TextBlock Grid.Row="2" Grid.Column="0" Text="{m:Loc Terraform_Pressure}" VerticalAlignment="Center" />
+                                            <TextBox   Grid.Row="2" Grid.Column="1" Text="{Binding PressureLevel}"
+                                                       AutomationProperties.Name="{m:Loc Terraform_Pressure}" />
+                                            <TextBlock Grid.Row="3" Grid.Column="0" Text="{m:Loc Terraform_Plants}" VerticalAlignment="Center" />
+                                            <TextBox   Grid.Row="3" Grid.Column="1" Text="{Binding PlantsLevel}"
+                                                       AutomationProperties.Name="{m:Loc Terraform_Plants}" />
+                                            <TextBlock Grid.Row="4" Grid.Column="0" Text="{m:Loc Terraform_Insects}" VerticalAlignment="Center" />
+                                            <TextBox   Grid.Row="4" Grid.Column="1" Text="{Binding InsectsLevel}"
+                                                       AutomationProperties.Name="{m:Loc Terraform_Insects}" />
+                                            <TextBlock Grid.Row="5" Grid.Column="0" Text="{m:Loc Terraform_Animals}" VerticalAlignment="Center" />
+                                            <TextBox   Grid.Row="5" Grid.Column="1" Text="{Binding AnimalsLevel}"
+                                                       AutomationProperties.Name="{m:Loc Terraform_Animals}" />
+                                            <TextBlock Grid.Row="6" Grid.Column="0" Text="{m:Loc Terraform_Purification}" VerticalAlignment="Center"
+                                                       IsVisible="{Binding HasPurification}" />
+                                            <TextBox   Grid.Row="6" Grid.Column="1" Text="{Binding PurificationLevel}"
+                                                       IsVisible="{Binding HasPurification}"
+                                                       AutomationProperties.Name="{m:Loc Terraform_Purification}" />
+                                        </Grid>
+
+                                        <Button Classes="accent" HorizontalAlignment="Left"
+                                                Content="{m:Loc Terraform_Apply}" Command="{Binding ApplyCommand}"
+                                                AutomationProperties.Name="{m:LocFormat Key=Terraform_ApplyA11y, Path=PlanetId}" />
+                                        <TextBlock Text="{Binding StatusMessage}"
+                                                   IsVisible="{Binding StatusMessage, Converter={StaticResource StringNotEmpty}}"
+                                                   Foreground="{Binding StatusKind, Converter={StaticResource StatusBrush}}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
+
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="14" MaxWidth="360"
+                    IsVisible="{Binding IsLoaded, Converter={StaticResource InvertedBool}}">
+            <TextBlock Text="{m:Loc Common_NoFileLoadedGoOpen}" TextAlignment="Center" HorizontalAlignment="Center" />
+            <Button Classes="accent" HorizontalAlignment="Center"
+                    Content="{m:Loc Common_OpenSaveFile}" Command="{Binding OpenFileCommand}" />
+        </StackPanel>
+    </Panel>
+
+</UserControl>

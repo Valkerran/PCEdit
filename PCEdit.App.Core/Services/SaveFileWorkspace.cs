@@ -1,0 +1,202 @@
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using PCEdit.App.Core.Localization;
+using PCEdit.SaveFileHandler;
+using PCEdit.SaveFileHandler.Models;
+
+namespace PCEdit.App.Core.Services;
+
+public sealed partial class SaveFileWorkspace : ObservableObject, ISaveFileWorkspace
+{
+    private readonly IPlanetCrafterSaveFileStore _store;
+    private readonly IScreenReaderAnnouncer _announcer;
+    private readonly ILocalizer _localizer;
+
+    // The save status is held as a resource key so it re-renders when the UI language changes.
+    private string? _saveStatusKey;
+
+    public SaveFileWorkspace(
+        IPlanetCrafterSaveFileStore store,
+        IScreenReaderAnnouncer announcer,
+        ILocalizer localizer)
+    {
+        _store = store ?? throw new ArgumentNullException(nameof(store));
+        _announcer = announcer ?? throw new ArgumentNullException(nameof(announcer));
+        _localizer = localizer ?? throw new ArgumentNullException(nameof(localizer));
+
+        _localizer.CultureChanged += (_, _) => OnPropertyChanged(nameof(SaveStatus));
+    }
+
+    [ObservableProperty]
+    private PlanetCrafterSaveFile? _current;
+
+    [ObservableProperty]
+    private string? _filePath;
+
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(SaveCommand))]
+    private bool _isDirty;
+
+    public string? SaveStatus => _saveStatusKey is null ? null : _localizer[_saveStatusKey];
+
+    public bool IsLoaded => Current is not null;
+
+    private void SetSaveStatus(string? key)
+    {
+        _saveStatusKey = key;
+        OnPropertyChanged(nameof(SaveStatus));
+    }
+
+    partial void OnCurrentChanged(PlanetCrafterSaveFile? value)
+    {
+        OnPropertyChanged(nameof(IsLoaded));
+    }
+
+    partial void OnIsDirtyChanged(bool value)
+    {
+        // A fresh edit invalidates any lingering "Saved." confirmation.
+        if (value)
+        {
+            SetSaveStatus(null);
+        }
+    }
+
+    public void Load(string path)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(path);
+
+        Current = _store.Load(path);
+        FilePath = path;
+        IsDirty = false;
+        SetSaveStatus(null);
+    }
+
+    [RelayCommand(CanExecute = nameof(IsDirty))]
+    public void Save()
+    {
+        if (Current is null || FilePath is null)
+        {
+            throw new InvalidOperationException("No save file is loaded.");
+        }
+
+        try
+        {
+            _store.Save(FilePath, Current);
+            IsDirty = false;
+            SetSaveStatus(LocKeys.Save_Ok);
+            _announcer.Announce(_localizer[LocKeys.Save_OkAnnounce]);
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine(ex);
+            SetSaveStatus(LocKeys.Save_Failed);
+            _announcer.Announce(_localizer[LocKeys.Save_FailedAnnounce]);
+        }
+    }
+
+    public void MutateUnlocks(Func<SaveFileUnlocks, SaveFileUnlocks> mutate)
+    {
+        var save = RequireCurrent();
+
+        Current = new PlanetCrafterSaveFile
+        {
+            Unlocks = mutate(save.Unlocks),
+            Terraformations = save.Terraformations,
+            Players = save.Players,
+            WorldObjects = save.WorldObjects,
+            Inventories = save.Inventories,
+            Statistics = save.Statistics,
+            ReadMessages = save.ReadMessages,
+            StoryEvents = save.StoryEvents,
+            Metadata = save.Metadata,
+            ProceduralInstances = save.ProceduralInstances
+        };
+        IsDirty = true;
+    }
+
+    public void ReplaceTerraformation(string planetId, Func<PlanetTerraformation, PlanetTerraformation> mutate)
+    {
+        var save = RequireCurrent();
+
+        var index = save.Terraformations.FindIndex(t => string.Equals(t.PlanetId, planetId, StringComparison.OrdinalIgnoreCase));
+        if (index < 0)
+        {
+            throw new InvalidOperationException($"Terraformation data for planet '{planetId}' was not found in the loaded save.");
+        }
+
+        save.Terraformations[index] = mutate(save.Terraformations[index]);
+        IsDirty = true;
+        OnPropertyChanged(nameof(Current));
+    }
+
+    public void ReplacePlayer(long playerId, Func<PlayerData, PlayerData> mutate)
+    {
+        var save = RequireCurrent();
+
+        var index = save.Players.FindIndex(p => p.Id == playerId);
+        if (index < 0)
+        {
+            throw new InvalidOperationException($"Player {playerId} was not found in the loaded save.");
+        }
+
+        save.Players[index] = mutate(save.Players[index]);
+        IsDirty = true;
+        OnPropertyChanged(nameof(Current));
+    }
+
+    public void ReplaceInventory(int inventoryId, Func<Inventory, Inventory> mutate)
+    {
+        var save = RequireCurrent();
+
+        var index = save.Inventories.FindIndex(i => i.Id == inventoryId);
+        if (index < 0)
+        {
+            throw new InvalidOperationException($"Inventory {inventoryId} was not found in the loaded save.");
+        }
+
+        save.Inventories[index] = mutate(save.Inventories[index]);
+        IsDirty = true;
+        OnPropertyChanged(nameof(Current));
+    }
+
+    public void GrantTerraTokens(long playerId, int amount)
+    {
+        if (amount <= 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(amount), amount, "The amount to grant must be positive.");
+        }
+
+        MutateUnlocks(unlocks => new SaveFileUnlocks
+        {
+            TerraTokens = unlocks.TerraTokens + amount,
+            AllTimeTerraTokens = unlocks.AllTimeTerraTokens + amount,
+            UnlockedGroups = unlocks.UnlockedGroups,
+            OpenedInstanceSeed = unlocks.OpenedInstanceSeed,
+            OpenedInstanceTimeLeft = unlocks.OpenedInstanceTimeLeft
+        });
+
+        ReplacePlayer(playerId, player => new PlayerData
+        {
+            Id = player.Id,
+            Name = player.Name,
+            InventoryId = player.InventoryId,
+            EquipmentId = player.EquipmentId,
+            PlayerPosition = player.PlayerPosition,
+            PlayerRotation = player.PlayerRotation,
+            PlayerGaugeOxygen = player.PlayerGaugeOxygen,
+            PlayerGaugeThirst = player.PlayerGaugeThirst,
+            PlayerGaugeHealth = player.PlayerGaugeHealth,
+            PlayerGaugeToxic = player.PlayerGaugeToxic,
+            Host = player.Host,
+            PlanetId = player.PlanetId,
+            TotalCraftedObjects = player.TotalCraftedObjects,
+            TotalTerraTokenEarned = player.TotalTerraTokenEarned + amount,
+            CameraView = player.CameraView
+        });
+    }
+
+    private PlanetCrafterSaveFile RequireCurrent()
+    {
+        return Current ?? throw new InvalidOperationException("No save file is loaded.");
+    }
+}

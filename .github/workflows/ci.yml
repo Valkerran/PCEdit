@@ -1,0 +1,61 @@
+name: CI
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build-test:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Test — PCEdit.SaveFileHandler
+        run: dotnet test PCEdit.SaveFileHandler.Tests/PCEdit.SaveFileHandler.Tests.csproj -c Release
+
+      - name: Test — PCEdit.App.Core (incl. localization catalog parity)
+        run: dotnet test PCEdit.App.Core.Tests/PCEdit.App.Core.Tests.csproj -c Release
+
+      - name: Build — PCEdit.Desktop
+        run: dotnet build PCEdit.Desktop/PCEdit.Desktop.csproj -c Release
+
+      - name: Generated files are in sync with the string catalog
+        run: |
+          python3 tools/i18n/gen_satellites.py
+          python3 tools/i18n/gen_metainfo.py
+          git diff --exit-code --ignore-cr-at-eol -- \
+            'PCEdit.App.Core/Resources/Strings.*.resx' \
+            deploy/com.waltersmart.pcedit.metainfo.xml
+
+  version-guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: <VersionPrefix> is well-formed and not behind the latest release tag
+        shell: bash
+        run: |
+          set -euo pipefail
+          v="$(sed -n 's|.*<VersionPrefix>\([^<]*\)</VersionPrefix>.*|\1|p' Directory.Build.props)"
+          if [[ ! "$v" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error file=Directory.Build.props::<VersionPrefix> '$v' is not X.Y.Z"; exit 1
+          fi
+          latest="$(git tag -l 'v*' | sed 's/^v//' | sort -V | tail -n1)"
+          if [ -n "$latest" ]; then
+            newest="$(printf '%s\n%s\n' "$v" "$latest" | sort -V | tail -n1)"
+            if [ "$v" = "$latest" ]; then
+              echo "::warning file=Directory.Build.props::<VersionPrefix> $v already matches release tag v$latest - bump it before the next release."
+            elif [ "$newest" != "$v" ]; then
+              echo "::error file=Directory.Build.props::<VersionPrefix> $v is behind the latest release tag v$latest"; exit 1
+            fi
+          fi

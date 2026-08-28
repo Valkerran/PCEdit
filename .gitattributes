@@ -1,0 +1,5 @@
+* text=auto
+
+# Shell scripts must stay LF so they run on the Linux/macOS CI runners.
+*.sh    text eol=lf
+*.ps1   text eol=lf

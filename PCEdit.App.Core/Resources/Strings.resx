@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <data name="Common_Save" xml:space="preserve"><value>Save</value></data>
+  <data name="Common_Cancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="Common_Ok" xml:space="preserve"><value>OK</value></data>
+  <data name="Common_Discard" xml:space="preserve"><value>Discard</value></data>
+  <data name="Common_NoFileLoadedGoOpen" xml:space="preserve"><value>No save file loaded.</value></data>
+  <data name="Common_OpenSaveFile" xml:space="preserve"><value>Open a save file…</value></data>
+  <data name="Common_CloseWithoutSaving" xml:space="preserve"><value>Close without saving</value></data>
+  <data name="Common_KeepEditing" xml:space="preserve"><value>Keep editing</value></data>
+
+  <data name="Quit_DiscardTitle" xml:space="preserve"><value>Unsaved changes</value></data>
+  <data name="Quit_DiscardBody" xml:space="preserve"><value>Closing PCEdit now discards your unsaved edits. The save file on disk is unchanged.</value></data>
+
+  <data name="Shell_Title" xml:space="preserve"><value>Planet Crafter Save Editor</value></data>
+  <data name="Shell_Brand" xml:space="preserve"><value>PCEdit</value></data>
+  <data name="Shell_File" xml:space="preserve"><value>File: {0}</value></data>
+  <data name="Shell_FileA11y" xml:space="preserve"><value>Loaded file: {0}</value></data>
+  <data name="Shell_NoFileLoaded" xml:space="preserve"><value>No file loaded</value></data>
+  <data name="Shell_SaveHint" xml:space="preserve"><value>Writes your edits back to the save file on disk</value></data>
+  <data name="Shell_NavA11y" xml:space="preserve"><value>Main navigation</value></data>
+
+  <data name="Nav_OpenFile" xml:space="preserve"><value>Open File</value></data>
+  <data name="Nav_Overview" xml:space="preserve"><value>Overview</value></data>
+  <data name="Nav_Inventories" xml:space="preserve"><value>Inventories</value></data>
+  <data name="Nav_TerraTokens" xml:space="preserve"><value>Terra Tokens</value></data>
+  <data name="Nav_Teleport" xml:space="preserve"><value>Teleport</value></data>
+  <data name="Nav_About" xml:space="preserve"><value>About</value></data>
+
+  <data name="Dirty_Unsaved" xml:space="preserve"><value>Unsaved changes</value></data>
+  <data name="Dirty_Saved" xml:space="preserve"><value>All changes saved</value></data>
+
+  <data name="Save_Ok" xml:space="preserve"><value>Saved.</value></data>
+  <data name="Save_OkAnnounce" xml:space="preserve"><value>Save file written.</value></data>
+  <data name="Save_Failed" xml:space="preserve"><value>Save failed. Your file was not changed.</value></data>
+  <data name="Save_FailedAnnounce" xml:space="preserve"><value>Error: save failed. Your file was not changed.</value></data>
+  <data name="Announce_ErrorPrefix" xml:space="preserve"><value>Error: {0}</value></data>
+
+  <data name="OpenFile_Title" xml:space="preserve"><value>Open File</value></data>
+  <data name="OpenFile_Heading" xml:space="preserve"><value>Planet Crafter Save Editor</value></data>
+  <data name="OpenFile_Intro" xml:space="preserve"><value>Open a Planet Crafter save file to view and edit players, world terraforming, inventories, terra tokens, and teleport locations.</value></data>
+  <data name="OpenFile_CurrentlyLoaded" xml:space="preserve"><value>Currently loaded: {0}</value></data>
+  <data name="OpenFile_NoFileLoaded" xml:space="preserve"><value>No file loaded.</value></data>
+  <data name="OpenFile_ChooseButton" xml:space="preserve"><value>Choose Save File…</value></data>
+  <data name="OpenFile_ChooseHint" xml:space="preserve"><value>Opens a file picker to load a Planet Crafter save</value></data>
+  <data name="OpenFile_LoadingInline" xml:space="preserve"><value>Loading save file…</value></data>
+  <data name="OpenFile_LoadingA11y" xml:space="preserve"><value>Loading save file</value></data>
+  <data name="OpenFile_PickerTitle" xml:space="preserve"><value>Select a Planet Crafter save file</value></data>
+  <data name="OpenFile_LoadingAnnounce" xml:space="preserve"><value>Loading save file.</value></data>
+  <data name="OpenFile_Loaded" xml:space="preserve"><value>Loaded {0}.</value></data>
+  <data name="OpenFile_LoadFailed" xml:space="preserve"><value>Couldn't load that file. It may not be a valid Planet Crafter save.</value></data>
+  <data name="OpenFile_DiscardTitle" xml:space="preserve"><value>Unsaved changes</value></data>
+  <data name="OpenFile_DiscardBody" xml:space="preserve"><value>Loading a new file will discard your unsaved changes. Continue?</value></data>
+
+  <data name="Overview_Title" xml:space="preserve"><value>Overview</value></data>
+  <data name="Overview_Players" xml:space="preserve"><value>Players</value></data>
+  <data name="Overview_WorldTerraforming" xml:space="preserve"><value>World Terraforming</value></data>
+  <data name="Overview_NoTerraforming" xml:space="preserve"><value>No terraforming data in this save.</value></data>
+  <data name="Overview_HostBadge" xml:space="preserve"><value>HOST</value></data>
+  <data name="Overview_HostA11y" xml:space="preserve"><value>Host player</value></data>
+  <data name="Overview_PlayerLocation" xml:space="preserve"><value>Planet {0}  ·  Position {1}</value></data>
+  <data name="Overview_Vital_Oxygen" xml:space="preserve"><value>OXYGEN</value></data>
+  <data name="Overview_Vital_Thirst" xml:space="preserve"><value>THIRST</value></data>
+  <data name="Overview_Vital_Health" xml:space="preserve"><value>HEALTH</value></data>
+  <data name="Overview_Vital_Toxicity" xml:space="preserve"><value>TOXICITY</value></data>
+  <data name="Overview_PlayerProgress" xml:space="preserve"><value>{0} objects crafted  ·  {1} terra tokens earned</value></data>
+
+  <data name="Vital_Ok" xml:space="preserve"><value>OK</value></data>
+  <data name="Vital_Low" xml:space="preserve"><value>Low</value></data>
+  <data name="Vital_Critical" xml:space="preserve"><value>Critical</value></data>
+
+  <data name="Terraform_Apply" xml:space="preserve"><value>Apply Changes</value></data>
+  <data name="Terraform_ApplyA11y" xml:space="preserve"><value>Apply terraform changes to {0}</value></data>
+  <data name="Terraform_Oxygen" xml:space="preserve"><value>Oxygen</value></data>
+  <data name="Terraform_Heat" xml:space="preserve"><value>Heat</value></data>
+  <data name="Terraform_Pressure" xml:space="preserve"><value>Pressure</value></data>
+  <data name="Terraform_Plants" xml:space="preserve"><value>Plants</value></data>
+  <data name="Terraform_Insects" xml:space="preserve"><value>Insects</value></data>
+  <data name="Terraform_Animals" xml:space="preserve"><value>Animals</value></data>
+  <data name="Terraform_Purification" xml:space="preserve"><value>Purification</value></data>
+  <data name="Terraform_HintCollapsed" xml:space="preserve"><value>Collapsed. Activate to expand.</value></data>
+  <data name="Terraform_HintExpanded" xml:space="preserve"><value>Expanded. Activate to collapse.</value></data>
+  <data name="Terraform_InvalidLevels" xml:space="preserve"><value>One or more terraform levels is not a valid number.</value></data>
+  <data name="Terraform_InvalidPurification" xml:space="preserve"><value>Purification level is not a valid number.</value></data>
+  <data name="Terraform_Updated" xml:space="preserve"><value>Terraform levels updated for {0}.</value></data>
+
+  <data name="Inventories_Title" xml:space="preserve"><value>Inventories</value></data>
+  <data name="Inventories_Heading" xml:space="preserve"><value>Inventories</value></data>
+  <data name="Inventories_None" xml:space="preserve"><value>No inventories in this save.</value></data>
+  <data name="Inventories_Empty" xml:space="preserve"><value>Empty</value></data>
+  <data name="Inventories_Move" xml:space="preserve"><value>Move…</value></data>
+  <data name="Inventories_MoveA11y" xml:space="preserve"><value>Move {0} to another inventory</value></data>
+  <data name="Inventories_CapacityA11y" xml:space="preserve"><value>Capacity {0} items</value></data>
+  <data name="Inventories_Search" xml:space="preserve"><value>Search inventories and items</value></data>
+  <data name="Inventories_SearchA11y" xml:space="preserve"><value>Filter the inventory list by name or contents</value></data>
+  <data name="Inventories_NoMatch" xml:space="preserve"><value>No inventories or items match your search.</value></data>
+  <data name="Inventories_FilterAll" xml:space="preserve"><value>All</value></data>
+  <data name="Inventories_FilterPlayers" xml:space="preserve"><value>Players</value></data>
+  <data name="Inventories_FilterEquipment" xml:space="preserve"><value>Equipment</value></data>
+  <data name="Inventories_FilterContainers" xml:space="preserve"><value>Containers</value></data>
+  <data name="Inventories_FilterA11y" xml:space="preserve"><value>Show which inventory types</value></data>
+
+  <data name="Inv_PlayerInventory" xml:space="preserve"><value>{0}'s Inventory</value></data>
+  <data name="Inv_PlayerEquipment" xml:space="preserve"><value>{0}'s Equipment</value></data>
+  <data name="Inv_Container" xml:space="preserve"><value>{0} (Object #{1})</value></data>
+  <data name="Inv_Fallback" xml:space="preserve"><value>Inventory #{0}</value></data>
+  <data name="Inv_NotInInventory" xml:space="preserve"><value>This item is not currently in any inventory.</value></data>
+  <data name="Inv_AlreadyThere" xml:space="preserve"><value>This item is already in that inventory.</value></data>
+  <data name="Inv_DestNotFound" xml:space="preserve"><value>The destination inventory was not found.</value></data>
+  <data name="Inv_DestFull" xml:space="preserve"><value>The destination inventory is full ({0}/{1}).</value></data>
+
+  <data name="SelectInv_Title" xml:space="preserve"><value>Move Item</value></data>
+  <data name="SelectInv_Heading" xml:space="preserve"><value>Choose a destination inventory</value></data>
+  <data name="SelectInv_Search" xml:space="preserve"><value>Search destinations</value></data>
+  <data name="SelectInv_None" xml:space="preserve"><value>No other inventories available.</value></data>
+  <data name="SelectInv_MoveFailedTitle" xml:space="preserve"><value>Move failed</value></data>
+  <data name="SelectInv_MoveIncomplete" xml:space="preserve"><value>The move could not be completed.</value></data>
+  <data name="SelectInv_Moved" xml:space="preserve"><value>Item moved to {0}.</value></data>
+
+  <data name="TerraTokens_Title" xml:space="preserve"><value>Terra Tokens</value></data>
+  <data name="TerraTokens_Heading" xml:space="preserve"><value>Grant Terra Tokens</value></data>
+  <data name="TerraTokens_CurrentBalance" xml:space="preserve"><value>CURRENT BALANCE</value></data>
+  <data name="TerraTokens_AllTimeEarned" xml:space="preserve"><value>ALL-TIME EARNED</value></data>
+  <data name="TerraTokens_CurrentBalanceA11y" xml:space="preserve"><value>Current balance: {0} terra tokens</value></data>
+  <data name="TerraTokens_AllTimeEarnedA11y" xml:space="preserve"><value>All-time earned: {0} terra tokens</value></data>
+  <data name="TerraTokens_Player" xml:space="preserve"><value>Player</value></data>
+  <data name="TerraTokens_SelectPlayer" xml:space="preserve"><value>Select a player</value></data>
+  <data name="TerraTokens_PlayerA11y" xml:space="preserve"><value>Player to grant tokens to</value></data>
+  <data name="TerraTokens_Amount" xml:space="preserve"><value>Amount to grant</value></data>
+  <data name="TerraTokens_AmountHint" xml:space="preserve"><value>Positive whole number of terra tokens</value></data>
+  <data name="TerraTokens_Grant" xml:space="preserve"><value>Grant</value></data>
+  <data name="TerraTokens_ChoosePlayer" xml:space="preserve"><value>Choose a player to grant tokens to.</value></data>
+  <data name="TerraTokens_InvalidAmount" xml:space="preserve"><value>Enter a positive whole number of tokens to grant.</value></data>
+  <data name="TerraTokens_Granted" xml:space="preserve"><value>Granted {0} terra tokens to {1}.</value></data>
+
+  <data name="Teleport_Title" xml:space="preserve"><value>Teleport</value></data>
+  <data name="Teleport_Heading" xml:space="preserve"><value>Teleport Player</value></data>
+  <data name="Teleport_Player" xml:space="preserve"><value>Player</value></data>
+  <data name="Teleport_SelectPlayer" xml:space="preserve"><value>Select a player</value></data>
+  <data name="Teleport_PlayerA11y" xml:space="preserve"><value>Player to teleport</value></data>
+  <data name="Teleport_Planet" xml:space="preserve"><value>Planet</value></data>
+  <data name="Teleport_SelectPlanet" xml:space="preserve"><value>Select a planet</value></data>
+  <data name="Teleport_PlanetA11y" xml:space="preserve"><value>Destination planet</value></data>
+  <data name="Teleport_CustomPlanet" xml:space="preserve"><value>Custom planet id</value></data>
+  <data name="Teleport_CustomPlanetPlaceholder" xml:space="preserve"><value>e.g. Prime</value></data>
+  <data name="Teleport_CustomPlanetHint" xml:space="preserve"><value>Type a planet id not in the list</value></data>
+  <data name="Teleport_CoordXA11y" xml:space="preserve"><value>X coordinate</value></data>
+  <data name="Teleport_CoordYA11y" xml:space="preserve"><value>Y coordinate</value></data>
+  <data name="Teleport_CoordZA11y" xml:space="preserve"><value>Z coordinate</value></data>
+  <data name="Teleport_Teleport" xml:space="preserve"><value>Teleport</value></data>
+  <data name="Teleport_UseCurrentPosition" xml:space="preserve"><value>Reset to player's current position</value></data>
+  <data name="Teleport_PositionReset" xml:space="preserve"><value>Position reset to {0}'s current location.</value></data>
+  <data name="Teleport_LandmarksHeading" xml:space="preserve"><value>Landmarks</value></data>
+  <data name="Teleport_LandmarksHelp" xml:space="preserve"><value>Pick a landmark to fill X / Y / Z from its position.</value></data>
+  <data name="Teleport_NoLandmarks" xml:space="preserve"><value>No landmarks available.</value></data>
+  <data name="Teleport_UsePosition" xml:space="preserve"><value>Use Position</value></data>
+  <data name="Teleport_UsePositionA11y" xml:space="preserve"><value>Use position of {0}</value></data>
+  <data name="Teleport_OtherPlanet" xml:space="preserve"><value>Other…</value></data>
+  <data name="Teleport_PositionFromLandmark" xml:space="preserve"><value>Position set from {0}. X {1}, Y {2}, Z {3}.</value></data>
+  <data name="Teleport_ChoosePlayer" xml:space="preserve"><value>Choose a player to teleport.</value></data>
+  <data name="Teleport_ChoosePlanet" xml:space="preserve"><value>Enter or choose a planet id.</value></data>
+  <data name="Teleport_InvalidCoords" xml:space="preserve"><value>X, Y, and Z must be valid numbers.</value></data>
+  <data name="Teleport_Done" xml:space="preserve"><value>Teleported {0} to {1} ({2}).</value></data>
+  <data name="Teleport_LandmarkPlanetHash" xml:space="preserve"><value>world hash {0}</value></data>
+  <data name="Teleport_LandmarkNoPlanetHash" xml:space="preserve"><value>no world hash recorded</value></data>
+
+  <data name="Disclaimer_Title" xml:space="preserve"><value>Use at your own risk</value></data>
+  <data name="Disclaimer_Body" xml:space="preserve"><value>PCEdit edits Planet Crafter save files directly. A bad edit can corrupt a save and lose progress. Always keep a backup of your save file before editing. This software is provided as is, without warranty of any kind.</value></data>
+  <data name="Disclaimer_Acknowledge" xml:space="preserve"><value>I understand</value></data>
+  <data name="Disclaimer_ShortNotice" xml:space="preserve"><value>Editing can corrupt a save. Back up your file first — use at your own risk.</value></data>
+
+  <data name="About_Title" xml:space="preserve"><value>About</value></data>
+  <data name="About_Heading" xml:space="preserve"><value>PCEdit</value></data>
+  <data name="About_Tagline" xml:space="preserve"><value>A save-file editor for The Planet Crafter.</value></data>
+  <data name="About_Version" xml:space="preserve"><value>Version {0}</value></data>
+  <data name="About_Language" xml:space="preserve"><value>Language</value></data>
+  <data name="About_LanguageA11y" xml:space="preserve"><value>Application language</value></data>
+</root>

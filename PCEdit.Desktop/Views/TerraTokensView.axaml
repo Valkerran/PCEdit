@@ -1,0 +1,74 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:PCEdit.App.Core.ViewModels;assembly=PCEdit.App.Core"
+             xmlns:models="clr-namespace:PCEdit.App.Core.Models;assembly=PCEdit.App.Core"
+             xmlns:m="using:PCEdit.Desktop.Markup"
+             xmlns:conv="using:PCEdit.Desktop.Converters"
+             x:Class="PCEdit.Desktop.Views.TerraTokensView"
+             x:DataType="vm:TerraTokensViewModel">
+
+    <Panel>
+        <ScrollViewer IsVisible="{Binding IsLoaded}">
+            <StackPanel Margin="24" Spacing="20" MaxWidth="720" HorizontalAlignment="Stretch">
+                <StackPanel Orientation="Horizontal" Spacing="10">
+                    <Border Classes="headingRule" />
+                    <TextBlock Text="{m:Loc TerraTokens_Heading}" Classes="h2" VerticalAlignment="Center" />
+                </StackPanel>
+
+                <Border Classes="card">
+                    <StackPanel Spacing="12">
+                        <Grid ColumnDefinitions="*,*">
+                            <StackPanel Grid.Column="0" Spacing="2">
+                                <TextBlock Text="{m:Loc TerraTokens_CurrentBalance}" Classes="caption" FontSize="12" />
+                                <TextBlock Text="{Binding TerraTokens}" FontSize="20" FontWeight="Bold"
+                                           AutomationProperties.Name="{m:LocFormat Key=TerraTokens_CurrentBalanceA11y, Path=TerraTokens}" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Spacing="2">
+                                <TextBlock Text="{m:Loc TerraTokens_AllTimeEarned}" Classes="caption" FontSize="12" />
+                                <TextBlock Text="{Binding AllTimeTerraTokens}" FontSize="20" FontWeight="Bold"
+                                           AutomationProperties.Name="{m:LocFormat Key=TerraTokens_AllTimeEarnedA11y, Path=AllTimeTerraTokens}" />
+                            </StackPanel>
+                        </Grid>
+
+                        <Border Classes="divider" />
+
+                        <TextBlock Text="{m:Loc TerraTokens_Player}" Classes="caption" />
+                        <ComboBox ItemsSource="{Binding Players}"
+                                  SelectedItem="{Binding SelectedPlayer}"
+                                  HorizontalAlignment="Stretch"
+                                  PlaceholderText="{m:Loc TerraTokens_SelectPlayer}"
+                                  AutomationProperties.Name="{m:Loc TerraTokens_PlayerA11y}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="models:PlayerOption">
+                                    <TextBlock Text="{Binding Name}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                        <TextBlock Text="{m:Loc TerraTokens_Amount}" Classes="caption" />
+                        <TextBox Text="{Binding Amount}" HorizontalAlignment="Stretch"
+                                 PlaceholderText="0"
+                                 AutomationProperties.Name="{m:Loc TerraTokens_Amount}"
+                                 AutomationProperties.HelpText="{m:Loc TerraTokens_AmountHint}" />
+
+                        <Button Classes="accent" HorizontalAlignment="Left"
+                                Content="{m:Loc TerraTokens_Grant}"
+                                Command="{Binding GrantCommand}" />
+
+                        <TextBlock Text="{Binding StatusMessage}"
+                                   IsVisible="{Binding StatusMessage, Converter={StaticResource StringNotEmpty}}"
+                                   Foreground="{Binding StatusKind, Converter={StaticResource StatusBrush}}" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="14" MaxWidth="360"
+                    IsVisible="{Binding IsLoaded, Converter={StaticResource InvertedBool}}">
+            <TextBlock Text="{m:Loc Common_NoFileLoadedGoOpen}" TextAlignment="Center" HorizontalAlignment="Center" />
+            <Button Classes="accent" HorizontalAlignment="Center"
+                    Content="{m:Loc Common_OpenSaveFile}" Command="{Binding OpenFileCommand}" />
+        </StackPanel>
+    </Panel>
+
+</UserControl>

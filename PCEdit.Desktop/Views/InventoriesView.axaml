@@ -1,0 +1,128 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:PCEdit.App.Core.ViewModels;assembly=PCEdit.App.Core"
+             xmlns:models="clr-namespace:PCEdit.App.Core.Models;assembly=PCEdit.App.Core"
+             xmlns:m="using:PCEdit.Desktop.Markup"
+             xmlns:conv="using:PCEdit.Desktop.Converters"
+             x:Class="PCEdit.Desktop.Views.InventoriesView"
+             x:DataType="vm:InventoriesViewModel"
+             x:Name="Root">
+
+    <UserControl.Styles>
+        <!--
+            A real save has hundreds of inventories. The outer list must virtualize, so it is a
+            ListBox (default VirtualizingStackPanel) and is NOT wrapped in a ScrollViewer - a
+            wrapping ScrollViewer gives it infinite height and defeats virtualization. Item chrome
+            (selection/hover background, padding) is stripped so it reads as a plain card list.
+        -->
+        <Style Selector="ListBox.cards">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="0" />
+        </Style>
+        <Style Selector="ListBox.cards ListBoxItem">
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="0,0,0,12" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="MinHeight" Value="0" />
+            <Setter Property="Focusable" Value="False" />
+        </Style>
+        <Style Selector="ListBox.cards ListBoxItem:selected /template/ ContentPresenter">
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+        <Style Selector="ListBox.cards ListBoxItem:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+        <Style Selector="RadioButton.chip">
+            <Setter Property="Margin" Value="0,0,8,0" />
+        </Style>
+    </UserControl.Styles>
+
+    <Panel>
+        <DockPanel IsVisible="{Binding IsLoaded}" Margin="24">
+            <StackPanel DockPanel.Dock="Top" Spacing="12" Margin="0,0,0,16">
+                <StackPanel Orientation="Horizontal" Spacing="10">
+                    <Border Classes="headingRule" />
+                    <TextBlock Text="{m:Loc Inventories_Heading}" Classes="h2" VerticalAlignment="Center" />
+                </StackPanel>
+
+                <TextBox Text="{Binding Query, Mode=TwoWay}"
+                         PlaceholderText="{m:Loc Inventories_Search}"
+                         AutomationProperties.Name="{m:Loc Inventories_SearchA11y}" />
+
+                <StackPanel Orientation="Horizontal"
+                            AutomationProperties.Name="{m:Loc Inventories_FilterA11y}">
+                    <RadioButton Classes="chip" GroupName="invFilter" Content="{m:Loc Inventories_FilterAll}"
+                                 IsChecked="{Binding Filter, Converter={StaticResource InvFilter}, ConverterParameter=All, Mode=TwoWay}" />
+                    <RadioButton Classes="chip" GroupName="invFilter" Content="{m:Loc Inventories_FilterPlayers}"
+                                 IsChecked="{Binding Filter, Converter={StaticResource InvFilter}, ConverterParameter=Players, Mode=TwoWay}" />
+                    <RadioButton Classes="chip" GroupName="invFilter" Content="{m:Loc Inventories_FilterEquipment}"
+                                 IsChecked="{Binding Filter, Converter={StaticResource InvFilter}, ConverterParameter=Equipment, Mode=TwoWay}" />
+                    <RadioButton Classes="chip" GroupName="invFilter" Content="{m:Loc Inventories_FilterContainers}"
+                                 IsChecked="{Binding Filter, Converter={StaticResource InvFilter}, ConverterParameter=Containers, Mode=TwoWay}" />
+                </StackPanel>
+            </StackPanel>
+
+            <TextBlock DockPanel.Dock="Top" Text="{m:Loc Inventories_None}" Classes="caption"
+                       HorizontalAlignment="Center"
+                       IsVisible="{Binding Groups.Count, Converter={StaticResource CountIsZero}}" />
+
+            <TextBlock DockPanel.Dock="Top" Text="{m:Loc Inventories_NoMatch}" Classes="caption"
+                       HorizontalAlignment="Center" Margin="0,8"
+                       IsVisible="{Binding IsFilteredEmpty}" />
+
+            <ListBox Classes="cards" ItemsSource="{Binding Groups}"
+                     SelectionMode="Single"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.ItemTemplate>
+                    <DataTemplate x:DataType="models:InventoryGroup">
+                        <Border Classes="card">
+                            <StackPanel Spacing="10">
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <TextBlock Grid.Column="0" Text="{Binding Label}" FontWeight="Bold" FontSize="15"
+                                               VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                                    <Border Grid.Column="1" Classes="badge">
+                                        <TextBlock Text="{Binding CapacityLabel}" FontSize="12" FontWeight="Bold"
+                                                   AutomationProperties.Name="{m:LocFormat Key=Inventories_CapacityA11y, Path=CapacityLabel}" />
+                                    </Border>
+                                </Grid>
+
+                                <Border Classes="divider" />
+
+                                <TextBlock Text="{m:Loc Inventories_Empty}" Classes="caption"
+                                           IsVisible="{Binding !HasItems}" />
+
+                                <ItemsControl ItemsSource="{Binding Items}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate x:DataType="models:InventoryItemView">
+                                            <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="10" Margin="0,3"
+                                                  ToolTip.Tip="{Binding GId}">
+                                                <Image Grid.Column="0" Width="28" Height="28" VerticalAlignment="Center"
+                                                       Source="{Binding IconFile, Converter={StaticResource Icon}}"
+                                                       AutomationProperties.AccessibilityView="Raw" />
+                                                <TextBlock Grid.Column="1" VerticalAlignment="Center"
+                                                           Text="{Binding DisplayName}" TextTrimming="CharacterEllipsis" />
+                                                <Button Grid.Column="2" Content="{m:Loc Inventories_Move}"
+                                                        Command="{Binding DataContext.MoveItemCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                        CommandParameter="{Binding}"
+                                                        AutomationProperties.Name="{m:LocFormat Key=Inventories_MoveA11y, Path=DisplayName}" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </DockPanel>
+
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="14" MaxWidth="360"
+                    IsVisible="{Binding IsLoaded, Converter={StaticResource InvertedBool}}">
+            <TextBlock Text="{m:Loc Common_NoFileLoadedGoOpen}" TextAlignment="Center" HorizontalAlignment="Center" />
+            <Button Classes="accent" HorizontalAlignment="Center"
+                    Content="{m:Loc Common_OpenSaveFile}" Command="{Binding OpenFileCommand}" />
+        </StackPanel>
+    </Panel>
+
+</UserControl>

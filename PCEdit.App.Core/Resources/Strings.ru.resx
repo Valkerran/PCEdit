@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+
+  <data name="Common_Save" xml:space="preserve"><value>Сохранить</value></data>
+  <data name="Common_Cancel" xml:space="preserve"><value>Отмена</value></data>
+  <data name="Common_Ok" xml:space="preserve"><value>ОК</value></data>
+  <data name="Common_Discard" xml:space="preserve"><value>Отклонить</value></data>
+  <data name="Common_NoFileLoadedGoOpen" xml:space="preserve"><value>Файл сохранения не загружен.</value></data>
+  <data name="Common_OpenSaveFile" xml:space="preserve"><value>Открыть файл сохранения…</value></data>
+  <data name="Common_CloseWithoutSaving" xml:space="preserve"><value>Закрыть без сохранения</value></data>
+  <data name="Common_KeepEditing" xml:space="preserve"><value>Продолжить редактирование</value></data>
+  <data name="Quit_DiscardTitle" xml:space="preserve"><value>Несохранённые изменения</value></data>
+  <data name="Quit_DiscardBody" xml:space="preserve"><value>Если закрыть PCEdit сейчас, несохранённые изменения будут потеряны. Файл сохранения на диске не изменится.</value></data>
+  <data name="Shell_Title" xml:space="preserve"><value>Редактор сохранений Planet Crafter</value></data>
+  <data name="Shell_Brand" xml:space="preserve"><value>PCEdit</value></data>
+  <data name="Shell_File" xml:space="preserve"><value>Файл: {0}</value></data>
+  <data name="Shell_FileA11y" xml:space="preserve"><value>Загруженный файл: {0}</value></data>
+  <data name="Shell_NoFileLoaded" xml:space="preserve"><value>Файл не загружен</value></data>
+  <data name="Shell_SaveHint" xml:space="preserve"><value>Записывает изменения обратно в файл сохранения на диске</value></data>
+  <data name="Shell_NavA11y" xml:space="preserve"><value>Основная навигация</value></data>
+  <data name="Nav_OpenFile" xml:space="preserve"><value>Открыть файл</value></data>
+  <data name="Nav_Overview" xml:space="preserve"><value>Обзор</value></data>
+  <data name="Nav_Inventories" xml:space="preserve"><value>Инвентари</value></data>
+  <data name="Nav_TerraTokens" xml:space="preserve"><value>Терра-жетоны</value></data>
+  <data name="Nav_Teleport" xml:space="preserve"><value>Телепорт</value></data>
+  <data name="Nav_About" xml:space="preserve"><value>О программе</value></data>
+  <data name="Dirty_Unsaved" xml:space="preserve"><value>Несохранённые изменения</value></data>
+  <data name="Dirty_Saved" xml:space="preserve"><value>Все изменения сохранены</value></data>
+  <data name="Save_Ok" xml:space="preserve"><value>Сохранено.</value></data>
+  <data name="Save_OkAnnounce" xml:space="preserve"><value>Файл сохранения записан.</value></data>
+  <data name="Save_Failed" xml:space="preserve"><value>Не удалось сохранить. Ваш файл не изменён.</value></data>
+  <data name="Save_FailedAnnounce" xml:space="preserve"><value>Ошибка: не удалось сохранить. Ваш файл не изменён.</value></data>
+  <data name="Announce_ErrorPrefix" xml:space="preserve"><value>Ошибка: {0}</value></data>
+  <data name="OpenFile_Title" xml:space="preserve"><value>Открыть файл</value></data>
+  <data name="OpenFile_Heading" xml:space="preserve"><value>Редактор сохранений Planet Crafter</value></data>
+  <data name="OpenFile_Intro" xml:space="preserve"><value>Откройте файл сохранения Planet Crafter, чтобы просматривать и изменять игроков, терраформирование мира, инвентари, терра-жетоны и точки телепортации.</value></data>
+  <data name="OpenFile_CurrentlyLoaded" xml:space="preserve"><value>Сейчас загружено: {0}</value></data>
+  <data name="OpenFile_NoFileLoaded" xml:space="preserve"><value>Файл не загружен.</value></data>
+  <data name="OpenFile_ChooseButton" xml:space="preserve"><value>Выбрать файл сохранения…</value></data>
+  <data name="OpenFile_ChooseHint" xml:space="preserve"><value>Открывает окно выбора файла для загрузки сохранения Planet Crafter</value></data>
+  <data name="OpenFile_LoadingInline" xml:space="preserve"><value>Загрузка сохранения…</value></data>
+  <data name="OpenFile_LoadingA11y" xml:space="preserve"><value>Загрузка сохранения</value></data>
+  <data name="OpenFile_PickerTitle" xml:space="preserve"><value>Выберите файл сохранения Planet Crafter</value></data>
+  <data name="OpenFile_LoadingAnnounce" xml:space="preserve"><value>Загрузка сохранения.</value></data>
+  <data name="OpenFile_Loaded" xml:space="preserve"><value>{0} загружено.</value></data>
+  <data name="OpenFile_LoadFailed" xml:space="preserve"><value>Не удалось загрузить этот файл. Возможно, это не действительное сохранение Planet Crafter.</value></data>
+  <data name="OpenFile_DiscardTitle" xml:space="preserve"><value>Несохранённые изменения</value></data>
+  <data name="OpenFile_DiscardBody" xml:space="preserve"><value>Загрузка нового файла отменит несохранённые изменения. Продолжить?</value></data>
+  <data name="Overview_Title" xml:space="preserve"><value>Обзор</value></data>
+  <data name="Overview_Players" xml:space="preserve"><value>Игроки</value></data>
+  <data name="Overview_WorldTerraforming" xml:space="preserve"><value>Терраформирование мира</value></data>
+  <data name="Overview_NoTerraforming" xml:space="preserve"><value>В этом сохранении нет данных о терраформировании.</value></data>
+  <data name="Overview_HostBadge" xml:space="preserve"><value>ХОСТ</value></data>
+  <data name="Overview_HostA11y" xml:space="preserve"><value>Игрок-хост</value></data>
+  <data name="Overview_PlayerLocation" xml:space="preserve"><value>Планета {0}  ·  Позиция {1}</value></data>
+  <data name="Overview_Vital_Oxygen" xml:space="preserve"><value>КИСЛОРОД</value></data>
+  <data name="Overview_Vital_Thirst" xml:space="preserve"><value>ЖАЖДА</value></data>
+  <data name="Overview_Vital_Health" xml:space="preserve"><value>ЗДОРОВЬЕ</value></data>
+  <data name="Overview_Vital_Toxicity" xml:space="preserve"><value>ТОКСИЧНОСТЬ</value></data>
+  <data name="Overview_PlayerProgress" xml:space="preserve"><value>создано объектов: {0}  ·  получено терра-жетонов: {1}</value></data>
+  <data name="Vital_Ok" xml:space="preserve"><value>Норма</value></data>
+  <data name="Vital_Low" xml:space="preserve"><value>Низкий</value></data>
+  <data name="Vital_Critical" xml:space="preserve"><value>Критический</value></data>
+  <data name="Terraform_Apply" xml:space="preserve"><value>Применить изменения</value></data>
+  <data name="Terraform_ApplyA11y" xml:space="preserve"><value>Применить изменения терраформирования к {0}</value></data>
+  <data name="Terraform_Oxygen" xml:space="preserve"><value>Кислород</value></data>
+  <data name="Terraform_Heat" xml:space="preserve"><value>Тепло</value></data>
+  <data name="Terraform_Pressure" xml:space="preserve"><value>Давление</value></data>
+  <data name="Terraform_Plants" xml:space="preserve"><value>Растения</value></data>
+  <data name="Terraform_Insects" xml:space="preserve"><value>Насекомые</value></data>
+  <data name="Terraform_Animals" xml:space="preserve"><value>Животные</value></data>
+  <data name="Terraform_Purification" xml:space="preserve"><value>Очистка</value></data>
+  <data name="Terraform_HintCollapsed" xml:space="preserve"><value>Свёрнуто. Активируйте, чтобы развернуть.</value></data>
+  <data name="Terraform_HintExpanded" xml:space="preserve"><value>Развёрнуто. Активируйте, чтобы свернуть.</value></data>
+  <data name="Terraform_InvalidLevels" xml:space="preserve"><value>Один или несколько уровней терраформирования не являются допустимым числом.</value></data>
+  <data name="Terraform_InvalidPurification" xml:space="preserve"><value>Уровень очистки не является допустимым числом.</value></data>
+  <data name="Terraform_Updated" xml:space="preserve"><value>Уровни терраформирования обновлены для {0}.</value></data>
+  <data name="Inventories_Title" xml:space="preserve"><value>Инвентари</value></data>
+  <data name="Inventories_Heading" xml:space="preserve"><value>Инвентари</value></data>
+  <data name="Inventories_None" xml:space="preserve"><value>В этом сохранении нет инвентарей.</value></data>
+  <data name="Inventories_Empty" xml:space="preserve"><value>Пусто</value></data>
+  <data name="Inventories_Move" xml:space="preserve"><value>Переместить…</value></data>
+  <data name="Inventories_MoveA11y" xml:space="preserve"><value>Переместить {0} в другой инвентарь</value></data>
+  <data name="Inventories_CapacityA11y" xml:space="preserve"><value>Вместимость {0} предметов</value></data>
+  <data name="Inventories_Search" xml:space="preserve"><value>Поиск по инвентарям и предметам</value></data>
+  <data name="Inventories_SearchA11y" xml:space="preserve"><value>Фильтровать список инвентарей по имени или содержимому</value></data>
+  <data name="Inventories_NoMatch" xml:space="preserve"><value>Нет инвентарей или предметов, соответствующих запросу.</value></data>
+  <data name="Inventories_FilterAll" xml:space="preserve"><value>Все</value></data>
+  <data name="Inventories_FilterPlayers" xml:space="preserve"><value>Игроки</value></data>
+  <data name="Inventories_FilterEquipment" xml:space="preserve"><value>Снаряжение</value></data>
+  <data name="Inventories_FilterContainers" xml:space="preserve"><value>Контейнеры</value></data>
+  <data name="Inventories_FilterA11y" xml:space="preserve"><value>Показывать типы инвентарей</value></data>
+  <data name="Inv_PlayerInventory" xml:space="preserve"><value>Инвентарь игрока {0}</value></data>
+  <data name="Inv_PlayerEquipment" xml:space="preserve"><value>Снаряжение игрока {0}</value></data>
+  <data name="Inv_Container" xml:space="preserve"><value>{0} (объект №{1})</value></data>
+  <data name="Inv_Fallback" xml:space="preserve"><value>Инвентарь №{0}</value></data>
+  <data name="Inv_NotInInventory" xml:space="preserve"><value>Этот предмет сейчас не находится ни в одном инвентаре.</value></data>
+  <data name="Inv_AlreadyThere" xml:space="preserve"><value>Этот предмет уже находится в этом инвентаре.</value></data>
+  <data name="Inv_DestNotFound" xml:space="preserve"><value>Целевой инвентарь не найден.</value></data>
+  <data name="Inv_DestFull" xml:space="preserve"><value>Целевой инвентарь заполнен ({0}/{1}).</value></data>
+  <data name="SelectInv_Title" xml:space="preserve"><value>Переместить предмет</value></data>
+  <data name="SelectInv_Heading" xml:space="preserve"><value>Выберите целевой инвентарь</value></data>
+  <data name="SelectInv_Search" xml:space="preserve"><value>Поиск мест назначения</value></data>
+  <data name="SelectInv_None" xml:space="preserve"><value>Других инвентарей нет.</value></data>
+  <data name="SelectInv_MoveFailedTitle" xml:space="preserve"><value>Не удалось переместить</value></data>
+  <data name="SelectInv_MoveIncomplete" xml:space="preserve"><value>Не удалось завершить перемещение.</value></data>
+  <data name="SelectInv_Moved" xml:space="preserve"><value>Предмет перемещён в {0}.</value></data>
+  <data name="TerraTokens_Title" xml:space="preserve"><value>Терра-жетоны</value></data>
+  <data name="TerraTokens_Heading" xml:space="preserve"><value>Выдать терра-жетоны</value></data>
+  <data name="TerraTokens_CurrentBalance" xml:space="preserve"><value>ТЕКУЩИЙ БАЛАНС</value></data>
+  <data name="TerraTokens_AllTimeEarned" xml:space="preserve"><value>ВСЕГО ЗАРАБОТАНО</value></data>
+  <data name="TerraTokens_CurrentBalanceA11y" xml:space="preserve"><value>Текущий баланс: {0} терра-жетонов</value></data>
+  <data name="TerraTokens_AllTimeEarnedA11y" xml:space="preserve"><value>Всего заработано: {0} терра-жетонов</value></data>
+  <data name="TerraTokens_Player" xml:space="preserve"><value>Игрок</value></data>
+  <data name="TerraTokens_SelectPlayer" xml:space="preserve"><value>Выберите игрока</value></data>
+  <data name="TerraTokens_PlayerA11y" xml:space="preserve"><value>Игрок, которому выдать жетоны</value></data>
+  <data name="TerraTokens_Amount" xml:space="preserve"><value>Сумма для выдачи</value></data>
+  <data name="TerraTokens_AmountHint" xml:space="preserve"><value>Положительное целое число терра-жетонов</value></data>
+  <data name="TerraTokens_Grant" xml:space="preserve"><value>Выдать</value></data>
+  <data name="TerraTokens_ChoosePlayer" xml:space="preserve"><value>Выберите игрока, которому выдать жетоны.</value></data>
+  <data name="TerraTokens_InvalidAmount" xml:space="preserve"><value>Введите положительное целое число жетонов для выдачи.</value></data>
+  <data name="TerraTokens_Granted" xml:space="preserve"><value>Игроку {1} выдано {0} терра-жетонов.</value></data>
+  <data name="Teleport_Title" xml:space="preserve"><value>Телепорт</value></data>
+  <data name="Teleport_Heading" xml:space="preserve"><value>Телепортировать игрока</value></data>
+  <data name="Teleport_Player" xml:space="preserve"><value>Игрок</value></data>
+  <data name="Teleport_SelectPlayer" xml:space="preserve"><value>Выберите игрока</value></data>
+  <data name="Teleport_PlayerA11y" xml:space="preserve"><value>Игрок для телепортации</value></data>
+  <data name="Teleport_Planet" xml:space="preserve"><value>Планета</value></data>
+  <data name="Teleport_SelectPlanet" xml:space="preserve"><value>Выберите планету</value></data>
+  <data name="Teleport_PlanetA11y" xml:space="preserve"><value>Планета назначения</value></data>
+  <data name="Teleport_CustomPlanet" xml:space="preserve"><value>Свой идентификатор планеты</value></data>
+  <data name="Teleport_CustomPlanetPlaceholder" xml:space="preserve"><value>напр. Prime</value></data>
+  <data name="Teleport_CustomPlanetHint" xml:space="preserve"><value>Введите идентификатор планеты, которого нет в списке</value></data>
+  <data name="Teleport_CoordXA11y" xml:space="preserve"><value>Координата X</value></data>
+  <data name="Teleport_CoordYA11y" xml:space="preserve"><value>Координата Y</value></data>
+  <data name="Teleport_CoordZA11y" xml:space="preserve"><value>Координата Z</value></data>
+  <data name="Teleport_Teleport" xml:space="preserve"><value>Телепортировать</value></data>
+  <data name="Teleport_UseCurrentPosition" xml:space="preserve"><value>Сбросить к текущей позиции игрока</value></data>
+  <data name="Teleport_PositionReset" xml:space="preserve"><value>Позиция сброшена к текущему местоположению игрока {0}.</value></data>
+  <data name="Teleport_LandmarksHeading" xml:space="preserve"><value>Ориентиры</value></data>
+  <data name="Teleport_LandmarksHelp" xml:space="preserve"><value>Выберите ориентир, чтобы заполнить X / Y / Z из его позиции.</value></data>
+  <data name="Teleport_NoLandmarks" xml:space="preserve"><value>Ориентиры недоступны.</value></data>
+  <data name="Teleport_UsePosition" xml:space="preserve"><value>Использовать позицию</value></data>
+  <data name="Teleport_UsePositionA11y" xml:space="preserve"><value>Использовать позицию {0}</value></data>
+  <data name="Teleport_OtherPlanet" xml:space="preserve"><value>Другая…</value></data>
+  <data name="Teleport_PositionFromLandmark" xml:space="preserve"><value>Позиция задана из {0}. X {1}, Y {2}, Z {3}.</value></data>
+  <data name="Teleport_ChoosePlayer" xml:space="preserve"><value>Выберите игрока для телепортации.</value></data>
+  <data name="Teleport_ChoosePlanet" xml:space="preserve"><value>Введите или выберите идентификатор планеты.</value></data>
+  <data name="Teleport_InvalidCoords" xml:space="preserve"><value>X, Y и Z должны быть допустимыми числами.</value></data>
+  <data name="Teleport_Done" xml:space="preserve"><value>{0} телепортирован на {1} ({2}).</value></data>
+  <data name="Teleport_LandmarkPlanetHash" xml:space="preserve"><value>хеш мира {0}</value></data>
+  <data name="Teleport_LandmarkNoPlanetHash" xml:space="preserve"><value>хеш мира не записан</value></data>
+  <data name="Disclaimer_Title" xml:space="preserve"><value>Используйте на свой страх и риск</value></data>
+  <data name="Disclaimer_Body" xml:space="preserve"><value>PCEdit напрямую изменяет файлы сохранений Planet Crafter. Неверное изменение может повредить сохранение и привести к потере прогресса. Всегда сохраняйте резервную копию файла сохранения перед изменением. Это программное обеспечение предоставляется «как есть», без каких-либо гарантий.</value></data>
+  <data name="Disclaimer_Acknowledge" xml:space="preserve"><value>Понятно</value></data>
+  <data name="Disclaimer_ShortNotice" xml:space="preserve"><value>Изменение может повредить сохранение. Сначала сделайте копию файла — используйте на свой страх и риск.</value></data>
+  <data name="About_Title" xml:space="preserve"><value>О программе</value></data>
+  <data name="About_Heading" xml:space="preserve"><value>PCEdit</value></data>
+  <data name="About_Tagline" xml:space="preserve"><value>Редактор файлов сохранений для The Planet Crafter.</value></data>
+  <data name="About_Version" xml:space="preserve"><value>Версия {0}</value></data>
+  <data name="About_Language" xml:space="preserve"><value>Язык</value></data>
+  <data name="About_LanguageA11y" xml:space="preserve"><value>Язык приложения</value></data>
+</root>

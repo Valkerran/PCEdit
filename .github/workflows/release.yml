@@ -1,0 +1,162 @@
+name: Release
+
+# Cuts a GitHub Release with three artifacts:
+#   * PCEdit-<v>-x86_64.AppImage       Linux  (self-contained, built on Ubuntu 22.04)
+#   * PCEdit-<v>-win-x64.zip           Windows (self-contained)
+#   * PCEdit-<v>-macos-x64.zip
+#   * PCEdit-<v>-macos-arm64.zip       macOS  (self-contained PCEdit.app, unsigned)
+#
+# Two ways to trigger it:
+#   * push a tag  vX.Y.Z            - X.Y.Z must equal <VersionPrefix> in Directory.Build.props
+#   * Actions -> Release -> Run workflow (from main) - reads <VersionPrefix> and
+#     creates the vX.Y.Z tag + release for you
+#
+# See RELEASING.md.
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.v.outputs.version }}
+      tag: ${{ steps.v.outputs.tag }}
+      release: ${{ steps.v.outputs.release }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Resolve & validate version
+        id: v
+        shell: bash
+        run: |
+          set -euo pipefail
+          prop="$(sed -n 's|.*<VersionPrefix>\([^<]*\)</VersionPrefix>.*|\1|p' Directory.Build.props)"
+          if [ -z "$prop" ]; then
+            echo "::error::<VersionPrefix> not found in Directory.Build.props"; exit 1
+          fi
+          if [[ ! "$prop" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::<VersionPrefix> '$prop' is not X.Y.Z"; exit 1
+          fi
+
+          if [ "$GITHUB_REF_TYPE" = tag ]; then
+            tagver="${GITHUB_REF_NAME#v}"
+            if [ "$tagver" != "$prop" ]; then
+              echo "::error::Tag ${GITHUB_REF_NAME} disagrees with Directory.Build.props <VersionPrefix> ${prop}. Bump the prop, merge, then re-tag."
+              exit 1
+            fi
+          else
+            if [ "$GITHUB_REF_NAME" != "main" ]; then
+              echo "::error::Run the Release workflow from main (was: ${GITHUB_REF_NAME})."; exit 1
+            fi
+            if git ls-remote --exit-code --tags origin "refs/tags/v${prop}" >/dev/null 2>&1; then
+              echo "::error::Tag v${prop} already exists - bump <VersionPrefix> in Directory.Build.props first."
+              exit 1
+            fi
+          fi
+
+          echo "version=$prop"                             >> "$GITHUB_OUTPUT"
+          echo "tag=v$prop"                                 >> "$GITHUB_OUTPUT"
+          echo "release=$prop[${GITHUB_RUN_NUMBER}]"        >> "$GITHUB_OUTPUT"
+          echo "Release version: $prop (tag v$prop)"        >> "$GITHUB_STEP_SUMMARY"
+
+  linux:
+    needs: version
+    # Oldest practical glibc base so the bundled runtime runs on newer distros.
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Build AppImage
+        run: deploy/build-appimage.sh "${{ needs.version.outputs.release }}"
+
+      - name: Sanity-check the artifact
+        run: |
+          f=$(echo artifacts/*.AppImage)
+          test -s "$f"
+          ./"$f" --appimage-extract >/dev/null
+          ! ldd squashfs-root/usr/bin/PCEdit 2>/dev/null | grep -q 'not found'
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist-linux
+          path: artifacts/*.AppImage
+          if-no-files-found: error
+
+  windows:
+    needs: version
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Build win-x64 zip
+        shell: pwsh
+        run: deploy/build-windows.ps1 -Version ${{ needs.version.outputs.version }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist-windows
+          path: artifacts/*.zip
+          if-no-files-found: error
+
+  macos:
+    needs: version
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        rid: [osx-x64, osx-arm64]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Build ${{ matrix.rid }} .app zip
+        env:
+          GITHUB_RUN_NUMBER: ${{ github.run_number }}
+        run: deploy/build-macos.sh ${{ matrix.rid }} ${{ needs.version.outputs.version }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist-macos-${{ matrix.rid }}
+          path: artifacts/*.zip
+          if-no-files-found: error
+
+  release:
+    needs: [version, linux, windows, macos]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          pattern: dist-*
+          merge-multiple: true
+
+      - name: Checksums
+        run: |
+          cd dist
+          sha256sum *.AppImage *.zip | tee SHA256SUMS.txt
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ needs.version.outputs.tag }}
+          name: ${{ needs.version.outputs.tag }}
+          target_commitish: ${{ github.sha }}
+          draft: false
+          generate_release_notes: true
+          fail_on_unmatched_files: true
+          files: |
+            dist/*.AppImage
+            dist/*.zip
+            dist/SHA256SUMS.txt

@@ -1,0 +1,101 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:PCEdit.Desktop.ViewModels"
+        xmlns:m="using:PCEdit.Desktop.Markup"
+        xmlns:conv="using:PCEdit.Desktop.Converters"
+        xmlns:loc="clr-namespace:PCEdit.App.Core.Localization;assembly=PCEdit.App.Core"
+        x:Class="PCEdit.Desktop.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/appicon.png"
+        Title="{Binding Title}"
+        Width="1100" Height="720"
+        MinWidth="720" MinHeight="520"
+        Background="{DynamicResource SurfacePage}">
+
+    <SplitView IsPaneOpen="True"
+               DisplayMode="Inline"
+               OpenPaneLength="260"
+               PaneBackground="{DynamicResource SurfaceCard}">
+
+        <SplitView.Pane>
+            <DockPanel Margin="0">
+
+                <TextBlock DockPanel.Dock="Top" Text="{m:Loc Shell_Brand}"
+                           Classes="h1" Margin="16,20,16,16" />
+
+                <!-- Footer: loaded-file path + language -->
+                <StackPanel DockPanel.Dock="Bottom" Margin="16" Spacing="8">
+                    <TextBlock Text="{m:Loc About_Language}" Classes="caption" />
+                    <ComboBox ItemsSource="{Binding Languages}"
+                              SelectedItem="{Binding SelectedLanguage}"
+                              HorizontalAlignment="Stretch"
+                              AutomationProperties.Name="{m:Loc About_LanguageA11y}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate x:DataType="loc:LocaleOption">
+                                <TextBlock Text="{Binding NativeName}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+
+                    <Border Classes="divider" Margin="0,6" />
+
+                    <TextBlock FontSize="12" TextTrimming="CharacterEllipsis"
+                               Text="{m:LocFormat Key=Shell_File, Path=Workspace.FilePath, FallbackKey=Shell_NoFileLoaded}" />
+                </StackPanel>
+
+                <!-- Nav list -->
+                <ListBox x:Name="NavList"
+                         Classes="nav"
+                         ItemsSource="{Binding NavItems}"
+                         SelectedItem="{Binding SelectedNavItem, Mode=TwoWay}"
+                         Background="Transparent"
+                         Margin="8,0"
+                         AutomationProperties.Name="{m:Loc Shell_NavA11y}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate x:DataType="vm:NavItem">
+                            <TextBlock Text="{Binding Label}" Padding="12,10" FontSize="15" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+            </DockPanel>
+        </SplitView.Pane>
+
+        <SplitView.Content>
+            <Grid RowDefinitions="Auto,*">
+
+                <!-- Header bar: page title + primary Save action + save state -->
+                <Border Grid.Row="0" Background="{DynamicResource SurfacePage}"
+                        BorderBrush="{DynamicResource Divider}" BorderThickness="0,0,0,1"
+                        Padding="24,14">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <TextBlock Grid.Column="0" Classes="pageHeading" VerticalAlignment="Center"
+                                   Text="{Binding SelectedNavItem.Label}" />
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="14" VerticalAlignment="Center">
+                            <TextBlock VerticalAlignment="Center" FontSize="12.5"
+                                       Foreground="{DynamicResource StatusInfoText}"
+                                       Text="{Binding Workspace.SaveStatus}"
+                                       IsVisible="{Binding Workspace.SaveStatus, Converter={StaticResource StringNotEmpty}}" />
+                            <TextBlock VerticalAlignment="Center" Classes="caption"
+                                       Text="{Binding DirtyText}" />
+                            <Button Classes="accent"
+                                    Content="{m:Loc Common_Save}"
+                                    Command="{Binding Workspace.SaveCommand}"
+                                    ToolTip.Tip="{m:Loc Shell_SaveHint}"
+                                    HotKey="Ctrl+S" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <!-- Hidden live region for screen-reader announcements -->
+                <TextBlock x:Name="LiveRegion" Grid.Row="0"
+                           Opacity="0" IsHitTestVisible="False" Height="0"
+                           AutomationProperties.LiveSetting="Polite" />
+
+                <ContentControl Grid.Row="1" Content="{Binding CurrentPage}" />
+            </Grid>
+        </SplitView.Content>
+
+    </SplitView>
+
+</Window>

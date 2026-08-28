@@ -1,0 +1,18 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:PCEdit.App.Core.ViewModels;assembly=PCEdit.App.Core"
+        xmlns:views="using:PCEdit.Desktop.Views"
+        xmlns:m="using:PCEdit.Desktop.Markup"
+        x:Class="PCEdit.Desktop.Views.SelectInventoryWindow"
+        x:DataType="vm:SelectInventoryViewModel"
+        Icon="/Assets/appicon.png"
+        Title="{m:Loc SelectInv_Title}"
+        Width="480" Height="560"
+        MinWidth="360" MinHeight="360"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False"
+        Background="{DynamicResource SurfacePage}">
+
+    <views:SelectInventoryView />
+
+</Window>

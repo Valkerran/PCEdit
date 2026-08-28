@@ -1,0 +1,134 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--
+        Type scale: display 28 / pageHeading 19 / h2 (section) 16 / body 14 /
+        caption 12.5 / micro 11. Headings sit left of the content they head; only the
+        landing pages (Open File, About) and the brand wordmark stay centred (class "hero").
+    -->
+
+    <!-- Inter is the app-wide default font (Program.cs WithInterFont); no family setter needed. -->
+    <Style Selector="TextBlock">
+        <Setter Property="Foreground" Value="{DynamicResource TextPrimary}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+
+    <!-- HeadingLevel setters give assistive tech a document outline it can jump through
+         (NVDA/VoiceOver "next heading"); the visual type scale alone carries no semantics. -->
+    <Style Selector="TextBlock.h1">
+        <Setter Property="FontSize" Value="28" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="TextAlignment" Value="Center" />
+        <Setter Property="AutomationProperties.HeadingLevel" Value="1" />
+    </Style>
+
+    <!-- Section heading: left-aligned, paired with Border.headingRule. -->
+    <Style Selector="TextBlock.h2">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="AutomationProperties.HeadingLevel" Value="2" />
+    </Style>
+
+    <Style Selector="TextBlock.pageHeading">
+        <Setter Property="FontSize" Value="19" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="AutomationProperties.HeadingLevel" Value="1" />
+    </Style>
+
+    <Style Selector="TextBlock.pageTitle">
+        <Setter Property="FontSize" Value="24" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Margin" Value="0,0,0,4" />
+        <Setter Property="AutomationProperties.HeadingLevel" Value="1" />
+    </Style>
+
+    <Style Selector="TextBlock.caption">
+        <Setter Property="Foreground" Value="{DynamicResource TextSecondary}" />
+        <Setter Property="FontSize" Value="12.5" />
+    </Style>
+
+    <Style Selector="TextBlock.micro">
+        <Setter Property="Foreground" Value="{DynamicResource TextSecondary}" />
+        <Setter Property="FontSize" Value="11" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="LetterSpacing" Value="0.5" />
+    </Style>
+
+    <Style Selector="TextBlock.status">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Foreground" Value="{DynamicResource StatusInfoText}" />
+    </Style>
+
+    <!-- The one flourish: a terraform-stage bar to the left of every section heading. -->
+    <Style Selector="Border.headingRule">
+        <Setter Property="Background" Value="{DynamicResource BrandFill}" />
+        <Setter Property="Width" Value="3" />
+        <Setter Property="Height" Value="18" />
+        <Setter Property="CornerRadius" Value="1.5" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <Style Selector="Border.card">
+        <Setter Property="Background" Value="{DynamicResource SurfaceCard}" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="Padding" Value="16" />
+    </Style>
+
+    <Style Selector="Border.badge">
+        <Setter Property="Background" Value="{DynamicResource SurfaceBadge}" />
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="Padding" Value="10,3" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <Style Selector="Border.divider">
+        <Setter Property="Background" Value="{DynamicResource Divider}" />
+        <Setter Property="Height" Value="1" />
+        <Setter Property="Margin" Value="0,2" />
+    </Style>
+
+    <Style Selector="Button.accent">
+        <Setter Property="Background" Value="{DynamicResource BrandFill}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextOnBrand}" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="Padding" Value="14,9" />
+        <Setter Property="MinHeight" Value="40" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+    <Style Selector="Button.accent:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource BrandText}" />
+        <Setter Property="TextElement.Foreground" Value="{DynamicResource TextOnBrand}" />
+    </Style>
+
+    <Style Selector="Button.link">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource TextPrimary}" />
+        <Setter Property="Padding" Value="16,12" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    </Style>
+
+    <!-- Nav list: selected row carries the terraform-arc indicator on its leading edge, over a
+         brand-green tint - stronger than the near-invisible neutral tint it had, but still not the
+         loud full-accent fill FluentTheme uses by default. The selected label also goes SemiBold so
+         the state does not rely on colour alone (WCAG 1.4.1). -->
+    <Style Selector="ListBox.nav ListBoxItem">
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Margin" Value="0,1" />
+        <Setter Property="CornerRadius" Value="8" />
+    </Style>
+    <Style Selector="ListBox.nav ListBoxItem:selected /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource SurfaceNavSelected}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource TerraformSpectrum}" />
+        <Setter Property="BorderThickness" Value="4,0,0,0" />
+        <Setter Property="TextElement.Foreground" Value="{DynamicResource TextPrimary}" />
+        <Setter Property="TextElement.FontWeight" Value="SemiBold" />
+    </Style>
+    <Style Selector="ListBox.nav ListBoxItem:selected:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource SurfaceNavSelected}" />
+        <Setter Property="TextElement.Foreground" Value="{DynamicResource TextPrimary}" />
+        <Setter Property="TextElement.FontWeight" Value="SemiBold" />
+    </Style>
+
+</Styles>

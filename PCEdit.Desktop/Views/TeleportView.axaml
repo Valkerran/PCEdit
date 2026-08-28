@@ -1,0 +1,122 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:PCEdit.App.Core.ViewModels;assembly=PCEdit.App.Core"
+             xmlns:models="clr-namespace:PCEdit.App.Core.Models;assembly=PCEdit.App.Core"
+             xmlns:m="using:PCEdit.Desktop.Markup"
+             xmlns:conv="using:PCEdit.Desktop.Converters"
+             x:Class="PCEdit.Desktop.Views.TeleportView"
+             x:DataType="vm:TeleportViewModel"
+             x:Name="Root">
+
+    <Panel>
+        <ScrollViewer IsVisible="{Binding IsLoaded}">
+            <StackPanel Margin="24" Spacing="20" MaxWidth="760">
+                <StackPanel Orientation="Horizontal" Spacing="10">
+                    <Border Classes="headingRule" />
+                    <TextBlock Text="{m:Loc Teleport_Heading}" Classes="h2" VerticalAlignment="Center" />
+                </StackPanel>
+
+                <Border Classes="card">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="{m:Loc Teleport_Player}" Classes="caption" />
+                        <ComboBox ItemsSource="{Binding Players}" SelectedItem="{Binding SelectedPlayer}"
+                                  HorizontalAlignment="Stretch"
+                                  PlaceholderText="{m:Loc Teleport_SelectPlayer}"
+                                  AutomationProperties.Name="{m:Loc Teleport_PlayerA11y}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="models:PlayerOption">
+                                    <TextBlock Text="{Binding Name}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                        <TextBlock Text="{m:Loc Teleport_Planet}" Classes="caption" />
+                        <ComboBox ItemsSource="{Binding PlanetIdOptions}" SelectedItem="{Binding SelectedPlanetId}"
+                                  HorizontalAlignment="Stretch"
+                                  PlaceholderText="{m:Loc Teleport_SelectPlanet}"
+                                  AutomationProperties.Name="{m:Loc Teleport_PlanetA11y}" />
+
+                        <TextBlock Text="{m:Loc Teleport_CustomPlanet}" Classes="caption"
+                                   IsVisible="{Binding IsCustomPlanetId}" />
+                        <TextBox Text="{Binding CustomPlanetId}" HorizontalAlignment="Stretch"
+                                 IsVisible="{Binding IsCustomPlanetId}"
+                                 PlaceholderText="{m:Loc Teleport_CustomPlanetPlaceholder}"
+                                 AutomationProperties.Name="{m:Loc Teleport_CustomPlanet}"
+                                 AutomationProperties.HelpText="{m:Loc Teleport_CustomPlanetHint}" />
+
+                        <Grid ColumnDefinitions="*,*,*" ColumnSpacing="12">
+                            <StackPanel Grid.Column="0" Spacing="4">
+                                <TextBlock Text="X" Classes="caption" />
+                                <TextBox Text="{Binding X}" AutomationProperties.Name="{m:Loc Teleport_CoordXA11y}" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Spacing="4">
+                                <TextBlock Text="Y" Classes="caption" />
+                                <TextBox Text="{Binding Y}" AutomationProperties.Name="{m:Loc Teleport_CoordYA11y}" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="2" Spacing="4">
+                                <TextBlock Text="Z" Classes="caption" />
+                                <TextBox Text="{Binding Z}" AutomationProperties.Name="{m:Loc Teleport_CoordZA11y}" />
+                            </StackPanel>
+                        </Grid>
+
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <Button Classes="accent"
+                                    Content="{m:Loc Teleport_Teleport}" Command="{Binding TeleportCommand}" />
+                            <Button Content="{m:Loc Teleport_UseCurrentPosition}"
+                                    Command="{Binding UseCurrentPositionCommand}" />
+                        </StackPanel>
+                        <TextBlock Text="{Binding StatusMessage}"
+                                   IsVisible="{Binding StatusMessage, Converter={StaticResource StringNotEmpty}}"
+                                   Foreground="{Binding StatusKind, Converter={StaticResource StatusBrush}}" />
+                    </StackPanel>
+                </Border>
+
+                <StackPanel Orientation="Horizontal" Spacing="10">
+                    <Border Classes="headingRule" />
+                    <TextBlock Text="{m:Loc Teleport_LandmarksHeading}" Classes="h2" VerticalAlignment="Center" />
+                </StackPanel>
+                <TextBlock Text="{m:Loc Teleport_LandmarksHelp}" Classes="caption" />
+
+                <ItemsControl ItemsSource="{Binding Landmarks}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Spacing="12" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="models:LandmarkOption">
+                            <Border Classes="card">
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <StackPanel Grid.Column="0" VerticalAlignment="Center" Spacing="2">
+                                        <TextBlock Text="{Binding Label}" FontWeight="Bold" />
+                                        <TextBlock Classes="caption">
+                                            <Run Text="{Binding Position}" />
+                                            <Run Text="  ·  " />
+                                            <Run Text="{Binding PlanetHint}" />
+                                        </TextBlock>
+                                    </StackPanel>
+                                    <Button Grid.Column="1" VerticalAlignment="Center"
+                                            Content="{m:Loc Teleport_UsePosition}"
+                                            Command="{Binding #Root.DataContext.ApplyLandmarkCommand}"
+                                            CommandParameter="{Binding}"
+                                            AutomationProperties.Name="{m:LocFormat Key=Teleport_UsePositionA11y, Path=Label}" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <TextBlock Text="{m:Loc Teleport_NoLandmarks}" Classes="caption" HorizontalAlignment="Center"
+                           IsVisible="{Binding Landmarks.Count, Converter={StaticResource CountIsZero}}" />
+            </StackPanel>
+        </ScrollViewer>
+
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="14" MaxWidth="360"
+                    IsVisible="{Binding IsLoaded, Converter={StaticResource InvertedBool}}">
+            <TextBlock Text="{m:Loc Common_NoFileLoadedGoOpen}" TextAlignment="Center" HorizontalAlignment="Center" />
+            <Button Classes="accent" HorizontalAlignment="Center"
+                    Content="{m:Loc Common_OpenSaveFile}" Command="{Binding OpenFileCommand}" />
+        </StackPanel>
+    </Panel>
+
+</UserControl>

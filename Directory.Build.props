@@ -1,0 +1,26 @@
+<Project>
+
+  <!--
+    Single source of truth for the release version of every project in the solution.
+
+    Release process (see RELEASING.md):
+      1. Bump <VersionPrefix> here (X.Y.Z, semver).
+      2. Merge to main.
+      3. Either push a tag  v<VersionPrefix>  or run the "Release" GitHub Action
+         (Actions -> Release -> Run workflow), which creates the tag for you.
+
+    The Release workflow refuses to build if a pushed tag disagrees with this value,
+    and CI warns once <VersionPrefix> has caught up to the latest release tag.
+  -->
+  <PropertyGroup>
+    <VersionPrefix>1.0.0</VersionPrefix>
+  </PropertyGroup>
+
+  <!-- Licensing — GNU GPL v3 or later. Full text in the repo-root LICENSE file. -->
+  <PropertyGroup>
+    <Authors>Walter Smart</Authors>
+    <Copyright>Copyright (C) 2026 Walter Smart</Copyright>
+    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+  </PropertyGroup>
+
+</Project>

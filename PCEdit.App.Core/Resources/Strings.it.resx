@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+
+  <data name="Common_Save" xml:space="preserve"><value>Salva</value></data>
+  <data name="Common_Cancel" xml:space="preserve"><value>Annulla</value></data>
+  <data name="Common_Ok" xml:space="preserve"><value>OK</value></data>
+  <data name="Common_Discard" xml:space="preserve"><value>Ignora</value></data>
+  <data name="Common_NoFileLoadedGoOpen" xml:space="preserve"><value>Nessun salvataggio caricato.</value></data>
+  <data name="Common_OpenSaveFile" xml:space="preserve"><value>Apri un salvataggio…</value></data>
+  <data name="Common_CloseWithoutSaving" xml:space="preserve"><value>Chiudi senza salvare</value></data>
+  <data name="Common_KeepEditing" xml:space="preserve"><value>Continua a modificare</value></data>
+  <data name="Quit_DiscardTitle" xml:space="preserve"><value>Modifiche non salvate</value></data>
+  <data name="Quit_DiscardBody" xml:space="preserve"><value>Chiudendo PCEdit ora perdi le modifiche non salvate. Il file di salvataggio sul disco resta invariato.</value></data>
+  <data name="Shell_Title" xml:space="preserve"><value>Editor dei salvataggi di Planet Crafter</value></data>
+  <data name="Shell_Brand" xml:space="preserve"><value>PCEdit</value></data>
+  <data name="Shell_File" xml:space="preserve"><value>File: {0}</value></data>
+  <data name="Shell_FileA11y" xml:space="preserve"><value>File caricato: {0}</value></data>
+  <data name="Shell_NoFileLoaded" xml:space="preserve"><value>Nessun file caricato</value></data>
+  <data name="Shell_SaveHint" xml:space="preserve"><value>Riscrive le tue modifiche nel file di salvataggio sul disco</value></data>
+  <data name="Shell_NavA11y" xml:space="preserve"><value>Navigazione principale</value></data>
+  <data name="Nav_OpenFile" xml:space="preserve"><value>Apri file</value></data>
+  <data name="Nav_Overview" xml:space="preserve"><value>Panoramica</value></data>
+  <data name="Nav_Inventories" xml:space="preserve"><value>Inventari</value></data>
+  <data name="Nav_TerraTokens" xml:space="preserve"><value>Gettoni terra</value></data>
+  <data name="Nav_Teleport" xml:space="preserve"><value>Teletrasporto</value></data>
+  <data name="Nav_About" xml:space="preserve"><value>Informazioni</value></data>
+  <data name="Dirty_Unsaved" xml:space="preserve"><value>Modifiche non salvate</value></data>
+  <data name="Dirty_Saved" xml:space="preserve"><value>Tutte le modifiche salvate</value></data>
+  <data name="Save_Ok" xml:space="preserve"><value>Salvato.</value></data>
+  <data name="Save_OkAnnounce" xml:space="preserve"><value>File di salvataggio scritto.</value></data>
+  <data name="Save_Failed" xml:space="preserve"><value>Salvataggio non riuscito. Il file non è stato modificato.</value></data>
+  <data name="Save_FailedAnnounce" xml:space="preserve"><value>Errore: salvataggio non riuscito. Il file non è stato modificato.</value></data>
+  <data name="Announce_ErrorPrefix" xml:space="preserve"><value>Errore: {0}</value></data>
+  <data name="OpenFile_Title" xml:space="preserve"><value>Apri file</value></data>
+  <data name="OpenFile_Heading" xml:space="preserve"><value>Editor dei salvataggi di Planet Crafter</value></data>
+  <data name="OpenFile_Intro" xml:space="preserve"><value>Apri un file di salvataggio di Planet Crafter per visualizzare e modificare giocatori, terraformazione del mondo, inventari, gettoni terra e posizioni di teletrasporto.</value></data>
+  <data name="OpenFile_CurrentlyLoaded" xml:space="preserve"><value>Attualmente caricato: {0}</value></data>
+  <data name="OpenFile_NoFileLoaded" xml:space="preserve"><value>Nessun file caricato.</value></data>
+  <data name="OpenFile_ChooseButton" xml:space="preserve"><value>Scegli file di salvataggio…</value></data>
+  <data name="OpenFile_ChooseHint" xml:space="preserve"><value>Apre un selettore di file per caricare un salvataggio di Planet Crafter</value></data>
+  <data name="OpenFile_LoadingInline" xml:space="preserve"><value>Caricamento del salvataggio…</value></data>
+  <data name="OpenFile_LoadingA11y" xml:space="preserve"><value>Caricamento del salvataggio</value></data>
+  <data name="OpenFile_PickerTitle" xml:space="preserve"><value>Seleziona un file di salvataggio di Planet Crafter</value></data>
+  <data name="OpenFile_LoadingAnnounce" xml:space="preserve"><value>Caricamento del salvataggio.</value></data>
+  <data name="OpenFile_Loaded" xml:space="preserve"><value>{0} caricato.</value></data>
+  <data name="OpenFile_LoadFailed" xml:space="preserve"><value>Impossibile caricare quel file. Potrebbe non essere un salvataggio di Planet Crafter valido.</value></data>
+  <data name="OpenFile_DiscardTitle" xml:space="preserve"><value>Modifiche non salvate</value></data>
+  <data name="OpenFile_DiscardBody" xml:space="preserve"><value>Caricare un nuovo file ignorerà le modifiche non salvate. Continuare?</value></data>
+  <data name="Overview_Title" xml:space="preserve"><value>Panoramica</value></data>
+  <data name="Overview_Players" xml:space="preserve"><value>Giocatori</value></data>
+  <data name="Overview_WorldTerraforming" xml:space="preserve"><value>Terraformazione del mondo</value></data>
+  <data name="Overview_NoTerraforming" xml:space="preserve"><value>Nessun dato di terraformazione in questo salvataggio.</value></data>
+  <data name="Overview_HostBadge" xml:space="preserve"><value>HOST</value></data>
+  <data name="Overview_HostA11y" xml:space="preserve"><value>Giocatore host</value></data>
+  <data name="Overview_PlayerLocation" xml:space="preserve"><value>Pianeta {0}  ·  Posizione {1}</value></data>
+  <data name="Overview_Vital_Oxygen" xml:space="preserve"><value>OSSIGENO</value></data>
+  <data name="Overview_Vital_Thirst" xml:space="preserve"><value>SETE</value></data>
+  <data name="Overview_Vital_Health" xml:space="preserve"><value>SALUTE</value></data>
+  <data name="Overview_Vital_Toxicity" xml:space="preserve"><value>TOSSICITÀ</value></data>
+  <data name="Overview_PlayerProgress" xml:space="preserve"><value>{0} oggetti creati  ·  {1} gettoni terra guadagnati</value></data>
+  <data name="Vital_Ok" xml:space="preserve"><value>OK</value></data>
+  <data name="Vital_Low" xml:space="preserve"><value>Basso</value></data>
+  <data name="Vital_Critical" xml:space="preserve"><value>Critico</value></data>
+  <data name="Terraform_Apply" xml:space="preserve"><value>Applica modifiche</value></data>
+  <data name="Terraform_ApplyA11y" xml:space="preserve"><value>Applica le modifiche di terraformazione a {0}</value></data>
+  <data name="Terraform_Oxygen" xml:space="preserve"><value>Ossigeno</value></data>
+  <data name="Terraform_Heat" xml:space="preserve"><value>Calore</value></data>
+  <data name="Terraform_Pressure" xml:space="preserve"><value>Pressione</value></data>
+  <data name="Terraform_Plants" xml:space="preserve"><value>Piante</value></data>
+  <data name="Terraform_Insects" xml:space="preserve"><value>Insetti</value></data>
+  <data name="Terraform_Animals" xml:space="preserve"><value>Animali</value></data>
+  <data name="Terraform_Purification" xml:space="preserve"><value>Purificazione</value></data>
+  <data name="Terraform_HintCollapsed" xml:space="preserve"><value>Compresso. Attiva per espandere.</value></data>
+  <data name="Terraform_HintExpanded" xml:space="preserve"><value>Espanso. Attiva per comprimere.</value></data>
+  <data name="Terraform_InvalidLevels" xml:space="preserve"><value>Uno o più livelli di terraformazione non sono un numero valido.</value></data>
+  <data name="Terraform_InvalidPurification" xml:space="preserve"><value>Il livello di purificazione non è un numero valido.</value></data>
+  <data name="Terraform_Updated" xml:space="preserve"><value>Livelli di terraformazione aggiornati per {0}.</value></data>
+  <data name="Inventories_Title" xml:space="preserve"><value>Inventari</value></data>
+  <data name="Inventories_Heading" xml:space="preserve"><value>Inventari</value></data>
+  <data name="Inventories_None" xml:space="preserve"><value>Nessun inventario in questo salvataggio.</value></data>
+  <data name="Inventories_Empty" xml:space="preserve"><value>Vuoto</value></data>
+  <data name="Inventories_Move" xml:space="preserve"><value>Sposta…</value></data>
+  <data name="Inventories_MoveA11y" xml:space="preserve"><value>Sposta {0} in un altro inventario</value></data>
+  <data name="Inventories_CapacityA11y" xml:space="preserve"><value>Capacità {0} oggetti</value></data>
+  <data name="Inventories_Search" xml:space="preserve"><value>Cerca inventari e oggetti</value></data>
+  <data name="Inventories_SearchA11y" xml:space="preserve"><value>Filtra l'elenco degli inventari per nome o contenuto</value></data>
+  <data name="Inventories_NoMatch" xml:space="preserve"><value>Nessun inventario o oggetto corrisponde alla ricerca.</value></data>
+  <data name="Inventories_FilterAll" xml:space="preserve"><value>Tutti</value></data>
+  <data name="Inventories_FilterPlayers" xml:space="preserve"><value>Giocatori</value></data>
+  <data name="Inventories_FilterEquipment" xml:space="preserve"><value>Equipaggiamento</value></data>
+  <data name="Inventories_FilterContainers" xml:space="preserve"><value>Contenitori</value></data>
+  <data name="Inventories_FilterA11y" xml:space="preserve"><value>Mostra quali tipi di inventario</value></data>
+  <data name="Inv_PlayerInventory" xml:space="preserve"><value>Inventario di {0}</value></data>
+  <data name="Inv_PlayerEquipment" xml:space="preserve"><value>Equipaggiamento di {0}</value></data>
+  <data name="Inv_Container" xml:space="preserve"><value>{0} (oggetto n. {1})</value></data>
+  <data name="Inv_Fallback" xml:space="preserve"><value>Inventario n. {0}</value></data>
+  <data name="Inv_NotInInventory" xml:space="preserve"><value>Questo oggetto non si trova attualmente in alcun inventario.</value></data>
+  <data name="Inv_AlreadyThere" xml:space="preserve"><value>Questo oggetto è già in quell'inventario.</value></data>
+  <data name="Inv_DestNotFound" xml:space="preserve"><value>Inventario di destinazione non trovato.</value></data>
+  <data name="Inv_DestFull" xml:space="preserve"><value>L'inventario di destinazione è pieno ({0}/{1}).</value></data>
+  <data name="SelectInv_Title" xml:space="preserve"><value>Sposta oggetto</value></data>
+  <data name="SelectInv_Heading" xml:space="preserve"><value>Scegli un inventario di destinazione</value></data>
+  <data name="SelectInv_Search" xml:space="preserve"><value>Cerca destinazioni</value></data>
+  <data name="SelectInv_None" xml:space="preserve"><value>Nessun altro inventario disponibile.</value></data>
+  <data name="SelectInv_MoveFailedTitle" xml:space="preserve"><value>Spostamento non riuscito</value></data>
+  <data name="SelectInv_MoveIncomplete" xml:space="preserve"><value>Impossibile completare lo spostamento.</value></data>
+  <data name="SelectInv_Moved" xml:space="preserve"><value>Oggetto spostato in {0}.</value></data>
+  <data name="TerraTokens_Title" xml:space="preserve"><value>Gettoni terra</value></data>
+  <data name="TerraTokens_Heading" xml:space="preserve"><value>Concedi gettoni terra</value></data>
+  <data name="TerraTokens_CurrentBalance" xml:space="preserve"><value>SALDO ATTUALE</value></data>
+  <data name="TerraTokens_AllTimeEarned" xml:space="preserve"><value>TOTALE GUADAGNATO</value></data>
+  <data name="TerraTokens_CurrentBalanceA11y" xml:space="preserve"><value>Saldo attuale: {0} gettoni terra</value></data>
+  <data name="TerraTokens_AllTimeEarnedA11y" xml:space="preserve"><value>Totale guadagnato: {0} gettoni terra</value></data>
+  <data name="TerraTokens_Player" xml:space="preserve"><value>Giocatore</value></data>
+  <data name="TerraTokens_SelectPlayer" xml:space="preserve"><value>Seleziona un giocatore</value></data>
+  <data name="TerraTokens_PlayerA11y" xml:space="preserve"><value>Giocatore a cui concedere i gettoni</value></data>
+  <data name="TerraTokens_Amount" xml:space="preserve"><value>Quantità da concedere</value></data>
+  <data name="TerraTokens_AmountHint" xml:space="preserve"><value>Numero intero positivo di gettoni terra</value></data>
+  <data name="TerraTokens_Grant" xml:space="preserve"><value>Concedi</value></data>
+  <data name="TerraTokens_ChoosePlayer" xml:space="preserve"><value>Scegli un giocatore a cui concedere i gettoni.</value></data>
+  <data name="TerraTokens_InvalidAmount" xml:space="preserve"><value>Inserisci un numero intero positivo di gettoni da concedere.</value></data>
+  <data name="TerraTokens_Granted" xml:space="preserve"><value>Concessi {0} gettoni terra a {1}.</value></data>
+  <data name="Teleport_Title" xml:space="preserve"><value>Teletrasporto</value></data>
+  <data name="Teleport_Heading" xml:space="preserve"><value>Teletrasporta giocatore</value></data>
+  <data name="Teleport_Player" xml:space="preserve"><value>Giocatore</value></data>
+  <data name="Teleport_SelectPlayer" xml:space="preserve"><value>Seleziona un giocatore</value></data>
+  <data name="Teleport_PlayerA11y" xml:space="preserve"><value>Giocatore da teletrasportare</value></data>
+  <data name="Teleport_Planet" xml:space="preserve"><value>Pianeta</value></data>
+  <data name="Teleport_SelectPlanet" xml:space="preserve"><value>Seleziona un pianeta</value></data>
+  <data name="Teleport_PlanetA11y" xml:space="preserve"><value>Pianeta di destinazione</value></data>
+  <data name="Teleport_CustomPlanet" xml:space="preserve"><value>ID pianeta personalizzato</value></data>
+  <data name="Teleport_CustomPlanetPlaceholder" xml:space="preserve"><value>es. Prime</value></data>
+  <data name="Teleport_CustomPlanetHint" xml:space="preserve"><value>Digita un ID pianeta non presente nell'elenco</value></data>
+  <data name="Teleport_CoordXA11y" xml:space="preserve"><value>Coordinata X</value></data>
+  <data name="Teleport_CoordYA11y" xml:space="preserve"><value>Coordinata Y</value></data>
+  <data name="Teleport_CoordZA11y" xml:space="preserve"><value>Coordinata Z</value></data>
+  <data name="Teleport_Teleport" xml:space="preserve"><value>Teletrasporta</value></data>
+  <data name="Teleport_UseCurrentPosition" xml:space="preserve"><value>Ripristina alla posizione attuale del giocatore</value></data>
+  <data name="Teleport_PositionReset" xml:space="preserve"><value>Posizione ripristinata alla posizione attuale di {0}.</value></data>
+  <data name="Teleport_LandmarksHeading" xml:space="preserve"><value>Punti di riferimento</value></data>
+  <data name="Teleport_LandmarksHelp" xml:space="preserve"><value>Scegli un punto di riferimento per compilare X / Y / Z dalla sua posizione.</value></data>
+  <data name="Teleport_NoLandmarks" xml:space="preserve"><value>Nessun punto di riferimento disponibile.</value></data>
+  <data name="Teleport_UsePosition" xml:space="preserve"><value>Usa posizione</value></data>
+  <data name="Teleport_UsePositionA11y" xml:space="preserve"><value>Usa la posizione di {0}</value></data>
+  <data name="Teleport_OtherPlanet" xml:space="preserve"><value>Altro…</value></data>
+  <data name="Teleport_PositionFromLandmark" xml:space="preserve"><value>Posizione impostata da {0}. X {1}, Y {2}, Z {3}.</value></data>
+  <data name="Teleport_ChoosePlayer" xml:space="preserve"><value>Scegli un giocatore da teletrasportare.</value></data>
+  <data name="Teleport_ChoosePlanet" xml:space="preserve"><value>Inserisci o scegli un ID pianeta.</value></data>
+  <data name="Teleport_InvalidCoords" xml:space="preserve"><value>X, Y e Z devono essere numeri validi.</value></data>
+  <data name="Teleport_Done" xml:space="preserve"><value>{0} teletrasportato su {1} ({2}).</value></data>
+  <data name="Teleport_LandmarkPlanetHash" xml:space="preserve"><value>hash del mondo {0}</value></data>
+  <data name="Teleport_LandmarkNoPlanetHash" xml:space="preserve"><value>nessun hash del mondo registrato</value></data>
+  <data name="Disclaimer_Title" xml:space="preserve"><value>Usa a tuo rischio</value></data>
+  <data name="Disclaimer_Body" xml:space="preserve"><value>PCEdit modifica direttamente i file di salvataggio di Planet Crafter. Una modifica errata può danneggiare un salvataggio e far perdere progressi. Conserva sempre una copia di backup del file di salvataggio prima di modificarlo. Questo software è fornito «così com'è», senza alcuna garanzia.</value></data>
+  <data name="Disclaimer_Acknowledge" xml:space="preserve"><value>Ho capito</value></data>
+  <data name="Disclaimer_ShortNotice" xml:space="preserve"><value>La modifica può danneggiare un salvataggio. Fai prima una copia del file: usa a tuo rischio.</value></data>
+  <data name="About_Title" xml:space="preserve"><value>Informazioni</value></data>
+  <data name="About_Heading" xml:space="preserve"><value>PCEdit</value></data>
+  <data name="About_Tagline" xml:space="preserve"><value>Un editor di salvataggi per The Planet Crafter.</value></data>
+  <data name="About_Version" xml:space="preserve"><value>Versione {0}</value></data>
+  <data name="About_Language" xml:space="preserve"><value>Lingua</value></data>
+  <data name="About_LanguageA11y" xml:space="preserve"><value>Lingua dell'applicazione</value></data>
+</root>

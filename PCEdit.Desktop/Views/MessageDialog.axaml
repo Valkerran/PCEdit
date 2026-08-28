@@ -1,0 +1,18 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="PCEdit.Desktop.Views.MessageDialog"
+        Icon="/Assets/appicon.png"
+        SizeToContent="WidthAndHeight"
+        MinWidth="360" MaxWidth="520"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False"
+        ShowInTaskbar="False"
+        Background="{DynamicResource SurfacePage}">
+
+    <StackPanel Margin="24" Spacing="16">
+        <TextBlock x:Name="TitleText" Classes="h2" TextWrapping="Wrap" />
+        <TextBlock x:Name="MessageText" TextWrapping="Wrap" MaxWidth="460" />
+        <StackPanel x:Name="ButtonBar" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8" />
+    </StackPanel>
+
+</Window>

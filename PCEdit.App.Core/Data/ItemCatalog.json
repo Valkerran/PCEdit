@@ -1,0 +1,1188 @@
+{
+  "$comment": "App-only item catalog keyed by WorldObject.GId. Not part of the save file. 'icon' on an item overrides its category icon; unknown GIds fall back to the raw id and the fallbackCategory icon. Regenerate with tools/item-catalog/gen_catalog.py.",
+  "fallbackCategory": "misc",
+  "categories": {
+    "ore": {
+      "displayName": "Ore & Minerals",
+      "icon": "cat_ore.png"
+    },
+    "gem": {
+      "displayName": "Rare Crystals",
+      "icon": "cat_gem.png"
+    },
+    "component": {
+      "displayName": "Crafted Components",
+      "icon": "cat_component.png"
+    },
+    "seed": {
+      "displayName": "Seeds",
+      "icon": "cat_seed.png"
+    },
+    "plant": {
+      "displayName": "Plants & Microbes",
+      "icon": "cat_plant.png"
+    },
+    "food": {
+      "displayName": "Food & Water",
+      "icon": "cat_food.png"
+    },
+    "larva": {
+      "displayName": "Larvae & Eggs",
+      "icon": "cat_larva.png"
+    },
+    "structure": {
+      "displayName": "Structures & Machines",
+      "icon": "cat_structure.png"
+    },
+    "furniture": {
+      "displayName": "Furniture & Decor",
+      "icon": "cat_furniture.png"
+    },
+    "equipment": {
+      "displayName": "Equipment & Gear",
+      "icon": "cat_equipment.png"
+    },
+    "consumable": {
+      "displayName": "Consumables & Fuses",
+      "icon": "cat_consumable.png"
+    },
+    "rocket": {
+      "displayName": "Rockets",
+      "icon": "cat_rocket.png"
+    },
+    "token": {
+      "displayName": "Terra Tokens",
+      "icon": "cat_token.png"
+    },
+    "chip": {
+      "displayName": "Chips & Blueprints",
+      "icon": "cat_chip.png"
+    },
+    "container": {
+      "displayName": "Storage Crates",
+      "icon": "cat_container.png"
+    },
+    "vehicle": {
+      "displayName": "Vehicles & Upgrades",
+      "icon": "cat_vehicle.png"
+    },
+    "misc": {
+      "displayName": "Miscellaneous",
+      "icon": "cat_misc.png"
+    }
+  },
+  "items": {
+    "Iron": {
+      "displayName": "Iron",
+      "category": "ore"
+    },
+    "Cobalt": {
+      "displayName": "Cobalt",
+      "category": "ore"
+    },
+    "Titanium": {
+      "displayName": "Titanium",
+      "category": "ore"
+    },
+    "Aluminium": {
+      "displayName": "Aluminium",
+      "category": "ore"
+    },
+    "Silicon": {
+      "displayName": "Silicon",
+      "category": "ore"
+    },
+    "Magnesium": {
+      "displayName": "Magnesium",
+      "category": "ore"
+    },
+    "Sulfur": {
+      "displayName": "Sulfur",
+      "category": "ore"
+    },
+    "Iridium": {
+      "displayName": "Iridium",
+      "category": "ore"
+    },
+    "Osmium": {
+      "displayName": "Osmium",
+      "category": "ore"
+    },
+    "Uranim": {
+      "displayName": "Uranium",
+      "category": "ore"
+    },
+    "Zeolite": {
+      "displayName": "Zeolite",
+      "category": "ore"
+    },
+    "Obsidian": {
+      "displayName": "Obsidian",
+      "category": "ore"
+    },
+    "ice": {
+      "displayName": "Ice",
+      "category": "ore"
+    },
+    "PulsarQuartz": {
+      "displayName": "Pulsar Quartz",
+      "category": "gem"
+    },
+    "SolarQuartz": {
+      "displayName": "Solar Quartz",
+      "category": "gem"
+    },
+    "MagnetarQuartz": {
+      "displayName": "Magnetar Quartz",
+      "category": "gem"
+    },
+    "Alloy": {
+      "displayName": "Alloy",
+      "category": "component"
+    },
+    "Rod-alloy": {
+      "displayName": "Alloy Rod",
+      "category": "component"
+    },
+    "Rod-iridium": {
+      "displayName": "Iridium Rod",
+      "category": "component"
+    },
+    "Rod-uranium": {
+      "displayName": "Uranium Rod",
+      "category": "component"
+    },
+    "CircuitBoard1": {
+      "displayName": "Circuit Board",
+      "category": "component"
+    },
+    "Bioplastic1": {
+      "displayName": "Bioplastic Nugget",
+      "category": "component"
+    },
+    "FabricBlue": {
+      "displayName": "Fabric",
+      "category": "component"
+    },
+    "Silk": {
+      "displayName": "Silk",
+      "category": "component"
+    },
+    "RedPowder1": {
+      "displayName": "Explosive Powder",
+      "category": "component"
+    },
+    "Fertilizer1": {
+      "displayName": "Fertilizer T1",
+      "category": "component"
+    },
+    "Fertilizer2": {
+      "displayName": "Fertilizer T2",
+      "category": "component"
+    },
+    "Mutagen1": {
+      "displayName": "Mutagen T1",
+      "category": "component"
+    },
+    "Mutagen2": {
+      "displayName": "Mutagen T2",
+      "category": "component"
+    },
+    "FusionEnergyCell": {
+      "displayName": "Fusion Energy Cell",
+      "category": "component"
+    },
+    "Bacteria1": {
+      "displayName": "Bacteria Sample",
+      "category": "component"
+    },
+    "Seed0": {
+      "displayName": "Seed (Common)",
+      "category": "seed"
+    },
+    "Seed1": {
+      "displayName": "Seed",
+      "category": "seed"
+    },
+    "Seed2": {
+      "displayName": "Seed",
+      "category": "seed"
+    },
+    "Seed3": {
+      "displayName": "Seed",
+      "category": "seed"
+    },
+    "Seed4": {
+      "displayName": "Seed",
+      "category": "seed"
+    },
+    "Seed6": {
+      "displayName": "Seed",
+      "category": "seed"
+    },
+    "Seed7Humble": {
+      "displayName": "Humble Seed",
+      "category": "seed"
+    },
+    "Seed8Humble": {
+      "displayName": "Humble Seed",
+      "category": "seed"
+    },
+    "SeedGold": {
+      "displayName": "Golden Seed",
+      "category": "seed"
+    },
+    "Algae1Seed": {
+      "displayName": "Algae Spores",
+      "category": "seed"
+    },
+    "CookCocoaSeed": {
+      "displayName": "Cocoa Seed",
+      "category": "seed"
+    },
+    "CookWheatSeed": {
+      "displayName": "Wheat Seed",
+      "category": "seed"
+    },
+    "Tree1Seed": {
+      "displayName": "Tree Seed",
+      "category": "seed"
+    },
+    "Tree2Seed": {
+      "displayName": "Tree Seed",
+      "category": "seed"
+    },
+    "Tree8Seed": {
+      "displayName": "Tree Seed",
+      "category": "seed"
+    },
+    "Vegetable0Seed": {
+      "displayName": "Vegetable Seed",
+      "category": "seed"
+    },
+    "Vegetable1Seed": {
+      "displayName": "Vegetable Seed",
+      "category": "seed"
+    },
+    "Vegetable2Seed": {
+      "displayName": "Vegetable Seed",
+      "category": "seed"
+    },
+    "Vegetable3Seed": {
+      "displayName": "Vegetable Seed",
+      "category": "seed"
+    },
+    "Vegetable0Growable": {
+      "displayName": "Growing Vegetable",
+      "category": "plant"
+    },
+    "Vegetable1Growable": {
+      "displayName": "Growing Vegetable",
+      "category": "plant"
+    },
+    "Vegetable2Growable": {
+      "displayName": "Growing Vegetable",
+      "category": "plant"
+    },
+    "Vegetable3Growable": {
+      "displayName": "Growing Vegetable",
+      "category": "plant"
+    },
+    "TreeRoot": {
+      "displayName": "Tree Root",
+      "category": "plant"
+    },
+    "Phytoplankton1": {
+      "displayName": "Phytoplankton",
+      "category": "plant"
+    },
+    "Phytoplankton2": {
+      "displayName": "Phytoplankton",
+      "category": "plant"
+    },
+    "Phytoplankton3": {
+      "displayName": "Phytoplankton",
+      "category": "plant"
+    },
+    "astrofood": {
+      "displayName": "Space Food",
+      "category": "food"
+    },
+    "honey": {
+      "displayName": "Honey",
+      "category": "food"
+    },
+    "WaterBottle1": {
+      "displayName": "Water Bottle",
+      "category": "food"
+    },
+    "Bee1Larvae": {
+      "displayName": "Bee Larva",
+      "category": "larva"
+    },
+    "Butterfly1Larvae": {
+      "displayName": "Butterfly Larva",
+      "category": "larva"
+    },
+    "Butterfly2Larvae": {
+      "displayName": "Butterfly Larva",
+      "category": "larva"
+    },
+    "Butterfly3Larvae": {
+      "displayName": "Butterfly Larva",
+      "category": "larva"
+    },
+    "Butterfly4Larvae": {
+      "displayName": "Butterfly Larva",
+      "category": "larva"
+    },
+    "Butterfly6Larvae": {
+      "displayName": "Butterfly Larva",
+      "category": "larva"
+    },
+    "Butterfly7Larvae": {
+      "displayName": "Butterfly Larva",
+      "category": "larva"
+    },
+    "Butterfly8Larvae": {
+      "displayName": "Butterfly Larva",
+      "category": "larva"
+    },
+    "Fish1Eggs": {
+      "displayName": "Fish Eggs",
+      "category": "larva"
+    },
+    "NitrogenCapsule1": {
+      "displayName": "Nitrogen Capsule",
+      "category": "consumable"
+    },
+    "MethanCapsule1": {
+      "displayName": "Methane Capsule",
+      "category": "consumable"
+    },
+    "canister": {
+      "displayName": "Empty Canister",
+      "category": "consumable"
+    },
+    "Flare": {
+      "displayName": "Flare",
+      "category": "consumable"
+    },
+    "Explosive": {
+      "displayName": "Explosive Charge",
+      "category": "consumable"
+    },
+    "FuseEnergy1": {
+      "displayName": "Energy Fuse",
+      "category": "consumable"
+    },
+    "FuseHeat1": {
+      "displayName": "Heat Fuse",
+      "category": "consumable"
+    },
+    "FuseOxygen1": {
+      "displayName": "Oxygen Fuse",
+      "category": "consumable"
+    },
+    "FusePlants1": {
+      "displayName": "Plants Fuse",
+      "category": "consumable"
+    },
+    "FusePressure1": {
+      "displayName": "Pressure Fuse",
+      "category": "consumable"
+    },
+    "FuseProduction1": {
+      "displayName": "Production Fuse",
+      "category": "consumable"
+    },
+    "Optimizer1": {
+      "displayName": "Optimizer T1",
+      "category": "consumable"
+    },
+    "Optimizer2": {
+      "displayName": "Optimizer T2",
+      "category": "consumable"
+    },
+    "SpaceMultiplierHeat": {
+      "displayName": "Heat Space Booster",
+      "category": "consumable"
+    },
+    "SpaceMultiplierInsects": {
+      "displayName": "Insects Space Booster",
+      "category": "consumable"
+    },
+    "SpaceMultiplierOxygen": {
+      "displayName": "Oxygen Space Booster",
+      "category": "consumable"
+    },
+    "SpaceMultiplierPlants": {
+      "displayName": "Plants Space Booster",
+      "category": "consumable"
+    },
+    "SpaceMultiplierPressure": {
+      "displayName": "Pressure Space Booster",
+      "category": "consumable"
+    },
+    "RocketBiomass1": {
+      "displayName": "Biomass Rocket",
+      "category": "rocket"
+    },
+    "RocketDrones1": {
+      "displayName": "Drone Rocket",
+      "category": "rocket"
+    },
+    "RocketHeat1": {
+      "displayName": "Heat Rocket",
+      "category": "rocket"
+    },
+    "RocketInformations1": {
+      "displayName": "Information Rocket",
+      "category": "rocket"
+    },
+    "RocketInsects1": {
+      "displayName": "Insects Rocket",
+      "category": "rocket"
+    },
+    "RocketMap1": {
+      "displayName": "Map Rocket",
+      "category": "rocket"
+    },
+    "RocketMap2": {
+      "displayName": "Map Rocket",
+      "category": "rocket"
+    },
+    "RocketMap3": {
+      "displayName": "Map Rocket",
+      "category": "rocket"
+    },
+    "RocketMap4": {
+      "displayName": "Map Rocket",
+      "category": "rocket"
+    },
+    "RocketOxygen1": {
+      "displayName": "Oxygen Rocket",
+      "category": "rocket"
+    },
+    "RocketPressure1": {
+      "displayName": "Pressure Rocket",
+      "category": "rocket"
+    },
+    "RocketReactor": {
+      "displayName": "Rocket Reactor",
+      "category": "rocket"
+    },
+    "TerraTokens100": {
+      "displayName": "100 Terra Tokens",
+      "category": "token"
+    },
+    "TerraTokens500": {
+      "displayName": "500 Terra Tokens",
+      "category": "token"
+    },
+    "TerraTokens1000": {
+      "displayName": "1000 Terra Tokens",
+      "category": "token"
+    },
+    "TerraTokens5000": {
+      "displayName": "5000 Terra Tokens",
+      "category": "token"
+    },
+    "BlueprintT1": {
+      "displayName": "Blueprint Chip",
+      "category": "chip"
+    },
+    "MapChip": {
+      "displayName": "Map Chip",
+      "category": "chip"
+    },
+    "Keycard1": {
+      "displayName": "Keycard",
+      "category": "chip"
+    },
+    "WardenKey": {
+      "displayName": "Warden Key",
+      "category": "chip"
+    },
+    "WardensChip": {
+      "displayName": "Warden's Chip",
+      "category": "chip"
+    },
+    "PinChip2": {
+      "displayName": "Pin Chip",
+      "category": "chip"
+    },
+    "HudChipCleanConstruction": {
+      "displayName": "Clean Construction Chip",
+      "category": "chip"
+    },
+    "Container1": {
+      "displayName": "Storage Crate T1",
+      "category": "container"
+    },
+    "Container2": {
+      "displayName": "Storage Crate T2",
+      "category": "container"
+    },
+    "GoldenContainer": {
+      "displayName": "Golden Crate",
+      "category": "container"
+    },
+    "ProceduralWreckContainer1": {
+      "displayName": "Wreck Crate",
+      "category": "container"
+    },
+    "ProceduralWreckContainer2": {
+      "displayName": "Wreck Crate",
+      "category": "container"
+    },
+    "ProceduralWreckSafe": {
+      "displayName": "Wreck Safe",
+      "category": "container"
+    },
+    "Backpack5": {
+      "displayName": "Backpack Upgrade",
+      "category": "equipment"
+    },
+    "Jetpack2": {
+      "displayName": "Jetpack Upgrade",
+      "category": "equipment"
+    },
+    "Jetpack3": {
+      "displayName": "Jetpack Upgrade",
+      "category": "equipment"
+    },
+    "BootsSpeed1": {
+      "displayName": "Speed Boots T1",
+      "category": "equipment"
+    },
+    "BootsSpeed2": {
+      "displayName": "Speed Boots T2",
+      "category": "equipment"
+    },
+    "BootsSpeed3": {
+      "displayName": "Speed Boots T3",
+      "category": "equipment"
+    },
+    "OxygenTank4": {
+      "displayName": "Oxygen Tank Upgrade",
+      "category": "equipment"
+    },
+    "HudCompass": {
+      "displayName": "Compass",
+      "category": "equipment"
+    },
+    "EquipmentIncrease3": {
+      "displayName": "Equipment Slot Upgrade",
+      "category": "equipment"
+    },
+    "MultiBuild": {
+      "displayName": "Multi-Build Module",
+      "category": "equipment"
+    },
+    "MultiToolMineSpeed1": {
+      "displayName": "Mining Speed T1",
+      "category": "equipment"
+    },
+    "MultiToolMineSpeed2": {
+      "displayName": "Mining Speed T2",
+      "category": "equipment"
+    },
+    "MultiToolMineSpeed3": {
+      "displayName": "Mining Speed T3",
+      "category": "equipment"
+    },
+    "MultiToolMineSpeed4": {
+      "displayName": "Mining Speed T4",
+      "category": "equipment"
+    },
+    "MultiToolLight2": {
+      "displayName": "Tool Light T2",
+      "category": "equipment"
+    },
+    "MultiToolLight3": {
+      "displayName": "Tool Light T3",
+      "category": "equipment"
+    },
+    "MultiToolDeconstruct2": {
+      "displayName": "Deconstruct T2",
+      "category": "equipment"
+    },
+    "MultiToolDeconstruct3": {
+      "displayName": "Deconstruct T3",
+      "category": "equipment"
+    },
+    "Skin-01": {
+      "displayName": "Suit Skin",
+      "category": "equipment"
+    },
+    "Skin-03": {
+      "displayName": "Suit Skin",
+      "category": "equipment"
+    },
+    "Skin-05": {
+      "displayName": "Suit Skin",
+      "category": "equipment"
+    },
+    "Skin-06": {
+      "displayName": "Suit Skin",
+      "category": "equipment"
+    },
+    "Skin-07": {
+      "displayName": "Suit Skin",
+      "category": "equipment"
+    },
+    "Skin-09": {
+      "displayName": "Suit Skin",
+      "category": "equipment"
+    },
+    "Skin-10": {
+      "displayName": "Suit Skin",
+      "category": "equipment"
+    },
+    "Skin-13": {
+      "displayName": "Suit Skin",
+      "category": "equipment"
+    },
+    "Skin-14": {
+      "displayName": "Suit Skin",
+      "category": "equipment"
+    },
+    "VehicleTruck": {
+      "displayName": "Truck",
+      "category": "vehicle"
+    },
+    "VehicleCrafter1": {
+      "displayName": "Vehicle Crafter",
+      "category": "vehicle"
+    },
+    "VehicleSpeed1": {
+      "displayName": "Vehicle Speed T1",
+      "category": "vehicle"
+    },
+    "VehicleSpeed2": {
+      "displayName": "Vehicle Speed T2",
+      "category": "vehicle"
+    },
+    "VehicleSpeed3": {
+      "displayName": "Vehicle Speed T3",
+      "category": "vehicle"
+    },
+    "VehicleOxygen1": {
+      "displayName": "Vehicle Oxygen",
+      "category": "vehicle"
+    },
+    "VehicleLights2": {
+      "displayName": "Vehicle Lights T2",
+      "category": "vehicle"
+    },
+    "VehicleInventorySize1": {
+      "displayName": "Vehicle Storage T1",
+      "category": "vehicle"
+    },
+    "VehicleInventorySize2": {
+      "displayName": "Vehicle Storage T2",
+      "category": "vehicle"
+    },
+    "VehicleInventorySize3": {
+      "displayName": "Vehicle Storage T3",
+      "category": "vehicle"
+    },
+    "VehicleEquipmentSize2": {
+      "displayName": "Vehicle Equipment T2",
+      "category": "vehicle"
+    },
+    "Drone1": {
+      "displayName": "Drone",
+      "category": "vehicle"
+    },
+    "Foundation": {
+      "displayName": "Foundation",
+      "category": "structure"
+    },
+    "FoundationAngle": {
+      "displayName": "Angled Foundation",
+      "category": "structure"
+    },
+    "FoundationSlope": {
+      "displayName": "Sloped Foundation",
+      "category": "structure"
+    },
+    "InteriorStairs1": {
+      "displayName": "Interior Stairs",
+      "category": "structure"
+    },
+    "WallInside": {
+      "displayName": "Interior Wall",
+      "category": "structure"
+    },
+    "Fence": {
+      "displayName": "Fence",
+      "category": "structure"
+    },
+    "Heater1": {
+      "displayName": "Heater T1",
+      "category": "structure"
+    },
+    "Heater2": {
+      "displayName": "Heater T2",
+      "category": "structure"
+    },
+    "Heater3": {
+      "displayName": "Heater T3",
+      "category": "structure"
+    },
+    "Heater4": {
+      "displayName": "Heater T4",
+      "category": "structure"
+    },
+    "Heater5": {
+      "displayName": "Heater T5",
+      "category": "structure"
+    },
+    "Drill1": {
+      "displayName": "Drill T1",
+      "category": "structure"
+    },
+    "Drill2": {
+      "displayName": "Drill T2",
+      "category": "structure"
+    },
+    "Drill3": {
+      "displayName": "Drill T3",
+      "category": "structure"
+    },
+    "Drill4": {
+      "displayName": "Drill T4",
+      "category": "structure"
+    },
+    "OreExtractor1": {
+      "displayName": "Ore Extractor T1",
+      "category": "structure"
+    },
+    "OreExtractor2": {
+      "displayName": "Ore Extractor T2",
+      "category": "structure"
+    },
+    "OreExtractor3": {
+      "displayName": "Ore Extractor T3",
+      "category": "structure"
+    },
+    "GasExtractor2": {
+      "displayName": "Gas Extractor T2",
+      "category": "structure"
+    },
+    "EnergyGenerator3": {
+      "displayName": "Energy Generator T3",
+      "category": "structure"
+    },
+    "EnergyGenerator4": {
+      "displayName": "Energy Generator T4",
+      "category": "structure"
+    },
+    "EnergyGenerator5": {
+      "displayName": "Energy Generator T5",
+      "category": "structure"
+    },
+    "EnergyGenerator6": {
+      "displayName": "Energy Generator T6",
+      "category": "structure"
+    },
+    "AlgaeGenerator1": {
+      "displayName": "Algae Generator T1",
+      "category": "structure"
+    },
+    "AlgaeGenerator2": {
+      "displayName": "Algae Generator T2",
+      "category": "structure"
+    },
+    "SilkGenerator": {
+      "displayName": "Silk Generator",
+      "category": "structure"
+    },
+    "biodome": {
+      "displayName": "Biodome",
+      "category": "structure"
+    },
+    "Biodome2": {
+      "displayName": "Biodome T2",
+      "category": "structure"
+    },
+    "Biolab": {
+      "displayName": "Biolab",
+      "category": "structure"
+    },
+    "Ecosystem1": {
+      "displayName": "Ecosystem Analyzer",
+      "category": "structure"
+    },
+    "Farm1": {
+      "displayName": "Farm",
+      "category": "structure"
+    },
+    "Faucet1": {
+      "displayName": "Water Faucet",
+      "category": "structure"
+    },
+    "GrassSpreader1": {
+      "displayName": "Grass Spreader",
+      "category": "structure"
+    },
+    "SeedSpreader1": {
+      "displayName": "Seed Spreader T1",
+      "category": "structure"
+    },
+    "SeedSpreader2": {
+      "displayName": "Seed Spreader T2",
+      "category": "structure"
+    },
+    "TreeSpreader0": {
+      "displayName": "Tree Spreader T0",
+      "category": "structure"
+    },
+    "TreeSpreader2": {
+      "displayName": "Tree Spreader T2",
+      "category": "structure"
+    },
+    "VegetableGrower1": {
+      "displayName": "Vegetable Grower T1",
+      "category": "structure"
+    },
+    "VegetableGrower2": {
+      "displayName": "Vegetable Grower T2",
+      "category": "structure"
+    },
+    "Vegetube1": {
+      "displayName": "Vegetube",
+      "category": "structure"
+    },
+    "VegetubeOutside1": {
+      "displayName": "Outdoor Vegetube",
+      "category": "structure"
+    },
+    "WaterCollector1": {
+      "displayName": "Water Collector",
+      "category": "structure"
+    },
+    "WaterFilter": {
+      "displayName": "Water Filter",
+      "category": "structure"
+    },
+    "WaterLifeCollector1": {
+      "displayName": "Water Life Collector",
+      "category": "structure"
+    },
+    "RecyclingMachine": {
+      "displayName": "Recycling Machine",
+      "category": "structure"
+    },
+    "AutoCrafter1": {
+      "displayName": "Auto-Crafter",
+      "category": "structure"
+    },
+    "CraftStation1": {
+      "displayName": "Craft Station T1",
+      "category": "structure"
+    },
+    "CraftStation2": {
+      "displayName": "Craft Station T2",
+      "category": "structure"
+    },
+    "CookingStation1": {
+      "displayName": "Cooking Station",
+      "category": "structure"
+    },
+    "GeneticManipulator1": {
+      "displayName": "Genetic Manipulator",
+      "category": "structure"
+    },
+    "Incubator1": {
+      "displayName": "Incubator",
+      "category": "structure"
+    },
+    "LarvaeBase1": {
+      "displayName": "Larvae Base T1",
+      "category": "structure"
+    },
+    "LarvaeBase3": {
+      "displayName": "Larvae Base T3",
+      "category": "structure"
+    },
+    "ButterflyDome1": {
+      "displayName": "Butterfly Dome",
+      "category": "structure"
+    },
+    "ButterflyFarm1": {
+      "displayName": "Butterfly Farm",
+      "category": "structure"
+    },
+    "Beehive1": {
+      "displayName": "Beehive",
+      "category": "structure"
+    },
+    "Aquarium1": {
+      "displayName": "Aquarium T1",
+      "category": "structure"
+    },
+    "Aquarium2": {
+      "displayName": "Aquarium T2",
+      "category": "structure"
+    },
+    "DroneStation1": {
+      "displayName": "Drone Station",
+      "category": "structure"
+    },
+    "TradePlatform1": {
+      "displayName": "Trade Platform",
+      "category": "structure"
+    },
+    "VendingMachine1": {
+      "displayName": "Vending Machine",
+      "category": "structure"
+    },
+    "Destructor1": {
+      "displayName": "Destructor",
+      "category": "structure"
+    },
+    "ProceduralInstanceGenerator": {
+      "displayName": "Anomaly Generator",
+      "category": "structure"
+    },
+    "PlanetViewer1": {
+      "displayName": "Planet Viewer",
+      "category": "structure"
+    },
+    "Library1": {
+      "displayName": "Library",
+      "category": "structure"
+    },
+    "Server1": {
+      "displayName": "Server",
+      "category": "structure"
+    },
+    "ComAntenna": {
+      "displayName": "Communication Antenna",
+      "category": "structure"
+    },
+    "LaunchPlatform": {
+      "displayName": "Rocket Launch Platform",
+      "category": "structure"
+    },
+    "EscapePod": {
+      "displayName": "Escape Pod",
+      "category": "structure"
+    },
+    "pod": {
+      "displayName": "Habitat Pod",
+      "category": "structure"
+    },
+    "Pod4x": {
+      "displayName": "Large Habitat Pod",
+      "category": "structure"
+    },
+    "podAngle": {
+      "displayName": "Angled Habitat Pod",
+      "category": "structure"
+    },
+    "RockExplodable": {
+      "displayName": "Breakable Rock",
+      "category": "structure"
+    },
+    "wreckpilar": {
+      "displayName": "Wreck Pillar",
+      "category": "structure"
+    },
+    "WreckServer": {
+      "displayName": "Wreck Server",
+      "category": "structure"
+    },
+    "WreckFusionGenerator": {
+      "displayName": "Wreck Fusion Generator",
+      "category": "structure"
+    },
+    "WreckRockExplodable": {
+      "displayName": "Wreck Breakable Rock",
+      "category": "structure"
+    },
+    "WreckEntryLocked1": {
+      "displayName": "Locked Wreck Door",
+      "category": "structure"
+    },
+    "Chair1": {
+      "displayName": "Chair",
+      "category": "furniture"
+    },
+    "Chair2": {
+      "displayName": "Chair",
+      "category": "furniture"
+    },
+    "Table1": {
+      "displayName": "Table",
+      "category": "furniture"
+    },
+    "TableSmall": {
+      "displayName": "Small Table",
+      "category": "furniture"
+    },
+    "TableSmall2": {
+      "displayName": "Small Table",
+      "category": "furniture"
+    },
+    "TableSmall3": {
+      "displayName": "Small Table",
+      "category": "furniture"
+    },
+    "Sofa": {
+      "displayName": "Sofa",
+      "category": "furniture"
+    },
+    "SofaAngle": {
+      "displayName": "Angled Sofa",
+      "category": "furniture"
+    },
+    "SofaColored": {
+      "displayName": "Sofa",
+      "category": "furniture"
+    },
+    "SofaAngleColored": {
+      "displayName": "Angled Sofa",
+      "category": "furniture"
+    },
+    "BedDouble": {
+      "displayName": "Double Bed",
+      "category": "furniture"
+    },
+    "BedDoubleColored": {
+      "displayName": "Double Bed",
+      "category": "furniture"
+    },
+    "Counter1": {
+      "displayName": "Counter",
+      "category": "furniture"
+    },
+    "Counter2": {
+      "displayName": "Counter",
+      "category": "furniture"
+    },
+    "Shelves1": {
+      "displayName": "Shelves",
+      "category": "furniture"
+    },
+    "Locker1": {
+      "displayName": "Locker",
+      "category": "furniture"
+    },
+    "FlowerPot2": {
+      "displayName": "Flower Pot",
+      "category": "furniture"
+    },
+    "Pooltable1": {
+      "displayName": "Pool Table",
+      "category": "furniture"
+    },
+    "ArcadeMachine1": {
+      "displayName": "Arcade Machine",
+      "category": "furniture"
+    },
+    "ExerciseBike1": {
+      "displayName": "Exercise Bike",
+      "category": "furniture"
+    },
+    "Treadmill1": {
+      "displayName": "Treadmill",
+      "category": "furniture"
+    },
+    "DisplayCase": {
+      "displayName": "Display Case",
+      "category": "furniture"
+    },
+    "SkinDisplayer": {
+      "displayName": "Skin Displayer",
+      "category": "furniture"
+    },
+    "Poster1": {
+      "displayName": "Poster",
+      "category": "furniture"
+    },
+    "Poster9": {
+      "displayName": "Poster",
+      "category": "furniture"
+    },
+    "InsideLamp1": {
+      "displayName": "Interior Lamp",
+      "category": "furniture"
+    },
+    "Fridge1": {
+      "displayName": "Fridge",
+      "category": "furniture"
+    },
+    "Desktop1": {
+      "displayName": "Desktop Computer",
+      "category": "furniture"
+    },
+    "Desktop2": {
+      "displayName": "Desktop Computer",
+      "category": "furniture"
+    },
+    "Beacon": {
+      "displayName": "Beacon",
+      "category": "furniture"
+    },
+    "Vault1": {
+      "displayName": "Vault",
+      "category": "furniture"
+    },
+    "AnimalEffigie3": {
+      "displayName": "Animal Effigy",
+      "category": "furniture"
+    },
+    "AnimalEffigie5": {
+      "displayName": "Animal Effigy",
+      "category": "furniture"
+    },
+    "AnimalEffigie6": {
+      "displayName": "Animal Effigy",
+      "category": "furniture"
+    },
+    "GoldenEffigie1": {
+      "displayName": "Golden Effigy",
+      "category": "furniture"
+    },
+    "GoldenEffigie6": {
+      "displayName": "Golden Effigy",
+      "category": "furniture"
+    },
+    "ScreenBiomass": {
+      "displayName": "Biomass Screen",
+      "category": "furniture"
+    },
+    "ScreenEnergy": {
+      "displayName": "Energy Screen",
+      "category": "furniture"
+    },
+    "ScreenMap1": {
+      "displayName": "Map Screen",
+      "category": "furniture"
+    },
+    "ScreenMessage": {
+      "displayName": "Message Screen",
+      "category": "furniture"
+    },
+    "ScreenRockets": {
+      "displayName": "Rockets Screen",
+      "category": "furniture"
+    },
+    "ScreenTerraformation": {
+      "displayName": "Terraformation Screen",
+      "category": "furniture"
+    },
+    "ScreenTerraStage": {
+      "displayName": "Terra Stage Screen",
+      "category": "furniture"
+    },
+    "ScreenUnlockables": {
+      "displayName": "Unlockables Screen",
+      "category": "furniture"
+    }
+  }
+}

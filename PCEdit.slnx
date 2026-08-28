@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="PCEdit.App.Core/PCEdit.App.Core.csproj" />
+  <Project Path="PCEdit.App.Core.Tests/PCEdit.App.Core.Tests.csproj" />
+  <Project Path="PCEdit.Desktop/PCEdit.Desktop.csproj" />
+  <Project Path="PCEdit.SaveFileHandler/PCEdit.SaveFileHandler.csproj" />
+  <Project Path="PCEdit.SaveFileHandler.Tests/PCEdit.SaveFileHandler.Tests.csproj" />
+</Solution>

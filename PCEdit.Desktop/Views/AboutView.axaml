@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:PCEdit.App.Core.ViewModels;assembly=PCEdit.App.Core"
+             xmlns:m="using:PCEdit.Desktop.Markup"
+             x:Class="PCEdit.Desktop.Views.AboutView"
+             x:DataType="vm:AboutViewModel">
+
+    <ScrollViewer>
+        <StackPanel Margin="32" Spacing="16" MaxWidth="760" HorizontalAlignment="Center">
+            <TextBlock Text="{m:Loc About_Title}" Classes="pageTitle" />
+            <TextBlock Text="{m:Loc About_Heading}" Classes="h1" />
+            <TextBlock Text="{m:Loc About_Tagline}" TextAlignment="Center" />
+            <TextBlock Text="{Binding VersionText}" Classes="caption" HorizontalAlignment="Center" />
+
+            <Border Classes="card">
+                <StackPanel Spacing="8">
+                    <TextBlock Text="{m:Loc Disclaimer_Title}" FontWeight="Bold" />
+                    <TextBlock Text="{m:Loc Disclaimer_Body}" />
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+
+</UserControl>

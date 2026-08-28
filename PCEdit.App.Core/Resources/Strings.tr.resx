@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+
+  <data name="Common_Save" xml:space="preserve"><value>Kaydet</value></data>
+  <data name="Common_Cancel" xml:space="preserve"><value>İptal</value></data>
+  <data name="Common_Ok" xml:space="preserve"><value>Tamam</value></data>
+  <data name="Common_Discard" xml:space="preserve"><value>Yoksay</value></data>
+  <data name="Common_NoFileLoadedGoOpen" xml:space="preserve"><value>Yüklü kayıt dosyası yok.</value></data>
+  <data name="Common_OpenSaveFile" xml:space="preserve"><value>Bir kayıt dosyası aç…</value></data>
+  <data name="Common_CloseWithoutSaving" xml:space="preserve"><value>Kaydetmeden kapat</value></data>
+  <data name="Common_KeepEditing" xml:space="preserve"><value>Düzenlemeye devam et</value></data>
+  <data name="Quit_DiscardTitle" xml:space="preserve"><value>Kaydedilmemiş değişiklikler</value></data>
+  <data name="Quit_DiscardBody" xml:space="preserve"><value>PCEdit'i şimdi kapatmak kaydedilmemiş değişikliklerinizi siler. Diskteki kayıt dosyası değişmez.</value></data>
+  <data name="Shell_Title" xml:space="preserve"><value>Planet Crafter Kayıt Düzenleyici</value></data>
+  <data name="Shell_Brand" xml:space="preserve"><value>PCEdit</value></data>
+  <data name="Shell_File" xml:space="preserve"><value>Dosya: {0}</value></data>
+  <data name="Shell_FileA11y" xml:space="preserve"><value>Yüklenen dosya: {0}</value></data>
+  <data name="Shell_NoFileLoaded" xml:space="preserve"><value>Dosya yüklenmedi</value></data>
+  <data name="Shell_SaveHint" xml:space="preserve"><value>Düzenlemelerinizi diskteki kayıt dosyasına geri yazar</value></data>
+  <data name="Shell_NavA11y" xml:space="preserve"><value>Ana gezinme</value></data>
+  <data name="Nav_OpenFile" xml:space="preserve"><value>Dosya Aç</value></data>
+  <data name="Nav_Overview" xml:space="preserve"><value>Genel Bakış</value></data>
+  <data name="Nav_Inventories" xml:space="preserve"><value>Envanterler</value></data>
+  <data name="Nav_TerraTokens" xml:space="preserve"><value>Terra Jetonları</value></data>
+  <data name="Nav_Teleport" xml:space="preserve"><value>Işınlanma</value></data>
+  <data name="Nav_About" xml:space="preserve"><value>Hakkında</value></data>
+  <data name="Dirty_Unsaved" xml:space="preserve"><value>Kaydedilmemiş değişiklikler</value></data>
+  <data name="Dirty_Saved" xml:space="preserve"><value>Tüm değişiklikler kaydedildi</value></data>
+  <data name="Save_Ok" xml:space="preserve"><value>Kaydedildi.</value></data>
+  <data name="Save_OkAnnounce" xml:space="preserve"><value>Kayıt dosyası yazıldı.</value></data>
+  <data name="Save_Failed" xml:space="preserve"><value>Kaydetme başarısız oldu. Dosyanız değiştirilmedi.</value></data>
+  <data name="Save_FailedAnnounce" xml:space="preserve"><value>Hata: kaydetme başarısız oldu. Dosyanız değiştirilmedi.</value></data>
+  <data name="Announce_ErrorPrefix" xml:space="preserve"><value>Hata: {0}</value></data>
+  <data name="OpenFile_Title" xml:space="preserve"><value>Dosya Aç</value></data>
+  <data name="OpenFile_Heading" xml:space="preserve"><value>Planet Crafter Kayıt Düzenleyici</value></data>
+  <data name="OpenFile_Intro" xml:space="preserve"><value>Oyuncuları, dünya terraform durumunu, envanterleri, terra jetonlarını ve ışınlanma konumlarını görüntülemek ve düzenlemek için bir Planet Crafter kayıt dosyası açın.</value></data>
+  <data name="OpenFile_CurrentlyLoaded" xml:space="preserve"><value>Şu anda yüklü: {0}</value></data>
+  <data name="OpenFile_NoFileLoaded" xml:space="preserve"><value>Dosya yüklenmedi.</value></data>
+  <data name="OpenFile_ChooseButton" xml:space="preserve"><value>Kayıt Dosyası Seç…</value></data>
+  <data name="OpenFile_ChooseHint" xml:space="preserve"><value>Bir Planet Crafter kaydını yüklemek için dosya seçiciyi açar</value></data>
+  <data name="OpenFile_LoadingInline" xml:space="preserve"><value>Kayıt yükleniyor…</value></data>
+  <data name="OpenFile_LoadingA11y" xml:space="preserve"><value>Kayıt yükleniyor</value></data>
+  <data name="OpenFile_PickerTitle" xml:space="preserve"><value>Bir Planet Crafter kayıt dosyası seçin</value></data>
+  <data name="OpenFile_LoadingAnnounce" xml:space="preserve"><value>Kayıt yükleniyor.</value></data>
+  <data name="OpenFile_Loaded" xml:space="preserve"><value>{0} yüklendi.</value></data>
+  <data name="OpenFile_LoadFailed" xml:space="preserve"><value>Bu dosya yüklenemedi. Geçerli bir Planet Crafter kaydı olmayabilir.</value></data>
+  <data name="OpenFile_DiscardTitle" xml:space="preserve"><value>Kaydedilmemiş değişiklikler</value></data>
+  <data name="OpenFile_DiscardBody" xml:space="preserve"><value>Yeni bir dosya yüklemek kaydedilmemiş değişikliklerinizi yok sayar. Devam edilsin mi?</value></data>
+  <data name="Overview_Title" xml:space="preserve"><value>Genel Bakış</value></data>
+  <data name="Overview_Players" xml:space="preserve"><value>Oyuncular</value></data>
+  <data name="Overview_WorldTerraforming" xml:space="preserve"><value>Dünya Terraform Durumu</value></data>
+  <data name="Overview_NoTerraforming" xml:space="preserve"><value>Bu kayıtta terraform verisi yok.</value></data>
+  <data name="Overview_HostBadge" xml:space="preserve"><value>SUNUCU</value></data>
+  <data name="Overview_HostA11y" xml:space="preserve"><value>Sunucu oyuncu</value></data>
+  <data name="Overview_PlayerLocation" xml:space="preserve"><value>Gezegen {0}  ·  Konum {1}</value></data>
+  <data name="Overview_Vital_Oxygen" xml:space="preserve"><value>OKSİJEN</value></data>
+  <data name="Overview_Vital_Thirst" xml:space="preserve"><value>SUSUZLUK</value></data>
+  <data name="Overview_Vital_Health" xml:space="preserve"><value>SAĞLIK</value></data>
+  <data name="Overview_Vital_Toxicity" xml:space="preserve"><value>TOKSİKLİK</value></data>
+  <data name="Overview_PlayerProgress" xml:space="preserve"><value>{0} nesne üretildi  ·  {1} terra jetonu kazanıldı</value></data>
+  <data name="Vital_Ok" xml:space="preserve"><value>İyi</value></data>
+  <data name="Vital_Low" xml:space="preserve"><value>Düşük</value></data>
+  <data name="Vital_Critical" xml:space="preserve"><value>Kritik</value></data>
+  <data name="Terraform_Apply" xml:space="preserve"><value>Değişiklikleri Uygula</value></data>
+  <data name="Terraform_ApplyA11y" xml:space="preserve"><value>Terraform değişikliklerini {0} gezegenine uygula</value></data>
+  <data name="Terraform_Oxygen" xml:space="preserve"><value>Oksijen</value></data>
+  <data name="Terraform_Heat" xml:space="preserve"><value>Isı</value></data>
+  <data name="Terraform_Pressure" xml:space="preserve"><value>Basınç</value></data>
+  <data name="Terraform_Plants" xml:space="preserve"><value>Bitkiler</value></data>
+  <data name="Terraform_Insects" xml:space="preserve"><value>Böcekler</value></data>
+  <data name="Terraform_Animals" xml:space="preserve"><value>Hayvanlar</value></data>
+  <data name="Terraform_Purification" xml:space="preserve"><value>Arıtma</value></data>
+  <data name="Terraform_HintCollapsed" xml:space="preserve"><value>Daraltıldı. Genişletmek için etkinleştirin.</value></data>
+  <data name="Terraform_HintExpanded" xml:space="preserve"><value>Genişletildi. Daraltmak için etkinleştirin.</value></data>
+  <data name="Terraform_InvalidLevels" xml:space="preserve"><value>Bir veya daha fazla terraform seviyesi geçerli bir sayı değil.</value></data>
+  <data name="Terraform_InvalidPurification" xml:space="preserve"><value>Arıtma seviyesi geçerli bir sayı değil.</value></data>
+  <data name="Terraform_Updated" xml:space="preserve"><value>{0} için terraform seviyeleri güncellendi.</value></data>
+  <data name="Inventories_Title" xml:space="preserve"><value>Envanterler</value></data>
+  <data name="Inventories_Heading" xml:space="preserve"><value>Envanterler</value></data>
+  <data name="Inventories_None" xml:space="preserve"><value>Bu kayıtta envanter yok.</value></data>
+  <data name="Inventories_Empty" xml:space="preserve"><value>Boş</value></data>
+  <data name="Inventories_Move" xml:space="preserve"><value>Taşı…</value></data>
+  <data name="Inventories_MoveA11y" xml:space="preserve"><value>{0} ögesini başka bir envantere taşı</value></data>
+  <data name="Inventories_CapacityA11y" xml:space="preserve"><value>Kapasite {0} öge</value></data>
+  <data name="Inventories_Search" xml:space="preserve"><value>Envanterlerde ve eşyalarda ara</value></data>
+  <data name="Inventories_SearchA11y" xml:space="preserve"><value>Envanter listesini ada veya içeriğe göre filtrele</value></data>
+  <data name="Inventories_NoMatch" xml:space="preserve"><value>Aramanızla eşleşen envanter veya eşya yok.</value></data>
+  <data name="Inventories_FilterAll" xml:space="preserve"><value>Tümü</value></data>
+  <data name="Inventories_FilterPlayers" xml:space="preserve"><value>Oyuncular</value></data>
+  <data name="Inventories_FilterEquipment" xml:space="preserve"><value>Ekipman</value></data>
+  <data name="Inventories_FilterContainers" xml:space="preserve"><value>Kaplar</value></data>
+  <data name="Inventories_FilterA11y" xml:space="preserve"><value>Hangi envanter türlerini göster</value></data>
+  <data name="Inv_PlayerInventory" xml:space="preserve"><value>{0} adlı oyuncunun envanteri</value></data>
+  <data name="Inv_PlayerEquipment" xml:space="preserve"><value>{0} adlı oyuncunun ekipmanı</value></data>
+  <data name="Inv_Container" xml:space="preserve"><value>{0} (Nesne #{1})</value></data>
+  <data name="Inv_Fallback" xml:space="preserve"><value>Envanter #{0}</value></data>
+  <data name="Inv_NotInInventory" xml:space="preserve"><value>Bu öge şu anda hiçbir envanterde değil.</value></data>
+  <data name="Inv_AlreadyThere" xml:space="preserve"><value>Bu öge zaten o envanterde.</value></data>
+  <data name="Inv_DestNotFound" xml:space="preserve"><value>Hedef envanter bulunamadı.</value></data>
+  <data name="Inv_DestFull" xml:space="preserve"><value>Hedef envanter dolu ({0}/{1}).</value></data>
+  <data name="SelectInv_Title" xml:space="preserve"><value>Ögeyi Taşı</value></data>
+  <data name="SelectInv_Heading" xml:space="preserve"><value>Bir hedef envanter seçin</value></data>
+  <data name="SelectInv_Search" xml:space="preserve"><value>Hedefleri ara</value></data>
+  <data name="SelectInv_None" xml:space="preserve"><value>Başka envanter yok.</value></data>
+  <data name="SelectInv_MoveFailedTitle" xml:space="preserve"><value>Taşıma başarısız</value></data>
+  <data name="SelectInv_MoveIncomplete" xml:space="preserve"><value>Taşıma tamamlanamadı.</value></data>
+  <data name="SelectInv_Moved" xml:space="preserve"><value>Öge {0} envanterine taşındı.</value></data>
+  <data name="TerraTokens_Title" xml:space="preserve"><value>Terra Jetonları</value></data>
+  <data name="TerraTokens_Heading" xml:space="preserve"><value>Terra Jetonu Ver</value></data>
+  <data name="TerraTokens_CurrentBalance" xml:space="preserve"><value>GÜNCEL BAKİYE</value></data>
+  <data name="TerraTokens_AllTimeEarned" xml:space="preserve"><value>TOPLAM KAZANILAN</value></data>
+  <data name="TerraTokens_CurrentBalanceA11y" xml:space="preserve"><value>Güncel bakiye: {0} terra jetonu</value></data>
+  <data name="TerraTokens_AllTimeEarnedA11y" xml:space="preserve"><value>Toplam kazanılan: {0} terra jetonu</value></data>
+  <data name="TerraTokens_Player" xml:space="preserve"><value>Oyuncu</value></data>
+  <data name="TerraTokens_SelectPlayer" xml:space="preserve"><value>Bir oyuncu seçin</value></data>
+  <data name="TerraTokens_PlayerA11y" xml:space="preserve"><value>Jeton verilecek oyuncu</value></data>
+  <data name="TerraTokens_Amount" xml:space="preserve"><value>Verilecek miktar</value></data>
+  <data name="TerraTokens_AmountHint" xml:space="preserve"><value>Pozitif tam sayı terra jetonu</value></data>
+  <data name="TerraTokens_Grant" xml:space="preserve"><value>Ver</value></data>
+  <data name="TerraTokens_ChoosePlayer" xml:space="preserve"><value>Jeton verilecek bir oyuncu seçin.</value></data>
+  <data name="TerraTokens_InvalidAmount" xml:space="preserve"><value>Verilecek pozitif tam sayı jeton girin.</value></data>
+  <data name="TerraTokens_Granted" xml:space="preserve"><value>{1} adlı oyuncuya {0} terra jetonu verildi.</value></data>
+  <data name="Teleport_Title" xml:space="preserve"><value>Işınlanma</value></data>
+  <data name="Teleport_Heading" xml:space="preserve"><value>Oyuncuyu Işınla</value></data>
+  <data name="Teleport_Player" xml:space="preserve"><value>Oyuncu</value></data>
+  <data name="Teleport_SelectPlayer" xml:space="preserve"><value>Bir oyuncu seçin</value></data>
+  <data name="Teleport_PlayerA11y" xml:space="preserve"><value>Işınlanacak oyuncu</value></data>
+  <data name="Teleport_Planet" xml:space="preserve"><value>Gezegen</value></data>
+  <data name="Teleport_SelectPlanet" xml:space="preserve"><value>Bir gezegen seçin</value></data>
+  <data name="Teleport_PlanetA11y" xml:space="preserve"><value>Hedef gezegen</value></data>
+  <data name="Teleport_CustomPlanet" xml:space="preserve"><value>Özel gezegen kimliği</value></data>
+  <data name="Teleport_CustomPlanetPlaceholder" xml:space="preserve"><value>örn. Prime</value></data>
+  <data name="Teleport_CustomPlanetHint" xml:space="preserve"><value>Listede olmayan bir gezegen kimliği yazın</value></data>
+  <data name="Teleport_CoordXA11y" xml:space="preserve"><value>X koordinatı</value></data>
+  <data name="Teleport_CoordYA11y" xml:space="preserve"><value>Y koordinatı</value></data>
+  <data name="Teleport_CoordZA11y" xml:space="preserve"><value>Z koordinatı</value></data>
+  <data name="Teleport_Teleport" xml:space="preserve"><value>Işınla</value></data>
+  <data name="Teleport_UseCurrentPosition" xml:space="preserve"><value>Oyuncunun mevcut konumuna sıfırla</value></data>
+  <data name="Teleport_PositionReset" xml:space="preserve"><value>Konum, {0} adlı oyuncunun mevcut konumuna sıfırlandı.</value></data>
+  <data name="Teleport_LandmarksHeading" xml:space="preserve"><value>Yer İşaretleri</value></data>
+  <data name="Teleport_LandmarksHelp" xml:space="preserve"><value>X / Y / Z değerlerini konumundan doldurmak için bir işaret noktası seçin.</value></data>
+  <data name="Teleport_NoLandmarks" xml:space="preserve"><value>Kullanılabilir yer işareti yok.</value></data>
+  <data name="Teleport_UsePosition" xml:space="preserve"><value>Konumu Kullan</value></data>
+  <data name="Teleport_UsePositionA11y" xml:space="preserve"><value>{0} konumunu kullan</value></data>
+  <data name="Teleport_OtherPlanet" xml:space="preserve"><value>Diğer…</value></data>
+  <data name="Teleport_PositionFromLandmark" xml:space="preserve"><value>Konum {0} ögesinden ayarlandı. X {1}, Y {2}, Z {3}.</value></data>
+  <data name="Teleport_ChoosePlayer" xml:space="preserve"><value>Işınlanacak bir oyuncu seçin.</value></data>
+  <data name="Teleport_ChoosePlanet" xml:space="preserve"><value>Bir gezegen kimliği girin veya seçin.</value></data>
+  <data name="Teleport_InvalidCoords" xml:space="preserve"><value>X, Y ve Z geçerli sayılar olmalıdır.</value></data>
+  <data name="Teleport_Done" xml:space="preserve"><value>{0}, {1} gezegenine ışınlandı ({2}).</value></data>
+  <data name="Teleport_LandmarkPlanetHash" xml:space="preserve"><value>dünya karması {0}</value></data>
+  <data name="Teleport_LandmarkNoPlanetHash" xml:space="preserve"><value>dünya karması kaydedilmemiş</value></data>
+  <data name="Disclaimer_Title" xml:space="preserve"><value>Kendi sorumluluğunuzda kullanın</value></data>
+  <data name="Disclaimer_Body" xml:space="preserve"><value>PCEdit, Planet Crafter kayıt dosyalarını doğrudan düzenler. Hatalı bir düzenleme bir kaydı bozabilir ve ilerlemenizi kaybettirebilir. Düzenlemeden önce kayıt dosyanızın her zaman bir yedeğini tutun. Bu yazılım, hiçbir garanti olmaksızın «olduğu gibi» sağlanır.</value></data>
+  <data name="Disclaimer_Acknowledge" xml:space="preserve"><value>Anladım</value></data>
+  <data name="Disclaimer_ShortNotice" xml:space="preserve"><value>Düzenleme bir kaydı bozabilir. Önce dosyanızın yedeğini alın — kendi sorumluluğunuzda kullanın.</value></data>
+  <data name="About_Title" xml:space="preserve"><value>Hakkında</value></data>
+  <data name="About_Heading" xml:space="preserve"><value>PCEdit</value></data>
+  <data name="About_Tagline" xml:space="preserve"><value>The Planet Crafter için bir kayıt dosyası düzenleyici.</value></data>
+  <data name="About_Version" xml:space="preserve"><value>Sürüm {0}</value></data>
+  <data name="About_Language" xml:space="preserve"><value>Dil</value></data>
+  <data name="About_LanguageA11y" xml:space="preserve"><value>Uygulama dili</value></data>
+</root>

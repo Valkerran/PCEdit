@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>PCEdit.App.Core</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <!-- App-bundled item catalog (friendly names + category icons keyed by GId).
+             Embedded so it loads identically from every UI head and the test host.
+             Regenerate with tools/item-catalog/gen_catalog.py. -->
+        <None Remove="Data\ItemCatalog.json" />
+        <EmbeddedResource Include="Data\ItemCatalog.json" />
+        <InternalsVisibleTo Include="PCEdit.App.Core.Tests" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\PCEdit.SaveFileHandler\PCEdit.SaveFileHandler.csproj" />
+    </ItemGroup>
+
+</Project>

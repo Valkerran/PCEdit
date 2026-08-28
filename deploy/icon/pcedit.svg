@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8368C8"/>
+      <stop offset="1" stop-color="#3C2568"/>
+    </linearGradient>
+    <radialGradient id="planet" cx="0.38" cy="0.36" r="0.8">
+      <stop offset="0" stop-color="#63D3AA"/>
+      <stop offset="0.62" stop-color="#2E9E77"/>
+      <stop offset="1" stop-color="#195F46"/>
+    </radialGradient>
+    <clipPath id="planetClip"><circle cx="512" cy="524" r="252"/></clipPath>
+  </defs>
+
+  <rect x="0" y="0" width="1024" height="1024" rx="232" fill="url(#bg)"/>
+
+  <g transform="rotate(-22 512 524)">
+    <ellipse cx="512" cy="524" rx="398" ry="120" fill="none" stroke="#D3C6F7" stroke-width="30" opacity="0.9"/>
+  </g>
+
+  <circle cx="512" cy="524" r="252" fill="url(#planet)"/>
+
+  <g clip-path="url(#planetClip)">
+    <ellipse cx="452" cy="452" rx="250" ry="66" fill="#A6EFD4" opacity="0.4"/>
+    <ellipse cx="580" cy="626" rx="250" ry="78" fill="#12684B" opacity="0.38"/>
+    <circle cx="662" cy="452" r="300" fill="#0E1C36" opacity="0.16"/>
+  </g>
+
+  <g transform="rotate(-22 512 524)">
+    <path d="M 114 524 A 398 120 0 0 1 910 524" fill="none" stroke="#F4F0FC" stroke-width="34" stroke-linecap="round"/>
+  </g>
+</svg>
