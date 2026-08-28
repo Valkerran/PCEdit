@@ -13,7 +13,7 @@
     and CI warns once <VersionPrefix> has caught up to the latest release tag.
   -->
   <PropertyGroup>
-    <VersionPrefix>1.0.0</VersionPrefix>
+    <VersionPrefix>1.0.1</VersionPrefix>
   </PropertyGroup>
 
   <!-- Licensing — GNU GPL v3 or later. Full text in the repo-root LICENSE file. -->
