@@ -69,3 +69,20 @@ It is distributed in the hope that it will be useful, but **without any warranty
 
 *The Planet Crafter* is a trademark of its respective owners; PCEdit is an unofficial fan tool
 and is not affiliated with or endorsed by them.
+
+## Game Save Locations
+
+Below are the expected default paths for save files
+
+- **Windows - Steam** - %USERDATA\LocalLow\MijuGames\Planet Crafter
+
+- **Windows - Xbox** - %LOCALAPPDATA%\Packages\MijuGames.ThePlanetCrafter_ta6nvwnbx9v7t\SystemAppData\wgs
+
+- **Linux - Steam** - ~/.steam/steam/steamapps/compatdata/1284190/pfx/drive_c/users/steamuser/AppData/LocalLow/MijuGames/Planet Crafter/
+
+### Notes
+
+The xbox save files do not use world names for the file name. Instead they use a random alpha numeric name that is regenerated with a new name each time it is saved.
+
+Linux Steam locations may depend on the drive you have installed the game to. Replace "~/.steam/steam" with the folder you installed your steam library to.
+
