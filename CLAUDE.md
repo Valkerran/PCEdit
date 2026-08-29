@@ -61,11 +61,15 @@ and attaches them plus `SHA256SUMS.txt` to a GitHub Release.
 
 ## Architecture: the save-file format
 
-A Planet Crafter save file is a single text file, not JSON overall — it's `@`-delimited into exactly
-10 sections (index 0–9), each section holding either one JSON object or a `|`-delimited (with `\r\n`
-after each delimiter) list of JSON objects. `PlanetCrafterSaveFileSerializer`
-(`PCEdit.SaveFileHandler/PlanetCrafterSaveFileSerializer.cs`) hard-codes this section order — it must
-be kept in sync with `PlanetCrafterSaveFile` (`PCEdit.SaveFileHandler/Models/PlanetCrafterSaveFile.cs`):
+A Planet Crafter save file is a single UTF-8-with-BOM text file, not JSON overall. The framing (see
+`PlanetCrafterSaveFileSerializer`): a leading `\r`, then the 10 sections (index 0–9) joined by
+`\r@\r`, then a trailing `\r@`. A section holds either one JSON object or a list of JSON objects
+joined by `|\n`. The store writes the BOM (`PlanetCrafterSaveFileStore` uses a BOM-emitting UTF-8
+encoding); `Serialize` returns everything after it. Reproduce this exactly — an unedited
+load→save is asserted byte-identical, so a diff after an edit shows only the edit.
+`PlanetCrafterSaveFileSerializer` (`PCEdit.SaveFileHandler/PlanetCrafterSaveFileSerializer.cs`)
+hard-codes the section order — keep it in sync with `PlanetCrafterSaveFile`
+(`PCEdit.SaveFileHandler/Models/PlanetCrafterSaveFile.cs`):
 
 | # | Section | Model |
 |---|---------|-------|
@@ -82,19 +86,21 @@ be kept in sync with `PlanetCrafterSaveFile` (`PCEdit.SaveFileHandler/Models/Pla
 
 `PCEdit.SaveFileHandler/Standard-2.json` (despite the `.json` extension) is a real sample save file
 in this format — a hand-maintained reference/fixture. Do not let a load→save round-trip overwrite it.
-`PCEdit.SaveFileHandler/mini-save.json` is a tiny hand-authored save exercising the rarer object
-shapes (ore vein `count`, `ToxicWaterCollector` `linkedWo`, a labelled container `text`, a logistics
-container, and a deliberately-unknown key); both test projects link it into `TestData/`.
+`PCEdit.SaveFileHandler/mini-save.json` is a tiny hand-authored save in the real framing (BOM,
+`\r@\r`, `|\n`) exercising the rarer object shapes (ore vein `count`, `ToxicWaterCollector`
+`linkedWo`, a labelled container `text`, a logistics container, a deliberately-unknown key); both
+test projects link it into `TestData/`. Regenerate it with a byte-writing script, not an editor —
+it has no trailing newline and must keep its exact bytes (`.gitattributes` marks it `-text`).
 
 Layering, each with a small interface for testability/DI:
 
-- `IJsonRecordSerializer` / `JsonRecordSerializer` — wraps `System.Text.Json` with camelCase naming and `WhenWritingNull` ignore semantics; deserializes/serializes a single record (section or list item) and wraps `JsonException` in `InvalidDataException` with the offending section index. Every leaf model has a `[JsonExtensionData] ExtensionData` dictionary, so a JSON key no model names is **preserved** across a load→save round-trip, not silently dropped. `PlanetCrafterSaveFileSerializerTests.RoundTrip_RealSampleSaveFile_PreservesEveryKeyAndValue` (`JsonSaveFileComparer`) enforces byte-level key/value fidelity against `Standard-2.json` + `mini-save.json`; `GameFormatKeyMappingTests` pins the abbreviated-key spellings a symmetric model round-trip can't catch.
-- `IPlanetCrafterSaveFileSerializer` / `PlanetCrafterSaveFileSerializer` — splits/joins the 10 `@`-delimited sections and the `|`-delimited records within list sections, delegating record-level (de)serialization to `IJsonRecordSerializer`.
-- `IPlanetCrafterSaveFileStore` / `PlanetCrafterSaveFileStore` — file I/O (`Load`/`Save` by path), delegating to `IPlanetCrafterSaveFileSerializer`.
+- `IJsonRecordSerializer` / `JsonRecordSerializer` — wraps `System.Text.Json` with camelCase naming and `WhenWritingNull` ignore semantics; deserializes/serializes a single record (section or list item) and wraps `JsonException` in `InvalidDataException` with the offending section index. Also holds `GameDecimalConverter` (the game writes every decimal with a fractional part — force `N.0`, never `N`). Every leaf model has a `[JsonExtensionData] ExtensionData` dictionary, so a JSON key no model names is **preserved** across a round-trip, not silently dropped. `WorldObject` goes further: the game's world-object key order is not stable (proven — the same pair of keys appears in both orders across records), so `WorldObjectConverter` records each record's key order on read and replays it on write, keeping unknown keys in place too. Tests: `RoundTrip_RealSampleSaveFile_ReserializesCharacterForCharacter` (whole-file, string-exact) and `PlanetCrafterSaveFileStoreTests.SaveThenLoad_...IsByteIdenticalOnDisk` (with BOM); `WorldObjectConverterTests` / `GameDecimalFormatTests` for the pieces; `GameFormatKeyMappingTests` pins the abbreviated-key spellings a symmetric model round-trip can't catch.
+- `IPlanetCrafterSaveFileSerializer` / `PlanetCrafterSaveFileSerializer` — splits/joins the 10 sections (framing above), delegating record-level (de)serialization to `IJsonRecordSerializer`. `Deserialize` is lenient about whitespace/line-endings; `Serialize` reproduces the game framing exactly.
+- `IPlanetCrafterSaveFileStore` / `PlanetCrafterSaveFileStore` — file I/O (`Load`/`Save` by path). `Load` uses `File.ReadAllText` (strips the BOM); `Save` writes UTF-8 **with** a BOM to match the game.
 
 Model conventions worth knowing before adding/editing a model in `PCEdit.SaveFileHandler/Models/`:
 - Fields that are always present in the save file are `required` properties; fields the game may omit are nullable (`decimal?`, `string?`, etc.) — get this right or `Save`/round-trip will crash or lose data.
-- Most JSON property names differ from the C# names only in that the JSON uses camelCase — `System.Text.Json`'s `CamelCase` naming policy handles that automatically. Only use an explicit `[JsonPropertyName]` when the JSON key is actually abbreviated/irregular (e.g. `pos`/`rot`/`liId`/`pnls`/`count`/`linkedWo` on `WorldObject`, `woIds`/`demandGrps`/`supplyGrps` on `Inventory`). When you add a model property, verify the real key against `Standard-2.json` / `mini-save.json` — a wrong `[JsonPropertyName]` no longer loses data (the `ExtensionData` catch-all preserves the bytes) but it does mean the property never populates.
+- Most JSON property names differ from the C# names only in that the JSON uses camelCase — `System.Text.Json`'s `CamelCase` naming policy handles that automatically. Only use an explicit `[JsonPropertyName]` when the JSON key is actually abbreviated/irregular (e.g. `pos`/`rot`/`liId`/`pnls`/`count`/`linkedWo` on `WorldObject`, `woIds`/`demandGrps`/`supplyGrps` on `Inventory`). When you add a model property, verify the real key against `Standard-2.json` / `mini-save.json` — a wrong `[JsonPropertyName]` no longer loses data (the `ExtensionData` catch-all preserves the bytes) but it does mean the property never populates. **`WorldObject` is serialized by `WorldObjectConverter`, not attribute-driven** — a new key needs a `case` in both its `Read` switch and `WriteKey`, plus an entry in `HasValue` and `DefaultOrder` (or just leave it to `ExtensionData`, which the converter still positions correctly).
 
 **A critical consequence for editing code**: every model in `PCEdit.SaveFileHandler.Models`
 (including the root `PlanetCrafterSaveFile`) is a `sealed record` with `{ get; init; }` properties —
@@ -247,3 +253,6 @@ repo root — mirrored by `Disclaimer_Body` in the catalog and the AppStream `<d
   `deploy/icon/` via `sips`+`iconutil` on macOS only) and zips it with `ditto`.
 
 Release automation and the versioning rules live in `RELEASING.md`.
+
+## Git commit conventions
+- **Never add `Co-Authored-By: Claude ...` (or any AI assistant) trailer to commit messages.**

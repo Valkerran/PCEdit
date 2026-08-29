@@ -57,6 +57,28 @@ public sealed class PlanetCrafterSaveFileStoreTests : IDisposable
         Assert.Equal(original.Inventories[0].SupplyGroups, loaded.Inventories[0].SupplyGroups);
     }
 
+    [Theory]
+    [InlineData("Standard-2.json")]
+    [InlineData("mini-save.json")]
+    public void SaveThenLoad_OfAnUnchangedSave_IsByteIdenticalOnDisk(string fixtureName)
+    {
+        var source = Path.Combine(AppContext.BaseDirectory, "TestData", fixtureName);
+
+        _store.Save(_tempFile, _store.Load(source));
+
+        Assert.Equal(File.ReadAllBytes(source), File.ReadAllBytes(_tempFile));
+    }
+
+    [Fact]
+    public void Save_WritesUtf8WithBom()
+    {
+        _store.Save(_tempFile, SaveFileFixtures.CreateEmpty());
+
+        var bytes = File.ReadAllBytes(_tempFile);
+
+        Assert.Equal([0xEF, 0xBB, 0xBF], bytes[..3]);
+    }
+
     [Fact]
     public void Load_MissingFile_ThrowsFileNotFoundException()
     {

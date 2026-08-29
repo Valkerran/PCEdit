@@ -29,16 +29,17 @@ public sealed class PlanetCrafterSaveFileSerializerTests
     }
 
     [Fact]
-    public void Serialize_JoinsSectionsWithAtDelimiter_AndTrailingDelimiter()
+    public void Serialize_ReproducesTheGameFraming()
     {
-        var save = SaveFileFixtures.CreateEmpty();
+        var content = _serializer.Serialize(SaveFileFixtures.CreateFullyPopulated());
 
-        var content = _serializer.Serialize(save);
-
-        var sections = content.Split("\r\n@\r\n");
-        // 10 real sections + 1 trailing empty section produced by the final "\r\n@\r\n".
-        Assert.Equal(11, sections.Length);
-        Assert.Equal("", sections[^1]);
+        // Leading CR, ten sections joined by "\r@\r", trailing "\r@" (no newline); records inside
+        // a list section joined by "|\n". No BOM — that is the store's encoding concern.
+        Assert.StartsWith("\r{", content);
+        Assert.EndsWith("}\r@", content);
+        Assert.DoesNotContain("\r\n", content);
+        Assert.DoesNotContain("|\r", content);
+        Assert.Equal(10, content.Split("\r@\r").Length);
     }
 
     [Fact]
@@ -214,5 +215,20 @@ public sealed class PlanetCrafterSaveFileSerializerTests
         var differences = JsonSaveFileComparer.Diff(original, reserialized);
 
         Assert.True(differences.Count == 0, string.Join(Environment.NewLine, differences));
+    }
+
+    [Theory]
+    [InlineData("Standard-2.json")]
+    [InlineData("mini-save.json")]
+    public void RoundTrip_RealSampleSaveFile_ReserializesCharacterForCharacter(string fixtureName)
+    {
+        // File.ReadAllText strips the BOM, and Serialize does not emit one (the store's encoding
+        // adds it back), so this compares everything after the BOM: framing, key order, values.
+        var path = Path.Combine(AppContext.BaseDirectory, "TestData", fixtureName);
+        var original = File.ReadAllText(path);
+
+        var reserialized = _serializer.Serialize(_serializer.Deserialize(original));
+
+        Assert.Equal(original, reserialized);
     }
 }
