@@ -31,6 +31,10 @@ The accessibility pass (screen-reader names for the nav list and previously-unla
 added `Shell_NavA11y` — also machine-translated. The nav list's name is spoken on focus; the
 destination page name is announced via the live region on every navigation.
 
+The logistics-editor pass (editing a container's demand / supply groups + priority on the
+Inventories page) added the `Logistics_*` keys and `Inventories_{LogisticsSummary,EditLogistics,
+EditLogisticsA11y}` — all machine-translated.
+
 | Culture | Language | Reviewed |
 |---|---|---|
 | en-US | English (United States) | n/a (source) |

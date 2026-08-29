@@ -1,0 +1,18 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:PCEdit.App.Core.ViewModels;assembly=PCEdit.App.Core"
+        xmlns:views="using:PCEdit.Desktop.Views"
+        xmlns:m="using:PCEdit.Desktop.Markup"
+        x:Class="PCEdit.Desktop.Views.LogisticsEditorWindow"
+        x:DataType="vm:LogisticsEditorViewModel"
+        Icon="/Assets/appicon.png"
+        Title="{m:Loc Logistics_Title}"
+        Width="520" Height="640"
+        MinWidth="400" MinHeight="420"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False"
+        Background="{DynamicResource SurfacePage}">
+
+    <views:LogisticsEditorView />
+
+</Window>

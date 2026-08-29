@@ -73,5 +73,11 @@ public sealed partial class InventoriesViewModel(ISaveFileWorkspace workspace, I
     }
 
     [RelayCommand]
+    private async Task EditLogisticsAsync(InventoryGroup group)
+    {
+        await _navigation.OpenLogisticsEditorAsync(group.InventoryId);
+    }
+
+    [RelayCommand]
     private Task OpenFile() => _navigation.GoToOpenFileAsync();
 }

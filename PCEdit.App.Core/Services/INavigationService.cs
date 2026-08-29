@@ -18,6 +18,9 @@ public interface INavigationService
     /// </summary>
     Task OpenSelectInventoryAsync(int worldObjectId);
 
+    /// <summary>Opens the demand/supply editor for a logistics container, as a modal view.</summary>
+    Task OpenLogisticsEditorAsync(int inventoryId);
+
     /// <summary>Closes the current modal/secondary view and returns to the previous screen.</summary>
     Task CloseModalAsync();
 }

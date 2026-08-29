@@ -78,6 +78,7 @@ public partial class App : Application
 
         // Transient: opened per-move as a modal with a fresh Initialize(worldObjectId).
         services.AddTransient<SelectInventoryViewModel>();
+        services.AddTransient<LogisticsEditorViewModel>();
 
         return services.BuildServiceProvider();
     }

@@ -48,6 +48,19 @@ public sealed class AvaloniaNavigationService(
             _mainViewModel.ReloadCurrent();
         });
 
+    public Task OpenLogisticsEditorAsync(int inventoryId) =>
+        Dispatcher.UIThread.InvokeAsync(async () =>
+        {
+            var vm = _services.GetRequiredService<LogisticsEditorViewModel>();
+            vm.Initialize(inventoryId);
+
+            _modal = new LogisticsEditorWindow { DataContext = vm };
+            await _modal.ShowDialog(_mainWindow.Require());
+            _modal = null;
+
+            _mainViewModel.ReloadCurrent();
+        });
+
     public Task CloseModalAsync()
     {
         _modal?.Close();

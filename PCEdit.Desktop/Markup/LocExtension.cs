@@ -43,14 +43,18 @@ internal sealed class LocConverter(string key) : IValueConverter
 
 /// <summary>
 /// <c>{m:LocFormat Key=Some_Key, Path=SomeProperty}</c> — formats the translated string for
-/// <c>Key</c> with one argument bound from <c>Path</c>. <c>FallbackKey</c> supplies the text when
-/// the argument is null/empty.
+/// <c>Key</c> with arguments bound from <c>Path</c> (and optionally <c>Path1</c>, <c>Path2</c>).
+/// <c>FallbackKey</c> supplies the text when the single argument is null/empty.
 /// </summary>
 public sealed class LocFormatExtension : MarkupExtension
 {
     public string Key { get; set; } = string.Empty;
 
     public string Path { get; set; } = string.Empty;
+
+    public string? Path1 { get; set; }
+
+    public string? Path2 { get; set; }
 
     public string? FallbackKey { get; set; }
 
@@ -63,6 +67,16 @@ public sealed class LocFormatExtension : MarkupExtension
         };
         multi.Bindings.Add(new Binding("Current") { Source = Loc.Instance });
         multi.Bindings.Add(new Binding(Path));
+        if (Path1 is not null)
+        {
+            multi.Bindings.Add(new Binding(Path1));
+        }
+
+        if (Path2 is not null)
+        {
+            multi.Bindings.Add(new Binding(Path2));
+        }
+
         return multi;
     }
 }
@@ -71,13 +85,15 @@ internal sealed class LocFormatConverter(string key, string? fallbackKey) : IMul
 {
     public object Convert(IList<object?> values, Type targetType, object? parameter, CultureInfo culture)
     {
-        var arg = values.Count > 1 ? values[1] : null;
+        // values[0] is the culture ping; the rest are the format arguments.
+        var args = values.Skip(1).ToArray();
+        var first = args.Length > 0 ? args[0] : null;
 
-        if (fallbackKey is not null && (arg is null || (arg is string s && s.Length == 0)))
+        if (fallbackKey is not null && (first is null || (first is string s && s.Length == 0)))
         {
             return Loc.Instance[fallbackKey];
         }
 
-        return Loc.Instance.Format(key, arg);
+        return Loc.Instance.Format(key, args);
     }
 }

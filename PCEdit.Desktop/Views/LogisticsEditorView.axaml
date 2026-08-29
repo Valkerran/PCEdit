@@ -1,0 +1,141 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:PCEdit.App.Core.ViewModels;assembly=PCEdit.App.Core"
+             xmlns:models="clr-namespace:PCEdit.App.Core.Models;assembly=PCEdit.App.Core"
+             xmlns:m="using:PCEdit.Desktop.Markup"
+             x:Class="PCEdit.Desktop.Views.LogisticsEditorView"
+             x:DataType="vm:LogisticsEditorViewModel"
+             x:Name="Root">
+
+    <UserControl.Styles>
+        <Style Selector="Border.chip">
+            <Setter Property="Background" Value="{DynamicResource SurfaceCard}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource BrandFill}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="12" />
+            <Setter Property="Padding" Value="8,3" />
+            <Setter Property="Margin" Value="0,0,6,6" />
+        </Style>
+        <Style Selector="Border.customBadge">
+            <Setter Property="Background" Value="{DynamicResource BrandFill}" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Padding" Value="4,0" />
+            <Setter Property="Margin" Value="6,0,0,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+    </UserControl.Styles>
+
+    <DockPanel Margin="20">
+        <StackPanel DockPanel.Dock="Top" Spacing="4" Margin="0,0,0,14">
+            <StackPanel Orientation="Horizontal" Spacing="10">
+                <Border Classes="headingRule" />
+                <TextBlock Text="{m:Loc Logistics_Title}" Classes="h2" VerticalAlignment="Center" />
+            </StackPanel>
+            <TextBlock Text="{Binding Title}" Classes="caption" TextTrimming="CharacterEllipsis" />
+        </StackPanel>
+
+        <StackPanel DockPanel.Dock="Bottom" Spacing="12" Margin="0,14,0,0">
+            <TextBlock Text="{Binding StatusMessage}"
+                       IsVisible="{Binding StatusMessage, Converter={StaticResource StringNotEmpty}}"
+                       Foreground="{Binding StatusKind, Converter={StaticResource StatusBrush}}"
+                       TextWrapping="Wrap" />
+            <StackPanel Orientation="Horizontal" Spacing="8">
+                <Button Classes="accent" Content="{m:Loc Logistics_Apply}" Command="{Binding ApplyCommand}" />
+                <Button Content="{m:Loc Common_Cancel}" Command="{Binding CancelCommand}" />
+            </StackPanel>
+        </StackPanel>
+
+        <ScrollViewer>
+            <StackPanel Spacing="18">
+
+                <!-- Priority -->
+                <StackPanel Spacing="4">
+                    <TextBlock Text="{m:Loc Logistics_PriorityLabel}" Classes="h2" />
+                    <TextBox Text="{Binding Priority, Mode=TwoWay}" Width="120" HorizontalAlignment="Left"
+                             AutomationProperties.Name="{m:Loc Logistics_PriorityLabel}" />
+                    <TextBlock Text="{m:Loc Logistics_PriorityHint}" Classes="caption" />
+                </StackPanel>
+
+                <!-- Demand -->
+                <StackPanel Spacing="6">
+                    <TextBlock Text="{m:Loc Logistics_DemandHeading}" Classes="h2" />
+                    <TextBlock Text="{m:Loc Logistics_DemandHint}" Classes="caption" />
+                    <TextBlock Text="{m:Loc Logistics_EmptyList}" Classes="caption"
+                               IsVisible="{Binding DemandGroups.Count, Converter={StaticResource CountIsZero}}" />
+                    <ItemsControl ItemsSource="{Binding DemandGroups}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="models:LogisticsGroupInfo">
+                                <Border Classes="chip">
+                                    <StackPanel Orientation="Horizontal" Spacing="6">
+                                        <TextBlock Text="{Binding DisplayName}" VerticalAlignment="Center" />
+                                        <Border Classes="customBadge" IsVisible="{Binding !IsKnown}">
+                                            <TextBlock Text="{m:Loc Logistics_CustomBadge}" FontSize="10" />
+                                        </Border>
+                                        <Button Classes="link" Content="✕" Padding="2,0" MinWidth="0"
+                                                Command="{Binding #Root.DataContext.RemoveDemandGroupCommand}"
+                                                CommandParameter="{Binding}"
+                                                AutomationProperties.Name="{m:LocFormat Key=Logistics_RemoveA11y, Path=DisplayName}" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                        <AutoCompleteBox Grid.Column="0"
+                                         ItemsSource="{Binding AllGroups}"
+                                         ValueMemberBinding="{Binding DisplayName}"
+                                         SelectedItem="{Binding DemandGroupToAdd, Mode=TwoWay}"
+                                         Text="{Binding DemandGroupText, Mode=TwoWay}"
+                                         FilterMode="ContainsOrdinal"
+                                         PlaceholderText="{m:Loc Logistics_AddPlaceholder}" />
+                        <Button Grid.Column="1" Content="{m:Loc Logistics_Add}" Command="{Binding AddDemandGroupCommand}" />
+                    </Grid>
+                </StackPanel>
+
+                <!-- Supply -->
+                <StackPanel Spacing="6">
+                    <TextBlock Text="{m:Loc Logistics_SupplyHeading}" Classes="h2" />
+                    <TextBlock Text="{m:Loc Logistics_SupplyHint}" Classes="caption" />
+                    <TextBlock Text="{m:Loc Logistics_EmptyList}" Classes="caption"
+                               IsVisible="{Binding SupplyGroups.Count, Converter={StaticResource CountIsZero}}" />
+                    <ItemsControl ItemsSource="{Binding SupplyGroups}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="models:LogisticsGroupInfo">
+                                <Border Classes="chip">
+                                    <StackPanel Orientation="Horizontal" Spacing="6">
+                                        <TextBlock Text="{Binding DisplayName}" VerticalAlignment="Center" />
+                                        <Border Classes="customBadge" IsVisible="{Binding !IsKnown}">
+                                            <TextBlock Text="{m:Loc Logistics_CustomBadge}" FontSize="10" />
+                                        </Border>
+                                        <Button Classes="link" Content="✕" Padding="2,0" MinWidth="0"
+                                                Command="{Binding #Root.DataContext.RemoveSupplyGroupCommand}"
+                                                CommandParameter="{Binding}"
+                                                AutomationProperties.Name="{m:LocFormat Key=Logistics_RemoveA11y, Path=DisplayName}" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                        <AutoCompleteBox Grid.Column="0"
+                                         ItemsSource="{Binding AllGroups}"
+                                         ValueMemberBinding="{Binding DisplayName}"
+                                         SelectedItem="{Binding SupplyGroupToAdd, Mode=TwoWay}"
+                                         Text="{Binding SupplyGroupText, Mode=TwoWay}"
+                                         FilterMode="ContainsOrdinal"
+                                         PlaceholderText="{m:Loc Logistics_AddPlaceholder}" />
+                        <Button Grid.Column="1" Content="{m:Loc Logistics_Add}" Command="{Binding AddSupplyGroupCommand}" />
+                    </Grid>
+                </StackPanel>
+
+            </StackPanel>
+        </ScrollViewer>
+    </DockPanel>
+
+</UserControl>

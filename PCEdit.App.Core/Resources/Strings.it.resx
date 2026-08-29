@@ -109,6 +109,24 @@
   <data name="SelectInv_MoveFailedTitle" xml:space="preserve"><value>Spostamento non riuscito</value></data>
   <data name="SelectInv_MoveIncomplete" xml:space="preserve"><value>Impossibile completare lo spostamento.</value></data>
   <data name="SelectInv_Moved" xml:space="preserve"><value>Oggetto spostato in {0}.</value></data>
+  <data name="Inventories_LogisticsSummary" xml:space="preserve"><value>Domanda {0} · Offerta {1} · Priorità {2}</value></data>
+  <data name="Inventories_EditLogistics" xml:space="preserve"><value>Domanda e offerta…</value></data>
+  <data name="Inventories_EditLogisticsA11y" xml:space="preserve"><value>Modifica i gruppi di domanda e offerta di {0}</value></data>
+  <data name="Logistics_Title" xml:space="preserve"><value>Domanda e offerta</value></data>
+  <data name="Logistics_DemandHeading" xml:space="preserve"><value>Gruppi di domanda</value></data>
+  <data name="Logistics_DemandHint" xml:space="preserve"><value>Risorse che questo contenitore richiede alla rete.</value></data>
+  <data name="Logistics_SupplyHeading" xml:space="preserve"><value>Gruppi di offerta</value></data>
+  <data name="Logistics_SupplyHint" xml:space="preserve"><value>Risorse che questo contenitore mette a disposizione della rete.</value></data>
+  <data name="Logistics_PriorityLabel" xml:space="preserve"><value>Priorità</value></data>
+  <data name="Logistics_PriorityHint" xml:space="preserve"><value>I contenitori con priorità più alta vengono serviti per primi.</value></data>
+  <data name="Logistics_AddPlaceholder" xml:space="preserve"><value>Aggiungi un gruppo o digita un id…</value></data>
+  <data name="Logistics_Add" xml:space="preserve"><value>Aggiungi</value></data>
+  <data name="Logistics_RemoveA11y" xml:space="preserve"><value>Rimuovi {0}</value></data>
+  <data name="Logistics_EmptyList" xml:space="preserve"><value>Nessuno</value></data>
+  <data name="Logistics_CustomBadge" xml:space="preserve"><value>person.</value></data>
+  <data name="Logistics_Apply" xml:space="preserve"><value>Applica</value></data>
+  <data name="Logistics_Applied" xml:space="preserve"><value>Domanda e offerta di {0} aggiornate.</value></data>
+  <data name="Logistics_InvalidPriority" xml:space="preserve"><value>La priorità deve essere un numero intero (0 o più).</value></data>
   <data name="TerraTokens_Title" xml:space="preserve"><value>Gettoni terra</value></data>
   <data name="TerraTokens_Heading" xml:space="preserve"><value>Concedi gettoni terra</value></data>
   <data name="TerraTokens_CurrentBalance" xml:space="preserve"><value>SALDO ATTUALE</value></data>

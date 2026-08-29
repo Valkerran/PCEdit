@@ -5,6 +5,7 @@ riderModule.iml
 /_ReSharper.Caches/
 .idea/
 PCEdit.sln.DotSettings.user
+*.csproj.user
 .vs/
 
 # Packaging output

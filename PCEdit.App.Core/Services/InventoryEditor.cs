@@ -115,6 +115,25 @@ public sealed class InventoryEditor(ISaveFileWorkspace workspace, IItemCatalog i
         return MoveItemResult.Ok();
     }
 
+    public LogisticsContainerView? GetLogisticsContainer(int inventoryId)
+    {
+        var save = RequireCurrent();
+        var inventory = save.Inventories.FirstOrDefault(i => i.Id == inventoryId);
+        if (inventory?.Priority is not { } priority)
+        {
+            return null;
+        }
+
+        var containersByInventoryId = BuildContainerLookup(save);
+        var (label, _) = DescribeInventory(save, inventoryId, containersByInventoryId);
+        return new LogisticsContainerView(
+            inventoryId,
+            label,
+            GroupListCodec.Parse(inventory.DemandGroups),
+            GroupListCodec.Parse(inventory.SupplyGroups),
+            priority);
+    }
+
     public void UpdateLogistics(int inventoryId, IReadOnlyList<string> demandGroupIds, IReadOnlyList<string> supplyGroupIds, int priority)
     {
         ArgumentNullException.ThrowIfNull(demandGroupIds);
