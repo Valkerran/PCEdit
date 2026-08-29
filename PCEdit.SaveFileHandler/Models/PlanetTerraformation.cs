@@ -1,6 +1,9 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 namespace PCEdit.SaveFileHandler.Models;
 
-public sealed class PlanetTerraformation
+public sealed record PlanetTerraformation
 {
     public required string PlanetId { get; init; }
 
@@ -17,4 +20,11 @@ public sealed class PlanetTerraformation
     public decimal UnitAnimalsLevel { get; init; }
 
     public decimal UnitPurificationLevel { get; init; }
+
+    /// <summary>
+    /// Any JSON keys the game writes that this model does not name — captured so a
+    /// load→save round-trip preserves them instead of silently dropping them.
+    /// </summary>
+    [JsonExtensionData]
+    public Dictionary<string, JsonElement>? ExtensionData { get; init; }
 }

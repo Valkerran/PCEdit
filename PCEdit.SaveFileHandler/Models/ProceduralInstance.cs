@@ -1,8 +1,9 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace PCEdit.SaveFileHandler.Models;
 
-public sealed class ProceduralInstance
+public sealed record ProceduralInstance
 {
     public int Owner { get; init; }
 
@@ -28,4 +29,11 @@ public sealed class ProceduralInstance
     public required string WorldObjectIdsDropped { get; init; }
 
     public int Version { get; init; }
+
+    /// <summary>
+    /// Any JSON keys the game writes that this model does not name — captured so a
+    /// load→save round-trip preserves them instead of silently dropping them.
+    /// </summary>
+    [JsonExtensionData]
+    public Dictionary<string, JsonElement>? ExtensionData { get; init; }
 }

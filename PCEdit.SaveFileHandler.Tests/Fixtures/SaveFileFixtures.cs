@@ -71,7 +71,10 @@ internal static class SaveFileFixtures
                     Growth = 50,
                     LinkedInventoryGroups = "marker-liGrps",
                     SpawnedInstanceIds = "marker-siIds",
-                    Color = "marker-color"
+                    Color = "marker-color",
+                    MineableCount = "13,14",
+                    LinkedWorldObjectId = 2002,
+                    Text = "marker-text"
                 }
             ],
             Inventories =
@@ -81,8 +84,8 @@ internal static class SaveFileFixtures
                     Id = 5,
                     WorldObjectIds = "2001",
                     Size = 12,
-                    DemandGroups = "marker-demandGroups",
-                    SupplyGroups = "marker-supplyGroups",
+                    DemandGroups = "marker-demandGrps",
+                    SupplyGroups = "marker-supplyGrps",
                     Priority = 3
                 }
             ],

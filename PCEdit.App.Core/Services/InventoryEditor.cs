@@ -116,15 +116,7 @@ public sealed class InventoryEditor(ISaveFileWorkspace workspace, IItemCatalog i
 
     private static Inventory WithWorldObjectIds(Inventory inventory, IEnumerable<int> ids)
     {
-        return new Inventory
-        {
-            Id = inventory.Id,
-            Size = inventory.Size,
-            DemandGroups = inventory.DemandGroups,
-            SupplyGroups = inventory.SupplyGroups,
-            Priority = inventory.Priority,
-            WorldObjectIds = WorldObjectIdsCodec.Join(ids)
-        };
+        return inventory with { WorldObjectIds = WorldObjectIdsCodec.Join(ids) };
     }
 
     private static Inventory? FindOwningInventory(PlanetCrafterSaveFile save, int worldObjectId)

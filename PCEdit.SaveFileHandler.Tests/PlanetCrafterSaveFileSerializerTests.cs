@@ -29,16 +29,17 @@ public sealed class PlanetCrafterSaveFileSerializerTests
     }
 
     [Fact]
-    public void Serialize_JoinsSectionsWithAtDelimiter_AndTrailingDelimiter()
+    public void Serialize_ReproducesTheGameFraming()
     {
-        var save = SaveFileFixtures.CreateEmpty();
+        var content = _serializer.Serialize(SaveFileFixtures.CreateFullyPopulated());
 
-        var content = _serializer.Serialize(save);
-
-        var sections = content.Split("\r\n@\r\n");
-        // 10 real sections + 1 trailing empty section produced by the final "\r\n@\r\n".
-        Assert.Equal(11, sections.Length);
-        Assert.Equal("", sections[^1]);
+        // Leading CR, ten sections joined by "\r@\r", trailing "\r@" (no newline); records inside
+        // a list section joined by "|\n". No BOM — that is the store's encoding concern.
+        Assert.StartsWith("\r{", content);
+        Assert.EndsWith("}\r@", content);
+        Assert.DoesNotContain("\r\n", content);
+        Assert.DoesNotContain("|\r", content);
+        Assert.Equal(10, content.Split("\r@\r").Length);
     }
 
     [Fact]
@@ -72,13 +73,26 @@ public sealed class PlanetCrafterSaveFileSerializerTests
         Assert.Equal(original.WorldObjects[0].Id, worldObject.Id);
         Assert.Equal(original.WorldObjects[0].GId, worldObject.GId);
         Assert.Equal(original.WorldObjects[0].Position, worldObject.Position);
+        Assert.Equal(original.WorldObjects[0].Rotation, worldObject.Rotation);
+        Assert.Equal(original.WorldObjects[0].Planet, worldObject.Planet);
         Assert.Equal(original.WorldObjects[0].LinkedInventoryId, worldObject.LinkedInventoryId);
+        Assert.Equal(original.WorldObjects[0].PanelSettings, worldObject.PanelSettings);
+        Assert.Equal(original.WorldObjects[0].Growth, worldObject.Growth);
+        Assert.Equal(original.WorldObjects[0].LinkedInventoryGroups, worldObject.LinkedInventoryGroups);
+        Assert.Equal(original.WorldObjects[0].SpawnedInstanceIds, worldObject.SpawnedInstanceIds);
+        Assert.Equal(original.WorldObjects[0].Color, worldObject.Color);
+        Assert.Equal(original.WorldObjects[0].MineableCount, worldObject.MineableCount);
+        Assert.Equal(original.WorldObjects[0].LinkedWorldObjectId, worldObject.LinkedWorldObjectId);
+        Assert.Equal(original.WorldObjects[0].Text, worldObject.Text);
 
         // Section 4: Inventories
         var inventory = Assert.Single(roundTripped.Inventories);
         Assert.Equal(original.Inventories[0].Id, inventory.Id);
         Assert.Equal(original.Inventories[0].WorldObjectIds, inventory.WorldObjectIds);
         Assert.Equal(original.Inventories[0].Size, inventory.Size);
+        Assert.Equal(original.Inventories[0].DemandGroups, inventory.DemandGroups);
+        Assert.Equal(original.Inventories[0].SupplyGroups, inventory.SupplyGroups);
+        Assert.Equal(original.Inventories[0].Priority, inventory.Priority);
 
         // Section 5: Statistics
         Assert.Equal(original.Statistics.CraftedObjects, roundTripped.Statistics.CraftedObjects);
@@ -186,5 +200,35 @@ public sealed class PlanetCrafterSaveFileSerializerTests
         Assert.NotEmpty(first.Terraformations);
         Assert.NotEmpty(first.Players);
         Assert.NotEmpty(first.WorldObjects);
+    }
+
+    [Theory]
+    [InlineData("Standard-2.json")]
+    [InlineData("mini-save.json")]
+    public void RoundTrip_RealSampleSaveFile_PreservesEveryKeyAndValue(string fixtureName)
+    {
+        var path = Path.Combine(AppContext.BaseDirectory, "TestData", fixtureName);
+        var original = File.ReadAllText(path);
+
+        var reserialized = _serializer.Serialize(_serializer.Deserialize(original));
+
+        var differences = JsonSaveFileComparer.Diff(original, reserialized);
+
+        Assert.True(differences.Count == 0, string.Join(Environment.NewLine, differences));
+    }
+
+    [Theory]
+    [InlineData("Standard-2.json")]
+    [InlineData("mini-save.json")]
+    public void RoundTrip_RealSampleSaveFile_ReserializesCharacterForCharacter(string fixtureName)
+    {
+        // File.ReadAllText strips the BOM, and Serialize does not emit one (the store's encoding
+        // adds it back), so this compares everything after the BOM: framing, key order, values.
+        var path = Path.Combine(AppContext.BaseDirectory, "TestData", fixtureName);
+        var original = File.ReadAllText(path);
+
+        var reserialized = _serializer.Serialize(_serializer.Deserialize(original));
+
+        Assert.Equal(original, reserialized);
     }
 }

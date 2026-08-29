@@ -1,6 +1,9 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 namespace PCEdit.SaveFileHandler.Models;
 
-public sealed class SaveFileMetadata
+public sealed record SaveFileMetadata
 {
     public required string SaveDisplayName { get; init; }
 
@@ -49,4 +52,11 @@ public sealed class SaveFileMetadata
     public bool HasPlayedIntro { get; init; }
 
     public required string GameStartLocation { get; init; }
+
+    /// <summary>
+    /// Any JSON keys the game writes that this model does not name — captured so a
+    /// load→save round-trip preserves them instead of silently dropping them.
+    /// </summary>
+    [JsonExtensionData]
+    public Dictionary<string, JsonElement>? ExtensionData { get; init; }
 }

@@ -3,3 +3,8 @@
 # Shell scripts must stay LF so they run on the Linux/macOS CI runners.
 *.sh    text eol=lf
 *.ps1   text eol=lf
+
+# Planet Crafter sample saves are byte-exact fixtures (CRLF after every @/| delimiter,
+# leading BOM) — never normalise line endings.
+PCEdit.SaveFileHandler/Standard-2.json  -text
+PCEdit.SaveFileHandler/mini-save.json   -text

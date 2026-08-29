@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <None Include="..\PCEdit.SaveFileHandler\Standard-2.json" Link="TestData\Standard-2.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\PCEdit.SaveFileHandler\mini-save.json" Link="TestData\mini-save.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>

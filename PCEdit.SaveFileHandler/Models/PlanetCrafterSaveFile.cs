@@ -1,6 +1,6 @@
 namespace PCEdit.SaveFileHandler.Models;
 
-public sealed class PlanetCrafterSaveFile
+public sealed record PlanetCrafterSaveFile
 {
     public required SaveFileUnlocks Unlocks { get; init; }
 
