@@ -189,23 +189,10 @@ public sealed partial class TeleportViewModel(
         var playerId = SelectedPlayer.PlayerId;
         var position = PositionCodec.Format(x, y, z);
 
-        _workspace.ReplacePlayer(playerId, player => new PlayerData
+        _workspace.ReplacePlayer(playerId, player => player with
         {
-            Id = player.Id,
-            Name = player.Name,
-            InventoryId = player.InventoryId,
-            EquipmentId = player.EquipmentId,
             PlayerPosition = position,
-            PlayerRotation = player.PlayerRotation,
-            PlayerGaugeOxygen = player.PlayerGaugeOxygen,
-            PlayerGaugeThirst = player.PlayerGaugeThirst,
-            PlayerGaugeHealth = player.PlayerGaugeHealth,
-            PlayerGaugeToxic = player.PlayerGaugeToxic,
-            Host = player.Host,
-            PlanetId = planetId,
-            TotalCraftedObjects = player.TotalCraftedObjects,
-            TotalTerraTokenEarned = player.TotalTerraTokenEarned,
-            CameraView = player.CameraView
+            PlanetId = planetId
         });
 
         SetStatus(StatusKind.Success, _localizer.Format(LocKeys.Teleport_Done, SelectedPlayer.Name, planetId, position));

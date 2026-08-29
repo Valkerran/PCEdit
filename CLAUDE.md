@@ -82,27 +82,34 @@ be kept in sync with `PlanetCrafterSaveFile` (`PCEdit.SaveFileHandler/Models/Pla
 
 `PCEdit.SaveFileHandler/Standard-2.json` (despite the `.json` extension) is a real sample save file
 in this format — a hand-maintained reference/fixture. Do not let a load→save round-trip overwrite it.
+`PCEdit.SaveFileHandler/mini-save.json` is a tiny hand-authored save exercising the rarer object
+shapes (ore vein `count`, `ToxicWaterCollector` `linkedWo`, a labelled container `text`, a logistics
+container, and a deliberately-unknown key); both test projects link it into `TestData/`.
 
 Layering, each with a small interface for testability/DI:
 
-- `IJsonRecordSerializer` / `JsonRecordSerializer` — wraps `System.Text.Json` with camelCase naming and `WhenWritingNull` ignore semantics; deserializes/serializes a single record (section or list item) and wraps `JsonException` in `InvalidDataException` with the offending section index.
+- `IJsonRecordSerializer` / `JsonRecordSerializer` — wraps `System.Text.Json` with camelCase naming and `WhenWritingNull` ignore semantics; deserializes/serializes a single record (section or list item) and wraps `JsonException` in `InvalidDataException` with the offending section index. Every leaf model has a `[JsonExtensionData] ExtensionData` dictionary, so a JSON key no model names is **preserved** across a load→save round-trip, not silently dropped. `PlanetCrafterSaveFileSerializerTests.RoundTrip_RealSampleSaveFile_PreservesEveryKeyAndValue` (`JsonSaveFileComparer`) enforces byte-level key/value fidelity against `Standard-2.json` + `mini-save.json`; `GameFormatKeyMappingTests` pins the abbreviated-key spellings a symmetric model round-trip can't catch.
 - `IPlanetCrafterSaveFileSerializer` / `PlanetCrafterSaveFileSerializer` — splits/joins the 10 `@`-delimited sections and the `|`-delimited records within list sections, delegating record-level (de)serialization to `IJsonRecordSerializer`.
 - `IPlanetCrafterSaveFileStore` / `PlanetCrafterSaveFileStore` — file I/O (`Load`/`Save` by path), delegating to `IPlanetCrafterSaveFileSerializer`.
 
 Model conventions worth knowing before adding/editing a model in `PCEdit.SaveFileHandler/Models/`:
 - Fields that are always present in the save file are `required` properties; fields the game may omit are nullable (`decimal?`, `string?`, etc.) — get this right or `Save`/round-trip will crash or lose data.
-- Most JSON property names differ from the C# names only in that the JSON uses camelCase — `System.Text.Json`'s `CamelCase` naming policy handles that automatically. Only use an explicit `[JsonPropertyName]` when the JSON key is actually abbreviated/irregular (e.g. `pos`/`rot`/`liId`/`pnls` on `WorldObject`, `woIds` on `Inventory`).
+- Most JSON property names differ from the C# names only in that the JSON uses camelCase — `System.Text.Json`'s `CamelCase` naming policy handles that automatically. Only use an explicit `[JsonPropertyName]` when the JSON key is actually abbreviated/irregular (e.g. `pos`/`rot`/`liId`/`pnls`/`count`/`linkedWo` on `WorldObject`, `woIds`/`demandGrps`/`supplyGrps` on `Inventory`). When you add a model property, verify the real key against `Standard-2.json` / `mini-save.json` — a wrong `[JsonPropertyName]` no longer loses data (the `ExtensionData` catch-all preserves the bytes) but it does mean the property never populates.
 
-**A critical consequence for editing code**: every model in `PCEdit.SaveFileHandler.Models` is a
-`sealed class` with `{ get; init; }` properties, not a record — there is no `with` expression.
-`PlanetCrafterSaveFile.Unlocks`/`.Metadata`/`.Statistics` are singular `required init`-only root
-properties, so changing one means constructing a whole new `PlanetCrafterSaveFile` (copying every
-other property by reference) — see `SaveFileWorkspace.MutateUnlocks`.
+**A critical consequence for editing code**: every model in `PCEdit.SaveFileHandler.Models`
+(including the root `PlanetCrafterSaveFile`) is a `sealed record` with `{ get; init; }` properties —
+use a `with` expression to change one field, never hand-copy every property (that is how
+`demandGrps`/`supplyGrps` came to be dropped on every save). `PlanetCrafterSaveFile.Unlocks`/
+`.Metadata`/`.Statistics` are singular `required init`-only root properties, so changing one is
+`save with { Unlocks = … }` — see `SaveFileWorkspace.MutateUnlocks`.
 `Terraformations`/`Players`/`WorldObjects`/`Inventories`/etc. are `List<T>` — the list *instance*
 stays mutable after construction even though the property is `init`-only, so editing one
 planet/player/inventory just replaces that element in the existing list
 (`SaveFileWorkspace.ReplaceTerraformation`/`ReplacePlayer`/`ReplaceInventory`, matched by
 `PlanetId`/`Id`/`Id` respectively) — no root rebuild needed there.
+- Record value-equality now includes the `ExtensionData` dictionary, which compares by reference —
+  so two models parsed from identical bytes are not `==`. Nothing in the codebase compares models;
+  don't start.
 
 ## Architecture: PCEdit.App.Core (shared app layer)
 

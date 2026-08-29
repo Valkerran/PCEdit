@@ -98,19 +98,7 @@ public sealed partial class SaveFileWorkspace : ObservableObject, ISaveFileWorks
     {
         var save = RequireCurrent();
 
-        Current = new PlanetCrafterSaveFile
-        {
-            Unlocks = mutate(save.Unlocks),
-            Terraformations = save.Terraformations,
-            Players = save.Players,
-            WorldObjects = save.WorldObjects,
-            Inventories = save.Inventories,
-            Statistics = save.Statistics,
-            ReadMessages = save.ReadMessages,
-            StoryEvents = save.StoryEvents,
-            Metadata = save.Metadata,
-            ProceduralInstances = save.ProceduralInstances
-        };
+        Current = save with { Unlocks = mutate(save.Unlocks) };
         IsDirty = true;
     }
 
@@ -166,32 +154,15 @@ public sealed partial class SaveFileWorkspace : ObservableObject, ISaveFileWorks
             throw new ArgumentOutOfRangeException(nameof(amount), amount, "The amount to grant must be positive.");
         }
 
-        MutateUnlocks(unlocks => new SaveFileUnlocks
+        MutateUnlocks(unlocks => unlocks with
         {
             TerraTokens = unlocks.TerraTokens + amount,
-            AllTimeTerraTokens = unlocks.AllTimeTerraTokens + amount,
-            UnlockedGroups = unlocks.UnlockedGroups,
-            OpenedInstanceSeed = unlocks.OpenedInstanceSeed,
-            OpenedInstanceTimeLeft = unlocks.OpenedInstanceTimeLeft
+            AllTimeTerraTokens = unlocks.AllTimeTerraTokens + amount
         });
 
-        ReplacePlayer(playerId, player => new PlayerData
+        ReplacePlayer(playerId, player => player with
         {
-            Id = player.Id,
-            Name = player.Name,
-            InventoryId = player.InventoryId,
-            EquipmentId = player.EquipmentId,
-            PlayerPosition = player.PlayerPosition,
-            PlayerRotation = player.PlayerRotation,
-            PlayerGaugeOxygen = player.PlayerGaugeOxygen,
-            PlayerGaugeThirst = player.PlayerGaugeThirst,
-            PlayerGaugeHealth = player.PlayerGaugeHealth,
-            PlayerGaugeToxic = player.PlayerGaugeToxic,
-            Host = player.Host,
-            PlanetId = player.PlanetId,
-            TotalCraftedObjects = player.TotalCraftedObjects,
-            TotalTerraTokenEarned = player.TotalTerraTokenEarned + amount,
-            CameraView = player.CameraView
+            TotalTerraTokenEarned = player.TotalTerraTokenEarned + amount
         });
     }
 

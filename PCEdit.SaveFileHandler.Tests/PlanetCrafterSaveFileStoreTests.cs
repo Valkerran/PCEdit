@@ -50,6 +50,11 @@ public sealed class PlanetCrafterSaveFileStoreTests : IDisposable
         Assert.Equal(original.Unlocks.UnlockedGroups, loaded.Unlocks.UnlockedGroups);
         Assert.Equal(original.Players[0].Name, loaded.Players[0].Name);
         Assert.Equal(original.WorldObjects[0].GId, loaded.WorldObjects[0].GId);
+        Assert.Equal(original.WorldObjects[0].MineableCount, loaded.WorldObjects[0].MineableCount);
+        Assert.Equal(original.WorldObjects[0].LinkedWorldObjectId, loaded.WorldObjects[0].LinkedWorldObjectId);
+        Assert.Equal(original.WorldObjects[0].Text, loaded.WorldObjects[0].Text);
+        Assert.Equal(original.Inventories[0].DemandGroups, loaded.Inventories[0].DemandGroups);
+        Assert.Equal(original.Inventories[0].SupplyGroups, loaded.Inventories[0].SupplyGroups);
     }
 
     [Fact]

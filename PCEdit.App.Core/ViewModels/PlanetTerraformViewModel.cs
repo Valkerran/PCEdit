@@ -106,9 +106,8 @@ public sealed partial class PlanetTerraformViewModel : ObservableObject
             return;
         }
 
-        _workspace.ReplaceTerraformation(PlanetId, terraformation => new PlanetTerraformation
+        _workspace.ReplaceTerraformation(PlanetId, terraformation => terraformation with
         {
-            PlanetId = terraformation.PlanetId,
             UnitOxygenLevel = levels.Oxygen,
             UnitHeatLevel = levels.Heat,
             UnitPressureLevel = levels.Pressure,

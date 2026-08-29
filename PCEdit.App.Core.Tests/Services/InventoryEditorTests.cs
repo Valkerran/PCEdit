@@ -129,6 +129,38 @@ public sealed class InventoryEditorTests
     }
 
     [Fact]
+    public void TryMoveItem_PreservesLogisticsConfigAndUnknownKeysOnTheRebuiltInventory()
+    {
+        var store = new FakeSaveFileStore();
+        var save = WorkspaceFixtures.Create();
+        // Turn inventory 10 (Alice's, holds items 200/201) into a logistics container with
+        // demand/supply groups plus a key this model doesn't name.
+        var index = save.Inventories.FindIndex(i => i.Id == 10);
+        save.Inventories[index] = save.Inventories[index] with
+        {
+            DemandGroups = "Iron,Cobalt",
+            SupplyGroups = "Magnesium",
+            Priority = 2,
+            ExtensionData = new() { ["futureField"] = System.Text.Json.JsonSerializer.SerializeToElement("keep-me") }
+        };
+        store.Seed(Path, save);
+        var localizer = new Localizer();
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
+        workspace.Load(Path);
+        var editor = new InventoryEditor(workspace, new ItemCatalog(), localizer);
+
+        var result = editor.TryMoveItem(worldObjectId: 200, destinationInventoryId: 30);
+
+        Assert.True(result.Success);
+        var moved = workspace.Current!.Inventories.Single(i => i.Id == 10);
+        Assert.Equal([201], WorldObjectIdsCodec.Parse(moved.WorldObjectIds));
+        Assert.Equal("Iron,Cobalt", moved.DemandGroups);
+        Assert.Equal("Magnesium", moved.SupplyGroups);
+        Assert.Equal(2, moved.Priority);
+        Assert.Equal("keep-me", moved.ExtensionData!["futureField"].GetString());
+    }
+
+    [Fact]
     public void TryMoveItem_ItemNotInAnyInventory_Fails()
     {
         var (editor, _) = CreateLoadedEditor();
