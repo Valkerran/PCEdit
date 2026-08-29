@@ -26,6 +26,7 @@ public sealed class InventoryEditor(ISaveFileWorkspace workspace, IItemCatalog i
                     Label = label,
                     Kind = kind,
                     Size = inventory.Size,
+                    Logistics = ReadLogistics(inventory),
                     Items = WorldObjectIdsCodec.Parse(inventory.WorldObjectIds)
                         .Where(worldObjectsById.ContainsKey)
                         .Select(id => ToItemView(worldObjectsById[id], inventory.Id))
@@ -112,6 +113,41 @@ public sealed class InventoryEditor(ISaveFileWorkspace workspace, IItemCatalog i
             WorldObjectIdsCodec.Parse(inventory.WorldObjectIds).Append(worldObjectId)));
 
         return MoveItemResult.Ok();
+    }
+
+    public void UpdateLogistics(int inventoryId, IReadOnlyList<string> demandGroupIds, IReadOnlyList<string> supplyGroupIds, int priority)
+    {
+        ArgumentNullException.ThrowIfNull(demandGroupIds);
+        ArgumentNullException.ThrowIfNull(supplyGroupIds);
+        if (priority < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(priority), priority, "Logistics priority cannot be negative.");
+        }
+
+        _workspace.ReplaceInventory(inventoryId, inventory =>
+        {
+            if (inventory.Priority is null)
+            {
+                throw new InvalidOperationException($"Inventory {inventoryId} is not a logistics container.");
+            }
+
+            return inventory with
+            {
+                DemandGroups = GroupListCodec.Join(demandGroupIds),
+                SupplyGroups = GroupListCodec.Join(supplyGroupIds),
+                Priority = priority
+            };
+        });
+    }
+
+    private static LogisticsConfig? ReadLogistics(Inventory inventory)
+    {
+        return inventory.Priority is { } priority
+            ? new LogisticsConfig(
+                GroupListCodec.Parse(inventory.DemandGroups),
+                GroupListCodec.Parse(inventory.SupplyGroups),
+                priority)
+            : null;
     }
 
     private static Inventory WithWorldObjectIds(Inventory inventory, IEnumerable<int> ids)

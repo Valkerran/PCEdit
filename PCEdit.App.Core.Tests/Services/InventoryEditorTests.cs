@@ -34,6 +34,61 @@ public sealed class InventoryEditorTests
     }
 
     [Fact]
+    public void BuildInventoryGroups_PopulatesLogisticsOnlyForContainersWithAPriorityKey()
+    {
+        var (editor, _) = CreateLogisticsEditor();
+
+        var groups = editor.BuildInventoryGroups().ToDictionary(g => g.InventoryId);
+
+        Assert.False(groups[10].IsLogisticsContainer);
+        Assert.True(groups[30].IsLogisticsContainer);
+        Assert.Equal(["Iron", "Cobalt"], groups[30].Logistics!.DemandGroupIds);
+        Assert.Equal(["Magnesium"], groups[30].Logistics!.SupplyGroupIds);
+        Assert.Equal(2, groups[30].Logistics!.Priority);
+    }
+
+    [Fact]
+    public void UpdateLogistics_ReplacesGroupsAndPriority_AndKeepsOtherInventoryFields()
+    {
+        var (editor, workspace) = CreateLogisticsEditor();
+
+        editor.UpdateLogistics(30, ["Titanium", "Silicon"], [], priority: 5);
+
+        var inv = workspace.Current!.Inventories.Single(i => i.Id == 30);
+        Assert.Equal("Titanium,Silicon", inv.DemandGroups);
+        Assert.Equal("", inv.SupplyGroups);
+        Assert.Equal(5, inv.Priority);
+        Assert.Equal("202", inv.WorldObjectIds);
+        Assert.True(workspace.IsDirty);
+    }
+
+    [Fact]
+    public void UpdateLogistics_OnAPlainInventory_Throws()
+    {
+        var (editor, _) = CreateLogisticsEditor();
+
+        Assert.Throws<InvalidOperationException>(() => editor.UpdateLogistics(10, [], [], 0));
+    }
+
+    private static (InventoryEditor Editor, SaveFileWorkspace Workspace) CreateLogisticsEditor()
+    {
+        var store = new FakeSaveFileStore();
+        var save = WorkspaceFixtures.Create();
+        var index = save.Inventories.FindIndex(i => i.Id == 30);
+        save.Inventories[index] = save.Inventories[index] with
+        {
+            DemandGroups = "Iron,Cobalt",
+            SupplyGroups = "Magnesium",
+            Priority = 2
+        };
+        store.Seed(Path, save);
+        var localizer = new Localizer();
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
+        workspace.Load(Path);
+        return (new InventoryEditor(workspace, new ItemCatalog(), localizer), workspace);
+    }
+
+    [Fact]
     public void BuildInventoryGroups_ClassifiesKind()
     {
         var (editor, _) = CreateLoadedEditor();

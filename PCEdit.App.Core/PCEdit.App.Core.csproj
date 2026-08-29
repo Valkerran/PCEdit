@@ -8,11 +8,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <!-- App-bundled item catalog (friendly names + category icons keyed by GId).
-             Embedded so it loads identically from every UI head and the test host.
-             Regenerate with tools/item-catalog/gen_catalog.py. -->
+        <!-- App-bundled data (friendly names keyed by id). Embedded so it loads identically from
+             every UI head and the test host. Regenerate with the scripts under tools/item-catalog/. -->
         <None Remove="Data\ItemCatalog.json" />
         <EmbeddedResource Include="Data\ItemCatalog.json" />
+        <None Remove="Data\LogisticsGroups.json" />
+        <EmbeddedResource Include="Data\LogisticsGroups.json" />
         <InternalsVisibleTo Include="PCEdit.App.Core.Tests" />
     </ItemGroup>
 

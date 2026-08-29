@@ -9,3 +9,7 @@ PCEdit.sln.DotSettings.user
 
 # Packaging output
 /artifacts/
+
+# Ad-hoc save files dropped in the tree for manual round-trip testing
+/PCEdit.SaveFileHandler/0A2BC215*
+*.planetcrafter-test.json

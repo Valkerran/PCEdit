@@ -12,6 +12,14 @@ public sealed class InventoryGroup
 
     public required List<InventoryItemView> Items { get; init; }
 
+    /// <summary>
+    /// Logistics config, when this inventory is a logistics container (the game writes a
+    /// <c>priority</c> key on those and only those). Null on a plain inventory.
+    /// </summary>
+    public LogisticsConfig? Logistics { get; init; }
+
+    public bool IsLogisticsContainer => Logistics is not null;
+
     public int Count => Items.Count;
 
     public bool HasItems => Count > 0;

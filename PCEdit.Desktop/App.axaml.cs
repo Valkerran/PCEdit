@@ -55,6 +55,7 @@ public partial class App : Application
         services.AddSingleton<MainWindowAccessor>();
         services.AddSingleton<IScreenReaderAnnouncer, AvaloniaScreenReaderAnnouncer>();
         services.AddSingleton<IItemCatalog, ItemCatalog>();
+        services.AddSingleton<ILogisticsGroupCatalog, LogisticsGroupCatalog>();
         services.AddSingleton<ISaveFileWorkspace, SaveFileWorkspace>();
         services.AddSingleton<IInventoryEditor, InventoryEditor>();
         services.AddSingleton<IFilePickerService, AvaloniaFilePickerService>();
