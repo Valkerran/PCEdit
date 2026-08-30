@@ -109,6 +109,34 @@
   <data name="SelectInv_MoveFailedTitle" xml:space="preserve"><value>Не удалось переместить</value></data>
   <data name="SelectInv_MoveIncomplete" xml:space="preserve"><value>Не удалось завершить перемещение.</value></data>
   <data name="SelectInv_Moved" xml:space="preserve"><value>Предмет перемещён в {0}.</value></data>
+  <data name="Inventories_LogisticsSummary" xml:space="preserve"><value>Спрос {0} · Поставка {1} · Приоритет {2}</value></data>
+  <data name="Inventories_EditLogistics" xml:space="preserve"><value>Спрос и поставка…</value></data>
+  <data name="Inventories_EditLogisticsA11y" xml:space="preserve"><value>Изменить группы спроса и поставки для {0}</value></data>
+  <data name="Logistics_Title" xml:space="preserve"><value>Спрос и поставка</value></data>
+  <data name="Logistics_DemandHeading" xml:space="preserve"><value>Группы спроса</value></data>
+  <data name="Logistics_DemandHint" xml:space="preserve"><value>Ресурсы, которые этот контейнер запрашивает у сети.</value></data>
+  <data name="Logistics_SupplyHeading" xml:space="preserve"><value>Группы поставки</value></data>
+  <data name="Logistics_SupplyHint" xml:space="preserve"><value>Ресурсы, которые этот контейнер предоставляет сети.</value></data>
+  <data name="Logistics_PriorityLabel" xml:space="preserve"><value>Приоритет</value></data>
+  <data name="Logistics_PriorityHint" xml:space="preserve"><value>Контейнеры с более высоким приоритетом обслуживаются первыми.</value></data>
+  <data name="Logistics_PriorityLowest" xml:space="preserve"><value>Самый низкий</value></data>
+  <data name="Logistics_PriorityVeryLow" xml:space="preserve"><value>Очень низкий</value></data>
+  <data name="Logistics_PriorityLow" xml:space="preserve"><value>Низкий</value></data>
+  <data name="Logistics_PriorityNormal" xml:space="preserve"><value>Обычный</value></data>
+  <data name="Logistics_PriorityHigh" xml:space="preserve"><value>Высокий</value></data>
+  <data name="Logistics_PriorityVeryHigh" xml:space="preserve"><value>Очень высокий</value></data>
+  <data name="Logistics_PriorityHighest" xml:space="preserve"><value>Самый высокий</value></data>
+  <data name="Logistics_PriorityUnknown" xml:space="preserve"><value>Неизвестно ({0})</value></data>
+  <data name="Logistics_AddPlaceholder" xml:space="preserve"><value>Добавьте группу или введите id…</value></data>
+  <data name="Logistics_Add" xml:space="preserve"><value>Добавить</value></data>
+  <data name="Logistics_SelectAll" xml:space="preserve"><value>Выбрать все</value></data>
+  <data name="Logistics_Clear" xml:space="preserve"><value>Очистить</value></data>
+  <data name="Logistics_Everything" xml:space="preserve"><value>Всё</value></data>
+  <data name="Logistics_RemoveA11y" xml:space="preserve"><value>Удалить {0}</value></data>
+  <data name="Logistics_EmptyList" xml:space="preserve"><value>Нет</value></data>
+  <data name="Logistics_CustomBadge" xml:space="preserve"><value>своя</value></data>
+  <data name="Logistics_Apply" xml:space="preserve"><value>Применить</value></data>
+  <data name="Logistics_Applied" xml:space="preserve"><value>Спрос и поставка для {0} обновлены.</value></data>
   <data name="TerraTokens_Title" xml:space="preserve"><value>Терра-жетоны</value></data>
   <data name="TerraTokens_Heading" xml:space="preserve"><value>Выдать терра-жетоны</value></data>
   <data name="TerraTokens_CurrentBalance" xml:space="preserve"><value>ТЕКУЩИЙ БАЛАНС</value></data>

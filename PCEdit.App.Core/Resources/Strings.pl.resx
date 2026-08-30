@@ -109,6 +109,34 @@
   <data name="SelectInv_MoveFailedTitle" xml:space="preserve"><value>Przenoszenie nie powiodło się</value></data>
   <data name="SelectInv_MoveIncomplete" xml:space="preserve"><value>Nie udało się ukończyć przenoszenia.</value></data>
   <data name="SelectInv_Moved" xml:space="preserve"><value>Przedmiot przeniesiony do {0}.</value></data>
+  <data name="Inventories_LogisticsSummary" xml:space="preserve"><value>Popyt {0} · Podaż {1} · Priorytet {2}</value></data>
+  <data name="Inventories_EditLogistics" xml:space="preserve"><value>Popyt i podaż…</value></data>
+  <data name="Inventories_EditLogisticsA11y" xml:space="preserve"><value>Edytuj grupy popytu i podaży dla {0}</value></data>
+  <data name="Logistics_Title" xml:space="preserve"><value>Popyt i podaż</value></data>
+  <data name="Logistics_DemandHeading" xml:space="preserve"><value>Grupy popytu</value></data>
+  <data name="Logistics_DemandHint" xml:space="preserve"><value>Zasoby, których ten pojemnik żąda od sieci.</value></data>
+  <data name="Logistics_SupplyHeading" xml:space="preserve"><value>Grupy podaży</value></data>
+  <data name="Logistics_SupplyHint" xml:space="preserve"><value>Zasoby, które ten pojemnik udostępnia sieci.</value></data>
+  <data name="Logistics_PriorityLabel" xml:space="preserve"><value>Priorytet</value></data>
+  <data name="Logistics_PriorityHint" xml:space="preserve"><value>Pojemniki o wyższym priorytecie są obsługiwane najpierw.</value></data>
+  <data name="Logistics_PriorityLowest" xml:space="preserve"><value>Najniższy</value></data>
+  <data name="Logistics_PriorityVeryLow" xml:space="preserve"><value>Bardzo niski</value></data>
+  <data name="Logistics_PriorityLow" xml:space="preserve"><value>Niski</value></data>
+  <data name="Logistics_PriorityNormal" xml:space="preserve"><value>Normalny</value></data>
+  <data name="Logistics_PriorityHigh" xml:space="preserve"><value>Wysoki</value></data>
+  <data name="Logistics_PriorityVeryHigh" xml:space="preserve"><value>Bardzo wysoki</value></data>
+  <data name="Logistics_PriorityHighest" xml:space="preserve"><value>Najwyższy</value></data>
+  <data name="Logistics_PriorityUnknown" xml:space="preserve"><value>Nieznany ({0})</value></data>
+  <data name="Logistics_AddPlaceholder" xml:space="preserve"><value>Dodaj grupę lub wpisz identyfikator…</value></data>
+  <data name="Logistics_Add" xml:space="preserve"><value>Dodaj</value></data>
+  <data name="Logistics_SelectAll" xml:space="preserve"><value>Zaznacz wszystko</value></data>
+  <data name="Logistics_Clear" xml:space="preserve"><value>Wyczyść</value></data>
+  <data name="Logistics_Everything" xml:space="preserve"><value>Wszystko</value></data>
+  <data name="Logistics_RemoveA11y" xml:space="preserve"><value>Usuń {0}</value></data>
+  <data name="Logistics_EmptyList" xml:space="preserve"><value>Brak</value></data>
+  <data name="Logistics_CustomBadge" xml:space="preserve"><value>własna</value></data>
+  <data name="Logistics_Apply" xml:space="preserve"><value>Zastosuj</value></data>
+  <data name="Logistics_Applied" xml:space="preserve"><value>Zaktualizowano popyt i podaż dla {0}.</value></data>
   <data name="TerraTokens_Title" xml:space="preserve"><value>Żetony terraformacji</value></data>
   <data name="TerraTokens_Heading" xml:space="preserve"><value>Przyznaj żetony terraformacji</value></data>
   <data name="TerraTokens_CurrentBalance" xml:space="preserve"><value>OBECNY STAN</value></data>

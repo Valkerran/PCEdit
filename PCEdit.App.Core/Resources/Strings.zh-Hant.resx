@@ -109,6 +109,34 @@
   <data name="SelectInv_MoveFailedTitle" xml:space="preserve"><value>移動失敗</value></data>
   <data name="SelectInv_MoveIncomplete" xml:space="preserve"><value>無法完成移動。</value></data>
   <data name="SelectInv_Moved" xml:space="preserve"><value>物品已移動到 {0}。</value></data>
+  <data name="Inventories_LogisticsSummary" xml:space="preserve"><value>需求 {0} · 供應 {1} · 優先順序 {2}</value></data>
+  <data name="Inventories_EditLogistics" xml:space="preserve"><value>需求與供應…</value></data>
+  <data name="Inventories_EditLogisticsA11y" xml:space="preserve"><value>編輯 {0} 的需求與供應群組</value></data>
+  <data name="Logistics_Title" xml:space="preserve"><value>需求與供應</value></data>
+  <data name="Logistics_DemandHeading" xml:space="preserve"><value>需求群組</value></data>
+  <data name="Logistics_DemandHint" xml:space="preserve"><value>此容器向物流網路請求的資源。</value></data>
+  <data name="Logistics_SupplyHeading" xml:space="preserve"><value>供應群組</value></data>
+  <data name="Logistics_SupplyHint" xml:space="preserve"><value>此容器向物流網路提供的資源。</value></data>
+  <data name="Logistics_PriorityLabel" xml:space="preserve"><value>優先順序</value></data>
+  <data name="Logistics_PriorityHint" xml:space="preserve"><value>優先順序較高的容器會優先處理。</value></data>
+  <data name="Logistics_PriorityLowest" xml:space="preserve"><value>最低</value></data>
+  <data name="Logistics_PriorityVeryLow" xml:space="preserve"><value>很低</value></data>
+  <data name="Logistics_PriorityLow" xml:space="preserve"><value>低</value></data>
+  <data name="Logistics_PriorityNormal" xml:space="preserve"><value>正常</value></data>
+  <data name="Logistics_PriorityHigh" xml:space="preserve"><value>高</value></data>
+  <data name="Logistics_PriorityVeryHigh" xml:space="preserve"><value>很高</value></data>
+  <data name="Logistics_PriorityHighest" xml:space="preserve"><value>最高</value></data>
+  <data name="Logistics_PriorityUnknown" xml:space="preserve"><value>未知（{0}）</value></data>
+  <data name="Logistics_AddPlaceholder" xml:space="preserve"><value>新增群組，或輸入 id…</value></data>
+  <data name="Logistics_Add" xml:space="preserve"><value>新增</value></data>
+  <data name="Logistics_SelectAll" xml:space="preserve"><value>全選</value></data>
+  <data name="Logistics_Clear" xml:space="preserve"><value>清除</value></data>
+  <data name="Logistics_Everything" xml:space="preserve"><value>全部</value></data>
+  <data name="Logistics_RemoveA11y" xml:space="preserve"><value>移除 {0}</value></data>
+  <data name="Logistics_EmptyList" xml:space="preserve"><value>無</value></data>
+  <data name="Logistics_CustomBadge" xml:space="preserve"><value>自訂</value></data>
+  <data name="Logistics_Apply" xml:space="preserve"><value>套用</value></data>
+  <data name="Logistics_Applied" xml:space="preserve"><value>已更新 {0} 的需求與供應。</value></data>
   <data name="TerraTokens_Title" xml:space="preserve"><value>地球化代幣</value></data>
   <data name="TerraTokens_Heading" xml:space="preserve"><value>發放地球化代幣</value></data>
   <data name="TerraTokens_CurrentBalance" xml:space="preserve"><value>目前餘額</value></data>

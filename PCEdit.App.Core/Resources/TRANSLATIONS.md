@@ -31,6 +31,14 @@ The accessibility pass (screen-reader names for the nav list and previously-unla
 added `Shell_NavA11y` — also machine-translated. The nav list's name is spoken on focus; the
 destination page name is announced via the live region on every navigation.
 
+The logistics-editor pass (editing a container's demand / supply groups + priority on the
+Inventories page) added the `Logistics_*` keys and `Inventories_{LogisticsSummary,EditLogistics,
+EditLogisticsA11y}` — all machine-translated. `Logistics_Priority{Lowest…Highest}` are the game's
+7 named priority levels; the romance-language forms agree with "priority" (feminine).
+`Logistics_{SelectAll,Clear,Everything}` cover the demand/supply bulk controls (a list holding
+every known group collapses to "Everything"). `Logistics_PriorityUnknown` ("Unknown ({0})") labels
+a saved priority outside the game's -3..3 range — carried through an edit untouched.
+
 | Culture | Language | Reviewed |
 |---|---|---|
 | en-US | English (United States) | n/a (source) |

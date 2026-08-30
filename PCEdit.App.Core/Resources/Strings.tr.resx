@@ -109,6 +109,34 @@
   <data name="SelectInv_MoveFailedTitle" xml:space="preserve"><value>Taşıma başarısız</value></data>
   <data name="SelectInv_MoveIncomplete" xml:space="preserve"><value>Taşıma tamamlanamadı.</value></data>
   <data name="SelectInv_Moved" xml:space="preserve"><value>Öge {0} envanterine taşındı.</value></data>
+  <data name="Inventories_LogisticsSummary" xml:space="preserve"><value>Talep {0} · Arz {1} · Öncelik {2}</value></data>
+  <data name="Inventories_EditLogistics" xml:space="preserve"><value>Talep ve arz…</value></data>
+  <data name="Inventories_EditLogisticsA11y" xml:space="preserve"><value>{0} için talep ve arz gruplarını düzenle</value></data>
+  <data name="Logistics_Title" xml:space="preserve"><value>Talep ve Arz</value></data>
+  <data name="Logistics_DemandHeading" xml:space="preserve"><value>Talep grupları</value></data>
+  <data name="Logistics_DemandHint" xml:space="preserve"><value>Bu konteynerin ağdan istediği kaynaklar.</value></data>
+  <data name="Logistics_SupplyHeading" xml:space="preserve"><value>Arz grupları</value></data>
+  <data name="Logistics_SupplyHint" xml:space="preserve"><value>Bu konteynerin ağa sunduğu kaynaklar.</value></data>
+  <data name="Logistics_PriorityLabel" xml:space="preserve"><value>Öncelik</value></data>
+  <data name="Logistics_PriorityHint" xml:space="preserve"><value>Önceliği yüksek olan konteynerlere önce hizmet verilir.</value></data>
+  <data name="Logistics_PriorityLowest" xml:space="preserve"><value>En düşük</value></data>
+  <data name="Logistics_PriorityVeryLow" xml:space="preserve"><value>Çok düşük</value></data>
+  <data name="Logistics_PriorityLow" xml:space="preserve"><value>Düşük</value></data>
+  <data name="Logistics_PriorityNormal" xml:space="preserve"><value>Normal</value></data>
+  <data name="Logistics_PriorityHigh" xml:space="preserve"><value>Yüksek</value></data>
+  <data name="Logistics_PriorityVeryHigh" xml:space="preserve"><value>Çok yüksek</value></data>
+  <data name="Logistics_PriorityHighest" xml:space="preserve"><value>En yüksek</value></data>
+  <data name="Logistics_PriorityUnknown" xml:space="preserve"><value>Bilinmiyor ({0})</value></data>
+  <data name="Logistics_AddPlaceholder" xml:space="preserve"><value>Bir grup ekleyin veya bir kimlik yazın…</value></data>
+  <data name="Logistics_Add" xml:space="preserve"><value>Ekle</value></data>
+  <data name="Logistics_SelectAll" xml:space="preserve"><value>Tümünü seç</value></data>
+  <data name="Logistics_Clear" xml:space="preserve"><value>Temizle</value></data>
+  <data name="Logistics_Everything" xml:space="preserve"><value>Her şey</value></data>
+  <data name="Logistics_RemoveA11y" xml:space="preserve"><value>{0} öğesini kaldır</value></data>
+  <data name="Logistics_EmptyList" xml:space="preserve"><value>Yok</value></data>
+  <data name="Logistics_CustomBadge" xml:space="preserve"><value>özel</value></data>
+  <data name="Logistics_Apply" xml:space="preserve"><value>Uygula</value></data>
+  <data name="Logistics_Applied" xml:space="preserve"><value>{0} için talep ve arz güncellendi.</value></data>
   <data name="TerraTokens_Title" xml:space="preserve"><value>Terra Jetonları</value></data>
   <data name="TerraTokens_Heading" xml:space="preserve"><value>Terra Jetonu Ver</value></data>
   <data name="TerraTokens_CurrentBalance" xml:space="preserve"><value>GÜNCEL BAKİYE</value></data>

@@ -55,6 +55,7 @@ public partial class App : Application
         services.AddSingleton<MainWindowAccessor>();
         services.AddSingleton<IScreenReaderAnnouncer, AvaloniaScreenReaderAnnouncer>();
         services.AddSingleton<IItemCatalog, ItemCatalog>();
+        services.AddSingleton<ILogisticsGroupCatalog, LogisticsGroupCatalog>();
         services.AddSingleton<ISaveFileWorkspace, SaveFileWorkspace>();
         services.AddSingleton<IInventoryEditor, InventoryEditor>();
         services.AddSingleton<IFilePickerService, AvaloniaFilePickerService>();
@@ -77,6 +78,7 @@ public partial class App : Application
 
         // Transient: opened per-move as a modal with a fresh Initialize(worldObjectId).
         services.AddTransient<SelectInventoryViewModel>();
+        services.AddTransient<LogisticsEditorViewModel>();
 
         return services.BuildServiceProvider();
     }

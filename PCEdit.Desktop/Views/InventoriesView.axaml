@@ -87,6 +87,17 @@
                                     </Border>
                                 </Grid>
 
+                                <Border Classes="divider" IsVisible="{Binding IsLogisticsContainer}" />
+
+                                <Grid ColumnDefinitions="*,Auto" IsVisible="{Binding IsLogisticsContainer}">
+                                    <TextBlock Grid.Column="0" VerticalAlignment="Center" Classes="caption"
+                                               Text="{Binding LogisticsSummary}" />
+                                    <Button Grid.Column="1" Content="{m:Loc Inventories_EditLogistics}"
+                                            Command="{Binding DataContext.EditLogisticsCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                            CommandParameter="{Binding}"
+                                            AutomationProperties.Name="{m:LocFormat Key=Inventories_EditLogisticsA11y, Path=Label}" />
+                                </Grid>
+
                                 <Border Classes="divider" />
 
                                 <TextBlock Text="{m:Loc Inventories_Empty}" Classes="caption"
