@@ -1,5 +1,4 @@
 using System.Collections.ObjectModel;
-using System.Globalization;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using PCEdit.App.Core.Localization;
@@ -33,7 +32,7 @@ public sealed partial class LogisticsEditorViewModel(
     private string _title = string.Empty;
 
     [ObservableProperty]
-    private string _priority = "0";
+    private LogisticsPriority _selectedPriority = LogisticsPriority.Normal;
 
     [ObservableProperty]
     private LogisticsGroupInfo? _demandGroupToAdd;
@@ -47,14 +46,15 @@ public sealed partial class LogisticsEditorViewModel(
     [ObservableProperty]
     private string _supplyGroupText = string.Empty;
 
-    [ObservableProperty]
-    private string? _statusMessage;
-
-    [ObservableProperty]
-    private StatusKind _statusKind;
-
     /// <summary>Every known group, for the "add" pickers.</summary>
     public IReadOnlyList<LogisticsGroupInfo> AllGroups => _groupCatalog.All;
+
+    /// <summary>The 7 priority levels the game allows, lowest first, with localized names.</summary>
+    public IReadOnlyList<LogisticsPriorityChoice> PriorityChoices => _priorityChoices ??= LogisticsPriorityLevels.All
+        .Select(level => new LogisticsPriorityChoice(level, _localizer[level.ResourceKey()]))
+        .ToList();
+
+    private IReadOnlyList<LogisticsPriorityChoice>? _priorityChoices;
 
     public ObservableCollection<LogisticsGroupInfo> DemandGroups { get; } = [];
 
@@ -67,7 +67,7 @@ public sealed partial class LogisticsEditorViewModel(
 
         InventoryId = inventoryId;
         Title = container.Label;
-        Priority = container.Priority.ToString(CultureInfo.InvariantCulture);
+        SelectedPriority = container.Priority;
 
         DemandGroups.Clear();
         foreach (var id in container.DemandGroupIds)
@@ -115,19 +115,11 @@ public sealed partial class LogisticsEditorViewModel(
     [RelayCommand]
     private async Task ApplyAsync()
     {
-        if (!int.TryParse(Priority, NumberStyles.Integer, CultureInfo.InvariantCulture, out var priority) || priority < 0)
-        {
-            StatusKind = StatusKind.Error;
-            StatusMessage = _localizer[LocKeys.Logistics_InvalidPriority];
-            _announcer.Announce(_localizer.Format(LocKeys.Announce_ErrorPrefix, StatusMessage));
-            return;
-        }
-
         _inventoryEditor.UpdateLogistics(
             InventoryId,
             DemandGroups.Select(g => g.Id).ToList(),
             SupplyGroups.Select(g => g.Id).ToList(),
-            priority);
+            SelectedPriority);
 
         _announcer.Announce(_localizer.Format(LocKeys.Logistics_Applied, Title));
         await _navigation.CloseModalAsync();

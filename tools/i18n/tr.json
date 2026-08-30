@@ -175,5 +175,11 @@
   "Logistics_CustomBadge": "özel",
   "Logistics_Apply": "Uygula",
   "Logistics_Applied": "{0} için talep ve arz güncellendi.",
-  "Logistics_InvalidPriority": "Öncelik bir tam sayı olmalıdır (0 veya daha fazla)."
+  "Logistics_PriorityLowest": "En düşük",
+  "Logistics_PriorityVeryLow": "Çok düşük",
+  "Logistics_PriorityLow": "Düşük",
+  "Logistics_PriorityNormal": "Normal",
+  "Logistics_PriorityHigh": "Yüksek",
+  "Logistics_PriorityVeryHigh": "Çok yüksek",
+  "Logistics_PriorityHighest": "En yüksek"
 }

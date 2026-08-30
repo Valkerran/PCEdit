@@ -119,6 +119,13 @@
   <data name="Logistics_SupplyHint" xml:space="preserve"><value>Recursos que este contêiner oferece à rede.</value></data>
   <data name="Logistics_PriorityLabel" xml:space="preserve"><value>Prioridade</value></data>
   <data name="Logistics_PriorityHint" xml:space="preserve"><value>Os contêineres com prioridade mais alta são atendidos primeiro.</value></data>
+  <data name="Logistics_PriorityLowest" xml:space="preserve"><value>Mais baixa</value></data>
+  <data name="Logistics_PriorityVeryLow" xml:space="preserve"><value>Muito baixa</value></data>
+  <data name="Logistics_PriorityLow" xml:space="preserve"><value>Baixa</value></data>
+  <data name="Logistics_PriorityNormal" xml:space="preserve"><value>Normal</value></data>
+  <data name="Logistics_PriorityHigh" xml:space="preserve"><value>Alta</value></data>
+  <data name="Logistics_PriorityVeryHigh" xml:space="preserve"><value>Muito alta</value></data>
+  <data name="Logistics_PriorityHighest" xml:space="preserve"><value>Mais alta</value></data>
   <data name="Logistics_AddPlaceholder" xml:space="preserve"><value>Adicionar um grupo ou digitar um id…</value></data>
   <data name="Logistics_Add" xml:space="preserve"><value>Adicionar</value></data>
   <data name="Logistics_RemoveA11y" xml:space="preserve"><value>Remover {0}</value></data>
@@ -126,7 +133,6 @@
   <data name="Logistics_CustomBadge" xml:space="preserve"><value>personal.</value></data>
   <data name="Logistics_Apply" xml:space="preserve"><value>Aplicar</value></data>
   <data name="Logistics_Applied" xml:space="preserve"><value>Demanda e fornecimento de {0} atualizados.</value></data>
-  <data name="Logistics_InvalidPriority" xml:space="preserve"><value>A prioridade deve ser um número inteiro (0 ou mais).</value></data>
   <data name="TerraTokens_Title" xml:space="preserve"><value>Fichas de terraformação</value></data>
   <data name="TerraTokens_Heading" xml:space="preserve"><value>Conceder fichas de terraformação</value></data>
   <data name="TerraTokens_CurrentBalance" xml:space="preserve"><value>SALDO ATUAL</value></data>

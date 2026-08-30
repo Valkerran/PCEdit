@@ -69,8 +69,8 @@ public static class LocKeys
     public const string SelectInv_MoveIncomplete = "SelectInv_MoveIncomplete";
     public const string SelectInv_Moved = "SelectInv_Moved";
 
+    public const string Inventories_LogisticsSummary = "Inventories_LogisticsSummary";
     public const string Logistics_Applied = "Logistics_Applied";
-    public const string Logistics_InvalidPriority = "Logistics_InvalidPriority";
 
     public const string TerraTokens_ChoosePlayer = "TerraTokens_ChoosePlayer";
     public const string TerraTokens_InvalidAmount = "TerraTokens_InvalidAmount";

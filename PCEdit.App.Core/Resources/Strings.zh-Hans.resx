@@ -119,6 +119,13 @@
   <data name="Logistics_SupplyHint" xml:space="preserve"><value>此容器向物流网络提供的资源。</value></data>
   <data name="Logistics_PriorityLabel" xml:space="preserve"><value>优先级</value></data>
   <data name="Logistics_PriorityHint" xml:space="preserve"><value>优先级更高的容器会被优先处理。</value></data>
+  <data name="Logistics_PriorityLowest" xml:space="preserve"><value>最低</value></data>
+  <data name="Logistics_PriorityVeryLow" xml:space="preserve"><value>很低</value></data>
+  <data name="Logistics_PriorityLow" xml:space="preserve"><value>低</value></data>
+  <data name="Logistics_PriorityNormal" xml:space="preserve"><value>正常</value></data>
+  <data name="Logistics_PriorityHigh" xml:space="preserve"><value>高</value></data>
+  <data name="Logistics_PriorityVeryHigh" xml:space="preserve"><value>很高</value></data>
+  <data name="Logistics_PriorityHighest" xml:space="preserve"><value>最高</value></data>
   <data name="Logistics_AddPlaceholder" xml:space="preserve"><value>添加分组，或输入 id…</value></data>
   <data name="Logistics_Add" xml:space="preserve"><value>添加</value></data>
   <data name="Logistics_RemoveA11y" xml:space="preserve"><value>移除 {0}</value></data>
@@ -126,7 +133,6 @@
   <data name="Logistics_CustomBadge" xml:space="preserve"><value>自定义</value></data>
   <data name="Logistics_Apply" xml:space="preserve"><value>应用</value></data>
   <data name="Logistics_Applied" xml:space="preserve"><value>已更新 {0} 的需求和供应。</value></data>
-  <data name="Logistics_InvalidPriority" xml:space="preserve"><value>优先级必须是整数（0 或更大）。</value></data>
   <data name="TerraTokens_Title" xml:space="preserve"><value>地球化代币</value></data>
   <data name="TerraTokens_Heading" xml:space="preserve"><value>发放地球化代币</value></data>
   <data name="TerraTokens_CurrentBalance" xml:space="preserve"><value>当前余额</value></data>

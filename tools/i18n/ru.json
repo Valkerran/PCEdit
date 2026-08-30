@@ -175,5 +175,11 @@
   "Logistics_CustomBadge": "своя",
   "Logistics_Apply": "Применить",
   "Logistics_Applied": "Спрос и поставка для {0} обновлены.",
-  "Logistics_InvalidPriority": "Приоритет должен быть целым числом (0 или больше)."
+  "Logistics_PriorityLowest": "Самый низкий",
+  "Logistics_PriorityVeryLow": "Очень низкий",
+  "Logistics_PriorityLow": "Низкий",
+  "Logistics_PriorityNormal": "Обычный",
+  "Logistics_PriorityHigh": "Высокий",
+  "Logistics_PriorityVeryHigh": "Очень высокий",
+  "Logistics_PriorityHighest": "Самый высокий"
 }

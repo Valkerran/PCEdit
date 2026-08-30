@@ -20,13 +20,15 @@ public sealed class InventoryEditor(ISaveFileWorkspace workspace, IItemCatalog i
             .Select(inventory =>
             {
                 var (label, kind) = DescribeInventory(save, inventory.Id, containersByInventoryId);
+                var logistics = ReadLogistics(inventory);
                 return new InventoryGroup
                 {
                     InventoryId = inventory.Id,
                     Label = label,
                     Kind = kind,
                     Size = inventory.Size,
-                    Logistics = ReadLogistics(inventory),
+                    Logistics = logistics,
+                    LogisticsSummary = logistics is null ? null : FormatLogisticsSummary(logistics),
                     Items = WorldObjectIdsCodec.Parse(inventory.WorldObjectIds)
                         .Where(worldObjectsById.ContainsKey)
                         .Select(id => ToItemView(worldObjectsById[id], inventory.Id))
@@ -131,17 +133,13 @@ public sealed class InventoryEditor(ISaveFileWorkspace workspace, IItemCatalog i
             label,
             GroupListCodec.Parse(inventory.DemandGroups),
             GroupListCodec.Parse(inventory.SupplyGroups),
-            priority);
+            LogisticsPriorityLevels.FromRaw(priority));
     }
 
-    public void UpdateLogistics(int inventoryId, IReadOnlyList<string> demandGroupIds, IReadOnlyList<string> supplyGroupIds, int priority)
+    public void UpdateLogistics(int inventoryId, IReadOnlyList<string> demandGroupIds, IReadOnlyList<string> supplyGroupIds, LogisticsPriority priority)
     {
         ArgumentNullException.ThrowIfNull(demandGroupIds);
         ArgumentNullException.ThrowIfNull(supplyGroupIds);
-        if (priority < 0)
-        {
-            throw new ArgumentOutOfRangeException(nameof(priority), priority, "Logistics priority cannot be negative.");
-        }
 
         _workspace.ReplaceInventory(inventoryId, inventory =>
         {
@@ -154,19 +152,28 @@ public sealed class InventoryEditor(ISaveFileWorkspace workspace, IItemCatalog i
             {
                 DemandGroups = GroupListCodec.Join(demandGroupIds),
                 SupplyGroups = GroupListCodec.Join(supplyGroupIds),
-                Priority = priority
+                Priority = priority.ToRaw()
             };
         });
     }
 
-    private static LogisticsConfig? ReadLogistics(Inventory inventory)
+    private LogisticsConfig? ReadLogistics(Inventory inventory)
     {
         return inventory.Priority is { } priority
             ? new LogisticsConfig(
                 GroupListCodec.Parse(inventory.DemandGroups),
                 GroupListCodec.Parse(inventory.SupplyGroups),
-                priority)
+                LogisticsPriorityLevels.FromRaw(priority))
             : null;
+    }
+
+    private string FormatLogisticsSummary(LogisticsConfig logistics)
+    {
+        return _localizer.Format(
+            LocKeys.Inventories_LogisticsSummary,
+            logistics.DemandGroupIds.Count,
+            logistics.SupplyGroupIds.Count,
+            _localizer[logistics.Priority.ResourceKey()]);
     }
 
     private static Inventory WithWorldObjectIds(Inventory inventory, IEnumerable<int> ids)

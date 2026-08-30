@@ -44,7 +44,24 @@ public sealed class InventoryEditorTests
         Assert.True(groups[30].IsLogisticsContainer);
         Assert.Equal(["Iron", "Cobalt"], groups[30].Logistics!.DemandGroupIds);
         Assert.Equal(["Magnesium"], groups[30].Logistics!.SupplyGroupIds);
-        Assert.Equal(2, groups[30].Logistics!.Priority);
+        Assert.Equal(LogisticsPriority.VeryHigh, groups[30].Logistics!.Priority);
+        Assert.Equal("Demand 2 · Supply 1 · Priority Very High", groups[30].LogisticsSummary);
+    }
+
+    [Fact]
+    public void BuildInventoryGroups_ClampsAnOutOfRangeRawPriority()
+    {
+        var store = new FakeSaveFileStore();
+        var save = WorkspaceFixtures.Create();
+        var index = save.Inventories.FindIndex(i => i.Id == 30);
+        save.Inventories[index] = save.Inventories[index] with { DemandGroups = "", SupplyGroups = "", Priority = -99 };
+        store.Seed(Path, save);
+        var localizer = new Localizer();
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
+        workspace.Load(Path);
+        var editor = new InventoryEditor(workspace, new ItemCatalog(), localizer);
+
+        Assert.Equal(LogisticsPriority.Lowest, editor.BuildInventoryGroups().Single(g => g.InventoryId == 30).Logistics!.Priority);
     }
 
     [Fact]
@@ -52,12 +69,12 @@ public sealed class InventoryEditorTests
     {
         var (editor, workspace) = CreateLogisticsEditor();
 
-        editor.UpdateLogistics(30, ["Titanium", "Silicon"], [], priority: 5);
+        editor.UpdateLogistics(30, ["Titanium", "Silicon"], [], LogisticsPriority.Lowest);
 
         var inv = workspace.Current!.Inventories.Single(i => i.Id == 30);
         Assert.Equal("Titanium,Silicon", inv.DemandGroups);
         Assert.Equal("", inv.SupplyGroups);
-        Assert.Equal(5, inv.Priority);
+        Assert.Equal(-3, inv.Priority);
         Assert.Equal("202", inv.WorldObjectIds);
         Assert.True(workspace.IsDirty);
     }
@@ -67,7 +84,7 @@ public sealed class InventoryEditorTests
     {
         var (editor, _) = CreateLogisticsEditor();
 
-        Assert.Throws<InvalidOperationException>(() => editor.UpdateLogistics(10, [], [], 0));
+        Assert.Throws<InvalidOperationException>(() => editor.UpdateLogistics(10, [], [], LogisticsPriority.Normal));
     }
 
     private static (InventoryEditor Editor, SaveFileWorkspace Workspace) CreateLogisticsEditor()

@@ -33,7 +33,8 @@ destination page name is announced via the live region on every navigation.
 
 The logistics-editor pass (editing a container's demand / supply groups + priority on the
 Inventories page) added the `Logistics_*` keys and `Inventories_{LogisticsSummary,EditLogistics,
-EditLogisticsA11y}` — all machine-translated.
+EditLogisticsA11y}` — all machine-translated. `Logistics_Priority{Lowest…Highest}` are the game's
+7 named priority levels; the romance-language forms agree with "priority" (feminine).
 
 | Culture | Language | Reviewed |
 |---|---|---|

@@ -8,4 +8,4 @@ namespace PCEdit.App.Core.Models;
 public sealed record LogisticsConfig(
     IReadOnlyList<string> DemandGroupIds,
     IReadOnlyList<string> SupplyGroupIds,
-    int Priority);
+    LogisticsPriority Priority);

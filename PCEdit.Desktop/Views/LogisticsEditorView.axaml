@@ -40,15 +40,9 @@
             <TextBlock Text="{Binding Title}" Classes="caption" TextTrimming="CharacterEllipsis" />
         </StackPanel>
 
-        <StackPanel DockPanel.Dock="Bottom" Spacing="12" Margin="0,14,0,0">
-            <TextBlock Text="{Binding StatusMessage}"
-                       IsVisible="{Binding StatusMessage, Converter={StaticResource StringNotEmpty}}"
-                       Foreground="{Binding StatusKind, Converter={StaticResource StatusBrush}}"
-                       TextWrapping="Wrap" />
-            <StackPanel Orientation="Horizontal" Spacing="8">
-                <Button Classes="accent" Content="{m:Loc Logistics_Apply}" Command="{Binding ApplyCommand}" />
-                <Button Content="{m:Loc Common_Cancel}" Command="{Binding CancelCommand}" />
-            </StackPanel>
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Spacing="8" Margin="0,14,0,0">
+            <Button Classes="accent" Content="{m:Loc Logistics_Apply}" Command="{Binding ApplyCommand}" />
+            <Button Content="{m:Loc Common_Cancel}" Command="{Binding CancelCommand}" />
         </StackPanel>
 
         <ScrollViewer>
@@ -57,8 +51,17 @@
                 <!-- Priority -->
                 <StackPanel Spacing="4">
                     <TextBlock Text="{m:Loc Logistics_PriorityLabel}" Classes="h2" />
-                    <TextBox Text="{Binding Priority, Mode=TwoWay}" Width="120" HorizontalAlignment="Left"
-                             AutomationProperties.Name="{m:Loc Logistics_PriorityLabel}" />
+                    <ComboBox ItemsSource="{Binding PriorityChoices}"
+                              SelectedValueBinding="{Binding Value}"
+                              SelectedValue="{Binding SelectedPriority, Mode=TwoWay}"
+                              MinWidth="160" HorizontalAlignment="Left"
+                              AutomationProperties.Name="{m:Loc Logistics_PriorityLabel}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate x:DataType="models:LogisticsPriorityChoice">
+                                <TextBlock Text="{Binding DisplayName}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                     <TextBlock Text="{m:Loc Logistics_PriorityHint}" Classes="caption" />
                 </StackPanel>
 

@@ -119,6 +119,13 @@
   <data name="Logistics_SupplyHint" xml:space="preserve"><value>이 컨테이너가 네트워크에 제공하는 자원입니다.</value></data>
   <data name="Logistics_PriorityLabel" xml:space="preserve"><value>우선순위</value></data>
   <data name="Logistics_PriorityHint" xml:space="preserve"><value>우선순위가 높은 컨테이너가 먼저 처리됩니다.</value></data>
+  <data name="Logistics_PriorityLowest" xml:space="preserve"><value>최저</value></data>
+  <data name="Logistics_PriorityVeryLow" xml:space="preserve"><value>매우 낮음</value></data>
+  <data name="Logistics_PriorityLow" xml:space="preserve"><value>낮음</value></data>
+  <data name="Logistics_PriorityNormal" xml:space="preserve"><value>보통</value></data>
+  <data name="Logistics_PriorityHigh" xml:space="preserve"><value>높음</value></data>
+  <data name="Logistics_PriorityVeryHigh" xml:space="preserve"><value>매우 높음</value></data>
+  <data name="Logistics_PriorityHighest" xml:space="preserve"><value>최고</value></data>
   <data name="Logistics_AddPlaceholder" xml:space="preserve"><value>그룹을 추가하거나 id를 입력하세요…</value></data>
   <data name="Logistics_Add" xml:space="preserve"><value>추가</value></data>
   <data name="Logistics_RemoveA11y" xml:space="preserve"><value>{0} 제거</value></data>
@@ -126,7 +133,6 @@
   <data name="Logistics_CustomBadge" xml:space="preserve"><value>사용자 지정</value></data>
   <data name="Logistics_Apply" xml:space="preserve"><value>적용</value></data>
   <data name="Logistics_Applied" xml:space="preserve"><value>{0}의 수요 및 공급을 업데이트했습니다.</value></data>
-  <data name="Logistics_InvalidPriority" xml:space="preserve"><value>우선순위는 0 이상의 정수여야 합니다.</value></data>
   <data name="TerraTokens_Title" xml:space="preserve"><value>테라 토큰</value></data>
   <data name="TerraTokens_Heading" xml:space="preserve"><value>테라 토큰 지급</value></data>
   <data name="TerraTokens_CurrentBalance" xml:space="preserve"><value>현재 잔액</value></data>

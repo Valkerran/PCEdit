@@ -19,5 +19,5 @@ public interface IInventoryEditor
     /// Replaces a logistics container's demand groups, supply groups and priority. Throws if the
     /// inventory is not a logistics container (only those carry a <c>priority</c> in the save).
     /// </summary>
-    void UpdateLogistics(int inventoryId, IReadOnlyList<string> demandGroupIds, IReadOnlyList<string> supplyGroupIds, int priority);
+    void UpdateLogistics(int inventoryId, IReadOnlyList<string> demandGroupIds, IReadOnlyList<string> supplyGroupIds, LogisticsPriority priority);
 }

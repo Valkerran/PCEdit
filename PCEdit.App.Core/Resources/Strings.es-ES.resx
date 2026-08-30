@@ -119,6 +119,13 @@
   <data name="Logistics_SupplyHint" xml:space="preserve"><value>Recursos que este contenedor ofrece a la red.</value></data>
   <data name="Logistics_PriorityLabel" xml:space="preserve"><value>Prioridad</value></data>
   <data name="Logistics_PriorityHint" xml:space="preserve"><value>Los contenedores con mayor prioridad se atienden primero.</value></data>
+  <data name="Logistics_PriorityLowest" xml:space="preserve"><value>La más baja</value></data>
+  <data name="Logistics_PriorityVeryLow" xml:space="preserve"><value>Muy baja</value></data>
+  <data name="Logistics_PriorityLow" xml:space="preserve"><value>Baja</value></data>
+  <data name="Logistics_PriorityNormal" xml:space="preserve"><value>Normal</value></data>
+  <data name="Logistics_PriorityHigh" xml:space="preserve"><value>Alta</value></data>
+  <data name="Logistics_PriorityVeryHigh" xml:space="preserve"><value>Muy alta</value></data>
+  <data name="Logistics_PriorityHighest" xml:space="preserve"><value>La más alta</value></data>
   <data name="Logistics_AddPlaceholder" xml:space="preserve"><value>Añadir un grupo o escribir un id…</value></data>
   <data name="Logistics_Add" xml:space="preserve"><value>Añadir</value></data>
   <data name="Logistics_RemoveA11y" xml:space="preserve"><value>Quitar {0}</value></data>
@@ -126,7 +133,6 @@
   <data name="Logistics_CustomBadge" xml:space="preserve"><value>personal.</value></data>
   <data name="Logistics_Apply" xml:space="preserve"><value>Aplicar</value></data>
   <data name="Logistics_Applied" xml:space="preserve"><value>Se ha actualizado la demanda y el suministro de {0}.</value></data>
-  <data name="Logistics_InvalidPriority" xml:space="preserve"><value>La prioridad debe ser un número entero (0 o más).</value></data>
   <data name="TerraTokens_Title" xml:space="preserve"><value>Fichas de terraformación</value></data>
   <data name="TerraTokens_Heading" xml:space="preserve"><value>Otorgar fichas de terraformación</value></data>
   <data name="TerraTokens_CurrentBalance" xml:space="preserve"><value>SALDO ACTUAL</value></data>

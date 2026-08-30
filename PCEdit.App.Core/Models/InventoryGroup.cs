@@ -18,6 +18,9 @@ public sealed class InventoryGroup
     /// </summary>
     public LogisticsConfig? Logistics { get; init; }
 
+    /// <summary>Pre-formatted "Demand N · Supply N · Priority X" line for the card; null on a plain inventory.</summary>
+    public string? LogisticsSummary { get; init; }
+
     public bool IsLogisticsContainer => Logistics is not null;
 
     public int Count => Items.Count;

@@ -119,6 +119,13 @@
   <data name="Logistics_SupplyHint" xml:space="preserve"><value>Ресурсы, которые этот контейнер предоставляет сети.</value></data>
   <data name="Logistics_PriorityLabel" xml:space="preserve"><value>Приоритет</value></data>
   <data name="Logistics_PriorityHint" xml:space="preserve"><value>Контейнеры с более высоким приоритетом обслуживаются первыми.</value></data>
+  <data name="Logistics_PriorityLowest" xml:space="preserve"><value>Самый низкий</value></data>
+  <data name="Logistics_PriorityVeryLow" xml:space="preserve"><value>Очень низкий</value></data>
+  <data name="Logistics_PriorityLow" xml:space="preserve"><value>Низкий</value></data>
+  <data name="Logistics_PriorityNormal" xml:space="preserve"><value>Обычный</value></data>
+  <data name="Logistics_PriorityHigh" xml:space="preserve"><value>Высокий</value></data>
+  <data name="Logistics_PriorityVeryHigh" xml:space="preserve"><value>Очень высокий</value></data>
+  <data name="Logistics_PriorityHighest" xml:space="preserve"><value>Самый высокий</value></data>
   <data name="Logistics_AddPlaceholder" xml:space="preserve"><value>Добавьте группу или введите id…</value></data>
   <data name="Logistics_Add" xml:space="preserve"><value>Добавить</value></data>
   <data name="Logistics_RemoveA11y" xml:space="preserve"><value>Удалить {0}</value></data>
@@ -126,7 +133,6 @@
   <data name="Logistics_CustomBadge" xml:space="preserve"><value>своя</value></data>
   <data name="Logistics_Apply" xml:space="preserve"><value>Применить</value></data>
   <data name="Logistics_Applied" xml:space="preserve"><value>Спрос и поставка для {0} обновлены.</value></data>
-  <data name="Logistics_InvalidPriority" xml:space="preserve"><value>Приоритет должен быть целым числом (0 или больше).</value></data>
   <data name="TerraTokens_Title" xml:space="preserve"><value>Терра-жетоны</value></data>
   <data name="TerraTokens_Heading" xml:space="preserve"><value>Выдать терра-жетоны</value></data>
   <data name="TerraTokens_CurrentBalance" xml:space="preserve"><value>ТЕКУЩИЙ БАЛАНС</value></data>

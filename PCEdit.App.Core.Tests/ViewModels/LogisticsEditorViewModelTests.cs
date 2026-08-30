@@ -1,4 +1,5 @@
 using PCEdit.App.Core.Localization;
+using PCEdit.App.Core.Models;
 using PCEdit.App.Core.Services;
 using PCEdit.App.Core.Tests.Fakes;
 using PCEdit.App.Core.Tests.Fixtures;
@@ -44,7 +45,21 @@ public sealed class LogisticsEditorViewModelTests
 
         Assert.Equal(["Iron", "Cobalt"], vm.DemandGroups.Select(g => g.Id));
         Assert.Empty(vm.SupplyGroups);
-        Assert.Equal("1", vm.Priority);
+        Assert.Equal(LogisticsPriority.High, vm.SelectedPriority);
+    }
+
+    [Fact]
+    public void PriorityChoices_AreTheSevenGameLevels_LowestFirst_WithFriendlyNames()
+    {
+        var (vm, _, _) = Create();
+
+        Assert.Equal(
+            [LogisticsPriority.Lowest, LogisticsPriority.VeryLow, LogisticsPriority.Low, LogisticsPriority.Normal,
+             LogisticsPriority.High, LogisticsPriority.VeryHigh, LogisticsPriority.Highest],
+            vm.PriorityChoices.Select(c => c.Value));
+        Assert.Equal("Lowest", vm.PriorityChoices[0].DisplayName);
+        Assert.Equal("Normal", vm.PriorityChoices[3].DisplayName);
+        Assert.Equal("Highest", vm.PriorityChoices[^1].DisplayName);
     }
 
     [Fact]
@@ -81,28 +96,27 @@ public sealed class LogisticsEditorViewModelTests
         vm.RemoveDemandGroupCommand.Execute(vm.DemandGroups.First(g => g.Id == "Cobalt"));
         vm.SupplyGroupText = "Magnesium";
         vm.AddSupplyGroupCommand.Execute(null);
-        vm.Priority = "4";
+        vm.SelectedPriority = LogisticsPriority.Highest;
 
         await vm.ApplyCommand.ExecuteAsync(null);
 
         var inv = workspace.Current!.Inventories.Single(i => i.Id == 30);
         Assert.Equal("Iron", inv.DemandGroups);
         Assert.Equal("Magnesium", inv.SupplyGroups);
-        Assert.Equal(4, inv.Priority);
+        Assert.Equal(3, inv.Priority);
         Assert.Equal(1, nav.CloseModalCount);
     }
 
     [Fact]
-    public async Task Apply_InvalidPriority_ShowsErrorAndDoesNotClose()
+    public async Task Apply_ANegativePriorityLevel_IsAcceptedAndWritten()
     {
         var (vm, workspace, nav) = Create();
         vm.Initialize(30);
-        vm.Priority = "-3";
+        vm.SelectedPriority = LogisticsPriority.Lowest;
 
         await vm.ApplyCommand.ExecuteAsync(null);
 
-        Assert.Equal(StatusKind.Error, vm.StatusKind);
-        Assert.Equal(0, nav.CloseModalCount);
-        Assert.Equal("Iron,Cobalt", workspace.Current!.Inventories.Single(i => i.Id == 30).DemandGroups);
+        Assert.Equal(-3, workspace.Current!.Inventories.Single(i => i.Id == 30).Priority);
+        Assert.Equal(1, nav.CloseModalCount);
     }
 }

@@ -11,6 +11,8 @@ PCEdit.sln.DotSettings.user
 # Packaging output
 /artifacts/
 
-# Ad-hoc save files dropped in the tree for manual round-trip testing
+# Ad-hoc save files (GUID-named) dropped in the tree for manual round-trip testing.
+# The tracked sample saves are Standard-2.json and mini-save.json.
 /PCEdit.SaveFileHandler/0A2BC215*
+/PCEdit.SaveFileHandler/2617D7ED*
 *.planetcrafter-test.json

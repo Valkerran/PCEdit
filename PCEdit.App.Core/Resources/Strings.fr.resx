@@ -119,6 +119,13 @@
   <data name="Logistics_SupplyHint" xml:space="preserve"><value>Ressources que ce conteneur met à disposition du réseau.</value></data>
   <data name="Logistics_PriorityLabel" xml:space="preserve"><value>Priorité</value></data>
   <data name="Logistics_PriorityHint" xml:space="preserve"><value>Les conteneurs de priorité plus élevée sont servis en premier.</value></data>
+  <data name="Logistics_PriorityLowest" xml:space="preserve"><value>La plus basse</value></data>
+  <data name="Logistics_PriorityVeryLow" xml:space="preserve"><value>Très basse</value></data>
+  <data name="Logistics_PriorityLow" xml:space="preserve"><value>Basse</value></data>
+  <data name="Logistics_PriorityNormal" xml:space="preserve"><value>Normale</value></data>
+  <data name="Logistics_PriorityHigh" xml:space="preserve"><value>Élevée</value></data>
+  <data name="Logistics_PriorityVeryHigh" xml:space="preserve"><value>Très élevée</value></data>
+  <data name="Logistics_PriorityHighest" xml:space="preserve"><value>La plus élevée</value></data>
   <data name="Logistics_AddPlaceholder" xml:space="preserve"><value>Ajouter un groupe ou saisir un identifiant…</value></data>
   <data name="Logistics_Add" xml:space="preserve"><value>Ajouter</value></data>
   <data name="Logistics_RemoveA11y" xml:space="preserve"><value>Retirer {0}</value></data>
@@ -126,7 +133,6 @@
   <data name="Logistics_CustomBadge" xml:space="preserve"><value>perso.</value></data>
   <data name="Logistics_Apply" xml:space="preserve"><value>Appliquer</value></data>
   <data name="Logistics_Applied" xml:space="preserve"><value>Demande et offre mises à jour pour {0}.</value></data>
-  <data name="Logistics_InvalidPriority" xml:space="preserve"><value>La priorité doit être un nombre entier (0 ou plus).</value></data>
   <data name="TerraTokens_Title" xml:space="preserve"><value>Jetons de terraformation</value></data>
   <data name="TerraTokens_Heading" xml:space="preserve"><value>Accorder des jetons de terraformation</value></data>
   <data name="TerraTokens_CurrentBalance" xml:space="preserve"><value>SOLDE ACTUEL</value></data>

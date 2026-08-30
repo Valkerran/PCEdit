@@ -175,5 +175,11 @@
   "Logistics_CustomBadge": "własna",
   "Logistics_Apply": "Zastosuj",
   "Logistics_Applied": "Zaktualizowano popyt i podaż dla {0}.",
-  "Logistics_InvalidPriority": "Priorytet musi być liczbą całkowitą (0 lub więcej)."
+  "Logistics_PriorityLowest": "Najniższy",
+  "Logistics_PriorityVeryLow": "Bardzo niski",
+  "Logistics_PriorityLow": "Niski",
+  "Logistics_PriorityNormal": "Normalny",
+  "Logistics_PriorityHigh": "Wysoki",
+  "Logistics_PriorityVeryHigh": "Bardzo wysoki",
+  "Logistics_PriorityHighest": "Najwyższy"
 }

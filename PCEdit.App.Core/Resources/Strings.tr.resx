@@ -119,6 +119,13 @@
   <data name="Logistics_SupplyHint" xml:space="preserve"><value>Bu konteynerin ağa sunduğu kaynaklar.</value></data>
   <data name="Logistics_PriorityLabel" xml:space="preserve"><value>Öncelik</value></data>
   <data name="Logistics_PriorityHint" xml:space="preserve"><value>Önceliği yüksek olan konteynerlere önce hizmet verilir.</value></data>
+  <data name="Logistics_PriorityLowest" xml:space="preserve"><value>En düşük</value></data>
+  <data name="Logistics_PriorityVeryLow" xml:space="preserve"><value>Çok düşük</value></data>
+  <data name="Logistics_PriorityLow" xml:space="preserve"><value>Düşük</value></data>
+  <data name="Logistics_PriorityNormal" xml:space="preserve"><value>Normal</value></data>
+  <data name="Logistics_PriorityHigh" xml:space="preserve"><value>Yüksek</value></data>
+  <data name="Logistics_PriorityVeryHigh" xml:space="preserve"><value>Çok yüksek</value></data>
+  <data name="Logistics_PriorityHighest" xml:space="preserve"><value>En yüksek</value></data>
   <data name="Logistics_AddPlaceholder" xml:space="preserve"><value>Bir grup ekleyin veya bir kimlik yazın…</value></data>
   <data name="Logistics_Add" xml:space="preserve"><value>Ekle</value></data>
   <data name="Logistics_RemoveA11y" xml:space="preserve"><value>{0} öğesini kaldır</value></data>
@@ -126,7 +133,6 @@
   <data name="Logistics_CustomBadge" xml:space="preserve"><value>özel</value></data>
   <data name="Logistics_Apply" xml:space="preserve"><value>Uygula</value></data>
   <data name="Logistics_Applied" xml:space="preserve"><value>{0} için talep ve arz güncellendi.</value></data>
-  <data name="Logistics_InvalidPriority" xml:space="preserve"><value>Öncelik bir tam sayı olmalıdır (0 veya daha fazla).</value></data>
   <data name="TerraTokens_Title" xml:space="preserve"><value>Terra Jetonları</value></data>
   <data name="TerraTokens_Heading" xml:space="preserve"><value>Terra Jetonu Ver</value></data>
   <data name="TerraTokens_CurrentBalance" xml:space="preserve"><value>GÜNCEL BAKİYE</value></data>

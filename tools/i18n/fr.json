@@ -175,5 +175,11 @@
   "Logistics_CustomBadge": "perso.",
   "Logistics_Apply": "Appliquer",
   "Logistics_Applied": "Demande et offre mises à jour pour {0}.",
-  "Logistics_InvalidPriority": "La priorité doit être un nombre entier (0 ou plus)."
+  "Logistics_PriorityLowest": "La plus basse",
+  "Logistics_PriorityVeryLow": "Très basse",
+  "Logistics_PriorityLow": "Basse",
+  "Logistics_PriorityNormal": "Normale",
+  "Logistics_PriorityHigh": "Élevée",
+  "Logistics_PriorityVeryHigh": "Très élevée",
+  "Logistics_PriorityHighest": "La plus élevée"
 }

@@ -187,6 +187,13 @@
   <data name="Logistics_SupplyHint" xml:space="preserve"><value>Resources this container offers to the network.</value></data>
   <data name="Logistics_PriorityLabel" xml:space="preserve"><value>Priority</value></data>
   <data name="Logistics_PriorityHint" xml:space="preserve"><value>Containers with a higher priority are served first.</value></data>
+  <data name="Logistics_PriorityLowest" xml:space="preserve"><value>Lowest</value></data>
+  <data name="Logistics_PriorityVeryLow" xml:space="preserve"><value>Very Low</value></data>
+  <data name="Logistics_PriorityLow" xml:space="preserve"><value>Low</value></data>
+  <data name="Logistics_PriorityNormal" xml:space="preserve"><value>Normal</value></data>
+  <data name="Logistics_PriorityHigh" xml:space="preserve"><value>High</value></data>
+  <data name="Logistics_PriorityVeryHigh" xml:space="preserve"><value>Very High</value></data>
+  <data name="Logistics_PriorityHighest" xml:space="preserve"><value>Highest</value></data>
   <data name="Logistics_AddPlaceholder" xml:space="preserve"><value>Add a group, or type an id…</value></data>
   <data name="Logistics_Add" xml:space="preserve"><value>Add</value></data>
   <data name="Logistics_RemoveA11y" xml:space="preserve"><value>Remove {0}</value></data>
@@ -194,7 +201,6 @@
   <data name="Logistics_CustomBadge" xml:space="preserve"><value>custom</value></data>
   <data name="Logistics_Apply" xml:space="preserve"><value>Apply</value></data>
   <data name="Logistics_Applied" xml:space="preserve"><value>Updated demand and supply for {0}.</value></data>
-  <data name="Logistics_InvalidPriority" xml:space="preserve"><value>Priority must be a whole number (0 or more).</value></data>
 
   <data name="TerraTokens_Title" xml:space="preserve"><value>Terra Tokens</value></data>
   <data name="TerraTokens_Heading" xml:space="preserve"><value>Grant Terra Tokens</value></data>

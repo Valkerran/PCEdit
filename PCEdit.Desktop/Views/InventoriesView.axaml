@@ -90,13 +90,8 @@
                                 <Border Classes="divider" IsVisible="{Binding IsLogisticsContainer}" />
 
                                 <Grid ColumnDefinitions="*,Auto" IsVisible="{Binding IsLogisticsContainer}">
-                                    <StackPanel Grid.Column="0" VerticalAlignment="Center" Spacing="2">
-                                        <TextBlock Classes="caption"
-                                                   Text="{m:LocFormat Key=Inventories_LogisticsSummary,
-                                                          Path=Logistics.DemandGroupIds.Count,
-                                                          Path1=Logistics.SupplyGroupIds.Count,
-                                                          Path2=Logistics.Priority}" />
-                                    </StackPanel>
+                                    <TextBlock Grid.Column="0" VerticalAlignment="Center" Classes="caption"
+                                               Text="{Binding LogisticsSummary}" />
                                     <Button Grid.Column="1" Content="{m:Loc Inventories_EditLogistics}"
                                             Command="{Binding DataContext.EditLogisticsCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                             CommandParameter="{Binding}"

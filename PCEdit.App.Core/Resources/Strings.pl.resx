@@ -119,6 +119,13 @@
   <data name="Logistics_SupplyHint" xml:space="preserve"><value>Zasoby, które ten pojemnik udostępnia sieci.</value></data>
   <data name="Logistics_PriorityLabel" xml:space="preserve"><value>Priorytet</value></data>
   <data name="Logistics_PriorityHint" xml:space="preserve"><value>Pojemniki o wyższym priorytecie są obsługiwane najpierw.</value></data>
+  <data name="Logistics_PriorityLowest" xml:space="preserve"><value>Najniższy</value></data>
+  <data name="Logistics_PriorityVeryLow" xml:space="preserve"><value>Bardzo niski</value></data>
+  <data name="Logistics_PriorityLow" xml:space="preserve"><value>Niski</value></data>
+  <data name="Logistics_PriorityNormal" xml:space="preserve"><value>Normalny</value></data>
+  <data name="Logistics_PriorityHigh" xml:space="preserve"><value>Wysoki</value></data>
+  <data name="Logistics_PriorityVeryHigh" xml:space="preserve"><value>Bardzo wysoki</value></data>
+  <data name="Logistics_PriorityHighest" xml:space="preserve"><value>Najwyższy</value></data>
   <data name="Logistics_AddPlaceholder" xml:space="preserve"><value>Dodaj grupę lub wpisz identyfikator…</value></data>
   <data name="Logistics_Add" xml:space="preserve"><value>Dodaj</value></data>
   <data name="Logistics_RemoveA11y" xml:space="preserve"><value>Usuń {0}</value></data>
@@ -126,7 +133,6 @@
   <data name="Logistics_CustomBadge" xml:space="preserve"><value>własna</value></data>
   <data name="Logistics_Apply" xml:space="preserve"><value>Zastosuj</value></data>
   <data name="Logistics_Applied" xml:space="preserve"><value>Zaktualizowano popyt i podaż dla {0}.</value></data>
-  <data name="Logistics_InvalidPriority" xml:space="preserve"><value>Priorytet musi być liczbą całkowitą (0 lub więcej).</value></data>
   <data name="TerraTokens_Title" xml:space="preserve"><value>Żetony terraformacji</value></data>
   <data name="TerraTokens_Heading" xml:space="preserve"><value>Przyznaj żetony terraformacji</value></data>
   <data name="TerraTokens_CurrentBalance" xml:space="preserve"><value>OBECNY STAN</value></data>

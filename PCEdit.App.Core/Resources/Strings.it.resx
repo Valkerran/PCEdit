@@ -119,6 +119,13 @@
   <data name="Logistics_SupplyHint" xml:space="preserve"><value>Risorse che questo contenitore mette a disposizione della rete.</value></data>
   <data name="Logistics_PriorityLabel" xml:space="preserve"><value>Priorità</value></data>
   <data name="Logistics_PriorityHint" xml:space="preserve"><value>I contenitori con priorità più alta vengono serviti per primi.</value></data>
+  <data name="Logistics_PriorityLowest" xml:space="preserve"><value>Minima</value></data>
+  <data name="Logistics_PriorityVeryLow" xml:space="preserve"><value>Molto bassa</value></data>
+  <data name="Logistics_PriorityLow" xml:space="preserve"><value>Bassa</value></data>
+  <data name="Logistics_PriorityNormal" xml:space="preserve"><value>Normale</value></data>
+  <data name="Logistics_PriorityHigh" xml:space="preserve"><value>Alta</value></data>
+  <data name="Logistics_PriorityVeryHigh" xml:space="preserve"><value>Molto alta</value></data>
+  <data name="Logistics_PriorityHighest" xml:space="preserve"><value>Massima</value></data>
   <data name="Logistics_AddPlaceholder" xml:space="preserve"><value>Aggiungi un gruppo o digita un id…</value></data>
   <data name="Logistics_Add" xml:space="preserve"><value>Aggiungi</value></data>
   <data name="Logistics_RemoveA11y" xml:space="preserve"><value>Rimuovi {0}</value></data>
@@ -126,7 +133,6 @@
   <data name="Logistics_CustomBadge" xml:space="preserve"><value>person.</value></data>
   <data name="Logistics_Apply" xml:space="preserve"><value>Applica</value></data>
   <data name="Logistics_Applied" xml:space="preserve"><value>Domanda e offerta di {0} aggiornate.</value></data>
-  <data name="Logistics_InvalidPriority" xml:space="preserve"><value>La priorità deve essere un numero intero (0 o più).</value></data>
   <data name="TerraTokens_Title" xml:space="preserve"><value>Gettoni terra</value></data>
   <data name="TerraTokens_Heading" xml:space="preserve"><value>Concedi gettoni terra</value></data>
   <data name="TerraTokens_CurrentBalance" xml:space="preserve"><value>SALDO ATTUALE</value></data>

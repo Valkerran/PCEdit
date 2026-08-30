@@ -175,5 +175,11 @@
   "Logistics_CustomBadge": "自訂",
   "Logistics_Apply": "套用",
   "Logistics_Applied": "已更新 {0} 的需求與供應。",
-  "Logistics_InvalidPriority": "優先順序必須是整數（0 或以上）。"
+  "Logistics_PriorityLowest": "最低",
+  "Logistics_PriorityVeryLow": "很低",
+  "Logistics_PriorityLow": "低",
+  "Logistics_PriorityNormal": "正常",
+  "Logistics_PriorityHigh": "高",
+  "Logistics_PriorityVeryHigh": "很高",
+  "Logistics_PriorityHighest": "最高"
 }

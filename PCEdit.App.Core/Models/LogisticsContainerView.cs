@@ -6,4 +6,4 @@ public sealed record LogisticsContainerView(
     string Label,
     IReadOnlyList<string> DemandGroupIds,
     IReadOnlyList<string> SupplyGroupIds,
-    int Priority);
+    LogisticsPriority Priority);
