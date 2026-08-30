@@ -1,4 +1,10 @@
 namespace PCEdit.App.Core.Models;
 
-/// <summary>A priority level plus its localized name, for the editor's priority dropdown.</summary>
-public sealed record LogisticsPriorityChoice(LogisticsPriority Value, string DisplayName);
+/// <summary>
+/// One entry in the editor's priority dropdown: the raw value that would be written, its named
+/// level (null for an out-of-range value the save already held), and the label to show.
+/// </summary>
+public sealed record LogisticsPriorityChoice(int RawValue, LogisticsPriority? Level, string DisplayName)
+{
+    public bool IsKnownLevel => Level is not null;
+}

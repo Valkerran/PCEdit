@@ -126,6 +126,7 @@
   <data name="Logistics_PriorityHigh" xml:space="preserve"><value>Alta</value></data>
   <data name="Logistics_PriorityVeryHigh" xml:space="preserve"><value>Muy alta</value></data>
   <data name="Logistics_PriorityHighest" xml:space="preserve"><value>La más alta</value></data>
+  <data name="Logistics_PriorityUnknown" xml:space="preserve"><value>Desconocida ({0})</value></data>
   <data name="Logistics_AddPlaceholder" xml:space="preserve"><value>Añadir un grupo o escribir un id…</value></data>
   <data name="Logistics_Add" xml:space="preserve"><value>Añadir</value></data>
   <data name="Logistics_SelectAll" xml:space="preserve"><value>Seleccionar todo</value></data>

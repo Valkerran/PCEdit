@@ -126,6 +126,7 @@
   <data name="Logistics_PriorityHigh" xml:space="preserve"><value>高い</value></data>
   <data name="Logistics_PriorityVeryHigh" xml:space="preserve"><value>非常に高い</value></data>
   <data name="Logistics_PriorityHighest" xml:space="preserve"><value>最高</value></data>
+  <data name="Logistics_PriorityUnknown" xml:space="preserve"><value>不明 ({0})</value></data>
   <data name="Logistics_AddPlaceholder" xml:space="preserve"><value>グループを追加、または id を入力…</value></data>
   <data name="Logistics_Add" xml:space="preserve"><value>追加</value></data>
   <data name="Logistics_SelectAll" xml:space="preserve"><value>すべて選択</value></data>

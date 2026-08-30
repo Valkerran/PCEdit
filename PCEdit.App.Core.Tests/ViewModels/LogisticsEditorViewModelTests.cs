@@ -45,21 +45,51 @@ public sealed class LogisticsEditorViewModelTests
 
         Assert.Equal(["Iron", "Cobalt"], vm.DemandGroups.Select(g => g.Id));
         Assert.Empty(vm.SupplyGroups);
-        Assert.Equal(LogisticsPriority.High, vm.SelectedPriority);
+        Assert.Equal(LogisticsPriority.High, vm.SelectedPriority!.Level);
     }
 
     [Fact]
     public void PriorityChoices_AreTheSevenGameLevels_LowestFirst_WithFriendlyNames()
     {
         var (vm, _, _) = Create();
+        vm.Initialize(30);
 
         Assert.Equal(
             [LogisticsPriority.Lowest, LogisticsPriority.VeryLow, LogisticsPriority.Low, LogisticsPriority.Normal,
              LogisticsPriority.High, LogisticsPriority.VeryHigh, LogisticsPriority.Highest],
-            vm.PriorityChoices.Select(c => c.Value));
+            vm.PriorityChoices.Select(c => c.Level));
         Assert.Equal("Lowest", vm.PriorityChoices[0].DisplayName);
         Assert.Equal("Normal", vm.PriorityChoices[3].DisplayName);
         Assert.Equal("Highest", vm.PriorityChoices[^1].DisplayName);
+    }
+
+    [Fact]
+    public void Initialize_AnOutOfRangePriority_IsPrependedAsUnknown_AndSelected()
+    {
+        var (vm, workspace, _) = Create();
+        var idx = workspace.Current!.Inventories.FindIndex(i => i.Id == 30);
+        workspace.Current.Inventories[idx] = workspace.Current.Inventories[idx] with { Priority = 4 };
+
+        vm.Initialize(30);
+
+        Assert.Equal(8, vm.PriorityChoices.Count);
+        Assert.Null(vm.PriorityChoices[0].Level);
+        Assert.Equal(4, vm.PriorityChoices[0].RawValue);
+        Assert.Equal("Unknown (4)", vm.PriorityChoices[0].DisplayName);
+        Assert.Same(vm.PriorityChoices[0], vm.SelectedPriority);
+    }
+
+    [Fact]
+    public async Task Apply_LeavingAnOutOfRangePrioritySelected_WritesItUnchanged()
+    {
+        var (vm, workspace, _) = Create();
+        var idx = workspace.Current!.Inventories.FindIndex(i => i.Id == 30);
+        workspace.Current.Inventories[idx] = workspace.Current.Inventories[idx] with { Priority = 4 };
+        vm.Initialize(30);
+
+        await vm.ApplyCommand.ExecuteAsync(null);
+
+        Assert.Equal(4, workspace.Current.Inventories.Single(i => i.Id == 30).Priority);
     }
 
     [Fact]
@@ -96,7 +126,7 @@ public sealed class LogisticsEditorViewModelTests
         vm.RemoveDemandGroupCommand.Execute(vm.DemandGroups.First(g => g.Id == "Cobalt"));
         vm.SupplyGroupText = "Magnesium";
         vm.AddSupplyGroupCommand.Execute(null);
-        vm.SelectedPriority = LogisticsPriority.Highest;
+        vm.SelectedPriority = vm.PriorityChoices.First(c => c.Level == LogisticsPriority.Highest);
 
         await vm.ApplyCommand.ExecuteAsync(null);
 
@@ -164,7 +194,7 @@ public sealed class LogisticsEditorViewModelTests
     {
         var (vm, workspace, nav) = Create();
         vm.Initialize(30);
-        vm.SelectedPriority = LogisticsPriority.Lowest;
+        vm.SelectedPriority = vm.PriorityChoices.First(c => c.Level == LogisticsPriority.Lowest);
 
         await vm.ApplyCommand.ExecuteAsync(null);
 

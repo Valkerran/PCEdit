@@ -52,8 +52,7 @@
                 <StackPanel Spacing="4">
                     <TextBlock Text="{m:Loc Logistics_PriorityLabel}" Classes="h2" />
                     <ComboBox ItemsSource="{Binding PriorityChoices}"
-                              SelectedValueBinding="{Binding Value}"
-                              SelectedValue="{Binding SelectedPriority, Mode=TwoWay}"
+                              SelectedItem="{Binding SelectedPriority, Mode=TwoWay}"
                               MinWidth="160" HorizontalAlignment="Left"
                               AutomationProperties.Name="{m:Loc Logistics_PriorityLabel}">
                         <ComboBox.ItemTemplate>

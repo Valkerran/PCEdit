@@ -44,7 +44,7 @@ public sealed class InventoryEditorTests
         Assert.True(groups[30].IsLogisticsContainer);
         Assert.Equal(["Iron", "Cobalt"], groups[30].Logistics!.DemandGroupIds);
         Assert.Equal(["Magnesium"], groups[30].Logistics!.SupplyGroupIds);
-        Assert.Equal(LogisticsPriority.VeryHigh, groups[30].Logistics!.Priority);
+        Assert.Equal(2, groups[30].Logistics!.Priority);
         Assert.Equal("Demand 2 · Supply 1 · Priority Very High", groups[30].LogisticsSummary);
     }
 
@@ -68,19 +68,21 @@ public sealed class InventoryEditorTests
     }
 
     [Fact]
-    public void BuildInventoryGroups_ClampsAnOutOfRangeRawPriority()
+    public void BuildInventoryGroups_PreservesAnOutOfRangeRawPriority_AndLabelsItUnknown()
     {
         var store = new FakeSaveFileStore();
         var save = WorkspaceFixtures.Create();
         var index = save.Inventories.FindIndex(i => i.Id == 30);
-        save.Inventories[index] = save.Inventories[index] with { DemandGroups = "", SupplyGroups = "", Priority = -99 };
+        save.Inventories[index] = save.Inventories[index] with { DemandGroups = "", SupplyGroups = "", Priority = 4 };
         store.Seed(Path, save);
         var localizer = new Localizer();
         var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
         workspace.Load(Path);
         var editor = new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer);
 
-        Assert.Equal(LogisticsPriority.Lowest, editor.BuildInventoryGroups().Single(g => g.InventoryId == 30).Logistics!.Priority);
+        var group = editor.BuildInventoryGroups().Single(g => g.InventoryId == 30);
+        Assert.Equal(4, group.Logistics!.Priority);
+        Assert.Equal("Demand 0 · Supply 0 · Priority Unknown (4)", group.LogisticsSummary);
     }
 
     [Fact]
@@ -88,7 +90,7 @@ public sealed class InventoryEditorTests
     {
         var (editor, workspace) = CreateLogisticsEditor();
 
-        editor.UpdateLogistics(30, ["Titanium", "Silicon"], [], LogisticsPriority.Lowest);
+        editor.UpdateLogistics(30, ["Titanium", "Silicon"], [], priority: -3);
 
         var inv = workspace.Current!.Inventories.Single(i => i.Id == 30);
         Assert.Equal("Titanium,Silicon", inv.DemandGroups);
@@ -99,11 +101,21 @@ public sealed class InventoryEditorTests
     }
 
     [Fact]
+    public void UpdateLogistics_WritesAnOutOfRangePriorityUntouched()
+    {
+        var (editor, workspace) = CreateLogisticsEditor();
+
+        editor.UpdateLogistics(30, ["Iron"], [], priority: 9);
+
+        Assert.Equal(9, workspace.Current!.Inventories.Single(i => i.Id == 30).Priority);
+    }
+
+    [Fact]
     public void UpdateLogistics_OnAPlainInventory_Throws()
     {
         var (editor, _) = CreateLogisticsEditor();
 
-        Assert.Throws<InvalidOperationException>(() => editor.UpdateLogistics(10, [], [], LogisticsPriority.Normal));
+        Assert.Throws<InvalidOperationException>(() => editor.UpdateLogistics(10, [], [], priority: 0));
     }
 
     private static (InventoryEditor Editor, SaveFileWorkspace Workspace) CreateLogisticsEditor()

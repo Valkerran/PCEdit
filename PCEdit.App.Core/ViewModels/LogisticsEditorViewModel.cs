@@ -33,7 +33,7 @@ public sealed partial class LogisticsEditorViewModel(
     private string _title = string.Empty;
 
     [ObservableProperty]
-    private LogisticsPriority _selectedPriority = LogisticsPriority.Normal;
+    private LogisticsPriorityChoice? _selectedPriority;
 
     [ObservableProperty]
     private LogisticsGroupInfo? _demandGroupToAdd;
@@ -50,12 +50,16 @@ public sealed partial class LogisticsEditorViewModel(
     /// <summary>Every known group, for the "add" pickers.</summary>
     public IReadOnlyList<LogisticsGroupInfo> AllGroups => _groupCatalog.All;
 
-    /// <summary>The 7 priority levels the game allows, lowest first, with localized names.</summary>
-    public IReadOnlyList<LogisticsPriorityChoice> PriorityChoices => _priorityChoices ??= LogisticsPriorityLevels.All
-        .Select(level => new LogisticsPriorityChoice(level, _localizer[level.ResourceKey()]))
-        .ToList();
+    /// <summary>
+    /// The 7 named priority levels, lowest first. When the container's saved priority is outside
+    /// -3..3 (a future game build), that raw value is prepended as an "Unknown (N)" choice so it
+    /// survives an edit untouched.
+    /// </summary>
+    [ObservableProperty]
+    private IReadOnlyList<LogisticsPriorityChoice> _priorityChoices = [];
 
-    private IReadOnlyList<LogisticsPriorityChoice>? _priorityChoices;
+    private LogisticsPriorityChoice NamedChoice(LogisticsPriority level) =>
+        new(level.ToRaw(), level, _localizer[level.ResourceKey()]);
 
     public ObservableCollection<LogisticsGroupInfo> DemandGroups { get; } = [];
 
@@ -73,7 +77,18 @@ public sealed partial class LogisticsEditorViewModel(
 
         InventoryId = inventoryId;
         Title = container.Label;
-        SelectedPriority = container.Priority;
+
+        var choices = LogisticsPriorityLevels.All.Select(NamedChoice).ToList();
+        if (LogisticsPriorityLevels.Known(container.Priority) is null)
+        {
+            choices.Insert(0, new LogisticsPriorityChoice(
+                container.Priority,
+                Level: null,
+                _localizer.Format(LocKeys.Logistics_PriorityUnknown, container.Priority)));
+        }
+
+        PriorityChoices = choices;
+        SelectedPriority = choices.First(c => c.RawValue == container.Priority);
 
         Replace(DemandGroups, container.DemandGroupIds);
         Replace(SupplyGroups, container.SupplyGroupIds);
@@ -152,7 +167,7 @@ public sealed partial class LogisticsEditorViewModel(
             InventoryId,
             DemandGroups.Select(g => g.Id).ToList(),
             SupplyGroups.Select(g => g.Id).ToList(),
-            SelectedPriority);
+            (SelectedPriority ?? PriorityChoices.First(c => c.Level == LogisticsPriority.Normal)).RawValue);
 
         _announcer.Announce(_localizer.Format(LocKeys.Logistics_Applied, Title));
         await _navigation.CloseModalAsync();

@@ -138,10 +138,10 @@ public sealed class InventoryEditor(
             label,
             GroupListCodec.Parse(inventory.DemandGroups),
             GroupListCodec.Parse(inventory.SupplyGroups),
-            LogisticsPriorityLevels.FromRaw(priority));
+            priority);
     }
 
-    public void UpdateLogistics(int inventoryId, IReadOnlyList<string> demandGroupIds, IReadOnlyList<string> supplyGroupIds, LogisticsPriority priority)
+    public void UpdateLogistics(int inventoryId, IReadOnlyList<string> demandGroupIds, IReadOnlyList<string> supplyGroupIds, int priority)
     {
         ArgumentNullException.ThrowIfNull(demandGroupIds);
         ArgumentNullException.ThrowIfNull(supplyGroupIds);
@@ -157,7 +157,7 @@ public sealed class InventoryEditor(
             {
                 DemandGroups = GroupListCodec.Join(demandGroupIds),
                 SupplyGroups = GroupListCodec.Join(supplyGroupIds),
-                Priority = priority.ToRaw()
+                Priority = priority
             };
         });
     }
@@ -168,7 +168,7 @@ public sealed class InventoryEditor(
             ? new LogisticsConfig(
                 GroupListCodec.Parse(inventory.DemandGroups),
                 GroupListCodec.Parse(inventory.SupplyGroups),
-                LogisticsPriorityLevels.FromRaw(priority))
+                priority)
             : null;
     }
 
@@ -178,7 +178,15 @@ public sealed class InventoryEditor(
             LocKeys.Inventories_LogisticsSummary,
             DescribeGroupCount(logistics.DemandGroupIds),
             DescribeGroupCount(logistics.SupplyGroupIds),
-            _localizer[logistics.Priority.ResourceKey()]);
+            DescribePriority(logistics.Priority));
+    }
+
+    /// <summary>A named level's friendly name, or "Unknown (N)" for a raw value outside -3..3.</summary>
+    private string DescribePriority(int raw)
+    {
+        return LogisticsPriorityLevels.Known(raw) is { } level
+            ? _localizer[level.ResourceKey()]
+            : _localizer.Format(LocKeys.Logistics_PriorityUnknown, raw);
     }
 
     /// <summary>A count, or "Everything" when the list holds every known group.</summary>

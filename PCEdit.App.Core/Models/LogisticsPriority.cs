@@ -1,9 +1,10 @@
 namespace PCEdit.App.Core.Models;
 
 /// <summary>
-/// A logistics container's priority. The game stores it as an int (<c>Inventory.Priority</c>)
-/// from -3 to 3 and shows a named level; this is that fixed set. <see cref="Normal"/> (0) is the
-/// default the game writes for a freshly placed container.
+/// A logistics container's priority as one of the game's 7 named levels. The save stores it as a
+/// raw int (<c>Inventory.Priority</c>): -3..3 with 0 = <see cref="Normal"/> (the default the game
+/// writes for a freshly placed container). A raw value outside that range is not one of these
+/// levels — it is carried through untouched, never coerced.
 /// </summary>
 public enum LogisticsPriority
 {
@@ -18,7 +19,7 @@ public enum LogisticsPriority
 
 public static class LogisticsPriorityLevels
 {
-    /// <summary>Every level, lowest first.</summary>
+    /// <summary>Every named level, lowest first.</summary>
     public static readonly IReadOnlyList<LogisticsPriority> All =
     [
         LogisticsPriority.Lowest,
@@ -30,15 +31,12 @@ public static class LogisticsPriorityLevels
         LogisticsPriority.Highest,
     ];
 
-    /// <summary>
-    /// The raw save value mapped to a level. A value outside -3..3 (a future game build, or a
-    /// mod) is clamped to the nearest level rather than rejected.
-    /// </summary>
-    public static LogisticsPriority FromRaw(int raw) => (LogisticsPriority)Math.Clamp(raw, -3, 3);
+    /// <summary>The named level for a raw save value, or null when it is outside -3..3.</summary>
+    public static LogisticsPriority? Known(int raw) => raw is >= -3 and <= 3 ? (LogisticsPriority)raw : null;
 
     public static int ToRaw(this LogisticsPriority priority) => (int)priority;
 
-    /// <summary>The <c>Strings.resx</c> key for a level's friendly name.</summary>
+    /// <summary>The <c>Strings.resx</c> key for a named level.</summary>
     public static string ResourceKey(this LogisticsPriority priority) => priority switch
     {
         LogisticsPriority.Lowest => "Logistics_PriorityLowest",
@@ -48,6 +46,6 @@ public static class LogisticsPriorityLevels
         LogisticsPriority.High => "Logistics_PriorityHigh",
         LogisticsPriority.VeryHigh => "Logistics_PriorityVeryHigh",
         LogisticsPriority.Highest => "Logistics_PriorityHighest",
-        _ => "Logistics_PriorityNormal",
+        _ => throw new ArgumentOutOfRangeException(nameof(priority), priority, "Not a named priority level."),
     };
 }

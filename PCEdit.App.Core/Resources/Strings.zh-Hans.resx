@@ -126,6 +126,7 @@
   <data name="Logistics_PriorityHigh" xml:space="preserve"><value>高</value></data>
   <data name="Logistics_PriorityVeryHigh" xml:space="preserve"><value>很高</value></data>
   <data name="Logistics_PriorityHighest" xml:space="preserve"><value>最高</value></data>
+  <data name="Logistics_PriorityUnknown" xml:space="preserve"><value>未知（{0}）</value></data>
   <data name="Logistics_AddPlaceholder" xml:space="preserve"><value>添加分组，或输入 id…</value></data>
   <data name="Logistics_Add" xml:space="preserve"><value>添加</value></data>
   <data name="Logistics_SelectAll" xml:space="preserve"><value>全选</value></data>
