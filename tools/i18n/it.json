@@ -184,5 +184,6 @@
   "Logistics_PriorityHighest": "Massima",
   "Logistics_SelectAll": "Seleziona tutto",
   "Logistics_Clear": "Svuota",
-  "Logistics_Everything": "Tutto"
+  "Logistics_Everything": "Tutto",
+  "Logistics_PriorityUnknown": "Sconosciuta ({0})"
 }

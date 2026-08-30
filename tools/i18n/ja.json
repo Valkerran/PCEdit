@@ -184,5 +184,6 @@
   "Logistics_PriorityHighest": "最高",
   "Logistics_SelectAll": "すべて選択",
   "Logistics_Clear": "クリア",
-  "Logistics_Everything": "すべて"
+  "Logistics_Everything": "すべて",
+  "Logistics_PriorityUnknown": "不明 ({0})"
 }

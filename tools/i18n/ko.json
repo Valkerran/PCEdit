@@ -184,5 +184,6 @@
   "Logistics_PriorityHighest": "최고",
   "Logistics_SelectAll": "모두 선택",
   "Logistics_Clear": "지우기",
-  "Logistics_Everything": "전체"
+  "Logistics_Everything": "전체",
+  "Logistics_PriorityUnknown": "알 수 없음 ({0})"
 }

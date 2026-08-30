@@ -184,5 +184,6 @@
   "Logistics_PriorityHighest": "Самый высокий",
   "Logistics_SelectAll": "Выбрать все",
   "Logistics_Clear": "Очистить",
-  "Logistics_Everything": "Всё"
+  "Logistics_Everything": "Всё",
+  "Logistics_PriorityUnknown": "Неизвестно ({0})"
 }

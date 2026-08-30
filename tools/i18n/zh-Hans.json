@@ -184,5 +184,6 @@
   "Logistics_PriorityHighest": "最高",
   "Logistics_SelectAll": "全选",
   "Logistics_Clear": "清空",
-  "Logistics_Everything": "全部"
+  "Logistics_Everything": "全部",
+  "Logistics_PriorityUnknown": "未知（{0}）"
 }

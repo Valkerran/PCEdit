@@ -184,5 +184,6 @@
   "Logistics_PriorityHighest": "En yüksek",
   "Logistics_SelectAll": "Tümünü seç",
   "Logistics_Clear": "Temizle",
-  "Logistics_Everything": "Her şey"
+  "Logistics_Everything": "Her şey",
+  "Logistics_PriorityUnknown": "Bilinmiyor ({0})"
 }
