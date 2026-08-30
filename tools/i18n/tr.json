@@ -181,5 +181,8 @@
   "Logistics_PriorityNormal": "Normal",
   "Logistics_PriorityHigh": "Yüksek",
   "Logistics_PriorityVeryHigh": "Çok yüksek",
-  "Logistics_PriorityHighest": "En yüksek"
+  "Logistics_PriorityHighest": "En yüksek",
+  "Logistics_SelectAll": "Tümünü seç",
+  "Logistics_Clear": "Temizle",
+  "Logistics_Everything": "Her şey"
 }

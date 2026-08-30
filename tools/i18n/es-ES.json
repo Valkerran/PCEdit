@@ -181,5 +181,8 @@
   "Logistics_PriorityNormal": "Normal",
   "Logistics_PriorityHigh": "Alta",
   "Logistics_PriorityVeryHigh": "Muy alta",
-  "Logistics_PriorityHighest": "La más alta"
+  "Logistics_PriorityHighest": "La más alta",
+  "Logistics_SelectAll": "Seleccionar todo",
+  "Logistics_Clear": "Vaciar",
+  "Logistics_Everything": "Todo"
 }

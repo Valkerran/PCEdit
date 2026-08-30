@@ -128,6 +128,9 @@
   <data name="Logistics_PriorityHighest" xml:space="preserve"><value>Massima</value></data>
   <data name="Logistics_AddPlaceholder" xml:space="preserve"><value>Aggiungi un gruppo o digita un id…</value></data>
   <data name="Logistics_Add" xml:space="preserve"><value>Aggiungi</value></data>
+  <data name="Logistics_SelectAll" xml:space="preserve"><value>Seleziona tutto</value></data>
+  <data name="Logistics_Clear" xml:space="preserve"><value>Svuota</value></data>
+  <data name="Logistics_Everything" xml:space="preserve"><value>Tutto</value></data>
   <data name="Logistics_RemoveA11y" xml:space="preserve"><value>Rimuovi {0}</value></data>
   <data name="Logistics_EmptyList" xml:space="preserve"><value>Nessuno</value></data>
   <data name="Logistics_CustomBadge" xml:space="preserve"><value>person.</value></data>

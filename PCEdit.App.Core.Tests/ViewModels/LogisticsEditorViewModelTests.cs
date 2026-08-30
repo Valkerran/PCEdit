@@ -28,7 +28,7 @@ public sealed class LogisticsEditorViewModelTests
         workspace.Load(Path);
         var nav = new FakeNavigationService();
         var vm = new LogisticsEditorViewModel(
-            new InventoryEditor(workspace, new ItemCatalog(), localizer),
+            new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer),
             new LogisticsGroupCatalog(),
             new FakeScreenReaderAnnouncer(),
             nav,
@@ -105,6 +105,58 @@ public sealed class LogisticsEditorViewModelTests
         Assert.Equal("Magnesium", inv.SupplyGroups);
         Assert.Equal(3, inv.Priority);
         Assert.Equal(1, nav.CloseModalCount);
+    }
+
+    [Fact]
+    public void SelectAllSupply_AddsEveryKnownGroup_AndFlagsEverything()
+    {
+        var (vm, _, _) = Create();
+        vm.Initialize(30);
+
+        Assert.False(vm.SupplyIsEverything);
+        vm.SelectAllSupplyCommand.Execute(null);
+
+        Assert.True(vm.SupplyIsEverything);
+        Assert.Equal(new LogisticsGroupCatalog().All.Count, vm.SupplyGroups.Count);
+    }
+
+    [Fact]
+    public void ClearSupply_EmptiesTheList_AndUnflagsEverything()
+    {
+        var (vm, _, _) = Create();
+        vm.Initialize(30);
+        vm.SelectAllSupplyCommand.Execute(null);
+
+        vm.ClearSupplyCommand.Execute(null);
+
+        Assert.False(vm.SupplyIsEverything);
+        Assert.Empty(vm.SupplyGroups);
+    }
+
+    [Fact]
+    public async Task Apply_AfterSelectAllSupply_WritesEveryGroupId()
+    {
+        var (vm, workspace, _) = Create();
+        vm.Initialize(30);
+        vm.SelectAllSupplyCommand.Execute(null);
+
+        await vm.ApplyCommand.ExecuteAsync(null);
+
+        var written = GroupListCodec.Parse(workspace.Current!.Inventories.Single(i => i.Id == 30).SupplyGroups);
+        Assert.Equal(new LogisticsGroupCatalog().All.Select(g => g.Id).OrderBy(x => x), written.OrderBy(x => x));
+    }
+
+    [Fact]
+    public void Initialize_AContainerSupplyingEveryGroup_FlagsEverything()
+    {
+        var (vm, workspace, _) = Create();
+        var all = GroupListCodec.Join(new LogisticsGroupCatalog().All.Select(g => g.Id));
+        var idx = workspace.Current!.Inventories.FindIndex(i => i.Id == 30);
+        workspace.Current.Inventories[idx] = workspace.Current.Inventories[idx] with { SupplyGroups = all };
+
+        vm.Initialize(30);
+
+        Assert.True(vm.SupplyIsEverything);
     }
 
     [Fact]

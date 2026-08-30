@@ -10,7 +10,8 @@ namespace PCEdit.App.Core.ViewModels;
 /// <summary>
 /// Modal editor for one logistics container's demand groups, supply groups and priority. A group
 /// is added either by picking a known one (<see cref="AllGroups"/>) or by typing a raw id — the
-/// bundled pick-list is not exhaustive.
+/// bundled pick-list is not exhaustive. "Select all" adds every known group; when a list holds
+/// every known group it collapses to a single "Everything" entry (matching the game).
 /// </summary>
 public sealed partial class LogisticsEditorViewModel(
     IInventoryEditor inventoryEditor,
@@ -60,6 +61,11 @@ public sealed partial class LogisticsEditorViewModel(
 
     public ObservableCollection<LogisticsGroupInfo> SupplyGroups { get; } = [];
 
+    /// <summary>True when the demand list holds every known group — the view collapses it to "Everything".</summary>
+    public bool DemandIsEverything => IsEverything(DemandGroups);
+
+    public bool SupplyIsEverything => IsEverything(SupplyGroups);
+
     public void Initialize(int inventoryId)
     {
         var container = _inventoryEditor.GetLogisticsContainer(inventoryId)
@@ -69,17 +75,8 @@ public sealed partial class LogisticsEditorViewModel(
         Title = container.Label;
         SelectedPriority = container.Priority;
 
-        DemandGroups.Clear();
-        foreach (var id in container.DemandGroupIds)
-        {
-            DemandGroups.Add(_groupCatalog.Resolve(id));
-        }
-
-        SupplyGroups.Clear();
-        foreach (var id in container.SupplyGroupIds)
-        {
-            SupplyGroups.Add(_groupCatalog.Resolve(id));
-        }
+        Replace(DemandGroups, container.DemandGroupIds);
+        Replace(SupplyGroups, container.SupplyGroupIds);
     }
 
     [RelayCommand]
@@ -92,10 +89,28 @@ public sealed partial class LogisticsEditorViewModel(
 
         DemandGroupToAdd = null;
         DemandGroupText = string.Empty;
+        NotifyListsChanged();
     }
 
     [RelayCommand]
-    private void RemoveDemandGroup(LogisticsGroupInfo group) => DemandGroups.Remove(group);
+    private void RemoveDemandGroup(LogisticsGroupInfo group)
+    {
+        DemandGroups.Remove(group);
+        NotifyListsChanged();
+    }
+
+    [RelayCommand]
+    private void SelectAllDemand()
+    {
+        Replace(DemandGroups, _groupCatalog.All.Select(g => g.Id));
+    }
+
+    [RelayCommand]
+    private void ClearDemand()
+    {
+        DemandGroups.Clear();
+        NotifyListsChanged();
+    }
 
     [RelayCommand]
     private void AddSupplyGroup()
@@ -107,10 +122,28 @@ public sealed partial class LogisticsEditorViewModel(
 
         SupplyGroupToAdd = null;
         SupplyGroupText = string.Empty;
+        NotifyListsChanged();
     }
 
     [RelayCommand]
-    private void RemoveSupplyGroup(LogisticsGroupInfo group) => SupplyGroups.Remove(group);
+    private void RemoveSupplyGroup(LogisticsGroupInfo group)
+    {
+        SupplyGroups.Remove(group);
+        NotifyListsChanged();
+    }
+
+    [RelayCommand]
+    private void SelectAllSupply()
+    {
+        Replace(SupplyGroups, _groupCatalog.All.Select(g => g.Id));
+    }
+
+    [RelayCommand]
+    private void ClearSupply()
+    {
+        SupplyGroups.Clear();
+        NotifyListsChanged();
+    }
 
     [RelayCommand]
     private async Task ApplyAsync()
@@ -145,6 +178,34 @@ public sealed partial class LogisticsEditorViewModel(
 
         group = null!;
         return false;
+    }
+
+    private bool IsEverything(IEnumerable<LogisticsGroupInfo> groups)
+    {
+        if (_groupCatalog.All.Count == 0)
+        {
+            return false;
+        }
+
+        var ids = groups.Select(g => g.Id).ToHashSet(StringComparer.Ordinal);
+        return _groupCatalog.All.All(g => ids.Contains(g.Id));
+    }
+
+    private void Replace(ObservableCollection<LogisticsGroupInfo> target, IEnumerable<string> ids)
+    {
+        target.Clear();
+        foreach (var id in ids)
+        {
+            AddUnique(target, _groupCatalog.Resolve(id));
+        }
+
+        NotifyListsChanged();
+    }
+
+    private void NotifyListsChanged()
+    {
+        OnPropertyChanged(nameof(DemandIsEverything));
+        OnPropertyChanged(nameof(SupplyIsEverything));
     }
 
     private static void AddUnique(ObservableCollection<LogisticsGroupInfo> target, LogisticsGroupInfo group)

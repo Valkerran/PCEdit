@@ -128,6 +128,9 @@
   <data name="Logistics_PriorityHighest" xml:space="preserve"><value>最高</value></data>
   <data name="Logistics_AddPlaceholder" xml:space="preserve"><value>添加分组，或输入 id…</value></data>
   <data name="Logistics_Add" xml:space="preserve"><value>添加</value></data>
+  <data name="Logistics_SelectAll" xml:space="preserve"><value>全选</value></data>
+  <data name="Logistics_Clear" xml:space="preserve"><value>清空</value></data>
+  <data name="Logistics_Everything" xml:space="preserve"><value>全部</value></data>
   <data name="Logistics_RemoveA11y" xml:space="preserve"><value>移除 {0}</value></data>
   <data name="Logistics_EmptyList" xml:space="preserve"><value>无</value></data>
   <data name="Logistics_CustomBadge" xml:space="preserve"><value>自定义</value></data>

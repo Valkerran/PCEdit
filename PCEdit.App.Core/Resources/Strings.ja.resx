@@ -128,6 +128,9 @@
   <data name="Logistics_PriorityHighest" xml:space="preserve"><value>最高</value></data>
   <data name="Logistics_AddPlaceholder" xml:space="preserve"><value>グループを追加、または id を入力…</value></data>
   <data name="Logistics_Add" xml:space="preserve"><value>追加</value></data>
+  <data name="Logistics_SelectAll" xml:space="preserve"><value>すべて選択</value></data>
+  <data name="Logistics_Clear" xml:space="preserve"><value>クリア</value></data>
+  <data name="Logistics_Everything" xml:space="preserve"><value>すべて</value></data>
   <data name="Logistics_RemoveA11y" xml:space="preserve"><value>{0} を削除</value></data>
   <data name="Logistics_EmptyList" xml:space="preserve"><value>なし</value></data>
   <data name="Logistics_CustomBadge" xml:space="preserve"><value>カスタム</value></data>

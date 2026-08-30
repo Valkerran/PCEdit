@@ -181,5 +181,8 @@
   "Logistics_PriorityNormal": "보통",
   "Logistics_PriorityHigh": "높음",
   "Logistics_PriorityVeryHigh": "매우 높음",
-  "Logistics_PriorityHighest": "최고"
+  "Logistics_PriorityHighest": "최고",
+  "Logistics_SelectAll": "모두 선택",
+  "Logistics_Clear": "지우기",
+  "Logistics_Everything": "전체"
 }

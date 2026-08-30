@@ -4,10 +4,15 @@ using PCEdit.SaveFileHandler.Models;
 
 namespace PCEdit.App.Core.Services;
 
-public sealed class InventoryEditor(ISaveFileWorkspace workspace, IItemCatalog itemCatalog, ILocalizer localizer) : IInventoryEditor
+public sealed class InventoryEditor(
+    ISaveFileWorkspace workspace,
+    IItemCatalog itemCatalog,
+    ILogisticsGroupCatalog logisticsGroupCatalog,
+    ILocalizer localizer) : IInventoryEditor
 {
     private readonly ISaveFileWorkspace _workspace = workspace ?? throw new ArgumentNullException(nameof(workspace));
     private readonly IItemCatalog _itemCatalog = itemCatalog ?? throw new ArgumentNullException(nameof(itemCatalog));
+    private readonly ILogisticsGroupCatalog _logisticsGroupCatalog = logisticsGroupCatalog ?? throw new ArgumentNullException(nameof(logisticsGroupCatalog));
     private readonly ILocalizer _localizer = localizer ?? throw new ArgumentNullException(nameof(localizer));
 
     public List<InventoryGroup> BuildInventoryGroups()
@@ -171,9 +176,21 @@ public sealed class InventoryEditor(ISaveFileWorkspace workspace, IItemCatalog i
     {
         return _localizer.Format(
             LocKeys.Inventories_LogisticsSummary,
-            logistics.DemandGroupIds.Count,
-            logistics.SupplyGroupIds.Count,
+            DescribeGroupCount(logistics.DemandGroupIds),
+            DescribeGroupCount(logistics.SupplyGroupIds),
             _localizer[logistics.Priority.ResourceKey()]);
+    }
+
+    /// <summary>A count, or "Everything" when the list holds every known group.</summary>
+    private string DescribeGroupCount(IReadOnlyCollection<string> groupIds)
+    {
+        var known = _logisticsGroupCatalog.All;
+        if (known.Count > 0 && known.All(g => groupIds.Contains(g.Id)))
+        {
+            return _localizer[LocKeys.Logistics_Everything];
+        }
+
+        return groupIds.Count.ToString(System.Globalization.CultureInfo.CurrentCulture);
     }
 
     private static Inventory WithWorldObjectIds(Inventory inventory, IEnumerable<int> ids)

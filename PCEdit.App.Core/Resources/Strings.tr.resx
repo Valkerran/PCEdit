@@ -128,6 +128,9 @@
   <data name="Logistics_PriorityHighest" xml:space="preserve"><value>En yüksek</value></data>
   <data name="Logistics_AddPlaceholder" xml:space="preserve"><value>Bir grup ekleyin veya bir kimlik yazın…</value></data>
   <data name="Logistics_Add" xml:space="preserve"><value>Ekle</value></data>
+  <data name="Logistics_SelectAll" xml:space="preserve"><value>Tümünü seç</value></data>
+  <data name="Logistics_Clear" xml:space="preserve"><value>Temizle</value></data>
+  <data name="Logistics_Everything" xml:space="preserve"><value>Her şey</value></data>
   <data name="Logistics_RemoveA11y" xml:space="preserve"><value>{0} öğesini kaldır</value></data>
   <data name="Logistics_EmptyList" xml:space="preserve"><value>Yok</value></data>
   <data name="Logistics_CustomBadge" xml:space="preserve"><value>özel</value></data>

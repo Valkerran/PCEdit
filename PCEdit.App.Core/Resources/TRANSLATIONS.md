@@ -35,6 +35,8 @@ The logistics-editor pass (editing a container's demand / supply groups + priori
 Inventories page) added the `Logistics_*` keys and `Inventories_{LogisticsSummary,EditLogistics,
 EditLogisticsA11y}` — all machine-translated. `Logistics_Priority{Lowest…Highest}` are the game's
 7 named priority levels; the romance-language forms agree with "priority" (feminine).
+`Logistics_{SelectAll,Clear,Everything}` cover the demand/supply bulk controls (a list holding
+every known group collapses to "Everything").
 
 | Culture | Language | Reviewed |
 |---|---|---|

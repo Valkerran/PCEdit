@@ -181,5 +181,8 @@
   "Logistics_PriorityNormal": "正常",
   "Logistics_PriorityHigh": "高",
   "Logistics_PriorityVeryHigh": "很高",
-  "Logistics_PriorityHighest": "最高"
+  "Logistics_PriorityHighest": "最高",
+  "Logistics_SelectAll": "全選",
+  "Logistics_Clear": "清除",
+  "Logistics_Everything": "全部"
 }

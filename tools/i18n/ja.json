@@ -181,5 +181,8 @@
   "Logistics_PriorityNormal": "標準",
   "Logistics_PriorityHigh": "高い",
   "Logistics_PriorityVeryHigh": "非常に高い",
-  "Logistics_PriorityHighest": "最高"
+  "Logistics_PriorityHighest": "最高",
+  "Logistics_SelectAll": "すべて選択",
+  "Logistics_Clear": "クリア",
+  "Logistics_Everything": "すべて"
 }

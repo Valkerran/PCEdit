@@ -17,7 +17,7 @@ public sealed class InventoryEditorTests
         var localizer = new Localizer();
         var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
         workspace.Load(Path);
-        return (new InventoryEditor(workspace, new ItemCatalog(), localizer), workspace);
+        return (new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer), workspace);
     }
 
     [Fact]
@@ -49,6 +49,25 @@ public sealed class InventoryEditorTests
     }
 
     [Fact]
+    public void BuildInventoryGroups_SummaryShowsEverything_WhenAListHoldsEveryKnownGroup()
+    {
+        var store = new FakeSaveFileStore();
+        var save = WorkspaceFixtures.Create();
+        var all = GroupListCodec.Join(new LogisticsGroupCatalog().All.Select(g => g.Id));
+        var index = save.Inventories.FindIndex(i => i.Id == 30);
+        save.Inventories[index] = save.Inventories[index] with { DemandGroups = "Iron", SupplyGroups = all, Priority = 0 };
+        store.Seed(Path, save);
+        var localizer = new Localizer();
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
+        workspace.Load(Path);
+        var editor = new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer);
+
+        Assert.Equal(
+            "Demand 1 · Supply Everything · Priority Normal",
+            editor.BuildInventoryGroups().Single(g => g.InventoryId == 30).LogisticsSummary);
+    }
+
+    [Fact]
     public void BuildInventoryGroups_ClampsAnOutOfRangeRawPriority()
     {
         var store = new FakeSaveFileStore();
@@ -59,7 +78,7 @@ public sealed class InventoryEditorTests
         var localizer = new Localizer();
         var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
         workspace.Load(Path);
-        var editor = new InventoryEditor(workspace, new ItemCatalog(), localizer);
+        var editor = new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer);
 
         Assert.Equal(LogisticsPriority.Lowest, editor.BuildInventoryGroups().Single(g => g.InventoryId == 30).Logistics!.Priority);
     }
@@ -102,7 +121,7 @@ public sealed class InventoryEditorTests
         var localizer = new Localizer();
         var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
         workspace.Load(Path);
-        return (new InventoryEditor(workspace, new ItemCatalog(), localizer), workspace);
+        return (new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer), workspace);
     }
 
     [Fact]
@@ -219,7 +238,7 @@ public sealed class InventoryEditorTests
         var localizer = new Localizer();
         var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
         workspace.Load(Path);
-        var editor = new InventoryEditor(workspace, new ItemCatalog(), localizer);
+        var editor = new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer);
 
         var result = editor.TryMoveItem(worldObjectId: 200, destinationInventoryId: 30);
 

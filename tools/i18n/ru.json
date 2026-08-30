@@ -181,5 +181,8 @@
   "Logistics_PriorityNormal": "Обычный",
   "Logistics_PriorityHigh": "Высокий",
   "Logistics_PriorityVeryHigh": "Очень высокий",
-  "Logistics_PriorityHighest": "Самый высокий"
+  "Logistics_PriorityHighest": "Самый высокий",
+  "Logistics_SelectAll": "Выбрать все",
+  "Logistics_Clear": "Очистить",
+  "Logistics_Everything": "Всё"
 }
