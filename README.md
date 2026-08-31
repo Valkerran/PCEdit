@@ -34,6 +34,24 @@ Turkish); it follows the OS language on first run and can be switched in-app.
 
 **Note** - all non-english languages are AI translated. If anyone spots any translation issues, raise an issue request.
 
+## Changelog
+
+Full history and downloads are on the
+[Releases page](https://github.com/Valkerran/PCEdit/releases).
+
+### v1.1.0
+
+- **Inventories — filter by world.** On a save that spans more than one planet, the Inventories
+  page gains a **World** filter. Inventories that can't be matched to a planet (drones, vehicles,
+  rockets, unplaced buffers) group under *Unknown world*.
+- **Teleport — worlds.** Each landmark shows the planet it sits on and the list filters to the
+  chosen destination world. Picking a destination world different from where the player stands
+  fills X / Y / Z from that world's arrival point, and *Use current position* now restores the
+  player's world as well as their coordinates.
+- **Teleport — multiplayer note** about non-host players (see [Using the editor](#teleport)).
+- **About page** now lists the game's default save-file locations per platform.
+- Fixes: *Use current position* no longer leaves a stale world selected.
+
 ## Using the editor
 
 ### Worlds (planets)
