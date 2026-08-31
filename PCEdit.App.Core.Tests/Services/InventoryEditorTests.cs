@@ -17,7 +17,7 @@ public sealed class InventoryEditorTests
         var localizer = new Localizer();
         var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
         workspace.Load(Path);
-        return (new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer), workspace);
+        return (new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace)), workspace);
     }
 
     [Fact]
@@ -60,7 +60,7 @@ public sealed class InventoryEditorTests
         var localizer = new Localizer();
         var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
         workspace.Load(Path);
-        var editor = new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer);
+        var editor = new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace));
 
         Assert.Equal(
             "Demand 1 · Supply Everything · Priority Normal",
@@ -78,7 +78,7 @@ public sealed class InventoryEditorTests
         var localizer = new Localizer();
         var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
         workspace.Load(Path);
-        var editor = new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer);
+        var editor = new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace));
 
         var group = editor.BuildInventoryGroups().Single(g => g.InventoryId == 30);
         Assert.Equal(4, group.Logistics!.Priority);
@@ -133,7 +133,25 @@ public sealed class InventoryEditorTests
         var localizer = new Localizer();
         var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
         workspace.Load(Path);
-        return (new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer), workspace);
+        return (new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace)), workspace);
+    }
+
+    [Fact]
+    public void BuildInventoryGroups_ResolvesEachInventorysWorld()
+    {
+        var store = new FakeSaveFileStore();
+        store.Seed(Path, WorkspaceFixtures.CreateMultiWorld());
+        var localizer = new Localizer();
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
+        workspace.Load(Path);
+        var editor = new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace));
+
+        var groups = editor.BuildInventoryGroups().ToDictionary(g => g.InventoryId, g => g.PlanetId);
+
+        Assert.Equal("Prime", groups[10]);    // Alice's inventory
+        Assert.Equal("Aqualis", groups[20]);  // Bob's inventory
+        Assert.Equal("Aqualis", groups[30]);  // container placed on Aqualis
+        Assert.Null(groups[99]);              // orphan inventory
     }
 
     [Fact]
@@ -250,7 +268,7 @@ public sealed class InventoryEditorTests
         var localizer = new Localizer();
         var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
         workspace.Load(Path);
-        var editor = new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer);
+        var editor = new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace));
 
         var result = editor.TryMoveItem(worldObjectId: 200, destinationInventoryId: 30);
 

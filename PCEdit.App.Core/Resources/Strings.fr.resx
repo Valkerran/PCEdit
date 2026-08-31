@@ -94,6 +94,9 @@
   <data name="Inventories_FilterEquipment" xml:space="preserve"><value>Équipement</value></data>
   <data name="Inventories_FilterContainers" xml:space="preserve"><value>Conteneurs</value></data>
   <data name="Inventories_FilterA11y" xml:space="preserve"><value>Afficher quels types d'inventaire</value></data>
+  <data name="Inventories_FilterWorldA11y" xml:space="preserve"><value>Filtrer les inventaires par monde</value></data>
+  <data name="Inventories_WorldAll" xml:space="preserve"><value>Tous les mondes</value></data>
+  <data name="Inventories_WorldUnknown" xml:space="preserve"><value>Monde inconnu</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>Inventaire de {0}</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>Équipement de {0}</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0} (objet nº {1})</value></data>
@@ -182,6 +185,9 @@
   <data name="Teleport_Done" xml:space="preserve"><value>{0} téléporté vers {1} ({2}).</value></data>
   <data name="Teleport_LandmarkPlanetHash" xml:space="preserve"><value>hachage du monde {0}</value></data>
   <data name="Teleport_LandmarkNoPlanetHash" xml:space="preserve"><value>aucun hachage du monde enregistré</value></data>
+  <data name="Teleport_LandmarkAllWorlds" xml:space="preserve"><value>Afficher les points de repère de tous les mondes</value></data>
+  <data name="Teleport_AimedAtWorld" xml:space="preserve"><value>Ciblé sur {0}. Ajustez X / Y / Z ou choisissez un point de repère pour un endroit précis.</value></data>
+  <data name="Teleport_MultiplayerNote" xml:space="preserve"><value>Les modifications s'appliquent uniquement au joueur sélectionné. Pour un joueur qui n'est pas l'hôte de la partie, modifiez-le pendant qu'il est hors ligne et vérifiez le résultat en jeu.</value></data>
   <data name="Disclaimer_Title" xml:space="preserve"><value>À utiliser à vos propres risques</value></data>
   <data name="Disclaimer_Body" xml:space="preserve"><value>PCEdit modifie directement les fichiers de sauvegarde de Planet Crafter. Une modification incorrecte peut corrompre une sauvegarde et faire perdre de la progression. Conservez toujours une copie de votre fichier de sauvegarde avant toute modification. Ce logiciel est fourni « en l'état », sans garantie d'aucune sorte.</value></data>
   <data name="Disclaimer_Acknowledge" xml:space="preserve"><value>J'ai compris</value></data>
@@ -192,4 +198,6 @@
   <data name="About_Version" xml:space="preserve"><value>Version {0}</value></data>
   <data name="About_Language" xml:space="preserve"><value>Langue</value></data>
   <data name="About_LanguageA11y" xml:space="preserve"><value>Langue de l'application</value></data>
+  <data name="About_SaveLocationsHeading" xml:space="preserve"><value>Où le jeu conserve vos sauvegardes</value></data>
+  <data name="About_SaveLocationsNote" xml:space="preserve"><value>Xbox nomme chaque sauvegarde avec une chaîne aléatoire qui change à chaque écriture. Sous Linux, remplacez ~/.steam/steam par le dossier de votre bibliothèque Steam si le jeu est sur un autre disque.</value></data>
 </root>

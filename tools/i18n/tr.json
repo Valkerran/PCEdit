@@ -185,5 +185,13 @@
   "Logistics_SelectAll": "Tümünü seç",
   "Logistics_Clear": "Temizle",
   "Logistics_Everything": "Her şey",
-  "Logistics_PriorityUnknown": "Bilinmiyor ({0})"
+  "Logistics_PriorityUnknown": "Bilinmiyor ({0})",
+  "Inventories_FilterWorldA11y": "Envanterleri dünyaya göre filtrele",
+  "Inventories_WorldAll": "Tüm dünyalar",
+  "Inventories_WorldUnknown": "Bilinmeyen dünya",
+  "Teleport_LandmarkAllWorlds": "Tüm dünyalardan önemli noktaları göster",
+  "Teleport_AimedAtWorld": "{0} hedeflendi. Kesin bir nokta için X / Y / Z değerlerini ayarlayın veya bir önemli nokta seçin.",
+  "Teleport_MultiplayerNote": "Değişiklikler yalnızca seçili oyuncuya uygulanır. Oyunun ana bilgisayarı olmayan bir oyuncuyu çevrimdışıyken düzenleyin ve sonucu oyun içinde kontrol edin.",
+  "About_SaveLocationsHeading": "Oyunun kayıtlarını sakladığı yer",
+  "About_SaveLocationsNote": "Xbox her kaydı, her yazıldığında değişen rastgele bir dizeyle adlandırır. Linux'ta oyun başka bir sürücüdeyse ~/.steam/steam yerine Steam kitaplık klasörünüzü yazın."
 }

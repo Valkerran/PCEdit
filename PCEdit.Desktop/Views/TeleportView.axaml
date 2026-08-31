@@ -30,6 +30,10 @@
                             </ComboBox.ItemTemplate>
                         </ComboBox>
 
+                        <TextBlock Text="{m:Loc Teleport_MultiplayerNote}" Classes="caption"
+                                   TextWrapping="Wrap"
+                                   IsVisible="{Binding HasMultiplePlayers}" />
+
                         <TextBlock Text="{m:Loc Teleport_Planet}" Classes="caption" />
                         <ComboBox ItemsSource="{Binding PlanetIdOptions}" SelectedItem="{Binding SelectedPlanetId}"
                                   HorizontalAlignment="Stretch"
@@ -76,6 +80,10 @@
                     <TextBlock Text="{m:Loc Teleport_LandmarksHeading}" Classes="h2" VerticalAlignment="Center" />
                 </StackPanel>
                 <TextBlock Text="{m:Loc Teleport_LandmarksHelp}" Classes="caption" />
+
+                <CheckBox IsChecked="{Binding ShowAllWorldLandmarks}"
+                          IsVisible="{Binding ShowWorldLandmarkFilter}"
+                          Content="{m:Loc Teleport_LandmarkAllWorlds}" />
 
                 <ItemsControl ItemsSource="{Binding Landmarks}">
                     <ItemsControl.ItemsPanel>

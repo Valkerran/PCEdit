@@ -94,6 +94,9 @@
   <data name="Inventories_FilterEquipment" xml:space="preserve"><value>Снаряжение</value></data>
   <data name="Inventories_FilterContainers" xml:space="preserve"><value>Контейнеры</value></data>
   <data name="Inventories_FilterA11y" xml:space="preserve"><value>Показывать типы инвентарей</value></data>
+  <data name="Inventories_FilterWorldA11y" xml:space="preserve"><value>Фильтровать инвентари по миру</value></data>
+  <data name="Inventories_WorldAll" xml:space="preserve"><value>Все миры</value></data>
+  <data name="Inventories_WorldUnknown" xml:space="preserve"><value>Неизвестный мир</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>Инвентарь игрока {0}</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>Снаряжение игрока {0}</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0} (объект №{1})</value></data>
@@ -182,6 +185,9 @@
   <data name="Teleport_Done" xml:space="preserve"><value>{0} телепортирован на {1} ({2}).</value></data>
   <data name="Teleport_LandmarkPlanetHash" xml:space="preserve"><value>хеш мира {0}</value></data>
   <data name="Teleport_LandmarkNoPlanetHash" xml:space="preserve"><value>хеш мира не записан</value></data>
+  <data name="Teleport_LandmarkAllWorlds" xml:space="preserve"><value>Показывать ориентиры со всех миров</value></data>
+  <data name="Teleport_AimedAtWorld" xml:space="preserve"><value>Нацелено на {0}. Настройте X / Y / Z или выберите ориентир для точного места.</value></data>
+  <data name="Teleport_MultiplayerNote" xml:space="preserve"><value>Изменения применяются только к выбранному игроку. Игрока, не являющегося хостом, редактируйте, пока он офлайн, и проверяйте результат в игре.</value></data>
   <data name="Disclaimer_Title" xml:space="preserve"><value>Используйте на свой страх и риск</value></data>
   <data name="Disclaimer_Body" xml:space="preserve"><value>PCEdit напрямую изменяет файлы сохранений Planet Crafter. Неверное изменение может повредить сохранение и привести к потере прогресса. Всегда сохраняйте резервную копию файла сохранения перед изменением. Это программное обеспечение предоставляется «как есть», без каких-либо гарантий.</value></data>
   <data name="Disclaimer_Acknowledge" xml:space="preserve"><value>Понятно</value></data>
@@ -192,4 +198,6 @@
   <data name="About_Version" xml:space="preserve"><value>Версия {0}</value></data>
   <data name="About_Language" xml:space="preserve"><value>Язык</value></data>
   <data name="About_LanguageA11y" xml:space="preserve"><value>Язык приложения</value></data>
+  <data name="About_SaveLocationsHeading" xml:space="preserve"><value>Где игра хранит ваши сохранения</value></data>
+  <data name="About_SaveLocationsNote" xml:space="preserve"><value>Xbox называет каждое сохранение случайной строкой, которая меняется при каждой записи. В Linux замените ~/.steam/steam на папку вашей библиотеки Steam, если игра находится на другом диске.</value></data>
 </root>

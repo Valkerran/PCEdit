@@ -185,5 +185,13 @@
   "Logistics_SelectAll": "Zaznacz wszystko",
   "Logistics_Clear": "Wyczyść",
   "Logistics_Everything": "Wszystko",
-  "Logistics_PriorityUnknown": "Nieznany ({0})"
+  "Logistics_PriorityUnknown": "Nieznany ({0})",
+  "Inventories_FilterWorldA11y": "Filtruj ekwipunki według świata",
+  "Inventories_WorldAll": "Wszystkie światy",
+  "Inventories_WorldUnknown": "Nieznany świat",
+  "Teleport_LandmarkAllWorlds": "Pokaż punkty orientacyjne ze wszystkich światów",
+  "Teleport_AimedAtWorld": "Wycelowano w {0}. Dostosuj X / Y / Z lub wybierz punkt orientacyjny, aby wskazać dokładne miejsce.",
+  "Teleport_MultiplayerNote": "Zmiany dotyczą tylko wybranego gracza. Gracza, który nie jest gospodarzem gry, edytuj, gdy jest offline, i sprawdź wynik w grze.",
+  "About_SaveLocationsHeading": "Gdzie gra przechowuje zapisy",
+  "About_SaveLocationsNote": "Xbox nadaje każdemu zapisowi losowy ciąg znaków, który zmienia się przy każdym zapisie. W systemie Linux zastąp ~/.steam/steam folderem swojej biblioteki Steam, jeśli gra znajduje się na innym dysku."
 }

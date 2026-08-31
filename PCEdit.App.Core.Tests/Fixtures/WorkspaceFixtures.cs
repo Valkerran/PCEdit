@@ -1,3 +1,4 @@
+using PCEdit.SaveFileHandler;
 using PCEdit.SaveFileHandler.Models;
 
 namespace PCEdit.App.Core.Tests.Fixtures;
@@ -76,5 +77,24 @@ internal static class WorkspaceFixtures
                 new Inventory { Id = 99, WorldObjectIds = "", Size = 1 }
             ]
         };
+    }
+
+    /// <summary>
+    /// <see cref="Create"/> extended to two worlds: Alice stays on "Prime", Bob moves to
+    /// "Aqualis", and the storage container (world object 100 → inventory 30) is placed on
+    /// "Aqualis" via its <c>planet</c> hash. Inventory 99 stays orphaned (no world).
+    /// </summary>
+    public static PlanetCrafterSaveFile CreateMultiWorld()
+    {
+        var save = Create();
+        save.Terraformations.Add(new PlanetTerraformation { PlanetId = "Aqualis" });
+
+        var bob = save.Players.FindIndex(p => p.Id == 2);
+        save.Players[bob] = save.Players[bob] with { PlanetId = "Aqualis" };
+
+        var container = save.WorldObjects.FindIndex(w => w.Id == 100);
+        save.WorldObjects[container] = save.WorldObjects[container] with { Planet = PlanetHash.Of("Aqualis") };
+
+        return save;
     }
 }

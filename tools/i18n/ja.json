@@ -185,5 +185,13 @@
   "Logistics_SelectAll": "すべて選択",
   "Logistics_Clear": "クリア",
   "Logistics_Everything": "すべて",
-  "Logistics_PriorityUnknown": "不明 ({0})"
+  "Logistics_PriorityUnknown": "不明 ({0})",
+  "Inventories_FilterWorldA11y": "ワールドでインベントリを絞り込む",
+  "Inventories_WorldAll": "すべてのワールド",
+  "Inventories_WorldUnknown": "不明なワールド",
+  "Teleport_LandmarkAllWorlds": "すべてのワールドのランドマークを表示",
+  "Teleport_AimedAtWorld": "{0} を狙っています。X / Y / Z を調整するか、正確な位置のためにランドマークを選んでください。",
+  "Teleport_MultiplayerNote": "変更は選択したプレイヤーにのみ適用されます。ゲームのホストではないプレイヤーは、オフラインのときに編集し、ゲーム内で結果を確認してください。",
+  "About_SaveLocationsHeading": "ゲームがセーブを保存する場所",
+  "About_SaveLocationsNote": "Xbox は各セーブに、書き込むたびに変わるランダムな文字列で名前を付けます。Linux では、ゲームが別のドライブにある場合は ~/.steam/steam を Steam ライブラリのフォルダーに置き換えてください。"
 }

@@ -94,6 +94,9 @@
   <data name="Inventories_FilterEquipment" xml:space="preserve"><value>装備</value></data>
   <data name="Inventories_FilterContainers" xml:space="preserve"><value>コンテナ</value></data>
   <data name="Inventories_FilterA11y" xml:space="preserve"><value>表示するインベントリの種類</value></data>
+  <data name="Inventories_FilterWorldA11y" xml:space="preserve"><value>ワールドでインベントリを絞り込む</value></data>
+  <data name="Inventories_WorldAll" xml:space="preserve"><value>すべてのワールド</value></data>
+  <data name="Inventories_WorldUnknown" xml:space="preserve"><value>不明なワールド</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>{0} のインベントリ</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>{0} の装備</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0}（オブジェクト #{1}）</value></data>
@@ -182,6 +185,9 @@
   <data name="Teleport_Done" xml:space="preserve"><value>{0} を {1} にテレポートしました（{2}）。</value></data>
   <data name="Teleport_LandmarkPlanetHash" xml:space="preserve"><value>ワールドハッシュ {0}</value></data>
   <data name="Teleport_LandmarkNoPlanetHash" xml:space="preserve"><value>ワールドハッシュは記録されていません</value></data>
+  <data name="Teleport_LandmarkAllWorlds" xml:space="preserve"><value>すべてのワールドのランドマークを表示</value></data>
+  <data name="Teleport_AimedAtWorld" xml:space="preserve"><value>{0} を狙っています。X / Y / Z を調整するか、正確な位置のためにランドマークを選んでください。</value></data>
+  <data name="Teleport_MultiplayerNote" xml:space="preserve"><value>変更は選択したプレイヤーにのみ適用されます。ゲームのホストではないプレイヤーは、オフラインのときに編集し、ゲーム内で結果を確認してください。</value></data>
   <data name="Disclaimer_Title" xml:space="preserve"><value>自己責任でご利用ください</value></data>
   <data name="Disclaimer_Body" xml:space="preserve"><value>PCEdit は Planet Crafter のセーブファイルを直接編集します。誤った編集はセーブを破損させ、進行状況を失う可能性があります。編集前には必ずセーブファイルのバックアップを保管してください。本ソフトウェアは「現状のまま」提供され、いかなる保証もありません。</value></data>
   <data name="Disclaimer_Acknowledge" xml:space="preserve"><value>理解しました</value></data>
@@ -192,4 +198,6 @@
   <data name="About_Version" xml:space="preserve"><value>バージョン {0}</value></data>
   <data name="About_Language" xml:space="preserve"><value>言語</value></data>
   <data name="About_LanguageA11y" xml:space="preserve"><value>アプリケーションの言語</value></data>
+  <data name="About_SaveLocationsHeading" xml:space="preserve"><value>ゲームがセーブを保存する場所</value></data>
+  <data name="About_SaveLocationsNote" xml:space="preserve"><value>Xbox は各セーブに、書き込むたびに変わるランダムな文字列で名前を付けます。Linux では、ゲームが別のドライブにある場合は ~/.steam/steam を Steam ライブラリのフォルダーに置き換えてください。</value></data>
 </root>

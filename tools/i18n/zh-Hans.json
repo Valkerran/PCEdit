@@ -185,5 +185,13 @@
   "Logistics_SelectAll": "全选",
   "Logistics_Clear": "清空",
   "Logistics_Everything": "全部",
-  "Logistics_PriorityUnknown": "未知（{0}）"
+  "Logistics_PriorityUnknown": "未知（{0}）",
+  "Inventories_FilterWorldA11y": "按世界筛选库存",
+  "Inventories_WorldAll": "所有世界",
+  "Inventories_WorldUnknown": "未知世界",
+  "Teleport_LandmarkAllWorlds": "显示所有世界的地标",
+  "Teleport_AimedAtWorld": "已瞄准 {0}。调整 X / Y / Z 或选择一个地标以确定精确位置。",
+  "Teleport_MultiplayerNote": "更改仅应用于所选玩家。对于非游戏主机的玩家，请在其离线时进行编辑，并在游戏中确认结果。",
+  "About_SaveLocationsHeading": "游戏存档的位置",
+  "About_SaveLocationsNote": "Xbox 为每个存档使用随机字符串命名，每次写入时都会改变。在 Linux 上，如果游戏位于其他驱动器，请将 ~/.steam/steam 替换为你的 Steam 库文件夹。"
 }

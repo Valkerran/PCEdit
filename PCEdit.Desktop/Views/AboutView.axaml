@@ -1,6 +1,7 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:vm="clr-namespace:PCEdit.App.Core.ViewModels;assembly=PCEdit.App.Core"
+             xmlns:models="clr-namespace:PCEdit.App.Core.Models;assembly=PCEdit.App.Core"
              xmlns:m="using:PCEdit.Desktop.Markup"
              x:Class="PCEdit.Desktop.Views.AboutView"
              x:DataType="vm:AboutViewModel">
@@ -16,6 +17,30 @@
                 <StackPanel Spacing="8">
                     <TextBlock Text="{m:Loc Disclaimer_Title}" FontWeight="Bold" />
                     <TextBlock Text="{m:Loc Disclaimer_Body}" />
+                </StackPanel>
+            </Border>
+
+            <Border Classes="card">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="{m:Loc About_SaveLocationsHeading}" FontWeight="Bold" />
+                    <ItemsControl ItemsSource="{Binding SaveLocations}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Spacing="10" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="models:SaveLocationInfo">
+                                <StackPanel Spacing="2">
+                                    <TextBlock Text="{Binding Platform}" FontWeight="SemiBold" Classes="caption" />
+                                    <SelectableTextBlock Text="{Binding Path}" TextWrapping="Wrap"
+                                                         FontFamily="Cascadia Code,Consolas,Menlo,DejaVu Sans Mono,monospace"
+                                                         FontSize="12" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <TextBlock Text="{m:Loc About_SaveLocationsNote}" Classes="caption" TextWrapping="Wrap" />
                 </StackPanel>
             </Border>
         </StackPanel>

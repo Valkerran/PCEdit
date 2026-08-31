@@ -185,5 +185,13 @@
   "Logistics_SelectAll": "Select all",
   "Logistics_Clear": "Clear",
   "Logistics_Everything": "Everything",
-  "Logistics_PriorityUnknown": "Unknown ({0})"
+  "Logistics_PriorityUnknown": "Unknown ({0})",
+  "Inventories_FilterWorldA11y": "Filter inventories by world",
+  "Inventories_WorldAll": "All worlds",
+  "Inventories_WorldUnknown": "Unknown world",
+  "Teleport_LandmarkAllWorlds": "Show landmarks from all worlds",
+  "Teleport_AimedAtWorld": "Aimed at {0}. Adjust X / Y / Z or pick a landmark for a precise spot.",
+  "Teleport_MultiplayerNote": "Changes apply to the selected player only. For a player who is not the game's host, edit while they are offline and check the result in-game.",
+  "About_SaveLocationsHeading": "Where the game keeps your saves",
+  "About_SaveLocationsNote": "Xbox names each save with a random string that changes every time it is written. On Linux, replace ~/.steam/steam with your Steam library folder if the game lives on another drive."
 }

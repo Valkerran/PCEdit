@@ -55,6 +55,8 @@ public static class LocKeys
     public const string Terraform_Updated = "Terraform_Updated";
 
     public const string Inventories_MoveA11y = "Inventories_MoveA11y";
+    public const string Inventories_WorldAll = "Inventories_WorldAll";
+    public const string Inventories_WorldUnknown = "Inventories_WorldUnknown";
 
     public const string Inv_PlayerInventory = "Inv_PlayerInventory";
     public const string Inv_PlayerEquipment = "Inv_PlayerEquipment";
@@ -87,6 +89,8 @@ public static class LocKeys
     public const string Teleport_OtherPlanet = "Teleport_OtherPlanet";
     public const string Teleport_LandmarkPlanetHash = "Teleport_LandmarkPlanetHash";
     public const string Teleport_LandmarkNoPlanetHash = "Teleport_LandmarkNoPlanetHash";
+    public const string Teleport_LandmarkAllWorlds = "Teleport_LandmarkAllWorlds";
+    public const string Teleport_AimedAtWorld = "Teleport_AimedAtWorld";
 
     public const string About_Version = "About_Version";
 

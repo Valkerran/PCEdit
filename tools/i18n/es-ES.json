@@ -185,5 +185,13 @@
   "Logistics_SelectAll": "Seleccionar todo",
   "Logistics_Clear": "Vaciar",
   "Logistics_Everything": "Todo",
-  "Logistics_PriorityUnknown": "Desconocida ({0})"
+  "Logistics_PriorityUnknown": "Desconocida ({0})",
+  "Inventories_FilterWorldA11y": "Filtrar inventarios por mundo",
+  "Inventories_WorldAll": "Todos los mundos",
+  "Inventories_WorldUnknown": "Mundo desconocido",
+  "Teleport_LandmarkAllWorlds": "Mostrar puntos de referencia de todos los mundos",
+  "Teleport_AimedAtWorld": "Apuntando a {0}. Ajusta X / Y / Z o elige un punto de referencia para un lugar preciso.",
+  "Teleport_MultiplayerNote": "Los cambios se aplican solo al jugador seleccionado. Para un jugador que no es el anfitrión de la partida, edítalo mientras está desconectado y comprueba el resultado en el juego.",
+  "About_SaveLocationsHeading": "Dónde guarda el juego tus partidas",
+  "About_SaveLocationsNote": "Xbox nombra cada partida con una cadena aleatoria que cambia cada vez que se escribe. En Linux, sustituye ~/.steam/steam por la carpeta de tu biblioteca de Steam si el juego está en otra unidad."
 }

@@ -94,6 +94,9 @@
   <data name="Inventories_FilterEquipment" xml:space="preserve"><value>Ekipman</value></data>
   <data name="Inventories_FilterContainers" xml:space="preserve"><value>Kaplar</value></data>
   <data name="Inventories_FilterA11y" xml:space="preserve"><value>Hangi envanter türlerini göster</value></data>
+  <data name="Inventories_FilterWorldA11y" xml:space="preserve"><value>Envanterleri dünyaya göre filtrele</value></data>
+  <data name="Inventories_WorldAll" xml:space="preserve"><value>Tüm dünyalar</value></data>
+  <data name="Inventories_WorldUnknown" xml:space="preserve"><value>Bilinmeyen dünya</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>{0} adlı oyuncunun envanteri</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>{0} adlı oyuncunun ekipmanı</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0} (Nesne #{1})</value></data>
@@ -182,6 +185,9 @@
   <data name="Teleport_Done" xml:space="preserve"><value>{0}, {1} gezegenine ışınlandı ({2}).</value></data>
   <data name="Teleport_LandmarkPlanetHash" xml:space="preserve"><value>dünya karması {0}</value></data>
   <data name="Teleport_LandmarkNoPlanetHash" xml:space="preserve"><value>dünya karması kaydedilmemiş</value></data>
+  <data name="Teleport_LandmarkAllWorlds" xml:space="preserve"><value>Tüm dünyalardan önemli noktaları göster</value></data>
+  <data name="Teleport_AimedAtWorld" xml:space="preserve"><value>{0} hedeflendi. Kesin bir nokta için X / Y / Z değerlerini ayarlayın veya bir önemli nokta seçin.</value></data>
+  <data name="Teleport_MultiplayerNote" xml:space="preserve"><value>Değişiklikler yalnızca seçili oyuncuya uygulanır. Oyunun ana bilgisayarı olmayan bir oyuncuyu çevrimdışıyken düzenleyin ve sonucu oyun içinde kontrol edin.</value></data>
   <data name="Disclaimer_Title" xml:space="preserve"><value>Kendi sorumluluğunuzda kullanın</value></data>
   <data name="Disclaimer_Body" xml:space="preserve"><value>PCEdit, Planet Crafter kayıt dosyalarını doğrudan düzenler. Hatalı bir düzenleme bir kaydı bozabilir ve ilerlemenizi kaybettirebilir. Düzenlemeden önce kayıt dosyanızın her zaman bir yedeğini tutun. Bu yazılım, hiçbir garanti olmaksızın «olduğu gibi» sağlanır.</value></data>
   <data name="Disclaimer_Acknowledge" xml:space="preserve"><value>Anladım</value></data>
@@ -192,4 +198,6 @@
   <data name="About_Version" xml:space="preserve"><value>Sürüm {0}</value></data>
   <data name="About_Language" xml:space="preserve"><value>Dil</value></data>
   <data name="About_LanguageA11y" xml:space="preserve"><value>Uygulama dili</value></data>
+  <data name="About_SaveLocationsHeading" xml:space="preserve"><value>Oyunun kayıtlarını sakladığı yer</value></data>
+  <data name="About_SaveLocationsNote" xml:space="preserve"><value>Xbox her kaydı, her yazıldığında değişen rastgele bir dizeyle adlandırır. Linux'ta oyun başka bir sürücüdeyse ~/.steam/steam yerine Steam kitaplık klasörünüzü yazın.</value></data>
 </root>

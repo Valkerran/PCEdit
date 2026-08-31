@@ -61,6 +61,17 @@
                     <RadioButton Classes="chip" GroupName="invFilter" Content="{m:Loc Inventories_FilterContainers}"
                                  IsChecked="{Binding Filter, Converter={StaticResource InvFilter}, ConverterParameter=Containers, Mode=TwoWay}" />
                 </StackPanel>
+
+                <ComboBox ItemsSource="{Binding WorldOptions}" SelectedItem="{Binding SelectedWorld}"
+                          IsVisible="{Binding ShowWorldFilter}"
+                          HorizontalAlignment="Left" MinWidth="200"
+                          AutomationProperties.Name="{m:Loc Inventories_FilterWorldA11y}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="models:WorldFilterOption">
+                            <TextBlock Text="{Binding Label}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
             </StackPanel>
 
             <TextBlock DockPanel.Dock="Top" Text="{m:Loc Inventories_None}" Classes="caption"

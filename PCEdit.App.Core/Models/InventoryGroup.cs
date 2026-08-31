@@ -10,6 +10,13 @@ public sealed class InventoryGroup
 
     public required InventoryKind Kind { get; init; }
 
+    /// <summary>
+    /// The planet (world) this inventory belongs to: a player/equipment inventory's owner's
+    /// <c>PlanetId</c>, or a container's resolved <c>WorldObject.Planet</c>. Null when the
+    /// inventory has no owner (an orphan inventory) or the world could not be resolved.
+    /// </summary>
+    public string? PlanetId { get; init; }
+
     public required List<InventoryItemView> Items { get; init; }
 
     /// <summary>
@@ -29,10 +36,10 @@ public sealed class InventoryGroup
 
     public string CapacityLabel => $"{Count}/{Size}";
 
-    /// <summary>Lower-cased haystack for the Inventories page search: the label plus every
-    /// contained item's display name.</summary>
+    /// <summary>Lower-cased haystack for the Inventories page search: the label, the world id,
+    /// plus every contained item's display name.</summary>
     public string SearchIndex => _searchIndex ??=
-        string.Join('\n', Items.Select(i => i.DisplayName).Prepend(Label)).ToLowerInvariant();
+        string.Join('\n', Items.Select(i => i.DisplayName).Prepend(PlanetId ?? string.Empty).Prepend(Label)).ToLowerInvariant();
 
     private string? _searchIndex;
 
