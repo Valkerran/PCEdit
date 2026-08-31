@@ -28,7 +28,7 @@ public sealed class LogisticsEditorViewModelTests
         workspace.Load(Path);
         var nav = new FakeNavigationService();
         var vm = new LogisticsEditorViewModel(
-            new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer),
+            new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace)),
             new LogisticsGroupCatalog(),
             new FakeScreenReaderAnnouncer(),
             nav,

@@ -8,12 +8,14 @@ public sealed class InventoryEditor(
     ISaveFileWorkspace workspace,
     IItemCatalog itemCatalog,
     ILogisticsGroupCatalog logisticsGroupCatalog,
-    ILocalizer localizer) : IInventoryEditor
+    ILocalizer localizer,
+    IPlanetIndex planetIndex) : IInventoryEditor
 {
     private readonly ISaveFileWorkspace _workspace = workspace ?? throw new ArgumentNullException(nameof(workspace));
     private readonly IItemCatalog _itemCatalog = itemCatalog ?? throw new ArgumentNullException(nameof(itemCatalog));
     private readonly ILogisticsGroupCatalog _logisticsGroupCatalog = logisticsGroupCatalog ?? throw new ArgumentNullException(nameof(logisticsGroupCatalog));
     private readonly ILocalizer _localizer = localizer ?? throw new ArgumentNullException(nameof(localizer));
+    private readonly IPlanetIndex _planetIndex = planetIndex ?? throw new ArgumentNullException(nameof(planetIndex));
 
     public List<InventoryGroup> BuildInventoryGroups()
     {
@@ -24,13 +26,14 @@ public sealed class InventoryEditor(
         return save.Inventories
             .Select(inventory =>
             {
-                var (label, kind) = DescribeInventory(save, inventory.Id, containersByInventoryId);
+                var (label, kind, planetId) = DescribeInventory(save, inventory.Id, containersByInventoryId);
                 var logistics = ReadLogistics(inventory);
                 return new InventoryGroup
                 {
                     InventoryId = inventory.Id,
                     Label = label,
                     Kind = kind,
+                    PlanetId = planetId,
                     Size = inventory.Size,
                     Logistics = logistics,
                     LogisticsSummary = logistics is null ? null : FormatLogisticsSummary(logistics),
@@ -132,7 +135,7 @@ public sealed class InventoryEditor(
         }
 
         var containersByInventoryId = BuildContainerLookup(save);
-        var (label, _) = DescribeInventory(save, inventoryId, containersByInventoryId);
+        var (label, _, _) = DescribeInventory(save, inventoryId, containersByInventoryId);
         return new LogisticsContainerView(
             inventoryId,
             label,
@@ -211,7 +214,7 @@ public sealed class InventoryEditor(
         return save.Inventories.FirstOrDefault(i => WorldObjectIdsCodec.Parse(i.WorldObjectIds).Contains(worldObjectId));
     }
 
-    private (string Label, InventoryKind Kind) DescribeInventory(
+    private (string Label, InventoryKind Kind, string? PlanetId) DescribeInventory(
         PlanetCrafterSaveFile save,
         int inventoryId,
         IReadOnlyDictionary<int, WorldObject> containersByInventoryId)
@@ -219,22 +222,27 @@ public sealed class InventoryEditor(
         var owningPlayer = save.Players.FirstOrDefault(p => p.InventoryId == inventoryId);
         if (owningPlayer is not null)
         {
-            return (_localizer.Format(LocKeys.Inv_PlayerInventory, owningPlayer.Name), InventoryKind.PlayerInventory);
+            return (_localizer.Format(LocKeys.Inv_PlayerInventory, owningPlayer.Name), InventoryKind.PlayerInventory, NullIfBlank(owningPlayer.PlanetId));
         }
 
         var equippingPlayer = save.Players.FirstOrDefault(p => p.EquipmentId == inventoryId);
         if (equippingPlayer is not null)
         {
-            return (_localizer.Format(LocKeys.Inv_PlayerEquipment, equippingPlayer.Name), InventoryKind.Equipment);
+            return (_localizer.Format(LocKeys.Inv_PlayerEquipment, equippingPlayer.Name), InventoryKind.Equipment, NullIfBlank(equippingPlayer.PlanetId));
         }
 
         if (containersByInventoryId.TryGetValue(inventoryId, out var container))
         {
-            return (_localizer.Format(LocKeys.Inv_Container, _itemCatalog.Resolve(container.GId).DisplayName, container.Id), InventoryKind.Container);
+            return (
+                _localizer.Format(LocKeys.Inv_Container, _itemCatalog.Resolve(container.GId).DisplayName, container.Id),
+                InventoryKind.Container,
+                _planetIndex.ResolvePlanetId(container.Planet));
         }
 
-        return (_localizer.Format(LocKeys.Inv_Fallback, inventoryId), InventoryKind.Other);
+        return (_localizer.Format(LocKeys.Inv_Fallback, inventoryId), InventoryKind.Other, null);
     }
+
+    private static string? NullIfBlank(string? value) => string.IsNullOrWhiteSpace(value) ? null : value;
 
     private PlanetCrafterSaveFile RequireCurrent()
     {

@@ -18,7 +18,7 @@ public sealed class InventoriesViewModelTests
         var localizer = new Localizer();
         var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
         workspace.Load(Path);
-        var vm = new InventoriesViewModel(workspace, new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer), new FakeNavigationService());
+        var vm = new InventoriesViewModel(workspace, new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace)), new FakeNavigationService());
         vm.Load();
         return vm;
     }
@@ -81,7 +81,7 @@ public sealed class InventoriesViewModelTests
         var store = new FakeSaveFileStore();
         var localizer = new Localizer();
         var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
-        var vm = new InventoriesViewModel(workspace, new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer), nav);
+        var vm = new InventoriesViewModel(workspace, new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace)), nav);
 
         vm.OpenFileCommand.Execute(null);
 

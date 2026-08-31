@@ -13,12 +13,14 @@ public sealed partial class TeleportViewModel(
     ISaveFileWorkspace workspace,
     IScreenReaderAnnouncer announcer,
     ILocalizer localizer,
-    INavigationService navigation) : ObservableObject, ILoadable
+    INavigationService navigation,
+    IPlanetIndex planetIndex) : ObservableObject, ILoadable
 {
     private readonly ISaveFileWorkspace _workspace = workspace;
     private readonly IScreenReaderAnnouncer _announcer = announcer;
     private readonly ILocalizer _localizer = localizer;
     private readonly INavigationService _navigation = navigation;
+    private readonly IPlanetIndex _planetIndex = planetIndex;
 
     private string OtherPlanetOption => _localizer[LocKeys.Teleport_OtherPlanet];
 
@@ -76,14 +78,7 @@ public sealed partial class TeleportViewModel(
             Players.Add(new PlayerOption(player.Id, player.Name));
         }
 
-        var distinctPlanetIds = new[] { save.Metadata.PlanetId }
-            .Concat(save.Terraformations.Select(t => t.PlanetId))
-            .Concat(save.Players.Select(p => p.PlanetId))
-            .Where(id => !string.IsNullOrWhiteSpace(id))
-            .Distinct(StringComparer.OrdinalIgnoreCase)
-            .OrderBy(id => id, StringComparer.OrdinalIgnoreCase);
-
-        foreach (var planetId in distinctPlanetIds)
+        foreach (var planetId in _planetIndex.KnownPlanetIds())
         {
             PlanetIdOptions.Add(planetId);
         }
