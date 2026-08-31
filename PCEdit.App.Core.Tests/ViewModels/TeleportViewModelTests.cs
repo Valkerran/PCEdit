@@ -115,4 +115,48 @@ public sealed class TeleportViewModelTests
         Assert.False(vm.ShowWorldLandmarkFilter);
         Assert.Equal([500, 501, 502], vm.Landmarks.Select(l => l.WorldObjectId).OrderBy(id => id).ToArray());
     }
+
+    [Fact]
+    public void MultiplayerSave_EditsOnlyTheSelectedPlayer_AndFormFollowsThePlayer()
+    {
+        // Alice (id 1) on Prime, Bob (id 2) on Aqualis.
+        var save = WorkspaceFixtures.CreateMultiWorld();
+        var ai = save.Players.FindIndex(p => p.Name == "Alice");
+        var bi = save.Players.FindIndex(p => p.Name == "Bob");
+        save.Players[ai] = save.Players[ai] with { PlayerPosition = "1,1,1" };
+        save.Players[bi] = save.Players[bi] with { PlayerPosition = "2,2,2" };
+
+        var store = new FakeSaveFileStore();
+        store.Seed(Path, save);
+        var localizer = new Localizer();
+        var ws = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
+        ws.Load(Path);
+        var vm = new TeleportViewModel(ws, new FakeScreenReaderAnnouncer(), localizer, new FakeNavigationService(), new PlanetIndex(ws));
+        vm.Load();
+
+        // Form starts on the first player.
+        Assert.Equal("Alice", vm.SelectedPlayer!.Name);
+        Assert.Equal("Prime", vm.SelectedPlanetId);
+        Assert.Equal(("1", "1", "1"), (vm.X, vm.Y, vm.Z));
+
+        // Switch to Bob — the whole form re-initialises from Bob.
+        vm.SelectedPlayer = vm.Players.Single(p => p.Name == "Bob");
+        Assert.Equal("Aqualis", vm.SelectedPlanetId);
+        Assert.Equal(("2", "2", "2"), (vm.X, vm.Y, vm.Z));
+
+        // Teleport Bob to Prime.
+        vm.SelectedPlanetId = "Prime";
+        vm.X = "9"; vm.Y = "9"; vm.Z = "9";
+        vm.TeleportCommand.Execute(null);
+
+        var alice = ws.Current!.Players.Single(p => p.Name == "Alice");
+        var bob = ws.Current!.Players.Single(p => p.Name == "Bob");
+        Assert.Equal(("Prime", "9,9,9"), (bob.PlanetId, bob.PlayerPosition));
+        Assert.Equal(("Prime", "1,1,1"), (alice.PlanetId, alice.PlayerPosition)); // untouched
+
+        // Back to Alice — form shows Alice's still-unchanged state.
+        vm.SelectedPlayer = vm.Players.Single(p => p.Name == "Alice");
+        Assert.Equal("Prime", vm.SelectedPlanetId);
+        Assert.Equal(("1", "1", "1"), (vm.X, vm.Y, vm.Z));
+    }
 }
