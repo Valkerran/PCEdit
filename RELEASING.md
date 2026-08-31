@@ -50,7 +50,20 @@ Rules the pipelines enforce:
 3. **Wait for the four build jobs**, then check the drafted-then-published Release. Edit the
    notes if needed.
 
-4. **Bump again for development** (optional but tidy): raise `<VersionPrefix>` to the next
+4. **Add the macOS note to the Release body — manually.** The workflow's auto-generated notes
+   only list the merged PRs; they do **not** mention that the macOS build is unsigned. Append
+   this to every release body:
+
+   ```markdown
+   ---
+
+   ### macOS
+
+   The macOS `.zip` contains an **unsigned** `PCEdit.app`. On first launch, right-click the
+   app and choose **Open** (or run `xattr -dr com.apple.quarantine PCEdit.app`).
+   ```
+
+5. **Bump again for development** (optional but tidy): raise `<VersionPrefix>` to the next
    planned version on `main` so pre-release builds are not stamped with the shipped version.
 
 ## Local packaging (for testing — do not ship these)
