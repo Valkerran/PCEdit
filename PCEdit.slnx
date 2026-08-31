@@ -1,7 +1,14 @@
 <Solution>
-  <Project Path="PCEdit.App.Core/PCEdit.App.Core.csproj" />
+  <Folder Name="/Docs/">
+    <File Path="CLAUDE.md" />
+    <File Path="DISCLAIMER.md" />
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+    <File Path="RELEASING.md" />
+  </Folder>
   <Project Path="PCEdit.App.Core.Tests/PCEdit.App.Core.Tests.csproj" />
+  <Project Path="PCEdit.App.Core/PCEdit.App.Core.csproj" />
   <Project Path="PCEdit.Desktop/PCEdit.Desktop.csproj" />
-  <Project Path="PCEdit.SaveFileHandler/PCEdit.SaveFileHandler.csproj" />
   <Project Path="PCEdit.SaveFileHandler.Tests/PCEdit.SaveFileHandler.Tests.csproj" />
+  <Project Path="PCEdit.SaveFileHandler/PCEdit.SaveFileHandler.csproj" />
 </Solution>
