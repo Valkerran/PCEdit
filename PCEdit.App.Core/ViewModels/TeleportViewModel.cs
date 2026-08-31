@@ -32,6 +32,8 @@ public sealed partial class TeleportViewModel(
 
     public ObservableCollection<LandmarkOption> Landmarks { get; } = [];
 
+    private readonly List<LandmarkOption> _allLandmarks = [];
+
     [ObservableProperty]
     private PlayerOption? _selectedPlayer;
 
@@ -56,13 +58,23 @@ public sealed partial class TeleportViewModel(
     [ObservableProperty]
     private StatusKind _statusKind;
 
+    /// <summary>When false (default) the landmark list is trimmed to the currently selected
+    /// destination planet; when true every world's landmarks are shown.</summary>
+    [ObservableProperty]
+    private bool _showAllWorldLandmarks;
+
     public bool IsCustomPlanetId => SelectedPlanetId == OtherPlanetOption;
+
+    /// <summary>Only worth offering the "all worlds" landmark toggle on a multi-world save.</summary>
+    public bool ShowWorldLandmarkFilter => PlanetIdOptions.Count(o => o != OtherPlanetOption) > 1;
 
     public void Load()
     {
         Players.Clear();
         PlanetIdOptions.Clear();
         Landmarks.Clear();
+        _allLandmarks.Clear();
+        ShowAllWorldLandmarks = false;
         StatusMessage = null;
         StatusKind = StatusKind.Info;
         OnPropertyChanged(nameof(IsLoaded));
@@ -84,13 +96,31 @@ public sealed partial class TeleportViewModel(
         }
 
         PlanetIdOptions.Add(OtherPlanetOption);
+        OnPropertyChanged(nameof(ShowWorldLandmarkFilter));
 
-        foreach (var landmark in FindLandmarks(save))
-        {
-            Landmarks.Add(landmark);
-        }
+        _allLandmarks.AddRange(FindLandmarks(save));
+        FilterLandmarks();
 
         SelectedPlayer = Players.FirstOrDefault();
+    }
+
+    /// <summary>Rebuilds <see cref="Landmarks"/> from <see cref="_allLandmarks"/>, keeping only the
+    /// ones on the selected destination planet unless "all worlds" is on (or the destination is a
+    /// custom/blank id, where there is nothing to match against).</summary>
+    private void FilterLandmarks()
+    {
+        var restrictTo = !ShowWorldLandmarkFilter || ShowAllWorldLandmarks || IsCustomPlanetId || string.IsNullOrWhiteSpace(SelectedPlanetId)
+            ? null
+            : SelectedPlanetId;
+
+        Landmarks.Clear();
+        foreach (var landmark in _allLandmarks)
+        {
+            if (restrictTo is null || string.Equals(landmark.PlanetId, restrictTo, StringComparison.OrdinalIgnoreCase))
+            {
+                Landmarks.Add(landmark);
+            }
+        }
     }
 
     partial void OnSelectedPlayerChanged(PlayerOption? value)
@@ -123,6 +153,12 @@ public sealed partial class TeleportViewModel(
     partial void OnSelectedPlanetIdChanged(string? value)
     {
         OnPropertyChanged(nameof(IsCustomPlanetId));
+        FilterLandmarks();
+    }
+
+    partial void OnShowAllWorldLandmarksChanged(bool value)
+    {
+        FilterLandmarks();
     }
 
     [RelayCommand]
@@ -206,12 +242,16 @@ public sealed partial class TeleportViewModel(
             .Where(w => w.Position is not null &&
                         (w.GId.Contains("pod", StringComparison.OrdinalIgnoreCase) ||
                          w.GId.Contains("teleport", StringComparison.OrdinalIgnoreCase)))
-            .Select(w => new LandmarkOption(w.Id, w.GId, w.Position!, DescribePlanetHint(w.Planet)))
+            .Select(w =>
+            {
+                var planetId = _planetIndex.ResolvePlanetId(w.Planet);
+                return new LandmarkOption(w.Id, w.GId, w.Position!, DescribePlanetHint(w.Planet, planetId), planetId);
+            })
             .ToList();
     }
 
-    private string DescribePlanetHint(int? planet) =>
-        planet is { } value
-            ? _localizer.Format(LocKeys.Teleport_LandmarkPlanetHash, value)
-            : _localizer[LocKeys.Teleport_LandmarkNoPlanetHash];
+    private string DescribePlanetHint(int? planet, string? planetId) =>
+        planetId is not null ? planetId
+        : planet is { } value ? _localizer.Format(LocKeys.Teleport_LandmarkPlanetHash, value)
+        : _localizer[LocKeys.Teleport_LandmarkNoPlanetHash];
 }

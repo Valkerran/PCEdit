@@ -77,6 +77,10 @@
                 </StackPanel>
                 <TextBlock Text="{m:Loc Teleport_LandmarksHelp}" Classes="caption" />
 
+                <CheckBox IsChecked="{Binding ShowAllWorldLandmarks}"
+                          IsVisible="{Binding ShowWorldLandmarkFilter}"
+                          Content="{m:Loc Teleport_LandmarkAllWorlds}" />
+
                 <ItemsControl ItemsSource="{Binding Landmarks}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
