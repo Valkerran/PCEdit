@@ -139,8 +139,14 @@ an inventory when its `WorldObject.Id` appears in that `Inventory.WorldObjectIds
 rejects a move into an inventory already at `Inventory.Size`. `BuildInventoryGroups` is O(n) — it
 pre-indexes world objects and container→inventory links (a real save has ~500 inventories /
 ~5000 world objects) and tags each `InventoryGroup` with an `InventoryKind` for the page's type
-filter. `Services/PositionCodec` handles the `"x,y,z"` string shared by
-`PlayerData.PlayerPosition` / `WorldObject.Position`.
+filter and a `PlanetId` (via `IPlanetIndex`) for its world filter. `Services/PositionCodec` handles
+the `"x,y,z"` string shared by `PlayerData.PlayerPosition` / `WorldObject.Position`.
+
+**`Services/IPlanetIndex` (`PlanetIndex`)** resolves the worlds in a save: `KnownPlanetIds()` is the
+ordered union of every `PlanetId` (metadata + terraformations + players), and `ResolvePlanetId(int?)`
+maps a `WorldObject.Planet` hash back to one of them through `PlanetHash.Of`. It backs both the
+Inventories "World" filter and the Teleport landmark-by-world filter; the `TeleportViewModel` planet
+dropdown also sources its list here.
 
 `OverviewViewModel.Players` exposes `PlayerOverviewRow` records (location / progress are
 pre-formatted single sentences via `ILocalizer.Format` — no fragment concatenation in XAML).
