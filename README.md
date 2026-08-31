@@ -39,6 +39,13 @@ Turkish); it follows the OS language on first run and can be switched in-app.
 Full history and downloads are on the
 [Releases page](https://github.com/Valkerran/PCEdit/releases).
 
+### v1.1.1
+
+- **Fix: saves edited on Xbox / PC Game Pass no longer corrupt.** The editor was adding a
+  UTF-8 byte-order mark that the Game Pass (WGS) build of the game does not write; on next
+  load the game reported a "file error". The editor now preserves whatever byte framing the
+  save already has (Steam saves keep their BOM). ([#13](https://github.com/Valkerran/PCEdit/issues/13))
+
 ### v1.1.0
 
 - **Inventories — filter by world.** On a save that spans more than one planet, the Inventories
