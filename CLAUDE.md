@@ -61,12 +61,14 @@ and attaches them plus `SHA256SUMS.txt` to a GitHub Release.
 
 ## Architecture: the save-file format
 
-A Planet Crafter save file is a single UTF-8-with-BOM text file, not JSON overall. The framing (see
+A Planet Crafter save file is a single UTF-8 text file, not JSON overall. The framing (see
 `PlanetCrafterSaveFileSerializer`): a leading `\r`, then the 10 sections (index 0–9) joined by
 `\r@\r`, then a trailing `\r@`. A section holds either one JSON object or a list of JSON objects
-joined by `|\n`. The store writes the BOM (`PlanetCrafterSaveFileStore` uses a BOM-emitting UTF-8
-encoding); `Serialize` returns everything after it. Reproduce this exactly — an unedited
-load→save is asserted byte-identical, so a diff after an edit shows only the edit.
+joined by `|\n`. The **Steam** build writes the file with a leading UTF-8 BOM; the **Xbox / PC
+Game Pass** (WGS) build writes it without one — a spurious BOM makes the game reject the save
+("file error"), so `PlanetCrafterSaveFileStore.Save` preserves whatever the file already on disk
+has (BOM only for a brand-new path). `Serialize` returns everything after the BOM. Reproduce this
+exactly — an unedited load→save is asserted byte-identical, so a diff after an edit shows only the edit.
 `PlanetCrafterSaveFileSerializer` (`PCEdit.SaveFileHandler/PlanetCrafterSaveFileSerializer.cs`)
 hard-codes the section order — keep it in sync with `PlanetCrafterSaveFile`
 (`PCEdit.SaveFileHandler/Models/PlanetCrafterSaveFile.cs`):
@@ -96,7 +98,7 @@ Layering, each with a small interface for testability/DI:
 
 - `IJsonRecordSerializer` / `JsonRecordSerializer` — wraps `System.Text.Json` with camelCase naming and `WhenWritingNull` ignore semantics; deserializes/serializes a single record (section or list item) and wraps `JsonException` in `InvalidDataException` with the offending section index. Also holds `GameDecimalConverter` (the game writes every decimal with a fractional part — force `N.0`, never `N`). Every leaf model has a `[JsonExtensionData] ExtensionData` dictionary, so a JSON key no model names is **preserved** across a round-trip, not silently dropped. `WorldObject` goes further: the game's world-object key order is not stable (proven — the same pair of keys appears in both orders across records), so `WorldObjectConverter` records each record's key order on read and replays it on write, keeping unknown keys in place too. Tests: `RoundTrip_RealSampleSaveFile_ReserializesCharacterForCharacter` (whole-file, string-exact) and `PlanetCrafterSaveFileStoreTests.SaveThenLoad_...IsByteIdenticalOnDisk` (with BOM); `WorldObjectConverterTests` / `GameDecimalFormatTests` for the pieces; `GameFormatKeyMappingTests` pins the abbreviated-key spellings a symmetric model round-trip can't catch.
 - `IPlanetCrafterSaveFileSerializer` / `PlanetCrafterSaveFileSerializer` — splits/joins the 10 sections (framing above), delegating record-level (de)serialization to `IJsonRecordSerializer`. `Deserialize` is lenient about whitespace/line-endings; `Serialize` reproduces the game framing exactly.
-- `IPlanetCrafterSaveFileStore` / `PlanetCrafterSaveFileStore` — file I/O (`Load`/`Save` by path). `Load` uses `File.ReadAllText` (strips the BOM); `Save` writes UTF-8 **with** a BOM to match the game.
+- `IPlanetCrafterSaveFileStore` / `PlanetCrafterSaveFileStore` — file I/O (`Load`/`Save` by path). `Load` uses `File.ReadAllText` (strips any BOM); `Save` re-checks the target file's first bytes and writes UTF-8 with a BOM only if the existing file had one (or the path is new) — matching Steam-with-BOM and Game-Pass-without.
 
 Model conventions worth knowing before adding/editing a model in `PCEdit.SaveFileHandler/Models/`:
 - Fields that are always present in the save file are `required` properties; fields the game may omit are nullable (`decimal?`, `string?`, etc.) — get this right or `Save`/round-trip will crash or lose data.

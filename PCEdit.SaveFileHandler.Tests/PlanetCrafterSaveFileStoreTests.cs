@@ -70,13 +70,41 @@ public sealed class PlanetCrafterSaveFileStoreTests : IDisposable
     }
 
     [Fact]
-    public void Save_WritesUtf8WithBom()
+    public void Save_ToANewPath_WritesUtf8WithBom()
     {
+        // No file on disk yet ("Save As" / first save) — match the Steam game, which emits a BOM.
         _store.Save(_tempFile, SaveFileFixtures.CreateEmpty());
 
         var bytes = File.ReadAllBytes(_tempFile);
 
         Assert.Equal([0xEF, 0xBB, 0xBF], bytes[..3]);
+    }
+
+    [Fact]
+    public void Save_OverAFileThatHasNoBom_KeepsItBomLess()
+    {
+        // The Xbox / PC Game Pass (WGS) build stores the save with no BOM; adding one corrupts it.
+        var source = Path.Combine(AppContext.BaseDirectory, "TestData", "mini-save.json");
+        var bomLess = File.ReadAllBytes(source)[3..];
+        File.WriteAllBytes(_tempFile, bomLess);
+
+        _store.Save(_tempFile, _store.Load(_tempFile));
+
+        var written = File.ReadAllBytes(_tempFile);
+        Assert.NotEqual([0xEF, 0xBB, 0xBF], written[..3]);
+        Assert.Equal(bomLess, written);
+    }
+
+    [Fact]
+    public void Save_OverAFileThatHasABom_KeepsTheBom()
+    {
+        var source = Path.Combine(AppContext.BaseDirectory, "TestData", "mini-save.json");
+        var original = File.ReadAllBytes(source);
+        File.WriteAllBytes(_tempFile, original);
+
+        _store.Save(_tempFile, _store.Load(_tempFile));
+
+        Assert.Equal(original, File.ReadAllBytes(_tempFile));
     }
 
     [Fact]
