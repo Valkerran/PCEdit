@@ -198,4 +198,6 @@
   <data name="About_Version" xml:space="preserve"><value>Versão {0}</value></data>
   <data name="About_Language" xml:space="preserve"><value>Idioma</value></data>
   <data name="About_LanguageA11y" xml:space="preserve"><value>Idioma da aplicação</value></data>
+  <data name="About_SaveLocationsHeading" xml:space="preserve"><value>Onde o jogo guarda os teus jogos guardados</value></data>
+  <data name="About_SaveLocationsNote" xml:space="preserve"><value>O Xbox atribui a cada jogo guardado um nome aleatório que muda sempre que é escrito. No Linux, substitui ~/.steam/steam pela pasta da tua biblioteca Steam se o jogo estiver noutra unidade.</value></data>
 </root>

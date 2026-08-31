@@ -198,4 +198,6 @@
   <data name="About_Version" xml:space="preserve"><value>Sürüm {0}</value></data>
   <data name="About_Language" xml:space="preserve"><value>Dil</value></data>
   <data name="About_LanguageA11y" xml:space="preserve"><value>Uygulama dili</value></data>
+  <data name="About_SaveLocationsHeading" xml:space="preserve"><value>Oyunun kayıtlarını sakladığı yer</value></data>
+  <data name="About_SaveLocationsNote" xml:space="preserve"><value>Xbox her kaydı, her yazıldığında değişen rastgele bir dizeyle adlandırır. Linux'ta oyun başka bir sürücüdeyse ~/.steam/steam yerine Steam kitaplık klasörünüzü yazın.</value></data>
 </root>

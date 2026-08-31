@@ -36,7 +36,9 @@ The inventory/world-matching pass (filter inventories and teleport landmarks by 
 `Teleport_{LandmarkAllWorlds,AimedAtWorld,MultiplayerNote}` — all machine-translated. "World" is
 the game's term for a planet. `Teleport_AimedAtWorld` is shown when picking a destination world
 auto-fills X/Y/Z from that world's arrival point; `Teleport_MultiplayerNote` is the per-player /
-host-only caption shown only on multiplayer saves.
+host-only caption shown only on multiplayer saves. The same pass added
+`About_SaveLocations{Heading,Note}` for the About page's save-folder card (the paths and platform
+names themselves are literal, not catalog keys).
 
 The logistics-editor pass (editing a container's demand / supply groups + priority on the
 Inventories page) added the `Logistics_*` keys and `Inventories_{LogisticsSummary,EditLogistics,

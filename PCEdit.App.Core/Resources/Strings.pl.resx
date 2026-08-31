@@ -198,4 +198,6 @@
   <data name="About_Version" xml:space="preserve"><value>Wersja {0}</value></data>
   <data name="About_Language" xml:space="preserve"><value>Język</value></data>
   <data name="About_LanguageA11y" xml:space="preserve"><value>Język aplikacji</value></data>
+  <data name="About_SaveLocationsHeading" xml:space="preserve"><value>Gdzie gra przechowuje zapisy</value></data>
+  <data name="About_SaveLocationsNote" xml:space="preserve"><value>Xbox nadaje każdemu zapisowi losowy ciąg znaków, który zmienia się przy każdym zapisie. W systemie Linux zastąp ~/.steam/steam folderem swojej biblioteki Steam, jeśli gra znajduje się na innym dysku.</value></data>
 </root>

@@ -198,4 +198,6 @@
   <data name="About_Version" xml:space="preserve"><value>版本 {0}</value></data>
   <data name="About_Language" xml:space="preserve"><value>语言</value></data>
   <data name="About_LanguageA11y" xml:space="preserve"><value>应用程序语言</value></data>
+  <data name="About_SaveLocationsHeading" xml:space="preserve"><value>游戏存档的位置</value></data>
+  <data name="About_SaveLocationsNote" xml:space="preserve"><value>Xbox 为每个存档使用随机字符串命名，每次写入时都会改变。在 Linux 上，如果游戏位于其他驱动器，请将 ~/.steam/steam 替换为你的 Steam 库文件夹。</value></data>
 </root>

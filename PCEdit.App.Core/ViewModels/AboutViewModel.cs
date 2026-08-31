@@ -1,6 +1,7 @@
 using System.Globalization;
 using CommunityToolkit.Mvvm.ComponentModel;
 using PCEdit.App.Core.Localization;
+using PCEdit.App.Core.Models;
 using PCEdit.App.Core.Services;
 
 namespace PCEdit.App.Core.ViewModels;
@@ -17,6 +18,16 @@ public sealed partial class AboutViewModel(
     public IReadOnlyList<LocaleOption> Languages => _localizer.AvailableLocales;
 
     public string VersionText => _localizer.Format(LocKeys.About_Version, _appInfo.Version);
+
+    /// <summary>The game's default save-folder per platform. Kept in step with the README's
+    /// "Game Save Locations" section.</summary>
+    public IReadOnlyList<SaveLocationInfo> SaveLocations { get; } =
+    [
+        new("Windows · Steam", @"%UserProfile%\AppData\LocalLow\MijuGames\Planet Crafter"),
+        new("Windows · Xbox", @"%LocalAppData%\Packages\MijuGames.ThePlanetCrafter_ta6nvwnbx9v7t\SystemAppData\wgs"),
+        new("Linux · Steam (Proton)", "~/.steam/steam/steamapps/compatdata/1284190/pfx/drive_c/users/steamuser/AppData/LocalLow/MijuGames/Planet Crafter/"),
+        new("macOS", "~/Library/Application Support/MijuGames/Planet Crafter"),
+    ];
 
     [ObservableProperty]
     private LocaleOption? _selectedLanguage;

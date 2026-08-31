@@ -198,4 +198,6 @@
   <data name="About_Version" xml:space="preserve"><value>バージョン {0}</value></data>
   <data name="About_Language" xml:space="preserve"><value>言語</value></data>
   <data name="About_LanguageA11y" xml:space="preserve"><value>アプリケーションの言語</value></data>
+  <data name="About_SaveLocationsHeading" xml:space="preserve"><value>ゲームがセーブを保存する場所</value></data>
+  <data name="About_SaveLocationsNote" xml:space="preserve"><value>Xbox は各セーブに、書き込むたびに変わるランダムな文字列で名前を付けます。Linux では、ゲームが別のドライブにある場合は ~/.steam/steam を Steam ライブラリのフォルダーに置き換えてください。</value></data>
 </root>

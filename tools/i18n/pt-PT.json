@@ -191,5 +191,7 @@
   "Inventories_WorldUnknown": "Mundo desconhecido",
   "Teleport_LandmarkAllWorlds": "Mostrar pontos de referência de todos os mundos",
   "Teleport_AimedAtWorld": "Apontado para {0}. Ajuste X / Y / Z ou escolha um ponto de referência para um local preciso.",
-  "Teleport_MultiplayerNote": "As alterações aplicam-se apenas ao jogador selecionado. Para um jogador que não é o anfitrião do jogo, edite-o enquanto está offline e verifique o resultado no jogo."
+  "Teleport_MultiplayerNote": "As alterações aplicam-se apenas ao jogador selecionado. Para um jogador que não é o anfitrião do jogo, edite-o enquanto está offline e verifique o resultado no jogo.",
+  "About_SaveLocationsHeading": "Onde o jogo guarda os teus jogos guardados",
+  "About_SaveLocationsNote": "O Xbox atribui a cada jogo guardado um nome aleatório que muda sempre que é escrito. No Linux, substitui ~/.steam/steam pela pasta da tua biblioteca Steam se o jogo estiver noutra unidade."
 }

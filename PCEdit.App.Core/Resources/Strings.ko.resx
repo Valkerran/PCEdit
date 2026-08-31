@@ -198,4 +198,6 @@
   <data name="About_Version" xml:space="preserve"><value>버전 {0}</value></data>
   <data name="About_Language" xml:space="preserve"><value>언어</value></data>
   <data name="About_LanguageA11y" xml:space="preserve"><value>애플리케이션 언어</value></data>
+  <data name="About_SaveLocationsHeading" xml:space="preserve"><value>게임이 세이브를 저장하는 위치</value></data>
+  <data name="About_SaveLocationsNote" xml:space="preserve"><value>Xbox는 각 세이브에 저장할 때마다 바뀌는 무작위 문자열로 이름을 붙입니다. Linux에서 게임이 다른 드라이브에 있으면 ~/.steam/steam을 Steam 라이브러리 폴더로 바꾸세요.</value></data>
 </root>

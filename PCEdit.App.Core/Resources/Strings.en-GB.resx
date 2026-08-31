@@ -198,4 +198,6 @@
   <data name="About_Version" xml:space="preserve"><value>Version {0}</value></data>
   <data name="About_Language" xml:space="preserve"><value>Language</value></data>
   <data name="About_LanguageA11y" xml:space="preserve"><value>Application language</value></data>
+  <data name="About_SaveLocationsHeading" xml:space="preserve"><value>Where the game keeps your saves</value></data>
+  <data name="About_SaveLocationsNote" xml:space="preserve"><value>Xbox names each save with a random string that changes every time it is written. On Linux, replace ~/.steam/steam with your Steam library folder if the game lives on another drive.</value></data>
 </root>

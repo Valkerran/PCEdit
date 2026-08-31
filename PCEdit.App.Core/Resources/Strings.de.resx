@@ -198,4 +198,6 @@
   <data name="About_Version" xml:space="preserve"><value>Version {0}</value></data>
   <data name="About_Language" xml:space="preserve"><value>Sprache</value></data>
   <data name="About_LanguageA11y" xml:space="preserve"><value>Anwendungssprache</value></data>
+  <data name="About_SaveLocationsHeading" xml:space="preserve"><value>Wo das Spiel deine Spielstände ablegt</value></data>
+  <data name="About_SaveLocationsNote" xml:space="preserve"><value>Xbox benennt jeden Spielstand mit einer zufälligen Zeichenfolge, die sich bei jedem Speichern ändert. Ersetze unter Linux ~/.steam/steam durch deinen Steam-Bibliotheksordner, falls das Spiel auf einem anderen Laufwerk liegt.</value></data>
 </root>

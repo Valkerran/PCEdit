@@ -198,4 +198,6 @@
   <data name="About_Version" xml:space="preserve"><value>Версия {0}</value></data>
   <data name="About_Language" xml:space="preserve"><value>Язык</value></data>
   <data name="About_LanguageA11y" xml:space="preserve"><value>Язык приложения</value></data>
+  <data name="About_SaveLocationsHeading" xml:space="preserve"><value>Где игра хранит ваши сохранения</value></data>
+  <data name="About_SaveLocationsNote" xml:space="preserve"><value>Xbox называет каждое сохранение случайной строкой, которая меняется при каждой записи. В Linux замените ~/.steam/steam на папку вашей библиотеки Steam, если игра находится на другом диске.</value></data>
 </root>

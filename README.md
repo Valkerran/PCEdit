@@ -113,13 +113,15 @@ and is not affiliated with or endorsed by them.
 
 Below are the expected default paths for save files
 
-- **Windows - Steam** - %USERDATA\LocalLow\MijuGames\Planet Crafter
+- **Windows – Steam** – `%UserProfile%\AppData\LocalLow\MijuGames\Planet Crafter`
 
-- **Windows - Xbox** - %LOCALAPPDATA%\Packages\MijuGames.ThePlanetCrafter_ta6nvwnbx9v7t\SystemAppData\wgs
+- **Windows – Xbox** – `%LocalAppData%\Packages\MijuGames.ThePlanetCrafter_ta6nvwnbx9v7t\SystemAppData\wgs`
 
-- **Linux - Steam** - ~/.steam/steam/steamapps/compatdata/1284190/pfx/drive_c/users/steamuser/AppData/LocalLow/MijuGames/Planet Crafter/
+- **Linux – Steam (Proton)** – `~/.steam/steam/steamapps/compatdata/1284190/pfx/drive_c/users/steamuser/AppData/LocalLow/MijuGames/Planet Crafter/`
 
-- **macOS** - ~/Library/Application Support/MijuGames/Planet Crafter
+- **macOS** – `~/Library/Application Support/MijuGames/Planet Crafter`
+
+These are also listed on the **About** page in the app.
 
 ### Notes
 
