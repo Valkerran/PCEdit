@@ -190,5 +190,6 @@
   "Inventories_WorldAll": "所有世界",
   "Inventories_WorldUnknown": "未知世界",
   "Teleport_LandmarkAllWorlds": "顯示所有世界的地標",
-  "Teleport_AimedAtWorld": "已瞄準 {0}。調整 X / Y / Z 或選擇一個地標以確定精確位置。"
+  "Teleport_AimedAtWorld": "已瞄準 {0}。調整 X / Y / Z 或選擇一個地標以確定精確位置。",
+  "Teleport_MultiplayerNote": "變更僅套用於所選玩家。對於並非遊戲主機的玩家，請在其離線時進行編輯，並在遊戲中確認結果。"
 }

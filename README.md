@@ -34,6 +34,41 @@ Turkish); it follows the OS language on first run and can be switched in-app.
 
 **Note** - all non-english languages are AI translated. If anyone spots any translation issues, raise an issue request.
 
+## Using the editor
+
+### Worlds (planets)
+
+Saves from the interplanetary update span more than one planet (Prime, Aqualis, Selenea, …).
+Where PCEdit can work out which world something belongs to, it shows it:
+
+- **Inventories** — on a multi-world save a **World** filter appears; it narrows the list to one
+  planet. Player and equipment inventories are placed by their owner's current planet; containers
+  by the placed object they belong to. Inventories with no owner (drones, vehicles, rockets,
+  unplaced buffers) can't be matched and fall under **Unknown world** — they're still shown under
+  *All worlds*.
+- **Teleport** — each landmark shows the planet it sits on, and the landmark list is trimmed to
+  your chosen destination world (tick *Show landmarks from all worlds* to see every one).
+
+### Teleport
+
+Teleport edits **only the player selected in the dropdown**. It writes that player's position and
+their current planet — no other player is touched. Switching the selected player reloads the whole
+form (world + X/Y/Z) from that player.
+
+- Picking a destination world **different** from where the player currently stands fills X/Y/Z from
+  that world's arrival point (its interplanetary escape pod, or a teleporter) so you land somewhere
+  valid. Pick a landmark or type coordinates for a precise spot. Picking the player's own world
+  again restores their real position.
+- Coordinates from one planet are meaningless on another — if you change worlds, use the
+  auto-filled arrival point or a landmark rather than leaving stale coordinates, or the game may
+  drop the player out of bounds and relocate them.
+
+> [!NOTE]
+> **Multiplayer:** PCEdit writes the save correctly for any player, but only the **host** player's
+> position and planet are reliably applied when the save loads. A non-host player's position is
+> managed by their own game client and synced when they connect — edit a non-host player while
+> they are offline, and confirm the result in-game.
+
 ## Run from source
 
 Requires the [.NET 10 SDK](https://dotnet.microsoft.com/download).

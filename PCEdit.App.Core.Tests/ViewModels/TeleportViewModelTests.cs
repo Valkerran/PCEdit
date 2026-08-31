@@ -158,5 +158,23 @@ public sealed class TeleportViewModelTests
         vm.SelectedPlayer = vm.Players.Single(p => p.Name == "Alice");
         Assert.Equal("Prime", vm.SelectedPlanetId);
         Assert.Equal(("1", "1", "1"), (vm.X, vm.Y, vm.Z));
+
+        Assert.True(vm.HasMultiplePlayers);
+    }
+
+    [Fact]
+    public void HasMultiplePlayers_IsFalseOnASoloSave()
+    {
+        var save = WorkspaceFixtures.CreateMultiWorld();
+        save.Players.RemoveAll(p => p.Name != "Alice");
+        var store = new FakeSaveFileStore();
+        store.Seed(Path, save);
+        var localizer = new Localizer();
+        var ws = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
+        ws.Load(Path);
+        var vm = new TeleportViewModel(ws, new FakeScreenReaderAnnouncer(), localizer, new FakeNavigationService(), new PlanetIndex(ws));
+        vm.Load();
+
+        Assert.False(vm.HasMultiplePlayers);
     }
 }

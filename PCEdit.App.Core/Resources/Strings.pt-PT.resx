@@ -187,6 +187,7 @@
   <data name="Teleport_LandmarkNoPlanetHash" xml:space="preserve"><value>nenhum hash do mundo registado</value></data>
   <data name="Teleport_LandmarkAllWorlds" xml:space="preserve"><value>Mostrar pontos de referência de todos os mundos</value></data>
   <data name="Teleport_AimedAtWorld" xml:space="preserve"><value>Apontado para {0}. Ajuste X / Y / Z ou escolha um ponto de referência para um local preciso.</value></data>
+  <data name="Teleport_MultiplayerNote" xml:space="preserve"><value>As alterações aplicam-se apenas ao jogador selecionado. Para um jogador que não é o anfitrião do jogo, edite-o enquanto está offline e verifique o resultado no jogo.</value></data>
   <data name="Disclaimer_Title" xml:space="preserve"><value>Utilize por sua conta e risco</value></data>
   <data name="Disclaimer_Body" xml:space="preserve"><value>O PCEdit edita diretamente os ficheiros de jogo guardado do Planet Crafter. Uma edição incorreta pode corromper um jogo guardado e fazer perder progresso. Mantenha sempre uma cópia de segurança do seu ficheiro de jogo guardado antes de editar. Este software é fornecido «tal como está», sem garantia de qualquer tipo.</value></data>
   <data name="Disclaimer_Acknowledge" xml:space="preserve"><value>Compreendo</value></data>

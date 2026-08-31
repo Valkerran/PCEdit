@@ -65,6 +65,9 @@ public sealed partial class TeleportViewModel(
 
     public bool IsCustomPlanetId => SelectedPlanetId == OtherPlanetOption;
 
+    /// <summary>A multiplayer save — the per-player / host-only caveat is worth showing.</summary>
+    public bool HasMultiplePlayers => Players.Count > 1;
+
     /// <summary>Only worth offering the "all worlds" landmark toggle on a multi-world save.</summary>
     public bool ShowWorldLandmarkFilter => PlanetIdOptions.Count(o => o != OtherPlanetOption) > 1;
 
@@ -97,6 +100,7 @@ public sealed partial class TeleportViewModel(
 
         PlanetIdOptions.Add(OtherPlanetOption);
         OnPropertyChanged(nameof(ShowWorldLandmarkFilter));
+        OnPropertyChanged(nameof(HasMultiplePlayers));
 
         _allLandmarks.AddRange(FindLandmarks(save));
         FilterLandmarks();

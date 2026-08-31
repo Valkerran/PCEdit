@@ -30,6 +30,10 @@
                             </ComboBox.ItemTemplate>
                         </ComboBox>
 
+                        <TextBlock Text="{m:Loc Teleport_MultiplayerNote}" Classes="caption"
+                                   TextWrapping="Wrap"
+                                   IsVisible="{Binding HasMultiplePlayers}" />
+
                         <TextBlock Text="{m:Loc Teleport_Planet}" Classes="caption" />
                         <ComboBox ItemsSource="{Binding PlanetIdOptions}" SelectedItem="{Binding SelectedPlanetId}"
                                   HorizontalAlignment="Stretch"

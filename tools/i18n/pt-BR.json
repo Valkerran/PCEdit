@@ -190,5 +190,6 @@
   "Inventories_WorldAll": "Todos os mundos",
   "Inventories_WorldUnknown": "Mundo desconhecido",
   "Teleport_LandmarkAllWorlds": "Mostrar pontos de referência de todos os mundos",
-  "Teleport_AimedAtWorld": "Apontado para {0}. Ajuste X / Y / Z ou escolha um ponto de referência para um local preciso."
+  "Teleport_AimedAtWorld": "Apontado para {0}. Ajuste X / Y / Z ou escolha um ponto de referência para um local preciso.",
+  "Teleport_MultiplayerNote": "As alterações se aplicam apenas ao jogador selecionado. Para um jogador que não é o anfitrião do jogo, edite-o enquanto estiver offline e verifique o resultado no jogo."
 }

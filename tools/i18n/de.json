@@ -190,5 +190,6 @@
   "Inventories_WorldAll": "Alle Welten",
   "Inventories_WorldUnknown": "Unbekannte Welt",
   "Teleport_LandmarkAllWorlds": "Orientierungspunkte aller Welten anzeigen",
-  "Teleport_AimedAtWorld": "Auf {0} ausgerichtet. Passe X / Y / Z an oder wähle einen Orientierungspunkt für eine genaue Stelle."
+  "Teleport_AimedAtWorld": "Auf {0} ausgerichtet. Passe X / Y / Z an oder wähle einen Orientierungspunkt für eine genaue Stelle.",
+  "Teleport_MultiplayerNote": "Änderungen gelten nur für den ausgewählten Spieler. Bearbeite einen Spieler, der nicht der Host des Spiels ist, während er offline ist, und überprüfe das Ergebnis im Spiel."
 }

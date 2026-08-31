@@ -190,5 +190,6 @@
   "Inventories_WorldAll": "All worlds",
   "Inventories_WorldUnknown": "Unknown world",
   "Teleport_LandmarkAllWorlds": "Show landmarks from all worlds",
-  "Teleport_AimedAtWorld": "Aimed at {0}. Adjust X / Y / Z or pick a landmark for a precise spot."
+  "Teleport_AimedAtWorld": "Aimed at {0}. Adjust X / Y / Z or pick a landmark for a precise spot.",
+  "Teleport_MultiplayerNote": "Changes apply to the selected player only. For a player who is not the game's host, edit while they are offline and check the result in-game."
 }

@@ -187,6 +187,7 @@
   <data name="Teleport_LandmarkNoPlanetHash" xml:space="preserve"><value>未記錄世界雜湊</value></data>
   <data name="Teleport_LandmarkAllWorlds" xml:space="preserve"><value>顯示所有世界的地標</value></data>
   <data name="Teleport_AimedAtWorld" xml:space="preserve"><value>已瞄準 {0}。調整 X / Y / Z 或選擇一個地標以確定精確位置。</value></data>
+  <data name="Teleport_MultiplayerNote" xml:space="preserve"><value>變更僅套用於所選玩家。對於並非遊戲主機的玩家，請在其離線時進行編輯，並在遊戲中確認結果。</value></data>
   <data name="Disclaimer_Title" xml:space="preserve"><value>使用風險自負</value></data>
   <data name="Disclaimer_Body" xml:space="preserve"><value>PCEdit 直接編輯 Planet Crafter 存檔檔案。錯誤的編輯可能損壞存檔並失去進度。編輯前請務必保留存檔檔案的備份。本軟體按「原樣」提供，不作任何形式的擔保。</value></data>
   <data name="Disclaimer_Acknowledge" xml:space="preserve"><value>我了解</value></data>
