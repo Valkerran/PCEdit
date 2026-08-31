@@ -136,9 +136,14 @@ public sealed partial class TeleportViewModel(
             return;
         }
 
+        ResetToPlayer(player);
+    }
+
+    /// <summary>Points the world and X/Y/Z at where the player currently is.</summary>
+    private void ResetToPlayer(PlayerData player)
+    {
         SelectedPlanetId = PlanetIdOptions.Contains(player.PlanetId) ? player.PlanetId : OtherPlanetOption;
         CustomPlanetId = player.PlanetId;
-
         ApplyPlayerPosition(player);
     }
 
@@ -186,7 +191,7 @@ public sealed partial class TeleportViewModel(
             return;
         }
 
-        ApplyPlayerPosition(player);
+        ResetToPlayer(player);
         SetStatus(StatusKind.Success, _localizer.Format(LocKeys.Teleport_PositionReset, SelectedPlayer.Name));
     }
 

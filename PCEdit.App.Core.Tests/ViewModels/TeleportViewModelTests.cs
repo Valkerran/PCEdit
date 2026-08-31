@@ -65,6 +65,19 @@ public sealed class TeleportViewModelTests
     }
 
     [Fact]
+    public void UseCurrentPosition_ResetsTheWorldAndCoordinatesToThePlayer()
+    {
+        var vm = CreateLoaded(multiWorld: true); // player Alice starts on "Prime"
+        vm.SelectedPlanetId = "Aqualis";
+        vm.X = "999";
+
+        vm.UseCurrentPositionCommand.Execute(null);
+
+        Assert.Equal("Prime", vm.SelectedPlanetId);
+        Assert.Equal("0", vm.X);
+    }
+
+    [Fact]
     public void SingleWorldSave_HidesTheFilterAndShowsEveryLandmark()
     {
         var vm = CreateLoaded(multiWorld: false);
