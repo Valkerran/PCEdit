@@ -94,6 +94,9 @@
   <data name="Inventories_FilterEquipment" xml:space="preserve"><value>Equipaggiamento</value></data>
   <data name="Inventories_FilterContainers" xml:space="preserve"><value>Contenitori</value></data>
   <data name="Inventories_FilterA11y" xml:space="preserve"><value>Mostra quali tipi di inventario</value></data>
+  <data name="Inventories_FilterWorldA11y" xml:space="preserve"><value>Filtra gli inventari per mondo</value></data>
+  <data name="Inventories_WorldAll" xml:space="preserve"><value>Tutti i mondi</value></data>
+  <data name="Inventories_WorldUnknown" xml:space="preserve"><value>Mondo sconosciuto</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>Inventario di {0}</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>Equipaggiamento di {0}</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0} (oggetto n. {1})</value></data>
@@ -182,6 +185,7 @@
   <data name="Teleport_Done" xml:space="preserve"><value>{0} teletrasportato su {1} ({2}).</value></data>
   <data name="Teleport_LandmarkPlanetHash" xml:space="preserve"><value>hash del mondo {0}</value></data>
   <data name="Teleport_LandmarkNoPlanetHash" xml:space="preserve"><value>nessun hash del mondo registrato</value></data>
+  <data name="Teleport_LandmarkAllWorlds" xml:space="preserve"><value>Mostra i punti di riferimento di tutti i mondi</value></data>
   <data name="Disclaimer_Title" xml:space="preserve"><value>Usa a tuo rischio</value></data>
   <data name="Disclaimer_Body" xml:space="preserve"><value>PCEdit modifica direttamente i file di salvataggio di Planet Crafter. Una modifica errata può danneggiare un salvataggio e far perdere progressi. Conserva sempre una copia di backup del file di salvataggio prima di modificarlo. Questo software è fornito «così com'è», senza alcuna garanzia.</value></data>
   <data name="Disclaimer_Acknowledge" xml:space="preserve"><value>Ho capito</value></data>

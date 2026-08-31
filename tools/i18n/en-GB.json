@@ -185,5 +185,9 @@
   "Logistics_SelectAll": "Select all",
   "Logistics_Clear": "Clear",
   "Logistics_Everything": "Everything",
-  "Logistics_PriorityUnknown": "Unknown ({0})"
+  "Logistics_PriorityUnknown": "Unknown ({0})",
+  "Inventories_FilterWorldA11y": "Filter inventories by world",
+  "Inventories_WorldAll": "All worlds",
+  "Inventories_WorldUnknown": "Unknown world",
+  "Teleport_LandmarkAllWorlds": "Show landmarks from all worlds"
 }

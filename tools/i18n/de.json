@@ -185,5 +185,9 @@
   "Logistics_SelectAll": "Alle auswählen",
   "Logistics_Clear": "Leeren",
   "Logistics_Everything": "Alles",
-  "Logistics_PriorityUnknown": "Unbekannt ({0})"
+  "Logistics_PriorityUnknown": "Unbekannt ({0})",
+  "Inventories_FilterWorldA11y": "Inventare nach Welt filtern",
+  "Inventories_WorldAll": "Alle Welten",
+  "Inventories_WorldUnknown": "Unbekannte Welt",
+  "Teleport_LandmarkAllWorlds": "Orientierungspunkte aller Welten anzeigen"
 }

@@ -185,5 +185,9 @@
   "Logistics_SelectAll": "すべて選択",
   "Logistics_Clear": "クリア",
   "Logistics_Everything": "すべて",
-  "Logistics_PriorityUnknown": "不明 ({0})"
+  "Logistics_PriorityUnknown": "不明 ({0})",
+  "Inventories_FilterWorldA11y": "ワールドでインベントリを絞り込む",
+  "Inventories_WorldAll": "すべてのワールド",
+  "Inventories_WorldUnknown": "不明なワールド",
+  "Teleport_LandmarkAllWorlds": "すべてのワールドのランドマークを表示"
 }

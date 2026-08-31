@@ -185,5 +185,9 @@
   "Logistics_SelectAll": "Selecionar tudo",
   "Logistics_Clear": "Limpar",
   "Logistics_Everything": "Tudo",
-  "Logistics_PriorityUnknown": "Desconhecida ({0})"
+  "Logistics_PriorityUnknown": "Desconhecida ({0})",
+  "Inventories_FilterWorldA11y": "Filtrar inventários por mundo",
+  "Inventories_WorldAll": "Todos os mundos",
+  "Inventories_WorldUnknown": "Mundo desconhecido",
+  "Teleport_LandmarkAllWorlds": "Mostrar pontos de referência de todos os mundos"
 }

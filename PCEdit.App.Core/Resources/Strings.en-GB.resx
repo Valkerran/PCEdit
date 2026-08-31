@@ -94,6 +94,9 @@
   <data name="Inventories_FilterEquipment" xml:space="preserve"><value>Equipment</value></data>
   <data name="Inventories_FilterContainers" xml:space="preserve"><value>Containers</value></data>
   <data name="Inventories_FilterA11y" xml:space="preserve"><value>Show which inventory types</value></data>
+  <data name="Inventories_FilterWorldA11y" xml:space="preserve"><value>Filter inventories by world</value></data>
+  <data name="Inventories_WorldAll" xml:space="preserve"><value>All worlds</value></data>
+  <data name="Inventories_WorldUnknown" xml:space="preserve"><value>Unknown world</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>{0}'s Inventory</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>{0}'s Equipment</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0} (Object #{1})</value></data>
@@ -182,6 +185,7 @@
   <data name="Teleport_Done" xml:space="preserve"><value>Teleported {0} to {1} ({2}).</value></data>
   <data name="Teleport_LandmarkPlanetHash" xml:space="preserve"><value>world hash {0}</value></data>
   <data name="Teleport_LandmarkNoPlanetHash" xml:space="preserve"><value>no world hash recorded</value></data>
+  <data name="Teleport_LandmarkAllWorlds" xml:space="preserve"><value>Show landmarks from all worlds</value></data>
   <data name="Disclaimer_Title" xml:space="preserve"><value>Use at your own risk</value></data>
   <data name="Disclaimer_Body" xml:space="preserve"><value>PCEdit edits Planet Crafter save files directly. A bad edit can corrupt a save and lose progress. Always keep a backup of your save file before editing. This software is provided as is, without warranty of any kind.</value></data>
   <data name="Disclaimer_Acknowledge" xml:space="preserve"><value>I understand</value></data>

@@ -18,7 +18,7 @@ public sealed class InventoriesViewModelTests
         var localizer = new Localizer();
         var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
         workspace.Load(Path);
-        var vm = new InventoriesViewModel(workspace, new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace)), new FakeNavigationService());
+        var vm = new InventoriesViewModel(workspace, new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace)), new FakeNavigationService(), localizer);
         vm.Load();
         return vm;
     }
@@ -40,6 +40,48 @@ public sealed class InventoriesViewModelTests
         vm.Query = "alice";
 
         Assert.Equal([10, 11], vm.Groups.Select(g => g.InventoryId).OrderBy(id => id).ToArray());
+    }
+
+    private static InventoriesViewModel CreateLoadedMultiWorld()
+    {
+        var store = new FakeSaveFileStore();
+        store.Seed(Path, WorkspaceFixtures.CreateMultiWorld());
+        var localizer = new Localizer();
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
+        workspace.Load(Path);
+        var vm = new InventoriesViewModel(workspace, new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace)), new FakeNavigationService(), localizer);
+        vm.Load();
+        return vm;
+    }
+
+    [Fact]
+    public void SingleWorldSave_HidesTheWorldFilter()
+    {
+        var vm = CreateLoaded();
+
+        Assert.False(vm.ShowWorldFilter);
+    }
+
+    [Fact]
+    public void MultiWorldSave_ShowsTheWorldFilter_AndNarrowsToTheSelectedWorld()
+    {
+        var vm = CreateLoadedMultiWorld();
+
+        Assert.True(vm.ShowWorldFilter);
+
+        vm.SelectedWorld = vm.WorldOptions.Single(o => o.PlanetId == "Aqualis");
+
+        Assert.Equal([20, 21, 30], vm.Groups.Select(g => g.InventoryId).OrderBy(id => id).ToArray());
+    }
+
+    [Fact]
+    public void UnknownWorldOption_NarrowsToInventoriesWithNoResolvableWorld()
+    {
+        var vm = CreateLoadedMultiWorld();
+
+        vm.SelectedWorld = vm.WorldOptions.Single(o => o is { IsAll: false, PlanetId: null });
+
+        Assert.Equal([99], vm.Groups.Select(g => g.InventoryId).ToArray());
     }
 
     [Fact]
@@ -81,7 +123,7 @@ public sealed class InventoriesViewModelTests
         var store = new FakeSaveFileStore();
         var localizer = new Localizer();
         var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
-        var vm = new InventoriesViewModel(workspace, new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace)), nav);
+        var vm = new InventoriesViewModel(workspace, new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace)), nav, localizer);
 
         vm.OpenFileCommand.Execute(null);
 

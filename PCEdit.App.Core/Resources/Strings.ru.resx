@@ -94,6 +94,9 @@
   <data name="Inventories_FilterEquipment" xml:space="preserve"><value>Снаряжение</value></data>
   <data name="Inventories_FilterContainers" xml:space="preserve"><value>Контейнеры</value></data>
   <data name="Inventories_FilterA11y" xml:space="preserve"><value>Показывать типы инвентарей</value></data>
+  <data name="Inventories_FilterWorldA11y" xml:space="preserve"><value>Фильтровать инвентари по миру</value></data>
+  <data name="Inventories_WorldAll" xml:space="preserve"><value>Все миры</value></data>
+  <data name="Inventories_WorldUnknown" xml:space="preserve"><value>Неизвестный мир</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>Инвентарь игрока {0}</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>Снаряжение игрока {0}</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0} (объект №{1})</value></data>
@@ -182,6 +185,7 @@
   <data name="Teleport_Done" xml:space="preserve"><value>{0} телепортирован на {1} ({2}).</value></data>
   <data name="Teleport_LandmarkPlanetHash" xml:space="preserve"><value>хеш мира {0}</value></data>
   <data name="Teleport_LandmarkNoPlanetHash" xml:space="preserve"><value>хеш мира не записан</value></data>
+  <data name="Teleport_LandmarkAllWorlds" xml:space="preserve"><value>Показывать ориентиры со всех миров</value></data>
   <data name="Disclaimer_Title" xml:space="preserve"><value>Используйте на свой страх и риск</value></data>
   <data name="Disclaimer_Body" xml:space="preserve"><value>PCEdit напрямую изменяет файлы сохранений Planet Crafter. Неверное изменение может повредить сохранение и привести к потере прогресса. Всегда сохраняйте резервную копию файла сохранения перед изменением. Это программное обеспечение предоставляется «как есть», без каких-либо гарантий.</value></data>
   <data name="Disclaimer_Acknowledge" xml:space="preserve"><value>Понятно</value></data>

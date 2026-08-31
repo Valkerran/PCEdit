@@ -185,5 +185,9 @@
   "Logistics_SelectAll": "全選",
   "Logistics_Clear": "清除",
   "Logistics_Everything": "全部",
-  "Logistics_PriorityUnknown": "未知（{0}）"
+  "Logistics_PriorityUnknown": "未知（{0}）",
+  "Inventories_FilterWorldA11y": "依世界篩選庫存",
+  "Inventories_WorldAll": "所有世界",
+  "Inventories_WorldUnknown": "未知世界",
+  "Teleport_LandmarkAllWorlds": "顯示所有世界的地標"
 }

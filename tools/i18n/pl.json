@@ -185,5 +185,9 @@
   "Logistics_SelectAll": "Zaznacz wszystko",
   "Logistics_Clear": "Wyczyść",
   "Logistics_Everything": "Wszystko",
-  "Logistics_PriorityUnknown": "Nieznany ({0})"
+  "Logistics_PriorityUnknown": "Nieznany ({0})",
+  "Inventories_FilterWorldA11y": "Filtruj ekwipunki według świata",
+  "Inventories_WorldAll": "Wszystkie światy",
+  "Inventories_WorldUnknown": "Nieznany świat",
+  "Teleport_LandmarkAllWorlds": "Pokaż punkty orientacyjne ze wszystkich światów"
 }

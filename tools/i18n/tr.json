@@ -185,5 +185,9 @@
   "Logistics_SelectAll": "Tümünü seç",
   "Logistics_Clear": "Temizle",
   "Logistics_Everything": "Her şey",
-  "Logistics_PriorityUnknown": "Bilinmiyor ({0})"
+  "Logistics_PriorityUnknown": "Bilinmiyor ({0})",
+  "Inventories_FilterWorldA11y": "Envanterleri dünyaya göre filtrele",
+  "Inventories_WorldAll": "Tüm dünyalar",
+  "Inventories_WorldUnknown": "Bilinmeyen dünya",
+  "Teleport_LandmarkAllWorlds": "Tüm dünyalardan önemli noktaları göster"
 }

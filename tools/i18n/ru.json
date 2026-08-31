@@ -185,5 +185,9 @@
   "Logistics_SelectAll": "Выбрать все",
   "Logistics_Clear": "Очистить",
   "Logistics_Everything": "Всё",
-  "Logistics_PriorityUnknown": "Неизвестно ({0})"
+  "Logistics_PriorityUnknown": "Неизвестно ({0})",
+  "Inventories_FilterWorldA11y": "Фильтровать инвентари по миру",
+  "Inventories_WorldAll": "Все миры",
+  "Inventories_WorldUnknown": "Неизвестный мир",
+  "Teleport_LandmarkAllWorlds": "Показывать ориентиры со всех миров"
 }

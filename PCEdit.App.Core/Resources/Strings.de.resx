@@ -94,6 +94,9 @@
   <data name="Inventories_FilterEquipment" xml:space="preserve"><value>Ausrüstung</value></data>
   <data name="Inventories_FilterContainers" xml:space="preserve"><value>Behälter</value></data>
   <data name="Inventories_FilterA11y" xml:space="preserve"><value>Anzeigen, welche Inventartypen</value></data>
+  <data name="Inventories_FilterWorldA11y" xml:space="preserve"><value>Inventare nach Welt filtern</value></data>
+  <data name="Inventories_WorldAll" xml:space="preserve"><value>Alle Welten</value></data>
+  <data name="Inventories_WorldUnknown" xml:space="preserve"><value>Unbekannte Welt</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>Inventar von {0}</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>Ausrüstung von {0}</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0} (Objekt Nr. {1})</value></data>
@@ -182,6 +185,7 @@
   <data name="Teleport_Done" xml:space="preserve"><value>{0} nach {1} teleportiert ({2}).</value></data>
   <data name="Teleport_LandmarkPlanetHash" xml:space="preserve"><value>Welt-Hash {0}</value></data>
   <data name="Teleport_LandmarkNoPlanetHash" xml:space="preserve"><value>kein Welt-Hash aufgezeichnet</value></data>
+  <data name="Teleport_LandmarkAllWorlds" xml:space="preserve"><value>Orientierungspunkte aller Welten anzeigen</value></data>
   <data name="Disclaimer_Title" xml:space="preserve"><value>Nutzung auf eigene Gefahr</value></data>
   <data name="Disclaimer_Body" xml:space="preserve"><value>PCEdit bearbeitet Planet-Crafter-Spielstanddateien direkt. Eine fehlerhafte Änderung kann einen Spielstand beschädigen und Fortschritt kosten. Bewahre vor dem Bearbeiten immer eine Sicherungskopie deiner Spielstanddatei auf. Diese Software wird ohne Mängelgewähr und ohne jegliche Garantie bereitgestellt.</value></data>
   <data name="Disclaimer_Acknowledge" xml:space="preserve"><value>Ich verstehe</value></data>

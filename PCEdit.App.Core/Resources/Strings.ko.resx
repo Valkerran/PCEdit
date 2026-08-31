@@ -94,6 +94,9 @@
   <data name="Inventories_FilterEquipment" xml:space="preserve"><value>장비</value></data>
   <data name="Inventories_FilterContainers" xml:space="preserve"><value>컨테이너</value></data>
   <data name="Inventories_FilterA11y" xml:space="preserve"><value>표시할 인벤토리 유형</value></data>
+  <data name="Inventories_FilterWorldA11y" xml:space="preserve"><value>월드별로 인벤토리 필터링</value></data>
+  <data name="Inventories_WorldAll" xml:space="preserve"><value>모든 월드</value></data>
+  <data name="Inventories_WorldUnknown" xml:space="preserve"><value>알 수 없는 월드</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>{0}의 인벤토리</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>{0}의 장비</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0} (오브젝트 #{1})</value></data>
@@ -182,6 +185,7 @@
   <data name="Teleport_Done" xml:space="preserve"><value>{0}을(를) {1}(으)로 순간이동했습니다 ({2}).</value></data>
   <data name="Teleport_LandmarkPlanetHash" xml:space="preserve"><value>월드 해시 {0}</value></data>
   <data name="Teleport_LandmarkNoPlanetHash" xml:space="preserve"><value>기록된 월드 해시 없음</value></data>
+  <data name="Teleport_LandmarkAllWorlds" xml:space="preserve"><value>모든 월드의 랜드마크 표시</value></data>
   <data name="Disclaimer_Title" xml:space="preserve"><value>사용에 따른 책임은 본인에게 있습니다</value></data>
   <data name="Disclaimer_Body" xml:space="preserve"><value>PCEdit는 Planet Crafter 저장 파일을 직접 편집합니다. 잘못된 편집은 저장을 손상시키고 진행 상황을 잃게 할 수 있습니다. 편집하기 전에 항상 저장 파일의 백업을 보관하세요. 이 소프트웨어는 어떠한 종류의 보증도 없이 '있는 그대로' 제공됩니다.</value></data>
   <data name="Disclaimer_Acknowledge" xml:space="preserve"><value>이해했습니다</value></data>
