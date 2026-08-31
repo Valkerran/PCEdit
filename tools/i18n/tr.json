@@ -189,5 +189,6 @@
   "Inventories_FilterWorldA11y": "Envanterleri dünyaya göre filtrele",
   "Inventories_WorldAll": "Tüm dünyalar",
   "Inventories_WorldUnknown": "Bilinmeyen dünya",
-  "Teleport_LandmarkAllWorlds": "Tüm dünyalardan önemli noktaları göster"
+  "Teleport_LandmarkAllWorlds": "Tüm dünyalardan önemli noktaları göster",
+  "Teleport_AimedAtWorld": "{0} hedeflendi. Kesin bir nokta için X / Y / Z değerlerini ayarlayın veya bir önemli nokta seçin."
 }

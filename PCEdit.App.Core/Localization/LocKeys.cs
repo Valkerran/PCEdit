@@ -90,6 +90,7 @@ public static class LocKeys
     public const string Teleport_LandmarkPlanetHash = "Teleport_LandmarkPlanetHash";
     public const string Teleport_LandmarkNoPlanetHash = "Teleport_LandmarkNoPlanetHash";
     public const string Teleport_LandmarkAllWorlds = "Teleport_LandmarkAllWorlds";
+    public const string Teleport_AimedAtWorld = "Teleport_AimedAtWorld";
 
     public const string About_Version = "About_Version";
 

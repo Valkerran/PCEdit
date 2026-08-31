@@ -189,5 +189,6 @@
   "Inventories_FilterWorldA11y": "Filtra gli inventari per mondo",
   "Inventories_WorldAll": "Tutti i mondi",
   "Inventories_WorldUnknown": "Mondo sconosciuto",
-  "Teleport_LandmarkAllWorlds": "Mostra i punti di riferimento di tutti i mondi"
+  "Teleport_LandmarkAllWorlds": "Mostra i punti di riferimento di tutti i mondi",
+  "Teleport_AimedAtWorld": "Puntato su {0}. Regola X / Y / Z o scegli un punto di riferimento per un punto preciso."
 }

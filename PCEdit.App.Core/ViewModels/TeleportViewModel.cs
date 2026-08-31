@@ -159,6 +159,51 @@ public sealed partial class TeleportViewModel(
     {
         OnPropertyChanged(nameof(IsCustomPlanetId));
         FilterLandmarks();
+        AlignCoordinatesToDestination();
+    }
+
+    /// <summary>
+    /// Keeps X/Y/Z sensible for the chosen destination world: the player's own position when the
+    /// destination is the world they are already on, otherwise that world's arrival point (its
+    /// interplanetary escape pod / a teleporter) so a bare "pick a world → Teleport" lands them
+    /// somewhere real instead of at coordinates from a different planet. Left untouched for a
+    /// custom/blank id or a world with no known landmark.
+    /// </summary>
+    private void AlignCoordinatesToDestination()
+    {
+        if (IsCustomPlanetId || string.IsNullOrWhiteSpace(SelectedPlanetId))
+        {
+            return;
+        }
+
+        var player = _workspace.Current?.Players.FirstOrDefault(p => p.Id == SelectedPlayer?.PlayerId);
+        if (player is null)
+        {
+            return;
+        }
+
+        if (string.Equals(SelectedPlanetId, player.PlanetId, StringComparison.OrdinalIgnoreCase))
+        {
+            ApplyPlayerPosition(player);
+            return;
+        }
+
+        var arrival = _allLandmarks
+            .Where(l => string.Equals(l.PlanetId, SelectedPlanetId, StringComparison.OrdinalIgnoreCase))
+            .OrderByDescending(l => l.GId.Contains("EscapePodInterplanetary", StringComparison.OrdinalIgnoreCase))
+            .ThenByDescending(l => l.GId.Contains("EscapePod", StringComparison.OrdinalIgnoreCase))
+            .ThenByDescending(l => l.GId.Contains("teleport", StringComparison.OrdinalIgnoreCase))
+            .FirstOrDefault();
+        if (arrival is null)
+        {
+            return;
+        }
+
+        var (x, y, z) = PositionCodec.Parse(arrival.Position);
+        X = x.ToString(CultureInfo.InvariantCulture);
+        Y = y.ToString(CultureInfo.InvariantCulture);
+        Z = z.ToString(CultureInfo.InvariantCulture);
+        SetStatus(StatusKind.Info, _localizer.Format(LocKeys.Teleport_AimedAtWorld, SelectedPlanetId));
     }
 
     partial void OnShowAllWorldLandmarksChanged(bool value)

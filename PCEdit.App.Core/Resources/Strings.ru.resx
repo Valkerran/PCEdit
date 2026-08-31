@@ -186,6 +186,7 @@
   <data name="Teleport_LandmarkPlanetHash" xml:space="preserve"><value>хеш мира {0}</value></data>
   <data name="Teleport_LandmarkNoPlanetHash" xml:space="preserve"><value>хеш мира не записан</value></data>
   <data name="Teleport_LandmarkAllWorlds" xml:space="preserve"><value>Показывать ориентиры со всех миров</value></data>
+  <data name="Teleport_AimedAtWorld" xml:space="preserve"><value>Нацелено на {0}. Настройте X / Y / Z или выберите ориентир для точного места.</value></data>
   <data name="Disclaimer_Title" xml:space="preserve"><value>Используйте на свой страх и риск</value></data>
   <data name="Disclaimer_Body" xml:space="preserve"><value>PCEdit напрямую изменяет файлы сохранений Planet Crafter. Неверное изменение может повредить сохранение и привести к потере прогресса. Всегда сохраняйте резервную копию файла сохранения перед изменением. Это программное обеспечение предоставляется «как есть», без каких-либо гарантий.</value></data>
   <data name="Disclaimer_Acknowledge" xml:space="preserve"><value>Понятно</value></data>

@@ -189,5 +189,6 @@
   "Inventories_FilterWorldA11y": "Inventare nach Welt filtern",
   "Inventories_WorldAll": "Alle Welten",
   "Inventories_WorldUnknown": "Unbekannte Welt",
-  "Teleport_LandmarkAllWorlds": "Orientierungspunkte aller Welten anzeigen"
+  "Teleport_LandmarkAllWorlds": "Orientierungspunkte aller Welten anzeigen",
+  "Teleport_AimedAtWorld": "Auf {0} ausgerichtet. Passe X / Y / Z an oder wähle einen Orientierungspunkt für eine genaue Stelle."
 }

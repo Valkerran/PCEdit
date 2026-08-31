@@ -189,5 +189,6 @@
   "Inventories_FilterWorldA11y": "依世界篩選庫存",
   "Inventories_WorldAll": "所有世界",
   "Inventories_WorldUnknown": "未知世界",
-  "Teleport_LandmarkAllWorlds": "顯示所有世界的地標"
+  "Teleport_LandmarkAllWorlds": "顯示所有世界的地標",
+  "Teleport_AimedAtWorld": "已瞄準 {0}。調整 X / Y / Z 或選擇一個地標以確定精確位置。"
 }

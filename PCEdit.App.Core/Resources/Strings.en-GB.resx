@@ -186,6 +186,7 @@
   <data name="Teleport_LandmarkPlanetHash" xml:space="preserve"><value>world hash {0}</value></data>
   <data name="Teleport_LandmarkNoPlanetHash" xml:space="preserve"><value>no world hash recorded</value></data>
   <data name="Teleport_LandmarkAllWorlds" xml:space="preserve"><value>Show landmarks from all worlds</value></data>
+  <data name="Teleport_AimedAtWorld" xml:space="preserve"><value>Aimed at {0}. Adjust X / Y / Z or pick a landmark for a precise spot.</value></data>
   <data name="Disclaimer_Title" xml:space="preserve"><value>Use at your own risk</value></data>
   <data name="Disclaimer_Body" xml:space="preserve"><value>PCEdit edits Planet Crafter save files directly. A bad edit can corrupt a save and lose progress. Always keep a backup of your save file before editing. This software is provided as is, without warranty of any kind.</value></data>
   <data name="Disclaimer_Acknowledge" xml:space="preserve"><value>I understand</value></data>

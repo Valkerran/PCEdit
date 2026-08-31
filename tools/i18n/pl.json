@@ -189,5 +189,6 @@
   "Inventories_FilterWorldA11y": "Filtruj ekwipunki według świata",
   "Inventories_WorldAll": "Wszystkie światy",
   "Inventories_WorldUnknown": "Nieznany świat",
-  "Teleport_LandmarkAllWorlds": "Pokaż punkty orientacyjne ze wszystkich światów"
+  "Teleport_LandmarkAllWorlds": "Pokaż punkty orientacyjne ze wszystkich światów",
+  "Teleport_AimedAtWorld": "Wycelowano w {0}. Dostosuj X / Y / Z lub wybierz punkt orientacyjny, aby wskazać dokładne miejsce."
 }

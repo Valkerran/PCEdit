@@ -32,8 +32,9 @@ added `Shell_NavA11y` — also machine-translated. The nav list's name is spoken
 destination page name is announced via the live region on every navigation.
 
 The inventory/world-matching pass (filter inventories and teleport landmarks by planet) added
-`Inventories_{FilterWorldA11y,WorldAll,WorldUnknown}` and `Teleport_LandmarkAllWorlds` — all
-machine-translated. "World" is the game's term for a planet.
+`Inventories_{FilterWorldA11y,WorldAll,WorldUnknown}` and `Teleport_{LandmarkAllWorlds,AimedAtWorld}`
+— all machine-translated. "World" is the game's term for a planet. `Teleport_AimedAtWorld` is shown
+when picking a destination world auto-fills X/Y/Z from that world's arrival point.
 
 The logistics-editor pass (editing a container's demand / supply groups + priority on the
 Inventories page) added the `Logistics_*` keys and `Inventories_{LogisticsSummary,EditLogistics,

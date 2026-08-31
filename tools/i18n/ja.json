@@ -189,5 +189,6 @@
   "Inventories_FilterWorldA11y": "ワールドでインベントリを絞り込む",
   "Inventories_WorldAll": "すべてのワールド",
   "Inventories_WorldUnknown": "不明なワールド",
-  "Teleport_LandmarkAllWorlds": "すべてのワールドのランドマークを表示"
+  "Teleport_LandmarkAllWorlds": "すべてのワールドのランドマークを表示",
+  "Teleport_AimedAtWorld": "{0} を狙っています。X / Y / Z を調整するか、正確な位置のためにランドマークを選んでください。"
 }

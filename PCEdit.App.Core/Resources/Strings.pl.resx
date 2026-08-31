@@ -186,6 +186,7 @@
   <data name="Teleport_LandmarkPlanetHash" xml:space="preserve"><value>hash świata {0}</value></data>
   <data name="Teleport_LandmarkNoPlanetHash" xml:space="preserve"><value>brak zapisanego hasha świata</value></data>
   <data name="Teleport_LandmarkAllWorlds" xml:space="preserve"><value>Pokaż punkty orientacyjne ze wszystkich światów</value></data>
+  <data name="Teleport_AimedAtWorld" xml:space="preserve"><value>Wycelowano w {0}. Dostosuj X / Y / Z lub wybierz punkt orientacyjny, aby wskazać dokładne miejsce.</value></data>
   <data name="Disclaimer_Title" xml:space="preserve"><value>Używasz na własne ryzyko</value></data>
   <data name="Disclaimer_Body" xml:space="preserve"><value>PCEdit edytuje pliki zapisu Planet Crafter bezpośrednio. Błędna edycja może uszkodzić zapis i spowodować utratę postępu. Zawsze zachowuj kopię zapasową pliku zapisu przed edycją. To oprogramowanie jest dostarczane „tak jak jest”, bez żadnej gwarancji.</value></data>
   <data name="Disclaimer_Acknowledge" xml:space="preserve"><value>Rozumiem</value></data>

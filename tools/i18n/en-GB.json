@@ -189,5 +189,6 @@
   "Inventories_FilterWorldA11y": "Filter inventories by world",
   "Inventories_WorldAll": "All worlds",
   "Inventories_WorldUnknown": "Unknown world",
-  "Teleport_LandmarkAllWorlds": "Show landmarks from all worlds"
+  "Teleport_LandmarkAllWorlds": "Show landmarks from all worlds",
+  "Teleport_AimedAtWorld": "Aimed at {0}. Adjust X / Y / Z or pick a landmark for a precise spot."
 }

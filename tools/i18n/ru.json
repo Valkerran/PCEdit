@@ -189,5 +189,6 @@
   "Inventories_FilterWorldA11y": "Фильтровать инвентари по миру",
   "Inventories_WorldAll": "Все миры",
   "Inventories_WorldUnknown": "Неизвестный мир",
-  "Teleport_LandmarkAllWorlds": "Показывать ориентиры со всех миров"
+  "Teleport_LandmarkAllWorlds": "Показывать ориентиры со всех миров",
+  "Teleport_AimedAtWorld": "Нацелено на {0}. Настройте X / Y / Z или выберите ориентир для точного места."
 }
