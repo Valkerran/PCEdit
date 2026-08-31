@@ -154,8 +154,15 @@ and exposes an `OpenFileCommand` for its "no file loaded" empty state; `Teleport
 `UseCurrentPositionCommand` (re-reads the selected player's position into X/Y/Z).
 
 Note: `WorldObject.Planet` (an int hash-hint) and the string `PlanetId` used everywhere else
-(`PlayerData` / `PlanetTerraformation` / `SaveFileMetadata`) are **unrelated ID spaces**. Landmark
-shortcuts in `TeleportViewModel` only ever auto-fill X/Y/Z from a `WorldObject`'s position.
+(`PlayerData` / `PlanetTerraformation` / `SaveFileMetadata`) are **the same identity in two
+encodings** — `WorldObject.Planet == PlanetHash.Of(planetId)`, the game's Unity
+`GetStableHashCode` (`PCEdit.SaveFileHandler/PlanetHash.cs`). `Services/IPlanetIndex` (`PlanetIndex`)
+uses that bridge to resolve a `WorldObject.Planet` back to a known planet id: it powers
+`InventoryGroup.PlanetId` (the Inventories page "World" filter, shown only on multi-world saves) and
+the Teleport page's per-world landmark filter. Not every `WorldObject` carries `planet` — placed
+top-level objects (pods, teleporters, containers) do; items inside inventories and child objects
+usually don't, so an inventory's world is derived from its owner (player `PlanetId` or owning
+container's `Planet`) and is `null` for orphan inventories.
 
 ### Platform-abstraction interfaces (`PCEdit.App.Core/Services/` + `Localization/`)
 
