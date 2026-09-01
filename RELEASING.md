@@ -68,8 +68,8 @@ Rules the pipelines enforce:
    differently — a notable size change, a new or dropped runtime dependency, a renamed or
    added artifact, a raised minimum OS. Say what changed, by how much, and why, and say who
    is *not* affected: a reader who sees "+13 MB" on Linux will wonder about their own
-   platform. Also add the same entry to the README changelog, which is what people read
-   before downloading.
+   platform. Also add the same entry to [`CHANGELOG.md`](CHANGELOG.md), which is what people
+   read before downloading.
 
    v1.2.1 is the worked example — bundling ICU took the AppImage from 43.0 MB to 56.5 MB,
    so its notes lead with those numbers, give the reason (it would not start at all on a
