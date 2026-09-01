@@ -16,6 +16,21 @@ open and still save back unchanged. Content added in 2.102 that PCEdit does not 
 name for yet shows up under its raw in-game id — it is still editable and moves between
 inventories normally.
 
+## Documentation
+
+The [**PCEdit wiki**](https://github.com/Valkerran/PCEdit/wiki) is the full documentation —
+a page per editor feature, and a development section covering the save-file format and the
+code that reads it.
+
+| | |
+|---|---|
+| [Installation](https://github.com/Valkerran/PCEdit/wiki/Installation) | Downloads and per-platform notes |
+| [Save File Locations](https://github.com/Valkerran/PCEdit/wiki/Save-File-Locations) | Where the game keeps its saves |
+| [Quick Start](https://github.com/Valkerran/PCEdit/wiki/Quick-Start) | The first edit, end to end |
+| [FAQ & Troubleshooting](https://github.com/Valkerran/PCEdit/wiki/FAQ-and-Troubleshooting) | When something does not work |
+| [Architecture](https://github.com/Valkerran/PCEdit/wiki/Architecture) · [Save File Format](https://github.com/Valkerran/PCEdit/wiki/Save-File-Format) | How PCEdit is built, and the format it edits |
+| [Contributing](https://github.com/Valkerran/PCEdit/wiki/Contributing) | The change workflow and house rules |
+
 ## Download
 
 **Linux:** grab `PCEdit-*-x86_64.AppImage` from the
@@ -92,8 +107,9 @@ dotnet run --project PCEdit.Desktop/PCEdit.Desktop.csproj
 | `PCEdit.Desktop` | Avalonia UI head — Linux, Windows, macOS |
 | `deploy/` | AppImage packaging ([details](deploy/README.md)) |
 
-Development notes, architecture, and the localization workflow are in
-[CLAUDE.md](CLAUDE.md).
+Architecture, the save-file format, the localization workflow, testing and packaging are all
+covered in the [wiki](https://github.com/Valkerran/PCEdit/wiki); the working agreement for
+changes is in [CLAUDE.md](CLAUDE.md).
 
 ## Building the AppImage
 
