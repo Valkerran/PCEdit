@@ -223,11 +223,17 @@ This is called out in the Release body. `LSMinimumSystemVersion` is 11.0.
 ✅ = the full per-distro checklist above. 🟡 = launch only (the window renders and
 stays up); the save round-trip, disclaimer persistence and CJK checks were not run.
 
+The checklist can be **driven** rather than clicked: run the AppImage against an `Xvfb`
+display and use `xdotool` (`import` for screenshots). Do not try that against WSLg — its
+RAIL layer forwards only real Windows input, so synthetic clicks and keys are silently
+dropped (the pointer still moves and the app still shows hover states, which makes it look
+like it should be working). Rendering is fine to verify under WSLg; interaction is not.
+
 | Distro | glibc | Result | Date |
 |---|---|---|---|
 | Ubuntu 22.04 (WSL2, build host) | 2.35 | ✅ built (42.9 MB); `ldd` clean; GUI launches under WSLg | 2026-08-28 |
 | Ubuntu 22.04 (WSL2, build host) | 2.35 | 🟡 rebuilt with bundled ICU (56.5 MB); `ldd` clean; ICU check passes; GUI launches | 2026-09-01 |
-| Ubuntu 24.04 | 2.39 | 🟡 AppImage launches once `libice6`/`libsm6` are installed; bundled ICU proven to win over system ICU 74 | 2026-09-01 |
+| Ubuntu 24.04 | 2.39 | ✅ full checklist (needs `libice6`/`libsm6`; Noto CJK for the glyph check); bundled ICU proven to win over system ICU 74 | 2026-09-01 |
 | Debian 12 | | 🟡 `linux-x64` publish launches (AppImage not run) | 2026-09-01 |
 | Fedora 43 | | 🟡 AppImage launches | 2026-09-01 |
 | Arch | 2.44 | 🟡 AppImage launches | 2026-09-01 |
