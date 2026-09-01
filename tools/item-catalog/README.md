@@ -24,6 +24,17 @@ The `items` map was seeded from every distinct `GId` in
 inventory demand/supply groups). Add new ids as the game adds content; unknown
 ids still render at runtime (raw id + the `misc` fallback icon).
 
+To find what a newer game build (or a save on a planet the seed save never visited) is missing:
+
+```bash
+python tools/item-catalog/report_missing.py <save> [<save> ...]
+```
+
+It lists every `WorldObject.gId` and `unlockedGroups` entry absent from `ItemCatalog.json` and
+every `demandGrps`/`supplyGrps` id absent from `LogisticsGroups.json`, with occurrence counts so
+the ids worth naming first come out on top. Curate the output into the tables below and re-run the
+generators.
+
 To swap in real per-item art later, drop `item_<name>.png`/`.svg` into
 `PCEdit.Desktop/Assets/Icons/` and add an `"icon": "item_<name>.png"` field to
 that item's entry — it overrides the category icon, no code change needed.

@@ -22,8 +22,4 @@
     <ProjectReference Include="..\PCEdit.App.Core\PCEdit.App.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Include="..\PCEdit.SaveFileHandler\mini-save.json" Link="TestData\mini-save.json" CopyToOutputDirectory="PreserveNewest" />
-  </ItemGroup>
-
 </Project>

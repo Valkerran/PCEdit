@@ -148,6 +148,7 @@
   "Quit_DiscardBody": "Closing PCEdit now discards your unsaved edits. The save file on disk is unchanged.",
   "Overview_PlayerLocation": "Planet {0}  ·  Position {1}",
   "Overview_PlayerProgress": "{0} objects crafted  ·  {1} terra tokens earned",
+  "Overview_GameVersion": "Save written by game version {0}",
   "Inventories_Search": "Search inventories and items",
   "Inventories_SearchA11y": "Filter the inventory list by name or contents",
   "Inventories_NoMatch": "No inventories or items match your search.",

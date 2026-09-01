@@ -148,6 +148,7 @@
   "Quit_DiscardBody": "ここで PCEdit を閉じると、保存していない編集は破棄されます。ディスク上のセーブファイルは変更されません。",
   "Overview_PlayerLocation": "惑星 {0}  ·  位置 {1}",
   "Overview_PlayerProgress": "作成したオブジェクト {0}  ·  獲得したテラトークン {1}",
+  "Overview_GameVersion": "ゲームバージョン {0} が書き込んだセーブデータ",
   "Inventories_Search": "インベントリとアイテムを検索",
   "Inventories_SearchA11y": "名前または内容でインベントリ一覧を絞り込む",
   "Inventories_NoMatch": "検索に一致するインベントリやアイテムはありません。",

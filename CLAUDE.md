@@ -90,9 +90,22 @@ hard-codes the section order — keep it in sync with `PlanetCrafterSaveFile`
 in this format — a hand-maintained reference/fixture. Do not let a load→save round-trip overwrite it.
 `PCEdit.SaveFileHandler/mini-save.json` is a tiny hand-authored save in the real framing (BOM,
 `\r@\r`, `|\n`) exercising the rarer object shapes (ore vein `count`, `ToxicWaterCollector`
-`linkedWo`, a labelled container `text`, a logistics container, a deliberately-unknown key); both
-test projects link it into `TestData/`. Regenerate it with a byte-writing script, not an editor —
+`linkedWo`, a labelled container `text`, a logistics container, a deliberately-unknown key); `PCEdit.SaveFileHandler.Tests` links it into `TestData/`. Regenerate it with a byte-writing script, not an editor —
 it has no trailing newline and must keep its exact bytes (`.gitattributes` marks it `-text`).
+
+`PCEdit.SaveFileHandler/Humble-2.102.json` is a real **game version 2.102** save (planet Humble,
+Steam, BOM) — the byte-exact proof that the current game build still round-trips. Keep all three
+fixtures: `Standard-2.json` and `mini-save.json` are 2.008 and are now the backward-compatibility
+regression, `Humble-2.102.json` is the current-build one.
+
+**Game versions.** The save format was unchanged from 2.008 to 2.102 ("Skeo" update) apart from a
+single key: `logisticsPaused` on the unlocks section. It is modelled as
+`SaveFileUnlocks.LogisticsPaused` and is **`bool?`, not `bool`, on purpose** — the serializer
+ignores nulls when writing, so a pre-2.102 save that never carried the key does not gain a
+`"logisticsPaused":false` on save and keeps round-tripping byte-for-byte. Apply the same rule to
+any future version-added field. `tools/save-diff/diff_saves.py` produces this comparison for a new
+game build (see `tools/save-diff/README.md`); `tools/item-catalog/report_missing.py` then lists the
+content ids the app's catalogs do not cover yet.
 
 Layering, each with a small interface for testability/DI:
 

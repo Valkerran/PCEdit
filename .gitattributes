@@ -8,3 +8,4 @@
 # leading BOM) — never normalise line endings.
 PCEdit.SaveFileHandler/Standard-2.json  -text
 PCEdit.SaveFileHandler/mini-save.json   -text
+PCEdit.SaveFileHandler/Humble-2.102.json -text

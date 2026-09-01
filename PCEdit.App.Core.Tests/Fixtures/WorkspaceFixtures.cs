@@ -29,7 +29,7 @@ internal static class WorkspaceFixtures
             {
                 SaveDisplayName = "Test Save",
                 PlanetId = "Prime",
-                Version = "1",
+                Version = "2.102",
                 Mode = "Default",
                 DyingConsequencesLabel = "Normal",
                 StartLocationLabel = "Default",

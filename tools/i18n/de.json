@@ -148,6 +148,7 @@
   "Quit_DiscardBody": "Wenn du PCEdit jetzt schließt, gehen deine nicht gespeicherten Änderungen verloren. Die Spielstanddatei auf dem Datenträger bleibt unverändert.",
   "Overview_PlayerLocation": "Planet {0}  ·  Position {1}",
   "Overview_PlayerProgress": "{0} Objekte gefertigt  ·  {1} Terra-Token verdient",
+  "Overview_GameVersion": "Spielstand geschrieben von Spielversion {0}",
   "Inventories_Search": "Inventare und Gegenstände suchen",
   "Inventories_SearchA11y": "Die Inventarliste nach Name oder Inhalt filtern",
   "Inventories_NoMatch": "Keine Inventare oder Gegenstände passen zu deiner Suche.",

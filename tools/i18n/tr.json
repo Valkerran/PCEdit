@@ -148,6 +148,7 @@
   "Quit_DiscardBody": "PCEdit'i şimdi kapatmak kaydedilmemiş değişikliklerinizi siler. Diskteki kayıt dosyası değişmez.",
   "Overview_PlayerLocation": "Gezegen {0}  ·  Konum {1}",
   "Overview_PlayerProgress": "{0} nesne üretildi  ·  {1} terra jetonu kazanıldı",
+  "Overview_GameVersion": "{0} oyun sürümü tarafından yazılan kayıt",
   "Inventories_Search": "Envanterlerde ve eşyalarda ara",
   "Inventories_SearchA11y": "Envanter listesini ada veya içeriğe göre filtrele",
   "Inventories_NoMatch": "Aramanızla eşleşen envanter veya eşya yok.",

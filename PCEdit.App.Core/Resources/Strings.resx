@@ -123,6 +123,7 @@
   <data name="Overview_Vital_Health" xml:space="preserve"><value>HEALTH</value></data>
   <data name="Overview_Vital_Toxicity" xml:space="preserve"><value>TOXICITY</value></data>
   <data name="Overview_PlayerProgress" xml:space="preserve"><value>{0} objects crafted  ·  {1} terra tokens earned</value></data>
+  <data name="Overview_GameVersion" xml:space="preserve"><value>Save written by game version {0}</value></data>
 
   <data name="Vital_Ok" xml:space="preserve"><value>OK</value></data>
   <data name="Vital_Low" xml:space="preserve"><value>Low</value></data>

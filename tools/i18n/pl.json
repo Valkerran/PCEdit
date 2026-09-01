@@ -148,6 +148,7 @@
   "Quit_DiscardBody": "Zamknięcie PCEdit teraz odrzuci niezapisane zmiany. Plik zapisu na dysku pozostanie bez zmian.",
   "Overview_PlayerLocation": "Planeta {0}  ·  Pozycja {1}",
   "Overview_PlayerProgress": "wytworzono obiektów: {0}  ·  zdobyto żetonów terra: {1}",
+  "Overview_GameVersion": "Zapis utworzony przez wersję gry {0}",
   "Inventories_Search": "Szukaj w ekwipunkach i przedmiotach",
   "Inventories_SearchA11y": "Filtruj listę ekwipunków według nazwy lub zawartości",
   "Inventories_NoMatch": "Żaden ekwipunek ani przedmiot nie pasuje do wyszukiwania.",

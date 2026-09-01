@@ -62,6 +62,7 @@
   <data name="Overview_Vital_Health" xml:space="preserve"><value>GESUNDHEIT</value></data>
   <data name="Overview_Vital_Toxicity" xml:space="preserve"><value>TOXIZITÄT</value></data>
   <data name="Overview_PlayerProgress" xml:space="preserve"><value>{0} Objekte gefertigt  ·  {1} Terra-Token verdient</value></data>
+  <data name="Overview_GameVersion" xml:space="preserve"><value>Spielstand geschrieben von Spielversion {0}</value></data>
   <data name="Vital_Ok" xml:space="preserve"><value>OK</value></data>
   <data name="Vital_Low" xml:space="preserve"><value>Niedrig</value></data>
   <data name="Vital_Critical" xml:space="preserve"><value>Kritisch</value></data>
