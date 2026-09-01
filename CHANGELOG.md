@@ -4,6 +4,15 @@ What changed in each release of PCEdit. Downloads for every version are on the
 [Releases page](https://github.com/Valkerran/PCEdit/releases); the newest is on the
 [latest release](https://github.com/Valkerran/PCEdit/releases/latest) page.
 
+## v1.2.3
+
+- **No change to the application.** Documentation and release process only, so the
+  binaries are identical to v1.2.2 apart from the version stamp: the release history
+  moved out of the README into this file, the Linux distro test matrix was completed
+  against the published v1.2.2 AppImage (six distros, glibc 2.31 to 2.44, system ICU 66
+  to 78 - all passing), and the release checklist now requires a changelog entry with
+  every version bump.
+
 ## v1.2.2
 
 - **Fix: the AppImage's "report a bug" and homepage links pointed nowhere.** Every release
