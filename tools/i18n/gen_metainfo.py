@@ -103,7 +103,7 @@ def main() -> int:
     w('  <url type="bugtracker">https://github.com/Valkerran/PCEdit/issues</url>')
 
     w('  <developer id="com.valkerran">')
-    w("    <name>Walter Smart</name>")
+    w("    <name>Valkerran</name>")
     w("  </developer>")
 
     w("  <categories>")

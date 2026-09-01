@@ -19,4 +19,4 @@ or supported by the developers or publishers of *The Planet Crafter*.
 
 This text is the single source mirrored by the in-app disclaimer
 (`Disclaimer_Body` in the string catalog), the AppStream `<description>` in
-`deploy/com.waltersmart.pcedit.metainfo.xml`, and the release notes.
+`deploy/com.valkerran.pcedit.metainfo.xml`, and the release notes.

@@ -18,8 +18,8 @@
 
   <!-- Licensing — GNU GPL v3 or later. Full text in the repo-root LICENSE file. -->
   <PropertyGroup>
-    <Authors>Walter Smart</Authors>
-    <Copyright>Copyright (C) 2026 Walter Smart</Copyright>
+    <Authors>Valkerran</Authors>
+    <Copyright>Copyright (C) 2026 Valkerran</Copyright>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
   </PropertyGroup>
 
