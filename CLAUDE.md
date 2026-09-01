@@ -69,7 +69,7 @@ logistics catalogs via `tools/item-catalog/` (no CI guard — only a hand-edited
 followed by a re-run keeps the JSON honest). Commit messages say what changed and why; see
 [Git commit conventions](#git-commit-conventions) for the trailer rule.
 
-### 5. Bump the version last, before opening the PR
+### 5. Bump the version and write the changelog entry, before opening the PR
 
 The final phase bumps `<VersionPrefix>` in the repo-root `Directory.Build.props` (semver:
 patch for a bug fix, minor for a feature or new game-version support, major for a breaking
@@ -80,6 +80,20 @@ tag and publishes the artifacts, with no follow-up commit needed.
 CI's `version-guard` job fails if `<VersionPrefix>` is malformed or *behind* the newest release
 tag, and the Release workflow refuses to build if a pushed tag disagrees with it. The full
 release procedure is in `RELEASING.md`.
+
+**The same phase adds the entry to `CHANGELOG.md`** — a `## vX.Y.Z` section for the version
+being bumped to, at the top of the list, in the voice of the existing entries: what changed
+for someone *using* the app, not what changed in the code. A version bump carrying
+user-visible change but no entry is an incomplete phase: the next release ships straight from
+`main`, and no later step would catch the omission — which is exactly how v1.2.0 and v1.2.1
+came to ship undocumented.
+
+The exception is a bare *bump for development* after a release (`RELEASING.md` step 5), which
+carries nothing yet — its entry arrives with the change that fills the version.
+
+Call out anything user-visible beyond the fix itself: a size change, a new or dropped runtime
+dependency, a renamed artifact, a raised minimum OS — and say which platforms are *not*
+affected. `RELEASING.md` step 4 mirrors the entry into the GitHub Release body.
 
 ## Commands
 
