@@ -346,6 +346,17 @@ repo root — mirrored by `Disclaimer_Body` in the catalog and the AppStream `<d
 - `build-windows.ps1` — `win-x64` `dotnet publish` zipped with `Compress-Archive`. Unsigned.
 - `build-macos.sh <rid>` — assembles an unsigned `PCEdit.app` (generated `Info.plist`; `.icns` from
   `deploy/icon/` via `sips`+`iconutil` on macOS only) and zips it with `ditto`.
+- `verify-app-local-icu.sh <dir>` — asserts a Linux build carries its own ICU.
+
+**libicu is bundled on Linux, and only on Linux.** A self-contained publish does *not*
+include it — .NET `dlopen()`s the system copy and FailFasts at startup on a distro that has
+none (openSUSE Tumbleweed), which made the AppImage unlaunchable there. So
+`PCEdit.Desktop.csproj` references `Microsoft.ICU.ICU4C.Runtime` and sets
+`System.Globalization.AppLocalIcu` on `linux-*` RIDs only; **the package version
+(`<AppLocalIcuVersion>`) and the switch value must stay identical** — the switch *is* the
+`libicu*.so.<version>` filename suffix. Neither is visible to `ldd` (it is a `dlopen`), so
+`verify-app-local-icu.sh` guards both from `build-appimage.sh` and from CI. Do not add the
+package to the Windows or macOS publish: they use the OS ICU, and it has no `osx` RID.
 
 Release automation and the versioning rules live in `RELEASING.md`.
 
