@@ -63,6 +63,18 @@ Rules the pipelines enforce:
    app and choose **Open** (or run `xattr -dr com.apple.quarantine PCEdit.app`).
    ```
 
+   **And call out any user-visible packaging change in the same section.** The
+   auto-generated notes list PR titles, which almost never convey that the download behaves
+   differently — a notable size change, a new or dropped runtime dependency, a renamed or
+   added artifact, a raised minimum OS. Say what changed, by how much, and why, and say who
+   is *not* affected: a reader who sees "+13 MB" on Linux will wonder about their own
+   platform. Also add the same entry to the README changelog, which is what people read
+   before downloading.
+
+   v1.2.1 is the worked example — bundling ICU took the AppImage from 43.0 MB to 56.5 MB,
+   so its notes lead with those numbers, give the reason (it would not start at all on a
+   distro with no system `libicu`), and state that Windows and macOS are unchanged.
+
 5. **Bump again for development** (optional but tidy): raise `<VersionPrefix>` to the next
    planned version on `main` so pre-release builds are not stamped with the shipped version.
 

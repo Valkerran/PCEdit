@@ -19,7 +19,7 @@ inventories normally.
 ## Download
 
 **Linux:** grab `PCEdit-*-x86_64.AppImage` from the
-[latest release](https://github.com/waldog78/PCEdit/releases/latest). It bundles the .NET
+[latest release](https://github.com/Valkerran/PCEdit/releases/latest). It bundles the .NET
 runtime and ICU — no install needed, on any distro.
 
 ```bash
@@ -44,6 +44,25 @@ Turkish); it follows the OS language on first run and can be switched in-app.
 
 Full history and downloads are on the
 [Releases page](https://github.com/Valkerran/PCEdit/releases).
+
+### v1.2.1
+
+- **Fix: the Linux AppImage now starts on distros with no system `libicu`.** A self-contained
+  build does not bundle ICU, and .NET aborts at startup when the system has none — so on
+  openSUSE Tumbleweed, and on minimal or container images generally, PCEdit would not launch
+  at all. The AppImage now carries its own ICU. It is larger for it: **56.5 MB, up from
+  43.0 MB**. Windows and macOS are unaffected — they use the ICU in the OS.
+  ([#4](https://github.com/Valkerran/PCEdit/issues/4))
+
+### v1.2.0
+
+- **Planet Crafter 2.102 (the *Skeo* update) is supported.** The save format barely moved:
+  one new key (`logisticsPaused`) on the unlocks section, and nothing else across all ten
+  sections, on Steam and Game Pass alike. Saves from 2.008 still open and still save back
+  unchanged. ([#17](https://github.com/Valkerran/PCEdit/pull/17))
+- **Item catalog: 278 → 466 items.** The catalog had been seeded from a single save, so
+  plenty of real content showed up under its raw in-game id. Anything still unnamed remains
+  editable and moves between inventories normally.
 
 ### v1.1.1
 

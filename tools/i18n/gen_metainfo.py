@@ -99,8 +99,8 @@ def main() -> int:
     w("  </description>")
 
     w('  <launchable type="desktop-id">com.valkerran.pcedit.desktop</launchable>')
-    w('  <url type="homepage">https://github.com/waldog78/PCEdit</url>')
-    w('  <url type="bugtracker">https://github.com/waldog78/PCEdit/issues</url>')
+    w('  <url type="homepage">https://github.com/Valkerran/PCEdit</url>')
+    w('  <url type="bugtracker">https://github.com/Valkerran/PCEdit/issues</url>')
 
     w('  <developer id="com.valkerran">')
     w("    <name>Walter Smart</name>")
