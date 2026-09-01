@@ -1,0 +1,23 @@
+{
+  "profiles": {
+    "PCEdit.Desktop": {
+      "commandName": "Project"
+    },
+    "WSL-Ubuntu-20.04": {
+      "commandName": "WSL2",
+      "distributionName": "Ubuntu-20.04"
+    },
+    "WSL-Ubuntu-22.04": {
+      "commandName": "WSL2",
+      "distributionName": "Ubuntu-22.04"
+    },
+    "WSL-Ubuntu-24.04": {
+      "commandName": "WSL2",
+      "distributionName": "Ubuntu-24.04"
+    },
+    "WSL-FedoraLinux-43": {
+      "commandName": "WSL2",
+      "distributionName": "FedoraLinux-43"
+    }
+  }
+}
