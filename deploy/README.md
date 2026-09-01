@@ -63,9 +63,13 @@ bundled runtime links against an old glibc and runs on newer distros:
 
 ### Runtime libraries on the target
 
-The .NET runtime is bundled; only GUI/system libraries are expected, and they are present
-on every desktop Linux (X11 or XWayland): `libX11`, `libICE`, `libSM`, `fontconfig`,
-`libGL`.
+The .NET runtime is bundled; only GUI/system libraries are expected, and any desktop Linux
+install has them (X11 or XWayland): `libX11`, `libICE`, `libSM`, `fontconfig`, `libGL`.
+
+A **bare** image is another matter — the WSL Ubuntu 24.04 rootfs has no `libICE`/`libSM`,
+and Avalonia `dlopen`s those as well, so the app dies with a `DllNotFoundException` from
+`X11PlatformLifetimeEvents..ctor` that `ldd` never predicted. Step 2 of the distro matrix
+below installs them; a real desktop pulls them in with the DE.
 
 ### ICU — bundled, not borrowed
 
@@ -223,9 +227,9 @@ stays up); the save round-trip, disclaimer persistence and CJK checks were not r
 |---|---|---|---|
 | Ubuntu 22.04 (WSL2, build host) | 2.35 | ✅ built (42.9 MB); `ldd` clean; GUI launches under WSLg | 2026-08-28 |
 | Ubuntu 22.04 (WSL2, build host) | 2.35 | 🟡 rebuilt with bundled ICU (56.5 MB); `ldd` clean; ICU check passes; GUI launches | 2026-09-01 |
-| Ubuntu 24.04 | | _pending_ | |
+| Ubuntu 24.04 | 2.39 | 🟡 AppImage launches once `libice6`/`libsm6` are installed; bundled ICU proven to win over system ICU 74 | 2026-09-01 |
 | Debian 12 | | 🟡 `linux-x64` publish launches (AppImage not run) | 2026-09-01 |
 | Fedora 43 | | 🟡 AppImage launches | 2026-09-01 |
-| Arch | | 🟡 AppImage launches | 2026-09-01 |
+| Arch | 2.44 | 🟡 AppImage launches | 2026-09-01 |
 | openSUSE Tumbleweed | | 🟡 AppImage launches — **fatal before the bundled ICU**: no system libicu | 2026-09-01 |
 | Ubuntu 20.04 | | 🟡 `linux-x64` publish launches (AppImage not run) | 2026-09-01 |
