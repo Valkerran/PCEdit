@@ -64,8 +64,8 @@
     <p xml:lang="tr">PCEdit, Planet Crafter kayıt dosyalarını doğrudan düzenler. Hatalı bir düzenleme bir kaydı bozabilir ve ilerlemenizi kaybettirebilir. Düzenlemeden önce kayıt dosyanızın her zaman bir yedeğini tutun. Bu yazılım, hiçbir garanti olmaksızın «olduğu gibi» sağlanır.</p>
   </description>
   <launchable type="desktop-id">com.valkerran.pcedit.desktop</launchable>
-  <url type="homepage">https://github.com/waldog78/PCEdit</url>
-  <url type="bugtracker">https://github.com/waldog78/PCEdit/issues</url>
+  <url type="homepage">https://github.com/Valkerran/PCEdit</url>
+  <url type="bugtracker">https://github.com/Valkerran/PCEdit/issues</url>
   <developer id="com.valkerran">
     <name>Walter Smart</name>
   </developer>

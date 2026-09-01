@@ -19,7 +19,7 @@ inventories normally.
 ## Download
 
 **Linux:** grab `PCEdit-*-x86_64.AppImage` from the
-[latest release](https://github.com/waldog78/PCEdit/releases/latest). It bundles the .NET
+[latest release](https://github.com/Valkerran/PCEdit/releases/latest). It bundles the .NET
 runtime and ICU — no install needed, on any distro.
 
 ```bash
