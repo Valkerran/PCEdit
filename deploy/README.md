@@ -21,6 +21,7 @@ or manual dispatch and attaches the artifacts + `SHA256SUMS.txt` to a GitHub Rel
 | `com.valkerran.pcedit.metainfo.xml` | AppStream metadata — **generated**, do not hand-edit |
 | `icon/`                             | App icon: scalable `pcedit.svg` + rasterised PNGs (16–512 px) |
 | `build-appimage.sh`                 | Linux AppImage build → `artifacts/` |
+| `verify-app-local-icu.sh`           | Asserts a Linux build carries its own ICU (see below) |
 | `build-windows.ps1`                 | Windows `win-x64` zip → `artifacts/` |
 | `build-macos.sh`                    | macOS `.app` bundle zip (per RID) → `artifacts/` |
 
@@ -62,9 +63,39 @@ bundled runtime links against an old glibc and runs on newer distros:
 
 ### Runtime libraries on the target
 
-The runtime is bundled; only GUI/system libraries are expected, and they are present on
-every desktop Linux (X11 or XWayland): `libX11`, `libICE`, `libSM`, `fontconfig`,
-`libGL`. No bundling required.
+The .NET runtime is bundled; only GUI/system libraries are expected, and any desktop Linux
+install has them (X11 or XWayland): `libX11`, `libICE`, `libSM`, `fontconfig`, `libGL`.
+
+A **bare** image is another matter — the WSL Ubuntu 24.04 rootfs has no `libICE`/`libSM`,
+and Avalonia `dlopen`s those as well, so the app dies with a `DllNotFoundException` from
+`X11PlatformLifetimeEvents..ctor` that `ldd` never predicted. Step 2 of the distro matrix
+below installs them; a real desktop pulls them in with the DE.
+
+### ICU — bundled, not borrowed
+
+**libicu is the one runtime library the AppImage carries itself.** A self-contained
+publish does *not* bundle it: .NET `dlopen()`s the system copy and FailFasts at startup
+— *"Couldn't find a valid ICU package installed on the system"* — on a distro that has
+none. openSUSE Tumbleweed ships without it, so the AppImage could not launch there at
+all ([issue #4](https://github.com/Valkerran/PCEdit/issues/4)).
+
+`PCEdit.Desktop.csproj` therefore pulls `Microsoft.ICU.ICU4C.Runtime`
+(`<AppLocalIcuVersion>`) on `linux-*` RIDs and sets the
+`System.Globalization.AppLocalIcu` runtimeconfig switch to the same version, so the
+runtime loads `libicu{uc,i18n,data}.so.<version>` from the app folder and never probes
+the system. The package version and the switch value **must stay identical** — the
+switch *is* the filename suffix. Windows (OS ICU) and macOS (`libicucore`) are excluded.
+
+Two consequences worth knowing:
+
+- The AppImage grew from ~43 MB to ~56.5 MB. That is the price of launching everywhere.
+- Every distro now gets the same ICU 72 collation and CLDR data instead of whatever the
+  system happened to ship — more deterministic, but it does not track distro updates.
+
+Neither the libraries nor the switch are visible to `ldd` (the load is a `dlopen`, not a
+link-time dependency), so `verify-app-local-icu.sh` checks both. `build-appimage.sh` runs
+it on the extracted AppImage and CI runs it on a `linux-x64` publish; either failing means
+the build would not start on a distro without libicu.
 
 ### CJK fonts
 
@@ -141,6 +172,7 @@ WAYLAND_DISPLAY= ./PCEdit-*-x86_64.AppImage --appimage-extract-and-run      # fo
 LANG=ja_JP.UTF-8 ./PCEdit-*-x86_64.AppImage --appimage-extract-and-run     # locale + CJK glyphs
 ./PCEdit-*-x86_64.AppImage --appimage-extract >/dev/null && \
   ldd squashfs-root/usr/bin/PCEdit | grep -i 'not found'                   # must print nothing
+../deploy/verify-app-local-icu.sh squashfs-root                            # bundled ICU present
 ```
 Per distro confirm: window renders; `Standard-2.json` loads/edits/saves/round-trips; the
 disclaimer shows once and the ack persists (`~/.config/PCEdit/settings.json`); no
@@ -188,11 +220,22 @@ This is called out in the Release body. `LSMinimumSystemVersion` is 11.0.
 
 ## Tested on
 
+✅ = the full per-distro checklist above. 🟡 = launch only (the window renders and
+stays up); the save round-trip, disclaimer persistence and CJK checks were not run.
+
+The checklist can be **driven** rather than clicked: run the AppImage against an `Xvfb`
+display and use `xdotool` (`import` for screenshots). Do not try that against WSLg — its
+RAIL layer forwards only real Windows input, so synthetic clicks and keys are silently
+dropped (the pointer still moves and the app still shows hover states, which makes it look
+like it should be working). Rendering is fine to verify under WSLg; interaction is not.
+
 | Distro | glibc | Result | Date |
 |---|---|---|---|
 | Ubuntu 22.04 (WSL2, build host) | 2.35 | ✅ built (42.9 MB); `ldd` clean; GUI launches under WSLg | 2026-08-28 |
-| Ubuntu 24.04 | | _pending_ | |
-| Debian 12 | | _pending_ | |
-| Fedora | | _pending_ | |
-| Arch | | _pending_ | |
-| openSUSE Tumbleweed | | _pending_ | |
+| Ubuntu 22.04 (WSL2, build host) | 2.35 | 🟡 rebuilt with bundled ICU (56.5 MB); `ldd` clean; ICU check passes; GUI launches | 2026-09-01 |
+| Ubuntu 24.04 | 2.39 | ✅ full checklist (needs `libice6`/`libsm6`; Noto CJK for the glyph check); bundled ICU proven to win over system ICU 74 | 2026-09-01 |
+| Debian 12 | | 🟡 `linux-x64` publish launches (AppImage not run) | 2026-09-01 |
+| Fedora 43 | | 🟡 AppImage launches | 2026-09-01 |
+| Arch | 2.44 | 🟡 AppImage launches | 2026-09-01 |
+| openSUSE Tumbleweed | | 🟡 AppImage launches — **fatal before the bundled ICU**: no system libicu | 2026-09-01 |
+| Ubuntu 20.04 | | 🟡 `linux-x64` publish launches (AppImage not run) | 2026-09-01 |
