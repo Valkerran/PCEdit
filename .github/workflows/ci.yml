@@ -27,6 +27,14 @@ jobs:
       - name: Build — PCEdit.Desktop
         run: dotnet build PCEdit.Desktop/PCEdit.Desktop.csproj -c Release
 
+      # The AppImage is only assembled at release time, so guard the ICU wiring here:
+      # without it the Linux build FailFasts at startup on a distro with no system libicu.
+      - name: Linux publish carries app-local ICU
+        shell: bash
+        run: |
+          dotnet publish PCEdit.Desktop/PCEdit.Desktop.csproj -c Release -r linux-x64 --self-contained true -o "$RUNNER_TEMP/icu-check"
+          deploy/verify-app-local-icu.sh "$RUNNER_TEMP/icu-check"
+
       - name: Generated files are in sync with the string catalog
         run: |
           python3 tools/i18n/gen_satellites.py

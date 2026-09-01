@@ -80,6 +80,7 @@ found=0
 for f in "$SCRIPT_DIR"/OUT/*.AppImage; do
     [ -e "$f" ] || continue
     cp -v "$f" "$ARTIFACTS/"
+    APPIMAGE="$ARTIFACTS/$(basename "$f")"
     found=1
 done
 
@@ -87,6 +88,13 @@ if [ "$found" -eq 0 ]; then
     echo "!! No .AppImage produced in $SCRIPT_DIR/OUT" >&2
     exit 1
 fi
+
+# The AppImage must carry its own ICU - see deploy/verify-app-local-icu.sh (issue #4).
+echo ">> Verifying app-local ICU in $APPIMAGE"
+_icu_check="$(mktemp -d)"
+trap 'rm -rf "$_icu_check"' EXIT
+( cd "$_icu_check" && "$APPIMAGE" --appimage-extract >/dev/null )
+"$SCRIPT_DIR/verify-app-local-icu.sh" "$_icu_check/squashfs-root"
 
 echo ">> Done. Artifacts in $ARTIFACTS:"
 ls -la "$ARTIFACTS"/*.AppImage

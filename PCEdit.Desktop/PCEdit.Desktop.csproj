@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
@@ -18,6 +18,38 @@
         <!-- All 15 UI-language satellites of PCEdit.App.Core must ship. -->
         <SatelliteResourceLanguages>en;en-GB;fr;de;es-ES;zh-Hans;ru;pl;pt-PT;ko;ja;pt-BR;it;zh-Hant;tr</SatelliteResourceLanguages>
     </PropertyGroup>
+
+    <!--
+        App-local ICU (Linux only).
+
+        A self-contained publish does NOT bundle libicu - .NET dlopen()s the system one, and
+        FailFasts at startup ("Couldn't find a valid ICU package installed on the system") on a
+        distro that has none (openSUSE Tumbleweed ships without it). That made the AppImage,
+        which promises to be self-contained, unlaunchable there. The `ldd | grep 'not found'`
+        artifact check cannot catch it, because the load is a dlopen, not a link-time dependency.
+
+        So the Linux publish carries its own ICU: the Microsoft.ICU.ICU4C.Runtime package drops
+        libicu{uc,i18n,data}.so.$(AppLocalIcuVersion) next to the app, and the
+        System.Globalization.AppLocalIcu switch tells the runtime to load those by that exact
+        version suffix instead of probing the system. Keep the package version and the switch
+        value identical - the switch IS the filename suffix.
+
+        Windows (OS ICU since Win10 1703) and macOS (libicucore in the OS) need none of this, and
+        the package has no osx RID, so this stays scoped to non-musl linux-* RIDs. A plain
+        `dotnet build`/`dotnet test` with no RID is unaffected.
+
+        Verified by the CI "AppImage ships app-local ICU" step and by deploy/build-appimage.sh,
+        which both fail if the libraries or the switch go missing.
+    -->
+    <PropertyGroup>
+        <AppLocalIcuVersion>72.1.0.3</AppLocalIcuVersion>
+        <BundleAppLocalIcu Condition="'$(RuntimeIdentifier)' != '' and $(RuntimeIdentifier.StartsWith('linux-')) and !$(RuntimeIdentifier.StartsWith('linux-musl'))">true</BundleAppLocalIcu>
+    </PropertyGroup>
+
+    <ItemGroup Condition="'$(BundleAppLocalIcu)' == 'true'">
+        <PackageReference Include="Microsoft.ICU.ICU4C.Runtime" Version="$(AppLocalIcuVersion)" />
+        <RuntimeHostConfigurationOption Include="System.Globalization.AppLocalIcu" Value="$(AppLocalIcuVersion)" Trim="false" />
+    </ItemGroup>
 
     <ItemGroup>
         <AvaloniaResource Include="Assets/**" />
