@@ -220,22 +220,54 @@ This is called out in the Release body. `LSMinimumSystemVersion` is 11.0.
 
 ## Tested on
 
-✅ = the full per-distro checklist above. 🟡 = launch only (the window renders and
-stays up); the save round-trip, disclaimer persistence and CJK checks were not run.
+Every row below was run against the **published** `v1.2.2` AppImage (sha256 verified against
+the release's `SHA256SUMS.txt`), not a local rebuild, driven headlessly with `Xvfb` +
+`xdotool`. ✅ = the full per-distro checklist above; 🟡 = launch only.
 
-The checklist can be **driven** rather than clicked: run the AppImage against an `Xvfb`
-display and use `xdotool` (`import` for screenshots). Do not try that against WSLg — its
-RAIL layer forwards only real Windows input, so synthetic clicks and keys are silently
-dropped (the pointer still moves and the app still shows hover states, which makes it look
-like it should be working). Rendering is fine to verify under WSLg; interaction is not.
+| Distro | glibc | System ICU | Result | Date |
+|---|---|---|---|---|
+| Ubuntu 22.04 (WSL2, build host) | 2.35 | 70 | ✅ 15/15 | 2026-09-01 |
+| Ubuntu 20.04 | 2.31 | 66 | ✅ 15/15 | 2026-09-01 |
+| Ubuntu 24.04 | 2.39 | 74 | ✅ 15/15 — bundled ICU proven to win over the system's | 2026-09-01 |
+| Debian 13 (trixie) | 2.41 | 76 | ✅ 15/15 | 2026-09-01 |
+| Fedora 43 | 2.42 | 77 | ✅ 15/15 | 2026-09-01 |
+| Arch | 2.44 | 78 | ✅ 15/15 | 2026-09-01 |
+| openSUSE Tumbleweed | 2.43 | **none** | 🟡 launches — **was fatal before the bundled ICU**; the full checklist could not run (see below) | 2026-09-01 |
 
-| Distro | glibc | Result | Date |
-|---|---|---|---|
-| Ubuntu 22.04 (WSL2, build host) | 2.35 | ✅ built (42.9 MB); `ldd` clean; GUI launches under WSLg | 2026-08-28 |
-| Ubuntu 22.04 (WSL2, build host) | 2.35 | 🟡 rebuilt with bundled ICU (56.5 MB); `ldd` clean; ICU check passes; GUI launches | 2026-09-01 |
-| Ubuntu 24.04 | 2.39 | ✅ full checklist (needs `libice6`/`libsm6`; Noto CJK for the glyph check); bundled ICU proven to win over system ICU 74 | 2026-09-01 |
-| Debian 12 | | 🟡 `linux-x64` publish launches (AppImage not run) | 2026-09-01 |
-| Fedora 43 | | 🟡 AppImage launches | 2026-09-01 |
-| Arch | 2.44 | 🟡 AppImage launches | 2026-09-01 |
-| openSUSE Tumbleweed | | 🟡 AppImage launches — **fatal before the bundled ICU**: no system libicu | 2026-09-01 |
-| Ubuntu 20.04 | | 🟡 `linux-x64` publish launches (AppImage not run) | 2026-09-01 |
+The 15 checks: `ldd` clean · bundled ICU libraries + runtimeconfig switch · AppStream URLs ·
+main window renders · disclaimer shows on first run · dismisses on click · acknowledgement
+written · save file chosen · saved length unchanged · exactly 12 bytes differ · the edit is
+present · BOM preserved · first instance exits · acknowledgement persists across restart ·
+`ja_JP.UTF-8` applies. The round-trip check is byte-level: granting 1234 terra tokens must
+change exactly the three token fields and nothing else.
+
+**openSUSE Tumbleweed** is the distro that proves the bundled ICU matters — it ships no
+system libicu at all, and the AppImage could not start there before v1.2.1. Its interactive
+row is unfinished because `xorg-x11-server-Xvfb` conflicts with `patterns-wsl-tmpfiles`, so
+a headless X server cannot be installed without removing part of the WSL integration.
+
+### Driving the checklist
+
+Per distro, install: a headless X server (`Xvfb`), `xdotool`, ImageMagick (`import`), the
+X client libraries the app `dlopen`s (`libX11`, `libICE`, `libSM`, `libGL`, `fontconfig`),
+Noto CJK, and `diffutils` for the byte comparison. Then run the app against `:99` and drive
+it with `xdotool`.
+
+Four traps, each of which cost a debugging cycle:
+
+- **Not WSLg.** Its RAIL layer forwards only real Windows input, so synthetic clicks and
+  keys are silently dropped — while the pointer still moves and buttons still show hover
+  states, which looks like it is nearly working. Rendering is fine to verify under WSLg;
+  interaction is not. Use `Xvfb`.
+- **One distro at a time.** WSLg bind-mounts `/tmp/.X11-unix` into every distro, so two
+  distros running `Xvfb :99` collide and each app attaches to the other's server. The
+  symptoms look like application bugs (clicks not registering, the wrong file dialog).
+- **Two file dialogs exist.** With GTK installed the app gets the GTK chooser, which takes
+  a path via `Ctrl+L`. Without it, Avalonia's own dialog appears — it ignores typed paths,
+  keeps **OK** disabled until a row is selected, and opens in the process's working
+  directory. Launch the app from a directory holding only the save file and double-click
+  the first row.
+- **Guard every external call with `timeout`.** `import` blocks indefinitely on a window
+  that has just been destroyed, and a missing `cmp` (Arch ships none by default) makes
+  `cmp -l | wc -l` return `0`, which reads as “no differences” — a broken tool must not be
+  able to look like a passing check.
