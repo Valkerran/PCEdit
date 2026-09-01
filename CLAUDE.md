@@ -26,6 +26,61 @@ set once in `Directory.Build.props` (`<PackageLicenseExpression>`, `<Copyright>`
 (`tools/i18n/gen_metainfo.py`). Keep those in sync. GPL headers are **not** applied per source
 file — the `LICENSE` file plus the README section cover the whole repo.
 
+## Working on a change
+
+This is the flow for **any feature, behaviour change, or bug fix**. It does not apply to
+answering a question or read-only investigation — those need no plan and no branch.
+
+### 1. Plan first, in phases
+
+Investigate the real code and data before proposing anything, then write a **multi-phase plan**.
+Each phase must end in a working, committable state — tests green, nothing half-applied — so the
+work can stop or be reviewed at any phase boundary.
+
+The plan states: why the change is being made, what each phase does, the specific files it
+touches, existing helpers it reuses, and how to verify the result end to end. Where a decision is
+open, **give a recommendation** — name the option to take and why, rather than listing choices
+neutrally. Flag anything genuinely blocked on information only the user has, finish everything
+that is not, and say plainly what was left out.
+
+### 2. Stress-test the plan before it is accepted
+
+Run the `grill-me` skill (or an equivalent interrogation) on the draft plan so each branch of the
+decision tree is challenged and assumptions surface while they are still cheap to change. Raise
+concerns with the request as specified at this point, not after the code is written. If the user
+reaffirms the request, that is the decision — build it in full.
+
+### 3. Branch only once the plan is accepted
+
+Take a fresh branch from an **up-to-date** `main`. Never commit directly to `main`.
+
+```bash
+git checkout main && git pull --ff-only && git checkout -b <topic-branch>
+```
+
+If `main` cannot fast-forward, stop and resolve that before branching.
+
+### 4. Commit at the end of every phase
+
+One commit per completed phase, not one commit for the whole plan. Before each commit: build,
+run both test projects, and regenerate any generated file the phase touched — the localization
+satellites and AppStream metainfo via `tools/i18n/` (CI **fails** on drift here), the item and
+logistics catalogs via `tools/item-catalog/` (no CI guard — only a hand-edited `gen_*.py`
+followed by a re-run keeps the JSON honest). Commit messages say what changed and why; see
+[Git commit conventions](#git-commit-conventions) for the trailer rule.
+
+### 5. Bump the version last, before opening the PR
+
+The final phase bumps `<VersionPrefix>` in the repo-root `Directory.Build.props` (semver:
+patch for a bug fix, minor for a feature or new game-version support, major for a breaking
+change). Doing it inside the PR is what leaves `main` immediately releasable after the merge —
+Actions → **Release** → *Run workflow* reads `<VersionPrefix>`, creates the matching `vX.Y.Z`
+tag and publishes the artifacts, with no follow-up commit needed.
+
+CI's `version-guard` job fails if `<VersionPrefix>` is malformed or *behind* the newest release
+tag, and the Release workflow refuses to build if a pushed tag disagrees with it. The full
+release procedure is in `RELEASING.md`.
+
 ## Commands
 
 ```bash
