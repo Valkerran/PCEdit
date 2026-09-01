@@ -20,14 +20,14 @@ inventories normally.
 
 **Linux:** grab `PCEdit-*-x86_64.AppImage` from the
 [latest release](https://github.com/waldog78/PCEdit/releases/latest). It bundles the .NET
-runtime — no install needed.
+runtime and ICU — no install needed, on any distro.
 
 ```bash
 chmod +x PCEdit-*-x86_64.AppImage
 ./PCEdit-*-x86_64.AppImage
 ```
 
-If your distro has no FUSE or libicu, either install fuse and libicu for your distro or run `./PCEdit-*-x86_64.AppImage --appimage-extract-and-run`.
+If your distro has no FUSE, either install it or run `./PCEdit-*-x86_64.AppImage --appimage-extract-and-run`.
 For CJK menus, install your distro's Noto CJK font package.
 
 **Windows:** Just grab the appropriate zip file, extract and run PCEdit.exe
