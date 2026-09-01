@@ -206,6 +206,7 @@ public sealed class PlanetCrafterSaveFileSerializerTests
     [InlineData("Standard-2.json")]
     [InlineData("mini-save.json")]
     [InlineData("Humble-2.102.json")]
+    [InlineData("Interplanetary-2.102.json")]
     public void RoundTrip_RealSampleSaveFile_PreservesEveryKeyAndValue(string fixtureName)
     {
         var path = Path.Combine(AppContext.BaseDirectory, "TestData", fixtureName);
@@ -222,6 +223,7 @@ public sealed class PlanetCrafterSaveFileSerializerTests
     [InlineData("Standard-2.json")]
     [InlineData("mini-save.json")]
     [InlineData("Humble-2.102.json")]
+    [InlineData("Interplanetary-2.102.json")]
     public void RoundTrip_RealSampleSaveFile_ReserializesCharacterForCharacter(string fixtureName)
     {
         // File.ReadAllText strips the BOM, and Serialize does not emit one (the store's encoding

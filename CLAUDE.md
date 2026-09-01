@@ -93,10 +93,22 @@ in this format — a hand-maintained reference/fixture. Do not let a load→save
 `linkedWo`, a labelled container `text`, a logistics container, a deliberately-unknown key); `PCEdit.SaveFileHandler.Tests` links it into `TestData/`. Regenerate it with a byte-writing script, not an editor —
 it has no trailing newline and must keep its exact bytes (`.gitattributes` marks it `-text`).
 
-`PCEdit.SaveFileHandler/Humble-2.102.json` is a real **game version 2.102** save (planet Humble,
-Steam, BOM) — the byte-exact proof that the current game build still round-trips. Keep all three
-fixtures: `Standard-2.json` and `mini-save.json` are 2.008 and are now the backward-compatibility
-regression, `Humble-2.102.json` is the current-build one.
+Two more real fixtures cover **game version 2.102**, both byte-exact and both `-text`:
+
+| Fixture | Game | Platform | BOM | Shape |
+|---|---|---|---|---|
+| `Standard-2.json` | 2.008 | Steam | yes | single planet (Prime), the backward-compat regression |
+| `mini-save.json` | 2.008 | hand-authored | yes | the rare object shapes + an unknown key |
+| `Humble-2.102.json` | 2.102 | Steam | yes | single planet (Humble) |
+| `Interplanetary-2.102.json` | 2.102 | Xbox / PC Game Pass (WGS) | **no** | Prime + Aqualis + Selenea |
+
+`Interplanetary-2.102.json` is a raw WGS blob exactly as the game wrote it, so it is the only
+fixture that proves the BOM-less Game Pass path end-to-end on real bytes
+(`Save_OverARealBomLessGamePassSave_KeepsItBomLess`) — **it must never gain a BOM**. It is also
+the only multi-planet fixture, so it backs the `PlanetHash`/`PlanetIndex` hash-to-planet bridge
+against real data. Note it cannot join
+`SaveThenLoad_OfAnUnchangedSave_IsByteIdenticalOnDisk`: that theory saves to a path that does not
+exist yet, which is "Save As" and correctly emits a BOM.
 
 **Game versions.** The save format was unchanged from 2.008 to 2.102 ("Skeo" update) apart from a
 single key: `logisticsPaused` on the unlocks section. It is modelled as

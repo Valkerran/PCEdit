@@ -38,4 +38,23 @@ public sealed class PlanetHashTests
         Assert.NotEmpty(placed);
         Assert.All(placed, w => Assert.Equal(planetHash, w.Planet));
     }
+
+    /// <summary>
+    /// The interplanetary fixture spans Prime, Aqualis and Selenea, so no single hash covers it --
+    /// every placed world object must instead resolve to one of the planets the save knows about.
+    /// This is the bridge <c>PlanetIndex.ResolvePlanetId</c> relies on.
+    /// </summary>
+    [Fact]
+    public void Of_ResolvesEveryPlacedWorldObject_OnAMultiPlanetSave()
+    {
+        var path = Path.Combine(AppContext.BaseDirectory, "TestData", "Interplanetary-2.102.json");
+        var save = _serializer.Deserialize(File.ReadAllText(path));
+
+        var known = save.Terraformations.Select(t => PlanetHash.Of(t.PlanetId)).ToHashSet();
+        var placed = save.WorldObjects.Where(w => w.Planet is not null).ToList();
+
+        Assert.True(save.Terraformations.Count > 1, "fixture is meant to span several planets");
+        Assert.NotEmpty(placed);
+        Assert.All(placed, w => Assert.Contains(w.Planet!.Value, known));
+    }
 }

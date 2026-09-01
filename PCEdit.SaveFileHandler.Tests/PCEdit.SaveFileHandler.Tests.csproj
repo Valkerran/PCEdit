@@ -26,6 +26,7 @@
     <None Include="..\PCEdit.SaveFileHandler\Standard-2.json" Link="TestData\Standard-2.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\PCEdit.SaveFileHandler\mini-save.json" Link="TestData\mini-save.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\PCEdit.SaveFileHandler\Humble-2.102.json" Link="TestData\Humble-2.102.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\PCEdit.SaveFileHandler\Interplanetary-2.102.json" Link="TestData\Interplanetary-2.102.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>

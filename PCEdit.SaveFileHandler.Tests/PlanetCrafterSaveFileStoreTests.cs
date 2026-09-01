@@ -57,6 +57,9 @@ public sealed class PlanetCrafterSaveFileStoreTests : IDisposable
         Assert.Equal(original.Inventories[0].SupplyGroups, loaded.Inventories[0].SupplyGroups);
     }
 
+    // BOM-carrying (Steam) fixtures only: this saves to a path that does not exist yet, which
+    // is "Save As" and correctly emits a BOM. The BOM-less Game Pass fixture is covered by
+    // Save_OverARealBomLessGamePassSave_KeepsItBomLess, which saves over the file itself.
     [Theory]
     [InlineData("Standard-2.json")]
     [InlineData("mini-save.json")]
@@ -96,6 +99,20 @@ public sealed class PlanetCrafterSaveFileStoreTests : IDisposable
         Assert.Equal(bomLess, written);
     }
 
+    [Fact]
+    public void Save_OverARealBomLessGamePassSave_KeepsItBomLess()
+    {
+        // Interplanetary-2.102.json is a raw Xbox / PC Game Pass (WGS) blob exactly as the game
+        // wrote it -- no BOM. Adding one makes the game reject the save with "file error".
+        var source = Path.Combine(AppContext.BaseDirectory, "TestData", "Interplanetary-2.102.json");
+        File.Copy(source, _tempFile, overwrite: true);
+
+        _store.Save(_tempFile, _store.Load(_tempFile));
+
+        var written = File.ReadAllBytes(_tempFile);
+        Assert.NotEqual<byte[]>([0xEF, 0xBB, 0xBF], written[..3]);
+        Assert.Equal(File.ReadAllBytes(source), written);
+    }
     [Fact]
     public void Save_OverAFileThatHasABom_KeepsTheBom()
     {
