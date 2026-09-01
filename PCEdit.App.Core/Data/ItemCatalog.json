@@ -124,6 +124,46 @@
       "displayName": "Ice",
       "category": "ore"
     },
+    "Bauxite": {
+      "displayName": "Bauxite",
+      "category": "ore"
+    },
+    "Dolomite": {
+      "displayName": "Dolomite",
+      "category": "ore"
+    },
+    "Phosphorus": {
+      "displayName": "Phosphorus",
+      "category": "ore"
+    },
+    "Selenium": {
+      "displayName": "Selenium",
+      "category": "ore"
+    },
+    "Uraninite": {
+      "displayName": "Uraninite",
+      "category": "ore"
+    },
+    "Minable-Tungsten": {
+      "displayName": "Tungsten",
+      "category": "ore"
+    },
+    "ToxicGoo": {
+      "displayName": "Toxic Goo",
+      "category": "ore"
+    },
+    "ToxicWater": {
+      "displayName": "Toxic Water",
+      "category": "ore"
+    },
+    "ToxicSpores": {
+      "displayName": "Toxic Spores",
+      "category": "ore"
+    },
+    "Toxins": {
+      "displayName": "Toxins",
+      "category": "ore"
+    },
     "PulsarQuartz": {
       "displayName": "Pulsar Quartz",
       "category": "gem"
@@ -134,6 +174,18 @@
     },
     "MagnetarQuartz": {
       "displayName": "Magnetar Quartz",
+      "category": "gem"
+    },
+    "QuasarQuartz": {
+      "displayName": "Quasar Quartz",
+      "category": "gem"
+    },
+    "CosmicQuartz": {
+      "displayName": "Cosmic Quartz",
+      "category": "gem"
+    },
+    "BalzarQuartz": {
+      "displayName": "Blazar Quartz",
       "category": "gem"
     },
     "Alloy": {
@@ -194,6 +246,78 @@
     },
     "Bacteria1": {
       "displayName": "Bacteria Sample",
+      "category": "component"
+    },
+    "Rod-osmium": {
+      "displayName": "Osmium Rod",
+      "category": "component"
+    },
+    "Rod-tungsten": {
+      "displayName": "Tungsten Rod",
+      "category": "component"
+    },
+    "Rod-plastic": {
+      "displayName": "Plastic Rod",
+      "category": "component"
+    },
+    "Fertilizer3": {
+      "displayName": "Fertilizer T3",
+      "category": "component"
+    },
+    "Mutagen3": {
+      "displayName": "Mutagen T3",
+      "category": "component"
+    },
+    "Mutagen4": {
+      "displayName": "Mutagen T4",
+      "category": "component"
+    },
+    "PlasticPolymer": {
+      "displayName": "Plastic Polymer",
+      "category": "component"
+    },
+    "MicroPlastics": {
+      "displayName": "Micro Plastics",
+      "category": "component"
+    },
+    "SmartFabric": {
+      "displayName": "Smart Fabric",
+      "category": "component"
+    },
+    "SilkWorm": {
+      "displayName": "Silkworm",
+      "category": "component"
+    },
+    "PurificationGel": {
+      "displayName": "Purification Gel",
+      "category": "component"
+    },
+    "DNASequence": {
+      "displayName": "DNA Sequence",
+      "category": "component"
+    },
+    "GeneticTrait": {
+      "displayName": "Genetic Trait",
+      "category": "component"
+    },
+    "TrashMetalsScraps1": {
+      "displayName": "Metal Scrap",
+      "category": "component"
+    },
+    "TrashMetalsCanisters1": {
+      "displayName": "Metal Canister Scrap",
+      "category": "component"
+    },
+    "TrashAluminiumScraps1": {
+      "displayName": "Aluminium Scrap",
+      "category": "component"
+    },
+    "TrashUraniumScraps1": {
+      "displayName": "Uranium Scrap",
+      "category": "component"
+    },
+    "TrashElectronics1": {
+      "displayName": "Electronic Scrap",
       "category": "component"
     },
     "Seed0": {
@@ -272,6 +396,42 @@
       "displayName": "Vegetable Seed",
       "category": "seed"
     },
+    "Seed5": {
+      "displayName": "Seed",
+      "category": "seed"
+    },
+    "Seed9Humble": {
+      "displayName": "Humble Seed",
+      "category": "seed"
+    },
+    "Seed10Humble": {
+      "displayName": "Humble Seed",
+      "category": "seed"
+    },
+    "Seed11Humble": {
+      "displayName": "Humble Seed",
+      "category": "seed"
+    },
+    "Tree0Seed": {
+      "displayName": "Tree Seed",
+      "category": "seed"
+    },
+    "Tree9Seed": {
+      "displayName": "Tree Seed",
+      "category": "seed"
+    },
+    "Tree10Seed": {
+      "displayName": "Tree Seed",
+      "category": "seed"
+    },
+    "Tree13Seed": {
+      "displayName": "Tree Seed",
+      "category": "seed"
+    },
+    "Tree16Seed": {
+      "displayName": "Tree Seed",
+      "category": "seed"
+    },
     "Vegetable0Growable": {
       "displayName": "Growing Vegetable",
       "category": "plant"
@@ -304,6 +464,22 @@
       "displayName": "Phytoplankton",
       "category": "plant"
     },
+    "CookCocoaGrowable": {
+      "displayName": "Growing Cocoa",
+      "category": "plant"
+    },
+    "CookWheatGrowable": {
+      "displayName": "Growing Wheat",
+      "category": "plant"
+    },
+    "Ivy1": {
+      "displayName": "Ivy",
+      "category": "plant"
+    },
+    "PristineMushroom": {
+      "displayName": "Pristine Mushroom",
+      "category": "plant"
+    },
     "astrofood": {
       "displayName": "Space Food",
       "category": "food"
@@ -314,6 +490,18 @@
     },
     "WaterBottle1": {
       "displayName": "Water Bottle",
+      "category": "food"
+    },
+    "astrofood2": {
+      "displayName": "Space Food T2",
+      "category": "food"
+    },
+    "CookCake1": {
+      "displayName": "Cake",
+      "category": "food"
+    },
+    "PurifiedWater": {
+      "displayName": "Purified Water",
       "category": "food"
     },
     "Bee1Larvae": {
@@ -350,6 +538,70 @@
     },
     "Fish1Eggs": {
       "displayName": "Fish Eggs",
+      "category": "larva"
+    },
+    "Butterfly5Larvae": {
+      "displayName": "Butterfly Larva",
+      "category": "larva"
+    },
+    "Butterfly9Larvae": {
+      "displayName": "Butterfly Larva",
+      "category": "larva"
+    },
+    "Butterfly11Larvae": {
+      "displayName": "Butterfly Larva",
+      "category": "larva"
+    },
+    "Butterfly15Larvae": {
+      "displayName": "Butterfly Larva",
+      "category": "larva"
+    },
+    "Butterfly16Larvae": {
+      "displayName": "Butterfly Larva",
+      "category": "larva"
+    },
+    "Butterfly17Larvae": {
+      "displayName": "Butterfly Larva",
+      "category": "larva"
+    },
+    "Butterfly18Larvae": {
+      "displayName": "Butterfly Larva",
+      "category": "larva"
+    },
+    "Fish3Eggs": {
+      "displayName": "Fish Eggs",
+      "category": "larva"
+    },
+    "Fish5Eggs": {
+      "displayName": "Fish Eggs",
+      "category": "larva"
+    },
+    "Fish6Eggs": {
+      "displayName": "Fish Eggs",
+      "category": "larva"
+    },
+    "Frog1Eggs": {
+      "displayName": "Frog Eggs",
+      "category": "larva"
+    },
+    "Frog2Eggs": {
+      "displayName": "Frog Eggs",
+      "category": "larva"
+    },
+    "Frog8Eggs": {
+      "displayName": "Frog Eggs",
+      "category": "larva"
+    },
+    "Frog9Eggs": {
+      "displayName": "Frog Eggs",
+      "category": "larva"
+    },
+    "Frog10Eggs": {
+      "displayName": "Frog Eggs",
+      "category": "larva"
+    },
+    "Frog12Eggs": {
+      "displayName": "Frog Eggs",
       "category": "larva"
     },
     "NitrogenCapsule1": {
@@ -424,6 +676,54 @@
       "displayName": "Pressure Space Booster",
       "category": "consumable"
     },
+    "OxygenCapsule1": {
+      "displayName": "Oxygen Capsule",
+      "category": "consumable"
+    },
+    "ChlorineCapsule1": {
+      "displayName": "Chlorine Capsule",
+      "category": "consumable"
+    },
+    "PurificationCapsule": {
+      "displayName": "Purification Capsule",
+      "category": "consumable"
+    },
+    "AntiToxinsExplosive1": {
+      "displayName": "Anti-Toxins Charge",
+      "category": "consumable"
+    },
+    "FuseAnimals1": {
+      "displayName": "Animals Fuse",
+      "category": "consumable"
+    },
+    "FuseGrowth1": {
+      "displayName": "Growth Fuse",
+      "category": "consumable"
+    },
+    "FusePurification1": {
+      "displayName": "Purification Fuse",
+      "category": "consumable"
+    },
+    "FuseTradeRocketsSpeed1": {
+      "displayName": "Trade Rocket Speed Fuse",
+      "category": "consumable"
+    },
+    "FuseCartridge": {
+      "displayName": "Fuse Cartridge",
+      "category": "consumable"
+    },
+    "SpaceMultiplierAnimals": {
+      "displayName": "Animals Space Booster",
+      "category": "consumable"
+    },
+    "AnimalFood1": {
+      "displayName": "Animal Food T1",
+      "category": "consumable"
+    },
+    "AnimalFood2": {
+      "displayName": "Animal Food T2",
+      "category": "consumable"
+    },
     "RocketBiomass1": {
       "displayName": "Biomass Rocket",
       "category": "rocket"
@@ -472,6 +772,34 @@
       "displayName": "Rocket Reactor",
       "category": "rocket"
     },
+    "RocketAnimals1": {
+      "displayName": "Animals Rocket",
+      "category": "rocket"
+    },
+    "RocketBiomass2": {
+      "displayName": "Biomass Rocket T2",
+      "category": "rocket"
+    },
+    "RocketInformations2": {
+      "displayName": "Information Rocket T2",
+      "category": "rocket"
+    },
+    "RocketInsects2": {
+      "displayName": "Insects Rocket T2",
+      "category": "rocket"
+    },
+    "RocketPressure2": {
+      "displayName": "Pressure Rocket T2",
+      "category": "rocket"
+    },
+    "RocketReactor2": {
+      "displayName": "Rocket Reactor T2",
+      "category": "rocket"
+    },
+    "RocketTravel1": {
+      "displayName": "Travel Rocket",
+      "category": "rocket"
+    },
     "TerraTokens100": {
       "displayName": "100 Terra Tokens",
       "category": "token"
@@ -516,6 +844,26 @@
       "displayName": "Clean Construction Chip",
       "category": "chip"
     },
+    "KeyCard2": {
+      "displayName": "Keycard",
+      "category": "chip"
+    },
+    "PinChip3": {
+      "displayName": "Pin Chip",
+      "category": "chip"
+    },
+    "BlueprintSolarQuartz": {
+      "displayName": "Solar Quartz Blueprint",
+      "category": "chip"
+    },
+    "BlueprintEquipmentIncrease5": {
+      "displayName": "Equipment Slot Blueprint",
+      "category": "chip"
+    },
+    "ToxicZoneHudDisplayer2": {
+      "displayName": "Toxic Zone Chip T2",
+      "category": "chip"
+    },
     "Container1": {
       "displayName": "Storage Crate T1",
       "category": "container"
@@ -538,6 +886,18 @@
     },
     "ProceduralWreckSafe": {
       "displayName": "Wreck Safe",
+      "category": "container"
+    },
+    "Container3": {
+      "displayName": "Storage Crate T3",
+      "category": "container"
+    },
+    "ContainerAqualis": {
+      "displayName": "Aqualis Crate",
+      "category": "container"
+    },
+    "ContainerToxic1": {
+      "displayName": "Toxic Crate",
       "category": "container"
     },
     "Backpack5": {
@@ -648,6 +1008,78 @@
       "displayName": "Suit Skin",
       "category": "equipment"
     },
+    "Backpack1": {
+      "displayName": "Backpack Upgrade",
+      "category": "equipment"
+    },
+    "Backpack4": {
+      "displayName": "Backpack Upgrade",
+      "category": "equipment"
+    },
+    "Backpack7": {
+      "displayName": "Backpack Upgrade",
+      "category": "equipment"
+    },
+    "Jetpack1": {
+      "displayName": "Jetpack Upgrade",
+      "category": "equipment"
+    },
+    "Jetpack4": {
+      "displayName": "Jetpack Upgrade",
+      "category": "equipment"
+    },
+    "OxygenTank2": {
+      "displayName": "Oxygen Tank Upgrade",
+      "category": "equipment"
+    },
+    "EquipmentIncrease1": {
+      "displayName": "Equipment Slot Upgrade",
+      "category": "equipment"
+    },
+    "EquipmentIncrease2": {
+      "displayName": "Equipment Slot Upgrade",
+      "category": "equipment"
+    },
+    "EquipmentIncrease4": {
+      "displayName": "Equipment Slot Upgrade",
+      "category": "equipment"
+    },
+    "EquipmentIncrease5": {
+      "displayName": "Equipment Slot Upgrade",
+      "category": "equipment"
+    },
+    "MultiDeconstruct": {
+      "displayName": "Multi-Deconstruct Module",
+      "category": "equipment"
+    },
+    "MultiToolLight": {
+      "displayName": "Tool Light",
+      "category": "equipment"
+    },
+    "MultiToolCleaningGooChip2": {
+      "displayName": "Goo Cleaning T2",
+      "category": "equipment"
+    },
+    "Skin-02": {
+      "displayName": "Suit Skin",
+      "category": "equipment"
+    },
+    "Skin-15": {
+      "displayName": "Suit Skin",
+      "category": "equipment"
+    },
+    "Skin-16": {
+      "displayName": "Suit Skin",
+      "category": "equipment"
+    },
+    "Skin-17": {
+      "displayName": "Suit Skin",
+      "category": "equipment"
+    },
+    "Skin-21": {
+      "displayName": "Suit Skin",
+      "category": "equipment"
+    },
     "VehicleTruck": {
       "displayName": "Truck",
       "category": "vehicle"
@@ -694,6 +1126,30 @@
     },
     "Drone1": {
       "displayName": "Drone",
+      "category": "vehicle"
+    },
+    "Drone2": {
+      "displayName": "Drone T2",
+      "category": "vehicle"
+    },
+    "DroneLog": {
+      "displayName": "Logistics Drone",
+      "category": "vehicle"
+    },
+    "VehicleBeacon1": {
+      "displayName": "Vehicle Beacon",
+      "category": "vehicle"
+    },
+    "VehicleJetpack1": {
+      "displayName": "Vehicle Jetpack",
+      "category": "vehicle"
+    },
+    "VehicleLights1": {
+      "displayName": "Vehicle Lights T1",
+      "category": "vehicle"
+    },
+    "VehicleLogistic1": {
+      "displayName": "Vehicle Logistics",
       "category": "vehicle"
     },
     "Foundation": {
@@ -1008,6 +1464,210 @@
       "displayName": "Locked Wreck Door",
       "category": "structure"
     },
+    "Drill0": {
+      "displayName": "Drill T0",
+      "category": "structure"
+    },
+    "GasExtractor1": {
+      "displayName": "Gas Extractor T1",
+      "category": "structure"
+    },
+    "OreBreaker2": {
+      "displayName": "Ore Breaker T2",
+      "category": "structure"
+    },
+    "OreBreaker3": {
+      "displayName": "Ore Breaker T3",
+      "category": "structure"
+    },
+    "EnergyGenerator1": {
+      "displayName": "Energy Generator T1",
+      "category": "structure"
+    },
+    "EnergyGenerator2": {
+      "displayName": "Energy Generator T2",
+      "category": "structure"
+    },
+    "WindTurbine1": {
+      "displayName": "Wind Turbine",
+      "category": "structure"
+    },
+    "AirFilter1": {
+      "displayName": "Air Filter",
+      "category": "structure"
+    },
+    "AirPurificationMachine1": {
+      "displayName": "Air Purification Machine T1",
+      "category": "structure"
+    },
+    "AirPurificationMachine2": {
+      "displayName": "Air Purification Machine T2",
+      "category": "structure"
+    },
+    "DetoxificationMachine2": {
+      "displayName": "Detoxification Machine T2",
+      "category": "structure"
+    },
+    "ToxinsFilter2": {
+      "displayName": "Toxins Filter T2",
+      "category": "structure"
+    },
+    "ToxicWaterCollector1": {
+      "displayName": "Toxic Water Collector T1",
+      "category": "structure"
+    },
+    "ToxicWaterCollector2": {
+      "displayName": "Toxic Water Collector T2",
+      "category": "structure"
+    },
+    "WaterCollector2": {
+      "displayName": "Water Collector T2",
+      "category": "structure"
+    },
+    "Farm2": {
+      "displayName": "Farm T2",
+      "category": "structure"
+    },
+    "Vegetube2": {
+      "displayName": "Vegetube T2",
+      "category": "structure"
+    },
+    "TreeSpreader1": {
+      "displayName": "Tree Spreader T1",
+      "category": "structure"
+    },
+    "TreePlanter2": {
+      "displayName": "Tree Planter T2",
+      "category": "structure"
+    },
+    "AmphibiansFarm1": {
+      "displayName": "Amphibians Farm",
+      "category": "structure"
+    },
+    "FishFarm1": {
+      "displayName": "Fish Farm",
+      "category": "structure"
+    },
+    "AquariumTube1": {
+      "displayName": "Aquarium Tube",
+      "category": "structure"
+    },
+    "ButterflyFarm2": {
+      "displayName": "Butterfly Farm T2",
+      "category": "structure"
+    },
+    "ButterflyDisplayer1": {
+      "displayName": "Butterfly Displayer",
+      "category": "structure"
+    },
+    "Beehive2": {
+      "displayName": "Beehive T2",
+      "category": "structure"
+    },
+    "AnimalShelter1": {
+      "displayName": "Animal Shelter",
+      "category": "structure"
+    },
+    "AnimalFeeder1": {
+      "displayName": "Animal Feeder",
+      "category": "structure"
+    },
+    "LarvaeBase2": {
+      "displayName": "Larvae Base T2",
+      "category": "structure"
+    },
+    "GeneticExtractor1": {
+      "displayName": "Genetic Extractor",
+      "category": "structure"
+    },
+    "GeneticSynthetizer1": {
+      "displayName": "Genetic Synthesizer",
+      "category": "structure"
+    },
+    "QuartzCraftStation1": {
+      "displayName": "Quartz Craft Station",
+      "category": "structure"
+    },
+    "ToxicRefinementCraftStation1": {
+      "displayName": "Toxic Refinement Station",
+      "category": "structure"
+    },
+    "RecyclingMachine2": {
+      "displayName": "Recycling Machine T2",
+      "category": "structure"
+    },
+    "HarvestingRobot1": {
+      "displayName": "Harvesting Robot",
+      "category": "structure"
+    },
+    "InterplanetaryExchangePlatform1": {
+      "displayName": "Interplanetary Exchange Platform",
+      "category": "structure"
+    },
+    "DeparturePlatform": {
+      "displayName": "Departure Platform",
+      "category": "structure"
+    },
+    "Teleporter1": {
+      "displayName": "Teleporter",
+      "category": "structure"
+    },
+    "PortalGenerator1": {
+      "displayName": "Portal Generator",
+      "category": "structure"
+    },
+    "HologramGenerator": {
+      "displayName": "Hologram Generator",
+      "category": "structure"
+    },
+    "EscapePodHumble": {
+      "displayName": "Escape Pod (Humble)",
+      "category": "structure"
+    },
+    "EscapePodToxicity": {
+      "displayName": "Escape Pod (Toxicity)",
+      "category": "structure"
+    },
+    "EscapePodInterplanetary": {
+      "displayName": "Interplanetary Escape Pod",
+      "category": "structure"
+    },
+    "Pod9xA": {
+      "displayName": "Extra Large Habitat Pod",
+      "category": "structure"
+    },
+    "Pod9xB": {
+      "displayName": "Extra Large Habitat Pod",
+      "category": "structure"
+    },
+    "Pod9xC": {
+      "displayName": "Extra Large Habitat Pod",
+      "category": "structure"
+    },
+    "Elevator": {
+      "displayName": "Elevator",
+      "category": "structure"
+    },
+    "Stairs": {
+      "displayName": "Stairs",
+      "category": "structure"
+    },
+    "WallWaterLife": {
+      "displayName": "Water Life Wall",
+      "category": "structure"
+    },
+    "GenerationGroupVein": {
+      "displayName": "Resource Vein",
+      "category": "structure"
+    },
+    "WreckEntryLocked2": {
+      "displayName": "Locked Wreck Door",
+      "category": "structure"
+    },
+    "EndingExplosives": {
+      "displayName": "Ending Explosives",
+      "category": "structure"
+    },
     "Chair1": {
       "displayName": "Chair",
       "category": "furniture"
@@ -1182,6 +1842,98 @@
     },
     "ScreenUnlockables": {
       "displayName": "Unlockables Screen",
+      "category": "furniture"
+    },
+    "AnimalEffigie1": {
+      "displayName": "Animal Effigy",
+      "category": "furniture"
+    },
+    "AnimalEffigie8": {
+      "displayName": "Animal Effigy",
+      "category": "furniture"
+    },
+    "AnimalEffigie9": {
+      "displayName": "Animal Effigy",
+      "category": "furniture"
+    },
+    "GoldenEffigie2": {
+      "displayName": "Golden Effigy",
+      "category": "furniture"
+    },
+    "GoldenEffigie4": {
+      "displayName": "Golden Effigy",
+      "category": "furniture"
+    },
+    "GoldenEffigie5": {
+      "displayName": "Golden Effigy",
+      "category": "furniture"
+    },
+    "GoldenToxicityEffigie6": {
+      "displayName": "Golden Toxicity Effigy",
+      "category": "furniture"
+    },
+    "StarformEffigie3": {
+      "displayName": "Starform Effigy",
+      "category": "furniture"
+    },
+    "ToxicityDiorama1": {
+      "displayName": "Toxicity Diorama",
+      "category": "furniture"
+    },
+    "FlowerPot3": {
+      "displayName": "Flower Pot T3",
+      "category": "furniture"
+    },
+    "FountainBig": {
+      "displayName": "Large Fountain",
+      "category": "furniture"
+    },
+    "Poster2": {
+      "displayName": "Poster",
+      "category": "furniture"
+    },
+    "Poster4": {
+      "displayName": "Poster",
+      "category": "furniture"
+    },
+    "Poster5": {
+      "displayName": "Poster",
+      "category": "furniture"
+    },
+    "Poster7": {
+      "displayName": "Poster",
+      "category": "furniture"
+    },
+    "Poster8": {
+      "displayName": "Poster",
+      "category": "furniture"
+    },
+    "Poster10": {
+      "displayName": "Poster",
+      "category": "furniture"
+    },
+    "Sign": {
+      "displayName": "Sign",
+      "category": "furniture"
+    },
+    "Toilet1": {
+      "displayName": "Toilet",
+      "category": "furniture"
+    },
+    "Shower1": {
+      "displayName": "Shower",
+      "category": "furniture"
+    },
+    "Trashcan1": {
+      "displayName": "Trash Can",
+      "category": "furniture"
+    },
+    "ScreenSystem1": {
+      "displayName": "System Screen",
+      "category": "furniture"
+    },
+    "ScreenToxic1": {
+      "displayName": "Toxicity Screen",
       "category": "furniture"
     }
   }

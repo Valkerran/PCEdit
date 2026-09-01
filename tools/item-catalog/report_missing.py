@@ -72,7 +72,13 @@ def main(argv):
     missing_groups = collections.Counter()
 
     for path in argv[1:]:
-        sections = read_sections(path)
+        # Scanning a folder should not abort on one file that is not a save (a log, an index,
+        # a truncated copy) -- say so and keep going.
+        try:
+            sections = read_sections(path)
+        except (SystemExit, UnicodeDecodeError, ValueError) as error:
+            print(f"skipped {path}: {error}")
+            continue
         print(f"scanned {path}")
 
         for world_object in records(sections[WORLD_OBJECTS]):
