@@ -27,6 +27,31 @@ public sealed class PlanetIndexTests
         Assert.Equal(["Aqualis", "Prime"], index.KnownPlanetIds());
     }
 
+    /// <summary>
+    /// The in-code fixtures are hand-built; this runs the same logic over a real interplanetary
+    /// save (game 2.102, Xbox / PC Game Pass) spanning Prime, Aqualis and Selenea, so the
+    /// hash-to-planet bridge is proven against bytes the game actually wrote.
+    /// </summary>
+    [Fact]
+    public void ResolvePlanetId_MatchesEveryPlacedWorldObject_OnARealInterplanetarySave()
+    {
+        var savePath = System.IO.Path.Combine(
+            AppContext.BaseDirectory, "TestData", "Interplanetary-2.102.json");
+        var save = new PlanetCrafterSaveFileSerializer(new JsonRecordSerializer())
+            .Deserialize(File.ReadAllText(savePath));
+
+        var store = new FakeSaveFileStore();
+        store.Seed(Path, save);
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), new Localizer());
+        workspace.Load(Path);
+        var index = new PlanetIndex(workspace);
+
+        Assert.Equal(["Aqualis", "Prime", "Selenea"], index.KnownPlanetIds());
+
+        var placed = save.WorldObjects.Where(w => w.Planet is not null).ToList();
+        Assert.NotEmpty(placed);
+        Assert.All(placed, w => Assert.NotNull(index.ResolvePlanetId(w.Planet)));
+    }
     [Fact]
     public void KnownPlanetIds_IsEmptyWhenNoSaveIsLoaded()
     {

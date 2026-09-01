@@ -62,6 +62,7 @@
   <data name="Overview_Vital_Health" xml:space="preserve"><value>체력</value></data>
   <data name="Overview_Vital_Toxicity" xml:space="preserve"><value>독성</value></data>
   <data name="Overview_PlayerProgress" xml:space="preserve"><value>제작한 오브젝트 {0}개  ·  획득한 테라 토큰 {1}개</value></data>
+  <data name="Overview_GameVersion" xml:space="preserve"><value>게임 버전 {0}에서 저장된 파일</value></data>
   <data name="Vital_Ok" xml:space="preserve"><value>양호</value></data>
   <data name="Vital_Low" xml:space="preserve"><value>낮음</value></data>
   <data name="Vital_Critical" xml:space="preserve"><value>위험</value></data>

@@ -10,6 +10,12 @@ Unofficial fan tool — not affiliated with or endorsed by the developers of The
 > Editing a save can corrupt it. **Always back up your save file before editing.** See
 > [DISCLAIMER.md](DISCLAIMER.md). Provided as is, without warranty of any kind.
 
+**Game versions.** Tested against The Planet Crafter **2.008** and **2.102** (the *Skeo* update),
+on both Steam and Xbox / PC Game Pass. The save format is the same in both, so older saves still
+open and still save back unchanged. Content added in 2.102 that PCEdit does not have a friendly
+name for yet shows up under its raw in-game id — it is still editable and moves between
+inventories normally.
+
 ## Download
 
 **Linux:** grab `PCEdit-*-x86_64.AppImage` from the

@@ -20,6 +20,13 @@ public sealed partial class OverviewViewModel(
 
     public bool IsLoaded => _workspace.IsLoaded;
 
+    /// <summary>
+    /// The game version that wrote the loaded save (<c>metadata.version</c>), pre-formatted for
+    /// display. Informational only — PCEdit does not gate editing on it.
+    /// </summary>
+    [ObservableProperty]
+    private string? _gameVersionText;
+
     public ObservableCollection<PlayerOverviewRow> Players { get; } = [];
 
     public ObservableCollection<PlanetTerraformViewModel> Terraforms { get; } = [];
@@ -29,12 +36,15 @@ public sealed partial class OverviewViewModel(
         Players.Clear();
         Terraforms.Clear();
         OnPropertyChanged(nameof(IsLoaded));
+        GameVersionText = null;
 
         var save = _workspace.Current;
         if (save is null)
         {
             return;
         }
+
+        GameVersionText = _localizer.Format(LocKeys.Overview_GameVersion, save.Metadata.Version);
 
         foreach (var player in save.Players)
         {

@@ -26,6 +26,61 @@ set once in `Directory.Build.props` (`<PackageLicenseExpression>`, `<Copyright>`
 (`tools/i18n/gen_metainfo.py`). Keep those in sync. GPL headers are **not** applied per source
 file — the `LICENSE` file plus the README section cover the whole repo.
 
+## Working on a change
+
+This is the flow for **any feature, behaviour change, or bug fix**. It does not apply to
+answering a question or read-only investigation — those need no plan and no branch.
+
+### 1. Plan first, in phases
+
+Investigate the real code and data before proposing anything, then write a **multi-phase plan**.
+Each phase must end in a working, committable state — tests green, nothing half-applied — so the
+work can stop or be reviewed at any phase boundary.
+
+The plan states: why the change is being made, what each phase does, the specific files it
+touches, existing helpers it reuses, and how to verify the result end to end. Where a decision is
+open, **give a recommendation** — name the option to take and why, rather than listing choices
+neutrally. Flag anything genuinely blocked on information only the user has, finish everything
+that is not, and say plainly what was left out.
+
+### 2. Stress-test the plan before it is accepted
+
+Run the `grill-me` skill (or an equivalent interrogation) on the draft plan so each branch of the
+decision tree is challenged and assumptions surface while they are still cheap to change. Raise
+concerns with the request as specified at this point, not after the code is written. If the user
+reaffirms the request, that is the decision — build it in full.
+
+### 3. Branch only once the plan is accepted
+
+Take a fresh branch from an **up-to-date** `main`. Never commit directly to `main`.
+
+```bash
+git checkout main && git pull --ff-only && git checkout -b <topic-branch>
+```
+
+If `main` cannot fast-forward, stop and resolve that before branching.
+
+### 4. Commit at the end of every phase
+
+One commit per completed phase, not one commit for the whole plan. Before each commit: build,
+run both test projects, and regenerate any generated file the phase touched — the localization
+satellites and AppStream metainfo via `tools/i18n/` (CI **fails** on drift here), the item and
+logistics catalogs via `tools/item-catalog/` (no CI guard — only a hand-edited `gen_*.py`
+followed by a re-run keeps the JSON honest). Commit messages say what changed and why; see
+[Git commit conventions](#git-commit-conventions) for the trailer rule.
+
+### 5. Bump the version last, before opening the PR
+
+The final phase bumps `<VersionPrefix>` in the repo-root `Directory.Build.props` (semver:
+patch for a bug fix, minor for a feature or new game-version support, major for a breaking
+change). Doing it inside the PR is what leaves `main` immediately releasable after the merge —
+Actions → **Release** → *Run workflow* reads `<VersionPrefix>`, creates the matching `vX.Y.Z`
+tag and publishes the artifacts, with no follow-up commit needed.
+
+CI's `version-guard` job fails if `<VersionPrefix>` is malformed or *behind* the newest release
+tag, and the Release workflow refuses to build if a pushed tag disagrees with it. The full
+release procedure is in `RELEASING.md`.
+
 ## Commands
 
 ```bash
@@ -90,9 +145,34 @@ hard-codes the section order — keep it in sync with `PlanetCrafterSaveFile`
 in this format — a hand-maintained reference/fixture. Do not let a load→save round-trip overwrite it.
 `PCEdit.SaveFileHandler/mini-save.json` is a tiny hand-authored save in the real framing (BOM,
 `\r@\r`, `|\n`) exercising the rarer object shapes (ore vein `count`, `ToxicWaterCollector`
-`linkedWo`, a labelled container `text`, a logistics container, a deliberately-unknown key); both
-test projects link it into `TestData/`. Regenerate it with a byte-writing script, not an editor —
+`linkedWo`, a labelled container `text`, a logistics container, a deliberately-unknown key); `PCEdit.SaveFileHandler.Tests` links it into `TestData/`. Regenerate it with a byte-writing script, not an editor —
 it has no trailing newline and must keep its exact bytes (`.gitattributes` marks it `-text`).
+
+Two more real fixtures cover **game version 2.102**, both byte-exact and both `-text`:
+
+| Fixture | Game | Platform | BOM | Shape |
+|---|---|---|---|---|
+| `Standard-2.json` | 2.008 | Steam | yes | single planet (Prime), the backward-compat regression |
+| `mini-save.json` | 2.008 | hand-authored | yes | the rare object shapes + an unknown key |
+| `Humble-2.102.json` | 2.102 | Steam | yes | single planet (Humble) |
+| `Interplanetary-2.102.json` | 2.102 | Xbox / PC Game Pass (WGS) | **no** | Prime + Aqualis + Selenea |
+
+`Interplanetary-2.102.json` is a raw WGS blob exactly as the game wrote it, so it is the only
+fixture that proves the BOM-less Game Pass path end-to-end on real bytes
+(`Save_OverARealBomLessGamePassSave_KeepsItBomLess`) — **it must never gain a BOM**. It is also
+the only multi-planet fixture, so it backs the `PlanetHash`/`PlanetIndex` hash-to-planet bridge
+against real data. Note it cannot join
+`SaveThenLoad_OfAnUnchangedSave_IsByteIdenticalOnDisk`: that theory saves to a path that does not
+exist yet, which is "Save As" and correctly emits a BOM.
+
+**Game versions.** The save format was unchanged from 2.008 to 2.102 ("Skeo" update) apart from a
+single key: `logisticsPaused` on the unlocks section. It is modelled as
+`SaveFileUnlocks.LogisticsPaused` and is **`bool?`, not `bool`, on purpose** — the serializer
+ignores nulls when writing, so a pre-2.102 save that never carried the key does not gain a
+`"logisticsPaused":false` on save and keeps round-tripping byte-for-byte. Apply the same rule to
+any future version-added field. `tools/save-diff/diff_saves.py` produces this comparison for a new
+game build (see `tools/save-diff/README.md`); `tools/item-catalog/report_missing.py` then lists the
+content ids the app's catalogs do not cover yet.
 
 Layering, each with a small interface for testability/DI:
 

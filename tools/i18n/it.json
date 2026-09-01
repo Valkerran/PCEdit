@@ -148,6 +148,7 @@
   "Quit_DiscardBody": "Chiudendo PCEdit ora perdi le modifiche non salvate. Il file di salvataggio sul disco resta invariato.",
   "Overview_PlayerLocation": "Pianeta {0}  ·  Posizione {1}",
   "Overview_PlayerProgress": "{0} oggetti creati  ·  {1} gettoni terra guadagnati",
+  "Overview_GameVersion": "Salvataggio scritto dalla versione {0} del gioco",
   "Inventories_Search": "Cerca inventari e oggetti",
   "Inventories_SearchA11y": "Filtra l'elenco degli inventari per nome o contenuto",
   "Inventories_NoMatch": "Nessun inventario o oggetto corrisponde alla ricerca.",

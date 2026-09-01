@@ -148,6 +148,7 @@
   "Quit_DiscardBody": "現在關閉 PCEdit 將捨棄未儲存的變更。磁碟上的存檔檔案不會變更。",
   "Overview_PlayerLocation": "行星 {0}  ·  位置 {1}",
   "Overview_PlayerProgress": "已製作 {0} 個物品  ·  已獲得 {1} 個地球化代幣",
+  "Overview_GameVersion": "由遊戲版本 {0} 寫入的存檔",
   "Inventories_Search": "搜尋庫存與物品",
   "Inventories_SearchA11y": "依名稱或內容篩選庫存清單",
   "Inventories_NoMatch": "沒有符合搜尋的庫存或物品。",

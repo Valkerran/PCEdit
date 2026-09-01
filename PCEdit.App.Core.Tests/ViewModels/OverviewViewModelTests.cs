@@ -36,6 +36,26 @@ public sealed class OverviewViewModelTests
     }
 
     [Fact]
+    public void Load_SurfacesTheGameVersionThatWroteTheSave()
+    {
+        var vm = CreateLoaded();
+
+        Assert.NotNull(vm.GameVersionText);
+        Assert.Contains("2.102", vm.GameVersionText);
+    }
+
+    [Fact]
+    public void Load_WithNoSaveLoaded_ClearsTheGameVersion()
+    {
+        var localizer = new Localizer();
+        var workspace = new SaveFileWorkspace(new FakeSaveFileStore(), new FakeScreenReaderAnnouncer(), localizer);
+        var vm = new OverviewViewModel(workspace, new FakeScreenReaderAnnouncer(), localizer, new FakeNavigationService());
+
+        vm.Load();
+
+        Assert.Null(vm.GameVersionText);
+    }
+    [Fact]
     public void OpenFileCommand_Navigates()
     {
         var nav = new FakeNavigationService();

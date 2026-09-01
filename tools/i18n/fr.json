@@ -148,6 +148,7 @@
   "Quit_DiscardBody": "Fermer PCEdit maintenant abandonne vos modifications non enregistrées. Le fichier de sauvegarde sur le disque reste inchangé.",
   "Overview_PlayerLocation": "Planète {0}  ·  Position {1}",
   "Overview_PlayerProgress": "{0} objets fabriqués  ·  {1} jetons de terra gagnés",
+  "Overview_GameVersion": "Sauvegarde écrite par la version {0} du jeu",
   "Inventories_Search": "Rechercher des inventaires et des objets",
   "Inventories_SearchA11y": "Filtrer la liste des inventaires par nom ou contenu",
   "Inventories_NoMatch": "Aucun inventaire ni objet ne correspond à votre recherche.",

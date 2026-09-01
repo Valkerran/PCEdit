@@ -50,6 +50,29 @@ public sealed class GameFormatKeyMappingTests
         Assert.Contains("\"text\":\"w\"", _serializer.Serialize(labelledObject));
     }
 
+    /// <summary>
+    /// Game version 2.102 added <c>logisticsPaused</c> to the unlocks section. The property is
+    /// nullable on purpose: a pre-2.102 save must not gain the key on save, or every untouched
+    /// old save stops round-tripping byte-for-byte.
+    /// </summary>
+    [Fact]
+    public void Unlocks_LogisticsPaused_IsReadWrittenOnlyWhenTheSaveHasIt()
+    {
+        const string before2102 =
+            """{"terraTokens":10,"allTimeTerraTokens":20,"unlockedGroups":"A,B","openedInstanceSeed":0,"openedInstanceTimeLeft":0}""";
+        const string from2102 =
+            """{"terraTokens":10,"allTimeTerraTokens":20,"unlockedGroups":"A,B","openedInstanceSeed":0,"openedInstanceTimeLeft":0,"logisticsPaused":true}""";
+
+        var old = _serializer.Deserialize<SaveFileUnlocks>(before2102, sectionIndex: 0);
+        var current = _serializer.Deserialize<SaveFileUnlocks>(from2102, sectionIndex: 0);
+
+        Assert.Null(old.LogisticsPaused);
+        Assert.True(current.LogisticsPaused);
+        Assert.True(current.ExtensionData is null || !current.ExtensionData.ContainsKey("logisticsPaused"));
+
+        Assert.Equal(before2102, _serializer.Serialize(old));
+        Assert.Equal(from2102, _serializer.Serialize(current));
+    }
     [Fact]
     public void UnknownKey_IsPreservedThroughExtensionData()
     {

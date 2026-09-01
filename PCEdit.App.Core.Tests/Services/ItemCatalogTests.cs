@@ -66,6 +66,36 @@ public sealed class ItemCatalogTests
         Assert.Equal("item_shiny.png", catalog.Resolve("Shiny").IconFile);
     }
 
+    /// <summary>
+    /// The catalog was originally seeded from one single-planet Prime save, so it missed most of
+    /// the Humble / Toxicity / Aqualis / Selenea content. These ids span the categories that gap
+    /// touched -- a regression guard that curation stays ahead of the sample saves.
+    /// </summary>
+    [Theory]
+    [InlineData("ToxicGoo", "Toxic Goo", "cat_ore.png")]
+    [InlineData("Minable-Tungsten", "Tungsten", "cat_ore.png")]
+    [InlineData("QuasarQuartz", "Quasar Quartz", "cat_gem.png")]
+    [InlineData("Rod-osmium", "Osmium Rod", "cat_component.png")]
+    [InlineData("TrashElectronics1", "Electronic Scrap", "cat_component.png")]
+    [InlineData("Seed9Humble", "Humble Seed", "cat_seed.png")]
+    [InlineData("PristineMushroom", "Pristine Mushroom", "cat_plant.png")]
+    [InlineData("PurifiedWater", "Purified Water", "cat_food.png")]
+    [InlineData("Frog1Eggs", "Frog Eggs", "cat_larva.png")]
+    [InlineData("AnimalFood1", "Animal Food T1", "cat_consumable.png")]
+    [InlineData("RocketTravel1", "Travel Rocket", "cat_rocket.png")]
+    [InlineData("BlueprintSolarQuartz", "Solar Quartz Blueprint", "cat_chip.png")]
+    [InlineData("ContainerAqualis", "Aqualis Crate", "cat_container.png")]
+    [InlineData("Jetpack1", "Jetpack Upgrade", "cat_equipment.png")]
+    [InlineData("Drone2", "Drone T2", "cat_vehicle.png")]
+    [InlineData("EscapePodInterplanetary", "Interplanetary Escape Pod", "cat_structure.png")]
+    [InlineData("ToxicityDiorama1", "Toxicity Diorama", "cat_furniture.png")]
+    public void Resolve_ContentFromTheOtherPlanets_IsCurated(string gId, string displayName, string icon)
+    {
+        var info = EmbeddedCatalog.Resolve(gId);
+
+        Assert.Equal(displayName, info.DisplayName);
+        Assert.Equal(icon, info.IconFile);
+    }
     [Fact]
     public void EmbeddedCatalog_ParsesAndEveryItemCategoryIsDefined()
     {

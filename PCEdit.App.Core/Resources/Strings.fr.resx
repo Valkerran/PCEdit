@@ -62,6 +62,7 @@
   <data name="Overview_Vital_Health" xml:space="preserve"><value>SANTÉ</value></data>
   <data name="Overview_Vital_Toxicity" xml:space="preserve"><value>TOXICITÉ</value></data>
   <data name="Overview_PlayerProgress" xml:space="preserve"><value>{0} objets fabriqués  ·  {1} jetons de terra gagnés</value></data>
+  <data name="Overview_GameVersion" xml:space="preserve"><value>Sauvegarde écrite par la version {0} du jeu</value></data>
   <data name="Vital_Ok" xml:space="preserve"><value>OK</value></data>
   <data name="Vital_Low" xml:space="preserve"><value>Faible</value></data>
   <data name="Vital_Critical" xml:space="preserve"><value>Critique</value></data>

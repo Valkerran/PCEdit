@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate deploy/com.waltersmart.pcedit.metainfo.xml (AppStream) from the string catalog.
+"""Generate deploy/com.valkerran.pcedit.metainfo.xml (AppStream) from the string catalog.
 
 Summary and description text are pulled from the same tools/i18n/<culture>.json files
 that feed gen_satellites.py, so the store listing stays in sync with the in-app text
@@ -16,9 +16,9 @@ from xml.sax.saxutils import escape
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 I18N = ROOT / "tools" / "i18n"
-OUT = ROOT / "deploy" / "com.waltersmart.pcedit.metainfo.xml"
+OUT = ROOT / "deploy" / "com.valkerran.pcedit.metainfo.xml"
 
-APP_ID = "com.waltersmart.pcedit"
+APP_ID = "com.valkerran.pcedit"
 RELEASE_VERSION = "1.0.0"
 RELEASE_DATE = "2026-08-28"
 
@@ -98,11 +98,11 @@ def main() -> int:
             w(f"    <p{lang_attr(xl)}>{escape(strings[culture][key])}</p>")
     w("  </description>")
 
-    w('  <launchable type="desktop-id">com.waltersmart.pcedit.desktop</launchable>')
+    w('  <launchable type="desktop-id">com.valkerran.pcedit.desktop</launchable>')
     w('  <url type="homepage">https://github.com/waldog78/PCEdit</url>')
     w('  <url type="bugtracker">https://github.com/waldog78/PCEdit/issues</url>')
 
-    w('  <developer id="com.waltersmart">')
+    w('  <developer id="com.valkerran">')
     w("    <name>Walter Smart</name>")
     w("  </developer>")
 

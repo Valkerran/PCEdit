@@ -148,6 +148,7 @@
   "Quit_DiscardBody": "지금 PCEdit를 닫으면 저장하지 않은 편집 내용이 삭제됩니다. 디스크의 저장 파일은 변경되지 않습니다.",
   "Overview_PlayerLocation": "행성 {0}  ·  위치 {1}",
   "Overview_PlayerProgress": "제작한 오브젝트 {0}개  ·  획득한 테라 토큰 {1}개",
+  "Overview_GameVersion": "게임 버전 {0}에서 저장된 파일",
   "Inventories_Search": "인벤토리 및 아이템 검색",
   "Inventories_SearchA11y": "이름 또는 내용으로 인벤토리 목록 필터링",
   "Inventories_NoMatch": "검색과 일치하는 인벤토리나 아이템이 없습니다.",

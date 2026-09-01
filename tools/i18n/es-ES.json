@@ -148,6 +148,7 @@
   "Quit_DiscardBody": "Cerrar PCEdit ahora descarta tus cambios sin guardar. El archivo de guardado del disco no cambia.",
   "Overview_PlayerLocation": "Planeta {0}  ·  Posición {1}",
   "Overview_PlayerProgress": "{0} objetos fabricados  ·  {1} fichas de terra ganadas",
+  "Overview_GameVersion": "Partida guardada por la versión {0} del juego",
   "Inventories_Search": "Buscar inventarios y objetos",
   "Inventories_SearchA11y": "Filtrar la lista de inventarios por nombre o contenido",
   "Inventories_NoMatch": "Ningún inventario ni objeto coincide con tu búsqueda.",

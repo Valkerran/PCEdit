@@ -33,7 +33,7 @@ jobs:
           python3 tools/i18n/gen_metainfo.py
           git diff --exit-code --ignore-cr-at-eol -- \
             'PCEdit.App.Core/Resources/Strings.*.resx' \
-            deploy/com.waltersmart.pcedit.metainfo.xml
+            deploy/com.valkerran.pcedit.metainfo.xml
 
   version-guard:
     runs-on: ubuntu-latest

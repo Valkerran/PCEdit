@@ -10,6 +10,9 @@
         <ScrollViewer IsVisible="{Binding IsLoaded}">
             <StackPanel Margin="24" Spacing="20">
 
+                <TextBlock Classes="caption" Text="{Binding GameVersionText}"
+                           IsVisible="{Binding GameVersionText, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+
                 <StackPanel Orientation="Horizontal" Spacing="10">
                     <Border Classes="headingRule" />
                     <TextBlock Text="{m:Loc Overview_Players}" Classes="h2" VerticalAlignment="Center" />
