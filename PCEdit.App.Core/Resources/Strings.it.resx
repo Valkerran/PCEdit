@@ -22,6 +22,7 @@
   <data name="Shell_NoFileLoaded" xml:space="preserve"><value>Nessun file caricato</value></data>
   <data name="Shell_SaveHint" xml:space="preserve"><value>Riscrive le tue modifiche nel file di salvataggio sul disco</value></data>
   <data name="Shell_NavA11y" xml:space="preserve"><value>Navigazione principale</value></data>
+  <data name="Shell_PageLoadFailed" xml:space="preserve"><value>Impossibile caricare questa pagina. Il file è ancora aperto e le modifiche non salvate sono al sicuro.</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>Apri file</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>Panoramica</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>Inventari</value></data>
@@ -201,4 +202,6 @@
   <data name="About_LanguageA11y" xml:space="preserve"><value>Lingua dell'applicazione</value></data>
   <data name="About_SaveLocationsHeading" xml:space="preserve"><value>Dove il gioco conserva i salvataggi</value></data>
   <data name="About_SaveLocationsNote" xml:space="preserve"><value>Xbox assegna a ogni salvataggio un nome casuale che cambia a ogni scrittura. Su Linux, sostituisci ~/.steam/steam con la cartella della tua libreria Steam se il gioco si trova su un'altra unità.</value></data>
+  <data name="About_BackupsHeading" xml:space="preserve"><value>Backup automatici</value></data>
+  <data name="About_BackupsNote" xml:space="preserve"><value>La prima volta che PCEdit salva un file dopo averlo aperto, l'originale viene prima copiato qui. Vengono conservate le cinque copie più recenti di ogni salvataggio.</value></data>
 </root>

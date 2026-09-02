@@ -22,6 +22,7 @@
   <data name="Shell_NoFileLoaded" xml:space="preserve"><value>Aucun fichier chargé</value></data>
   <data name="Shell_SaveHint" xml:space="preserve"><value>Réécrit vos modifications dans le fichier de sauvegarde sur le disque</value></data>
   <data name="Shell_NavA11y" xml:space="preserve"><value>Navigation principale</value></data>
+  <data name="Shell_PageLoadFailed" xml:space="preserve"><value>Impossible de charger cette page. Votre fichier reste ouvert et vos modifications non enregistrées sont intactes.</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>Ouvrir un fichier</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>Vue d'ensemble</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>Inventaires</value></data>
@@ -201,4 +202,6 @@
   <data name="About_LanguageA11y" xml:space="preserve"><value>Langue de l'application</value></data>
   <data name="About_SaveLocationsHeading" xml:space="preserve"><value>Où le jeu conserve vos sauvegardes</value></data>
   <data name="About_SaveLocationsNote" xml:space="preserve"><value>Xbox nomme chaque sauvegarde avec une chaîne aléatoire qui change à chaque écriture. Sous Linux, remplacez ~/.steam/steam par le dossier de votre bibliothèque Steam si le jeu est sur un autre disque.</value></data>
+  <data name="About_BackupsHeading" xml:space="preserve"><value>Sauvegardes automatiques</value></data>
+  <data name="About_BackupsNote" xml:space="preserve"><value>Lors du premier enregistrement suivant l'ouverture d'un fichier, PCEdit en copie d'abord l'original ici. Les cinq copies les plus récentes de chaque sauvegarde sont conservées.</value></data>
 </root>

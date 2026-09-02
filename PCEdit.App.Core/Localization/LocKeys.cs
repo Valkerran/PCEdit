@@ -17,6 +17,7 @@ public static class LocKeys
     public const string Quit_DiscardBody = "Quit_DiscardBody";
 
     public const string Shell_Title = "Shell_Title";
+    public const string Shell_PageLoadFailed = "Shell_PageLoadFailed";
     public const string Nav_OpenFile = "Nav_OpenFile";
     public const string Nav_Overview = "Nav_Overview";
     public const string Nav_Inventories = "Nav_Inventories";

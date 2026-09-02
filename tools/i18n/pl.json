@@ -194,5 +194,8 @@
   "Teleport_AimedAtWorld": "Wycelowano w {0}. Dostosuj X / Y / Z lub wybierz punkt orientacyjny, aby wskazać dokładne miejsce.",
   "Teleport_MultiplayerNote": "Zmiany dotyczą tylko wybranego gracza. Gracza, który nie jest gospodarzem gry, edytuj, gdy jest offline, i sprawdź wynik w grze.",
   "About_SaveLocationsHeading": "Gdzie gra przechowuje zapisy",
-  "About_SaveLocationsNote": "Xbox nadaje każdemu zapisowi losowy ciąg znaków, który zmienia się przy każdym zapisie. W systemie Linux zastąp ~/.steam/steam folderem swojej biblioteki Steam, jeśli gra znajduje się na innym dysku."
+  "About_SaveLocationsNote": "Xbox nadaje każdemu zapisowi losowy ciąg znaków, który zmienia się przy każdym zapisie. W systemie Linux zastąp ~/.steam/steam folderem swojej biblioteki Steam, jeśli gra znajduje się na innym dysku.",
+  "Shell_PageLoadFailed": "Nie udało się wczytać tej strony. Plik jest nadal otwarty, a niezapisane zmiany są bezpieczne.",
+  "About_BackupsHeading": "Automatyczne kopie zapasowe",
+  "About_BackupsNote": "Przy pierwszym zapisie pliku po jego otwarciu PCEdit najpierw kopiuje tutaj oryginał. Przechowywanych jest pięć najnowszych kopii każdego zapisu."
 }

@@ -22,6 +22,7 @@
   <data name="Shell_NoFileLoaded" xml:space="preserve"><value>ファイルが読み込まれていません</value></data>
   <data name="Shell_SaveHint" xml:space="preserve"><value>編集内容をディスク上のセーブファイルに書き戻します</value></data>
   <data name="Shell_NavA11y" xml:space="preserve"><value>メインナビゲーション</value></data>
+  <data name="Shell_PageLoadFailed" xml:space="preserve"><value>このページを読み込めませんでした。ファイルは開いたままで、未保存の変更も失われていません。</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>ファイルを開く</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>概要</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>インベントリ</value></data>
@@ -201,4 +202,6 @@
   <data name="About_LanguageA11y" xml:space="preserve"><value>アプリケーションの言語</value></data>
   <data name="About_SaveLocationsHeading" xml:space="preserve"><value>ゲームがセーブを保存する場所</value></data>
   <data name="About_SaveLocationsNote" xml:space="preserve"><value>Xbox は各セーブに、書き込むたびに変わるランダムな文字列で名前を付けます。Linux では、ゲームが別のドライブにある場合は ~/.steam/steam を Steam ライブラリのフォルダーに置き換えてください。</value></data>
+  <data name="About_BackupsHeading" xml:space="preserve"><value>自動バックアップ</value></data>
+  <data name="About_BackupsNote" xml:space="preserve"><value>ファイルを開いた後にPCEditが初めて保存するとき、元のファイルがまずここにコピーされます。各セーブデータにつき最新5件の複製が保持されます。</value></data>
 </root>

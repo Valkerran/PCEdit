@@ -194,5 +194,8 @@
   "Teleport_AimedAtWorld": "Ciblé sur {0}. Ajustez X / Y / Z ou choisissez un point de repère pour un endroit précis.",
   "Teleport_MultiplayerNote": "Les modifications s'appliquent uniquement au joueur sélectionné. Pour un joueur qui n'est pas l'hôte de la partie, modifiez-le pendant qu'il est hors ligne et vérifiez le résultat en jeu.",
   "About_SaveLocationsHeading": "Où le jeu conserve vos sauvegardes",
-  "About_SaveLocationsNote": "Xbox nomme chaque sauvegarde avec une chaîne aléatoire qui change à chaque écriture. Sous Linux, remplacez ~/.steam/steam par le dossier de votre bibliothèque Steam si le jeu est sur un autre disque."
+  "About_SaveLocationsNote": "Xbox nomme chaque sauvegarde avec une chaîne aléatoire qui change à chaque écriture. Sous Linux, remplacez ~/.steam/steam par le dossier de votre bibliothèque Steam si le jeu est sur un autre disque.",
+  "Shell_PageLoadFailed": "Impossible de charger cette page. Votre fichier reste ouvert et vos modifications non enregistrées sont intactes.",
+  "About_BackupsHeading": "Sauvegardes automatiques",
+  "About_BackupsNote": "Lors du premier enregistrement suivant l'ouverture d'un fichier, PCEdit en copie d'abord l'original ici. Les cinq copies les plus récentes de chaque sauvegarde sont conservées."
 }

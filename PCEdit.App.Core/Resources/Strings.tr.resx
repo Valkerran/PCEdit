@@ -22,6 +22,7 @@
   <data name="Shell_NoFileLoaded" xml:space="preserve"><value>Dosya yüklenmedi</value></data>
   <data name="Shell_SaveHint" xml:space="preserve"><value>Düzenlemelerinizi diskteki kayıt dosyasına geri yazar</value></data>
   <data name="Shell_NavA11y" xml:space="preserve"><value>Ana gezinme</value></data>
+  <data name="Shell_PageLoadFailed" xml:space="preserve"><value>Bu sayfa yüklenemedi. Dosyanız hâlâ açık ve kaydedilmemiş değişiklikleriniz güvende.</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>Dosya Aç</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>Genel Bakış</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>Envanterler</value></data>
@@ -201,4 +202,6 @@
   <data name="About_LanguageA11y" xml:space="preserve"><value>Uygulama dili</value></data>
   <data name="About_SaveLocationsHeading" xml:space="preserve"><value>Oyunun kayıtlarını sakladığı yer</value></data>
   <data name="About_SaveLocationsNote" xml:space="preserve"><value>Xbox her kaydı, her yazıldığında değişen rastgele bir dizeyle adlandırır. Linux'ta oyun başka bir sürücüdeyse ~/.steam/steam yerine Steam kitaplık klasörünüzü yazın.</value></data>
+  <data name="About_BackupsHeading" xml:space="preserve"><value>Otomatik yedekler</value></data>
+  <data name="About_BackupsNote" xml:space="preserve"><value>PCEdit bir dosyayı açtıktan sonra ilk kez kaydettiğinde, önce özgün dosyayı buraya kopyalar. Her kayıt için en yeni beş kopya saklanır.</value></data>
 </root>

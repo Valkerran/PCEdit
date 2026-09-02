@@ -194,5 +194,8 @@
   "Teleport_AimedAtWorld": "已瞄准 {0}。调整 X / Y / Z 或选择一个地标以确定精确位置。",
   "Teleport_MultiplayerNote": "更改仅应用于所选玩家。对于非游戏主机的玩家，请在其离线时进行编辑，并在游戏中确认结果。",
   "About_SaveLocationsHeading": "游戏存档的位置",
-  "About_SaveLocationsNote": "Xbox 为每个存档使用随机字符串命名，每次写入时都会改变。在 Linux 上，如果游戏位于其他驱动器，请将 ~/.steam/steam 替换为你的 Steam 库文件夹。"
+  "About_SaveLocationsNote": "Xbox 为每个存档使用随机字符串命名，每次写入时都会改变。在 Linux 上，如果游戏位于其他驱动器，请将 ~/.steam/steam 替换为你的 Steam 库文件夹。",
+  "Shell_PageLoadFailed": "无法加载此页面。文件仍处于打开状态，未保存的更改不会丢失。",
+  "About_BackupsHeading": "自动备份",
+  "About_BackupsNote": "打开文件后首次保存时，PCEdit 会先将原始文件复制到此处。每个存档最多保留五个最新副本。"
 }

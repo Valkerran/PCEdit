@@ -22,6 +22,7 @@
   <data name="Shell_NoFileLoaded" xml:space="preserve"><value>Файл не загружен</value></data>
   <data name="Shell_SaveHint" xml:space="preserve"><value>Записывает изменения обратно в файл сохранения на диске</value></data>
   <data name="Shell_NavA11y" xml:space="preserve"><value>Основная навигация</value></data>
+  <data name="Shell_PageLoadFailed" xml:space="preserve"><value>Не удалось загрузить эту страницу. Файл по-прежнему открыт, несохранённые изменения не потеряны.</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>Открыть файл</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>Обзор</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>Инвентари</value></data>
@@ -201,4 +202,6 @@
   <data name="About_LanguageA11y" xml:space="preserve"><value>Язык приложения</value></data>
   <data name="About_SaveLocationsHeading" xml:space="preserve"><value>Где игра хранит ваши сохранения</value></data>
   <data name="About_SaveLocationsNote" xml:space="preserve"><value>Xbox называет каждое сохранение случайной строкой, которая меняется при каждой записи. В Linux замените ~/.steam/steam на папку вашей библиотеки Steam, если игра находится на другом диске.</value></data>
+  <data name="About_BackupsHeading" xml:space="preserve"><value>Автоматические резервные копии</value></data>
+  <data name="About_BackupsNote" xml:space="preserve"><value>При первом сохранении файла после его открытия PCEdit сначала копирует оригинал сюда. Для каждого сохранения хранятся пять последних копий.</value></data>
 </root>

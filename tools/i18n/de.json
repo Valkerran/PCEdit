@@ -194,5 +194,8 @@
   "Teleport_AimedAtWorld": "Auf {0} ausgerichtet. Passe X / Y / Z an oder wähle einen Orientierungspunkt für eine genaue Stelle.",
   "Teleport_MultiplayerNote": "Änderungen gelten nur für den ausgewählten Spieler. Bearbeite einen Spieler, der nicht der Host des Spiels ist, während er offline ist, und überprüfe das Ergebnis im Spiel.",
   "About_SaveLocationsHeading": "Wo das Spiel deine Spielstände ablegt",
-  "About_SaveLocationsNote": "Xbox benennt jeden Spielstand mit einer zufälligen Zeichenfolge, die sich bei jedem Speichern ändert. Ersetze unter Linux ~/.steam/steam durch deinen Steam-Bibliotheksordner, falls das Spiel auf einem anderen Laufwerk liegt."
+  "About_SaveLocationsNote": "Xbox benennt jeden Spielstand mit einer zufälligen Zeichenfolge, die sich bei jedem Speichern ändert. Ersetze unter Linux ~/.steam/steam durch deinen Steam-Bibliotheksordner, falls das Spiel auf einem anderen Laufwerk liegt.",
+  "Shell_PageLoadFailed": "Diese Seite konnte nicht geladen werden. Ihre Datei ist weiterhin geöffnet und nicht gespeicherte Änderungen sind sicher.",
+  "About_BackupsHeading": "Automatische Sicherungen",
+  "About_BackupsNote": "Wenn PCEdit eine Datei nach dem Öffnen zum ersten Mal speichert, wird das Original zuvor hierher kopiert. Die fünf neuesten Kopien jedes Spielstands werden aufbewahrt."
 }

@@ -295,8 +295,10 @@ re-navigation doesn't rebuild the visual tree.
 `MainWindowViewModel.SelectedNavItem`, `TwoWay`; the selected row shows the `TerraformSpectrum`
 gradient on its leading edge over a faint tint), a 15-locale language `ComboBox`, and a footer with
 the loaded-file path. `SplitView.Content` is a `Grid`: row 0 a **header bar** (current page title +
-the primary **Save** button with `HotKey="Ctrl+S"` + save/dirty state), row 1 a `ContentControl`
-bound to `CurrentPage`. `MainWindow.axaml.cs` handles `Closing`: if `Workspace.IsDirty` it cancels
+the primary **Save** button with `HotKey="Ctrl+S"` + save/dirty state), row 1 an **error banner**
+shown only when `MainWindowViewModel.PageError` is set (a page's `Load()` threw — the shell catches
+it so a malformed save cannot take the app down with the file still open, #37), row 2 a
+`ContentControl` bound to `CurrentPage`. `MainWindow.axaml.cs` handles `Closing`: if `Workspace.IsDirty` it cancels
 the close and shows the `Quit_Discard*` confirm dialog. On first open the disclaimer dialog shows if
 `!IDisclaimerGate.HasAcknowledged`; the other page views are pre-built at `Background` priority so
 first navigation isn't a stall.

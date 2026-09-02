@@ -116,6 +116,10 @@ public sealed partial class MainWindowViewModel : ObservableObject
     [ObservableProperty]
     private object? _currentPage;
 
+    /// <summary>Set when a page's Load() threw, so the shell can say so instead of dying.</summary>
+    [ObservableProperty]
+    private string? _pageError;
+
     [ObservableProperty]
     private LocaleOption? _selectedLanguage;
 
@@ -193,14 +197,30 @@ public sealed partial class MainWindowViewModel : ObservableObject
     private void Show(NavDestination destination, bool force = false)
     {
         var vm = ResolvePage(destination);
+        PageError = null;
 
         if (vm is ILoadable loadable &&
             (force
              || !_loadedAtRevision.TryGetValue(destination, out var loadedRevision)
              || loadedRevision != _workspaceRevision))
         {
-            loadable.Load();
-            _loadedAtRevision[destination] = _workspaceRevision;
+            try
+            {
+                loadable.Load();
+                _loadedAtRevision[destination] = _workspaceRevision;
+            }
+            catch (Exception ex)
+            {
+                // A page that cannot be built must not take the app down with it. The file is
+                // already open by this point and any unsaved edits would go too, which is what
+                // made a single malformed field so expensive (issue #37).
+                //
+                // The revision is deliberately not recorded, so navigating back here tries again
+                // rather than showing a stale error forever.
+                System.Diagnostics.Trace.WriteLine($"Could not load the {destination} page: {ex}");
+                PageError = _localizer[LocKeys.Shell_PageLoadFailed];
+                _announcer.Announce(_localizer.Format(LocKeys.Announce_ErrorPrefix, PageError));
+            }
         }
 
         CurrentPage = vm;

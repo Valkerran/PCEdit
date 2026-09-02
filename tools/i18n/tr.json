@@ -194,5 +194,8 @@
   "Teleport_AimedAtWorld": "{0} hedeflendi. Kesin bir nokta için X / Y / Z değerlerini ayarlayın veya bir önemli nokta seçin.",
   "Teleport_MultiplayerNote": "Değişiklikler yalnızca seçili oyuncuya uygulanır. Oyunun ana bilgisayarı olmayan bir oyuncuyu çevrimdışıyken düzenleyin ve sonucu oyun içinde kontrol edin.",
   "About_SaveLocationsHeading": "Oyunun kayıtlarını sakladığı yer",
-  "About_SaveLocationsNote": "Xbox her kaydı, her yazıldığında değişen rastgele bir dizeyle adlandırır. Linux'ta oyun başka bir sürücüdeyse ~/.steam/steam yerine Steam kitaplık klasörünüzü yazın."
+  "About_SaveLocationsNote": "Xbox her kaydı, her yazıldığında değişen rastgele bir dizeyle adlandırır. Linux'ta oyun başka bir sürücüdeyse ~/.steam/steam yerine Steam kitaplık klasörünüzü yazın.",
+  "Shell_PageLoadFailed": "Bu sayfa yüklenemedi. Dosyanız hâlâ açık ve kaydedilmemiş değişiklikleriniz güvende.",
+  "About_BackupsHeading": "Otomatik yedekler",
+  "About_BackupsNote": "PCEdit bir dosyayı açtıktan sonra ilk kez kaydettiğinde, önce özgün dosyayı buraya kopyalar. Her kayıt için en yeni beş kopya saklanır."
 }

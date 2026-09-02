@@ -194,5 +194,8 @@
   "Teleport_AimedAtWorld": "{0} を狙っています。X / Y / Z を調整するか、正確な位置のためにランドマークを選んでください。",
   "Teleport_MultiplayerNote": "変更は選択したプレイヤーにのみ適用されます。ゲームのホストではないプレイヤーは、オフラインのときに編集し、ゲーム内で結果を確認してください。",
   "About_SaveLocationsHeading": "ゲームがセーブを保存する場所",
-  "About_SaveLocationsNote": "Xbox は各セーブに、書き込むたびに変わるランダムな文字列で名前を付けます。Linux では、ゲームが別のドライブにある場合は ~/.steam/steam を Steam ライブラリのフォルダーに置き換えてください。"
+  "About_SaveLocationsNote": "Xbox は各セーブに、書き込むたびに変わるランダムな文字列で名前を付けます。Linux では、ゲームが別のドライブにある場合は ~/.steam/steam を Steam ライブラリのフォルダーに置き換えてください。",
+  "Shell_PageLoadFailed": "このページを読み込めませんでした。ファイルは開いたままで、未保存の変更も失われていません。",
+  "About_BackupsHeading": "自動バックアップ",
+  "About_BackupsNote": "ファイルを開いた後にPCEditが初めて保存するとき、元のファイルがまずここにコピーされます。各セーブデータにつき最新5件の複製が保持されます。"
 }

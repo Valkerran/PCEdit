@@ -22,6 +22,7 @@
   <data name="Shell_NoFileLoaded" xml:space="preserve"><value>Keine Datei geladen</value></data>
   <data name="Shell_SaveHint" xml:space="preserve"><value>Schreibt deine Änderungen zurück in die Spielstanddatei auf dem Datenträger</value></data>
   <data name="Shell_NavA11y" xml:space="preserve"><value>Hauptnavigation</value></data>
+  <data name="Shell_PageLoadFailed" xml:space="preserve"><value>Diese Seite konnte nicht geladen werden. Ihre Datei ist weiterhin geöffnet und nicht gespeicherte Änderungen sind sicher.</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>Datei öffnen</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>Übersicht</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>Inventare</value></data>
@@ -201,4 +202,6 @@
   <data name="About_LanguageA11y" xml:space="preserve"><value>Anwendungssprache</value></data>
   <data name="About_SaveLocationsHeading" xml:space="preserve"><value>Wo das Spiel deine Spielstände ablegt</value></data>
   <data name="About_SaveLocationsNote" xml:space="preserve"><value>Xbox benennt jeden Spielstand mit einer zufälligen Zeichenfolge, die sich bei jedem Speichern ändert. Ersetze unter Linux ~/.steam/steam durch deinen Steam-Bibliotheksordner, falls das Spiel auf einem anderen Laufwerk liegt.</value></data>
+  <data name="About_BackupsHeading" xml:space="preserve"><value>Automatische Sicherungen</value></data>
+  <data name="About_BackupsNote" xml:space="preserve"><value>Wenn PCEdit eine Datei nach dem Öffnen zum ersten Mal speichert, wird das Original zuvor hierher kopiert. Die fünf neuesten Kopien jedes Spielstands werden aufbewahrt.</value></data>
 </root>

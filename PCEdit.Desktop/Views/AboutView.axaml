@@ -21,6 +21,16 @@
             </Border>
 
             <Border Classes="card">
+                <StackPanel Spacing="8">
+                    <TextBlock Text="{m:Loc About_BackupsHeading}" FontWeight="Bold" />
+                    <SelectableTextBlock Text="{Binding BackupsPath}" TextWrapping="Wrap"
+                                         FontFamily="Cascadia Code,Consolas,Menlo,DejaVu Sans Mono,monospace"
+                                         FontSize="12" />
+                    <TextBlock Text="{m:Loc About_BackupsNote}" Classes="caption" TextWrapping="Wrap" />
+                </StackPanel>
+            </Border>
+
+            <Border Classes="card">
                 <StackPanel Spacing="12">
                     <TextBlock Text="{m:Loc About_SaveLocationsHeading}" FontWeight="Bold" />
                     <ItemsControl ItemsSource="{Binding SaveLocations}">

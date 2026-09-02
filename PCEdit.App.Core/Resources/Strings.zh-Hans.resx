@@ -22,6 +22,7 @@
   <data name="Shell_NoFileLoaded" xml:space="preserve"><value>未加载文件</value></data>
   <data name="Shell_SaveHint" xml:space="preserve"><value>将你的修改写回磁盘上的存档文件</value></data>
   <data name="Shell_NavA11y" xml:space="preserve"><value>主导航</value></data>
+  <data name="Shell_PageLoadFailed" xml:space="preserve"><value>无法加载此页面。文件仍处于打开状态，未保存的更改不会丢失。</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>打开文件</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>概览</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>库存</value></data>
@@ -201,4 +202,6 @@
   <data name="About_LanguageA11y" xml:space="preserve"><value>应用程序语言</value></data>
   <data name="About_SaveLocationsHeading" xml:space="preserve"><value>游戏存档的位置</value></data>
   <data name="About_SaveLocationsNote" xml:space="preserve"><value>Xbox 为每个存档使用随机字符串命名，每次写入时都会改变。在 Linux 上，如果游戏位于其他驱动器，请将 ~/.steam/steam 替换为你的 Steam 库文件夹。</value></data>
+  <data name="About_BackupsHeading" xml:space="preserve"><value>自动备份</value></data>
+  <data name="About_BackupsNote" xml:space="preserve"><value>打开文件后首次保存时，PCEdit 会先将原始文件复制到此处。每个存档最多保留五个最新副本。</value></data>
 </root>

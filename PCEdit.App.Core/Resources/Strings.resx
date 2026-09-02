@@ -78,6 +78,7 @@
   <data name="Shell_NoFileLoaded" xml:space="preserve"><value>No file loaded</value></data>
   <data name="Shell_SaveHint" xml:space="preserve"><value>Writes your edits back to the save file on disk</value></data>
   <data name="Shell_NavA11y" xml:space="preserve"><value>Main navigation</value></data>
+  <data name="Shell_PageLoadFailed" xml:space="preserve"><value>This page could not be loaded. Your file is still open and any unsaved changes are safe.</value></data>
 
   <data name="Nav_OpenFile" xml:space="preserve"><value>Open File</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>Overview</value></data>
@@ -273,4 +274,6 @@
   <data name="About_LanguageA11y" xml:space="preserve"><value>Application language</value></data>
   <data name="About_SaveLocationsHeading" xml:space="preserve"><value>Where the game keeps your saves</value></data>
   <data name="About_SaveLocationsNote" xml:space="preserve"><value>Xbox names each save with a random string that changes every time it is written. On Linux, replace ~/.steam/steam with your Steam library folder if the game lives on another drive.</value></data>
+  <data name="About_BackupsHeading" xml:space="preserve"><value>Automatic backups</value></data>
+  <data name="About_BackupsNote" xml:space="preserve"><value>The first time PCEdit saves a file after you open it, the original is copied here first. The five most recent copies of each save are kept.</value></data>
 </root>

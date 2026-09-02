@@ -22,6 +22,7 @@
   <data name="Shell_NoFileLoaded" xml:space="preserve"><value>Ningún archivo cargado</value></data>
   <data name="Shell_SaveHint" xml:space="preserve"><value>Escribe tus cambios de nuevo en el archivo de partida del disco</value></data>
   <data name="Shell_NavA11y" xml:space="preserve"><value>Navegación principal</value></data>
+  <data name="Shell_PageLoadFailed" xml:space="preserve"><value>No se ha podido cargar esta página. El archivo sigue abierto y los cambios sin guardar están a salvo.</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>Abrir archivo</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>Resumen</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>Inventarios</value></data>
@@ -201,4 +202,6 @@
   <data name="About_LanguageA11y" xml:space="preserve"><value>Idioma de la aplicación</value></data>
   <data name="About_SaveLocationsHeading" xml:space="preserve"><value>Dónde guarda el juego tus partidas</value></data>
   <data name="About_SaveLocationsNote" xml:space="preserve"><value>Xbox nombra cada partida con una cadena aleatoria que cambia cada vez que se escribe. En Linux, sustituye ~/.steam/steam por la carpeta de tu biblioteca de Steam si el juego está en otra unidad.</value></data>
+  <data name="About_BackupsHeading" xml:space="preserve"><value>Copias de seguridad automáticas</value></data>
+  <data name="About_BackupsNote" xml:space="preserve"><value>La primera vez que PCEdit guarda un archivo tras abrirlo, copia aquí el original. Se conservan las cinco copias más recientes de cada partida guardada.</value></data>
 </root>
