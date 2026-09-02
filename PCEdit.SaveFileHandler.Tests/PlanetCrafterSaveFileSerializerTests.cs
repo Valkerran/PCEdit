@@ -235,4 +235,83 @@ public sealed class PlanetCrafterSaveFileSerializerTests
 
         Assert.Equal(original, reserialized);
     }
+
+    [Theory]
+    [InlineData("Ore@Base")]
+    [InlineData("@")]
+    [InlineData("a@b@c")]
+    public void RoundTrip_ContainerLabelContainingTheSectionDelimiter_IsPreserved(string label)
+    {
+        // '@' frames the sections, but a player can type one into a container or sign label.
+        // Splitting on the bare character truncated the save mid-string (issue #38).
+        var original = SaveFileFixtures.CreateFullyPopulated();
+        original.WorldObjects[0] = original.WorldObjects[0] with { Text = label };
+
+        var content = _serializer.Serialize(original);
+        var roundTripped = _serializer.Deserialize(content);
+
+        Assert.Equal(label, Assert.Single(roundTripped.WorldObjects).Text);
+        Assert.Equal(content, _serializer.Serialize(roundTripped));
+    }
+
+    [Theory]
+    [InlineData("at@sign")]
+    [InlineData("@@@")]
+    public void RoundTrip_PlayerNameContainingTheSectionDelimiter_IsPreserved(string name)
+    {
+        var original = SaveFileFixtures.CreateFullyPopulated();
+        original.Players[0] = original.Players[0] with { Name = name };
+
+        var content = _serializer.Serialize(original);
+        var roundTripped = _serializer.Deserialize(content);
+
+        Assert.Equal(name, Assert.Single(roundTripped.Players).Name);
+        Assert.Equal(content, _serializer.Serialize(roundTripped));
+    }
+
+    [Fact]
+    public void Deserialize_StrayDelimiterAtARecordBoundary_FailsInsteadOfDroppingRecordsSilently()
+    {
+        // The last section is the one place a stray '@' produced NO error at all: everything
+        // before it is complete, valid JSON, and there is no later section left to misalign - so
+        // the old bare-character split simply dropped the remainder, and the next save wrote that
+        // truncated result over the player's file (issue #38). Two records here and nowhere else,
+        // so the only record boundary in the file is the one in section 9.
+        var original = SaveFileFixtures.CreateEmpty();
+        original.ProceduralInstances.Add(new Models.ProceduralInstance
+        {
+            Index = 1,
+            Position = "1,2,3",
+            Rotation = "0,0,0,1",
+            WorldObjectIdsGenerated = "",
+            WorldObjectIdsDropped = ""
+        });
+        original.ProceduralInstances.Add(new Models.ProceduralInstance
+        {
+            Index = 2,
+            Position = "4,5,6",
+            Rotation = "0,0,0,1",
+            WorldObjectIdsGenerated = "",
+            WorldObjectIdsDropped = ""
+        });
+        var content = _serializer.Serialize(original);
+
+        var tampered = content.Replace("|\n{", "|\n@{", StringComparison.Ordinal);
+
+        Assert.Throws<InvalidDataException>(() => _serializer.Deserialize(tampered));
+    }
+
+    [Fact]
+    public void Deserialize_MoreSectionsThanThisBuildKnows_ThrowsInvalidDataException()
+    {
+        // An 11th section from a future game version used to be read past and then dropped on
+        // the next save (issue #20). Trim the trailing terminator, append a framed extra section.
+        var content = _serializer.Serialize(SaveFileFixtures.CreateEmpty());
+        var withExtraSection = content[..^2] + "\r@\r{\"future\":1}\r@";
+
+        var exception = Assert.Throws<InvalidDataException>(
+            () => _serializer.Deserialize(withExtraSection));
+
+        Assert.Contains("newer version", exception.Message);
+    }
 }
