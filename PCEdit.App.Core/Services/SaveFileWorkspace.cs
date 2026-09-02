@@ -187,23 +187,51 @@ public sealed partial class SaveFileWorkspace : ObservableObject, ISaveFileWorks
         OnPropertyChanged(nameof(Current));
     }
 
-    public void GrantTerraTokens(long playerId, int amount)
+    public int GrantTerraTokens(long playerId, int amount)
     {
         if (amount <= 0)
         {
             throw new ArgumentOutOfRangeException(nameof(amount), amount, "The amount to grant must be positive.");
         }
 
+        // All three of these are int in the save format. The addition was unchecked, so a large
+        // grant wrapped straight to a negative balance and was written into the player's file -
+        // 8,680 + int.MaxValue came out as -2,147,474,969 (issue #42). Saturating beats refusing
+        // for what is fundamentally a cheat tool, and clamping here rather than in the view model
+        // means it holds however the grant is reached.
+        //
+        // Each field clamps on its own, because a save can already hold different values in them.
+        var granted = Headroom(RequireCurrent().Unlocks.TerraTokens, amount);
+
         MutateUnlocks(unlocks => unlocks with
         {
-            TerraTokens = unlocks.TerraTokens + amount,
-            AllTimeTerraTokens = unlocks.AllTimeTerraTokens + amount
+            TerraTokens = AddClamped(unlocks.TerraTokens, amount),
+            AllTimeTerraTokens = AddClamped(unlocks.AllTimeTerraTokens, amount)
         });
 
         ReplacePlayer(playerId, player => player with
         {
-            TotalTerraTokenEarned = player.TotalTerraTokenEarned + amount
+            TotalTerraTokenEarned = AddClamped(player.TotalTerraTokenEarned, amount)
         });
+
+        return granted;
+    }
+
+    /// <summary>Adds without overflowing - an int field cannot hold more than int.MaxValue.</summary>
+    private static int AddClamped(int current, int amount)
+    {
+        var sum = (long)current + amount;
+
+        return sum > int.MaxValue ? int.MaxValue : (int)sum;
+    }
+
+    /// <summary>
+    /// How much of a grant the balance could actually take. Never exceeds the requested amount,
+    /// so it always fits back into an int even when the current balance is negative.
+    /// </summary>
+    private static int Headroom(int current, int amount)
+    {
+        return (int)((long)AddClamped(current, amount) - current);
     }
 
     private PlanetCrafterSaveFile RequireCurrent()

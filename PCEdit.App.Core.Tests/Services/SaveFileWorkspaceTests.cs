@@ -286,6 +286,41 @@ public sealed class SaveFileWorkspaceTests
     }
 
     [Fact]
+    public void GrantTerraTokens_PastTheIntCeiling_ClampsInsteadOfWrappingNegative()
+    {
+        // Unchecked int addition wrapped a large grant to a negative balance and wrote it into
+        // the save: 8,680 + int.MaxValue came out as -2,147,474,969 (issue #42).
+        var (workspace, _) = CreateLoadedWorkspace();
+
+        workspace.GrantTerraTokens(1, int.MaxValue);
+
+        var save = workspace.Current!;
+        Assert.Equal(int.MaxValue, save.Unlocks.TerraTokens);
+        Assert.Equal(int.MaxValue, save.Unlocks.AllTimeTerraTokens);
+        Assert.Equal(int.MaxValue, save.Players.Single(p => p.Id == 1).TotalTerraTokenEarned);
+    }
+
+    [Fact]
+    public void GrantTerraTokens_ReturnsWhatTheBalanceCouldActuallyTake()
+    {
+        // The fixture starts at 100 tokens, so a max grant is short by exactly that. The status
+        // line reports this figure, which is why it has to be the real one.
+        var (workspace, _) = CreateLoadedWorkspace();
+
+        var granted = workspace.GrantTerraTokens(1, int.MaxValue);
+
+        Assert.Equal(int.MaxValue - 100, granted);
+    }
+
+    [Fact]
+    public void GrantTerraTokens_WithinRange_ReturnsTheWholeAmount()
+    {
+        var (workspace, _) = CreateLoadedWorkspace();
+
+        Assert.Equal(50, workspace.GrantTerraTokens(1, 50));
+    }
+
+    [Fact]
     public void GrantTerraTokens_UnknownPlayer_ThrowsInvalidOperationException()
     {
         var (workspace, _) = CreateLoadedWorkspace();

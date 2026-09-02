@@ -78,12 +78,14 @@ public sealed partial class TerraTokensViewModel(
             return;
         }
 
-        _workspace.GrantTerraTokens(SelectedPlayer.PlayerId, amount);
+        // What the balance could actually take - a grant that hit the int ceiling gives less
+        // than was asked for, and the status line should say so rather than the requested figure.
+        var granted = _workspace.GrantTerraTokens(SelectedPlayer.PlayerId, amount);
 
         var save = _workspace.Current!;
         TerraTokens = save.Unlocks.TerraTokens;
         AllTimeTerraTokens = save.Unlocks.AllTimeTerraTokens;
-        SetStatus(StatusKind.Success, _localizer.Format(LocKeys.TerraTokens_Granted, amount, SelectedPlayer.Name));
+        SetStatus(StatusKind.Success, _localizer.Format(LocKeys.TerraTokens_Granted, granted, SelectedPlayer.Name));
     }
 
     private void SetStatus(StatusKind kind, string message)
