@@ -88,7 +88,7 @@ public sealed partial class SaveFileWorkspace : ObservableObject, ISaveFileWorks
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine(ex);
+            System.Diagnostics.Trace.WriteLine($"Could not save '{FilePath}': {ex}");
             SetSaveStatus(LocKeys.Save_Failed);
             _announcer.Announce(_localizer[LocKeys.Save_FailedAnnounce]);
         }

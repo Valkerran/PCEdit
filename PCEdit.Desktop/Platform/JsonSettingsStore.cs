@@ -44,7 +44,7 @@ public sealed class JsonSettingsStore : ILanguageStore, IDisclaimerGate
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Could not write settings: {ex}");
+                System.Diagnostics.Trace.WriteLine($"Could not write settings: {ex}");
             }
         }
     }
