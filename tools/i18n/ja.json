@@ -131,7 +131,7 @@
   "Teleport_LandmarkPlanetHash": "ワールドハッシュ {0}",
   "Teleport_LandmarkNoPlanetHash": "ワールドハッシュは記録されていません",
   "Disclaimer_Title": "自己責任でご利用ください",
-  "Disclaimer_Body": "PCEdit は Planet Crafter のセーブファイルを直接編集します。誤った編集はセーブを破損させ、進行状況を失う可能性があります。編集前には必ずセーブファイルのバックアップを保管してください。本ソフトウェアは「現状のまま」提供され、いかなる保証もありません。",
+  "Disclaimer_Body": "PCEditはPlanet Crafterのセーブファイルを直接編集するため、誤った編集はセーブデータを破損させ、進行状況を失わせることがあります。PCEditは最初に書き込む前に元のファイルを別途コピーしますが、これは代替手段ではなく安全策と考え、ご自身でもバックアップを保管してください。本ソフトウェアはいかなる保証もなく「現状のまま」提供されます。",
   "Disclaimer_Acknowledge": "理解しました",
   "Disclaimer_ShortNotice": "編集はセーブを破損させる可能性があります。まずファイルをバックアップしてください。自己責任でご利用ください。",
   "About_Title": "情報",

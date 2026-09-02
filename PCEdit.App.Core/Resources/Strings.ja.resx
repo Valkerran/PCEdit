@@ -191,7 +191,7 @@
   <data name="Teleport_AimedAtWorld" xml:space="preserve"><value>{0} を狙っています。X / Y / Z を調整するか、正確な位置のためにランドマークを選んでください。</value></data>
   <data name="Teleport_MultiplayerNote" xml:space="preserve"><value>変更は選択したプレイヤーにのみ適用されます。ゲームのホストではないプレイヤーは、オフラインのときに編集し、ゲーム内で結果を確認してください。</value></data>
   <data name="Disclaimer_Title" xml:space="preserve"><value>自己責任でご利用ください</value></data>
-  <data name="Disclaimer_Body" xml:space="preserve"><value>PCEdit は Planet Crafter のセーブファイルを直接編集します。誤った編集はセーブを破損させ、進行状況を失う可能性があります。編集前には必ずセーブファイルのバックアップを保管してください。本ソフトウェアは「現状のまま」提供され、いかなる保証もありません。</value></data>
+  <data name="Disclaimer_Body" xml:space="preserve"><value>PCEditはPlanet Crafterのセーブファイルを直接編集するため、誤った編集はセーブデータを破損させ、進行状況を失わせることがあります。PCEditは最初に書き込む前に元のファイルを別途コピーしますが、これは代替手段ではなく安全策と考え、ご自身でもバックアップを保管してください。本ソフトウェアはいかなる保証もなく「現状のまま」提供されます。</value></data>
   <data name="Disclaimer_Acknowledge" xml:space="preserve"><value>理解しました</value></data>
   <data name="Disclaimer_ShortNotice" xml:space="preserve"><value>編集はセーブを破損させる可能性があります。まずファイルをバックアップしてください。自己責任でご利用ください。</value></data>
   <data name="About_Title" xml:space="preserve"><value>情報</value></data>

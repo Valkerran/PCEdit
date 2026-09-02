@@ -191,7 +191,7 @@
   <data name="Teleport_AimedAtWorld" xml:space="preserve"><value>{0}(으)로 조준됨. X / Y / Z를 조정하거나 정확한 위치를 위해 랜드마크를 선택하세요.</value></data>
   <data name="Teleport_MultiplayerNote" xml:space="preserve"><value>변경 사항은 선택한 플레이어에게만 적용됩니다. 게임 호스트가 아닌 플레이어는 오프라인일 때 편집하고 게임 내에서 결과를 확인하세요.</value></data>
   <data name="Disclaimer_Title" xml:space="preserve"><value>사용에 따른 책임은 본인에게 있습니다</value></data>
-  <data name="Disclaimer_Body" xml:space="preserve"><value>PCEdit는 Planet Crafter 저장 파일을 직접 편집합니다. 잘못된 편집은 저장을 손상시키고 진행 상황을 잃게 할 수 있습니다. 편집하기 전에 항상 저장 파일의 백업을 보관하세요. 이 소프트웨어는 어떠한 종류의 보증도 없이 '있는 그대로' 제공됩니다.</value></data>
+  <data name="Disclaimer_Body" xml:space="preserve"><value>PCEdit은 Planet Crafter 저장 파일을 직접 편집하며, 잘못된 편집은 저장 파일을 손상시키고 진행 상황을 잃게 할 수 있습니다. PCEdit은 파일에 처음 쓰기 전에 원본을 따로 복사해 두지만, 이는 대체 수단이 아니라 안전장치로 여기고 직접 백업도 보관하세요. 이 소프트웨어는 어떠한 종류의 보증도 없이 '있는 그대로' 제공됩니다.</value></data>
   <data name="Disclaimer_Acknowledge" xml:space="preserve"><value>이해했습니다</value></data>
   <data name="Disclaimer_ShortNotice" xml:space="preserve"><value>편집은 저장을 손상시킬 수 있습니다. 먼저 파일을 백업하세요 — 사용에 따른 책임은 본인에게 있습니다.</value></data>
   <data name="About_Title" xml:space="preserve"><value>정보</value></data>

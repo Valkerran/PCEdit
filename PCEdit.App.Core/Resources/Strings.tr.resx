@@ -191,7 +191,7 @@
   <data name="Teleport_AimedAtWorld" xml:space="preserve"><value>{0} hedeflendi. Kesin bir nokta için X / Y / Z değerlerini ayarlayın veya bir önemli nokta seçin.</value></data>
   <data name="Teleport_MultiplayerNote" xml:space="preserve"><value>Değişiklikler yalnızca seçili oyuncuya uygulanır. Oyunun ana bilgisayarı olmayan bir oyuncuyu çevrimdışıyken düzenleyin ve sonucu oyun içinde kontrol edin.</value></data>
   <data name="Disclaimer_Title" xml:space="preserve"><value>Kendi sorumluluğunuzda kullanın</value></data>
-  <data name="Disclaimer_Body" xml:space="preserve"><value>PCEdit, Planet Crafter kayıt dosyalarını doğrudan düzenler. Hatalı bir düzenleme bir kaydı bozabilir ve ilerlemenizi kaybettirebilir. Düzenlemeden önce kayıt dosyanızın her zaman bir yedeğini tutun. Bu yazılım, hiçbir garanti olmaksızın «olduğu gibi» sağlanır.</value></data>
+  <data name="Disclaimer_Body" xml:space="preserve"><value>PCEdit, Planet Crafter kayıt dosyalarını doğrudan düzenler ve hatalı bir düzenleme bir kaydı bozarak ilerlemenizi kaybettirebilir. PCEdit, bir dosyaya ilk kez yazmadan önce özgün hâlini ayrıca kopyalar; ancak bunu bir yedeğin yerine geçen bir şey değil, güvenlik ağı olarak görün: kendi yedeğinizi de saklayın. Bu yazılım hiçbir garanti verilmeksizin «olduğu gibi» sunulmaktadır.</value></data>
   <data name="Disclaimer_Acknowledge" xml:space="preserve"><value>Anladım</value></data>
   <data name="Disclaimer_ShortNotice" xml:space="preserve"><value>Düzenleme bir kaydı bozabilir. Önce dosyanızın yedeğini alın — kendi sorumluluğunuzda kullanın.</value></data>
   <data name="About_Title" xml:space="preserve"><value>Hakkında</value></data>

@@ -131,7 +131,7 @@
   "Teleport_LandmarkPlanetHash": "世界哈希 {0}",
   "Teleport_LandmarkNoPlanetHash": "未记录世界哈希",
   "Disclaimer_Title": "使用风险自负",
-  "Disclaimer_Body": "PCEdit 直接编辑 Planet Crafter 存档文件。错误的编辑可能损坏存档并丢失进度。编辑前请务必保留存档文件的备份。本软件按“原样”提供，不作任何形式的担保。",
+  "Disclaimer_Body": "PCEdit 会直接修改 Planet Crafter 的存档文件，错误的修改可能损坏存档并导致进度丢失。PCEdit 会在首次写入前将原始存档复制到别处，但请将其视为安全网而非替代品：也请自行备份。本软件按「原样」提供，不附带任何形式的担保。",
   "Disclaimer_Acknowledge": "我明白",
   "Disclaimer_ShortNotice": "编辑可能损坏存档。请先备份你的文件——使用风险自负。",
   "About_Title": "关于",

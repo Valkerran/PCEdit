@@ -131,7 +131,7 @@
   "Teleport_LandmarkPlanetHash": "hash świata {0}",
   "Teleport_LandmarkNoPlanetHash": "brak zapisanego hasha świata",
   "Disclaimer_Title": "Używasz na własne ryzyko",
-  "Disclaimer_Body": "PCEdit edytuje pliki zapisu Planet Crafter bezpośrednio. Błędna edycja może uszkodzić zapis i spowodować utratę postępu. Zawsze zachowuj kopię zapasową pliku zapisu przed edycją. To oprogramowanie jest dostarczane „tak jak jest”, bez żadnej gwarancji.",
+  "Disclaimer_Body": "PCEdit edytuje pliki zapisu Planet Crafter bezpośrednio, a błędna zmiana może uszkodzić zapis i spowodować utratę postępów. Przed pierwszym zapisem PCEdit kopiuje oryginalny plik w bezpieczne miejsce, ale traktuj to jako zabezpieczenie, a nie zamiennik: rób także własne kopie zapasowe. Oprogramowanie jest dostarczane „tak jak jest”, bez żadnych gwarancji.",
   "Disclaimer_Acknowledge": "Rozumiem",
   "Disclaimer_ShortNotice": "Edycja może uszkodzić zapis. Najpierw wykonaj kopię pliku — używasz na własne ryzyko.",
   "About_Title": "O programie",

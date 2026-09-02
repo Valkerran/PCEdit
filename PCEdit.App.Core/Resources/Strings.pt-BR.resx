@@ -191,7 +191,7 @@
   <data name="Teleport_AimedAtWorld" xml:space="preserve"><value>Apontado para {0}. Ajuste X / Y / Z ou escolha um ponto de referência para um local preciso.</value></data>
   <data name="Teleport_MultiplayerNote" xml:space="preserve"><value>As alterações se aplicam apenas ao jogador selecionado. Para um jogador que não é o anfitrião do jogo, edite-o enquanto estiver offline e verifique o resultado no jogo.</value></data>
   <data name="Disclaimer_Title" xml:space="preserve"><value>Use por sua conta e risco</value></data>
-  <data name="Disclaimer_Body" xml:space="preserve"><value>O PCEdit edita diretamente os arquivos de save do Planet Crafter. Uma edição incorreta pode corromper um save e fazer perder progresso. Sempre mantenha um backup do seu arquivo de save antes de editar. Este software é fornecido «no estado em que se encontra», sem garantia de qualquer tipo.</value></data>
+  <data name="Disclaimer_Body" xml:space="preserve"><value>O PCEdit edita diretamente os arquivos de save do Planet Crafter e uma edição incorreta pode corromper um save e fazer perder progresso. O PCEdit copia o arquivo original antes de gravar nele pela primeira vez, mas trate isso como uma rede de segurança e não como um substituto: mantenha também o seu próprio backup. Este software é fornecido «no estado em que se encontra», sem garantia de qualquer tipo.</value></data>
   <data name="Disclaimer_Acknowledge" xml:space="preserve"><value>Entendi</value></data>
   <data name="Disclaimer_ShortNotice" xml:space="preserve"><value>Editar pode corromper um save. Faça primeiro um backup do arquivo — use por sua conta e risco.</value></data>
   <data name="About_Title" xml:space="preserve"><value>Sobre</value></data>

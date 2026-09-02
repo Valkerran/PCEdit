@@ -262,7 +262,7 @@
   <data name="Teleport_MultiplayerNote" xml:space="preserve"><value>Changes apply to the selected player only. For a player who is not the game's host, edit while they are offline and check the result in-game.</value></data>
 
   <data name="Disclaimer_Title" xml:space="preserve"><value>Use at your own risk</value></data>
-  <data name="Disclaimer_Body" xml:space="preserve"><value>PCEdit edits Planet Crafter save files directly. A bad edit can corrupt a save and lose progress. Always keep a backup of your save file before editing. This software is provided as is, without warranty of any kind.</value></data>
+  <data name="Disclaimer_Body" xml:space="preserve"><value>PCEdit edits Planet Crafter save files directly, and a bad edit can corrupt a save and lose progress. PCEdit copies your save aside before it first writes to it, but treat that as a safety net rather than a substitute: keep your own backup as well. This software is provided as is, without warranty of any kind.</value></data>
   <data name="Disclaimer_Acknowledge" xml:space="preserve"><value>I understand</value></data>
   <data name="Disclaimer_ShortNotice" xml:space="preserve"><value>Editing can corrupt a save. Back up your file first — use at your own risk.</value></data>
 

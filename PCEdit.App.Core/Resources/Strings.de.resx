@@ -191,7 +191,7 @@
   <data name="Teleport_AimedAtWorld" xml:space="preserve"><value>Auf {0} ausgerichtet. Passe X / Y / Z an oder wähle einen Orientierungspunkt für eine genaue Stelle.</value></data>
   <data name="Teleport_MultiplayerNote" xml:space="preserve"><value>Änderungen gelten nur für den ausgewählten Spieler. Bearbeite einen Spieler, der nicht der Host des Spiels ist, während er offline ist, und überprüfe das Ergebnis im Spiel.</value></data>
   <data name="Disclaimer_Title" xml:space="preserve"><value>Nutzung auf eigene Gefahr</value></data>
-  <data name="Disclaimer_Body" xml:space="preserve"><value>PCEdit bearbeitet Planet-Crafter-Spielstanddateien direkt. Eine fehlerhafte Änderung kann einen Spielstand beschädigen und Fortschritt kosten. Bewahre vor dem Bearbeiten immer eine Sicherungskopie deiner Spielstanddatei auf. Diese Software wird ohne Mängelgewähr und ohne jegliche Garantie bereitgestellt.</value></data>
+  <data name="Disclaimer_Body" xml:space="preserve"><value>PCEdit bearbeitet Planet-Crafter-Speicherdateien direkt, und eine fehlerhafte Änderung kann einen Spielstand beschädigen und Fortschritt kosten. PCEdit legt vor dem ersten Schreibvorgang eine Kopie Ihres Spielstands an, betrachten Sie das aber als Sicherheitsnetz und nicht als Ersatz: Legen Sie zusätzlich eine eigene Sicherung an. Diese Software wird ohne jegliche Gewährleistung bereitgestellt.</value></data>
   <data name="Disclaimer_Acknowledge" xml:space="preserve"><value>Ich verstehe</value></data>
   <data name="Disclaimer_ShortNotice" xml:space="preserve"><value>Bearbeiten kann einen Spielstand beschädigen. Sichere zuerst deine Datei — Nutzung auf eigene Gefahr.</value></data>
   <data name="About_Title" xml:space="preserve"><value>Über</value></data>

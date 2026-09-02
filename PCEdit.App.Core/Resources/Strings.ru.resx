@@ -191,7 +191,7 @@
   <data name="Teleport_AimedAtWorld" xml:space="preserve"><value>Нацелено на {0}. Настройте X / Y / Z или выберите ориентир для точного места.</value></data>
   <data name="Teleport_MultiplayerNote" xml:space="preserve"><value>Изменения применяются только к выбранному игроку. Игрока, не являющегося хостом, редактируйте, пока он офлайн, и проверяйте результат в игре.</value></data>
   <data name="Disclaimer_Title" xml:space="preserve"><value>Используйте на свой страх и риск</value></data>
-  <data name="Disclaimer_Body" xml:space="preserve"><value>PCEdit напрямую изменяет файлы сохранений Planet Crafter. Неверное изменение может повредить сохранение и привести к потере прогресса. Всегда сохраняйте резервную копию файла сохранения перед изменением. Это программное обеспечение предоставляется «как есть», без каких-либо гарантий.</value></data>
+  <data name="Disclaimer_Body" xml:space="preserve"><value>PCEdit изменяет файлы сохранений Planet Crafter напрямую, и неудачное изменение может повредить сохранение и привести к потере прогресса. Перед первой записью PCEdit копирует ваше сохранение в отдельную папку, но считайте это подстраховкой, а не заменой: делайте и собственные резервные копии. Программа предоставляется «как есть», без каких-либо гарантий.</value></data>
   <data name="Disclaimer_Acknowledge" xml:space="preserve"><value>Понятно</value></data>
   <data name="Disclaimer_ShortNotice" xml:space="preserve"><value>Изменение может повредить сохранение. Сначала сделайте копию файла — используйте на свой страх и риск.</value></data>
   <data name="About_Title" xml:space="preserve"><value>О программе</value></data>

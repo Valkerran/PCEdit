@@ -131,7 +131,7 @@
   "Teleport_LandmarkPlanetHash": "Welt-Hash {0}",
   "Teleport_LandmarkNoPlanetHash": "kein Welt-Hash aufgezeichnet",
   "Disclaimer_Title": "Nutzung auf eigene Gefahr",
-  "Disclaimer_Body": "PCEdit bearbeitet Planet-Crafter-Spielstanddateien direkt. Eine fehlerhafte Änderung kann einen Spielstand beschädigen und Fortschritt kosten. Bewahre vor dem Bearbeiten immer eine Sicherungskopie deiner Spielstanddatei auf. Diese Software wird ohne Mängelgewähr und ohne jegliche Garantie bereitgestellt.",
+  "Disclaimer_Body": "PCEdit bearbeitet Planet-Crafter-Speicherdateien direkt, und eine fehlerhafte Änderung kann einen Spielstand beschädigen und Fortschritt kosten. PCEdit legt vor dem ersten Schreibvorgang eine Kopie Ihres Spielstands an, betrachten Sie das aber als Sicherheitsnetz und nicht als Ersatz: Legen Sie zusätzlich eine eigene Sicherung an. Diese Software wird ohne jegliche Gewährleistung bereitgestellt.",
   "Disclaimer_Acknowledge": "Ich verstehe",
   "Disclaimer_ShortNotice": "Bearbeiten kann einen Spielstand beschädigen. Sichere zuerst deine Datei — Nutzung auf eigene Gefahr.",
   "About_Title": "Über",

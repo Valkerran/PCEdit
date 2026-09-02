@@ -131,7 +131,7 @@
   "Teleport_LandmarkPlanetHash": "hachage du monde {0}",
   "Teleport_LandmarkNoPlanetHash": "aucun hachage du monde enregistré",
   "Disclaimer_Title": "À utiliser à vos propres risques",
-  "Disclaimer_Body": "PCEdit modifie directement les fichiers de sauvegarde de Planet Crafter. Une modification incorrecte peut corrompre une sauvegarde et faire perdre de la progression. Conservez toujours une copie de votre fichier de sauvegarde avant toute modification. Ce logiciel est fourni « en l'état », sans garantie d'aucune sorte.",
+  "Disclaimer_Body": "PCEdit modifie directement les fichiers de sauvegarde de Planet Crafter, et une mauvaise modification peut corrompre une sauvegarde et faire perdre votre progression. PCEdit copie votre sauvegarde à part avant d'y écrire pour la première fois, mais considérez cela comme un filet de sécurité et non comme un substitut : conservez également votre propre sauvegarde. Ce logiciel est fourni « en l'état », sans garantie d'aucune sorte.",
   "Disclaimer_Acknowledge": "J'ai compris",
   "Disclaimer_ShortNotice": "La modification peut corrompre une sauvegarde. Faites d'abord une copie de votre fichier — à utiliser à vos propres risques.",
   "About_Title": "À propos",
