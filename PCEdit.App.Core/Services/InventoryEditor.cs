@@ -20,7 +20,7 @@ public sealed class InventoryEditor(
     public List<InventoryGroup> BuildInventoryGroups()
     {
         var save = RequireCurrent();
-        var worldObjectsById = save.WorldObjects.ToDictionary(w => w.Id);
+        var worldObjectsById = IndexWorldObjects(save);
         var containersByInventoryId = BuildContainerLookup(save);
 
         return save.Inventories
@@ -44,6 +44,23 @@ public sealed class InventoryEditor(
                 };
             })
             .ToList();
+    }
+
+    /// <summary>
+    /// World objects by id, first occurrence winning. ToDictionary threw on a save carrying the
+    /// same id twice, which took the Inventories page - and with it the app - down on a file that
+    /// had already opened (issue #37). A duplicate id is corrupt data either way; refusing to draw
+    /// the page is strictly worse than drawing it from the first of the two.
+    /// </summary>
+    private static Dictionary<int, WorldObject> IndexWorldObjects(PlanetCrafterSaveFile save)
+    {
+        var lookup = new Dictionary<int, WorldObject>();
+        foreach (var worldObject in save.WorldObjects)
+        {
+            lookup.TryAdd(worldObject.Id, worldObject);
+        }
+
+        return lookup;
     }
 
     /// <summary>
@@ -204,9 +221,19 @@ public sealed class InventoryEditor(
         return groupIds.Count.ToString(System.Globalization.CultureInfo.CurrentCulture);
     }
 
+    /// <summary>
+    /// Rewrites an inventory's id list, carrying through any entry PCEdit could not read as an id.
+    /// Both mutating paths go through here, so moving an item can never quietly delete the parts
+    /// of the list it did not understand.
+    /// </summary>
     private static Inventory WithWorldObjectIds(Inventory inventory, IEnumerable<int> ids)
     {
-        return inventory with { WorldObjectIds = WorldObjectIdsCodec.Join(ids) };
+        return inventory with
+        {
+            WorldObjectIds = WorldObjectIdsCodec.Join(
+                ids,
+                WorldObjectIdsCodec.ParseUnreadable(inventory.WorldObjectIds))
+        };
     }
 
     private static Inventory? FindOwningInventory(PlanetCrafterSaveFile save, int worldObjectId)

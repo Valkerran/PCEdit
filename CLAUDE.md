@@ -231,12 +231,11 @@ page last loaded (see `PCEdit.Desktop/ViewModels/MainWindowViewModel`).
 
 **`Services/IInventoryEditor` (`InventoryEditor`)** holds inventory-item domain logic: an item is "in"
 an inventory when its `WorldObject.Id` appears in that `Inventory.WorldObjectIds` comma-string
-(`Services/WorldObjectIdsCodec`); `TryMoveItem` removes from source before adding to destination and
+(`Services/WorldObjectIdsCodec`, which **skips entries it cannot read and carries them through a rewrite untouched** — a save can hold a non-int in that list, and dropping it on a move would be data loss, #37); `TryMoveItem` removes from source before adding to destination and
 rejects a move into an inventory already at `Inventory.Size`. `BuildInventoryGroups` is O(n) — it
 pre-indexes world objects and container→inventory links (a real save has ~500 inventories /
 ~5000 world objects) and tags each `InventoryGroup` with an `InventoryKind` for the page's type
-filter and a `PlanetId` (via `IPlanetIndex`) for its world filter. `Services/PositionCodec` handles
-the `"x,y,z"` string shared by `PlayerData.PlayerPosition` / `WorldObject.Position`.
+filter and a `PlanetId` (via `IPlanetIndex`) for its world filter. `Services/PositionCodec` handles the `"x,y,z"` string shared by `PlayerData.PlayerPosition` / `WorldObject.Position`; use `TryParse` for anything read out of a save — `Parse` throws and is only for a position already known to be well-formed.
 
 **`Services/IPlanetIndex` (`PlanetIndex`)** resolves the worlds in a save: `KnownPlanetIds()` is the
 ordered union of every `PlanetId` (metadata + terraformations + players), and `ResolvePlanetId(int?)`
