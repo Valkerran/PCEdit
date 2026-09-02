@@ -15,7 +15,7 @@ public sealed class InventoryEditorTests
         var store = new FakeSaveFileStore();
         store.Seed(Path, WorkspaceFixtures.Create());
         var localizer = new Localizer();
-        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         workspace.Load(Path);
         return (new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace)), workspace);
     }
@@ -58,7 +58,7 @@ public sealed class InventoryEditorTests
         save.Inventories[index] = save.Inventories[index] with { DemandGroups = "Iron", SupplyGroups = all, Priority = 0 };
         store.Seed(Path, save);
         var localizer = new Localizer();
-        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         workspace.Load(Path);
         var editor = new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace));
 
@@ -76,7 +76,7 @@ public sealed class InventoryEditorTests
         save.Inventories[index] = save.Inventories[index] with { DemandGroups = "", SupplyGroups = "", Priority = 4 };
         store.Seed(Path, save);
         var localizer = new Localizer();
-        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         workspace.Load(Path);
         var editor = new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace));
 
@@ -131,7 +131,7 @@ public sealed class InventoryEditorTests
         };
         store.Seed(Path, save);
         var localizer = new Localizer();
-        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         workspace.Load(Path);
         return (new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace)), workspace);
     }
@@ -142,7 +142,7 @@ public sealed class InventoryEditorTests
         var store = new FakeSaveFileStore();
         store.Seed(Path, WorkspaceFixtures.CreateMultiWorld());
         var localizer = new Localizer();
-        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         workspace.Load(Path);
         var editor = new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace));
 
@@ -266,7 +266,7 @@ public sealed class InventoryEditorTests
         };
         store.Seed(Path, save);
         var localizer = new Localizer();
-        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         workspace.Load(Path);
         var editor = new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace));
 

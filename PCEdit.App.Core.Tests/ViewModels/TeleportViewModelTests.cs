@@ -27,7 +27,7 @@ public sealed class TeleportViewModelTests
         var store = new FakeSaveFileStore();
         store.Seed(Path, save);
         var localizer = new Localizer();
-        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         workspace.Load(Path);
         var vm = new TeleportViewModel(workspace, new FakeScreenReaderAnnouncer(), localizer, new FakeNavigationService(), new PlanetIndex(workspace));
         vm.Load();
@@ -129,7 +129,7 @@ public sealed class TeleportViewModelTests
         var store = new FakeSaveFileStore();
         store.Seed(Path, save);
         var localizer = new Localizer();
-        var ws = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
+        var ws = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         ws.Load(Path);
         var vm = new TeleportViewModel(ws, new FakeScreenReaderAnnouncer(), localizer, new FakeNavigationService(), new PlanetIndex(ws));
         vm.Load();
@@ -170,7 +170,7 @@ public sealed class TeleportViewModelTests
         var store = new FakeSaveFileStore();
         store.Seed(Path, save);
         var localizer = new Localizer();
-        var ws = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
+        var ws = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         ws.Load(Path);
         var vm = new TeleportViewModel(ws, new FakeScreenReaderAnnouncer(), localizer, new FakeNavigationService(), new PlanetIndex(ws));
         vm.Load();

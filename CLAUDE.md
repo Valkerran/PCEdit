@@ -222,7 +222,7 @@ implementations of a handful of interfaces.
 holding the loaded `PlanetCrafterSaveFile`, its path, `IsDirty`, and `SaveStatus`. ViewModels never
 build a modified model themselves; they call `MutateUnlocks` / `ReplaceTerraformation` /
 `ReplacePlayer` / `ReplaceInventory` / `GrantTerraTokens`, which apply the
-root-rebuild-vs-list-replace pattern above and flip `IsDirty`.
+root-rebuild-vs-list-replace pattern above and flip `IsDirty`. `Save` first copies the file aside via `ISaveBackupService`, once per load rather than once per save — by the second save the file on disk is already PCEdit's own output, and the pristine copy is the only one that cannot be reconstructed. A failed backup is traced and the save proceeds: refusing the user's edit because a safety copy failed inverts the priority. Note the backups deliberately sit under `LocalApplicationData`, **not** the `ApplicationData` holding `settings.json` — on Windows that is the roaming profile, and megabytes of save copies should not sync between machines.
 
 **Page ViewModels re-read workspace state in a `Load()` method** (`ViewModels/ILoadable`) rather than
 caching it, so switching pages always reflects the latest in-memory edits. Page ViewModels are
@@ -276,6 +276,7 @@ container's `Planet`) and is `null` for orphan inventories.
 | `IScreenReaderAnnouncer` | `AvaloniaScreenReaderAnnouncer` (hidden live-region `TextBlock`) |
 | `IAppVersionInfo` | `AvaloniaAppVersionInfo` |
 | `ILanguageStore`, `IDisclaimerGate` | `JsonSettingsStore` (`~/.config/PCEdit/settings.json`) |
+| `ISaveBackupService` | `LocalFileSaveBackupService` (`<LocalApplicationData>/PCEdit/backups`) |
 
 The head wires these in its composition root (`PCEdit.Desktop/App.axaml.cs`), registering the Core
 services as singletons and page ViewModels per the pattern above. The interfaces stay UI-agnostic so

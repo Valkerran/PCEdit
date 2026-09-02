@@ -16,7 +16,7 @@ public sealed class InventoriesViewModelTests
         var store = new FakeSaveFileStore();
         store.Seed(Path, WorkspaceFixtures.Create());
         var localizer = new Localizer();
-        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         workspace.Load(Path);
         var vm = new InventoriesViewModel(workspace, new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace)), new FakeNavigationService(), localizer);
         vm.Load();
@@ -47,7 +47,7 @@ public sealed class InventoriesViewModelTests
         var store = new FakeSaveFileStore();
         store.Seed(Path, WorkspaceFixtures.CreateMultiWorld());
         var localizer = new Localizer();
-        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         workspace.Load(Path);
         var vm = new InventoriesViewModel(workspace, new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace)), new FakeNavigationService(), localizer);
         vm.Load();
@@ -122,7 +122,7 @@ public sealed class InventoriesViewModelTests
         var nav = new FakeNavigationService();
         var store = new FakeSaveFileStore();
         var localizer = new Localizer();
-        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         var vm = new InventoriesViewModel(workspace, new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace)), nav, localizer);
 
         vm.OpenFileCommand.Execute(null);

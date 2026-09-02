@@ -13,9 +13,77 @@ public sealed class SaveFileWorkspaceTests
     {
         var store = new FakeSaveFileStore();
         store.Seed(Path, WorkspaceFixtures.Create());
-        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), new Localizer());
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), new Localizer(), new FakeSaveBackupService());
         workspace.Load(Path);
         return (workspace, store);
+    }
+
+    private static (SaveFileWorkspace Workspace, FakeSaveFileStore Store, FakeSaveBackupService Backups)
+        CreateLoadedWorkspaceWithBackups()
+    {
+        var store = new FakeSaveFileStore();
+        store.Seed(Path, WorkspaceFixtures.Create());
+        var backups = new FakeSaveBackupService();
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), new Localizer(), backups);
+        workspace.Load(Path);
+        workspace.GrantTerraTokens(1, 1);
+        return (workspace, store, backups);
+    }
+
+    [Fact]
+    public void Save_BacksUpTheFileBeforeWritingOverIt()
+    {
+        var (workspace, store, backups) = CreateLoadedWorkspaceWithBackups();
+        var saveCountWhenBackedUp = -1;
+        backups.OnBackUp = () => saveCountWhenBackedUp = store.SaveCallCount;
+
+        workspace.Save();
+
+        Assert.Equal(Path, Assert.Single(backups.BackedUpPaths));
+
+        // Backing up after the write would copy PCEdit's own output; the pristine file is the
+        // only copy that cannot be reconstructed, so the order here is the whole point.
+        Assert.Equal(0, saveCountWhenBackedUp);
+    }
+
+    [Fact]
+    public void Save_Twice_BacksUpOnlyTheFirstTime()
+    {
+        var (workspace, _, backups) = CreateLoadedWorkspaceWithBackups();
+
+        workspace.Save();
+        workspace.GrantTerraTokens(1, 1);
+        workspace.Save();
+
+        // By the second save the file on disk is already PCEdit's output, not the original.
+        Assert.Single(backups.BackedUpPaths);
+    }
+
+    [Fact]
+    public void Save_AfterLoadingAgain_BacksUpTheNewlyLoadedFile()
+    {
+        var (workspace, _, backups) = CreateLoadedWorkspaceWithBackups();
+        workspace.Save();
+
+        workspace.Load(Path);
+        workspace.GrantTerraTokens(1, 1);
+        workspace.Save();
+
+        Assert.Equal(2, backups.BackedUpPaths.Count);
+    }
+
+    [Fact]
+    public void Save_WhenTheBackupFails_StillWritesTheSave()
+    {
+        // Refusing to write the player's edit because a safety copy could not be taken inverts
+        // the priority - the edit is the thing they actually asked for.
+        var (workspace, store, backups) = CreateLoadedWorkspaceWithBackups();
+        backups.ThrowOnBackUp = new IOException("backup directory is unwritable");
+
+        workspace.Save();
+
+        Assert.Equal(1, store.SaveCallCount);
+        Assert.False(workspace.IsDirty);
     }
 
     [Fact]
@@ -32,7 +100,7 @@ public sealed class SaveFileWorkspaceTests
     [Fact]
     public void Save_BeforeLoad_ThrowsInvalidOperationException()
     {
-        var workspace = new SaveFileWorkspace(new FakeSaveFileStore(), new FakeScreenReaderAnnouncer(), new Localizer());
+        var workspace = new SaveFileWorkspace(new FakeSaveFileStore(), new FakeScreenReaderAnnouncer(), new Localizer(), new FakeSaveBackupService());
 
         Assert.Throws<InvalidOperationException>(() => workspace.Save());
     }

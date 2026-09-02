@@ -15,7 +15,7 @@ public sealed class OverviewViewModelTests
         var store = new FakeSaveFileStore();
         store.Seed(Path, WorkspaceFixtures.Create());
         var localizer = new Localizer();
-        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         workspace.Load(Path);
         var vm = new OverviewViewModel(workspace, new FakeScreenReaderAnnouncer(), localizer, nav ?? new FakeNavigationService());
         vm.Load();
@@ -48,7 +48,7 @@ public sealed class OverviewViewModelTests
     public void Load_WithNoSaveLoaded_ClearsTheGameVersion()
     {
         var localizer = new Localizer();
-        var workspace = new SaveFileWorkspace(new FakeSaveFileStore(), new FakeScreenReaderAnnouncer(), localizer);
+        var workspace = new SaveFileWorkspace(new FakeSaveFileStore(), new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         var vm = new OverviewViewModel(workspace, new FakeScreenReaderAnnouncer(), localizer, new FakeNavigationService());
 
         vm.Load();

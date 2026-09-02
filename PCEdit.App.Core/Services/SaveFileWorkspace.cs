@@ -11,6 +11,11 @@ public sealed partial class SaveFileWorkspace : ObservableObject, ISaveFileWorks
     private readonly IPlanetCrafterSaveFileStore _store;
     private readonly IScreenReaderAnnouncer _announcer;
     private readonly ILocalizer _localizer;
+    private readonly ISaveBackupService _backups;
+
+    // Whether the file currently loaded has been copied aside yet. Reset by Load, so each newly
+    // opened file gets exactly one attempt on its first save.
+    private bool _backedUpSinceLoad;
 
     // The save status is held as a resource key so it re-renders when the UI language changes.
     private string? _saveStatusKey;
@@ -18,11 +23,13 @@ public sealed partial class SaveFileWorkspace : ObservableObject, ISaveFileWorks
     public SaveFileWorkspace(
         IPlanetCrafterSaveFileStore store,
         IScreenReaderAnnouncer announcer,
-        ILocalizer localizer)
+        ILocalizer localizer,
+        ISaveBackupService backups)
     {
         _store = store ?? throw new ArgumentNullException(nameof(store));
         _announcer = announcer ?? throw new ArgumentNullException(nameof(announcer));
         _localizer = localizer ?? throw new ArgumentNullException(nameof(localizer));
+        _backups = backups ?? throw new ArgumentNullException(nameof(backups));
 
         _localizer.CultureChanged += (_, _) => OnPropertyChanged(nameof(SaveStatus));
     }
@@ -68,6 +75,7 @@ public sealed partial class SaveFileWorkspace : ObservableObject, ISaveFileWorks
         Current = _store.Load(path);
         FilePath = path;
         IsDirty = false;
+        _backedUpSinceLoad = false;
         SetSaveStatus(null);
     }
 
@@ -81,6 +89,7 @@ public sealed partial class SaveFileWorkspace : ObservableObject, ISaveFileWorks
 
         try
         {
+            BackUpOnce(FilePath);
             _store.Save(FilePath, Current);
             IsDirty = false;
             SetSaveStatus(LocKeys.Save_Ok);
@@ -91,6 +100,37 @@ public sealed partial class SaveFileWorkspace : ObservableObject, ISaveFileWorks
             System.Diagnostics.Trace.WriteLine($"Could not save '{FilePath}': {ex}");
             SetSaveStatus(LocKeys.Save_Failed);
             _announcer.Announce(_localizer[LocKeys.Save_FailedAnnounce]);
+        }
+    }
+
+    /// <summary>
+    /// Copies the save aside as it was before PCEdit first wrote to it.
+    /// </summary>
+    /// <remarks>
+    /// Only the first save after a load is worth keeping: by the second, the file on disk is
+    /// already PCEdit's own output, and the pristine copy - the one that cannot be reconstructed -
+    /// is gone. The attempt therefore counts whether or not it succeeded; retrying later would
+    /// capture something already modified and file it as if it were the original.
+    ///
+    /// A failed backup never blocks the save. Refusing to write the player's edit because a
+    /// safety copy could not be taken inverts the priority - the edit is what they asked for.
+    /// </remarks>
+    private void BackUpOnce(string path)
+    {
+        if (_backedUpSinceLoad)
+        {
+            return;
+        }
+
+        _backedUpSinceLoad = true;
+
+        try
+        {
+            _backups.BackUp(path);
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Trace.WriteLine($"Could not back up '{path}': {ex}");
         }
     }
 

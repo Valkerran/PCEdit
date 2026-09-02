@@ -24,7 +24,7 @@ public sealed class LogisticsEditorViewModelTests
         };
         store.Seed(Path, save);
         var localizer = new Localizer();
-        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         workspace.Load(Path);
         var nav = new FakeNavigationService();
         var vm = new LogisticsEditorViewModel(

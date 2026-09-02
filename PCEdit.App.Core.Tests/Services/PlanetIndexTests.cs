@@ -14,7 +14,7 @@ public sealed class PlanetIndexTests
     {
         var store = new FakeSaveFileStore();
         store.Seed(Path, WorkspaceFixtures.CreateMultiWorld());
-        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), new Localizer());
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), new Localizer(), new FakeSaveBackupService());
         workspace.Load(Path);
         return new PlanetIndex(workspace);
     }
@@ -42,7 +42,7 @@ public sealed class PlanetIndexTests
 
         var store = new FakeSaveFileStore();
         store.Seed(Path, save);
-        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), new Localizer());
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), new Localizer(), new FakeSaveBackupService());
         workspace.Load(Path);
         var index = new PlanetIndex(workspace);
 
@@ -55,7 +55,7 @@ public sealed class PlanetIndexTests
     [Fact]
     public void KnownPlanetIds_IsEmptyWhenNoSaveIsLoaded()
     {
-        var workspace = new SaveFileWorkspace(new FakeSaveFileStore(), new FakeScreenReaderAnnouncer(), new Localizer());
+        var workspace = new SaveFileWorkspace(new FakeSaveFileStore(), new FakeScreenReaderAnnouncer(), new Localizer(), new FakeSaveBackupService());
 
         Assert.Empty(new PlanetIndex(workspace).KnownPlanetIds());
     }
