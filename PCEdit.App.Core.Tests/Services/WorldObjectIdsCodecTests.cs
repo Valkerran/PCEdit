@@ -32,6 +32,48 @@ public sealed class WorldObjectIdsCodecTests
         Assert.Equal([42], result);
     }
 
+    [Theory]
+    [InlineData("1,not-an-id,3", new[] { 1, 3 })]
+    [InlineData("99999999999", new int[0])]          // too large for Int32
+    [InlineData("junk", new int[0])]
+    public void Parse_SkipsEntriesItCannotRead(string csv, int[] expected)
+    {
+        // int.Parse threw here, and the Inventories page calls this straight from Load - so one
+        // bad entry in a save took the whole app down after the file had opened (issue #37).
+        Assert.Equal(expected, WorldObjectIdsCodec.Parse(csv));
+    }
+
+    [Fact]
+    public void ParseUnreadable_ReturnsTheSkippedEntriesVerbatim()
+    {
+        Assert.Equal(["not-an-id"], WorldObjectIdsCodec.ParseUnreadable("1,not-an-id,3"));
+    }
+
+    [Fact]
+    public void ParseUnreadable_WhenEveryEntryIsAnId_ReturnsEmpty()
+    {
+        Assert.Empty(WorldObjectIdsCodec.ParseUnreadable("1,2,3"));
+    }
+
+    [Fact]
+    public void Join_WithUnreadableEntries_WritesThemBack()
+    {
+        // Rewriting the list must not delete bytes PCEdit did not understand.
+        Assert.Equal("1,3,not-an-id", WorldObjectIdsCodec.Join([1, 3], ["not-an-id"]));
+    }
+
+    [Fact]
+    public void ParseThenJoin_PreservesEntriesThatAreNotIds()
+    {
+        const string csv = "200,junk,201";
+
+        var rejoined = WorldObjectIdsCodec.Join(
+            WorldObjectIdsCodec.Parse(csv),
+            WorldObjectIdsCodec.ParseUnreadable(csv));
+
+        Assert.Equal("200,201,junk", rejoined);
+    }
+
     [Fact]
     public void Join_EmptyCollection_ReturnsEmptyString()
     {

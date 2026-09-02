@@ -27,11 +27,49 @@ public sealed class TeleportViewModelTests
         var store = new FakeSaveFileStore();
         store.Seed(Path, save);
         var localizer = new Localizer();
-        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         workspace.Load(Path);
         var vm = new TeleportViewModel(workspace, new FakeScreenReaderAnnouncer(), localizer, new FakeNavigationService(), new PlanetIndex(workspace));
         vm.Load();
         return vm;
+    }
+
+    [Fact]
+    public void Load_WithAnUnreadablePlayerPosition_DoesNotBringDownThePage()
+    {
+        // Load selects the first player, which read its position through the throwing parse - so
+        // a corrupt position killed the app on navigating to Teleport, after the file had already
+        // opened successfully (issue #37).
+        var save = WorkspaceFixtures.Create();
+        save.Players[0] = save.Players[0] with { PlayerPosition = "not,a,position" };
+        var store = new FakeSaveFileStore();
+        store.Seed(Path, save);
+        var localizer = new Localizer();
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
+        workspace.Load(Path);
+        var vm = new TeleportViewModel(workspace, new FakeScreenReaderAnnouncer(), localizer, new FakeNavigationService(), new PlanetIndex(workspace));
+
+        vm.Load();
+
+        Assert.NotEmpty(vm.Players);
+    }
+
+    [Fact]
+    public void Landmarks_WithAnUnreadablePosition_AreLeftOutOfTheList()
+    {
+        var save = WorkspaceFixtures.Create();
+        save.WorldObjects.Add(new WorldObject { Id = 600, GId = "EscapePod", Position = "broken", Planet = PlanetHash.Of("Prime") });
+        var store = new FakeSaveFileStore();
+        store.Seed(Path, save);
+        var localizer = new Localizer();
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
+        workspace.Load(Path);
+        var vm = new TeleportViewModel(workspace, new FakeScreenReaderAnnouncer(), localizer, new FakeNavigationService(), new PlanetIndex(workspace));
+
+        vm.Load();
+
+        // Useless as a teleport target, so it never reaches the user rather than failing on click.
+        Assert.DoesNotContain(vm.Landmarks, l => l.WorldObjectId == 600);
     }
 
     [Fact]
@@ -129,7 +167,7 @@ public sealed class TeleportViewModelTests
         var store = new FakeSaveFileStore();
         store.Seed(Path, save);
         var localizer = new Localizer();
-        var ws = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
+        var ws = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         ws.Load(Path);
         var vm = new TeleportViewModel(ws, new FakeScreenReaderAnnouncer(), localizer, new FakeNavigationService(), new PlanetIndex(ws));
         vm.Load();
@@ -170,7 +208,7 @@ public sealed class TeleportViewModelTests
         var store = new FakeSaveFileStore();
         store.Seed(Path, save);
         var localizer = new Localizer();
-        var ws = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
+        var ws = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         ws.Load(Path);
         var vm = new TeleportViewModel(ws, new FakeScreenReaderAnnouncer(), localizer, new FakeNavigationService(), new PlanetIndex(ws));
         vm.Load();

@@ -15,9 +15,63 @@ public sealed class InventoryEditorTests
         var store = new FakeSaveFileStore();
         store.Seed(Path, WorkspaceFixtures.Create());
         var localizer = new Localizer();
-        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         workspace.Load(Path);
         return (new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace)), workspace);
+    }
+
+    /// <summary>Loads the standard fixture after letting a test damage it first.</summary>
+    private static (InventoryEditor Editor, SaveFileWorkspace Workspace) CreateLoadedEditor(
+        Action<PCEdit.SaveFileHandler.Models.PlanetCrafterSaveFile> damage)
+    {
+        var store = new FakeSaveFileStore();
+        var save = WorkspaceFixtures.Create();
+        damage(save);
+        store.Seed(Path, save);
+        var localizer = new Localizer();
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
+        workspace.Load(Path);
+        return (new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace)), workspace);
+    }
+
+    private static void SetIdList(PCEdit.SaveFileHandler.Models.PlanetCrafterSaveFile save, int inventoryId, string csv)
+    {
+        var index = save.Inventories.FindIndex(i => i.Id == inventoryId);
+        save.Inventories[index] = save.Inventories[index] with { WorldObjectIds = csv };
+    }
+
+    [Fact]
+    public void BuildInventoryGroups_WithADuplicateWorldObjectId_StillBuildsThePage()
+    {
+        // ToDictionary threw on a duplicate key, taking the app down on a save that had already
+        // opened. A duplicate id is corrupt either way; refusing to draw the page is worse.
+        var (editor, _) = CreateLoadedEditor(save => save.WorldObjects.Add(save.WorldObjects[0]));
+
+        Assert.NotEmpty(editor.BuildInventoryGroups());
+    }
+
+    [Fact]
+    public void BuildInventoryGroups_WithAnUnreadableEntryInTheIdList_SkipsIt()
+    {
+        var (editor, _) = CreateLoadedEditor(save => SetIdList(save, 10, "200,not-an-id,201"));
+
+        var groups = editor.BuildInventoryGroups();
+
+        Assert.Equal(2, groups.Single(g => g.InventoryId == 10).Items.Count);
+    }
+
+    [Fact]
+    public void TryMoveItem_KeepsEntriesItCouldNotRead()
+    {
+        // Skipping an unreadable entry for display is fine. Dropping it on write is data loss -
+        // and a move rewrites the whole list, so this is where it would happen (issue #37).
+        var (editor, workspace) = CreateLoadedEditor(save => SetIdList(save, 10, "200,junk,201"));
+
+        var result = editor.TryMoveItem(200, 30);
+
+        Assert.True(result.Success);
+        var source = workspace.Current!.Inventories.Single(i => i.Id == 10);
+        Assert.Equal("201,junk", source.WorldObjectIds);
     }
 
     [Fact]
@@ -58,7 +112,7 @@ public sealed class InventoryEditorTests
         save.Inventories[index] = save.Inventories[index] with { DemandGroups = "Iron", SupplyGroups = all, Priority = 0 };
         store.Seed(Path, save);
         var localizer = new Localizer();
-        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         workspace.Load(Path);
         var editor = new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace));
 
@@ -76,7 +130,7 @@ public sealed class InventoryEditorTests
         save.Inventories[index] = save.Inventories[index] with { DemandGroups = "", SupplyGroups = "", Priority = 4 };
         store.Seed(Path, save);
         var localizer = new Localizer();
-        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         workspace.Load(Path);
         var editor = new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace));
 
@@ -131,7 +185,7 @@ public sealed class InventoryEditorTests
         };
         store.Seed(Path, save);
         var localizer = new Localizer();
-        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         workspace.Load(Path);
         return (new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace)), workspace);
     }
@@ -142,7 +196,7 @@ public sealed class InventoryEditorTests
         var store = new FakeSaveFileStore();
         store.Seed(Path, WorkspaceFixtures.CreateMultiWorld());
         var localizer = new Localizer();
-        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         workspace.Load(Path);
         var editor = new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace));
 
@@ -266,7 +320,7 @@ public sealed class InventoryEditorTests
         };
         store.Seed(Path, save);
         var localizer = new Localizer();
-        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer);
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         workspace.Load(Path);
         var editor = new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace));
 

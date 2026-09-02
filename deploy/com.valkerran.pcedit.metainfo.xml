@@ -22,46 +22,46 @@
   <description>
     <p>A save-file editor for The Planet Crafter.</p>
     <p>Open a Planet Crafter save file to view and edit players, world terraforming, inventories, terra tokens, and teleport locations.</p>
-    <p>PCEdit edits Planet Crafter save files directly. A bad edit can corrupt a save and lose progress. Always keep a backup of your save file before editing. This software is provided as is, without warranty of any kind.</p>
+    <p>PCEdit edits Planet Crafter save files directly, and a bad edit can corrupt a save and lose progress. PCEdit copies your save aside before it first writes to it, but treat that as a safety net rather than a substitute: keep your own backup as well. This software is provided as is, without warranty of any kind.</p>
     <p xml:lang="fr">Un éditeur de sauvegarde pour The Planet Crafter.</p>
     <p xml:lang="fr">Ouvrez un fichier de sauvegarde Planet Crafter pour consulter et modifier les joueurs, la terraformation du monde, les inventaires, les jetons de terraformation et les lieux de téléportation.</p>
-    <p xml:lang="fr">PCEdit modifie directement les fichiers de sauvegarde de Planet Crafter. Une modification incorrecte peut corrompre une sauvegarde et faire perdre de la progression. Conservez toujours une copie de votre fichier de sauvegarde avant toute modification. Ce logiciel est fourni « en l'état », sans garantie d'aucune sorte.</p>
+    <p xml:lang="fr">PCEdit modifie directement les fichiers de sauvegarde de Planet Crafter, et une mauvaise modification peut corrompre une sauvegarde et faire perdre votre progression. PCEdit copie votre sauvegarde à part avant d'y écrire pour la première fois, mais considérez cela comme un filet de sécurité et non comme un substitut : conservez également votre propre sauvegarde. Ce logiciel est fourni « en l'état », sans garantie d'aucune sorte.</p>
     <p xml:lang="de">Ein Spielstand-Editor für The Planet Crafter.</p>
     <p xml:lang="de">Öffne eine Planet-Crafter-Spielstanddatei, um Spieler, Welt-Terraforming, Inventare, Terra-Token und Teleport-Orte anzusehen und zu bearbeiten.</p>
-    <p xml:lang="de">PCEdit bearbeitet Planet-Crafter-Spielstanddateien direkt. Eine fehlerhafte Änderung kann einen Spielstand beschädigen und Fortschritt kosten. Bewahre vor dem Bearbeiten immer eine Sicherungskopie deiner Spielstanddatei auf. Diese Software wird ohne Mängelgewähr und ohne jegliche Garantie bereitgestellt.</p>
+    <p xml:lang="de">PCEdit bearbeitet Planet-Crafter-Speicherdateien direkt, und eine fehlerhafte Änderung kann einen Spielstand beschädigen und Fortschritt kosten. PCEdit legt vor dem ersten Schreibvorgang eine Kopie Ihres Spielstands an, betrachten Sie das aber als Sicherheitsnetz und nicht als Ersatz: Legen Sie zusätzlich eine eigene Sicherung an. Diese Software wird ohne jegliche Gewährleistung bereitgestellt.</p>
     <p xml:lang="es">Un editor de partidas para The Planet Crafter.</p>
     <p xml:lang="es">Abre un archivo de partida de Planet Crafter para ver y editar jugadores, terraformación del mundo, inventarios, fichas de terraformación y ubicaciones de teletransporte.</p>
-    <p xml:lang="es">PCEdit edita directamente los archivos de partida de Planet Crafter. Una edición incorrecta puede dañar una partida y hacer perder progreso. Conserva siempre una copia de seguridad de tu archivo de partida antes de editarlo. Este software se proporciona «tal cual», sin garantía de ningún tipo.</p>
+    <p xml:lang="es">PCEdit edita directamente los archivos de guardado de Planet Crafter, y una edición incorrecta puede dañar una partida y hacerte perder progreso. PCEdit copia aparte tu partida antes de escribir en ella por primera vez, pero considéralo una red de seguridad y no un sustituto: guarda también tu propia copia. Este software se proporciona «tal cual», sin garantía de ningún tipo.</p>
     <p xml:lang="zh_Hans">一款用于 The Planet Crafter 的存档文件编辑器。</p>
     <p xml:lang="zh_Hans">打开 Planet Crafter 存档文件以查看和编辑玩家、世界地球化、库存、地球化代币和传送地点。</p>
-    <p xml:lang="zh_Hans">PCEdit 直接编辑 Planet Crafter 存档文件。错误的编辑可能损坏存档并丢失进度。编辑前请务必保留存档文件的备份。本软件按“原样”提供，不作任何形式的担保。</p>
+    <p xml:lang="zh_Hans">PCEdit 会直接修改 Planet Crafter 的存档文件，错误的修改可能损坏存档并导致进度丢失。PCEdit 会在首次写入前将原始存档复制到别处，但请将其视为安全网而非替代品：也请自行备份。本软件按「原样」提供，不附带任何形式的担保。</p>
     <p xml:lang="ru">Редактор файлов сохранений для The Planet Crafter.</p>
     <p xml:lang="ru">Откройте файл сохранения Planet Crafter, чтобы просматривать и изменять игроков, терраформирование мира, инвентари, терра-жетоны и точки телепортации.</p>
-    <p xml:lang="ru">PCEdit напрямую изменяет файлы сохранений Planet Crafter. Неверное изменение может повредить сохранение и привести к потере прогресса. Всегда сохраняйте резервную копию файла сохранения перед изменением. Это программное обеспечение предоставляется «как есть», без каких-либо гарантий.</p>
+    <p xml:lang="ru">PCEdit изменяет файлы сохранений Planet Crafter напрямую, и неудачное изменение может повредить сохранение и привести к потере прогресса. Перед первой записью PCEdit копирует ваше сохранение в отдельную папку, но считайте это подстраховкой, а не заменой: делайте и собственные резервные копии. Программа предоставляется «как есть», без каких-либо гарантий.</p>
     <p xml:lang="pl">Edytor plików zapisu do The Planet Crafter.</p>
     <p xml:lang="pl">Otwórz plik zapisu Planet Crafter, aby przeglądać i edytować graczy, terraformację świata, ekwipunki, żetony terraformacji i miejsca teleportacji.</p>
-    <p xml:lang="pl">PCEdit edytuje pliki zapisu Planet Crafter bezpośrednio. Błędna edycja może uszkodzić zapis i spowodować utratę postępu. Zawsze zachowuj kopię zapasową pliku zapisu przed edycją. To oprogramowanie jest dostarczane „tak jak jest”, bez żadnej gwarancji.</p>
+    <p xml:lang="pl">PCEdit edytuje pliki zapisu Planet Crafter bezpośrednio, a błędna zmiana może uszkodzić zapis i spowodować utratę postępów. Przed pierwszym zapisem PCEdit kopiuje oryginalny plik w bezpieczne miejsce, ale traktuj to jako zabezpieczenie, a nie zamiennik: rób także własne kopie zapasowe. Oprogramowanie jest dostarczane „tak jak jest”, bez żadnych gwarancji.</p>
     <p xml:lang="pt_PT">Um editor de jogos guardados para The Planet Crafter.</p>
     <p xml:lang="pt_PT">Abra um ficheiro de jogo guardado do Planet Crafter para ver e editar jogadores, terraformação do mundo, inventários, fichas de terraformação e localizações de teletransporte.</p>
-    <p xml:lang="pt_PT">O PCEdit edita diretamente os ficheiros de jogo guardado do Planet Crafter. Uma edição incorreta pode corromper um jogo guardado e fazer perder progresso. Mantenha sempre uma cópia de segurança do seu ficheiro de jogo guardado antes de editar. Este software é fornecido «tal como está», sem garantia de qualquer tipo.</p>
+    <p xml:lang="pt_PT">O PCEdit edita diretamente os ficheiros de jogo guardado do Planet Crafter e uma edição incorreta pode danificar um jogo guardado e fazer perder progresso. O PCEdit copia o ficheiro original antes de escrever nele pela primeira vez, mas trate isso como uma rede de segurança e não como um substituto: guarde também a sua própria cópia. Este software é fornecido «no estado em que se encontra», sem garantia de qualquer tipo.</p>
     <p xml:lang="ko">The Planet Crafter용 저장 파일 편집기.</p>
     <p xml:lang="ko">Planet Crafter 저장 파일을 열어 플레이어, 월드 테라포밍, 인벤토리, 테라 토큰, 순간이동 위치를 보고 편집합니다.</p>
-    <p xml:lang="ko">PCEdit는 Planet Crafter 저장 파일을 직접 편집합니다. 잘못된 편집은 저장을 손상시키고 진행 상황을 잃게 할 수 있습니다. 편집하기 전에 항상 저장 파일의 백업을 보관하세요. 이 소프트웨어는 어떠한 종류의 보증도 없이 '있는 그대로' 제공됩니다.</p>
+    <p xml:lang="ko">PCEdit은 Planet Crafter 저장 파일을 직접 편집하며, 잘못된 편집은 저장 파일을 손상시키고 진행 상황을 잃게 할 수 있습니다. PCEdit은 파일에 처음 쓰기 전에 원본을 따로 복사해 두지만, 이는 대체 수단이 아니라 안전장치로 여기고 직접 백업도 보관하세요. 이 소프트웨어는 어떠한 종류의 보증도 없이 '있는 그대로' 제공됩니다.</p>
     <p xml:lang="ja">The Planet Crafter 用のセーブファイルエディター。</p>
     <p xml:lang="ja">Planet Crafter のセーブファイルを開いて、プレイヤー、ワールドのテラフォーミング、インベントリ、テラトークン、テレポート地点を表示・編集します。</p>
-    <p xml:lang="ja">PCEdit は Planet Crafter のセーブファイルを直接編集します。誤った編集はセーブを破損させ、進行状況を失う可能性があります。編集前には必ずセーブファイルのバックアップを保管してください。本ソフトウェアは「現状のまま」提供され、いかなる保証もありません。</p>
+    <p xml:lang="ja">PCEditはPlanet Crafterのセーブファイルを直接編集するため、誤った編集はセーブデータを破損させ、進行状況を失わせることがあります。PCEditは最初に書き込む前に元のファイルを別途コピーしますが、これは代替手段ではなく安全策と考え、ご自身でもバックアップを保管してください。本ソフトウェアはいかなる保証もなく「現状のまま」提供されます。</p>
     <p xml:lang="pt_BR">Um editor de saves para The Planet Crafter.</p>
     <p xml:lang="pt_BR">Abra um arquivo de save do Planet Crafter para ver e editar jogadores, terraformação do mundo, inventários, fichas de terraformação e locais de teletransporte.</p>
-    <p xml:lang="pt_BR">O PCEdit edita diretamente os arquivos de save do Planet Crafter. Uma edição incorreta pode corromper um save e fazer perder progresso. Sempre mantenha um backup do seu arquivo de save antes de editar. Este software é fornecido «no estado em que se encontra», sem garantia de qualquer tipo.</p>
+    <p xml:lang="pt_BR">O PCEdit edita diretamente os arquivos de save do Planet Crafter e uma edição incorreta pode corromper um save e fazer perder progresso. O PCEdit copia o arquivo original antes de gravar nele pela primeira vez, mas trate isso como uma rede de segurança e não como um substituto: mantenha também o seu próprio backup. Este software é fornecido «no estado em que se encontra», sem garantia de qualquer tipo.</p>
     <p xml:lang="it">Un editor di salvataggi per The Planet Crafter.</p>
     <p xml:lang="it">Apri un file di salvataggio di Planet Crafter per visualizzare e modificare giocatori, terraformazione del mondo, inventari, gettoni terra e posizioni di teletrasporto.</p>
-    <p xml:lang="it">PCEdit modifica direttamente i file di salvataggio di Planet Crafter. Una modifica errata può danneggiare un salvataggio e far perdere progressi. Conserva sempre una copia di backup del file di salvataggio prima di modificarlo. Questo software è fornito «così com'è», senza alcuna garanzia.</p>
+    <p xml:lang="it">PCEdit modifica direttamente i file di salvataggio di Planet Crafter e una modifica errata può danneggiare un salvataggio e far perdere progressi. PCEdit copia il salvataggio da parte prima di scrivervi per la prima volta, ma consideralo una rete di sicurezza e non un sostituto: conserva anche una copia tua. Questo software è fornito «così com'è», senza alcuna garanzia.</p>
     <p xml:lang="zh_Hant">一款用於 The Planet Crafter 的存檔檔案編輯器。</p>
     <p xml:lang="zh_Hant">開啟 Planet Crafter 存檔檔案以檢視和編輯玩家、世界地球化、庫存、地球化代幣和傳送地點。</p>
-    <p xml:lang="zh_Hant">PCEdit 直接編輯 Planet Crafter 存檔檔案。錯誤的編輯可能損壞存檔並失去進度。編輯前請務必保留存檔檔案的備份。本軟體按「原樣」提供，不作任何形式的擔保。</p>
+    <p xml:lang="zh_Hant">PCEdit 會直接修改 Planet Crafter 的存檔檔案，錯誤的修改可能損壞存檔並導致進度遺失。PCEdit 會在首次寫入前將原始檔案另外複製一份，但請將其視為安全網而非替代品：也請自行保留備份。本軟體按「現狀」提供，不附帶任何形式的擔保。</p>
     <p xml:lang="tr">The Planet Crafter için bir kayıt dosyası düzenleyici.</p>
     <p xml:lang="tr">Oyuncuları, dünya terraform durumunu, envanterleri, terra jetonlarını ve ışınlanma konumlarını görüntülemek ve düzenlemek için bir Planet Crafter kayıt dosyası açın.</p>
-    <p xml:lang="tr">PCEdit, Planet Crafter kayıt dosyalarını doğrudan düzenler. Hatalı bir düzenleme bir kaydı bozabilir ve ilerlemenizi kaybettirebilir. Düzenlemeden önce kayıt dosyanızın her zaman bir yedeğini tutun. Bu yazılım, hiçbir garanti olmaksızın «olduğu gibi» sağlanır.</p>
+    <p xml:lang="tr">PCEdit, Planet Crafter kayıt dosyalarını doğrudan düzenler ve hatalı bir düzenleme bir kaydı bozarak ilerlemenizi kaybettirebilir. PCEdit, bir dosyaya ilk kez yazmadan önce özgün hâlini ayrıca kopyalar; ancak bunu bir yedeğin yerine geçen bir şey değil, güvenlik ağı olarak görün: kendi yedeğinizi de saklayın. Bu yazılım hiçbir garanti verilmeksizin «olduğu gibi» sunulmaktadır.</p>
   </description>
   <launchable type="desktop-id">com.valkerran.pcedit.desktop</launchable>
   <url type="homepage">https://github.com/Valkerran/PCEdit</url>

@@ -22,6 +22,7 @@
   <data name="Shell_NoFileLoaded" xml:space="preserve"><value>ファイルが読み込まれていません</value></data>
   <data name="Shell_SaveHint" xml:space="preserve"><value>編集内容をディスク上のセーブファイルに書き戻します</value></data>
   <data name="Shell_NavA11y" xml:space="preserve"><value>メインナビゲーション</value></data>
+  <data name="Shell_PageLoadFailed" xml:space="preserve"><value>このページを読み込めませんでした。ファイルは開いたままで、未保存の変更も失われていません。</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>ファイルを開く</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>概要</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>インベントリ</value></data>
@@ -190,7 +191,7 @@
   <data name="Teleport_AimedAtWorld" xml:space="preserve"><value>{0} を狙っています。X / Y / Z を調整するか、正確な位置のためにランドマークを選んでください。</value></data>
   <data name="Teleport_MultiplayerNote" xml:space="preserve"><value>変更は選択したプレイヤーにのみ適用されます。ゲームのホストではないプレイヤーは、オフラインのときに編集し、ゲーム内で結果を確認してください。</value></data>
   <data name="Disclaimer_Title" xml:space="preserve"><value>自己責任でご利用ください</value></data>
-  <data name="Disclaimer_Body" xml:space="preserve"><value>PCEdit は Planet Crafter のセーブファイルを直接編集します。誤った編集はセーブを破損させ、進行状況を失う可能性があります。編集前には必ずセーブファイルのバックアップを保管してください。本ソフトウェアは「現状のまま」提供され、いかなる保証もありません。</value></data>
+  <data name="Disclaimer_Body" xml:space="preserve"><value>PCEditはPlanet Crafterのセーブファイルを直接編集するため、誤った編集はセーブデータを破損させ、進行状況を失わせることがあります。PCEditは最初に書き込む前に元のファイルを別途コピーしますが、これは代替手段ではなく安全策と考え、ご自身でもバックアップを保管してください。本ソフトウェアはいかなる保証もなく「現状のまま」提供されます。</value></data>
   <data name="Disclaimer_Acknowledge" xml:space="preserve"><value>理解しました</value></data>
   <data name="Disclaimer_ShortNotice" xml:space="preserve"><value>編集はセーブを破損させる可能性があります。まずファイルをバックアップしてください。自己責任でご利用ください。</value></data>
   <data name="About_Title" xml:space="preserve"><value>情報</value></data>
@@ -201,4 +202,6 @@
   <data name="About_LanguageA11y" xml:space="preserve"><value>アプリケーションの言語</value></data>
   <data name="About_SaveLocationsHeading" xml:space="preserve"><value>ゲームがセーブを保存する場所</value></data>
   <data name="About_SaveLocationsNote" xml:space="preserve"><value>Xbox は各セーブに、書き込むたびに変わるランダムな文字列で名前を付けます。Linux では、ゲームが別のドライブにある場合は ~/.steam/steam を Steam ライブラリのフォルダーに置き換えてください。</value></data>
+  <data name="About_BackupsHeading" xml:space="preserve"><value>自動バックアップ</value></data>
+  <data name="About_BackupsNote" xml:space="preserve"><value>ファイルを開いた後にPCEditが初めて保存するとき、元のファイルがまずここにコピーされます。各セーブデータにつき最新5件の複製が保持されます。</value></data>
 </root>

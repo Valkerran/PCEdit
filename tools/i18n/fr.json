@@ -131,7 +131,7 @@
   "Teleport_LandmarkPlanetHash": "hachage du monde {0}",
   "Teleport_LandmarkNoPlanetHash": "aucun hachage du monde enregistré",
   "Disclaimer_Title": "À utiliser à vos propres risques",
-  "Disclaimer_Body": "PCEdit modifie directement les fichiers de sauvegarde de Planet Crafter. Une modification incorrecte peut corrompre une sauvegarde et faire perdre de la progression. Conservez toujours une copie de votre fichier de sauvegarde avant toute modification. Ce logiciel est fourni « en l'état », sans garantie d'aucune sorte.",
+  "Disclaimer_Body": "PCEdit modifie directement les fichiers de sauvegarde de Planet Crafter, et une mauvaise modification peut corrompre une sauvegarde et faire perdre votre progression. PCEdit copie votre sauvegarde à part avant d'y écrire pour la première fois, mais considérez cela comme un filet de sécurité et non comme un substitut : conservez également votre propre sauvegarde. Ce logiciel est fourni « en l'état », sans garantie d'aucune sorte.",
   "Disclaimer_Acknowledge": "J'ai compris",
   "Disclaimer_ShortNotice": "La modification peut corrompre une sauvegarde. Faites d'abord une copie de votre fichier — à utiliser à vos propres risques.",
   "About_Title": "À propos",
@@ -194,5 +194,8 @@
   "Teleport_AimedAtWorld": "Ciblé sur {0}. Ajustez X / Y / Z ou choisissez un point de repère pour un endroit précis.",
   "Teleport_MultiplayerNote": "Les modifications s'appliquent uniquement au joueur sélectionné. Pour un joueur qui n'est pas l'hôte de la partie, modifiez-le pendant qu'il est hors ligne et vérifiez le résultat en jeu.",
   "About_SaveLocationsHeading": "Où le jeu conserve vos sauvegardes",
-  "About_SaveLocationsNote": "Xbox nomme chaque sauvegarde avec une chaîne aléatoire qui change à chaque écriture. Sous Linux, remplacez ~/.steam/steam par le dossier de votre bibliothèque Steam si le jeu est sur un autre disque."
+  "About_SaveLocationsNote": "Xbox nomme chaque sauvegarde avec une chaîne aléatoire qui change à chaque écriture. Sous Linux, remplacez ~/.steam/steam par le dossier de votre bibliothèque Steam si le jeu est sur un autre disque.",
+  "Shell_PageLoadFailed": "Impossible de charger cette page. Votre fichier reste ouvert et vos modifications non enregistrées sont intactes.",
+  "About_BackupsHeading": "Sauvegardes automatiques",
+  "About_BackupsNote": "Lors du premier enregistrement suivant l'ouverture d'un fichier, PCEdit en copie d'abord l'original ici. Les cinq copies les plus récentes de chaque sauvegarde sont conservées."
 }

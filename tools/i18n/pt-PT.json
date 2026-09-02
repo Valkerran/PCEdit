@@ -131,7 +131,7 @@
   "Teleport_LandmarkPlanetHash": "hash do mundo {0}",
   "Teleport_LandmarkNoPlanetHash": "nenhum hash do mundo registado",
   "Disclaimer_Title": "Utilize por sua conta e risco",
-  "Disclaimer_Body": "O PCEdit edita diretamente os ficheiros de jogo guardado do Planet Crafter. Uma edição incorreta pode corromper um jogo guardado e fazer perder progresso. Mantenha sempre uma cópia de segurança do seu ficheiro de jogo guardado antes de editar. Este software é fornecido «tal como está», sem garantia de qualquer tipo.",
+  "Disclaimer_Body": "O PCEdit edita diretamente os ficheiros de jogo guardado do Planet Crafter e uma edição incorreta pode danificar um jogo guardado e fazer perder progresso. O PCEdit copia o ficheiro original antes de escrever nele pela primeira vez, mas trate isso como uma rede de segurança e não como um substituto: guarde também a sua própria cópia. Este software é fornecido «no estado em que se encontra», sem garantia de qualquer tipo.",
   "Disclaimer_Acknowledge": "Compreendo",
   "Disclaimer_ShortNotice": "Editar pode corromper um jogo guardado. Faça primeiro uma cópia do ficheiro — utilize por sua conta e risco.",
   "About_Title": "Acerca de",
@@ -194,5 +194,8 @@
   "Teleport_AimedAtWorld": "Apontado para {0}. Ajuste X / Y / Z ou escolha um ponto de referência para um local preciso.",
   "Teleport_MultiplayerNote": "As alterações aplicam-se apenas ao jogador selecionado. Para um jogador que não é o anfitrião do jogo, edite-o enquanto está offline e verifique o resultado no jogo.",
   "About_SaveLocationsHeading": "Onde o jogo guarda os teus jogos guardados",
-  "About_SaveLocationsNote": "O Xbox atribui a cada jogo guardado um nome aleatório que muda sempre que é escrito. No Linux, substitui ~/.steam/steam pela pasta da tua biblioteca Steam se o jogo estiver noutra unidade."
+  "About_SaveLocationsNote": "O Xbox atribui a cada jogo guardado um nome aleatório que muda sempre que é escrito. No Linux, substitui ~/.steam/steam pela pasta da tua biblioteca Steam se o jogo estiver noutra unidade.",
+  "Shell_PageLoadFailed": "Não foi possível carregar esta página. O ficheiro continua aberto e as alterações não guardadas estão seguras.",
+  "About_BackupsHeading": "Cópias de segurança automáticas",
+  "About_BackupsNote": "Na primeira vez que o PCEdit guarda um ficheiro depois de o abrir, copia primeiro o original para aqui. São mantidas as cinco cópias mais recentes de cada jogo guardado."
 }

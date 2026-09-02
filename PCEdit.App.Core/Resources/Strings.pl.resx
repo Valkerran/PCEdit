@@ -22,6 +22,7 @@
   <data name="Shell_NoFileLoaded" xml:space="preserve"><value>Nie wczytano pliku</value></data>
   <data name="Shell_SaveHint" xml:space="preserve"><value>Zapisuje zmiany z powrotem do pliku zapisu na dysku</value></data>
   <data name="Shell_NavA11y" xml:space="preserve"><value>Nawigacja główna</value></data>
+  <data name="Shell_PageLoadFailed" xml:space="preserve"><value>Nie udało się wczytać tej strony. Plik jest nadal otwarty, a niezapisane zmiany są bezpieczne.</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>Otwórz plik</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>Przegląd</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>Ekwipunki</value></data>
@@ -190,7 +191,7 @@
   <data name="Teleport_AimedAtWorld" xml:space="preserve"><value>Wycelowano w {0}. Dostosuj X / Y / Z lub wybierz punkt orientacyjny, aby wskazać dokładne miejsce.</value></data>
   <data name="Teleport_MultiplayerNote" xml:space="preserve"><value>Zmiany dotyczą tylko wybranego gracza. Gracza, który nie jest gospodarzem gry, edytuj, gdy jest offline, i sprawdź wynik w grze.</value></data>
   <data name="Disclaimer_Title" xml:space="preserve"><value>Używasz na własne ryzyko</value></data>
-  <data name="Disclaimer_Body" xml:space="preserve"><value>PCEdit edytuje pliki zapisu Planet Crafter bezpośrednio. Błędna edycja może uszkodzić zapis i spowodować utratę postępu. Zawsze zachowuj kopię zapasową pliku zapisu przed edycją. To oprogramowanie jest dostarczane „tak jak jest”, bez żadnej gwarancji.</value></data>
+  <data name="Disclaimer_Body" xml:space="preserve"><value>PCEdit edytuje pliki zapisu Planet Crafter bezpośrednio, a błędna zmiana może uszkodzić zapis i spowodować utratę postępów. Przed pierwszym zapisem PCEdit kopiuje oryginalny plik w bezpieczne miejsce, ale traktuj to jako zabezpieczenie, a nie zamiennik: rób także własne kopie zapasowe. Oprogramowanie jest dostarczane „tak jak jest”, bez żadnych gwarancji.</value></data>
   <data name="Disclaimer_Acknowledge" xml:space="preserve"><value>Rozumiem</value></data>
   <data name="Disclaimer_ShortNotice" xml:space="preserve"><value>Edycja może uszkodzić zapis. Najpierw wykonaj kopię pliku — używasz na własne ryzyko.</value></data>
   <data name="About_Title" xml:space="preserve"><value>O programie</value></data>
@@ -201,4 +202,6 @@
   <data name="About_LanguageA11y" xml:space="preserve"><value>Język aplikacji</value></data>
   <data name="About_SaveLocationsHeading" xml:space="preserve"><value>Gdzie gra przechowuje zapisy</value></data>
   <data name="About_SaveLocationsNote" xml:space="preserve"><value>Xbox nadaje każdemu zapisowi losowy ciąg znaków, który zmienia się przy każdym zapisie. W systemie Linux zastąp ~/.steam/steam folderem swojej biblioteki Steam, jeśli gra znajduje się na innym dysku.</value></data>
+  <data name="About_BackupsHeading" xml:space="preserve"><value>Automatyczne kopie zapasowe</value></data>
+  <data name="About_BackupsNote" xml:space="preserve"><value>Przy pierwszym zapisie pliku po jego otwarciu PCEdit najpierw kopiuje tutaj oryginał. Przechowywanych jest pięć najnowszych kopii każdego zapisu.</value></data>
 </root>

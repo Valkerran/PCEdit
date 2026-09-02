@@ -78,6 +78,7 @@
   <data name="Shell_NoFileLoaded" xml:space="preserve"><value>No file loaded</value></data>
   <data name="Shell_SaveHint" xml:space="preserve"><value>Writes your edits back to the save file on disk</value></data>
   <data name="Shell_NavA11y" xml:space="preserve"><value>Main navigation</value></data>
+  <data name="Shell_PageLoadFailed" xml:space="preserve"><value>This page could not be loaded. Your file is still open and any unsaved changes are safe.</value></data>
 
   <data name="Nav_OpenFile" xml:space="preserve"><value>Open File</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>Overview</value></data>
@@ -261,7 +262,7 @@
   <data name="Teleport_MultiplayerNote" xml:space="preserve"><value>Changes apply to the selected player only. For a player who is not the game's host, edit while they are offline and check the result in-game.</value></data>
 
   <data name="Disclaimer_Title" xml:space="preserve"><value>Use at your own risk</value></data>
-  <data name="Disclaimer_Body" xml:space="preserve"><value>PCEdit edits Planet Crafter save files directly. A bad edit can corrupt a save and lose progress. Always keep a backup of your save file before editing. This software is provided as is, without warranty of any kind.</value></data>
+  <data name="Disclaimer_Body" xml:space="preserve"><value>PCEdit edits Planet Crafter save files directly, and a bad edit can corrupt a save and lose progress. PCEdit copies your save aside before it first writes to it, but treat that as a safety net rather than a substitute: keep your own backup as well. This software is provided as is, without warranty of any kind.</value></data>
   <data name="Disclaimer_Acknowledge" xml:space="preserve"><value>I understand</value></data>
   <data name="Disclaimer_ShortNotice" xml:space="preserve"><value>Editing can corrupt a save. Back up your file first — use at your own risk.</value></data>
 
@@ -273,4 +274,6 @@
   <data name="About_LanguageA11y" xml:space="preserve"><value>Application language</value></data>
   <data name="About_SaveLocationsHeading" xml:space="preserve"><value>Where the game keeps your saves</value></data>
   <data name="About_SaveLocationsNote" xml:space="preserve"><value>Xbox names each save with a random string that changes every time it is written. On Linux, replace ~/.steam/steam with your Steam library folder if the game lives on another drive.</value></data>
+  <data name="About_BackupsHeading" xml:space="preserve"><value>Automatic backups</value></data>
+  <data name="About_BackupsNote" xml:space="preserve"><value>The first time PCEdit saves a file after you open it, the original is copied here first. The five most recent copies of each save are kept.</value></data>
 </root>

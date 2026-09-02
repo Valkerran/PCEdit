@@ -50,9 +50,10 @@ EN = {
         "inventories, terra tokens, and teleport locations."
     ),
     "Disclaimer_Body": (
-        "PCEdit edits Planet Crafter save files directly. A bad edit can corrupt a save and "
-        "lose progress. Always keep a backup of your save file before editing. This software "
-        "is provided as is, without warranty of any kind."
+        "PCEdit edits Planet Crafter save files directly, and a bad edit can corrupt a save "
+        "and lose progress. PCEdit copies your save aside before it first writes to it, but "
+        "treat that as a safety net rather than a substitute: keep your own backup as well. "
+        "This software is provided as is, without warranty of any kind."
     ),
 }
 

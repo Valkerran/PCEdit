@@ -131,7 +131,7 @@
   "Teleport_LandmarkPlanetHash": "hash do mundo {0}",
   "Teleport_LandmarkNoPlanetHash": "nenhum hash do mundo registrado",
   "Disclaimer_Title": "Use por sua conta e risco",
-  "Disclaimer_Body": "O PCEdit edita diretamente os arquivos de save do Planet Crafter. Uma edição incorreta pode corromper um save e fazer perder progresso. Sempre mantenha um backup do seu arquivo de save antes de editar. Este software é fornecido «no estado em que se encontra», sem garantia de qualquer tipo.",
+  "Disclaimer_Body": "O PCEdit edita diretamente os arquivos de save do Planet Crafter e uma edição incorreta pode corromper um save e fazer perder progresso. O PCEdit copia o arquivo original antes de gravar nele pela primeira vez, mas trate isso como uma rede de segurança e não como um substituto: mantenha também o seu próprio backup. Este software é fornecido «no estado em que se encontra», sem garantia de qualquer tipo.",
   "Disclaimer_Acknowledge": "Entendi",
   "Disclaimer_ShortNotice": "Editar pode corromper um save. Faça primeiro um backup do arquivo — use por sua conta e risco.",
   "About_Title": "Sobre",
@@ -194,5 +194,8 @@
   "Teleport_AimedAtWorld": "Apontado para {0}. Ajuste X / Y / Z ou escolha um ponto de referência para um local preciso.",
   "Teleport_MultiplayerNote": "As alterações se aplicam apenas ao jogador selecionado. Para um jogador que não é o anfitrião do jogo, edite-o enquanto estiver offline e verifique o resultado no jogo.",
   "About_SaveLocationsHeading": "Onde o jogo guarda seus saves",
-  "About_SaveLocationsNote": "O Xbox dá a cada save um nome aleatório que muda a cada gravação. No Linux, substitua ~/.steam/steam pela pasta da sua biblioteca Steam se o jogo estiver em outra unidade."
+  "About_SaveLocationsNote": "O Xbox dá a cada save um nome aleatório que muda a cada gravação. No Linux, substitua ~/.steam/steam pela pasta da sua biblioteca Steam se o jogo estiver em outra unidade.",
+  "Shell_PageLoadFailed": "Não foi possível carregar esta página. O arquivo continua aberto e as alterações não salvas estão seguras.",
+  "About_BackupsHeading": "Backups automáticos",
+  "About_BackupsNote": "Na primeira vez que o PCEdit salva um arquivo depois de abri-lo, o original é copiado para cá antes. São mantidas as cinco cópias mais recentes de cada save."
 }

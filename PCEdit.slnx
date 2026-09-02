@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/Docs/">
+    <File Path="CHANGELOG.md" />
     <File Path="CLAUDE.md" />
     <File Path="DISCLAIMER.md" />
     <File Path="LICENSE" />

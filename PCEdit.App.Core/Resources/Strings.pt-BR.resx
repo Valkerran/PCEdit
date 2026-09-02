@@ -22,6 +22,7 @@
   <data name="Shell_NoFileLoaded" xml:space="preserve"><value>Nenhum arquivo carregado</value></data>
   <data name="Shell_SaveHint" xml:space="preserve"><value>Grava suas edições de volta no arquivo de save no disco</value></data>
   <data name="Shell_NavA11y" xml:space="preserve"><value>Navegação principal</value></data>
+  <data name="Shell_PageLoadFailed" xml:space="preserve"><value>Não foi possível carregar esta página. O arquivo continua aberto e as alterações não salvas estão seguras.</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>Abrir arquivo</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>Visão geral</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>Inventários</value></data>
@@ -190,7 +191,7 @@
   <data name="Teleport_AimedAtWorld" xml:space="preserve"><value>Apontado para {0}. Ajuste X / Y / Z ou escolha um ponto de referência para um local preciso.</value></data>
   <data name="Teleport_MultiplayerNote" xml:space="preserve"><value>As alterações se aplicam apenas ao jogador selecionado. Para um jogador que não é o anfitrião do jogo, edite-o enquanto estiver offline e verifique o resultado no jogo.</value></data>
   <data name="Disclaimer_Title" xml:space="preserve"><value>Use por sua conta e risco</value></data>
-  <data name="Disclaimer_Body" xml:space="preserve"><value>O PCEdit edita diretamente os arquivos de save do Planet Crafter. Uma edição incorreta pode corromper um save e fazer perder progresso. Sempre mantenha um backup do seu arquivo de save antes de editar. Este software é fornecido «no estado em que se encontra», sem garantia de qualquer tipo.</value></data>
+  <data name="Disclaimer_Body" xml:space="preserve"><value>O PCEdit edita diretamente os arquivos de save do Planet Crafter e uma edição incorreta pode corromper um save e fazer perder progresso. O PCEdit copia o arquivo original antes de gravar nele pela primeira vez, mas trate isso como uma rede de segurança e não como um substituto: mantenha também o seu próprio backup. Este software é fornecido «no estado em que se encontra», sem garantia de qualquer tipo.</value></data>
   <data name="Disclaimer_Acknowledge" xml:space="preserve"><value>Entendi</value></data>
   <data name="Disclaimer_ShortNotice" xml:space="preserve"><value>Editar pode corromper um save. Faça primeiro um backup do arquivo — use por sua conta e risco.</value></data>
   <data name="About_Title" xml:space="preserve"><value>Sobre</value></data>
@@ -201,4 +202,6 @@
   <data name="About_LanguageA11y" xml:space="preserve"><value>Idioma do aplicativo</value></data>
   <data name="About_SaveLocationsHeading" xml:space="preserve"><value>Onde o jogo guarda seus saves</value></data>
   <data name="About_SaveLocationsNote" xml:space="preserve"><value>O Xbox dá a cada save um nome aleatório que muda a cada gravação. No Linux, substitua ~/.steam/steam pela pasta da sua biblioteca Steam se o jogo estiver em outra unidade.</value></data>
+  <data name="About_BackupsHeading" xml:space="preserve"><value>Backups automáticos</value></data>
+  <data name="About_BackupsNote" xml:space="preserve"><value>Na primeira vez que o PCEdit salva um arquivo depois de abri-lo, o original é copiado para cá antes. São mantidas as cinco cópias mais recentes de cada save.</value></data>
 </root>

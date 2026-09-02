@@ -191,8 +191,8 @@ content ids the app's catalogs do not cover yet.
 Layering, each with a small interface for testability/DI:
 
 - `IJsonRecordSerializer` / `JsonRecordSerializer` — wraps `System.Text.Json` with camelCase naming and `WhenWritingNull` ignore semantics; deserializes/serializes a single record (section or list item) and wraps `JsonException` in `InvalidDataException` with the offending section index. Also holds `GameDecimalConverter` (the game writes every decimal with a fractional part — force `N.0`, never `N`). Every leaf model has a `[JsonExtensionData] ExtensionData` dictionary, so a JSON key no model names is **preserved** across a round-trip, not silently dropped. `WorldObject` goes further: the game's world-object key order is not stable (proven — the same pair of keys appears in both orders across records), so `WorldObjectConverter` records each record's key order on read and replays it on write, keeping unknown keys in place too. Tests: `RoundTrip_RealSampleSaveFile_ReserializesCharacterForCharacter` (whole-file, string-exact) and `PlanetCrafterSaveFileStoreTests.SaveThenLoad_...IsByteIdenticalOnDisk` (with BOM); `WorldObjectConverterTests` / `GameDecimalFormatTests` for the pieces; `GameFormatKeyMappingTests` pins the abbreviated-key spellings a symmetric model round-trip can't catch.
-- `IPlanetCrafterSaveFileSerializer` / `PlanetCrafterSaveFileSerializer` — splits/joins the 10 sections (framing above), delegating record-level (de)serialization to `IJsonRecordSerializer`. `Deserialize` is lenient about whitespace/line-endings; `Serialize` reproduces the game framing exactly.
-- `IPlanetCrafterSaveFileStore` / `PlanetCrafterSaveFileStore` — file I/O (`Load`/`Save` by path). `Load` uses `File.ReadAllText` (strips any BOM); `Save` re-checks the target file's first bytes and writes UTF-8 with a BOM only if the existing file had one (or the path is new) — matching Steam-with-BOM and Game-Pass-without.
+- `IPlanetCrafterSaveFileSerializer` / `PlanetCrafterSaveFileSerializer` — splits/joins the 10 sections (framing above), delegating record-level (de)serialization to `IJsonRecordSerializer`. `Deserialize` is lenient about whitespace/line-endings; `Serialize` reproduces the game framing exactly. The section split matches an `@` **only when the framing line breaks bracket it** — an `@` inside a JSON string is player-typed free text (a container/sign label, a player name) and must not split the file; splitting on the bare character truncated those saves, and in one placement dropped data with no error at all (#38). Do not simplify it back to `Split('@')`.
+- `IPlanetCrafterSaveFileStore` / `PlanetCrafterSaveFileStore` — file I/O (`Load`/`Save` by path). `Load` uses `File.ReadAllText` (strips any BOM); `Save` re-checks the target file's first bytes and writes UTF-8 with a BOM only if the existing file had one (or the path is new) — matching Steam-with-BOM and Game-Pass-without. It writes through a sibling `.pcedit-tmp` file, flushed to disk, then swaps it in with an atomic `File.Move(overwrite: true)`, so an interrupted write can never leave a truncated save (#36); the BOM probe therefore has to read the **original** path, before the swap, not the temp file.
 
 Model conventions worth knowing before adding/editing a model in `PCEdit.SaveFileHandler/Models/`:
 - Fields that are always present in the save file are `required` properties; fields the game may omit are nullable (`decimal?`, `string?`, etc.) — get this right or `Save`/round-trip will crash or lose data.
@@ -222,7 +222,7 @@ implementations of a handful of interfaces.
 holding the loaded `PlanetCrafterSaveFile`, its path, `IsDirty`, and `SaveStatus`. ViewModels never
 build a modified model themselves; they call `MutateUnlocks` / `ReplaceTerraformation` /
 `ReplacePlayer` / `ReplaceInventory` / `GrantTerraTokens`, which apply the
-root-rebuild-vs-list-replace pattern above and flip `IsDirty`.
+root-rebuild-vs-list-replace pattern above and flip `IsDirty`. `Save` first copies the file aside via `ISaveBackupService`, once per load rather than once per save — by the second save the file on disk is already PCEdit's own output, and the pristine copy is the only one that cannot be reconstructed. A failed backup is traced and the save proceeds: refusing the user's edit because a safety copy failed inverts the priority. Note the backups deliberately sit under `LocalApplicationData`, **not** the `ApplicationData` holding `settings.json` — on Windows that is the roaming profile, and megabytes of save copies should not sync between machines.
 
 **Page ViewModels re-read workspace state in a `Load()` method** (`ViewModels/ILoadable`) rather than
 caching it, so switching pages always reflects the latest in-memory edits. Page ViewModels are
@@ -231,12 +231,11 @@ page last loaded (see `PCEdit.Desktop/ViewModels/MainWindowViewModel`).
 
 **`Services/IInventoryEditor` (`InventoryEditor`)** holds inventory-item domain logic: an item is "in"
 an inventory when its `WorldObject.Id` appears in that `Inventory.WorldObjectIds` comma-string
-(`Services/WorldObjectIdsCodec`); `TryMoveItem` removes from source before adding to destination and
+(`Services/WorldObjectIdsCodec`, which **skips entries it cannot read and carries them through a rewrite untouched** — a save can hold a non-int in that list, and dropping it on a move would be data loss, #37); `TryMoveItem` removes from source before adding to destination and
 rejects a move into an inventory already at `Inventory.Size`. `BuildInventoryGroups` is O(n) — it
 pre-indexes world objects and container→inventory links (a real save has ~500 inventories /
 ~5000 world objects) and tags each `InventoryGroup` with an `InventoryKind` for the page's type
-filter and a `PlanetId` (via `IPlanetIndex`) for its world filter. `Services/PositionCodec` handles
-the `"x,y,z"` string shared by `PlayerData.PlayerPosition` / `WorldObject.Position`.
+filter and a `PlanetId` (via `IPlanetIndex`) for its world filter. `Services/PositionCodec` handles the `"x,y,z"` string shared by `PlayerData.PlayerPosition` / `WorldObject.Position`; use `TryParse` for anything read out of a save — `Parse` throws and is only for a position already known to be well-formed.
 
 **`Services/IPlanetIndex` (`PlanetIndex`)** resolves the worlds in a save: `KnownPlanetIds()` is the
 ordered union of every `PlanetId` (metadata + terraformations + players), and `ResolvePlanetId(int?)`
@@ -276,6 +275,7 @@ container's `Planet`) and is `null` for orphan inventories.
 | `IScreenReaderAnnouncer` | `AvaloniaScreenReaderAnnouncer` (hidden live-region `TextBlock`) |
 | `IAppVersionInfo` | `AvaloniaAppVersionInfo` |
 | `ILanguageStore`, `IDisclaimerGate` | `JsonSettingsStore` (`~/.config/PCEdit/settings.json`) |
+| `ISaveBackupService` | `LocalFileSaveBackupService` (`<LocalApplicationData>/PCEdit/backups`) |
 
 The head wires these in its composition root (`PCEdit.Desktop/App.axaml.cs`), registering the Core
 services as singletons and page ViewModels per the pattern above. The interfaces stay UI-agnostic so
@@ -295,8 +295,10 @@ re-navigation doesn't rebuild the visual tree.
 `MainWindowViewModel.SelectedNavItem`, `TwoWay`; the selected row shows the `TerraformSpectrum`
 gradient on its leading edge over a faint tint), a 15-locale language `ComboBox`, and a footer with
 the loaded-file path. `SplitView.Content` is a `Grid`: row 0 a **header bar** (current page title +
-the primary **Save** button with `HotKey="Ctrl+S"` + save/dirty state), row 1 a `ContentControl`
-bound to `CurrentPage`. `MainWindow.axaml.cs` handles `Closing`: if `Workspace.IsDirty` it cancels
+the primary **Save** button with `HotKey="Ctrl+S"` + save/dirty state), row 1 an **error banner**
+shown only when `MainWindowViewModel.PageError` is set (a page's `Load()` threw — the shell catches
+it so a malformed save cannot take the app down with the file still open, #37), row 2 a
+`ContentControl` bound to `CurrentPage`. `MainWindow.axaml.cs` handles `Closing`: if `Workspace.IsDirty` it cancels
 the close and shows the `Quit_Discard*` confirm dialog. On first open the disclaimer dialog shows if
 `!IDisclaimerGate.HasAcknowledged`; the other page views are pre-built at `Background` priority so
 first navigation isn't a stall.

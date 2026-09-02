@@ -80,7 +80,7 @@ public sealed partial class OpenFileViewModel : ObservableObject
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine(ex);
+            System.Diagnostics.Trace.WriteLine($"Could not load the save file: {ex}");
             SetStatus(StatusKind.Error, LocKeys.OpenFile_LoadFailed);
         }
         finally

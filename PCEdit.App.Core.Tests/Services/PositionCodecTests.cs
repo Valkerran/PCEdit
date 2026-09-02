@@ -24,6 +24,27 @@ public sealed class PositionCodecTests
         Assert.Throws<FormatException>(() => PositionCodec.Parse(position));
     }
 
+    [Theory]
+    [InlineData("1,2")]
+    [InlineData("1,2,3,4")]
+    [InlineData("")]
+    [InlineData("not,a,position")]
+    [InlineData(null)]
+    public void TryParse_InvalidFormat_ReturnsFalseWithoutThrowing(string? position)
+    {
+        // The Teleport page reads positions straight out of the save during Load, so a malformed
+        // one must not throw - it took the app down after the file had opened (issue #37).
+        Assert.False(PositionCodec.TryParse(position, out _));
+    }
+
+    [Fact]
+    public void TryParse_ValidPosition_ReturnsTrueAndTheValue()
+    {
+        Assert.True(PositionCodec.TryParse("1.5,-2.25,3", out var parsed));
+
+        Assert.Equal((1.5m, -2.25m, 3m), parsed);
+    }
+
     [Fact]
     public void Format_ProducesCommaSeparatedInvariantCultureString()
     {

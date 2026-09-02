@@ -7,7 +7,8 @@ player between locations.
 Unofficial fan tool — not affiliated with or endorsed by the developers of The Planet Crafter.
 
 > [!WARNING]
-> Editing a save can corrupt it. **Always back up your save file before editing.** See
+> Editing a save can corrupt it. PCEdit copies your save aside before it first writes to it,
+> but that is a safety net, not a substitute — **keep your own backup as well.** See
 > [DISCLAIMER.md](DISCLAIMER.md). Provided as is, without warranty of any kind.
 
 **Game versions.** Tested against The Planet Crafter **2.008** and **2.102** (the *Skeo* update),

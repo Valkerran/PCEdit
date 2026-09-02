@@ -4,6 +4,46 @@ What changed in each release of PCEdit. Downloads for every version are on the
 [Releases page](https://github.com/Valkerran/PCEdit/releases); the newest is on the
 [latest release](https://github.com/Valkerran/PCEdit/releases/latest) page.
 
+## v1.3.0
+
+- **New: PCEdit now keeps a copy of your save from before it edited it.** The first time
+  PCEdit saves a file after you open it, the original is copied into a folder of its own
+  first — `%LocalAppData%\PCEdit\backups` on Windows, `~/.local/share/PCEdit/backups` on
+  Linux, `~/Library/Application Support/PCEdit/backups` on macOS. The five most recent
+  copies of each save file are kept, and the folder is shown on the About page. Treat it as
+  a safety net rather than a replacement for your own backup: the copy is taken once per
+  file you open rather than once per save, and if it cannot be written the save still goes
+  ahead. ([#36](https://github.com/Valkerran/PCEdit/issues/36))
+
+- **Fix: an interrupted save can no longer destroy the file it was writing.** PCEdit wrote
+  straight over your save, which clears the file before the new contents arrive — so a
+  crash, a power cut or a full disk part-way through left nothing behind. Edits are now
+  written to a temporary file and swapped in once complete, so the save on disk is always
+  either wholly the old one or wholly the new one. ([#36](https://github.com/Valkerran/PCEdit/issues/36))
+
+- **Fix: a save with an `@` in a container label or a player name now opens.** The `@`
+  character separates the sections of a save file, and PCEdit did not tell the difference
+  between one of those and one you had typed into a sign or a container name — so such a
+  save either refused to open or, in one case, opened with part of it quietly missing and
+  that shortened version written back on the next save. ([#38](https://github.com/Valkerran/PCEdit/issues/38))
+
+- **Fix: a corrupt or hand-edited save no longer closes the app.** Unreadable values in a
+  save could bring PCEdit down when you opened the Inventories or Teleport page — after the
+  file had loaded, taking any unsaved edits with it. Entries PCEdit cannot read are now
+  skipped rather than fatal, and they are left untouched in the file rather than dropped
+  when you move an item. If a page still cannot be built, it says so instead of closing.
+  ([#37](https://github.com/Valkerran/PCEdit/issues/37))
+
+- **Fix: granting a very large number of terra tokens no longer leaves a negative balance.**
+  The total is capped at what the save format can actually hold, and the confirmation now
+  reports what was granted rather than what was asked for. ([#42](https://github.com/Valkerran/PCEdit/issues/42))
+
+- **The "use at your own risk" notice now mentions the automatic copy**, so it appears once
+  more even if you had already dismissed it.
+
+- Error details are no longer discarded in release builds, so a failed load or save leaves
+  something behind to diagnose. ([#41](https://github.com/Valkerran/PCEdit/issues/41))
+
 ## v1.2.3
 
 - **No change to the application.** Documentation and release process only, so the

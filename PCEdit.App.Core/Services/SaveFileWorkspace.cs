@@ -11,6 +11,11 @@ public sealed partial class SaveFileWorkspace : ObservableObject, ISaveFileWorks
     private readonly IPlanetCrafterSaveFileStore _store;
     private readonly IScreenReaderAnnouncer _announcer;
     private readonly ILocalizer _localizer;
+    private readonly ISaveBackupService _backups;
+
+    // Whether the file currently loaded has been copied aside yet. Reset by Load, so each newly
+    // opened file gets exactly one attempt on its first save.
+    private bool _backedUpSinceLoad;
 
     // The save status is held as a resource key so it re-renders when the UI language changes.
     private string? _saveStatusKey;
@@ -18,11 +23,13 @@ public sealed partial class SaveFileWorkspace : ObservableObject, ISaveFileWorks
     public SaveFileWorkspace(
         IPlanetCrafterSaveFileStore store,
         IScreenReaderAnnouncer announcer,
-        ILocalizer localizer)
+        ILocalizer localizer,
+        ISaveBackupService backups)
     {
         _store = store ?? throw new ArgumentNullException(nameof(store));
         _announcer = announcer ?? throw new ArgumentNullException(nameof(announcer));
         _localizer = localizer ?? throw new ArgumentNullException(nameof(localizer));
+        _backups = backups ?? throw new ArgumentNullException(nameof(backups));
 
         _localizer.CultureChanged += (_, _) => OnPropertyChanged(nameof(SaveStatus));
     }
@@ -68,6 +75,7 @@ public sealed partial class SaveFileWorkspace : ObservableObject, ISaveFileWorks
         Current = _store.Load(path);
         FilePath = path;
         IsDirty = false;
+        _backedUpSinceLoad = false;
         SetSaveStatus(null);
     }
 
@@ -81,6 +89,7 @@ public sealed partial class SaveFileWorkspace : ObservableObject, ISaveFileWorks
 
         try
         {
+            BackUpOnce(FilePath);
             _store.Save(FilePath, Current);
             IsDirty = false;
             SetSaveStatus(LocKeys.Save_Ok);
@@ -88,9 +97,40 @@ public sealed partial class SaveFileWorkspace : ObservableObject, ISaveFileWorks
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine(ex);
+            System.Diagnostics.Trace.WriteLine($"Could not save '{FilePath}': {ex}");
             SetSaveStatus(LocKeys.Save_Failed);
             _announcer.Announce(_localizer[LocKeys.Save_FailedAnnounce]);
+        }
+    }
+
+    /// <summary>
+    /// Copies the save aside as it was before PCEdit first wrote to it.
+    /// </summary>
+    /// <remarks>
+    /// Only the first save after a load is worth keeping: by the second, the file on disk is
+    /// already PCEdit's own output, and the pristine copy - the one that cannot be reconstructed -
+    /// is gone. The attempt therefore counts whether or not it succeeded; retrying later would
+    /// capture something already modified and file it as if it were the original.
+    ///
+    /// A failed backup never blocks the save. Refusing to write the player's edit because a
+    /// safety copy could not be taken inverts the priority - the edit is what they asked for.
+    /// </remarks>
+    private void BackUpOnce(string path)
+    {
+        if (_backedUpSinceLoad)
+        {
+            return;
+        }
+
+        _backedUpSinceLoad = true;
+
+        try
+        {
+            _backups.BackUp(path);
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Trace.WriteLine($"Could not back up '{path}': {ex}");
         }
     }
 
@@ -147,23 +187,51 @@ public sealed partial class SaveFileWorkspace : ObservableObject, ISaveFileWorks
         OnPropertyChanged(nameof(Current));
     }
 
-    public void GrantTerraTokens(long playerId, int amount)
+    public int GrantTerraTokens(long playerId, int amount)
     {
         if (amount <= 0)
         {
             throw new ArgumentOutOfRangeException(nameof(amount), amount, "The amount to grant must be positive.");
         }
 
+        // All three of these are int in the save format. The addition was unchecked, so a large
+        // grant wrapped straight to a negative balance and was written into the player's file -
+        // 8,680 + int.MaxValue came out as -2,147,474,969 (issue #42). Saturating beats refusing
+        // for what is fundamentally a cheat tool, and clamping here rather than in the view model
+        // means it holds however the grant is reached.
+        //
+        // Each field clamps on its own, because a save can already hold different values in them.
+        var granted = Headroom(RequireCurrent().Unlocks.TerraTokens, amount);
+
         MutateUnlocks(unlocks => unlocks with
         {
-            TerraTokens = unlocks.TerraTokens + amount,
-            AllTimeTerraTokens = unlocks.AllTimeTerraTokens + amount
+            TerraTokens = AddClamped(unlocks.TerraTokens, amount),
+            AllTimeTerraTokens = AddClamped(unlocks.AllTimeTerraTokens, amount)
         });
 
         ReplacePlayer(playerId, player => player with
         {
-            TotalTerraTokenEarned = player.TotalTerraTokenEarned + amount
+            TotalTerraTokenEarned = AddClamped(player.TotalTerraTokenEarned, amount)
         });
+
+        return granted;
+    }
+
+    /// <summary>Adds without overflowing - an int field cannot hold more than int.MaxValue.</summary>
+    private static int AddClamped(int current, int amount)
+    {
+        var sum = (long)current + amount;
+
+        return sum > int.MaxValue ? int.MaxValue : (int)sum;
+    }
+
+    /// <summary>
+    /// How much of a grant the balance could actually take. Never exceeds the requested amount,
+    /// so it always fits back into an int even when the current balance is negative.
+    /// </summary>
+    private static int Headroom(int current, int amount)
+    {
+        return (int)((long)AddClamped(current, amount) - current);
     }
 
     private PlanetCrafterSaveFile RequireCurrent()

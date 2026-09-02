@@ -62,7 +62,7 @@
         </SplitView.Pane>
 
         <SplitView.Content>
-            <Grid RowDefinitions="Auto,*">
+            <Grid RowDefinitions="Auto,Auto,*">
 
                 <!-- Header bar: page title + primary Save action + save state -->
                 <Border Grid.Row="0" Background="{DynamicResource SurfacePage}"
@@ -92,7 +92,17 @@
                            Opacity="0" IsHitTestVisible="False" Height="0"
                            AutomationProperties.LiveSetting="Polite" />
 
-                <ContentControl Grid.Row="1" Content="{Binding CurrentPage}" />
+                <!-- Shown when a page's Load() threw. The file stays open and the edits stay
+                     in memory, so this reassures rather than alarms. -->
+                <Border Grid.Row="1" Background="{DynamicResource SurfaceCard}"
+                        BorderBrush="{DynamicResource Divider}" BorderThickness="0,0,0,1"
+                        Padding="24,12"
+                        IsVisible="{Binding PageError, Converter={StaticResource StringNotEmpty}}">
+                    <TextBlock Text="{Binding PageError}" TextWrapping="Wrap"
+                               Foreground="{DynamicResource StatusErrorText}" />
+                </Border>
+
+                <ContentControl Grid.Row="2" Content="{Binding CurrentPage}" />
             </Grid>
         </SplitView.Content>
 

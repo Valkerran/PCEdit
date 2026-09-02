@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using PCEdit.SaveFileHandler.Models;
 
 namespace PCEdit.SaveFileHandler;
@@ -19,6 +20,17 @@ public sealed class PlanetCrafterSaveFileSerializer(IJsonRecordSerializer jsonRe
     private const string SectionSeparator = "\r@\r";
     private const string RecordSeparator = "|\n";
 
+    // The '@' separating two sections is always bracketed by the framing line breaks
+    // ("\r@\r"). Matching it that way - rather than splitting on every '@' in the file -
+    // leaves an '@' inside a JSON string alone, which is exactly where player-typed free text
+    // puts one (a container/sign label, a player name). Splitting on the bare character
+    // truncated those saves mid-string, and in the one placement where the prefix stayed valid
+    // JSON it dropped the remainder with no error at all (issue #38).
+    //
+    // Lookaround rather than a consuming match, so two separators sharing a line break - what
+    // an empty section between them looks like - are both still found.
+    private static readonly Regex SectionSplitter = new(@"(?<=[\r\n])@(?=[\r\n])", RegexOptions.Compiled);
+
     private readonly IJsonRecordSerializer _jsonRecordSerializer 
         = jsonRecordSerializer ?? throw new ArgumentNullException(nameof(jsonRecordSerializer));
 
@@ -26,14 +38,21 @@ public sealed class PlanetCrafterSaveFileSerializer(IJsonRecordSerializer jsonRe
     {
         ArgumentNullException.ThrowIfNull(content);
 
-        var sections = content.Split(SectionDelimiter);
+        var sections = SectionSplitter.Split(StripTerminator(content.TrimStart('\uFEFF')));
         if (sections.Length < RequiredSectionCount)
         {
             throw new InvalidDataException(
-                $"A Planet Crafter save file requires at least {RequiredSectionCount} sections; found {sections.Length}.");
+                $"A Planet Crafter save file requires {RequiredSectionCount} sections; found {sections.Length}.");
         }
 
-        sections[0] = sections[0].TrimStart('\uFEFF');
+        // Reading past extra sections would drop them silently on the next save - which is how a
+        // format change in a future game version would eat a player's data (issue #20).
+        if (sections.Length > RequiredSectionCount)
+        {
+            throw new InvalidDataException(
+                $"This save file has more sections ({sections.Length}) than the {RequiredSectionCount} "
+                + "this build of PCEdit understands; it is likely from a newer version of the game.");
+        }
 
         return new PlanetCrafterSaveFile
         {
@@ -69,6 +88,21 @@ public sealed class PlanetCrafterSaveFileSerializer(IJsonRecordSerializer jsonRe
         };
 
         return FilePrefix + string.Join(SectionSeparator, sections) + FileSuffix;
+    }
+
+    /// <summary>
+    /// Removes the file's trailing "\r@" terminator. That final '@' is the one framing
+    /// character with no line break after it, so <see cref="SectionSplitter"/> would
+    /// otherwise leave it glued to the last section and make that section invalid JSON.
+    /// Only whitespace may follow it.
+    /// </summary>
+    private static string StripTerminator(string content)
+    {
+        var lastDelimiter = content.LastIndexOf(SectionDelimiter);
+
+        return lastDelimiter >= 0 && content.AsSpan(lastDelimiter + 1).IsWhiteSpace()
+            ? content[..lastDelimiter]
+            : content;
     }
 
     private List<T> DeserializeRecords<T>(string section, int sectionIndex)

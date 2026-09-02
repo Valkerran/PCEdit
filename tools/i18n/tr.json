@@ -131,7 +131,7 @@
   "Teleport_LandmarkPlanetHash": "dünya karması {0}",
   "Teleport_LandmarkNoPlanetHash": "dünya karması kaydedilmemiş",
   "Disclaimer_Title": "Kendi sorumluluğunuzda kullanın",
-  "Disclaimer_Body": "PCEdit, Planet Crafter kayıt dosyalarını doğrudan düzenler. Hatalı bir düzenleme bir kaydı bozabilir ve ilerlemenizi kaybettirebilir. Düzenlemeden önce kayıt dosyanızın her zaman bir yedeğini tutun. Bu yazılım, hiçbir garanti olmaksızın «olduğu gibi» sağlanır.",
+  "Disclaimer_Body": "PCEdit, Planet Crafter kayıt dosyalarını doğrudan düzenler ve hatalı bir düzenleme bir kaydı bozarak ilerlemenizi kaybettirebilir. PCEdit, bir dosyaya ilk kez yazmadan önce özgün hâlini ayrıca kopyalar; ancak bunu bir yedeğin yerine geçen bir şey değil, güvenlik ağı olarak görün: kendi yedeğinizi de saklayın. Bu yazılım hiçbir garanti verilmeksizin «olduğu gibi» sunulmaktadır.",
   "Disclaimer_Acknowledge": "Anladım",
   "Disclaimer_ShortNotice": "Düzenleme bir kaydı bozabilir. Önce dosyanızın yedeğini alın — kendi sorumluluğunuzda kullanın.",
   "About_Title": "Hakkında",
@@ -194,5 +194,8 @@
   "Teleport_AimedAtWorld": "{0} hedeflendi. Kesin bir nokta için X / Y / Z değerlerini ayarlayın veya bir önemli nokta seçin.",
   "Teleport_MultiplayerNote": "Değişiklikler yalnızca seçili oyuncuya uygulanır. Oyunun ana bilgisayarı olmayan bir oyuncuyu çevrimdışıyken düzenleyin ve sonucu oyun içinde kontrol edin.",
   "About_SaveLocationsHeading": "Oyunun kayıtlarını sakladığı yer",
-  "About_SaveLocationsNote": "Xbox her kaydı, her yazıldığında değişen rastgele bir dizeyle adlandırır. Linux'ta oyun başka bir sürücüdeyse ~/.steam/steam yerine Steam kitaplık klasörünüzü yazın."
+  "About_SaveLocationsNote": "Xbox her kaydı, her yazıldığında değişen rastgele bir dizeyle adlandırır. Linux'ta oyun başka bir sürücüdeyse ~/.steam/steam yerine Steam kitaplık klasörünüzü yazın.",
+  "Shell_PageLoadFailed": "Bu sayfa yüklenemedi. Dosyanız hâlâ açık ve kaydedilmemiş değişiklikleriniz güvende.",
+  "About_BackupsHeading": "Otomatik yedekler",
+  "About_BackupsNote": "PCEdit bir dosyayı açtıktan sonra ilk kez kaydettiğinde, önce özgün dosyayı buraya kopyalar. Her kayıt için en yeni beş kopya saklanır."
 }

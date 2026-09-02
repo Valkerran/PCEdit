@@ -7,11 +7,24 @@ public sealed class PlanetCrafterSaveFileStoreTests : IDisposable
     private readonly PlanetCrafterSaveFileStore _store = new(new PlanetCrafterSaveFileSerializer(new JsonRecordSerializer()));
     private readonly string _tempFile = Path.Combine(Path.GetTempPath(), $"pcedit-test-{Guid.NewGuid():N}.txt");
 
+    /// <summary>Where Save stages its write before swapping it in.</summary>
+    private string TempPath => _tempFile + ".pcedit-tmp";
+
     public void Dispose()
     {
         if (File.Exists(_tempFile))
         {
             File.Delete(_tempFile);
+        }
+
+        // A completed save leaves nothing here; one test occupies the path on purpose.
+        if (Directory.Exists(TempPath))
+        {
+            Directory.Delete(TempPath, recursive: true);
+        }
+        else if (File.Exists(TempPath))
+        {
+            File.Delete(TempPath);
         }
     }
 
@@ -121,6 +134,46 @@ public sealed class PlanetCrafterSaveFileStoreTests : IDisposable
         File.WriteAllBytes(_tempFile, original);
 
         _store.Save(_tempFile, _store.Load(_tempFile));
+
+        Assert.Equal(original, File.ReadAllBytes(_tempFile));
+    }
+
+    [Fact]
+    public void Save_ToANewPath_LeavesNoTemporaryFileBehind()
+    {
+        _store.Save(_tempFile, SaveFileFixtures.CreateEmpty());
+
+        Assert.False(File.Exists(TempPath));
+    }
+
+    [Fact]
+    public void Save_OverAnExistingFile_LeavesNoTemporaryFileBehind()
+    {
+        _store.Save(_tempFile, SaveFileFixtures.CreateEmpty());
+
+        _store.Save(_tempFile, _store.Load(_tempFile));
+
+        Assert.False(File.Exists(TempPath));
+    }
+
+    [Fact]
+    public void Save_WhenTheWriteFails_LeavesTheExistingSaveByteIdentical()
+    {
+        // Save used to be a File.WriteAllText straight over the target, which truncates it before
+        // writing a byte - so anything that went wrong in between left the player with a ruined
+        // save and no copy anywhere (issue #36).
+        var source = Path.Combine(AppContext.BaseDirectory, "TestData", "mini-save.json");
+        var original = File.ReadAllBytes(source);
+        File.WriteAllBytes(_tempFile, original);
+
+        // Occupy the staging path with a directory so the write cannot succeed. This stands in for
+        // any interrupted write - full disk, permissions, power loss - which cannot be provoked
+        // portably but reaches the target file the same way.
+        Directory.CreateDirectory(TempPath);
+
+        // The exact type differs by platform (UnauthorizedAccessException / IOException); that the
+        // save reports failure at all is the point, and that the file below is untouched.
+        Assert.ThrowsAny<Exception>(() => _store.Save(_tempFile, SaveFileFixtures.CreateEmpty()));
 
         Assert.Equal(original, File.ReadAllBytes(_tempFile));
     }

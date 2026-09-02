@@ -153,10 +153,24 @@ public sealed partial class TeleportViewModel(
 
     private void ApplyPlayerPosition(PlayerData player)
     {
-        var (x, y, z) = PositionCodec.Parse(player.PlayerPosition);
-        X = x.ToString(CultureInfo.InvariantCulture);
-        Y = y.ToString(CultureInfo.InvariantCulture);
-        Z = z.ToString(CultureInfo.InvariantCulture);
+        // A position the game did not write - a hand-edited or corrupt save. Leaving the boxes as
+        // they are is the whole fix: this runs from Load, so throwing here brought the app down
+        // after the file had already opened successfully (issue #37).
+        ApplyPosition(player.PlayerPosition);
+    }
+
+    /// <summary>Puts a save-file position into the X/Y/Z boxes, ignoring one it cannot read.</summary>
+    private bool ApplyPosition(string? position)
+    {
+        if (!PositionCodec.TryParse(position, out var parsed))
+        {
+            return false;
+        }
+
+        X = parsed.X.ToString(CultureInfo.InvariantCulture);
+        Y = parsed.Y.ToString(CultureInfo.InvariantCulture);
+        Z = parsed.Z.ToString(CultureInfo.InvariantCulture);
+        return true;
     }
 
     partial void OnSelectedPlanetIdChanged(string? value)
@@ -203,10 +217,11 @@ public sealed partial class TeleportViewModel(
             return;
         }
 
-        var (x, y, z) = PositionCodec.Parse(arrival.Position);
-        X = x.ToString(CultureInfo.InvariantCulture);
-        Y = y.ToString(CultureInfo.InvariantCulture);
-        Z = z.ToString(CultureInfo.InvariantCulture);
+        if (!ApplyPosition(arrival.Position))
+        {
+            return;
+        }
+
         SetStatus(StatusKind.Info, _localizer.Format(LocKeys.Teleport_AimedAtWorld, SelectedPlanetId));
     }
 
@@ -218,10 +233,14 @@ public sealed partial class TeleportViewModel(
     [RelayCommand]
     private void ApplyLandmark(LandmarkOption landmark)
     {
-        var (x, y, z) = PositionCodec.Parse(landmark.Position);
-        X = x.ToString(CultureInfo.InvariantCulture);
-        Y = y.ToString(CultureInfo.InvariantCulture);
-        Z = z.ToString(CultureInfo.InvariantCulture);
+        if (!ApplyPosition(landmark.Position))
+        {
+            // FindLandmarks already drops these, so this is belt-and-braces against a future
+            // change there rather than something a user can reach today.
+            SetStatus(StatusKind.Error, _localizer[LocKeys.Teleport_InvalidCoords]);
+            return;
+        }
+
         SetStatus(StatusKind.Success, _localizer.Format(LocKeys.Teleport_PositionFromLandmark, landmark.Label, X, Y, Z));
     }
 
@@ -293,7 +312,9 @@ public sealed partial class TeleportViewModel(
     private List<LandmarkOption> FindLandmarks(PlanetCrafterSaveFile save)
     {
         return save.WorldObjects
-            .Where(w => w.Position is not null &&
+            // A landmark whose position cannot be read is useless as a teleport target, so drop
+            // it here rather than letting it fail when the user picks it.
+            .Where(w => PositionCodec.TryParse(w.Position, out _) &&
                         (w.GId.Contains("pod", StringComparison.OrdinalIgnoreCase) ||
                          w.GId.Contains("teleport", StringComparison.OrdinalIgnoreCase)))
             .Select(w =>
