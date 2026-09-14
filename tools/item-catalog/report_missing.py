@@ -1,19 +1,17 @@
 #!/usr/bin/env python3
-"""List the ids in one or more save files that the bundled catalogs do not cover.
+"""List the ids in one or more save files that the bundled item catalog does not cover.
 
 A new game version adds content ids the app has never seen. Unknown ids degrade gracefully at
-runtime (an item falls back to its raw id + the `misc` icon; a logistics group resolves to
-itself and is flagged unknown), so nothing breaks -- but the Inventories page reads better
-once they are curated in.
+runtime (an item falls back to its raw id + the `misc` icon), so nothing breaks -- but the
+Inventories page reads better once they are curated in.
 
 This reports what to add:
 
   * `WorldObject.gId` values missing from PCEdit.App.Core/Data/ItemCatalog.json
   * `unlockedGroups` entries missing from that same catalog
-  * `demandGrps` / `supplyGrps` ids missing from PCEdit.App.Core/Data/LogisticsGroups.json
+  * `demandGrps` / `supplyGrps` ids missing the corresponding capability in ItemCatalog.json
 
-Curate the output into the ITEMS table in gen_catalog.py and the GROUP_IDS list in
-gen_logistics_groups.py, then re-run those two scripts.
+Curate the output into the ITEMS and LOGISTICS_IDS tables in gen_catalog.py, then re-run it.
 
 Run from the repo root:
 
@@ -28,7 +26,6 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
 ITEM_CATALOG = REPO / "PCEdit.App.Core" / "Data" / "ItemCatalog.json"
-LOGISTICS_CATALOG = REPO / "PCEdit.App.Core" / "Data" / "LogisticsGroups.json"
 
 BOM = b"\xef\xbb\xbf"
 WORLD_OBJECTS, INVENTORIES, UNLOCKS = 3, 4, 0
@@ -65,11 +62,10 @@ def main(argv):
         raise SystemExit(__doc__)
 
     items = json.loads(ITEM_CATALOG.read_text(encoding="utf-8"))["items"]
-    groups = json.loads(LOGISTICS_CATALOG.read_text(encoding="utf-8"))["groups"]
-
     missing_items = collections.Counter()
     missing_unlocks = collections.Counter()
-    missing_groups = collections.Counter()
+    missing_demand_groups = collections.Counter()
+    missing_supply_groups = collections.Counter()
 
     for path in argv[1:]:
         # Scanning a folder should not abort on one file that is not a save (a log, an index,
@@ -92,14 +88,19 @@ def main(argv):
                 missing_unlocks[unlocked] += 1
 
         for inventory in records(sections[INVENTORIES]):
-            for key in ("demandGrps", "supplyGrps"):
-                for group in comma_ids(inventory.get(key)):
-                    if group not in groups:
-                        missing_groups[group] += 1
+            for group in comma_ids(inventory.get("demandGrps")):
+                if group not in items or not items[group]["canDemand"]:
+                    missing_demand_groups[group] += 1
+            for group in comma_ids(inventory.get("supplyGrps")):
+                if group not in items or not items[group]["canSupply"]:
+                    missing_supply_groups[group] += 1
 
     report("WorldObject.gId not in ItemCatalog.json", missing_items, len(items))
     report("unlockedGroups entry not in ItemCatalog.json", missing_unlocks, len(items))
-    report("demandGrps/supplyGrps id not in LogisticsGroups.json", missing_groups, len(groups))
+    demand_count = sum(item["canDemand"] for item in items.values())
+    supply_count = sum(item["canSupply"] for item in items.values())
+    report("demandGrps id not demand-capable in ItemCatalog.json", missing_demand_groups, demand_count)
+    report("supplyGrps id not supply-capable in ItemCatalog.json", missing_supply_groups, supply_count)
     return 0
 
 

@@ -17,7 +17,8 @@ public sealed class InventoryEditorTests
         var localizer = new Localizer();
         var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         workspace.Load(Path);
-        return (new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace)), workspace);
+        var itemCatalog = new ItemCatalog();
+        return (new InventoryEditor(workspace, itemCatalog, new LogisticsGroupCatalog(itemCatalog), localizer, new PlanetIndex(workspace)), workspace);
     }
 
     /// <summary>Loads the standard fixture after letting a test damage it first.</summary>
@@ -31,7 +32,8 @@ public sealed class InventoryEditorTests
         var localizer = new Localizer();
         var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         workspace.Load(Path);
-        return (new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace)), workspace);
+        var itemCatalog = new ItemCatalog();
+        return (new InventoryEditor(workspace, itemCatalog, new LogisticsGroupCatalog(itemCatalog), localizer, new PlanetIndex(workspace)), workspace);
     }
 
     private static void SetIdList(PCEdit.SaveFileHandler.Models.PlanetCrafterSaveFile save, int inventoryId, string csv)
@@ -107,14 +109,16 @@ public sealed class InventoryEditorTests
     {
         var store = new FakeSaveFileStore();
         var save = WorkspaceFixtures.Create();
-        var all = GroupListCodec.Join(new LogisticsGroupCatalog().All.Select(g => g.Id));
+        var itemCatalog = new ItemCatalog();
+        var groupCatalog = new LogisticsGroupCatalog(itemCatalog);
+        var all = GroupListCodec.Join(groupCatalog.SupplyGroups.Select(g => g.Id));
         var index = save.Inventories.FindIndex(i => i.Id == 30);
         save.Inventories[index] = save.Inventories[index] with { DemandGroups = "Iron", SupplyGroups = all, Priority = 0 };
         store.Seed(Path, save);
         var localizer = new Localizer();
         var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         workspace.Load(Path);
-        var editor = new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace));
+        var editor = new InventoryEditor(workspace, itemCatalog, groupCatalog, localizer, new PlanetIndex(workspace));
 
         Assert.Equal(
             "Demand 1 · Supply Everything · Priority Normal",
@@ -132,7 +136,8 @@ public sealed class InventoryEditorTests
         var localizer = new Localizer();
         var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         workspace.Load(Path);
-        var editor = new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace));
+        var itemCatalog = new ItemCatalog();
+        var editor = new InventoryEditor(workspace, itemCatalog, new LogisticsGroupCatalog(itemCatalog), localizer, new PlanetIndex(workspace));
 
         var group = editor.BuildInventoryGroups().Single(g => g.InventoryId == 30);
         Assert.Equal(4, group.Logistics!.Priority);
@@ -187,7 +192,8 @@ public sealed class InventoryEditorTests
         var localizer = new Localizer();
         var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         workspace.Load(Path);
-        return (new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace)), workspace);
+        var itemCatalog = new ItemCatalog();
+        return (new InventoryEditor(workspace, itemCatalog, new LogisticsGroupCatalog(itemCatalog), localizer, new PlanetIndex(workspace)), workspace);
     }
 
     [Fact]
@@ -198,7 +204,8 @@ public sealed class InventoryEditorTests
         var localizer = new Localizer();
         var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         workspace.Load(Path);
-        var editor = new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace));
+        var itemCatalog = new ItemCatalog();
+        var editor = new InventoryEditor(workspace, itemCatalog, new LogisticsGroupCatalog(itemCatalog), localizer, new PlanetIndex(workspace));
 
         var groups = editor.BuildInventoryGroups().ToDictionary(g => g.InventoryId, g => g.PlanetId);
 
@@ -322,7 +329,8 @@ public sealed class InventoryEditorTests
         var localizer = new Localizer();
         var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         workspace.Load(Path);
-        var editor = new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace));
+        var itemCatalog = new ItemCatalog();
+        var editor = new InventoryEditor(workspace, itemCatalog, new LogisticsGroupCatalog(itemCatalog), localizer, new PlanetIndex(workspace));
 
         var result = editor.TryMoveItem(worldObjectId: 200, destinationInventoryId: 30);
 

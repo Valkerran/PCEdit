@@ -29,6 +29,32 @@ public sealed class ItemCatalogTests
     }
 
     [Fact]
+    public void ResolveInfo_KnownLogisticsItem_ReturnsCapabilitiesAndLifecycleMetadata()
+    {
+        var info = EmbeddedCatalog.ResolveInfo("Iron");
+
+        Assert.True(info.IsKnown);
+        Assert.True(info.CanDemand);
+        Assert.True(info.CanSupply);
+        Assert.False(info.IsDeprecated);
+        Assert.Null(info.AddedIn);
+        Assert.Null(info.DeprecatedIn);
+    }
+
+    [Fact]
+    public void ResolveInfo_UnknownItem_HasDisabledCapabilities()
+    {
+        var info = EmbeddedCatalog.ResolveInfo("TotallyMadeUpGId");
+
+        Assert.False(info.IsKnown);
+        Assert.False(info.CanDemand);
+        Assert.False(info.CanSupply);
+        Assert.False(info.IsDeprecated);
+        Assert.Null(info.AddedIn);
+        Assert.Null(info.DeprecatedIn);
+    }
+
+    [Fact]
     public void Resolve_ItemWithoutIconOverride_UsesCategoryIcon()
     {
         var catalog = CatalogFrom("""
@@ -120,6 +146,17 @@ public sealed class ItemCatalogTests
             Assert.False(
                 string.IsNullOrWhiteSpace(item.Value.GetProperty("displayName").GetString()),
                 $"Item '{item.Name}' has a blank displayName.");
+            Assert.True(item.Value.GetProperty("canDemand").ValueKind is JsonValueKind.True or JsonValueKind.False);
+            Assert.True(item.Value.GetProperty("canSupply").ValueKind is JsonValueKind.True or JsonValueKind.False);
+            Assert.True(item.Value.GetProperty("deprecated").ValueKind is JsonValueKind.True or JsonValueKind.False);
+            Assert.True(item.Value.GetProperty("addedIn").ValueKind is JsonValueKind.String or JsonValueKind.Null);
+            Assert.True(item.Value.GetProperty("deprecatedIn").ValueKind is JsonValueKind.String or JsonValueKind.Null);
+
+            var deprecated = item.Value.GetProperty("deprecated").GetBoolean();
+            var deprecatedIn = item.Value.GetProperty("deprecatedIn");
+            Assert.True(
+                deprecated || deprecatedIn.ValueKind is JsonValueKind.Null,
+                $"Item '{item.Name}' has deprecatedIn set but is not deprecated.");
         }
     }
 

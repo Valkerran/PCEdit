@@ -513,15 +513,110 @@ ITEMS = collections.OrderedDict([
     ("Trashcan1", ("Trash Can", "furniture")),
     ("ScreenSystem1", ("System Screen", "furniture")),
     ("ScreenToxic1", ("Toxicity Screen", "furniture")),
+    # --- Items previously known only as logistics groups ---
+    ("AnimalFood3", ("Animal Food T3", "consumable")),
+    ("AntiToxinsExplosive2", ("Anti-Toxins Charge T2", "consumable")),
+    ("Butterfly10Larvae", ("Butterfly Larva", "larva")),
+    ("Butterfly12Larvae", ("Butterfly Larva", "larva")),
+    ("Butterfly13Larvae", ("Butterfly Larva", "larva")),
+    ("Butterfly14Larvae", ("Butterfly Larva", "larva")),
+    ("Butterfly19Larvae", ("Butterfly Larva", "larva")),
+    ("Butterfly20Larvae", ("Butterfly Larva", "larva")),
+    ("CookChocolate", ("Chocolate", "food")),
+    ("CookCookie1", ("Cookie", "food")),
+    ("CookCroissant", ("Croissant", "food")),
+    ("CookFlour", ("Flour", "food")),
+    ("CookStew1", ("Stew", "food")),
+    ("CookStewFish1", ("Fish Stew", "food")),
+    ("Fish2Eggs", ("Fish Eggs", "larva")),
+    ("Fish4Eggs", ("Fish Eggs", "larva")),
+    ("Fish7Eggs", ("Fish Eggs", "larva")),
+    ("Fish8Eggs", ("Fish Eggs", "larva")),
+    ("Fish9Eggs", ("Fish Eggs", "larva")),
+    ("Fish10Eggs", ("Fish Eggs", "larva")),
+    ("Fish11Eggs", ("Fish Eggs", "larva")),
+    ("Fish12Eggs", ("Fish Eggs", "larva")),
+    ("Fish13Eggs", ("Fish Eggs", "larva")),
+    ("Fish14Eggs", ("Fish Eggs", "larva")),
+    ("Fish15Eggs", ("Fish Eggs", "larva")),
+    ("Frog3Eggs", ("Frog Eggs", "larva")),
+    ("Frog4Eggs", ("Frog Eggs", "larva")),
+    ("Frog5Eggs", ("Frog Eggs", "larva")),
+    ("Frog6Eggs", ("Frog Eggs", "larva")),
+    ("Frog7Eggs", ("Frog Eggs", "larva")),
+    ("Frog11Eggs", ("Frog Eggs", "larva")),
+    ("Frog13Eggs", ("Frog Eggs", "larva")),
+    ("Frog14Eggs", ("Frog Eggs", "larva")),
+    ("Frog15Eggs", ("Frog Eggs", "larva")),
+    ("Frog16Eggs", ("Frog Eggs", "larva")),
+    ("FrogGoldEggs", ("Golden Frog Eggs", "larva")),
+    ("FuseInsects1", ("Insects Fuse", "consumable")),
+    ("ToxicityAmmo", ("Toxicity Ammo", "consumable")),
+    ("ToxicityAmmoPack", ("Toxicity Ammo Pack", "consumable")),
+    ("ToxicityMedecine", ("Toxicity Medicine", "consumable")),
+    ("ToxicityMedecinePack", ("Toxicity Medicine Pack", "consumable")),
+    ("Tree3Seed", ("Tree Seed", "seed")),
+    ("Tree4Seed", ("Tree Seed", "seed")),
+    ("Tree5Seed", ("Tree Seed", "seed")),
+    ("Tree6Seed", ("Tree Seed", "seed")),
+    ("Tree7Seed", ("Tree Seed", "seed")),
+    ("Tree11Seed", ("Tree Seed", "seed")),
+    ("Tree12Seed", ("Tree Seed", "seed")),
+    ("Tree14Seed", ("Tree Seed", "seed")),
+    ("Tree15Seed", ("Tree Seed", "seed")),
+    ("Tree17Seed", ("Tree Seed", "seed")),
 ])
+
+# Items observed in demandGrps/supplyGrps across the sample saves. A future item needs
+# one entry in ITEMS and, if logistics-capable, one membership here.
+LOGISTICS_IDS = {
+    "Algae1Seed", "Alloy", "Aluminium", "AnimalFood1", "AnimalFood2", "AnimalFood3",
+    "AntiToxinsExplosive1", "AntiToxinsExplosive2", "Bacteria1", "BalzarQuartz", "Bauxite",
+    "Bee1Larvae", "Bioplastic1", "Butterfly1Larvae", "Butterfly2Larvae", "Butterfly3Larvae",
+    "Butterfly4Larvae", "Butterfly5Larvae", "Butterfly6Larvae", "Butterfly7Larvae",
+    "Butterfly8Larvae", "Butterfly9Larvae", "Butterfly10Larvae", "Butterfly11Larvae",
+    "Butterfly12Larvae", "Butterfly13Larvae", "Butterfly14Larvae", "Butterfly15Larvae",
+    "Butterfly16Larvae", "Butterfly17Larvae", "Butterfly18Larvae", "Butterfly19Larvae",
+    "Butterfly20Larvae", "ChlorineCapsule1", "CircuitBoard1", "Cobalt", "CookCake1",
+    "CookChocolate", "CookCocoaGrowable", "CookCookie1", "CookCroissant", "CookFlour",
+    "CookStew1", "CookStewFish1", "CookWheatGrowable", "CosmicQuartz", "DNASequence",
+    "Dolomite", "Drone1", "Drone2", "Explosive", "FabricBlue", "Fertilizer1", "Fertilizer2",
+    "Fertilizer3", "Fish1Eggs", "Fish2Eggs", "Fish3Eggs", "Fish4Eggs", "Fish5Eggs",
+    "Fish6Eggs", "Fish7Eggs", "Fish8Eggs", "Fish9Eggs", "Fish10Eggs", "Fish11Eggs",
+    "Fish12Eggs", "Fish13Eggs", "Fish14Eggs", "Fish15Eggs", "Flare", "Frog1Eggs",
+    "Frog2Eggs", "Frog3Eggs", "Frog4Eggs", "Frog5Eggs", "Frog6Eggs", "Frog7Eggs",
+    "Frog8Eggs", "Frog9Eggs", "Frog10Eggs", "Frog11Eggs", "Frog12Eggs", "Frog13Eggs",
+    "Frog14Eggs", "Frog15Eggs", "Frog16Eggs", "FrogGoldEggs", "FuseAnimals1", "FuseCartridge",
+    "FuseEnergy1", "FuseGrowth1", "FuseHeat1", "FuseInsects1", "FuseOxygen1", "FusePlants1",
+    "FusePressure1", "FuseProduction1", "FusePurification1", "FuseTradeRocketsSpeed1",
+    "FusionEnergyCell", "GeneticTrait", "Iridium", "Iron", "Keycard1", "KeyCard2",
+    "LarvaeBase1", "LarvaeBase2", "LarvaeBase3", "Magnesium", "MagnetarQuartz",
+    "MethanCapsule1", "MicroPlastics", "Minable-Tungsten", "Mutagen1", "Mutagen2", "Mutagen3",
+    "Mutagen4", "NitrogenCapsule1", "Obsidian", "Osmium", "OxygenCapsule1", "Phosphorus",
+    "Phytoplankton1", "Phytoplankton2", "Phytoplankton3", "PlasticPolymer", "PristineMushroom",
+    "PulsarQuartz", "PurificationCapsule", "PurificationGel", "PurifiedWater", "QuasarQuartz",
+    "RedPowder1", "RocketReactor", "RocketReactor2", "Rod-alloy", "Rod-iridium", "Rod-osmium",
+    "Rod-plastic", "Rod-tungsten", "Rod-uranium", "Seed0", "Seed1", "Seed2", "Seed3", "Seed4",
+    "Seed5", "Seed6", "Seed7Humble", "Seed8Humble", "Seed9Humble", "Seed10Humble",
+    "Seed11Humble", "SeedGold", "Selenium", "Silicon", "Silk", "SilkWorm", "SmartFabric",
+    "SolarQuartz", "Sulfur", "Titanium", "ToxicGoo", "ToxicSpores", "ToxicWater",
+    "ToxicityAmmo", "ToxicityAmmoPack", "ToxicityMedecine", "ToxicityMedecinePack", "Toxins",
+    "Tree0Seed", "Tree1Seed", "Tree2Seed", "Tree3Seed", "Tree4Seed", "Tree5Seed", "Tree6Seed",
+    "Tree7Seed", "Tree8Seed", "Tree9Seed", "Tree10Seed", "Tree11Seed", "Tree12Seed",
+    "Tree13Seed", "Tree14Seed", "Tree15Seed", "Tree16Seed", "Tree17Seed", "TreeRoot",
+    "Uraninite", "Uranim", "Vegetable0Growable", "Vegetable0Seed", "Vegetable1Growable",
+    "Vegetable1Seed", "Vegetable2Growable", "Vegetable2Seed", "Vegetable3Growable",
+    "Vegetable3Seed", "WaterBottle1", "Zeolite", "astrofood", "astrofood2", "honey", "ice",
+}
 
 
 def main():
     out = collections.OrderedDict()
     out["$comment"] = (
         "App-only item catalog keyed by WorldObject.GId. Not part of the save "
-        "file. 'icon' on an item overrides its category icon; unknown GIds fall "
-        "back to the raw id and the fallbackCategory icon. Regenerate with "
+        "file. Item entries also define logistics and lifecycle metadata. 'icon' "
+        "overrides its category icon; unknown GIds fall back to the raw id and "
+        "the fallbackCategory icon. Regenerate with "
         "tools/item-catalog/gen_catalog.py."
     )
     out["fallbackCategory"] = FALLBACK_CATEGORY
@@ -529,7 +624,18 @@ def main():
     items = collections.OrderedDict()
     for gid, (name, cat) in ITEMS.items():
         assert cat in CATEGORIES, f"{gid} -> unknown category {cat}"
-        items[gid] = {"displayName": name, "category": cat}
+        logistics_capable = gid in LOGISTICS_IDS
+        items[gid] = {
+            "displayName": name,
+            "category": cat,
+            "canDemand": logistics_capable,
+            "canSupply": logistics_capable,
+            "deprecated": False,
+            "addedIn": None,
+            "deprecatedIn": None,
+        }
+    missing_logistics_items = LOGISTICS_IDS.difference(items)
+    assert not missing_logistics_items, f"Logistics ids missing from ITEMS: {sorted(missing_logistics_items)}"
     out["items"] = items
 
     text = json.dumps(out, indent=2)
