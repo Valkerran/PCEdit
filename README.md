@@ -1,5 +1,10 @@
 # PCEdit
 
+[![CI](https://github.com/Valkerran/PCEdit/actions/workflows/ci.yml/badge.svg)](https://github.com/Valkerran/PCEdit/actions/workflows/ci.yml)
+[![Release](https://github.com/Valkerran/PCEdit/actions/workflows/release.yml/badge.svg)](https://github.com/Valkerran/PCEdit/actions/workflows/release.yml)
+[![Latest release](https://img.shields.io/github/v/release/Valkerran/PCEdit)](https://github.com/Valkerran/PCEdit/releases/latest)
+[![License: GPL v3 or later](https://img.shields.io/github/license/Valkerran/PCEdit)](LICENSE)
+
 A save-file editor for the game *[The Planet Crafter](https://www.plaentcrafter.com/)*.
 View and edit players, world terraforming, inventories, terra tokens, and teleport a
 player between locations.
