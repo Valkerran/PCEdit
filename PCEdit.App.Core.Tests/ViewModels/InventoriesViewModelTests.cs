@@ -18,7 +18,8 @@ public sealed class InventoriesViewModelTests
         var localizer = new Localizer();
         var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         workspace.Load(Path);
-        var vm = new InventoriesViewModel(workspace, new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace)), new FakeNavigationService(), localizer);
+        var itemCatalog = new ItemCatalog();
+        var vm = new InventoriesViewModel(workspace, new InventoryEditor(workspace, itemCatalog, new LogisticsGroupCatalog(itemCatalog), localizer, new PlanetIndex(workspace)), new FakeNavigationService(), localizer);
         vm.Load();
         return vm;
     }
@@ -49,7 +50,8 @@ public sealed class InventoriesViewModelTests
         var localizer = new Localizer();
         var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         workspace.Load(Path);
-        var vm = new InventoriesViewModel(workspace, new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace)), new FakeNavigationService(), localizer);
+        var itemCatalog = new ItemCatalog();
+        var vm = new InventoriesViewModel(workspace, new InventoryEditor(workspace, itemCatalog, new LogisticsGroupCatalog(itemCatalog), localizer, new PlanetIndex(workspace)), new FakeNavigationService(), localizer);
         vm.Load();
         return vm;
     }
@@ -123,7 +125,8 @@ public sealed class InventoriesViewModelTests
         var store = new FakeSaveFileStore();
         var localizer = new Localizer();
         var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
-        var vm = new InventoriesViewModel(workspace, new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace)), nav, localizer);
+        var itemCatalog = new ItemCatalog();
+        var vm = new InventoriesViewModel(workspace, new InventoryEditor(workspace, itemCatalog, new LogisticsGroupCatalog(itemCatalog), localizer, new PlanetIndex(workspace)), nav, localizer);
 
         vm.OpenFileCommand.Execute(null);
 

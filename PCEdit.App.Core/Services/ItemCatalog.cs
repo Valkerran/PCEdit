@@ -41,27 +41,53 @@ public sealed class ItemCatalog : IItemCatalog
         _fallbackIcon = document.Categories.TryGetValue(document.FallbackCategory, out var fallback)
             ? fallback.Icon
             : "cat_misc.png";
+        All = document.Items.Select(pair => CreateInfo(pair.Key, pair.Value)).ToList();
     }
+
+    public IReadOnlyList<ItemCatalogInfo> All { get; }
 
     public ItemDisplayInfo Resolve(string gId)
     {
+        var info = ResolveInfo(gId);
+        return new ItemDisplayInfo(info.GId, info.DisplayName, info.IconFile);
+    }
+
+    public ItemCatalogInfo ResolveInfo(string gId)
+    {
         ArgumentNullException.ThrowIfNull(gId);
 
-        if (!_items.TryGetValue(gId, out var item))
-        {
-            return new ItemDisplayInfo(gId, gId, _fallbackIcon);
-        }
+        return _items.TryGetValue(gId, out var item)
+            ? CreateInfo(gId, item)
+            : new ItemCatalogInfo(
+                gId,
+                gId,
+                _fallbackIcon,
+                CanDemand: false,
+                CanSupply: false,
+                IsDeprecated: false,
+                AddedIn: null,
+                DeprecatedIn: null,
+                IsKnown: false);
+    }
 
+    private ItemCatalogInfo CreateInfo(string gId, ItemEntry item)
+    {
         var icon = item.Icon;
         if (string.IsNullOrEmpty(icon) && _categories.TryGetValue(item.Category, out var category))
         {
             icon = category.Icon;
         }
 
-        return new ItemDisplayInfo(
+        return new ItemCatalogInfo(
             gId,
             string.IsNullOrEmpty(item.DisplayName) ? gId : item.DisplayName,
-            string.IsNullOrEmpty(icon) ? _fallbackIcon : icon);
+            string.IsNullOrEmpty(icon) ? _fallbackIcon : icon,
+            item.CanDemand,
+            item.CanSupply,
+            item.Deprecated,
+            item.AddedIn,
+            item.DeprecatedIn,
+            IsKnown: true);
     }
 
     private static Stream OpenEmbeddedResource()
@@ -109,5 +135,20 @@ public sealed class ItemCatalog : IItemCatalog
 
         [JsonPropertyName("icon")]
         public string? Icon { get; init; }
+
+        [JsonPropertyName("canDemand")]
+        public bool CanDemand { get; init; }
+
+        [JsonPropertyName("canSupply")]
+        public bool CanSupply { get; init; }
+
+        [JsonPropertyName("deprecated")]
+        public bool Deprecated { get; init; }
+
+        [JsonPropertyName("addedIn")]
+        public string? AddedIn { get; init; }
+
+        [JsonPropertyName("deprecatedIn")]
+        public string? DeprecatedIn { get; init; }
     }
 }

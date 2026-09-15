@@ -12,8 +12,6 @@
              every UI head and the test host. Regenerate with the scripts under tools/item-catalog/. -->
         <None Remove="Data\ItemCatalog.json" />
         <EmbeddedResource Include="Data\ItemCatalog.json" />
-        <None Remove="Data\LogisticsGroups.json" />
-        <EmbeddedResource Include="Data\LogisticsGroups.json" />
         <InternalsVisibleTo Include="PCEdit.App.Core.Tests" />
     </ItemGroup>
 

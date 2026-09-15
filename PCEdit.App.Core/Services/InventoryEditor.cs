@@ -196,8 +196,8 @@ public sealed class InventoryEditor(
     {
         return _localizer.Format(
             LocKeys.Inventories_LogisticsSummary,
-            DescribeGroupCount(logistics.DemandGroupIds),
-            DescribeGroupCount(logistics.SupplyGroupIds),
+            DescribeGroupCount(logistics.DemandGroupIds, _logisticsGroupCatalog.DemandGroups),
+            DescribeGroupCount(logistics.SupplyGroupIds, _logisticsGroupCatalog.SupplyGroups),
             DescribePriority(logistics.Priority));
     }
 
@@ -210,9 +210,10 @@ public sealed class InventoryEditor(
     }
 
     /// <summary>A count, or "Everything" when the list holds every known group.</summary>
-    private string DescribeGroupCount(IReadOnlyCollection<string> groupIds)
+    private string DescribeGroupCount(
+        IReadOnlyCollection<string> groupIds,
+        IReadOnlyList<LogisticsGroupInfo> known)
     {
-        var known = _logisticsGroupCatalog.All;
         if (known.Count > 0 && known.All(g => groupIds.Contains(g.Id)))
         {
             return _localizer[LocKeys.Logistics_Everything];
