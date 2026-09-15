@@ -17,6 +17,7 @@ public sealed class PlanetHashTests
     [InlineData("Aqualis", -1291310150)]
     [InlineData("Humble", -486276833)]
     [InlineData("Toxicity", 110910045)]
+    [InlineData("Skeo", -440810600)]
     public void Of_KnownPlanetIds_MatchTheHashesTheGameWrites(string planetId, int expected)
     {
         Assert.Equal(expected, PlanetHash.Of(planetId));

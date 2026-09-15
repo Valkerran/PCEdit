@@ -10,7 +10,7 @@ namespace PCEdit.SaveFileHandler;
 /// <remarks>
 /// Two-accumulator djb2 over UTF-16 code units, stopping at a NUL. Verified against real saves:
 /// <c>Prime</c> → <c>-1140328421</c>, <c>Selenea</c> → <c>-1016990411</c>,
-/// <c>Aqualis</c> → <c>-1291310150</c>.
+/// <c>Aqualis</c> → <c>-1291310150</c>, <c>Skeo</c> → <c>-440810600</c>.
 /// </remarks>
 public static class PlanetHash
 {
