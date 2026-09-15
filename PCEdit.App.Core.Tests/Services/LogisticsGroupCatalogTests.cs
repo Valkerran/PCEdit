@@ -5,7 +5,7 @@ namespace PCEdit.App.Core.Tests.Services;
 
 public sealed class LogisticsGroupCatalogTests
 {
-    private static readonly LogisticsGroupCatalog Embedded = new();
+    private static readonly LogisticsGroupCatalog Embedded = new(new ItemCatalog());
 
     [Fact]
     public void All_IsNonEmpty_AndOrderedByDisplayName()
@@ -49,15 +49,50 @@ public sealed class LogisticsGroupCatalogTests
     [Fact]
     public void Catalog_CoversEveryGroupIdUsedByTheSampleSaves()
     {
-        // Seeded list in gen_logistics_groups.py; a regression guard that curation kept up.
+        // Seeded in gen_catalog.py; a regression guard that curation kept up.
         string[] expected = ["Iron", "Cobalt", "Magnesium", "Vegetable0Growable", "Fish8Eggs", "Rod-osmium", "ToxicWater"];
 
-        Assert.All(expected, id => Assert.True(Embedded.Resolve(id).IsKnown, id));
+        Assert.All(expected, id =>
+        {
+            Assert.True(Embedded.Resolve(id).IsKnown, id);
+            Assert.Contains(Embedded.DemandGroups, group => group.Id == id);
+            Assert.Contains(Embedded.SupplyGroups, group => group.Id == id);
+        });
     }
 
     [Fact]
-    public void Constructor_EmptyStream_Throws()
+    public void DirectionalLists_RespectCapabilities_AndExcludeDeprecatedItems()
     {
-        Assert.ThrowsAny<Exception>(() => new LogisticsGroupCatalog(new MemoryStream(Encoding.UTF8.GetBytes(""))));
+        var itemCatalog = new ItemCatalog(new MemoryStream(Encoding.UTF8.GetBytes("""
+        {
+          "fallbackCategory": "misc",
+          "categories": {
+            "misc": { "displayName": "Miscellaneous", "icon": "cat_misc.png" }
+          },
+          "items": {
+            "DemandOnly": {
+              "displayName": "Demand Only", "category": "misc",
+              "canDemand": true, "canSupply": false, "deprecated": false,
+              "addedIn": "1.0", "deprecatedIn": null
+            },
+            "SupplyOnly": {
+              "displayName": "Supply Only", "category": "misc",
+              "canDemand": false, "canSupply": true, "deprecated": false,
+              "addedIn": null, "deprecatedIn": null
+            },
+            "OldItem": {
+              "displayName": "Old Item", "category": "misc",
+              "canDemand": true, "canSupply": true, "deprecated": true,
+              "addedIn": "0.1", "deprecatedIn": "2.0"
+            }
+          }
+        }
+        """)));
+        var catalog = new LogisticsGroupCatalog(itemCatalog);
+
+        Assert.Equal(["DemandOnly"], catalog.DemandGroups.Select(group => group.Id));
+        Assert.Equal(["SupplyOnly"], catalog.SupplyGroups.Select(group => group.Id));
+        Assert.True(catalog.Resolve("OldItem").IsKnown);
+        Assert.DoesNotContain(catalog.All, group => group.Id == "OldItem");
     }
 }

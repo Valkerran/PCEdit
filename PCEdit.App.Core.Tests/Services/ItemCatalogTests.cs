@@ -29,6 +29,32 @@ public sealed class ItemCatalogTests
     }
 
     [Fact]
+    public void ResolveInfo_KnownLogisticsItem_ReturnsCapabilitiesAndLifecycleMetadata()
+    {
+        var info = EmbeddedCatalog.ResolveInfo("Iron");
+
+        Assert.True(info.IsKnown);
+        Assert.True(info.CanDemand);
+        Assert.True(info.CanSupply);
+        Assert.False(info.IsDeprecated);
+        Assert.Null(info.AddedIn);
+        Assert.Null(info.DeprecatedIn);
+    }
+
+    [Fact]
+    public void ResolveInfo_UnknownItem_HasDisabledCapabilities()
+    {
+        var info = EmbeddedCatalog.ResolveInfo("TotallyMadeUpGId");
+
+        Assert.False(info.IsKnown);
+        Assert.False(info.CanDemand);
+        Assert.False(info.CanSupply);
+        Assert.False(info.IsDeprecated);
+        Assert.Null(info.AddedIn);
+        Assert.Null(info.DeprecatedIn);
+    }
+
+    [Fact]
     public void Resolve_ItemWithoutIconOverride_UsesCategoryIcon()
     {
         var catalog = CatalogFrom("""
@@ -76,19 +102,19 @@ public sealed class ItemCatalogTests
     [InlineData("Minable-Tungsten", "Tungsten", "cat_ore.png")]
     [InlineData("QuasarQuartz", "Quasar Quartz", "cat_gem.png")]
     [InlineData("Rod-osmium", "Osmium Rod", "cat_component.png")]
-    [InlineData("TrashElectronics1", "Electronic Scrap", "cat_component.png")]
-    [InlineData("Seed9Humble", "Humble Seed", "cat_seed.png")]
+    [InlineData("TrashElectronics1", "Electronics Scraps", "cat_component.png")]
+    [InlineData("Seed9Humble", "Seleus Seed", "cat_seed.png")]
     [InlineData("PristineMushroom", "Pristine Mushroom", "cat_plant.png")]
     [InlineData("PurifiedWater", "Purified Water", "cat_food.png")]
-    [InlineData("Frog1Eggs", "Frog Eggs", "cat_larva.png")]
-    [InlineData("AnimalFood1", "Animal Food T1", "cat_consumable.png")]
-    [InlineData("RocketTravel1", "Travel Rocket", "cat_rocket.png")]
+    [InlineData("Frog1Eggs", "Generic Frog Eggs", "cat_larva.png")]
+    [InlineData("AnimalFood1", "T1 Animal Food", "cat_consumable.png")]
+    [InlineData("RocketTravel1", "Interplanetary Travel Rocket", "cat_rocket.png")]
     [InlineData("BlueprintSolarQuartz", "Solar Quartz Blueprint", "cat_chip.png")]
-    [InlineData("ContainerAqualis", "Aqualis Crate", "cat_container.png")]
-    [InlineData("Jetpack1", "Jetpack Upgrade", "cat_equipment.png")]
-    [InlineData("Drone2", "Drone T2", "cat_vehicle.png")]
+    [InlineData("ContainerAqualis", "Clam", "cat_container.png")]
+    [InlineData("Jetpack1", "T1 Jetpack", "cat_equipment.png")]
+    [InlineData("Drone2", "T2 Drone", "cat_vehicle.png")]
     [InlineData("EscapePodInterplanetary", "Interplanetary Escape Pod", "cat_structure.png")]
-    [InlineData("ToxicityDiorama1", "Toxicity Diorama", "cat_furniture.png")]
+    [InlineData("ToxicityDiorama1", "Terraforming Diorama A", "cat_furniture.png")]
     public void Resolve_ContentFromTheOtherPlanets_IsCurated(string gId, string displayName, string icon)
     {
         var info = EmbeddedCatalog.Resolve(gId);
@@ -120,6 +146,17 @@ public sealed class ItemCatalogTests
             Assert.False(
                 string.IsNullOrWhiteSpace(item.Value.GetProperty("displayName").GetString()),
                 $"Item '{item.Name}' has a blank displayName.");
+            Assert.True(item.Value.GetProperty("canDemand").ValueKind is JsonValueKind.True or JsonValueKind.False);
+            Assert.True(item.Value.GetProperty("canSupply").ValueKind is JsonValueKind.True or JsonValueKind.False);
+            Assert.True(item.Value.GetProperty("deprecated").ValueKind is JsonValueKind.True or JsonValueKind.False);
+            Assert.True(item.Value.GetProperty("addedIn").ValueKind is JsonValueKind.String or JsonValueKind.Null);
+            Assert.True(item.Value.GetProperty("deprecatedIn").ValueKind is JsonValueKind.String or JsonValueKind.Null);
+
+            var deprecated = item.Value.GetProperty("deprecated").GetBoolean();
+            var deprecatedIn = item.Value.GetProperty("deprecatedIn");
+            Assert.True(
+                deprecated || deprecatedIn.ValueKind is JsonValueKind.Null,
+                $"Item '{item.Name}' has deprecatedIn set but is not deprecated.");
         }
     }
 

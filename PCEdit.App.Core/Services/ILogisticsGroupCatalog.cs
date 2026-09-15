@@ -3,15 +3,20 @@ using PCEdit.App.Core.Models;
 namespace PCEdit.App.Core.Services;
 
 /// <summary>
-/// The app-bundled pick-list of logistics-group ids (a container's <c>demandGrps</c> /
-/// <c>supplyGrps</c>). Backed by <c>Data/LogisticsGroups.json</c>; never reads or writes a save.
-/// The list is not exhaustive — <see cref="Resolve"/> always returns a value so a user can still
-/// enter an id it doesn't know.
+/// The app-bundled pick-lists of item ids valid for a container's <c>demandGrps</c> and
+/// <c>supplyGrps</c>. Backed by the item catalog; never reads or writes a save. The lists are not
+/// exhaustive — <see cref="Resolve"/> always returns a value so a user can still enter an unknown id.
 /// </summary>
 public interface ILogisticsGroupCatalog
 {
-    /// <summary>Every known group, ordered by display name.</summary>
+    /// <summary>Every non-deprecated item valid for either logistics direction.</summary>
     IReadOnlyList<LogisticsGroupInfo> All { get; }
+
+    /// <summary>Every non-deprecated item valid in a demand list.</summary>
+    IReadOnlyList<LogisticsGroupInfo> DemandGroups { get; }
+
+    /// <summary>Every non-deprecated item valid in a supply list.</summary>
+    IReadOnlyList<LogisticsGroupInfo> SupplyGroups { get; }
 
     /// <summary>
     /// The entry for <paramref name="groupId"/>. An id the dataset doesn't know maps to itself

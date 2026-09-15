@@ -9,7 +9,7 @@ namespace PCEdit.App.Core.ViewModels;
 
 /// <summary>
 /// Modal editor for one logistics container's demand groups, supply groups and priority. A group
-/// is added either by picking a known one (<see cref="AllGroups"/>) or by typing a raw id — the
+/// is added either by picking a known one or by typing a raw id — the
 /// bundled pick-list is not exhaustive. "Select all" adds every known group; when a list holds
 /// every known group it collapses to a single "Everything" entry (matching the game).
 /// </summary>
@@ -47,8 +47,9 @@ public sealed partial class LogisticsEditorViewModel(
     [ObservableProperty]
     private string _supplyGroupText = string.Empty;
 
-    /// <summary>Every known group, for the "add" pickers.</summary>
-    public IReadOnlyList<LogisticsGroupInfo> AllGroups => _groupCatalog.All;
+    public IReadOnlyList<LogisticsGroupInfo> DemandGroupOptions => _groupCatalog.DemandGroups;
+
+    public IReadOnlyList<LogisticsGroupInfo> SupplyGroupOptions => _groupCatalog.SupplyGroups;
 
     /// <summary>
     /// The 7 named priority levels, lowest first. When the container's saved priority is outside
@@ -66,9 +67,9 @@ public sealed partial class LogisticsEditorViewModel(
     public ObservableCollection<LogisticsGroupInfo> SupplyGroups { get; } = [];
 
     /// <summary>True when the demand list holds every known group — the view collapses it to "Everything".</summary>
-    public bool DemandIsEverything => IsEverything(DemandGroups);
+    public bool DemandIsEverything => IsEverything(DemandGroups, _groupCatalog.DemandGroups);
 
-    public bool SupplyIsEverything => IsEverything(SupplyGroups);
+    public bool SupplyIsEverything => IsEverything(SupplyGroups, _groupCatalog.SupplyGroups);
 
     public void Initialize(int inventoryId)
     {
@@ -117,7 +118,7 @@ public sealed partial class LogisticsEditorViewModel(
     [RelayCommand]
     private void SelectAllDemand()
     {
-        Replace(DemandGroups, _groupCatalog.All.Select(g => g.Id));
+        Replace(DemandGroups, _groupCatalog.DemandGroups.Select(g => g.Id));
     }
 
     [RelayCommand]
@@ -150,7 +151,7 @@ public sealed partial class LogisticsEditorViewModel(
     [RelayCommand]
     private void SelectAllSupply()
     {
-        Replace(SupplyGroups, _groupCatalog.All.Select(g => g.Id));
+        Replace(SupplyGroups, _groupCatalog.SupplyGroups.Select(g => g.Id));
     }
 
     [RelayCommand]
@@ -195,15 +196,17 @@ public sealed partial class LogisticsEditorViewModel(
         return false;
     }
 
-    private bool IsEverything(IEnumerable<LogisticsGroupInfo> groups)
+    private static bool IsEverything(
+        IEnumerable<LogisticsGroupInfo> groups,
+        IReadOnlyList<LogisticsGroupInfo> knownGroups)
     {
-        if (_groupCatalog.All.Count == 0)
+        if (knownGroups.Count == 0)
         {
             return false;
         }
 
         var ids = groups.Select(g => g.Id).ToHashSet(StringComparer.Ordinal);
-        return _groupCatalog.All.All(g => ids.Contains(g.Id));
+        return knownGroups.All(g => ids.Contains(g.Id));
     }
 
     private void Replace(ObservableCollection<LogisticsGroupInfo> target, IEnumerable<string> ids)

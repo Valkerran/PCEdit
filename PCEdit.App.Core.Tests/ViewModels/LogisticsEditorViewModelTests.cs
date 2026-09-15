@@ -27,9 +27,11 @@ public sealed class LogisticsEditorViewModelTests
         var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         workspace.Load(Path);
         var nav = new FakeNavigationService();
+        var itemCatalog = new ItemCatalog();
+        var groupCatalog = new LogisticsGroupCatalog(itemCatalog);
         var vm = new LogisticsEditorViewModel(
-            new InventoryEditor(workspace, new ItemCatalog(), new LogisticsGroupCatalog(), localizer, new PlanetIndex(workspace)),
-            new LogisticsGroupCatalog(),
+            new InventoryEditor(workspace, itemCatalog, groupCatalog, localizer, new PlanetIndex(workspace)),
+            groupCatalog,
             new FakeScreenReaderAnnouncer(),
             nav,
             localizer);
@@ -147,7 +149,8 @@ public sealed class LogisticsEditorViewModelTests
         vm.SelectAllSupplyCommand.Execute(null);
 
         Assert.True(vm.SupplyIsEverything);
-        Assert.Equal(new LogisticsGroupCatalog().All.Count, vm.SupplyGroups.Count);
+        var itemCatalog = new ItemCatalog();
+        Assert.Equal(new LogisticsGroupCatalog(itemCatalog).SupplyGroups.Count, vm.SupplyGroups.Count);
     }
 
     [Fact]
@@ -173,14 +176,16 @@ public sealed class LogisticsEditorViewModelTests
         await vm.ApplyCommand.ExecuteAsync(null);
 
         var written = GroupListCodec.Parse(workspace.Current!.Inventories.Single(i => i.Id == 30).SupplyGroups);
-        Assert.Equal(new LogisticsGroupCatalog().All.Select(g => g.Id).OrderBy(x => x), written.OrderBy(x => x));
+        var itemCatalog = new ItemCatalog();
+        Assert.Equal(new LogisticsGroupCatalog(itemCatalog).SupplyGroups.Select(g => g.Id).OrderBy(x => x), written.OrderBy(x => x));
     }
 
     [Fact]
     public void Initialize_AContainerSupplyingEveryGroup_FlagsEverything()
     {
         var (vm, workspace, _) = Create();
-        var all = GroupListCodec.Join(new LogisticsGroupCatalog().All.Select(g => g.Id));
+        var itemCatalog = new ItemCatalog();
+        var all = GroupListCodec.Join(new LogisticsGroupCatalog(itemCatalog).SupplyGroups.Select(g => g.Id));
         var idx = workspace.Current!.Inventories.FindIndex(i => i.Id == 30);
         workspace.Current.Inventories[idx] = workspace.Current.Inventories[idx] with { SupplyGroups = all };
 
