@@ -78,11 +78,11 @@
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.6.006",
       "deprecatedIn": null
     },
     "AirPurificationMachine1": {
-      "displayName": "Air Purification Machine T1",
+      "displayName": "T1 Atmosphere Purifier",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
@@ -91,7 +91,25 @@
       "deprecatedIn": null
     },
     "AirPurificationMachine2": {
-      "displayName": "Air Purification Machine T2",
+      "displayName": "T2 Atmosphere Purifier",
+      "category": "structure",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "AirPurificationMachine3": {
+      "displayName": "T3 Atmosphere Purifier",
+      "category": "structure",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "AirPurificationMachine4": {
+      "displayName": "T4 Atmosphere Purifier",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
@@ -100,7 +118,7 @@
       "deprecatedIn": null
     },
     "Algae1Seed": {
-      "displayName": "Algae Spores",
+      "displayName": "Algae",
       "category": "seed",
       "canDemand": true,
       "canSupply": true,
@@ -109,34 +127,43 @@
       "deprecatedIn": null
     },
     "AlgaeGenerator1": {
-      "displayName": "Algae Generator T1",
+      "displayName": "T1 Algae Generator",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.3.010",
       "deprecatedIn": null
     },
     "AlgaeGenerator2": {
-      "displayName": "Algae Generator T2",
+      "displayName": "T2 Algae Generator",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.3.010",
       "deprecatedIn": null
     },
     "Alloy": {
-      "displayName": "Alloy",
+      "displayName": "Super Alloy",
       "category": "component",
+      "canDemand": true,
+      "canSupply": true,
+      "deprecated": false,
+      "addedIn": "0.3.001",
+      "deprecatedIn": null
+    },
+    "Aluminium": {
+      "displayName": "Aluminum",
+      "category": "ore",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
       "addedIn": null,
       "deprecatedIn": null
     },
-    "Aluminium": {
-      "displayName": "Aluminium",
+    "Amber": {
+      "displayName": "Amber",
       "category": "ore",
       "canDemand": true,
       "canSupply": true,
@@ -145,16 +172,43 @@
       "deprecatedIn": null
     },
     "AmphibiansFarm1": {
-      "displayName": "Amphibians Farm",
+      "displayName": "Amphibian Farm",
       "category": "structure",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": "0.8.008",
+      "deprecatedIn": null
+    },
+    "AnimalBones": {
+      "displayName": "Ancient Animal Bones",
+      "category": "component",
+      "canDemand": true,
+      "canSupply": true,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "AnimalEffigie1": {
+      "displayName": "Animal Effigy : Sharky",
+      "category": "furniture",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
       "addedIn": null,
       "deprecatedIn": null
     },
-    "AnimalEffigie1": {
-      "displayName": "Animal Effigy",
+    "AnimalEffigie10": {
+      "displayName": "Animal Effigy : Smilorex",
+      "category": "furniture",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": "2.102",
+      "deprecatedIn": null
+    },
+    "AnimalEffigie2": {
+      "displayName": "Animal Effigy : Allyca",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
@@ -163,7 +217,16 @@
       "deprecatedIn": null
     },
     "AnimalEffigie3": {
-      "displayName": "Animal Effigy",
+      "displayName": "Animal Effigy : Tilopina",
+      "category": "furniture",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "AnimalEffigie4": {
+      "displayName": "Animal Effigy : Snoober",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
@@ -172,7 +235,7 @@
       "deprecatedIn": null
     },
     "AnimalEffigie5": {
-      "displayName": "Animal Effigy",
+      "displayName": "Animal Effigy : Muthus",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
@@ -181,7 +244,16 @@
       "deprecatedIn": null
     },
     "AnimalEffigie6": {
-      "displayName": "Animal Effigy",
+      "displayName": "Animal Effigy : Hydrequus",
+      "category": "furniture",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "AnimalEffigie7": {
+      "displayName": "Animal Effigy : Arbatillo",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
@@ -190,7 +262,7 @@
       "deprecatedIn": null
     },
     "AnimalEffigie8": {
-      "displayName": "Animal Effigy",
+      "displayName": "Animal Effigy : Carachnid",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
@@ -199,12 +271,12 @@
       "deprecatedIn": null
     },
     "AnimalEffigie9": {
-      "displayName": "Animal Effigy",
+      "displayName": "Animal Effigy : Doggox",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.617",
       "deprecatedIn": null
     },
     "AnimalFeeder1": {
@@ -213,20 +285,20 @@
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.0",
       "deprecatedIn": null
     },
     "AnimalFood1": {
-      "displayName": "Animal Food T1",
+      "displayName": "T1 Animal Food",
       "category": "consumable",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.102",
       "deprecatedIn": null
     },
     "AnimalFood2": {
-      "displayName": "Animal Food T2",
+      "displayName": "T2 Animal Food",
       "category": "consumable",
       "canDemand": true,
       "canSupply": true,
@@ -235,12 +307,12 @@
       "deprecatedIn": null
     },
     "AnimalFood3": {
-      "displayName": "Animal Food T3",
+      "displayName": "T3 Animal Food",
       "category": "consumable",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.518",
       "deprecatedIn": null
     },
     "AnimalShelter1": {
@@ -249,43 +321,43 @@
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.0",
       "deprecatedIn": null
     },
     "AntiToxinsExplosive1": {
-      "displayName": "Anti-Toxins Charge",
+      "displayName": "T1 Toxic Goo Removal Explosives",
       "category": "consumable",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.608",
       "deprecatedIn": null
     },
     "AntiToxinsExplosive2": {
-      "displayName": "Anti-Toxins Charge T2",
+      "displayName": "T2 Toxic Goo Removal Explosives",
       "category": "consumable",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.608",
       "deprecatedIn": null
     },
     "Aquarium1": {
-      "displayName": "Aquarium T1",
+      "displayName": "T1 Aquarium",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.7.007",
       "deprecatedIn": null
     },
     "Aquarium2": {
-      "displayName": "Aquarium T2",
+      "displayName": "T2 Aquarium",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.7.007",
       "deprecatedIn": null
     },
     "AquariumTube1": {
@@ -306,6 +378,15 @@
       "addedIn": null,
       "deprecatedIn": null
     },
+    "Arch1": {
+      "displayName": "Metal Arch",
+      "category": "structure",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
     "astrofood": {
       "displayName": "Space Food",
       "category": "food",
@@ -316,7 +397,7 @@
       "deprecatedIn": null
     },
     "astrofood2": {
-      "displayName": "Space Food T2",
+      "displayName": "High Quality Food",
       "category": "food",
       "canDemand": true,
       "canSupply": true,
@@ -330,11 +411,29 @@
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.6.006",
       "deprecatedIn": null
     },
     "Backpack1": {
-      "displayName": "Backpack Upgrade",
+      "displayName": "T1 Backpack",
+      "category": "equipment",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "Backpack2": {
+      "displayName": "T2 Backpack",
+      "category": "equipment",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "Backpack3": {
+      "displayName": "T3 Backpack",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
@@ -343,30 +442,39 @@
       "deprecatedIn": null
     },
     "Backpack4": {
-      "displayName": "Backpack Upgrade",
+      "displayName": "T4 Backpack",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.3.001",
       "deprecatedIn": null
     },
     "Backpack5": {
-      "displayName": "Backpack Upgrade",
+      "displayName": "T5 Backpack",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.4.004",
+      "deprecatedIn": null
+    },
+    "Backpack6": {
+      "displayName": "T6 Backpack",
+      "category": "equipment",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": "1.0",
       "deprecatedIn": null
     },
     "Backpack7": {
-      "displayName": "Backpack Upgrade",
+      "displayName": "T7 Backpack",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.518",
       "deprecatedIn": null
     },
     "Bacteria1": {
@@ -375,7 +483,7 @@
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.3.010",
       "deprecatedIn": null
     },
     "BalzarQuartz": {
@@ -402,7 +510,7 @@
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.3.001",
       "deprecatedIn": null
     },
     "BedDouble": {
@@ -415,7 +523,16 @@
       "deprecatedIn": null
     },
     "BedDoubleColored": {
-      "displayName": "Double Bed",
+      "displayName": "Customizable Bed",
+      "category": "furniture",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": "0.8.008",
+      "deprecatedIn": null
+    },
+    "BedSimple": {
+      "displayName": "Bed",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
@@ -429,7 +546,7 @@
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.5.005",
       "deprecatedIn": null
     },
     "Beehive1": {
@@ -438,16 +555,16 @@
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.5.005",
       "deprecatedIn": null
     },
     "Beehive2": {
-      "displayName": "Beehive T2",
+      "displayName": "T2 Beehive",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.6.006",
       "deprecatedIn": null
     },
     "biodome": {
@@ -460,12 +577,12 @@
       "deprecatedIn": null
     },
     "Biodome2": {
-      "displayName": "Biodome T2",
+      "displayName": "T2 Biodome",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.3.010",
       "deprecatedIn": null
     },
     "Biolab": {
@@ -474,7 +591,7 @@
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.3.010",
       "deprecatedIn": null
     },
     "Bioplastic1": {
@@ -483,11 +600,47 @@
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
+      "addedIn": "0.3.010",
+      "deprecatedIn": null
+    },
+    "BlueprintEquipmentIncrease1": {
+      "displayName": "Equipment Capacity T1",
+      "category": "chip",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "BlueprintEquipmentIncrease2": {
+      "displayName": "Equipment Capacity T2",
+      "category": "chip",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "BlueprintEquipmentIncrease3": {
+      "displayName": "Equipment Capacity T3",
+      "category": "chip",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "BlueprintEquipmentIncrease4": {
+      "displayName": "Equipment Capacity T4",
+      "category": "chip",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
       "addedIn": null,
       "deprecatedIn": null
     },
     "BlueprintEquipmentIncrease5": {
-      "displayName": "Equipment Slot Blueprint",
+      "displayName": "Equipment Capacity T5",
       "category": "chip",
       "canDemand": false,
       "canSupply": false,
@@ -505,16 +658,16 @@
       "deprecatedIn": null
     },
     "BlueprintT1": {
-      "displayName": "Blueprint Chip",
+      "displayName": "Blueprint Microchip",
       "category": "chip",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.3.011",
       "deprecatedIn": null
     },
     "BootsSpeed1": {
-      "displayName": "Speed Boots T1",
+      "displayName": "T1 Agility Boots",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
@@ -523,7 +676,7 @@
       "deprecatedIn": null
     },
     "BootsSpeed2": {
-      "displayName": "Speed Boots T2",
+      "displayName": "T2 Agility Boots",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
@@ -532,7 +685,7 @@
       "deprecatedIn": null
     },
     "BootsSpeed3": {
-      "displayName": "Speed Boots T3",
+      "displayName": "T3 Agility Boots",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
@@ -541,7 +694,7 @@
       "deprecatedIn": null
     },
     "Butterfly10Larvae": {
-      "displayName": "Butterfly Larva",
+      "displayName": "Liux Butterfly Larva",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -550,7 +703,7 @@
       "deprecatedIn": null
     },
     "Butterfly11Larvae": {
-      "displayName": "Butterfly Larva",
+      "displayName": "Nere Butterfly Larva",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -559,7 +712,7 @@
       "deprecatedIn": null
     },
     "Butterfly12Larvae": {
-      "displayName": "Butterfly Larva",
+      "displayName": "Lorpen Butterfly Larva",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -567,8 +720,17 @@
       "addedIn": null,
       "deprecatedIn": null
     },
+    "Butterfly13Hatched": {
+      "displayName": "Constela Butterfly Larva",
+      "category": "larva",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
     "Butterfly13Larvae": {
-      "displayName": "Butterfly Larva",
+      "displayName": "Fiorente Butterfly Larva",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -577,7 +739,7 @@
       "deprecatedIn": null
     },
     "Butterfly14Larvae": {
-      "displayName": "Butterfly Larva",
+      "displayName": "Alben Butterfly Larva",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -586,7 +748,7 @@
       "deprecatedIn": null
     },
     "Butterfly15Larvae": {
-      "displayName": "Butterfly Larva",
+      "displayName": "Futura Butterfly Larva",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -595,7 +757,7 @@
       "deprecatedIn": null
     },
     "Butterfly16Larvae": {
-      "displayName": "Butterfly Larva",
+      "displayName": "Imeo Butterfly Larva",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -604,7 +766,7 @@
       "deprecatedIn": null
     },
     "Butterfly17Larvae": {
-      "displayName": "Butterfly Larva",
+      "displayName": "Serena Butterfly Larva",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -613,7 +775,7 @@
       "deprecatedIn": null
     },
     "Butterfly18Larvae": {
-      "displayName": "Butterfly Larva",
+      "displayName": "Golden Butterfly Larva",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -622,7 +784,7 @@
       "deprecatedIn": null
     },
     "Butterfly19Larvae": {
-      "displayName": "Butterfly Larva",
+      "displayName": "Faleria Butterfly Larva",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -631,7 +793,7 @@
       "deprecatedIn": null
     },
     "Butterfly1Larvae": {
-      "displayName": "Butterfly Larva",
+      "displayName": "Azurae Butterfly Larva",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -640,7 +802,7 @@
       "deprecatedIn": null
     },
     "Butterfly20Larvae": {
-      "displayName": "Butterfly Larva",
+      "displayName": "Oesbe Butterfly Larva",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -648,8 +810,17 @@
       "addedIn": null,
       "deprecatedIn": null
     },
+    "Butterfly21Larvae": {
+      "displayName": "Lucia Butterfly Larva",
+      "category": "larva",
+      "canDemand": true,
+      "canSupply": true,
+      "deprecated": false,
+      "addedIn": "2.102",
+      "deprecatedIn": null
+    },
     "Butterfly2Larvae": {
-      "displayName": "Butterfly Larva",
+      "displayName": "Leani Butterfly Larva",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -658,7 +829,7 @@
       "deprecatedIn": null
     },
     "Butterfly3Larvae": {
-      "displayName": "Butterfly Larva",
+      "displayName": "Fensea Butterfly Larva",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -667,7 +838,7 @@
       "deprecatedIn": null
     },
     "Butterfly4Larvae": {
-      "displayName": "Butterfly Larva",
+      "displayName": "Galaxe Butterfly Larva",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -676,7 +847,7 @@
       "deprecatedIn": null
     },
     "Butterfly5Larvae": {
-      "displayName": "Butterfly Larva",
+      "displayName": "Abstreus Butterfly Larva",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -685,7 +856,7 @@
       "deprecatedIn": null
     },
     "Butterfly6Larvae": {
-      "displayName": "Butterfly Larva",
+      "displayName": "Empalio Butterfly Larva",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -694,7 +865,7 @@
       "deprecatedIn": null
     },
     "Butterfly7Larvae": {
-      "displayName": "Butterfly Larva",
+      "displayName": "Penga Butterfly Larva",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -703,7 +874,7 @@
       "deprecatedIn": null
     },
     "Butterfly8Larvae": {
-      "displayName": "Butterfly Larva",
+      "displayName": "Chevrone Butterfly Larva",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -712,7 +883,7 @@
       "deprecatedIn": null
     },
     "Butterfly9Larvae": {
-      "displayName": "Butterfly Larva",
+      "displayName": "Aemel Butterfly Larva",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -721,12 +892,12 @@
       "deprecatedIn": null
     },
     "ButterflyDisplayer1": {
-      "displayName": "Butterfly Displayer",
+      "displayName": "Butterfly Display Box",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.5.005",
       "deprecatedIn": null
     },
     "ButterflyDome1": {
@@ -735,7 +906,7 @@
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.5.005",
       "deprecatedIn": null
     },
     "ButterflyFarm1": {
@@ -744,20 +915,29 @@
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.5.005",
       "deprecatedIn": null
     },
     "ButterflyFarm2": {
-      "displayName": "Butterfly Farm T2",
+      "displayName": "T2 Butterfly Farm",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.6.006",
+      "deprecatedIn": null
+    },
+    "ButterflyFarm3": {
+      "displayName": "T3 Butterfly Farm",
+      "category": "structure",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": "1.518",
       "deprecatedIn": null
     },
     "canister": {
-      "displayName": "Empty Canister",
+      "displayName": "Canister",
       "category": "consumable",
       "canDemand": false,
       "canSupply": false,
@@ -775,7 +955,7 @@
       "deprecatedIn": null
     },
     "Chair2": {
-      "displayName": "Chair",
+      "displayName": "Cozy Chair",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
@@ -784,7 +964,7 @@
       "deprecatedIn": null
     },
     "ChlorineCapsule1": {
-      "displayName": "Chlorine Capsule",
+      "displayName": "Chlorine Dioxide",
       "category": "consumable",
       "canDemand": true,
       "canSupply": true,
@@ -798,7 +978,7 @@
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.7.007",
       "deprecatedIn": null
     },
     "Cobalt": {
@@ -816,11 +996,11 @@
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.3.001",
       "deprecatedIn": null
     },
     "Container1": {
-      "displayName": "Storage Crate T1",
+      "displayName": "Storage Crate",
       "category": "container",
       "canDemand": false,
       "canSupply": false,
@@ -829,7 +1009,7 @@
       "deprecatedIn": null
     },
     "Container2": {
-      "displayName": "Storage Crate T2",
+      "displayName": "Locker Storage",
       "category": "container",
       "canDemand": false,
       "canSupply": false,
@@ -838,7 +1018,16 @@
       "deprecatedIn": null
     },
     "Container3": {
-      "displayName": "Storage Crate T3",
+      "displayName": "T2 Locker Storage",
+      "category": "container",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": "0.8.008",
+      "deprecatedIn": null
+    },
+    "ContainerAqualis": {
+      "displayName": "Clam",
       "category": "container",
       "canDemand": false,
       "canSupply": false,
@@ -846,8 +1035,8 @@
       "addedIn": null,
       "deprecatedIn": null
     },
-    "ContainerAqualis": {
-      "displayName": "Aqualis Crate",
+    "ContainerGoldenAqualis": {
+      "displayName": "Golden Clam",
       "category": "container",
       "canDemand": false,
       "canSupply": false,
@@ -856,21 +1045,21 @@
       "deprecatedIn": null
     },
     "ContainerToxic1": {
-      "displayName": "Toxic Crate",
+      "displayName": "Toxic Goo Storage",
       "category": "container",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.613",
       "deprecatedIn": null
     },
     "CookCake1": {
-      "displayName": "Cake",
+      "displayName": "Birthday Cake",
       "category": "food",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.8.008",
       "deprecatedIn": null
     },
     "CookChocolate": {
@@ -883,7 +1072,7 @@
       "deprecatedIn": null
     },
     "CookCocoaGrowable": {
-      "displayName": "Growing Cocoa",
+      "displayName": "Cocoa",
       "category": "plant",
       "canDemand": true,
       "canSupply": true,
@@ -894,10 +1083,10 @@
     "CookCocoaSeed": {
       "displayName": "Cocoa Seed",
       "category": "seed",
-      "canDemand": false,
-      "canSupply": false,
+      "canDemand": true,
+      "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.8.008",
       "deprecatedIn": null
     },
     "CookCookie1": {
@@ -906,7 +1095,7 @@
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.8.008",
       "deprecatedIn": null
     },
     "CookCroissant": {
@@ -915,7 +1104,7 @@
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.8.008",
       "deprecatedIn": null
     },
     "CookFlour": {
@@ -933,29 +1122,29 @@
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.8.008",
       "deprecatedIn": null
     },
     "CookStew1": {
-      "displayName": "Stew",
+      "displayName": "Honey Cooked Beans",
       "category": "food",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.8.008",
       "deprecatedIn": null
     },
     "CookStewFish1": {
-      "displayName": "Fish Stew",
+      "displayName": "Fish Soup",
       "category": "food",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.8.008",
       "deprecatedIn": null
     },
     "CookWheatGrowable": {
-      "displayName": "Growing Wheat",
+      "displayName": "Wheat",
       "category": "plant",
       "canDemand": true,
       "canSupply": true,
@@ -964,12 +1153,12 @@
       "deprecatedIn": null
     },
     "CookWheatSeed": {
-      "displayName": "Wheat Seed",
+      "displayName": "Wheat Seeds",
       "category": "seed",
-      "canDemand": false,
-      "canSupply": false,
+      "canDemand": true,
+      "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.8.008",
       "deprecatedIn": null
     },
     "CosmicQuartz": {
@@ -978,11 +1167,11 @@
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.518",
       "deprecatedIn": null
     },
     "Counter1": {
-      "displayName": "Counter",
+      "displayName": "Countertop",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
@@ -991,7 +1180,7 @@
       "deprecatedIn": null
     },
     "Counter2": {
-      "displayName": "Counter",
+      "displayName": "Countertop",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
@@ -1000,7 +1189,7 @@
       "deprecatedIn": null
     },
     "CraftStation1": {
-      "displayName": "Craft Station T1",
+      "displayName": "T2 Craft Station",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
@@ -1009,8 +1198,17 @@
       "deprecatedIn": null
     },
     "CraftStation2": {
-      "displayName": "Craft Station T2",
+      "displayName": "Advanced Craft Station",
       "category": "structure",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": "0.3.001",
+      "deprecatedIn": null
+    },
+    "DebrisContainer1": {
+      "displayName": "Container from Space",
+      "category": "container",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
@@ -1018,7 +1216,7 @@
       "deprecatedIn": null
     },
     "DeparturePlatform": {
-      "displayName": "Departure Platform",
+      "displayName": "Extraction Platform",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
@@ -1027,7 +1225,7 @@
       "deprecatedIn": null
     },
     "Desktop1": {
-      "displayName": "Desktop Computer",
+      "displayName": "Desktop",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
@@ -1036,7 +1234,7 @@
       "deprecatedIn": null
     },
     "Desktop2": {
-      "displayName": "Desktop Computer",
+      "displayName": "Desktop",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
@@ -1045,21 +1243,39 @@
       "deprecatedIn": null
     },
     "Destructor1": {
-      "displayName": "Destructor",
+      "displayName": "Shredder Machine",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.3.011",
+      "deprecatedIn": null
+    },
+    "DetoxificationMachine1": {
+      "displayName": "T1 Detoxification Machine",
+      "category": "structure",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": "1.608",
       "deprecatedIn": null
     },
     "DetoxificationMachine2": {
-      "displayName": "Detoxification Machine T2",
+      "displayName": "T2 Detoxification Machine",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.608",
+      "deprecatedIn": null
+    },
+    "DetoxificationMachine3": {
+      "displayName": "T3 Detoxification Machine",
+      "category": "structure",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": "1.608",
       "deprecatedIn": null
     },
     "DisplayCase": {
@@ -1068,16 +1284,16 @@
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.4.004",
       "deprecatedIn": null
     },
     "DNASequence": {
-      "displayName": "DNA Sequence",
+      "displayName": "Creature DNA",
       "category": "component",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.0",
       "deprecatedIn": null
     },
     "Dolomite": {
@@ -1089,8 +1305,17 @@
       "addedIn": null,
       "deprecatedIn": null
     },
+    "door": {
+      "displayName": "Living Compartment Door",
+      "category": "structure",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
     "Drill0": {
-      "displayName": "Drill T0",
+      "displayName": "T1 Drill",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
@@ -1099,7 +1324,7 @@
       "deprecatedIn": null
     },
     "Drill1": {
-      "displayName": "Drill T1",
+      "displayName": "T2 Drill",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
@@ -1108,7 +1333,7 @@
       "deprecatedIn": null
     },
     "Drill2": {
-      "displayName": "Drill T2",
+      "displayName": "T3 Drill",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
@@ -1117,43 +1342,52 @@
       "deprecatedIn": null
     },
     "Drill3": {
-      "displayName": "Drill T3",
+      "displayName": "T4 Drill",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.4.004",
       "deprecatedIn": null
     },
     "Drill4": {
-      "displayName": "Drill T4",
+      "displayName": "T5 Drill",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.6.006",
       "deprecatedIn": null
     },
     "Drone1": {
-      "displayName": "Drone",
+      "displayName": "T1 Drone",
       "category": "vehicle",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.7.007",
       "deprecatedIn": null
     },
     "Drone2": {
-      "displayName": "Drone T2",
+      "displayName": "T2 Drone",
       "category": "vehicle",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.8.008",
+      "deprecatedIn": null
+    },
+    "Drone3": {
+      "displayName": "T3 Drone",
+      "category": "vehicle",
+      "canDemand": true,
+      "canSupply": true,
+      "deprecated": false,
+      "addedIn": "2.102",
       "deprecatedIn": null
     },
     "DroneLog": {
-      "displayName": "Logistics Drone",
+      "displayName": "Drone's Log",
       "category": "vehicle",
       "canDemand": false,
       "canSupply": false,
@@ -1167,16 +1401,16 @@
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.7.007",
       "deprecatedIn": null
     },
     "Ecosystem1": {
-      "displayName": "Ecosystem Analyzer",
+      "displayName": "Ecosystem",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.102",
       "deprecatedIn": null
     },
     "Elevator": {
@@ -1189,7 +1423,7 @@
       "deprecatedIn": null
     },
     "EndingExplosives": {
-      "displayName": "Ending Explosives",
+      "displayName": "Large Explosive Device",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
@@ -1198,7 +1432,7 @@
       "deprecatedIn": null
     },
     "EnergyGenerator1": {
-      "displayName": "Energy Generator T1",
+      "displayName": "Wind Turbine",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
@@ -1207,7 +1441,7 @@
       "deprecatedIn": null
     },
     "EnergyGenerator2": {
-      "displayName": "Energy Generator T2",
+      "displayName": "T1 Solar Panel",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
@@ -1216,7 +1450,7 @@
       "deprecatedIn": null
     },
     "EnergyGenerator3": {
-      "displayName": "Energy Generator T3",
+      "displayName": "T2 Solar Panel",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
@@ -1225,7 +1459,7 @@
       "deprecatedIn": null
     },
     "EnergyGenerator4": {
-      "displayName": "Energy Generator T4",
+      "displayName": "T1 Nuclear Reactor",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
@@ -1234,16 +1468,16 @@
       "deprecatedIn": null
     },
     "EnergyGenerator5": {
-      "displayName": "Energy Generator T5",
+      "displayName": "T2 Nuclear Reactor",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.3.010",
       "deprecatedIn": null
     },
     "EnergyGenerator6": {
-      "displayName": "Energy Generator T6",
+      "displayName": "Nuclear Fusion Generator",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
@@ -1252,7 +1486,7 @@
       "deprecatedIn": null
     },
     "EquipmentIncrease1": {
-      "displayName": "Equipment Slot Upgrade",
+      "displayName": "T1 Exoskeleton",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
@@ -1261,34 +1495,34 @@
       "deprecatedIn": null
     },
     "EquipmentIncrease2": {
-      "displayName": "Equipment Slot Upgrade",
+      "displayName": "T2 Exoskeleton",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.3.001",
       "deprecatedIn": null
     },
     "EquipmentIncrease3": {
-      "displayName": "Equipment Slot Upgrade",
+      "displayName": "T3 Exoskeleton",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.6.006",
       "deprecatedIn": null
     },
     "EquipmentIncrease4": {
-      "displayName": "Equipment Slot Upgrade",
+      "displayName": "T4 Exoskeleton",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.102",
       "deprecatedIn": null
     },
     "EquipmentIncrease5": {
-      "displayName": "Equipment Slot Upgrade",
+      "displayName": "T5 Exoskeleton",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
@@ -1311,7 +1545,7 @@
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.310",
       "deprecatedIn": null
     },
     "EscapePodInterplanetary": {
@@ -1329,11 +1563,11 @@
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.608",
       "deprecatedIn": null
     },
     "ExerciseBike1": {
-      "displayName": "Exercise Bike",
+      "displayName": "Indoor Bike",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
@@ -1342,7 +1576,7 @@
       "deprecatedIn": null
     },
     "Explosive": {
-      "displayName": "Explosive Charge",
+      "displayName": "Explosive",
       "category": "consumable",
       "canDemand": true,
       "canSupply": true,
@@ -1360,25 +1594,25 @@
       "deprecatedIn": null
     },
     "Farm1": {
-      "displayName": "Farm",
+      "displayName": "Outdoor Farm",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.5.005",
       "deprecatedIn": null
     },
     "Farm2": {
-      "displayName": "Farm T2",
+      "displayName": "T2 Outdoor Farm",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.518",
       "deprecatedIn": null
     },
     "Faucet1": {
-      "displayName": "Water Faucet",
+      "displayName": "Faucet",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
@@ -1392,20 +1626,29 @@
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.5.005",
       "deprecatedIn": null
     },
-    "Fertilizer1": {
-      "displayName": "Fertilizer T1",
-      "category": "component",
-      "canDemand": true,
-      "canSupply": true,
+    "FenceRounded": {
+      "displayName": "Rounded Fence",
+      "category": "structure",
+      "canDemand": false,
+      "canSupply": false,
       "deprecated": false,
       "addedIn": null,
       "deprecatedIn": null
     },
+    "Fertilizer1": {
+      "displayName": "Fertilizer",
+      "category": "component",
+      "canDemand": true,
+      "canSupply": true,
+      "deprecated": false,
+      "addedIn": "0.3.010",
+      "deprecatedIn": null
+    },
     "Fertilizer2": {
-      "displayName": "Fertilizer T2",
+      "displayName": "T2 Fertilizer",
       "category": "component",
       "canDemand": true,
       "canSupply": true,
@@ -1414,16 +1657,25 @@
       "deprecatedIn": null
     },
     "Fertilizer3": {
-      "displayName": "Fertilizer T3",
+      "displayName": "T3 Fertilizer",
       "category": "component",
       "canDemand": true,
       "canSupply": true,
+      "deprecated": false,
+      "addedIn": "1.518",
+      "deprecatedIn": null
+    },
+    "Fireplace": {
+      "displayName": "Fireplace",
+      "category": "furniture",
+      "canDemand": false,
+      "canSupply": false,
       "deprecated": false,
       "addedIn": null,
       "deprecatedIn": null
     },
     "Fish10Eggs": {
-      "displayName": "Fish Eggs",
+      "displayName": "Tiloo Fish Eggs",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -1432,7 +1684,7 @@
       "deprecatedIn": null
     },
     "Fish11Eggs": {
-      "displayName": "Fish Eggs",
+      "displayName": "Golden Fish Eggs",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -1441,7 +1693,7 @@
       "deprecatedIn": null
     },
     "Fish12Eggs": {
-      "displayName": "Fish Eggs",
+      "displayName": "Velkia Fish Eggs",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -1450,7 +1702,7 @@
       "deprecatedIn": null
     },
     "Fish13Eggs": {
-      "displayName": "Fish Eggs",
+      "displayName": "Galbea Fish Eggs",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -1459,7 +1711,7 @@
       "deprecatedIn": null
     },
     "Fish14Eggs": {
-      "displayName": "Fish Eggs",
+      "displayName": "Stabu Fish Eggs",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -1468,7 +1720,7 @@
       "deprecatedIn": null
     },
     "Fish15Eggs": {
-      "displayName": "Fish Eggs",
+      "displayName": "Atabu Fish Eggs",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -1477,7 +1729,7 @@
       "deprecatedIn": null
     },
     "Fish1Eggs": {
-      "displayName": "Fish Eggs",
+      "displayName": "Provios Fish Eggs",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -1486,7 +1738,7 @@
       "deprecatedIn": null
     },
     "Fish2Eggs": {
-      "displayName": "Fish Eggs",
+      "displayName": "Vilnus Fish Eggs",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -1495,7 +1747,7 @@
       "deprecatedIn": null
     },
     "Fish3Eggs": {
-      "displayName": "Fish Eggs",
+      "displayName": "Gerrero Fish Eggs",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -1504,7 +1756,7 @@
       "deprecatedIn": null
     },
     "Fish4Eggs": {
-      "displayName": "Fish Eggs",
+      "displayName": "Khrom Fish Eggs",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -1513,7 +1765,7 @@
       "deprecatedIn": null
     },
     "Fish5Eggs": {
-      "displayName": "Fish Eggs",
+      "displayName": "Ulani Fish Eggs",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -1522,7 +1774,7 @@
       "deprecatedIn": null
     },
     "Fish6Eggs": {
-      "displayName": "Fish Eggs",
+      "displayName": "Aelera Fish Eggs",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -1531,7 +1783,7 @@
       "deprecatedIn": null
     },
     "Fish7Eggs": {
-      "displayName": "Fish Eggs",
+      "displayName": "Tegede Fish Eggs",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -1540,7 +1792,7 @@
       "deprecatedIn": null
     },
     "Fish8Eggs": {
-      "displayName": "Fish Eggs",
+      "displayName": "Ecaru Fish Eggs",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -1549,10 +1801,19 @@
       "deprecatedIn": null
     },
     "Fish9Eggs": {
-      "displayName": "Fish Eggs",
+      "displayName": "Buyu Fish Eggs",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "FishDisplayer1": {
+      "displayName": "Fish Display",
+      "category": "structure",
+      "canDemand": false,
+      "canSupply": false,
       "deprecated": false,
       "addedIn": null,
       "deprecatedIn": null
@@ -1563,7 +1824,16 @@
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.7.007",
+      "deprecatedIn": null
+    },
+    "FishFarm2": {
+      "displayName": "T2 Fish Farm",
+      "category": "structure",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": "1.518",
       "deprecatedIn": null
     },
     "Flare": {
@@ -1575,8 +1845,35 @@
       "addedIn": null,
       "deprecatedIn": null
     },
-    "FlowerPot2": {
+    "FloorAngleGlass": {
+      "displayName": "Rounded Glass Floor",
+      "category": "structure",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "FloorGlass": {
+      "displayName": "Living Compartment Glass",
+      "category": "structure",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "FlowerPot1": {
       "displayName": "Flower Pot",
+      "category": "furniture",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": "0.4.004",
+      "deprecatedIn": null
+    },
+    "FlowerPot2": {
+      "displayName": "Hanging Flower Pot",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
@@ -1585,7 +1882,7 @@
       "deprecatedIn": null
     },
     "FlowerPot3": {
-      "displayName": "Flower Pot T3",
+      "displayName": "Big Flower Pot",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
@@ -1594,7 +1891,7 @@
       "deprecatedIn": null
     },
     "Foundation": {
-      "displayName": "Foundation",
+      "displayName": "Foundation Grid",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
@@ -1603,25 +1900,25 @@
       "deprecatedIn": null
     },
     "FoundationAngle": {
-      "displayName": "Angled Foundation",
+      "displayName": "Foundation - Angle",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.211",
       "deprecatedIn": null
     },
     "FoundationSlope": {
-      "displayName": "Sloped Foundation",
+      "displayName": "Foundation - Slope",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.211",
       "deprecatedIn": null
     },
     "FountainBig": {
-      "displayName": "Large Fountain",
+      "displayName": "Fountain",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
@@ -1639,7 +1936,7 @@
       "deprecatedIn": null
     },
     "Frog10Eggs": {
-      "displayName": "Frog Eggs",
+      "displayName": "Kenjoss Frog Eggs",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -1648,7 +1945,7 @@
       "deprecatedIn": null
     },
     "Frog11Eggs": {
-      "displayName": "Frog Eggs",
+      "displayName": "Lavaum Frog Eggs",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -1657,7 +1954,7 @@
       "deprecatedIn": null
     },
     "Frog12Eggs": {
-      "displayName": "Frog Eggs",
+      "displayName": "Leglus Frog Eggs",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -1666,7 +1963,7 @@
       "deprecatedIn": null
     },
     "Frog13Eggs": {
-      "displayName": "Frog Eggs",
+      "displayName": "Jumi Frog Eggs",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -1675,7 +1972,7 @@
       "deprecatedIn": null
     },
     "Frog14Eggs": {
-      "displayName": "Frog Eggs",
+      "displayName": "Seren Frog Eggs",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -1684,7 +1981,7 @@
       "deprecatedIn": null
     },
     "Frog15Eggs": {
-      "displayName": "Frog Eggs",
+      "displayName": "Acuzzi Frog Eggs",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -1693,7 +1990,7 @@
       "deprecatedIn": null
     },
     "Frog16Eggs": {
-      "displayName": "Frog Eggs",
+      "displayName": "Toxifia Frog Eggs",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -1702,7 +1999,7 @@
       "deprecatedIn": null
     },
     "Frog1Eggs": {
-      "displayName": "Frog Eggs",
+      "displayName": "Generic Frog Eggs",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -1711,7 +2008,7 @@
       "deprecatedIn": null
     },
     "Frog2Eggs": {
-      "displayName": "Frog Eggs",
+      "displayName": "Huli Frog Eggs",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -1720,7 +2017,7 @@
       "deprecatedIn": null
     },
     "Frog3Eggs": {
-      "displayName": "Frog Eggs",
+      "displayName": "Felicianna Frog Eggs",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -1729,7 +2026,7 @@
       "deprecatedIn": null
     },
     "Frog4Eggs": {
-      "displayName": "Frog Eggs",
+      "displayName": "Strabo Frog Eggs",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -1738,7 +2035,7 @@
       "deprecatedIn": null
     },
     "Frog5Eggs": {
-      "displayName": "Frog Eggs",
+      "displayName": "Trajuu Frog Eggs",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -1747,7 +2044,7 @@
       "deprecatedIn": null
     },
     "Frog6Eggs": {
-      "displayName": "Frog Eggs",
+      "displayName": "Aiolus Frog Eggs",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -1756,7 +2053,7 @@
       "deprecatedIn": null
     },
     "Frog7Eggs": {
-      "displayName": "Frog Eggs",
+      "displayName": "Afae Frog Eggs",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -1765,7 +2062,7 @@
       "deprecatedIn": null
     },
     "Frog8Eggs": {
-      "displayName": "Frog Eggs",
+      "displayName": "Cillus Frog Eggs",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
@@ -1774,10 +2071,19 @@
       "deprecatedIn": null
     },
     "Frog9Eggs": {
-      "displayName": "Frog Eggs",
+      "displayName": "Amedo Frog Eggs",
       "category": "larva",
       "canDemand": true,
       "canSupply": true,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "FrogDisplayer1": {
+      "displayName": "Frog Displayer",
+      "category": "structure",
+      "canDemand": false,
+      "canSupply": false,
       "deprecated": false,
       "addedIn": null,
       "deprecatedIn": null
@@ -1792,12 +2098,12 @@
       "deprecatedIn": null
     },
     "FuseAnimals1": {
-      "displayName": "Animals Fuse",
+      "displayName": "Animals Multiplier Fuse",
       "category": "consumable",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.518",
       "deprecatedIn": null
     },
     "FuseCartridge": {
@@ -1806,56 +2112,56 @@
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.518",
       "deprecatedIn": null
     },
     "FuseEnergy1": {
-      "displayName": "Energy Fuse",
+      "displayName": "Energy Multiplier Fuse",
       "category": "consumable",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.9.006",
       "deprecatedIn": null
     },
     "FuseGrowth1": {
-      "displayName": "Growth Fuse",
+      "displayName": "Growth Multiplier Fuse",
       "category": "consumable",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.518",
       "deprecatedIn": null
     },
     "FuseHeat1": {
-      "displayName": "Heat Fuse",
+      "displayName": "Heat Multiplier Fuse",
       "category": "consumable",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.9.006",
       "deprecatedIn": null
     },
     "FuseInsects1": {
-      "displayName": "Insects Fuse",
+      "displayName": "Insects Multiplier Fuse",
       "category": "consumable",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.518",
       "deprecatedIn": null
     },
     "FuseOxygen1": {
-      "displayName": "Oxygen Fuse",
+      "displayName": "Oxygen Multiplier Fuse",
       "category": "consumable",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.9.006",
       "deprecatedIn": null
     },
     "FusePlants1": {
-      "displayName": "Plants Fuse",
+      "displayName": "Plant Multiplier Fuse",
       "category": "consumable",
       "canDemand": true,
       "canSupply": true,
@@ -1864,34 +2170,34 @@
       "deprecatedIn": null
     },
     "FusePressure1": {
-      "displayName": "Pressure Fuse",
+      "displayName": "Pressure Multiplier Fuse",
       "category": "consumable",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.9.006",
       "deprecatedIn": null
     },
     "FuseProduction1": {
-      "displayName": "Production Fuse",
+      "displayName": "Production Multiplier Fuse",
       "category": "consumable",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.9.006",
       "deprecatedIn": null
     },
     "FusePurification1": {
-      "displayName": "Purification Fuse",
+      "displayName": "Purification Multiplier Fuse",
       "category": "consumable",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.9.006",
       "deprecatedIn": null
     },
     "FuseTradeRocketsSpeed1": {
-      "displayName": "Trade Rocket Speed Fuse",
+      "displayName": "Trade Rocket Multiplier Fuse",
       "category": "consumable",
       "canDemand": true,
       "canSupply": true,
@@ -1905,25 +2211,34 @@
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
+      "addedIn": "0.4.004",
+      "deprecatedIn": null
+    },
+    "FusionGenerator1": {
+      "displayName": "Fusion Reactor",
+      "category": "structure",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
       "addedIn": null,
       "deprecatedIn": null
     },
     "GasExtractor1": {
-      "displayName": "Gas Extractor T1",
+      "displayName": "Gas Extractor",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.4.004",
       "deprecatedIn": null
     },
     "GasExtractor2": {
-      "displayName": "Gas Extractor T2",
+      "displayName": "T2 Gas Extractor",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.7.007",
       "deprecatedIn": null
     },
     "GenerationGroupVein": {
@@ -1941,11 +2256,11 @@
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.0",
       "deprecatedIn": null
     },
     "GeneticManipulator1": {
-      "displayName": "Genetic Manipulator",
+      "displayName": "Tree Seed Sequencer",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
@@ -1959,7 +2274,7 @@
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.0",
       "deprecatedIn": null
     },
     "GeneticTrait": {
@@ -1968,7 +2283,7 @@
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.0",
       "deprecatedIn": null
     },
     "GoldenContainer": {
@@ -1990,6 +2305,15 @@
       "deprecatedIn": null
     },
     "GoldenEffigie2": {
+      "displayName": "Golden Effigy",
+      "category": "furniture",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "GoldenEffigie3": {
       "displayName": "Golden Effigy",
       "category": "furniture",
       "canDemand": false,
@@ -2022,11 +2346,83 @@
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
+      "addedIn": "0.7.007",
+      "deprecatedIn": null
+    },
+    "GoldenEffigie7": {
+      "displayName": "Golden Effigy",
+      "category": "furniture",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "GoldenEffigie8": {
+      "displayName": "Golden Effigy",
+      "category": "furniture",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "GoldenEffigie9": {
+      "displayName": "Golden Effigy",
+      "category": "furniture",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "GoldenToxicityEffigie1": {
+      "displayName": "Golden Effigy",
+      "category": "furniture",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "GoldenToxicityEffigie2": {
+      "displayName": "Golden Effigy",
+      "category": "furniture",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "GoldenToxicityEffigie3": {
+      "displayName": "Golden Effigy",
+      "category": "furniture",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "GoldenToxicityEffigie4": {
+      "displayName": "Golden Effigy",
+      "category": "furniture",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "GoldenToxicityEffigie5": {
+      "displayName": "Golden Effigy",
+      "category": "furniture",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
       "addedIn": null,
       "deprecatedIn": null
     },
     "GoldenToxicityEffigie6": {
-      "displayName": "Golden Toxicity Effigy",
+      "displayName": "Golden Effigy",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
@@ -2040,7 +2436,7 @@
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.4.004",
       "deprecatedIn": null
     },
     "HarvestingRobot1": {
@@ -2049,11 +2445,11 @@
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.518",
       "deprecatedIn": null
     },
     "Heater1": {
-      "displayName": "Heater T1",
+      "displayName": "T1 Heater",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
@@ -2062,7 +2458,7 @@
       "deprecatedIn": null
     },
     "Heater2": {
-      "displayName": "Heater T2",
+      "displayName": "T2 Heater",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
@@ -2071,34 +2467,34 @@
       "deprecatedIn": null
     },
     "Heater3": {
-      "displayName": "Heater T3",
+      "displayName": "T3 Heater",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.3.001",
       "deprecatedIn": null
     },
     "Heater4": {
-      "displayName": "Heater T4",
+      "displayName": "T4 Heater",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.4.004",
       "deprecatedIn": null
     },
     "Heater5": {
-      "displayName": "Heater T5",
+      "displayName": "T5 Heater",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.6.006",
       "deprecatedIn": null
     },
     "HologramGenerator": {
-      "displayName": "Hologram Generator",
+      "displayName": "Hologram Projector",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
@@ -2112,25 +2508,25 @@
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.5.005",
       "deprecatedIn": null
     },
     "HudChipCleanConstruction": {
-      "displayName": "Clean Construction Chip",
+      "displayName": "Microchip - Construction Menu Filter",
       "category": "chip",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.6.006",
       "deprecatedIn": null
     },
     "HudCompass": {
-      "displayName": "Compass",
+      "displayName": "Microchip - Compass",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.3.010",
       "deprecatedIn": null
     },
     "ice": {
@@ -2148,16 +2544,34 @@
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.5.005",
+      "deprecatedIn": null
+    },
+    "Incubator2": {
+      "displayName": "T2 Incubator",
+      "category": "structure",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": "2.102",
       "deprecatedIn": null
     },
     "InsideLamp1": {
-      "displayName": "Interior Lamp",
+      "displayName": "Area Lamp",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.4.004",
+      "deprecatedIn": null
+    },
+    "InsideLamp2": {
+      "displayName": "Intense Area Lamp",
+      "category": "furniture",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": "2.102",
       "deprecatedIn": null
     },
     "InteriorStairs1": {
@@ -2166,16 +2580,16 @@
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.404",
       "deprecatedIn": null
     },
     "InterplanetaryExchangePlatform1": {
-      "displayName": "Interplanetary Exchange Platform",
+      "displayName": "Interplanetary Exchange Shuttle",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.518",
       "deprecatedIn": null
     },
     "Iridium": {
@@ -2206,43 +2620,52 @@
       "deprecatedIn": null
     },
     "Jetpack1": {
-      "displayName": "Jetpack Upgrade",
+      "displayName": "T1 Jetpack",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.3.011",
       "deprecatedIn": null
     },
     "Jetpack2": {
-      "displayName": "Jetpack Upgrade",
+      "displayName": "T2 Jetpack",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.4.004",
       "deprecatedIn": null
     },
     "Jetpack3": {
-      "displayName": "Jetpack Upgrade",
+      "displayName": "T3 Jetpack",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.4.004",
       "deprecatedIn": null
     },
     "Jetpack4": {
-      "displayName": "Jetpack Upgrade",
+      "displayName": "T4 Jetpack",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.0",
+      "deprecatedIn": null
+    },
+    "Jetpack5": {
+      "displayName": "T5 Jetpack",
+      "category": "equipment",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": "1.518",
       "deprecatedIn": null
     },
     "Keycard1": {
-      "displayName": "Keycard",
+      "displayName": "Access Card",
       "category": "chip",
       "canDemand": true,
       "canSupply": true,
@@ -2251,7 +2674,7 @@
       "deprecatedIn": null
     },
     "KeyCard2": {
-      "displayName": "Keycard",
+      "displayName": "Access Card",
       "category": "chip",
       "canDemand": true,
       "canSupply": true,
@@ -2259,36 +2682,54 @@
       "addedIn": null,
       "deprecatedIn": null
     },
+    "Ladder": {
+      "displayName": "Indoor Ladder",
+      "category": "structure",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": "0.3.005",
+      "deprecatedIn": null
+    },
     "LarvaeBase1": {
-      "displayName": "Larvae Base T1",
+      "displayName": "Common Larva",
       "category": "structure",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.5.005",
       "deprecatedIn": null
     },
     "LarvaeBase2": {
-      "displayName": "Larvae Base T2",
+      "displayName": "Uncommon Larva",
       "category": "structure",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.5.005",
       "deprecatedIn": null
     },
     "LarvaeBase3": {
-      "displayName": "Larvae Base T3",
+      "displayName": "Rare Larva",
       "category": "structure",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.5.005",
       "deprecatedIn": null
     },
     "LaunchPlatform": {
-      "displayName": "Rocket Launch Platform",
+      "displayName": "Launch Platform",
       "category": "structure",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "LavaLamp1": {
+      "displayName": "Lava Lamp",
+      "category": "furniture",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
@@ -2298,6 +2739,15 @@
     "Library1": {
       "displayName": "Library",
       "category": "structure",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "LightBoxMedium": {
+      "displayName": "Light Box",
+      "category": "furniture",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
@@ -2332,25 +2782,34 @@
       "deprecatedIn": null
     },
     "MapChip": {
-      "displayName": "Map Chip",
+      "displayName": "Microchip - Map",
       "category": "chip",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.9.006",
+      "deprecatedIn": null
+    },
+    "Megadome1": {
+      "displayName": "Megadome",
+      "category": "structure",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": "1.518",
       "deprecatedIn": null
     },
     "MethanCapsule1": {
-      "displayName": "Methane Capsule",
+      "displayName": "Methane Cartridge",
       "category": "consumable",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.4.004",
       "deprecatedIn": null
     },
     "MicroPlastics": {
-      "displayName": "Micro Plastics",
+      "displayName": "Microplastics",
       "category": "component",
       "canDemand": true,
       "canSupply": true,
@@ -2368,7 +2827,7 @@
       "deprecatedIn": null
     },
     "MultiBuild": {
-      "displayName": "Multi-Build Module",
+      "displayName": "Microchip - Construction",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
@@ -2377,7 +2836,16 @@
       "deprecatedIn": null
     },
     "MultiDeconstruct": {
-      "displayName": "Multi-Deconstruct Module",
+      "displayName": "Microchip - Deconstruction",
+      "category": "equipment",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "MultiToolCleaningGooChip1": {
+      "displayName": "Microchip - T1 Goo Cleaning",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
@@ -2386,7 +2854,25 @@
       "deprecatedIn": null
     },
     "MultiToolCleaningGooChip2": {
-      "displayName": "Goo Cleaning T2",
+      "displayName": "Microchip - T2 Goo Cleaning",
+      "category": "equipment",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "MultiToolCleaningGooChip3": {
+      "displayName": "Microchip - T3 Goo Cleaning",
+      "category": "equipment",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "MultiToolCleaningGooChip4": {
+      "displayName": "Microchip - T4 Goo Cleaning",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
@@ -2395,25 +2881,25 @@
       "deprecatedIn": null
     },
     "MultiToolDeconstruct2": {
-      "displayName": "Deconstruct T2",
+      "displayName": "Microchip - T2 Deconstruction",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.7.007",
       "deprecatedIn": null
     },
     "MultiToolDeconstruct3": {
-      "displayName": "Deconstruct T3",
+      "displayName": "Microchip - T3 Deconstruction",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.0",
       "deprecatedIn": null
     },
     "MultiToolLight": {
-      "displayName": "Tool Light",
+      "displayName": "Microchip - Torch",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
@@ -2422,25 +2908,25 @@
       "deprecatedIn": null
     },
     "MultiToolLight2": {
-      "displayName": "Tool Light T2",
+      "displayName": "Microchip - T2 Torch",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.4.011",
       "deprecatedIn": null
     },
     "MultiToolLight3": {
-      "displayName": "Tool Light T3",
+      "displayName": "Microchip - T3 Torch",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.0",
       "deprecatedIn": null
     },
     "MultiToolMineSpeed1": {
-      "displayName": "Mining Speed T1",
+      "displayName": "Microchip - T1 Mining Speed",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
@@ -2449,7 +2935,7 @@
       "deprecatedIn": null
     },
     "MultiToolMineSpeed2": {
-      "displayName": "Mining Speed T2",
+      "displayName": "Microchip - T2 Mining Speed",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
@@ -2458,7 +2944,7 @@
       "deprecatedIn": null
     },
     "MultiToolMineSpeed3": {
-      "displayName": "Mining Speed T3",
+      "displayName": "Microchip - T3 Mining Speed",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
@@ -2467,7 +2953,7 @@
       "deprecatedIn": null
     },
     "MultiToolMineSpeed4": {
-      "displayName": "Mining Speed T4",
+      "displayName": "Microchip - T4 Mining Speed",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
@@ -2476,48 +2962,48 @@
       "deprecatedIn": null
     },
     "Mutagen1": {
-      "displayName": "Mutagen T1",
+      "displayName": "Mutagen",
       "category": "component",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.4.004",
       "deprecatedIn": null
     },
     "Mutagen2": {
-      "displayName": "Mutagen T2",
+      "displayName": "T2 Mutagen",
       "category": "component",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.6.006",
       "deprecatedIn": null
     },
     "Mutagen3": {
-      "displayName": "Mutagen T3",
+      "displayName": "T3 Mutagen",
       "category": "component",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.7.007",
       "deprecatedIn": null
     },
     "Mutagen4": {
-      "displayName": "Mutagen T4",
+      "displayName": "T4 Mutagen",
       "category": "component",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.8.008",
       "deprecatedIn": null
     },
     "NitrogenCapsule1": {
-      "displayName": "Nitrogen Capsule",
+      "displayName": "Nitrogen Cartridge",
       "category": "consumable",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.7.007",
       "deprecatedIn": null
     },
     "Obsidian": {
@@ -2526,21 +3012,30 @@
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.9.006",
       "deprecatedIn": null
     },
     "Optimizer1": {
-      "displayName": "Optimizer T1",
+      "displayName": "Machine Optimizer",
       "category": "consumable",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.9.006",
       "deprecatedIn": null
     },
     "Optimizer2": {
-      "displayName": "Optimizer T2",
+      "displayName": "T2 Machine Optimizer",
       "category": "consumable",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": "0.9.006",
+      "deprecatedIn": null
+    },
+    "OreBreaker1": {
+      "displayName": "T1 Ore Crusher",
+      "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
@@ -2548,7 +3043,7 @@
       "deprecatedIn": null
     },
     "OreBreaker2": {
-      "displayName": "Ore Breaker T2",
+      "displayName": "T2 Ore Crusher",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
@@ -2557,7 +3052,7 @@
       "deprecatedIn": null
     },
     "OreBreaker3": {
-      "displayName": "Ore Breaker T3",
+      "displayName": "T3 Ore Crusher",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
@@ -2566,30 +3061,30 @@
       "deprecatedIn": null
     },
     "OreExtractor1": {
-      "displayName": "Ore Extractor T1",
+      "displayName": "Ore Extractor",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.3.010",
       "deprecatedIn": null
     },
     "OreExtractor2": {
-      "displayName": "Ore Extractor T2",
+      "displayName": "T2 Ore Extractor",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.4.004",
       "deprecatedIn": null
     },
     "OreExtractor3": {
-      "displayName": "Ore Extractor T3",
+      "displayName": "T3 Ore Extractor",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.6.006",
       "deprecatedIn": null
     },
     "Osmium": {
@@ -2597,6 +3092,15 @@
       "category": "ore",
       "canDemand": true,
       "canSupply": true,
+      "deprecated": false,
+      "addedIn": "0.3.010",
+      "deprecatedIn": null
+    },
+    "OutsideLamp1": {
+      "displayName": "Outdoor Lamp",
+      "category": "structure",
+      "canDemand": false,
+      "canSupply": false,
       "deprecated": false,
       "addedIn": null,
       "deprecatedIn": null
@@ -2610,8 +3114,26 @@
       "addedIn": null,
       "deprecatedIn": null
     },
+    "OxygenTank1": {
+      "displayName": "T1 Oxygen Tank",
+      "category": "equipment",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
     "OxygenTank2": {
-      "displayName": "Oxygen Tank Upgrade",
+      "displayName": "T2 Oxygen Tank",
+      "category": "equipment",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "OxygenTank3": {
+      "displayName": "T3 Oxygen Tank",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
@@ -2620,12 +3142,21 @@
       "deprecatedIn": null
     },
     "OxygenTank4": {
-      "displayName": "Oxygen Tank Upgrade",
+      "displayName": "T4 Oxygen Tank",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.3.001",
+      "deprecatedIn": null
+    },
+    "OxygenTank5": {
+      "displayName": "T5 Oxygen Tank",
+      "category": "equipment",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": "1.518",
       "deprecatedIn": null
     },
     "Phosphorus": {
@@ -2634,7 +3165,7 @@
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.518",
       "deprecatedIn": null
     },
     "Phytoplankton1": {
@@ -2643,11 +3174,29 @@
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.7.007",
       "deprecatedIn": null
     },
     "Phytoplankton2": {
-      "displayName": "Phytoplankton",
+      "displayName": "Phytoplankton B",
+      "category": "plant",
+      "canDemand": true,
+      "canSupply": true,
+      "deprecated": true,
+      "addedIn": "0.7.007",
+      "deprecatedIn": "2.102"
+    },
+    "Phytoplankton3": {
+      "displayName": "Phytoplankton C",
+      "category": "plant",
+      "canDemand": true,
+      "canSupply": true,
+      "deprecated": true,
+      "addedIn": "0.7.007",
+      "deprecatedIn": "2.102"
+    },
+    "Phytoplankton4": {
+      "displayName": "Phytoplankton D",
       "category": "plant",
       "canDemand": true,
       "canSupply": true,
@@ -2655,17 +3204,26 @@
       "addedIn": null,
       "deprecatedIn": null
     },
-    "Phytoplankton3": {
-      "displayName": "Phytoplankton",
-      "category": "plant",
-      "canDemand": true,
-      "canSupply": true,
+    "PinChip1": {
+      "displayName": "Microchip - T1 Blueprint Pinning",
+      "category": "chip",
+      "canDemand": false,
+      "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.9.012",
       "deprecatedIn": null
     },
     "PinChip2": {
-      "displayName": "Pin Chip",
+      "displayName": "Microchip - T2 Blueprint Pinning",
+      "category": "chip",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": "0.9.012",
+      "deprecatedIn": null
+    },
+    "PinChip3": {
+      "displayName": "Microchip - T3 Blueprint Pinning",
       "category": "chip",
       "canDemand": false,
       "canSupply": false,
@@ -2673,13 +3231,13 @@
       "addedIn": null,
       "deprecatedIn": null
     },
-    "PinChip3": {
-      "displayName": "Pin Chip",
-      "category": "chip",
+    "PlanetaryDeliveryDepot1": {
+      "displayName": "Planetary Delivery Depot",
+      "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.518",
       "deprecatedIn": null
     },
     "PlanetViewer1": {
@@ -2701,7 +3259,7 @@
       "deprecatedIn": null
     },
     "pod": {
-      "displayName": "Habitat Pod",
+      "displayName": "Living Compartment",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
@@ -2710,34 +3268,34 @@
       "deprecatedIn": null
     },
     "Pod4x": {
-      "displayName": "Large Habitat Pod",
+      "displayName": "Big Living Compartment",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.4.004",
       "deprecatedIn": null
     },
     "Pod9xA": {
-      "displayName": "Extra Large Habitat Pod",
+      "displayName": "Rounded Living Compartment",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.8.008",
       "deprecatedIn": null
     },
     "Pod9xB": {
-      "displayName": "Extra Large Habitat Pod",
+      "displayName": "Living Compartment with Dome",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.8.008",
       "deprecatedIn": null
     },
     "Pod9xC": {
-      "displayName": "Extra Large Habitat Pod",
+      "displayName": "3x3 Living Compartment",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
@@ -2746,12 +3304,21 @@
       "deprecatedIn": null
     },
     "podAngle": {
-      "displayName": "Angled Habitat Pod",
+      "displayName": "Living Compartment Corner",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.4.004",
+      "deprecatedIn": null
+    },
+    "PodUnderground": {
+      "displayName": "Underground Living Compartment",
+      "category": "structure",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": "2.102",
       "deprecatedIn": null
     },
     "Pooltable1": {
@@ -2773,7 +3340,7 @@
       "deprecatedIn": null
     },
     "Poster1": {
-      "displayName": "Poster",
+      "displayName": "Poster A",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
@@ -2782,7 +3349,34 @@
       "deprecatedIn": null
     },
     "Poster10": {
-      "displayName": "Poster",
+      "displayName": "Poster J",
+      "category": "furniture",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "Poster11": {
+      "displayName": "Poster K",
+      "category": "furniture",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "Poster12": {
+      "displayName": "Poster L",
+      "category": "furniture",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "Poster13": {
+      "displayName": "Poster M",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
@@ -2791,7 +3385,16 @@
       "deprecatedIn": null
     },
     "Poster2": {
-      "displayName": "Poster",
+      "displayName": "Poster B",
+      "category": "furniture",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "Poster3": {
+      "displayName": "Poster C",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
@@ -2800,7 +3403,7 @@
       "deprecatedIn": null
     },
     "Poster4": {
-      "displayName": "Poster",
+      "displayName": "Poster D",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
@@ -2809,7 +3412,16 @@
       "deprecatedIn": null
     },
     "Poster5": {
-      "displayName": "Poster",
+      "displayName": "Poster E",
+      "category": "furniture",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "Poster6": {
+      "displayName": "Poster F",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
@@ -2818,7 +3430,7 @@
       "deprecatedIn": null
     },
     "Poster7": {
-      "displayName": "Poster",
+      "displayName": "Poster G",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
@@ -2827,7 +3439,7 @@
       "deprecatedIn": null
     },
     "Poster8": {
-      "displayName": "Poster",
+      "displayName": "Poster H",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
@@ -2836,7 +3448,7 @@
       "deprecatedIn": null
     },
     "Poster9": {
-      "displayName": "Poster",
+      "displayName": "Poster I",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
@@ -2863,7 +3475,7 @@
       "deprecatedIn": null
     },
     "ProceduralWreckContainer1": {
-      "displayName": "Wreck Crate",
+      "displayName": "Storage Crate",
       "category": "container",
       "canDemand": false,
       "canSupply": false,
@@ -2872,7 +3484,7 @@
       "deprecatedIn": null
     },
     "ProceduralWreckContainer2": {
-      "displayName": "Wreck Crate",
+      "displayName": "Storage Crate",
       "category": "container",
       "canDemand": false,
       "canSupply": false,
@@ -2881,7 +3493,7 @@
       "deprecatedIn": null
     },
     "ProceduralWreckSafe": {
-      "displayName": "Wreck Safe",
+      "displayName": "Big Safe",
       "category": "container",
       "canDemand": false,
       "canSupply": false,
@@ -2895,7 +3507,7 @@
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.4.004",
       "deprecatedIn": null
     },
     "PurificationCapsule": {
@@ -2931,7 +3543,7 @@
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.518",
       "deprecatedIn": null
     },
     "QuasarQuartz": {
@@ -2949,16 +3561,16 @@
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.4.004",
       "deprecatedIn": null
     },
     "RecyclingMachine2": {
-      "displayName": "Recycling Machine T2",
+      "displayName": "T2 Recycling Machine",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.518",
       "deprecatedIn": null
     },
     "RedPowder1": {
@@ -2967,29 +3579,47 @@
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.3.011",
       "deprecatedIn": null
     },
     "RocketAnimals1": {
-      "displayName": "Animals Rocket",
+      "displayName": "Animals Spreader Rocket",
       "category": "rocket",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.0",
+      "deprecatedIn": null
+    },
+    "RocketAnimals2": {
+      "displayName": "T2 Animals Spreader Rocket",
+      "category": "rocket",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": "2.102",
       "deprecatedIn": null
     },
     "RocketBiomass1": {
-      "displayName": "Biomass Rocket",
+      "displayName": "Plant Rocket",
       "category": "rocket",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.4.004",
       "deprecatedIn": null
     },
     "RocketBiomass2": {
-      "displayName": "Biomass Rocket T2",
+      "displayName": "T2 Plant Rocket",
+      "category": "rocket",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": "1.518",
+      "deprecatedIn": null
+    },
+    "RocketDeparture1": {
+      "displayName": "Extraction Rocket",
       "category": "rocket",
       "canDemand": false,
       "canSupply": false,
@@ -2998,97 +3628,106 @@
       "deprecatedIn": null
     },
     "RocketDrones1": {
-      "displayName": "Drone Rocket",
+      "displayName": "Drone Visualization Rocket",
       "category": "rocket",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.7.007",
       "deprecatedIn": null
     },
     "RocketHeat1": {
-      "displayName": "Heat Rocket",
+      "displayName": "Asteroid Attraction Rocket",
       "category": "rocket",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
       "addedIn": null,
+      "deprecatedIn": null
+    },
+    "RocketHeat2": {
+      "displayName": "T2 Asteroid Attraction Rocket",
+      "category": "rocket",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": "1.518",
       "deprecatedIn": null
     },
     "RocketInformations1": {
-      "displayName": "Information Rocket",
+      "displayName": "Map Information Rocket",
       "category": "rocket",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.4.011",
       "deprecatedIn": null
     },
     "RocketInformations2": {
-      "displayName": "Information Rocket T2",
+      "displayName": "T2 Map Information Rocket",
       "category": "rocket",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.518",
       "deprecatedIn": null
     },
     "RocketInsects1": {
-      "displayName": "Insects Rocket",
+      "displayName": "Insect Spreader Rocket",
       "category": "rocket",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.6.006",
       "deprecatedIn": null
     },
     "RocketInsects2": {
-      "displayName": "Insects Rocket T2",
+      "displayName": "T2 Insect Spreader Rocket",
       "category": "rocket",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.518",
       "deprecatedIn": null
     },
     "RocketMap1": {
-      "displayName": "Map Rocket",
+      "displayName": "T1 GPS Satellite",
       "category": "rocket",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.3.011",
       "deprecatedIn": null
     },
     "RocketMap2": {
-      "displayName": "Map Rocket",
+      "displayName": "T2 GPS Satellite",
       "category": "rocket",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.4.004",
       "deprecatedIn": null
     },
     "RocketMap3": {
-      "displayName": "Map Rocket",
+      "displayName": "T3 GPS Satellite",
       "category": "rocket",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.4.004",
       "deprecatedIn": null
     },
     "RocketMap4": {
-      "displayName": "Map Rocket",
+      "displayName": "T4 GPS Satellite",
       "category": "rocket",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.7.007",
       "deprecatedIn": null
     },
     "RocketOxygen1": {
-      "displayName": "Oxygen Rocket",
+      "displayName": "Seed Spreader Rocket",
       "category": "rocket",
       "canDemand": false,
       "canSupply": false,
@@ -3096,8 +3735,17 @@
       "addedIn": null,
       "deprecatedIn": null
     },
+    "RocketOxygen2": {
+      "displayName": "T2 Oxygen Rocket",
+      "category": "rocket",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": "2.102",
+      "deprecatedIn": null
+    },
     "RocketPressure1": {
-      "displayName": "Pressure Rocket",
+      "displayName": "Magnetic Field Protection Rocket",
       "category": "rocket",
       "canDemand": false,
       "canSupply": false,
@@ -3106,7 +3754,16 @@
       "deprecatedIn": null
     },
     "RocketPressure2": {
-      "displayName": "Pressure Rocket T2",
+      "displayName": "T2 Magnetic Field Protection Rocket",
+      "category": "rocket",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": "1.518",
+      "deprecatedIn": null
+    },
+    "RocketPurification1": {
+      "displayName": "Purification Rocket",
       "category": "rocket",
       "canDemand": false,
       "canSupply": false,
@@ -3115,7 +3772,7 @@
       "deprecatedIn": null
     },
     "RocketReactor": {
-      "displayName": "Rocket Reactor",
+      "displayName": "Rocket Engine",
       "category": "rocket",
       "canDemand": true,
       "canSupply": true,
@@ -3124,21 +3781,30 @@
       "deprecatedIn": null
     },
     "RocketReactor2": {
-      "displayName": "Rocket Reactor T2",
+      "displayName": "T2 Rocket Engine",
       "category": "rocket",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.518",
       "deprecatedIn": null
     },
-    "RocketTravel1": {
-      "displayName": "Travel Rocket",
+    "RocketToxicInformations1": {
+      "displayName": "Toxic Area Information Rocket",
       "category": "rocket",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
       "addedIn": null,
+      "deprecatedIn": null
+    },
+    "RocketTravel1": {
+      "displayName": "Interplanetary Travel Rocket",
+      "category": "rocket",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": "1.518",
       "deprecatedIn": null
     },
     "RockExplodable": {
@@ -3151,12 +3817,12 @@
       "deprecatedIn": null
     },
     "Rod-alloy": {
-      "displayName": "Alloy Rod",
+      "displayName": "Super Alloy Rod",
       "category": "component",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.4.011",
       "deprecatedIn": null
     },
     "Rod-iridium": {
@@ -3165,7 +3831,7 @@
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.3.001",
       "deprecatedIn": null
     },
     "Rod-osmium": {
@@ -3174,7 +3840,7 @@
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.6.006",
       "deprecatedIn": null
     },
     "Rod-plastic": {
@@ -3201,7 +3867,7 @@
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.3.001",
       "deprecatedIn": null
     },
     "ScreenBiomass": {
@@ -3210,11 +3876,11 @@
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.5.005",
       "deprecatedIn": null
     },
     "ScreenEnergy": {
-      "displayName": "Energy Screen",
+      "displayName": "Screen - Energy Levels",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
@@ -3223,43 +3889,43 @@
       "deprecatedIn": null
     },
     "ScreenMap1": {
-      "displayName": "Map Screen",
+      "displayName": "Screen - Mapping",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.3.011",
       "deprecatedIn": null
     },
     "ScreenMessage": {
-      "displayName": "Message Screen",
+      "displayName": "Screen - Transmissions",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.3.001",
       "deprecatedIn": null
     },
     "ScreenRockets": {
-      "displayName": "Rockets Screen",
+      "displayName": "Screen - Orbital Information",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.4.014",
       "deprecatedIn": null
     },
     "ScreenSystem1": {
-      "displayName": "System Screen",
+      "displayName": "Solar System Screen",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.518",
       "deprecatedIn": null
     },
     "ScreenTerraformation": {
-      "displayName": "Terraformation Screen",
+      "displayName": "Screen - Terraformation",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
@@ -3268,7 +3934,7 @@
       "deprecatedIn": null
     },
     "ScreenTerraStage": {
-      "displayName": "Terra Stage Screen",
+      "displayName": "Screen - Progress",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
@@ -3277,16 +3943,16 @@
       "deprecatedIn": null
     },
     "ScreenToxic1": {
-      "displayName": "Toxicity Screen",
+      "displayName": "Screen - Toxicity",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.608",
       "deprecatedIn": null
     },
     "ScreenUnlockables": {
-      "displayName": "Unlockables Screen",
+      "displayName": "Screen - Blueprints",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
@@ -3295,7 +3961,7 @@
       "deprecatedIn": null
     },
     "Seed0": {
-      "displayName": "Seed (Common)",
+      "displayName": "Lirma Seed",
       "category": "seed",
       "canDemand": true,
       "canSupply": true,
@@ -3303,8 +3969,17 @@
       "addedIn": null,
       "deprecatedIn": null
     },
+    "Seed0Growable": {
+      "displayName": "Lirma Plant",
+      "category": "plant",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
     "Seed1": {
-      "displayName": "Seed",
+      "displayName": "Shanga Seed",
       "category": "seed",
       "canDemand": true,
       "canSupply": true,
@@ -3313,43 +3988,70 @@
       "deprecatedIn": null
     },
     "Seed10Humble": {
-      "displayName": "Humble Seed",
+      "displayName": "Furteo Seed",
       "category": "seed",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.310",
       "deprecatedIn": null
     },
     "Seed11Humble": {
-      "displayName": "Humble Seed",
+      "displayName": "Humblea Seed",
       "category": "seed",
       "canDemand": true,
       "canSupply": true,
+      "deprecated": false,
+      "addedIn": "1.310",
+      "deprecatedIn": null
+    },
+    "Seed1Growable": {
+      "displayName": "Shanga Plant",
+      "category": "plant",
+      "canDemand": false,
+      "canSupply": false,
       "deprecated": false,
       "addedIn": null,
       "deprecatedIn": null
     },
     "Seed2": {
-      "displayName": "Seed",
+      "displayName": "Pestera Seed",
       "category": "seed",
       "canDemand": true,
       "canSupply": true,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "Seed2Growable": {
+      "displayName": "Pestera Plant",
+      "category": "plant",
+      "canDemand": false,
+      "canSupply": false,
       "deprecated": false,
       "addedIn": null,
       "deprecatedIn": null
     },
     "Seed3": {
-      "displayName": "Seed",
+      "displayName": "Nulna Seed",
       "category": "seed",
       "canDemand": true,
       "canSupply": true,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "Seed3Growable": {
+      "displayName": "Nulna Plant",
+      "category": "plant",
+      "canDemand": false,
+      "canSupply": false,
       "deprecated": false,
       "addedIn": null,
       "deprecatedIn": null
     },
     "Seed4": {
-      "displayName": "Seed",
+      "displayName": "Tuska Seed",
       "category": "seed",
       "canDemand": true,
       "canSupply": true,
@@ -3357,8 +4059,17 @@
       "addedIn": null,
       "deprecatedIn": null
     },
+    "Seed4Growable": {
+      "displayName": "Tuska Plant",
+      "category": "plant",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
     "Seed5": {
-      "displayName": "Seed",
+      "displayName": "Orema Plant",
       "category": "seed",
       "canDemand": true,
       "canSupply": true,
@@ -3367,7 +4078,7 @@
       "deprecatedIn": null
     },
     "Seed6": {
-      "displayName": "Seed",
+      "displayName": "Volnus Plant",
       "category": "seed",
       "canDemand": true,
       "canSupply": true,
@@ -3376,7 +4087,7 @@
       "deprecatedIn": null
     },
     "Seed7Humble": {
-      "displayName": "Humble Seed",
+      "displayName": "Snepea Seed",
       "category": "seed",
       "canDemand": true,
       "canSupply": true,
@@ -3385,7 +4096,7 @@
       "deprecatedIn": null
     },
     "Seed8Humble": {
-      "displayName": "Humble Seed",
+      "displayName": "Brelea Seed",
       "category": "seed",
       "canDemand": true,
       "canSupply": true,
@@ -3394,12 +4105,12 @@
       "deprecatedIn": null
     },
     "Seed9Humble": {
-      "displayName": "Humble Seed",
+      "displayName": "Seleus Seed",
       "category": "seed",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.310",
       "deprecatedIn": null
     },
     "SeedGold": {
@@ -3411,22 +4122,31 @@
       "addedIn": null,
       "deprecatedIn": null
     },
-    "SeedSpreader1": {
-      "displayName": "Seed Spreader T1",
-      "category": "structure",
+    "SeedGoldGrowable": {
+      "displayName": "Golden Plant",
+      "category": "plant",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
       "addedIn": null,
       "deprecatedIn": null
     },
-    "SeedSpreader2": {
-      "displayName": "Seed Spreader T2",
+    "SeedSpreader1": {
+      "displayName": "Flower Spreader",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.3.004",
+      "deprecatedIn": null
+    },
+    "SeedSpreader2": {
+      "displayName": "T2 Flower Spreader",
+      "category": "structure",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": "0.4.004",
       "deprecatedIn": null
     },
     "Selenium": {
@@ -3435,7 +4155,7 @@
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.518",
       "deprecatedIn": null
     },
     "Server1": {
@@ -3471,7 +4191,7 @@
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.4.004",
       "deprecatedIn": null
     },
     "Silicon": {
@@ -3498,7 +4218,7 @@
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.5.005",
       "deprecatedIn": null
     },
     "SilkWorm": {
@@ -3511,7 +4231,7 @@
       "deprecatedIn": null
     },
     "Skin-01": {
-      "displayName": "Suit Skin",
+      "displayName": "Spacesuit Comto",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
@@ -3520,7 +4240,7 @@
       "deprecatedIn": null
     },
     "Skin-02": {
-      "displayName": "Suit Skin",
+      "displayName": "Spacesuit Blasto",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
@@ -3529,7 +4249,16 @@
       "deprecatedIn": null
     },
     "Skin-03": {
-      "displayName": "Suit Skin",
+      "displayName": "Spacesuit Primo",
+      "category": "equipment",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "Skin-04": {
+      "displayName": "Spacesuit Goldeo",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
@@ -3538,7 +4267,7 @@
       "deprecatedIn": null
     },
     "Skin-05": {
-      "displayName": "Suit Skin",
+      "displayName": "Spacesuit Scifo",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
@@ -3547,7 +4276,7 @@
       "deprecatedIn": null
     },
     "Skin-06": {
-      "displayName": "Suit Skin",
+      "displayName": "Spacesuit Cipto",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
@@ -3556,7 +4285,16 @@
       "deprecatedIn": null
     },
     "Skin-07": {
-      "displayName": "Suit Skin",
+      "displayName": "Spacesuit Beteo",
+      "category": "equipment",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "Skin-08": {
+      "displayName": "Spacesuit Tureo",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
@@ -3565,7 +4303,7 @@
       "deprecatedIn": null
     },
     "Skin-09": {
-      "displayName": "Suit Skin",
+      "displayName": "Spacesuit Fablo",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
@@ -3574,7 +4312,25 @@
       "deprecatedIn": null
     },
     "Skin-10": {
-      "displayName": "Suit Skin",
+      "displayName": "Spacesuit Tubio",
+      "category": "equipment",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "Skin-11": {
+      "displayName": "Spacesuit Vateo",
+      "category": "equipment",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "Skin-12": {
+      "displayName": "Spacesuit Widio",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
@@ -3583,7 +4339,7 @@
       "deprecatedIn": null
     },
     "Skin-13": {
-      "displayName": "Suit Skin",
+      "displayName": "Spacesuit Mekio",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
@@ -3592,7 +4348,7 @@
       "deprecatedIn": null
     },
     "Skin-14": {
-      "displayName": "Suit Skin",
+      "displayName": "Spacesuit Abyso",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
@@ -3601,7 +4357,7 @@
       "deprecatedIn": null
     },
     "Skin-15": {
-      "displayName": "Suit Skin",
+      "displayName": "Spacesuit Ettio",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
@@ -3610,7 +4366,7 @@
       "deprecatedIn": null
     },
     "Skin-16": {
-      "displayName": "Suit Skin",
+      "displayName": "Spacesuit Plesao",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
@@ -3619,7 +4375,34 @@
       "deprecatedIn": null
     },
     "Skin-17": {
-      "displayName": "Suit Skin",
+      "displayName": "Spacesuit Rorao",
+      "category": "equipment",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "Skin-18": {
+      "displayName": "Spacesuit Starforma",
+      "category": "equipment",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "Skin-19": {
+      "displayName": "Spacesuit Glitx",
+      "category": "equipment",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "Skin-20": {
+      "displayName": "Spacesuit Colonnya",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
@@ -3628,7 +4411,34 @@
       "deprecatedIn": null
     },
     "Skin-21": {
-      "displayName": "Suit Skin",
+      "displayName": "Spacesuit Sunsio",
+      "category": "equipment",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "Skin-22": {
+      "displayName": "Spacesuit Goox",
+      "category": "equipment",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "Skin-23": {
+      "displayName": "Spacesuit Alij",
+      "category": "equipment",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "Skin-24": {
+      "displayName": "Spacesuit Stellarcheo",
       "category": "equipment",
       "canDemand": false,
       "canSupply": false,
@@ -3637,12 +4447,12 @@
       "deprecatedIn": null
     },
     "SkinDisplayer": {
-      "displayName": "Skin Displayer",
+      "displayName": "Spacesuit Displayer",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.102",
       "deprecatedIn": null
     },
     "SmartFabric": {
@@ -3664,7 +4474,7 @@
       "deprecatedIn": null
     },
     "SofaAngle": {
-      "displayName": "Angled Sofa",
+      "displayName": "Corner Sofa",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
@@ -3673,7 +4483,7 @@
       "deprecatedIn": null
     },
     "SofaAngleColored": {
-      "displayName": "Angled Sofa",
+      "displayName": "Customizable Corner Sofa",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
@@ -3682,12 +4492,12 @@
       "deprecatedIn": null
     },
     "SofaColored": {
-      "displayName": "Sofa",
+      "displayName": "Customizable Sofa",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.8.008",
       "deprecatedIn": null
     },
     "SolarQuartz": {
@@ -3709,7 +4519,7 @@
       "deprecatedIn": null
     },
     "SpaceMultiplierHeat": {
-      "displayName": "Heat Space Booster",
+      "displayName": "Space Heat Multiplier",
       "category": "consumable",
       "canDemand": false,
       "canSupply": false,
@@ -3727,7 +4537,7 @@
       "deprecatedIn": null
     },
     "SpaceMultiplierOxygen": {
-      "displayName": "Oxygen Space Booster",
+      "displayName": "Space Oxygen Multiplier",
       "category": "consumable",
       "canDemand": false,
       "canSupply": false,
@@ -3745,7 +4555,7 @@
       "deprecatedIn": null
     },
     "SpaceMultiplierPressure": {
-      "displayName": "Pressure Space Booster",
+      "displayName": "Space Pressure Multiplier",
       "category": "consumable",
       "canDemand": false,
       "canSupply": false,
@@ -3754,8 +4564,35 @@
       "deprecatedIn": null
     },
     "Stairs": {
-      "displayName": "Stairs",
+      "displayName": "Outdoor Stairs",
       "category": "structure",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "StarformContainer": {
+      "displayName": "Starform Crate",
+      "category": "container",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": "1.314",
+      "deprecatedIn": null
+    },
+    "StarformEffigie1": {
+      "displayName": "Starform Effigy",
+      "category": "furniture",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": "1.314",
+      "deprecatedIn": null
+    },
+    "StarformEffigie2": {
+      "displayName": "Starform Effigy",
+      "category": "furniture",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
@@ -3771,17 +4608,44 @@
       "addedIn": null,
       "deprecatedIn": null
     },
+    "StarformEffigie4": {
+      "displayName": "Starform Effigy",
+      "category": "furniture",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "StarformEffigie5": {
+      "displayName": "Starform Effigy",
+      "category": "furniture",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "StarformEffigie6": {
+      "displayName": "Starform Effigy",
+      "category": "furniture",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
     "Sulfur": {
       "displayName": "Sulfur",
       "category": "ore",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.3.010",
       "deprecatedIn": null
     },
     "Table1": {
-      "displayName": "Table",
+      "displayName": "Big Table",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
@@ -3790,7 +4654,7 @@
       "deprecatedIn": null
     },
     "TableSmall": {
-      "displayName": "Small Table",
+      "displayName": "Table",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
@@ -3808,7 +4672,7 @@
       "deprecatedIn": null
     },
     "TableSmall3": {
-      "displayName": "Small Table",
+      "displayName": "Glass Table",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
@@ -3822,43 +4686,43 @@
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.4.011",
       "deprecatedIn": null
     },
     "TerraTokens100": {
-      "displayName": "100 Terra Tokens",
+      "displayName": "Terra Tokens: 100",
       "category": "token",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.8.008",
       "deprecatedIn": null
     },
     "TerraTokens1000": {
-      "displayName": "1000 Terra Tokens",
+      "displayName": "Terra Tokens: 1000",
       "category": "token",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.8.008",
       "deprecatedIn": null
     },
     "TerraTokens500": {
-      "displayName": "500 Terra Tokens",
+      "displayName": "Terra Tokens: 500",
       "category": "token",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.8.008",
       "deprecatedIn": null
     },
     "TerraTokens5000": {
-      "displayName": "5000 Terra Tokens",
+      "displayName": "Terra Tokens: 5000",
       "category": "token",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.8.008",
       "deprecatedIn": null
     },
     "Titanium": {
@@ -3885,29 +4749,38 @@
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.608",
       "deprecatedIn": null
     },
     "ToxicityAmmo": {
-      "displayName": "Toxicity Ammo",
+      "displayName": "Toxic Artillery Shell",
       "category": "consumable",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.608",
       "deprecatedIn": null
     },
     "ToxicityAmmoPack": {
-      "displayName": "Toxicity Ammo Pack",
+      "displayName": "Toxic Artillery Shells Pack",
       "category": "consumable",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.608",
       "deprecatedIn": null
     },
     "ToxicityDiorama1": {
-      "displayName": "Toxicity Diorama",
+      "displayName": "Terraforming Diorama A",
+      "category": "furniture",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "ToxicityDiorama2": {
+      "displayName": "Terraforming Diorama B",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
@@ -3916,30 +4789,30 @@
       "deprecatedIn": null
     },
     "ToxicityMedecine": {
-      "displayName": "Toxicity Medicine",
+      "displayName": "Pristine Purifying Balm",
       "category": "consumable",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.608",
       "deprecatedIn": null
     },
     "ToxicityMedecinePack": {
-      "displayName": "Toxicity Medicine Pack",
+      "displayName": "Pristine Purifying Balms Pack",
       "category": "consumable",
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.608",
       "deprecatedIn": null
     },
     "ToxicRefinementCraftStation1": {
-      "displayName": "Toxic Refinement Station",
+      "displayName": "Craft Station - Refinement",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.608",
       "deprecatedIn": null
     },
     "ToxicSpores": {
@@ -3948,7 +4821,7 @@
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.608",
       "deprecatedIn": null
     },
     "ToxicWater": {
@@ -3957,34 +4830,52 @@
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.608",
       "deprecatedIn": null
     },
     "ToxicWaterCollector1": {
-      "displayName": "Toxic Water Collector T1",
+      "displayName": "T1 Toxic Water Collector",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.608",
       "deprecatedIn": null
     },
     "ToxicWaterCollector2": {
-      "displayName": "Toxic Water Collector T2",
+      "displayName": "T2 Toxic Water Collector",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.608",
       "deprecatedIn": null
     },
-    "ToxicZoneHudDisplayer2": {
-      "displayName": "Toxic Zone Chip T2",
+    "ToxicWaterCollector3": {
+      "displayName": "T3 Toxic Water Collector",
+      "category": "structure",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": "1.608",
+      "deprecatedIn": null
+    },
+    "ToxicZoneHudDisplayer": {
+      "displayName": "Microchip - Toxic Areas Informations",
       "category": "chip",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.608",
+      "deprecatedIn": null
+    },
+    "ToxicZoneHudDisplayer2": {
+      "displayName": "Microchip - T2 Toxic Areas Informations",
+      "category": "chip",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": "1.608",
       "deprecatedIn": null
     },
     "Toxins": {
@@ -3993,29 +4884,47 @@
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.608",
+      "deprecatedIn": null
+    },
+    "ToxinsFilter1": {
+      "displayName": "T1 Toxins Filter",
+      "category": "structure",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": "1.608",
       "deprecatedIn": null
     },
     "ToxinsFilter2": {
-      "displayName": "Toxins Filter T2",
+      "displayName": "T2 Toxins Filter",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "1.608",
+      "deprecatedIn": null
+    },
+    "ToxinsFilter3": {
+      "displayName": "T3 Toxins Filter",
+      "category": "structure",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": "1.608",
       "deprecatedIn": null
     },
     "TradePlatform1": {
-      "displayName": "Trade Platform",
+      "displayName": "Trade Space Rocket",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.8.008",
       "deprecatedIn": null
     },
     "TrashAluminiumScraps1": {
-      "displayName": "Aluminium Scrap",
+      "displayName": "Aluminum Scraps",
       "category": "component",
       "canDemand": false,
       "canSupply": false,
@@ -4033,7 +4942,7 @@
       "deprecatedIn": null
     },
     "TrashElectronics1": {
-      "displayName": "Electronic Scrap",
+      "displayName": "Electronics Scraps",
       "category": "component",
       "canDemand": false,
       "canSupply": false,
@@ -4042,7 +4951,7 @@
       "deprecatedIn": null
     },
     "TrashMetalsCanisters1": {
-      "displayName": "Metal Canister Scrap",
+      "displayName": "Metal Scraps",
       "category": "component",
       "canDemand": false,
       "canSupply": false,
@@ -4051,7 +4960,7 @@
       "deprecatedIn": null
     },
     "TrashMetalsScraps1": {
-      "displayName": "Metal Scrap",
+      "displayName": "Metal Scraps",
       "category": "component",
       "canDemand": false,
       "canSupply": false,
@@ -4060,7 +4969,7 @@
       "deprecatedIn": null
     },
     "TrashUraniumScraps1": {
-      "displayName": "Uranium Scrap",
+      "displayName": "Uranium Scraps",
       "category": "component",
       "canDemand": false,
       "canSupply": false,
@@ -4078,7 +4987,7 @@
       "deprecatedIn": null
     },
     "Tree0Seed": {
-      "displayName": "Tree Seed",
+      "displayName": "Iterra Tree Seed",
       "category": "seed",
       "canDemand": true,
       "canSupply": true,
@@ -4087,7 +4996,7 @@
       "deprecatedIn": null
     },
     "Tree10Seed": {
-      "displayName": "Tree Seed",
+      "displayName": "Rosea Tree Seed",
       "category": "seed",
       "canDemand": true,
       "canSupply": true,
@@ -4096,7 +5005,7 @@
       "deprecatedIn": null
     },
     "Tree11Seed": {
-      "displayName": "Tree Seed",
+      "displayName": "Lillia Tree Seed",
       "category": "seed",
       "canDemand": true,
       "canSupply": true,
@@ -4105,7 +5014,7 @@
       "deprecatedIn": null
     },
     "Tree12Seed": {
-      "displayName": "Tree Seed",
+      "displayName": "Prunea Tree Seed",
       "category": "seed",
       "canDemand": true,
       "canSupply": true,
@@ -4114,7 +5023,7 @@
       "deprecatedIn": null
     },
     "Tree13Seed": {
-      "displayName": "Tree Seed",
+      "displayName": "Ruberu Tree Seed",
       "category": "seed",
       "canDemand": true,
       "canSupply": true,
@@ -4123,7 +5032,7 @@
       "deprecatedIn": null
     },
     "Tree14Seed": {
-      "displayName": "Tree Seed",
+      "displayName": "Malissea Tree Seed",
       "category": "seed",
       "canDemand": true,
       "canSupply": true,
@@ -4132,7 +5041,7 @@
       "deprecatedIn": null
     },
     "Tree15Seed": {
-      "displayName": "Tree Seed",
+      "displayName": "Redwo Tree Seed",
       "category": "seed",
       "canDemand": true,
       "canSupply": true,
@@ -4141,7 +5050,7 @@
       "deprecatedIn": null
     },
     "Tree16Seed": {
-      "displayName": "Tree Seed",
+      "displayName": "Pamelia Tree Seed",
       "category": "seed",
       "canDemand": true,
       "canSupply": true,
@@ -4150,7 +5059,7 @@
       "deprecatedIn": null
     },
     "Tree17Seed": {
-      "displayName": "Tree Seed",
+      "displayName": "Detoxo Tree Seed",
       "category": "seed",
       "canDemand": true,
       "canSupply": true,
@@ -4158,8 +5067,17 @@
       "addedIn": null,
       "deprecatedIn": null
     },
+    "Tree18Seed": {
+      "displayName": "Brojo Tree Seed",
+      "category": "seed",
+      "canDemand": true,
+      "canSupply": true,
+      "deprecated": false,
+      "addedIn": "2.102",
+      "deprecatedIn": null
+    },
     "Tree1Seed": {
-      "displayName": "Tree Seed",
+      "displayName": "Linifolia Tree Seed",
       "category": "seed",
       "canDemand": true,
       "canSupply": true,
@@ -4168,7 +5086,7 @@
       "deprecatedIn": null
     },
     "Tree2Seed": {
-      "displayName": "Tree Seed",
+      "displayName": "Aleatus Tree Seed",
       "category": "seed",
       "canDemand": true,
       "canSupply": true,
@@ -4177,7 +5095,7 @@
       "deprecatedIn": null
     },
     "Tree3Seed": {
-      "displayName": "Tree Seed",
+      "displayName": "Cernea Tree Seed",
       "category": "seed",
       "canDemand": true,
       "canSupply": true,
@@ -4186,7 +5104,7 @@
       "deprecatedIn": null
     },
     "Tree4Seed": {
-      "displayName": "Tree Seed",
+      "displayName": "Elegea Tree Seed",
       "category": "seed",
       "canDemand": true,
       "canSupply": true,
@@ -4195,7 +5113,7 @@
       "deprecatedIn": null
     },
     "Tree5Seed": {
-      "displayName": "Tree Seed",
+      "displayName": "Humelora Tree Seed",
       "category": "seed",
       "canDemand": true,
       "canSupply": true,
@@ -4204,7 +5122,7 @@
       "deprecatedIn": null
     },
     "Tree6Seed": {
-      "displayName": "Tree Seed",
+      "displayName": "Aemora Tree Seed",
       "category": "seed",
       "canDemand": true,
       "canSupply": true,
@@ -4213,7 +5131,7 @@
       "deprecatedIn": null
     },
     "Tree7Seed": {
-      "displayName": "Tree Seed",
+      "displayName": "Pleom Tree Seed",
       "category": "seed",
       "canDemand": true,
       "canSupply": true,
@@ -4222,7 +5140,7 @@
       "deprecatedIn": null
     },
     "Tree8Seed": {
-      "displayName": "Tree Seed",
+      "displayName": "Soleus Tree Seed",
       "category": "seed",
       "canDemand": true,
       "canSupply": true,
@@ -4231,7 +5149,7 @@
       "deprecatedIn": null
     },
     "Tree9Seed": {
-      "displayName": "Tree Seed",
+      "displayName": "Shreox Tree Seed",
       "category": "seed",
       "canDemand": true,
       "canSupply": true,
@@ -4239,8 +5157,8 @@
       "addedIn": null,
       "deprecatedIn": null
     },
-    "TreePlanter2": {
-      "displayName": "Tree Planter T2",
+    "TreePlanter": {
+      "displayName": "Tree Pot",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
@@ -4248,8 +5166,26 @@
       "addedIn": null,
       "deprecatedIn": null
     },
+    "TreePlanter2": {
+      "displayName": "Bonza\u00ef Pot",
+      "category": "structure",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "TreePlanter3": {
+      "displayName": "Giant Trees Pot",
+      "category": "structure",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": "2.102",
+      "deprecatedIn": null
+    },
     "TreeRoot": {
-      "displayName": "Tree Root",
+      "displayName": "Tree Bark",
       "category": "plant",
       "canDemand": true,
       "canSupply": true,
@@ -4258,30 +5194,30 @@
       "deprecatedIn": null
     },
     "TreeSpreader0": {
-      "displayName": "Tree Spreader T0",
+      "displayName": "Tree Spreader",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.4.004",
       "deprecatedIn": null
     },
     "TreeSpreader1": {
-      "displayName": "Tree Spreader T1",
+      "displayName": "T2 Tree Spreader",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.4.004",
       "deprecatedIn": null
     },
     "TreeSpreader2": {
-      "displayName": "Tree Spreader T2",
+      "displayName": "T3 Tree Spreader",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.4.004",
       "deprecatedIn": null
     },
     "Uranim": {
@@ -4303,7 +5239,7 @@
       "deprecatedIn": null
     },
     "Vault1": {
-      "displayName": "Vault",
+      "displayName": "Safe Vault",
       "category": "furniture",
       "canDemand": false,
       "canSupply": false,
@@ -4321,7 +5257,7 @@
       "deprecatedIn": null
     },
     "Vegetable0Seed": {
-      "displayName": "Eggplant Seed",
+      "displayName": "Eggplant Seeds",
       "category": "seed",
       "canDemand": true,
       "canSupply": true,
@@ -4339,7 +5275,7 @@
       "deprecatedIn": null
     },
     "Vegetable1Seed": {
-      "displayName": "Squash Seed",
+      "displayName": "Squash Seeds",
       "category": "seed",
       "canDemand": true,
       "canSupply": true,
@@ -4348,7 +5284,7 @@
       "deprecatedIn": null
     },
     "Vegetable2Growable": {
-      "displayName": "Bean",
+      "displayName": "Beans",
       "category": "plant",
       "canDemand": true,
       "canSupply": true,
@@ -4357,7 +5293,7 @@
       "deprecatedIn": null
     },
     "Vegetable2Seed": {
-      "displayName": "Bean Seed",
+      "displayName": "Bean Seeds",
       "category": "seed",
       "canDemand": true,
       "canSupply": true,
@@ -4375,7 +5311,7 @@
       "deprecatedIn": null
     },
     "Vegetable3Seed": {
-      "displayName": "Mushroom Seed",
+      "displayName": "Mushroom Seeds",
       "category": "seed",
       "canDemand": true,
       "canSupply": true,
@@ -4384,7 +5320,7 @@
       "deprecatedIn": null
     },
     "VegetableGrower1": {
-      "displayName": "Vegetable Grower T1",
+      "displayName": "Food Grower",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
@@ -4393,16 +5329,16 @@
       "deprecatedIn": null
     },
     "VegetableGrower2": {
-      "displayName": "Vegetable Grower T2",
+      "displayName": "T2 Food Grower",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.4.004",
       "deprecatedIn": null
     },
     "Vegetube1": {
-      "displayName": "Vegetube",
+      "displayName": "T1 Vegetube",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
@@ -4411,7 +5347,7 @@
       "deprecatedIn": null
     },
     "Vegetube2": {
-      "displayName": "Vegetube T2",
+      "displayName": "T2 Vegetube",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
@@ -4420,7 +5356,7 @@
       "deprecatedIn": null
     },
     "VegetubeOutside1": {
-      "displayName": "Outdoor Vegetube",
+      "displayName": "T3 Vegetube",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
@@ -4429,7 +5365,7 @@
       "deprecatedIn": null
     },
     "VehicleBeacon1": {
-      "displayName": "Vehicle Beacon",
+      "displayName": "Vehicle - Beacon",
       "category": "vehicle",
       "canDemand": false,
       "canSupply": false,
@@ -4438,7 +5374,16 @@
       "deprecatedIn": null
     },
     "VehicleCrafter1": {
-      "displayName": "Vehicle Crafter",
+      "displayName": "Vehicle Station",
+      "category": "vehicle",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": "1.211",
+      "deprecatedIn": null
+    },
+    "VehicleEquipmentSize1": {
+      "displayName": "Vehicle - T1 Equipment Increase",
       "category": "vehicle",
       "canDemand": false,
       "canSupply": false,
@@ -4447,7 +5392,7 @@
       "deprecatedIn": null
     },
     "VehicleEquipmentSize2": {
-      "displayName": "Vehicle Equipment T2",
+      "displayName": "Vehicle - T2 Equipment Increase",
       "category": "vehicle",
       "canDemand": false,
       "canSupply": false,
@@ -4456,7 +5401,7 @@
       "deprecatedIn": null
     },
     "VehicleInventorySize1": {
-      "displayName": "Vehicle Storage T1",
+      "displayName": "Vehicle - T1 Inventory Increase",
       "category": "vehicle",
       "canDemand": false,
       "canSupply": false,
@@ -4465,7 +5410,7 @@
       "deprecatedIn": null
     },
     "VehicleInventorySize2": {
-      "displayName": "Vehicle Storage T2",
+      "displayName": "Vehicle - T2 Inventory Increase",
       "category": "vehicle",
       "canDemand": false,
       "canSupply": false,
@@ -4474,7 +5419,7 @@
       "deprecatedIn": null
     },
     "VehicleInventorySize3": {
-      "displayName": "Vehicle Storage T3",
+      "displayName": "Vehicle - T3 Inventory Increase",
       "category": "vehicle",
       "canDemand": false,
       "canSupply": false,
@@ -4483,7 +5428,7 @@
       "deprecatedIn": null
     },
     "VehicleJetpack1": {
-      "displayName": "Vehicle Jetpack",
+      "displayName": "Jetpack for Vehicle",
       "category": "vehicle",
       "canDemand": false,
       "canSupply": false,
@@ -4492,7 +5437,7 @@
       "deprecatedIn": null
     },
     "VehicleLights1": {
-      "displayName": "Vehicle Lights T1",
+      "displayName": "Vehicle - T1 Lights",
       "category": "vehicle",
       "canDemand": false,
       "canSupply": false,
@@ -4501,7 +5446,7 @@
       "deprecatedIn": null
     },
     "VehicleLights2": {
-      "displayName": "Vehicle Lights T2",
+      "displayName": "Vehicle - T2 Lights",
       "category": "vehicle",
       "canDemand": false,
       "canSupply": false,
@@ -4510,7 +5455,7 @@
       "deprecatedIn": null
     },
     "VehicleLogistic1": {
-      "displayName": "Vehicle Logistics",
+      "displayName": "Vehicle - Logistics",
       "category": "vehicle",
       "canDemand": false,
       "canSupply": false,
@@ -4519,7 +5464,7 @@
       "deprecatedIn": null
     },
     "VehicleOxygen1": {
-      "displayName": "Vehicle Oxygen",
+      "displayName": "Vehicle - Unlimited Oxygen",
       "category": "vehicle",
       "canDemand": false,
       "canSupply": false,
@@ -4528,7 +5473,7 @@
       "deprecatedIn": null
     },
     "VehicleSpeed1": {
-      "displayName": "Vehicle Speed T1",
+      "displayName": "Vehicle - T1 Speed Increase",
       "category": "vehicle",
       "canDemand": false,
       "canSupply": false,
@@ -4537,7 +5482,7 @@
       "deprecatedIn": null
     },
     "VehicleSpeed2": {
-      "displayName": "Vehicle Speed T2",
+      "displayName": "Vehicle - T2 Speed Increase",
       "category": "vehicle",
       "canDemand": false,
       "canSupply": false,
@@ -4546,7 +5491,7 @@
       "deprecatedIn": null
     },
     "VehicleSpeed3": {
-      "displayName": "Vehicle Speed T3",
+      "displayName": "Vehicle - T3 Speed Increase",
       "category": "vehicle",
       "canDemand": false,
       "canSupply": false,
@@ -4554,8 +5499,17 @@
       "addedIn": null,
       "deprecatedIn": null
     },
+    "VehicleSpeed4": {
+      "displayName": "Vehicle - T4 Speed Increase",
+      "category": "vehicle",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": "1.518",
+      "deprecatedIn": null
+    },
     "VehicleTruck": {
-      "displayName": "Truck",
+      "displayName": "Vehicle - Rover",
       "category": "vehicle",
       "canDemand": false,
       "canSupply": false,
@@ -4578,11 +5532,29 @@
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
+      "addedIn": "0.9.006",
+      "deprecatedIn": null
+    },
+    "wallplain": {
+      "displayName": "Plain Wall",
+      "category": "structure",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
       "addedIn": null,
       "deprecatedIn": null
     },
     "WallWaterLife": {
-      "displayName": "Water Life Wall",
+      "displayName": "Aquatic Life Wall",
+      "category": "structure",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "WardenAustel": {
+      "displayName": "Warden's Altar",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
@@ -4591,7 +5563,7 @@
       "deprecatedIn": null
     },
     "WardenKey": {
-      "displayName": "Warden Key",
+      "displayName": "Warden's Key",
       "category": "chip",
       "canDemand": false,
       "canSupply": false,
@@ -4600,7 +5572,7 @@
       "deprecatedIn": null
     },
     "WardensChip": {
-      "displayName": "Warden's Chip",
+      "displayName": "Warden Key Detector",
       "category": "chip",
       "canDemand": false,
       "canSupply": false,
@@ -4618,21 +5590,21 @@
       "deprecatedIn": null
     },
     "WaterCollector1": {
-      "displayName": "Water Collector",
+      "displayName": "Atmospheric Water Collector",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.3.010",
       "deprecatedIn": null
     },
     "WaterCollector2": {
-      "displayName": "Water Collector T2",
+      "displayName": "Lake Water Collector",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.3.010",
       "deprecatedIn": null
     },
     "WaterFilter": {
@@ -4641,7 +5613,7 @@
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.3.010",
       "deprecatedIn": null
     },
     "WaterLifeCollector1": {
@@ -4650,11 +5622,20 @@
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
+      "addedIn": "0.7.007",
+      "deprecatedIn": null
+    },
+    "window": {
+      "displayName": "Living Compartment Window",
+      "category": "structure",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
       "addedIn": null,
       "deprecatedIn": null
     },
     "WindTurbine1": {
-      "displayName": "Wind Turbine",
+      "displayName": "T2 Wind Turbine",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
@@ -4663,7 +5644,7 @@
       "deprecatedIn": null
     },
     "WreckEntryLocked1": {
-      "displayName": "Locked Wreck Door",
+      "displayName": "Access Console",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
@@ -4672,7 +5653,7 @@
       "deprecatedIn": null
     },
     "WreckEntryLocked2": {
-      "displayName": "Locked Wreck Door",
+      "displayName": "Access Console",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
@@ -4681,7 +5662,7 @@
       "deprecatedIn": null
     },
     "WreckFusionGenerator": {
-      "displayName": "Wreck Fusion Generator",
+      "displayName": "Fusion Reactor",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
@@ -4690,7 +5671,7 @@
       "deprecatedIn": null
     },
     "wreckpilar": {
-      "displayName": "Wreck Pillar",
+      "displayName": "Debris",
       "category": "structure",
       "canDemand": false,
       "canSupply": false,
@@ -4707,9 +5688,27 @@
       "addedIn": null,
       "deprecatedIn": null
     },
+    "WreckSafe": {
+      "displayName": "Big Safe",
+      "category": "container",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
     "WreckServer": {
-      "displayName": "Wreck Server",
+      "displayName": "Technical Debris",
       "category": "structure",
+      "canDemand": false,
+      "canSupply": false,
+      "deprecated": false,
+      "addedIn": null,
+      "deprecatedIn": null
+    },
+    "WreckWardrobe": {
+      "displayName": "Spacesuits Locker",
+      "category": "container",
       "canDemand": false,
       "canSupply": false,
       "deprecated": false,
@@ -4722,7 +5721,7 @@
       "canDemand": true,
       "canSupply": true,
       "deprecated": false,
-      "addedIn": null,
+      "addedIn": "0.4.004",
       "deprecatedIn": null
     }
   }
