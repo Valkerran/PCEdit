@@ -4,6 +4,17 @@ What changed in each release of PCEdit. Downloads for every version are on the
 [Releases page](https://github.com/Valkerran/PCEdit/releases); the newest is on the
 [latest release](https://github.com/Valkerran/PCEdit/releases/latest) page.
 
+## v1.4.0
+
+- **Improved: item names on the Inventories page now match the game.** Several hundred
+  items — every tree seed, frog and fish egg, butterfly larva, and spacesuit skin among
+  them — previously shared one generic name per family (e.g. every tree seed just said
+  "Tree Seed"); each now shows its real, distinct in-game name. A further 92 items that
+  previously showed as a raw internal id are now named and iconed correctly, including
+  content from the Toxicity DLC, the Moons Update, and the 2.1 Skeo Update.
+  ([#25](https://github.com/Valkerran/PCEdit/issues/25),
+  [#19](https://github.com/Valkerran/PCEdit/issues/19))
+
 ## v1.3.0
 
 - **New: PCEdit now keeps a copy of your save from before it edited it.** The first time
