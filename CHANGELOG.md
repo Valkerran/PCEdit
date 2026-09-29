@@ -4,6 +4,28 @@ What changed in each release of PCEdit. Downloads for every version are on the
 [Releases page](https://github.com/Valkerran/PCEdit/releases); the newest is on the
 [latest release](https://github.com/Valkerran/PCEdit/releases/latest) page.
 
+## v1.5.0
+
+- **New: inventory and item ids on the Inventories page.** Every inventory now shows its id
+  under its name, and every item shows its own id beside its Move button. Before, player
+  inventories had no visible id at all, and a container's name showed the container's
+  *object* number, which for most containers is not its inventory id.
+  ([#3](https://github.com/Valkerran/PCEdit/issues/3))
+
+- **New: search by id.** Type an inventory or item id into the search box (with or without a
+  leading `#`) and the list narrows as you type: `1014` finds only the inventories whose id,
+  container number or item ids start with those digits. A search made only of digits looks
+  for ids, not names. You can also search by an item's internal type name, such as `Iron` or
+  `Tree12Seed`, which until now only appeared as a tooltip.
+
+- **Improved: the Move dialog** shows each destination's inventory id and accepts the same id
+  searches, so identically named containers can finally be told apart.
+
+- Screen readers now announce the item id with each Move button, so two identical items no
+  longer sound the same.
+
+- The new and reworded text is machine-translated in all 14 non-English languages.
+
 ## v1.4.3
 
 - **No change to the application.** The downloads are the same as v1.4.2 apart from the
