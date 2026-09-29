@@ -29,7 +29,7 @@ The `items` map was originally seeded from `PCEdit.SaveFileHandler/Standard-2.js
 alone -- a single-planet *Prime* save -- which left most Humble / Toxicity / Aqualis /
 Selenea content uncovered. It now covers every distinct `GId` (world objects +
 `unlockedGroups` + inventory demand/supply groups) across every sample save available,
-on game versions 2.008 and 2.102, Steam and Game Pass. Add new ids as the game adds
+on game versions 2.008 and 2.102 (Steam and Game Pass) and 2.103 (Steam; it added no ids). Add new ids as the game adds
 content; unknown ids still render at runtime (raw id + the `misc` fallback icon).
 
 To find what a newer game build (or a save on a planet the seed save never visited) is missing:

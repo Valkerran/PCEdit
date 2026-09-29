@@ -16,9 +16,9 @@ Unofficial fan tool — not affiliated with or endorsed by the developers of The
 > but that is a safety net, not a substitute — **keep your own backup as well.** See
 > [DISCLAIMER.md](DISCLAIMER.md). Provided as is, without warranty of any kind.
 
-**Game versions.** Tested against The Planet Crafter **2.008** and **2.102** (the *Skeo* update),
-on both Steam and Xbox / PC Game Pass. The save format is the same in both, so older saves still
-open and still save back unchanged. Content added in 2.102 that PCEdit does not have a friendly
+**Game versions.** Tested against The Planet Crafter **2.008**, **2.102** (the *Skeo* update)
+and **2.103** — 2.008 and 2.102 on both Steam and Xbox / PC Game Pass, 2.103 on Steam. The save
+format is the same across all three, so older saves still open and still save back unchanged. Content added in 2.102 that PCEdit does not have a friendly
 name for yet shows up under its raw in-game id — it is still editable and moves between
 inventories normally.
 

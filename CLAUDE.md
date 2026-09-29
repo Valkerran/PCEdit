@@ -177,13 +177,14 @@ in this format — a hand-maintained reference/fixture. Do not let a load→save
 `linkedWo`, a labelled container `text`, a logistics container, a deliberately-unknown key); `PCEdit.SaveFileHandler.Tests` links it into `TestData/`. Regenerate it with a byte-writing script, not an editor —
 it has no trailing newline and must keep its exact bytes (`.gitattributes` marks it `-text`).
 
-Two more real fixtures cover **game version 2.102**, both byte-exact and both `-text`:
+Three more real fixtures cover **game versions 2.102 and 2.103**, all byte-exact and all `-text`:
 
 | Fixture | Game | Platform | BOM | Shape |
 |---|---|---|---|---|
 | `Standard-2.json` | 2.008 | Steam | yes | single planet (Prime), the backward-compat regression |
 | `mini-save.json` | 2.008 | hand-authored | yes | the rare object shapes + an unknown key |
 | `Humble-2.102.json` | 2.102 | Steam | yes | single planet (Humble) |
+| `Humble-2.103.json` | 2.103 | Steam | yes | the same Humble world, re-saved by 2.103 |
 | `Interplanetary-2.102.json` | 2.102 | Xbox / PC Game Pass (WGS) | **no** | Prime + Aqualis + Selenea |
 
 `Interplanetary-2.102.json` is a raw WGS blob exactly as the game wrote it, so it is the only
@@ -199,8 +200,9 @@ single key: `logisticsPaused` on the unlocks section. It is modelled as
 `SaveFileUnlocks.LogisticsPaused` and is **`bool?`, not `bool`, on purpose** — the serializer
 ignores nulls when writing, so a pre-2.102 save that never carried the key does not gain a
 `"logisticsPaused":false` on save and keeps round-tripping byte-for-byte. Apply the same rule to
-any future version-added field. `tools/save-diff/diff_saves.py` produces this comparison for a new
-game build (see `tools/save-diff/README.md`); `tools/item-catalog/report_missing.py` then lists the
+any future version-added field. 2.103 changed nothing: the same Humble world saved by 2.102 and by
+2.103 has identical keys in every section (Steam only; no 2.103 Game Pass save has been checked).
+`tools/save-diff/diff_saves.py` produces this comparison for a new game build (see `tools/save-diff/README.md`); `tools/item-catalog/report_missing.py` then lists the
 content ids the app's catalogs do not cover yet.
 
 Layering, each with a small interface for testability/DI:
