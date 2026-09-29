@@ -1,7 +1,7 @@
 name: Release
 
-# Cuts a GitHub Release with three artifacts:
-#   * PCEdit-<v>-x86_64.AppImage       Linux  (self-contained, built on Ubuntu 22.04)
+# Cuts a GitHub Release with four artifacts:
+#   * PCEdit-<v>-<run>.x86_64.AppImage Linux  (self-contained, built on Ubuntu 22.04)
 #   * PCEdit-<v>-win-x64.zip           Windows (self-contained)
 #   * PCEdit-<v>-macos-x64.zip
 #   * PCEdit-<v>-macos-arm64.zip       macOS  (self-contained PCEdit.app, unsigned)

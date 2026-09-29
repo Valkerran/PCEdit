@@ -1,14 +1,17 @@
 # Releasing PCEdit
 
-Each release publishes three self-contained builds of the desktop head (`PCEdit.Desktop`)
+Each release publishes four self-contained builds of the desktop head (`PCEdit.Desktop`)
 to a GitHub Release:
 
 | Platform | Artifact | Built on |
 |---|---|---|
-| Linux | `PCEdit-<version>-x86_64.AppImage` | `ubuntu-22.04` (oldest practical glibc) |
+| Linux | `PCEdit-<version>-<build>.x86_64.AppImage` | `ubuntu-22.04` (oldest practical glibc) |
 | Windows | `PCEdit-<version>-win-x64.zip` | `windows-latest` |
 | macOS (Intel) | `PCEdit-<version>-macos-x64.zip` | `macos-latest` |
 | macOS (Apple Silicon) | `PCEdit-<version>-macos-arm64.zip` | `macos-latest` |
+
+`<build>` is the Release workflow's run number (PupNet's release suffix), e.g.
+`PCEdit-1.5.0-16.x86_64.AppImage`.
 
 Plus `SHA256SUMS.txt`. The macOS `.zip` contains an **unsigned** `PCEdit.app` — first launch
 needs a right-click → **Open** (or `xattr -dr com.apple.quarantine PCEdit.app`).
@@ -82,7 +85,16 @@ Rules the pipelines enforce:
    so its notes lead with those numbers, give the reason (it would not start at all on a
    distro with no system `libicu`), and state that Windows and macOS are unchanged.
 
-5. **Bump again for development** (optional but tidy): raise `<VersionPrefix>` to the next
+5. **Audit the documentation against the release.** Check the
+   [wiki](https://github.com/Valkerran/PCEdit/wiki) and the repository docs — `README.md`,
+   this file, `deploy/README.md`, the `tools/*/README.md` files, `CLAUDE.md` and
+   `PCEdit.App.Core/Resources/TRANSLATIONS.md` — for anything the release made missing or
+   wrong: new features, renamed buttons, changed counts, removed files, artifact names. Verify
+   against the code and the *actual* release assets, not memory. Skipping this is how the wiki
+   sat at v1.3.0 through five releases and how the AppImage file name was documented wrongly
+   in every release until v1.5.0.
+
+6. **Bump again for development** (optional but tidy): raise `<VersionPrefix>` to the next
    planned version on `main` so pre-release builds are not stamped with the shipped version.
 
 ## Local packaging (for testing — do not ship these)

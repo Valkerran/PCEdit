@@ -88,12 +88,13 @@ user-visible change but no entry is an incomplete phase: the next release ships 
 `main`, and no later step would catch the omission — which is exactly how v1.2.0 and v1.2.1
 came to ship undocumented.
 
-The exception is a bare *bump for development* after a release (`RELEASING.md` step 5), which
+The exception is a bare *bump for development* after a release (`RELEASING.md` step 6), which
 carries nothing yet — its entry arrives with the change that fills the version.
 
 Call out anything user-visible beyond the fix itself: a size change, a new or dropped runtime
 dependency, a renamed artifact, a raised minimum OS — and say which platforms are *not*
-affected. `RELEASING.md` step 4 mirrors the entry into the GitHub Release body.
+affected. `RELEASING.md` step 4 mirrors the entry into the GitHub Release body, and step 5
+audits the wiki and the repository docs against the release so they do not go stale.
 
 ## Commands
 
