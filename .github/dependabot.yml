@@ -18,6 +18,11 @@ updates:
       # The Avalonia packages must move in lockstep.
       avalonia:
         patterns: ["Avalonia*"]
+      # Both test projects pin the same test stack. Without a group covering majors, each
+      # major bump arrived as one PR per project directory, and merging just one would
+      # leave the two projects on different majors.
+      test-tooling:
+        patterns: ["xunit*", "Microsoft.NET.Test.Sdk"]
       nuget-minor-and-patch:
         update-types: [minor, patch]
     ignore:
