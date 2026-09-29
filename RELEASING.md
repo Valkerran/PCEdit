@@ -13,6 +13,13 @@ to a GitHub Release:
 Plus `SHA256SUMS.txt`. The macOS `.zip` contains an **unsigned** `PCEdit.app` — first launch
 needs a right-click → **Open** (or `xattr -dr com.apple.quarantine PCEdit.app`).
 
+**What the checksums do and do not prove.** `SHA256SUMS.txt` is published in the same GitHub
+Release as the files it describes, so it proves a download arrived intact — not who made it.
+Anyone able to replace an artifact there could replace the checksum file too. None of the
+artifacts is code-signed: the Windows zip is unsigned and the macOS app is unsigned and
+un-notarised. Signing certificates cost real money and are a project decision rather than an
+oversight; until then the trust anchor is this repository and its release workflow.
+
 ## Versioning — single source of truth
 
 The version lives in **one place**: `<VersionPrefix>` in the repo-root

@@ -27,16 +27,29 @@ export APPIMAGE_EXTRACT_AND_RUN=1
 export PATH="$PATH:$HOME/.dotnet/tools:$HOME/.local/bin"
 
 # PupNet shells out to `appimagetool-x86_64.AppImage`; fetch it if it is not on PATH.
+#
+# Pinned to a release and verified by SHA-256 before it is made executable: this binary runs
+# with the full privileges of the release job, so "whatever the URL serves today" is not good
+# enough (#39). The `continuous` tag is re-pointed at every new build. To upgrade, change both
+# values together - the hash is the asset's `digest` on the GitHub release page.
+APPIMAGETOOL_VERSION="1.9.1"
+APPIMAGETOOL_SHA256="ed4ce84f0d9caff66f50bcca6ff6f35aae54ce8135408b3fa33abfc3cb384eb0"
 if ! command -v appimagetool-x86_64.AppImage >/dev/null 2>&1; then
-    echo ">> Downloading appimagetool"
+    echo ">> Downloading appimagetool $APPIMAGETOOL_VERSION"
     mkdir -p "$HOME/.local/bin"
     _tool="$HOME/.local/bin/appimagetool-x86_64.AppImage"
-    for _u in \
-        "https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage" \
-        "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage"; do
-        curl -fSL -o "$_tool" "$_u" && break || true
-    done
-    chmod +x "$_tool"
+    _dl="$(mktemp)"
+    trap 'rm -f "$_dl"' EXIT
+    curl -fSL -o "$_dl" \
+        "https://github.com/AppImage/appimagetool/releases/download/$APPIMAGETOOL_VERSION/appimagetool-x86_64.AppImage"
+    # A failed or truncated download fails here too, so nothing unverified is ever installed.
+    if ! echo "$APPIMAGETOOL_SHA256  $_dl" | sha256sum -c --quiet -; then
+        echo "error: appimagetool $APPIMAGETOOL_VERSION did not match its pinned SHA-256; refusing to run it." >&2
+        exit 1
+    fi
+    install -m 0755 "$_dl" "$_tool"
+    rm -f "$_dl"
+    trap - EXIT
 fi
 
 # PupNet targets net8.0; let it run on a machine that only ships the .NET 10 runtime.

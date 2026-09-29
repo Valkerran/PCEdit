@@ -1,0 +1,35 @@
+# Watches the dependency graph for updates and security fixes (#40).
+#
+# github-actions: the workflows pin every action to a full commit SHA with the version in a
+# trailing comment; Dependabot bumps both together, which is what keeps SHA pinning
+# maintainable.
+version: 2
+updates:
+  - package-ecosystem: nuget
+    directories:
+      - /PCEdit.SaveFileHandler
+      - /PCEdit.App.Core
+      - /PCEdit.Desktop
+      - /PCEdit.SaveFileHandler.Tests
+      - /PCEdit.App.Core.Tests
+    schedule:
+      interval: weekly
+    groups:
+      # The Avalonia packages must move in lockstep.
+      avalonia:
+        patterns: ["Avalonia*"]
+      nuget-minor-and-patch:
+        update-types: [minor, patch]
+    ignore:
+      # App-local ICU for the Linux AppImage. Its version is also the libicu filename suffix
+      # the runtime is told to load, and a bump changes the AppImage size - upgrade it by
+      # hand and re-run the distro matrix (deploy/README.md), not from a bot PR.
+      - dependency-name: Microsoft.ICU.ICU4C.Runtime
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      github-actions:
+        patterns: ["*"]
