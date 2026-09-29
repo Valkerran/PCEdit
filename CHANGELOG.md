@@ -4,6 +4,18 @@ What changed in each release of PCEdit. Downloads for every version are on the
 [Releases page](https://github.com/Valkerran/PCEdit/releases); the newest is on the
 [latest release](https://github.com/Valkerran/PCEdit/releases/latest) page.
 
+## v1.4.2
+
+- **Updated the UI framework.** PCEdit now runs on Avalonia 12.1.3 (from 12.1.1), which
+  brings upstream fixes to parts of the interface PCEdit relies on: stray "ghost" rows in
+  lists like the Inventories page, a crash when the system switches between light and dark
+  theme, and fallback fonts used for characters the main font lacks, as in the Chinese,
+  Japanese and Korean translations. No PCEdit behaviour changed, and nothing about how save
+  files are read or written. The supporting MVVM and dependency-injection libraries got
+  patch updates too.
+
+- No new runtime dependency, and the minimum OS is unchanged on every platform.
+
 ## v1.4.1
 
 - **No change to the application.** Build and release process only: the pipeline that
