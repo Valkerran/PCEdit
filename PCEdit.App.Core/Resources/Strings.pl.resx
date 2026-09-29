@@ -88,6 +88,7 @@
   <data name="Inventories_Move" xml:space="preserve"><value>Przenieś…</value></data>
   <data name="Inventories_MoveA11y" xml:space="preserve"><value>Przenieś {0} nr {1} do innego ekwipunku</value></data>
   <data name="Inventories_ItemId" xml:space="preserve"><value>nr {0}</value></data>
+  <data name="Inventories_ShowingSome" xml:space="preserve"><value>Wyświetlono {0} z {1} przedmiotów</value></data>
   <data name="Inventories_CapacityA11y" xml:space="preserve"><value>Pojemność {0} przedmiotów</value></data>
   <data name="Inventories_Search" xml:space="preserve"><value>Szukaj według nazwy lub ID</value></data>
   <data name="Inventories_SearchA11y" xml:space="preserve"><value>Filtruj listę ekwipunków według nazwy, zawartości lub ID</value></data>

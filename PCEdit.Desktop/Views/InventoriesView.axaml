@@ -121,6 +121,11 @@
                                 <TextBlock Text="{m:Loc Inventories_Empty}" Classes="caption"
                                            IsVisible="{Binding !HasItems}" />
 
+                                <!-- A search matched only some of this inventory's items, so the card
+                                     lists just those; say so, or it reads as if that is all it holds. -->
+                                <TextBlock Classes="caption" IsVisible="{Binding IsNarrowed}"
+                                           Text="{m:LocFormat Key=Inventories_ShowingSome, Path=Items.Count, Path2=TotalItemCount}" />
+
                                 <ItemsControl ItemsSource="{Binding Items}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate x:DataType="models:InventoryItemView">

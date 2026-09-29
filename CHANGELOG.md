@@ -18,6 +18,12 @@ What changed in each release of PCEdit. Downloads for every version are on the
   for ids, not names. You can also search by an item's internal type name, such as `Iron` or
   `Tree12Seed`, which until now only appeared as a tooltip.
 
+- **Improved: searching for items shows just those items.** A search that matches items
+  inside a container now lists only the matching items on that container's card, with a
+  "Showing 2 of 38 items" note, instead of the container's entire contents. The card's
+  capacity still shows how full the container really is. Searching for the inventory itself
+  (its name, world or id) still shows everything in it.
+
 - **Improved: the Move dialog** shows each destination's inventory id and accepts the same id
   searches, so identically named containers can finally be told apart.
 

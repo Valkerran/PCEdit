@@ -73,6 +73,7 @@
   "Inventories_Move": "Переместить…",
   "Inventories_MoveA11y": "Переместить {0} №{1} в другой инвентарь",
   "Inventories_ItemId": "№{0}",
+  "Inventories_ShowingSome": "Показано предметов: {0} из {1}",
   "Inventories_CapacityA11y": "Вместимость {0} предметов",
   "Inv_PlayerInventory": "Инвентарь игрока {0}",
   "Inv_PlayerEquipment": "Снаряжение игрока {0}",

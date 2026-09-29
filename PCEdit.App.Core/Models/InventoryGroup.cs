@@ -2,7 +2,11 @@ using PCEdit.App.Core.Services;
 
 namespace PCEdit.App.Core.Models;
 
-public sealed class InventoryGroup
+/// <summary>
+/// One card on the Inventories page. A record so that <see cref="NarrowTo"/> can make a filtered
+/// copy with a <c>with</c> expression - the copy must carry every other property unchanged.
+/// </summary>
+public sealed record InventoryGroup
 {
     public required int InventoryId { get; init; }
 
@@ -26,7 +30,21 @@ public sealed class InventoryGroup
     /// </summary>
     public int? ContainerWorldObjectId { get; init; }
 
+    /// <summary>The items the card lists: every item, or only the matching ones on a card
+    /// narrowed by a search (see <see cref="NarrowTo"/>).</summary>
     public required List<InventoryItemView> Items { get; init; }
+
+    /// <summary>
+    /// How many items the inventory really holds. Differs from <c>Items.Count</c> only on a
+    /// narrowed card, whose capacity badge must still show the true fill, not the match count.
+    /// </summary>
+    public int TotalItemCount
+    {
+        get => _totalItemCount ?? Items.Count;
+        init => _totalItemCount = value;
+    }
+
+    private readonly int? _totalItemCount;
 
     /// <summary>
     /// Logistics config, when this inventory is a logistics container (the game writes a
@@ -43,27 +61,47 @@ public sealed class InventoryGroup
     /// label already is "Inventory #N", so repeating it would say the same thing twice.</summary>
     public bool ShowInventoryIdCaption => Kind != InventoryKind.Other;
 
-    public int Count => Items.Count;
+    public bool HasItems => TotalItemCount > 0;
 
-    public bool HasItems => Count > 0;
+    public string CapacityLabel => $"{TotalItemCount}/{Size}";
 
-    public string CapacityLabel => $"{Count}/{Size}";
-
-    /// <summary>Lower-cased haystack for the Inventories page text search: the label, the world
-    /// id, plus every contained item's display name and type id (<c>GId</c>, e.g. <c>Iron</c>).</summary>
-    public string SearchIndex => _searchIndex ??=
-        string.Join('\n', Items.SelectMany(i => new[] { i.DisplayName, i.GId })
-            .Prepend(PlanetId ?? string.Empty).Prepend(Label)).ToLowerInvariant();
-
-    private string? _searchIndex;
+    /// <summary>True when a search narrowed the card to some of its items.</summary>
+    public bool IsNarrowed => Items.Count < TotalItemCount;
 
     /// <summary>
-    /// True when this group matches a (already lower-cased, trimmed) search term. An id search
-    /// (see <see cref="IdSearch"/>) matches the inventory id, the owning container's object id
-    /// and every contained item's id by prefix; anything else is a text search over
-    /// <see cref="SearchIndex"/>.
+    /// The card to show for a (already lower-cased, trimmed) search term, or null to hide it.
+    /// When the inventory itself matches - its label, world, inventory id or container object
+    /// id - the card is returned whole: the user searched for the inventory. Otherwise it is
+    /// narrowed to just the matching items, and hidden if none match.
     /// </summary>
-    public bool Matches(string loweredQuery)
+    public InventoryGroup? NarrowTo(string loweredQuery)
+    {
+        if (MatchesInventory(loweredQuery))
+        {
+            return this;
+        }
+
+        var digits = IdSearch.TryGetIdPrefix(loweredQuery, out var prefix) ? prefix : null;
+        var matching = Items.Where(item => MatchesItem(item, loweredQuery, digits)).ToList();
+        if (matching.Count == 0)
+        {
+            return null;
+        }
+
+        return matching.Count == Items.Count
+            ? this
+            : this with { Items = matching, TotalItemCount = TotalItemCount };
+    }
+
+    /// <summary>True when this card would be shown at all for a search term.</summary>
+    public bool Matches(string loweredQuery) => NarrowTo(loweredQuery) is not null;
+
+    /// <summary>
+    /// The inventory's own fields. An id search (see <see cref="IdSearch"/>) matches the
+    /// inventory id and the owning container's object id by prefix; any other term matches the
+    /// label or the world. An empty term matches everything.
+    /// </summary>
+    private bool MatchesInventory(string loweredQuery)
     {
         if (loweredQuery.Length == 0)
         {
@@ -73,10 +111,26 @@ public sealed class InventoryGroup
         if (IdSearch.TryGetIdPrefix(loweredQuery, out var digits))
         {
             return IdSearch.Matches(InventoryId, digits)
-                   || (ContainerWorldObjectId is { } containerId && IdSearch.Matches(containerId, digits))
-                   || Items.Any(i => IdSearch.Matches(i.WorldObjectId, digits));
+                   || (ContainerWorldObjectId is { } containerId && IdSearch.Matches(containerId, digits));
         }
 
-        return SearchIndex.Contains(loweredQuery, StringComparison.Ordinal);
+        return Label.Contains(loweredQuery, StringComparison.OrdinalIgnoreCase)
+               || (PlanetId?.Contains(loweredQuery, StringComparison.OrdinalIgnoreCase) ?? false);
+    }
+
+    /// <summary>
+    /// One item. An id search (<paramref name="idDigits"/> non-null, parsed once per card rather
+    /// than per item) matches the item's world-object id by prefix; any other term matches its
+    /// display name or its type id (<c>GId</c>, e.g. <c>Iron</c>).
+    /// </summary>
+    private static bool MatchesItem(InventoryItemView item, string loweredQuery, string? idDigits)
+    {
+        if (idDigits is not null)
+        {
+            return IdSearch.Matches(item.WorldObjectId, idDigits);
+        }
+
+        return item.DisplayName.Contains(loweredQuery, StringComparison.OrdinalIgnoreCase)
+               || item.GId.Contains(loweredQuery, StringComparison.OrdinalIgnoreCase);
     }
 }

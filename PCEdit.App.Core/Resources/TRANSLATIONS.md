@@ -49,7 +49,8 @@ every known group collapses to "Everything"). `Logistics_PriorityUnknown` ("Unkn
 a saved priority outside the game's -3..3 range — carried through an edit untouched.
 
 The inventory-ids pass (issue #3: show and search inventory / item ids) added
-`Inventories_ItemId` and reworded `Inventories_{Search,SearchA11y,MoveA11y}` and
+`Inventories_ItemId`, `Inventories_ShowingSome` (the "Showing {0} of {1} items" caption on a card
+a search has narrowed to some of its contents) and reworded `Inventories_{Search,SearchA11y,MoveA11y}` and
 `SelectInv_Search` — all machine-translated. `Inventories_ItemId` is the item's number label, so
 it follows each locale's existing number sign from `Inv_Fallback` (`#`, `nº`, `n.º`, `Nr.`, `nr`,
 `n.`, `№`) rather than a literal `#`; `Inventories_MoveA11y` gained a `{1}` (the item id) so a

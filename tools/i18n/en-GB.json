@@ -73,6 +73,7 @@
   "Inventories_Move": "Move…",
   "Inventories_MoveA11y": "Move {0} #{1} to another inventory",
   "Inventories_ItemId": "#{0}",
+  "Inventories_ShowingSome": "Showing {0} of {1} items",
   "Inventories_CapacityA11y": "Capacity {0} items",
   "Inv_PlayerInventory": "{0}'s Inventory",
   "Inv_PlayerEquipment": "{0}'s Equipment",

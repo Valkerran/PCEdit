@@ -73,6 +73,7 @@
   "Inventories_Move": "Taşı…",
   "Inventories_MoveA11y": "{0} #{1} ögesini başka bir envantere taşı",
   "Inventories_ItemId": "#{0}",
+  "Inventories_ShowingSome": "{1} eşyadan {0} tanesi gösteriliyor",
   "Inventories_CapacityA11y": "Kapasite {0} öge",
   "Inv_PlayerInventory": "{0} adlı oyuncunun envanteri",
   "Inv_PlayerEquipment": "{0} adlı oyuncunun ekipmanı",

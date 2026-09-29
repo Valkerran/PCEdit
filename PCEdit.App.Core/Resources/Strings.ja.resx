@@ -88,6 +88,7 @@
   <data name="Inventories_Move" xml:space="preserve"><value>移動…</value></data>
   <data name="Inventories_MoveA11y" xml:space="preserve"><value>{0} #{1} を別のインベントリに移動</value></data>
   <data name="Inventories_ItemId" xml:space="preserve"><value>#{0}</value></data>
+  <data name="Inventories_ShowingSome" xml:space="preserve"><value>{1} 個中 {0} 個のアイテムを表示</value></data>
   <data name="Inventories_CapacityA11y" xml:space="preserve"><value>容量 {0} 個</value></data>
   <data name="Inventories_Search" xml:space="preserve"><value>名前または ID で検索</value></data>
   <data name="Inventories_SearchA11y" xml:space="preserve"><value>名前、内容、または ID でインベントリ一覧を絞り込む</value></data>

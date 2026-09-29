@@ -85,7 +85,7 @@ public sealed class InventoryEditorTests
 
         var aliceInventory = groups.Single(g => g.InventoryId == 10);
         Assert.Equal("Alice's Inventory", aliceInventory.Label);
-        Assert.Equal(2, aliceInventory.Count);
+        Assert.Equal(2, aliceInventory.TotalItemCount);
         Assert.Equal("2/5", aliceInventory.CapacityLabel);
     }
 

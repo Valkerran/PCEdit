@@ -73,6 +73,7 @@
   "Inventories_Move": "移動…",
   "Inventories_MoveA11y": "{0} #{1} を別のインベントリに移動",
   "Inventories_ItemId": "#{0}",
+  "Inventories_ShowingSome": "{1} 個中 {0} 個のアイテムを表示",
   "Inventories_CapacityA11y": "容量 {0} 個",
   "Inv_PlayerInventory": "{0} のインベントリ",
   "Inv_PlayerEquipment": "{0} の装備",

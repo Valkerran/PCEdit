@@ -88,6 +88,7 @@
   <data name="Inventories_Move" xml:space="preserve"><value>Mover…</value></data>
   <data name="Inventories_MoveA11y" xml:space="preserve"><value>Mover {0} n.º {1} a otro inventario</value></data>
   <data name="Inventories_ItemId" xml:space="preserve"><value>n.º {0}</value></data>
+  <data name="Inventories_ShowingSome" xml:space="preserve"><value>Mostrando {0} de {1} objetos</value></data>
   <data name="Inventories_CapacityA11y" xml:space="preserve"><value>Capacidad {0} objetos</value></data>
   <data name="Inventories_Search" xml:space="preserve"><value>Buscar por nombre o ID</value></data>
   <data name="Inventories_SearchA11y" xml:space="preserve"><value>Filtrar la lista de inventarios por nombre, contenido o ID</value></data>

@@ -152,6 +152,7 @@
   <data name="Inventories_Move" xml:space="preserve"><value>Move…</value></data>
   <data name="Inventories_MoveA11y" xml:space="preserve"><value>Move {0} #{1} to another inventory</value></data>
   <data name="Inventories_ItemId" xml:space="preserve"><value>#{0}</value></data>
+  <data name="Inventories_ShowingSome" xml:space="preserve"><value>Showing {0} of {1} items</value></data>
   <data name="Inventories_CapacityA11y" xml:space="preserve"><value>Capacity {0} items</value></data>
   <data name="Inventories_Search" xml:space="preserve"><value>Search by name or ID</value></data>
   <data name="Inventories_SearchA11y" xml:space="preserve"><value>Filter the inventory list by name, contents or ID</value></data>

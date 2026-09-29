@@ -73,6 +73,7 @@
   "Inventories_Move": "Sposta…",
   "Inventories_MoveA11y": "Sposta {0} n. {1} in un altro inventario",
   "Inventories_ItemId": "n. {0}",
+  "Inventories_ShowingSome": "{0} oggetti mostrati su {1}",
   "Inventories_CapacityA11y": "Capacità {0} oggetti",
   "Inv_PlayerInventory": "Inventario di {0}",
   "Inv_PlayerEquipment": "Equipaggiamento di {0}",

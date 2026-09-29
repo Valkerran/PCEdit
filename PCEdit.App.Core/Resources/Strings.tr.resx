@@ -88,6 +88,7 @@
   <data name="Inventories_Move" xml:space="preserve"><value>Taşı…</value></data>
   <data name="Inventories_MoveA11y" xml:space="preserve"><value>{0} #{1} ögesini başka bir envantere taşı</value></data>
   <data name="Inventories_ItemId" xml:space="preserve"><value>#{0}</value></data>
+  <data name="Inventories_ShowingSome" xml:space="preserve"><value>{1} eşyadan {0} tanesi gösteriliyor</value></data>
   <data name="Inventories_CapacityA11y" xml:space="preserve"><value>Kapasite {0} öge</value></data>
   <data name="Inventories_Search" xml:space="preserve"><value>Ada veya kimliğe göre ara</value></data>
   <data name="Inventories_SearchA11y" xml:space="preserve"><value>Envanter listesini ada, içeriğe veya kimliğe göre filtrele</value></data>

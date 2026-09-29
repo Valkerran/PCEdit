@@ -73,6 +73,7 @@
   "Inventories_Move": "移動…",
   "Inventories_MoveA11y": "將 {0} #{1} 移動到另一個庫存",
   "Inventories_ItemId": "#{0}",
+  "Inventories_ShowingSome": "顯示 {1} 個物品中的 {0} 個",
   "Inventories_CapacityA11y": "容量 {0} 件物品",
   "Inv_PlayerInventory": "{0} 的庫存",
   "Inv_PlayerEquipment": "{0} 的裝備",

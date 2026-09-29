@@ -88,6 +88,7 @@
   <data name="Inventories_Move" xml:space="preserve"><value>이동…</value></data>
   <data name="Inventories_MoveA11y" xml:space="preserve"><value>{0} #{1}을(를) 다른 인벤토리로 이동</value></data>
   <data name="Inventories_ItemId" xml:space="preserve"><value>#{0}</value></data>
+  <data name="Inventories_ShowingSome" xml:space="preserve"><value>아이템 {1}개 중 {0}개 표시</value></data>
   <data name="Inventories_CapacityA11y" xml:space="preserve"><value>용량 {0}개</value></data>
   <data name="Inventories_Search" xml:space="preserve"><value>이름 또는 ID로 검색</value></data>
   <data name="Inventories_SearchA11y" xml:space="preserve"><value>이름, 내용 또는 ID로 인벤토리 목록 필터링</value></data>

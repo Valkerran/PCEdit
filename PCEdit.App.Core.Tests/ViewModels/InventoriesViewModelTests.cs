@@ -130,6 +130,42 @@ public sealed class InventoriesViewModelTests
     }
 
     [Fact]
+    public void ItemQuery_NarrowsTheCardToTheMatchingItem()
+    {
+        var vm = CreateLoaded();
+
+        vm.Query = "item201"; // inventory 10 holds items 200 and 201
+
+        var card = Assert.Single(vm.Groups);
+        Assert.Equal(10, card.InventoryId);
+        Assert.Equal([201], card.Items.Select(i => i.WorldObjectId).ToArray());
+        Assert.Equal("2/5", card.CapacityLabel);
+    }
+
+    [Fact]
+    public void InventoryQuery_ShowsTheWholeCard()
+    {
+        var vm = CreateLoaded();
+
+        vm.Query = "alice"; // matches the label of inventory 10 itself
+
+        var card = vm.Groups.Single(g => g.InventoryId == 10);
+        Assert.Equal([200, 201], card.Items.Select(i => i.WorldObjectId).ToArray());
+        Assert.False(card.IsNarrowed);
+    }
+
+    [Fact]
+    public void ClearingTheQuery_RestoresEveryItem()
+    {
+        var vm = CreateLoaded();
+        vm.Query = "item201";
+
+        vm.Query = string.Empty;
+
+        Assert.Equal(2, vm.Groups.Single(g => g.InventoryId == 10).Items.Count);
+    }
+
+    [Fact]
     public void Filter_NarrowsByKind()
     {
         var vm = CreateLoaded();

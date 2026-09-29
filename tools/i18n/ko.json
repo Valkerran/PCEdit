@@ -73,6 +73,7 @@
   "Inventories_Move": "이동…",
   "Inventories_MoveA11y": "{0} #{1}을(를) 다른 인벤토리로 이동",
   "Inventories_ItemId": "#{0}",
+  "Inventories_ShowingSome": "아이템 {1}개 중 {0}개 표시",
   "Inventories_CapacityA11y": "용량 {0}개",
   "Inv_PlayerInventory": "{0}의 인벤토리",
   "Inv_PlayerEquipment": "{0}의 장비",

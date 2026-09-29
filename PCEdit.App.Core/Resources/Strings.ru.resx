@@ -88,6 +88,7 @@
   <data name="Inventories_Move" xml:space="preserve"><value>Переместить…</value></data>
   <data name="Inventories_MoveA11y" xml:space="preserve"><value>Переместить {0} №{1} в другой инвентарь</value></data>
   <data name="Inventories_ItemId" xml:space="preserve"><value>№{0}</value></data>
+  <data name="Inventories_ShowingSome" xml:space="preserve"><value>Показано предметов: {0} из {1}</value></data>
   <data name="Inventories_CapacityA11y" xml:space="preserve"><value>Вместимость {0} предметов</value></data>
   <data name="Inventories_Search" xml:space="preserve"><value>Поиск по имени или ID</value></data>
   <data name="Inventories_SearchA11y" xml:space="preserve"><value>Фильтровать список инвентарей по имени, содержимому или ID</value></data>

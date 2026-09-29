@@ -105,10 +105,14 @@ public sealed partial class InventoriesViewModel(
         };
         var world = SelectedWorld;
 
+        // NarrowTo keeps a card whole when the inventory itself matches, and cuts it down to the
+        // matching items when only its contents do - so a search for one item does not bury it
+        // among everything else in its container. _allGroups itself is never modified.
         Groups = _allGroups
             .Where(g => (kind is null || g.Kind == kind)
-                        && (world is null || world.Accepts(g.PlanetId))
-                        && g.Matches(term))
+                        && (world is null || world.Accepts(g.PlanetId)))
+            .Select(g => g.NarrowTo(term))
+            .OfType<InventoryGroup>()
             .ToList();
         OnPropertyChanged(nameof(IsFilteredEmpty));
     }
