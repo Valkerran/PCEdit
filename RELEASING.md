@@ -105,7 +105,10 @@ deploy/build-windows.ps1                 # Windows zip     -> artifacts/
 deploy/build-macos.sh osx-arm64          # macOS .app zip  -> artifacts/
 ```
 
-All three default the version to `<VersionPrefix>`; pass an explicit version as the last
+Each restores once and then publishes with `--no-restore`, because the committed
+`packages.lock.json` files describe a restore with no RuntimeIdentifier (see
+[`deploy/README.md`](deploy/README.md#nuget-lock-files)). All three default the version to
+`<VersionPrefix>`; pass an explicit version as the last
 argument (`-Version` for the PowerShell script) to override. Linux **release** artifacts must
 come from the CI `ubuntu-22.04` job — see [`deploy/README.md`](deploy/README.md) for the
 glibc rule and the WSL distro-matrix portability procedure.

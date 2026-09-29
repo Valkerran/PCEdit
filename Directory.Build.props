@@ -13,7 +13,27 @@
     and CI warns once <VersionPrefix> has caught up to the latest release tag.
   -->
   <PropertyGroup>
-    <VersionPrefix>1.5.0</VersionPrefix>
+    <VersionPrefix>1.5.1</VersionPrefix>
+  </PropertyGroup>
+
+  <!--
+    NuGet lock files (issue #40). Every project commits a packages.lock.json recording the exact
+    version and content hash of every direct and transitive package, so a changed or substituted
+    upstream package cannot enter a build without a reviewable diff.
+
+    Locked mode is on wherever CI=true - which GitHub Actions sets on every runner - so any
+    restore there, including the implicit one inside dotnet build / dotnet test, fails with NU1004
+    if the dependency graph no longer matches the lock file. Locally, restore keeps updating the
+    lock as usual: change a PackageReference, run `dotnet restore`, commit the lock file with it.
+
+    The lock files describe a restore with no RuntimeIdentifier (PCEdit.Desktop lists its four
+    RIDs in <RuntimeIdentifiers>, so their graphs are included). A RID-specific restore would not
+    match - it fails with NU1004 in CI and rewrites the lock locally - so every publish runs after
+    one plain `dotnet restore` and passes no-restore; the deploy scripts do this for you.
+  -->
+  <PropertyGroup>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <RestoreLockedMode Condition="'$(CI)' == 'true'">true</RestoreLockedMode>
   </PropertyGroup>
 
   <!-- Licensing — GNU GPL v3 or later. Full text in the repo-root LICENSE file. -->

@@ -31,8 +31,17 @@ if ($Version -notmatch '^\d+\.\d+\.\d+$') { throw "Version '$Version' is not X.Y
 $publish = Join-Path $ScriptDir 'OUT/publish-win-x64'
 if (Test-Path $publish) { Remove-Item -Recurse -Force $publish }
 
+$project = Join-Path $RepoRoot 'PCEdit.Desktop/PCEdit.Desktop.csproj'
+
+# One RID-agnostic restore, then a publish that skips its own: the committed packages.lock.json
+# files describe that restore (locked when CI=true), and a RID-specific restore would not match
+# them. See Directory.Build.props.
+Write-Host ">> dotnet restore"
+dotnet restore $project
+if ($LASTEXITCODE -ne 0) { throw "dotnet restore failed ($LASTEXITCODE)" }
+
 Write-Host ">> dotnet publish win-x64 (self-contained) $Version"
-dotnet publish (Join-Path $RepoRoot 'PCEdit.Desktop/PCEdit.Desktop.csproj') `
+dotnet publish $project --no-restore `
     -c Release -r win-x64 --self-contained true `
     -p:Version=$Version -p:DebugType=None -p:DebugSymbols=false -p:PublishTrimmed=false `
     -o $publish

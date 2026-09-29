@@ -4,6 +4,16 @@ What changed in each release of PCEdit. Downloads for every version are on the
 [Releases page](https://github.com/Valkerran/PCEdit/releases); the newest is on the
 [latest release](https://github.com/Valkerran/PCEdit/releases/latest) page.
 
+## v1.5.1
+
+- **No change to the application.** Build process only: every package the app is built from
+  is now pinned, by exact version and content hash, in files kept in the repository, and the
+  build fails if anything drifts from them. Before, each build fetched whatever versions
+  resolved that day, so an altered or substituted dependency could have slipped in unnoticed.
+  The downloads contain the same files as v1.5.0, and the Linux build still carries its own
+  copy of ICU, so it starts on distros that have none.
+  ([#40](https://github.com/Valkerran/PCEdit/issues/40))
+
 ## v1.5.0
 
 - **New: inventory and item ids on the Inventories page.** Every inventory now shows its id

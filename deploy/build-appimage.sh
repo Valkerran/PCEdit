@@ -67,6 +67,12 @@ if ! command -v pupnet >/dev/null 2>&1; then
     dotnet tool install -g KuiperZone.PupNet --version "$PUPNET_VERSION"
 fi
 
+# One RID-agnostic restore before PupNet's publish, which passes --no-restore (see
+# DotnetPublishArgs in pcedit.pupnet.conf): the committed packages.lock.json files describe that
+# restore (locked when CI=true), and a RID-specific restore would not match them.
+echo ">> dotnet restore"
+dotnet restore "$REPO_ROOT/PCEdit.Desktop/PCEdit.Desktop.csproj"
+
 echo ">> pupnet $(pupnet --version | head -n1)"
 echo ">> Regenerating AppStream metadata from the string catalog"
 python3 "$REPO_ROOT/tools/i18n/gen_metainfo.py"
