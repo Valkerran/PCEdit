@@ -1,3 +1,5 @@
+using PCEdit.App.Core.Services;
+
 namespace PCEdit.App.Core.Models;
 
 public sealed class InventoryGroup
@@ -16,6 +18,13 @@ public sealed class InventoryGroup
     /// inventory has no owner (an orphan inventory) or the world could not be resolved.
     /// </summary>
     public string? PlanetId { get; init; }
+
+    /// <summary>
+    /// The world-object id of the container that owns this inventory, when it has one. It is
+    /// not the inventory id - the two match for only a minority of containers - but it is the
+    /// "Object #" the card's label shows, so an id search matches it too.
+    /// </summary>
+    public int? ContainerWorldObjectId { get; init; }
 
     public required List<InventoryItemView> Items { get; init; }
 
@@ -36,14 +45,34 @@ public sealed class InventoryGroup
 
     public string CapacityLabel => $"{Count}/{Size}";
 
-    /// <summary>Lower-cased haystack for the Inventories page search: the label, the world id,
-    /// plus every contained item's display name.</summary>
+    /// <summary>Lower-cased haystack for the Inventories page text search: the label, the world
+    /// id, plus every contained item's display name and type id (<c>GId</c>, e.g. <c>Iron</c>).</summary>
     public string SearchIndex => _searchIndex ??=
-        string.Join('\n', Items.Select(i => i.DisplayName).Prepend(PlanetId ?? string.Empty).Prepend(Label)).ToLowerInvariant();
+        string.Join('\n', Items.SelectMany(i => new[] { i.DisplayName, i.GId })
+            .Prepend(PlanetId ?? string.Empty).Prepend(Label)).ToLowerInvariant();
 
     private string? _searchIndex;
 
-    /// <summary>True when this group matches a (already lower-cased, trimmed) search term.</summary>
-    public bool Matches(string loweredQuery) =>
-        loweredQuery.Length == 0 || SearchIndex.Contains(loweredQuery, StringComparison.Ordinal);
+    /// <summary>
+    /// True when this group matches a (already lower-cased, trimmed) search term. An id search
+    /// (see <see cref="IdSearch"/>) matches the inventory id, the owning container's object id
+    /// and every contained item's id by prefix; anything else is a text search over
+    /// <see cref="SearchIndex"/>.
+    /// </summary>
+    public bool Matches(string loweredQuery)
+    {
+        if (loweredQuery.Length == 0)
+        {
+            return true;
+        }
+
+        if (IdSearch.TryGetIdPrefix(loweredQuery, out var digits))
+        {
+            return IdSearch.Matches(InventoryId, digits)
+                   || (ContainerWorldObjectId is { } containerId && IdSearch.Matches(containerId, digits))
+                   || Items.Any(i => IdSearch.Matches(i.WorldObjectId, digits));
+        }
+
+        return SearchIndex.Contains(loweredQuery, StringComparison.Ordinal);
+    }
 }

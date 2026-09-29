@@ -34,6 +34,9 @@ public sealed class InventoryEditor(
                     Label = label,
                     Kind = kind,
                     PlanetId = planetId,
+                    ContainerWorldObjectId = containersByInventoryId.TryGetValue(inventory.Id, out var container)
+                        ? container.Id
+                        : null,
                     Size = inventory.Size,
                     Logistics = logistics,
                     LogisticsSummary = logistics is null ? null : FormatLogisticsSummary(logistics),

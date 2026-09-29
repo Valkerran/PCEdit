@@ -97,6 +97,39 @@ public sealed class InventoriesViewModelTests
     }
 
     [Fact]
+    public void IdQuery_MatchesInventoryIdsAndContainedItemIdsByPrefix()
+    {
+        var vm = CreateLoaded();
+
+        // Inventory 20 by its own id; 10 holds items 200/201 and 30 holds item 202. The item
+        // names ("Item200"...) also contain "20", but an id search does not match names.
+        vm.Query = "20";
+
+        Assert.Equal([10, 20, 30], vm.Groups.Select(g => g.InventoryId).OrderBy(id => id).ToArray());
+    }
+
+    [Fact]
+    public void IdQuery_MatchesTheOwningContainersObjectId()
+    {
+        var vm = CreateLoaded();
+
+        // Inventories 10 and 11 by id; inventory 30 through its container, world object 100.
+        vm.Query = "#1";
+
+        Assert.Equal([10, 11, 30], vm.Groups.Select(g => g.InventoryId).OrderBy(id => id).ToArray());
+    }
+
+    [Fact]
+    public void IdQuery_ForAFullItemId_FindsItsInventory()
+    {
+        var vm = CreateLoaded();
+
+        vm.Query = "202";
+
+        Assert.Equal([30], vm.Groups.Select(g => g.InventoryId).ToArray());
+    }
+
+    [Fact]
     public void Filter_NarrowsByKind()
     {
         var vm = CreateLoaded();
