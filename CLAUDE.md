@@ -368,12 +368,17 @@ repo root — mirrored by `Disclaimer_Body` in the catalog and the AppStream `<d
 **libicu is bundled on Linux, and only on Linux.** A self-contained publish does *not*
 include it — .NET `dlopen()`s the system copy and FailFasts at startup on a distro that has
 none (openSUSE Tumbleweed), which made the AppImage unlaunchable there. So
-`PCEdit.Desktop.csproj` references `Microsoft.ICU.ICU4C.Runtime` and sets
-`System.Globalization.AppLocalIcu` on `linux-*` RIDs only; **the package version
+`PCEdit.Desktop.csproj` references `Microsoft.ICU.ICU4C.Runtime.linux-x64` and sets
+`System.Globalization.AppLocalIcu` for the `linux-x64` RID only; **the package version
 (`<AppLocalIcuVersion>`) and the switch value must stay identical** — the switch *is* the
 `libicu*.so.<version>` filename suffix. Neither is visible to `ldd` (it is a `dlopen`), so
-`verify-app-local-icu.sh` guards both from `build-appimage.sh` and from CI. Do not add the
-package to the Windows or macOS publish: they use the OS ICU, and it has no `osx` RID.
+`verify-app-local-icu.sh` guards both from `build-appimage.sh` and from CI. The *package* is
+referenced **unconditionally** (the per-RID package, not the `Microsoft.ICU.ICU4C.Runtime`
+meta-package): restore must not depend on the RID, or the single locked restore that every
+`--no-restore` publish relies on would leave the Linux build without ICU. Its assets live under
+`runtimes/linux-x64/native`, so Windows and macOS publishes carry none of it; only the *switch* is
+RID-conditional. Do not widen the switch to other Linux RIDs without a package that carries ICU
+for them.
 
 Release automation and the versioning rules live in `RELEASING.md`.
 

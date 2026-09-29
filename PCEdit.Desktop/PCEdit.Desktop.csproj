@@ -28,26 +28,39 @@
         which promises to be self-contained, unlaunchable there. The `ldd | grep 'not found'`
         artifact check cannot catch it, because the load is a dlopen, not a link-time dependency.
 
-        So the Linux publish carries its own ICU: the Microsoft.ICU.ICU4C.Runtime package drops
-        libicu{uc,i18n,data}.so.$(AppLocalIcuVersion) next to the app, and the
+        So the Linux publish carries its own ICU: the Microsoft.ICU.ICU4C.Runtime.linux-x64
+        package drops libicu{uc,i18n,data}.so.$(AppLocalIcuVersion) next to the app, and the
         System.Globalization.AppLocalIcu switch tells the runtime to load those by that exact
         version suffix instead of probing the system. Keep the package version and the switch
         value identical - the switch IS the filename suffix.
 
-        Windows (OS ICU since Win10 1703) and macOS (libicucore in the OS) need none of this, and
-        the package has no osx RID, so this stays scoped to non-musl linux-* RIDs. A plain
-        `dotnet build`/`dotnet test` with no RID is unaffected.
+        The package is referenced UNCONDITIONALLY, and it is the per-RID package rather than the
+        Microsoft.ICU.ICU4C.Runtime meta-package (which only depends on five of these). That keeps
+        restore identical whatever RID is being built, so one locked restore (packages.lock.json,
+        issue #40) serves every publish that skips its own restore. Its only assets are under
+        runtimes/linux-x64/native, so a win-x64 / osx-* publish copies none of them; a plain
+        `dotnet build` with no RID copies them into bin/runtimes/, which is harmless. Referenced
+        conditionally, the package was restored only for a linux RID, and a Linux publish that
+        skipped its own restore then silently shipped without ICU.
+
+        The switch stays scoped to linux-x64 - the only Linux RID shipped, and the only one this
+        package carries ICU for. Setting it on any other RID would make the runtime look for
+        libraries that are not there and FailFast. Windows (OS ICU since Win10 1703) and macOS
+        (libicucore in the OS) need none of this.
 
         Verified by the CI "AppImage ships app-local ICU" step and by deploy/build-appimage.sh,
         which both fail if the libraries or the switch go missing.
     -->
     <PropertyGroup>
         <AppLocalIcuVersion>72.1.0.3</AppLocalIcuVersion>
-        <BundleAppLocalIcu Condition="'$(RuntimeIdentifier)' != '' and $(RuntimeIdentifier.StartsWith('linux-')) and !$(RuntimeIdentifier.StartsWith('linux-musl'))">true</BundleAppLocalIcu>
+        <BundleAppLocalIcu Condition="'$(RuntimeIdentifier)' == 'linux-x64'">true</BundleAppLocalIcu>
     </PropertyGroup>
 
+    <ItemGroup>
+        <PackageReference Include="Microsoft.ICU.ICU4C.Runtime.linux-x64" Version="$(AppLocalIcuVersion)" />
+    </ItemGroup>
+
     <ItemGroup Condition="'$(BundleAppLocalIcu)' == 'true'">
-        <PackageReference Include="Microsoft.ICU.ICU4C.Runtime" Version="$(AppLocalIcuVersion)" />
         <RuntimeHostConfigurationOption Include="System.Globalization.AppLocalIcu" Value="$(AppLocalIcuVersion)" Trim="false" />
     </ItemGroup>
 

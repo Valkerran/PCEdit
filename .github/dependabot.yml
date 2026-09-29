@@ -29,7 +29,7 @@ updates:
       # App-local ICU for the Linux AppImage. Its version is also the libicu filename suffix
       # the runtime is told to load, and a bump changes the AppImage size - upgrade it by
       # hand and re-run the distro matrix (deploy/README.md), not from a bot PR.
-      - dependency-name: Microsoft.ICU.ICU4C.Runtime
+      - dependency-name: Microsoft.ICU.ICU4C.Runtime*
 
   - package-ecosystem: github-actions
     directory: /

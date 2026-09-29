@@ -79,12 +79,15 @@ publish does *not* bundle it: .NET `dlopen()`s the system copy and FailFasts at 
 none. openSUSE Tumbleweed ships without it, so the AppImage could not launch there at
 all ([issue #4](https://github.com/Valkerran/PCEdit/issues/4)).
 
-`PCEdit.Desktop.csproj` therefore pulls `Microsoft.ICU.ICU4C.Runtime`
-(`<AppLocalIcuVersion>`) on `linux-*` RIDs and sets the
+`PCEdit.Desktop.csproj` therefore references `Microsoft.ICU.ICU4C.Runtime.linux-x64`
+(`<AppLocalIcuVersion>`) and, for the `linux-x64` RID, sets the
 `System.Globalization.AppLocalIcu` runtimeconfig switch to the same version, so the
 runtime loads `libicu{uc,i18n,data}.so.<version>` from the app folder and never probes
 the system. The package version and the switch value **must stay identical** — the
-switch *is* the filename suffix. Windows (OS ICU) and macOS (`libicucore`) are excluded.
+switch *is* the filename suffix. The package is referenced for every build (so restore
+does not depend on the RID — see the lock-file notes below), but its libraries sit under
+`runtimes/linux-x64/`, so Windows (OS ICU) and macOS (`libicucore`) publishes carry none of
+it.
 
 Two consequences worth knowing:
 
