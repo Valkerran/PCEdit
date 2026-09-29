@@ -52,6 +52,22 @@ If the .NET SDK was installed via `dotnet-install.sh` to `~/.dotnet`, export
 runtime alongside the 10 SDK avoids a roll-forward:
 `dotnet-install.sh --channel 8.0 --runtime dotnet --install-dir $HOME/.dotnet`.
 
+### NuGet lock files
+
+Every project commits a `packages.lock.json` (issue #40), and restore runs in **locked mode
+wherever `CI=true`** — so on GitHub runners a dependency graph that drifts from the lock files
+fails with `NU1004` instead of building. The lock files describe a restore **with no
+RuntimeIdentifier**; a RID-specific restore does not match them (it fails in CI and rewrites
+the lock locally). So all three scripts run one plain `dotnet restore`, then publish with
+`--no-restore` — for the AppImage via `DotnetPublishArgs` in `pcedit.pupnet.conf`.
+
+If you publish by hand, do the same:
+
+```bash
+dotnet restore PCEdit.Desktop/PCEdit.Desktop.csproj
+dotnet publish PCEdit.Desktop/PCEdit.Desktop.csproj --no-restore -c Release -r linux-x64 --self-contained true -o out
+```
+
 ### glibc / base distro — important
 
 An AppImage does **not** bundle glibc. Build on the **oldest practical base** so the
@@ -85,7 +101,7 @@ all ([issue #4](https://github.com/Valkerran/PCEdit/issues/4)).
 runtime loads `libicu{uc,i18n,data}.so.<version>` from the app folder and never probes
 the system. The package version and the switch value **must stay identical** — the
 switch *is* the filename suffix. The package is referenced for every build (so restore
-does not depend on the RID — see the lock-file notes below), but its libraries sit under
+does not depend on the RID — see *NuGet lock files* above), but its libraries sit under
 `runtimes/linux-x64/`, so Windows (OS ICU) and macOS (`libicucore`) publishes carry none of
 it.
 

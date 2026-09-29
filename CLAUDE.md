@@ -63,7 +63,8 @@ If `main` cannot fast-forward, stop and resolve that before branching.
 ### 4. Commit at the end of every phase
 
 One commit per completed phase, not one commit for the whole plan. Before each commit: build,
-run both test projects, and regenerate any generated file the phase touched — the localization
+run both test projects, commit any `packages.lock.json` a `PackageReference` change updated, and
+regenerate any generated file the phase touched — the localization
 satellites and AppStream metainfo via `tools/i18n/` (CI **fails** on drift here), the item and
 logistics catalogs via `tools/item-catalog/` (no CI guard — only a hand-edited `gen_*.py`
 followed by a re-run keeps the JSON honest). Commit messages say what changed and why; see
@@ -117,13 +118,26 @@ deploy/build-macos.sh osx-arm64   # macOS .app zip   (osx-x64 | osx-arm64)
 
 `dotnet build PCEdit.slnx` builds everything. `global.json` pins the SDK feature band (`10.0.4xx`).
 
+**NuGet lock files**: every project commits a `packages.lock.json`, and restore is locked
+wherever `CI=true` (`Directory.Build.props`), so CI fails with `NU1004` if the graph drifts.
+**Changing a `PackageReference` means running `dotnet restore` and committing the updated lock
+files with it.** The lock files describe a restore with no RuntimeIdentifier, so never publish
+with an implicit RID-specific restore: `dotnet restore` first, then `dotnet publish -r <rid>
+--no-restore` (the `deploy/` scripts already do). The app-local ICU package is referenced for
+every build for the same reason — see Packaging.
+
 **Versioning**: the repo-root `Directory.Build.props` `<VersionPrefix>` is the single source of
 truth for every project's version. See `RELEASING.md` for the bump→merge→tag flow and the rules
 the pipelines enforce.
 
-CI (`.github/workflows/ci.yml`) runs the two test projects, builds `PCEdit.Desktop`, fails if the
-generated localization files are out of sync with the catalog, and (`version-guard` job) fails if
-`<VersionPrefix>` is malformed or behind the latest release tag. `release.yml` runs on a `vX.Y.Z`
+CI (`.github/workflows/ci.yml`) restores in locked mode, runs the two test projects, builds
+`PCEdit.Desktop`, fails if the Avalonia build-telemetry targets are imported, checks a `linux-x64`
+publish carries app-local ICU, and fails if the localization satellites, the AppStream metadata or
+the item catalog are out of sync with their generators. `lock-files-cross-os` repeats the locked
+restore on Windows and macOS runners, and `version-guard` fails if `<VersionPrefix>` is malformed or
+behind the latest release tag. Dependabot (`.github/dependabot.yml`) proposes NuGet and Actions
+updates weekly; if one misses a lock file (dependabot-core#13950), CI fails it with `NU1004` — run
+`dotnet restore` on the branch and commit the lock. `release.yml` runs on a `vX.Y.Z`
 tag push **or** manual dispatch from `main` (which creates the tag); it refuses to build if the tag
 and `<VersionPrefix>` disagree, then builds the AppImage (`ubuntu-22.04`), the Windows zip
 (`windows-latest`), and the macOS `.app` zips for `osx-x64` + `osx-arm64` (`macos-latest`, unsigned)
