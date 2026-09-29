@@ -55,8 +55,30 @@
         <AvaloniaResource Include="Assets/**" />
     </ItemGroup>
 
+    <!--
+        Build-time telemetry opt-out.
+
+        Avalonia depends on Avalonia.BuildServices, whose .targets register an AvaloniaStatsTask
+        that runs BeforeTargets="CoreCompile" on every non-design-time build and POSTs a build
+        record (hashed project + machine name, an anonymous machine GUID, TFM, RID, Avalonia
+        version, IDE, OS version/arch, CI detection) to avaloniaui.net. It is a build-time-only
+        package - it ships tools/ and no lib/, so it never reached a published PCEdit - but it
+        fires on every contributor's machine and every CI run, and PCEdit should not phone home
+        to build any more than it does to run.
+
+        Referencing the package directly with ExcludeAssets="all" wins over the transitive
+        reference and drops its .targets from the generated obj/*.nuget.g.targets entirely, so
+        the task is never registered. AVALONIA_TELEMETRY_OPTOUT=1 is the vendor's own switch, but
+        it is per-machine and per-shell - it would not cover CI or a fresh clone.
+
+        The version is pinned deliberately. When an Avalonia upgrade requires a newer
+        Avalonia.BuildServices, restore fails with NU1605 (package downgrade) rather than quietly
+        resolving back to a telemetry-enabled build: bump the version here to match and the guard
+        in .github/workflows/ci.yml re-confirms the opt-out held.
+    -->
     <ItemGroup>
         <PackageReference Include="Avalonia" Version="12.1.3" />
+        <PackageReference Include="Avalonia.BuildServices" Version="11.3.2" ExcludeAssets="all" />
         <PackageReference Include="Avalonia.Desktop" Version="12.1.3" />
         <PackageReference Include="Avalonia.Themes.Fluent" Version="12.1.3" />
         <PackageReference Include="Avalonia.Fonts.Inter" Version="12.1.3" />

@@ -29,6 +29,23 @@ jobs:
       - name: Build — PCEdit.Desktop
         run: dotnet build PCEdit.Desktop/PCEdit.Desktop.csproj -c Release
 
+      # Nothing in a build log shows that the Avalonia build-time telemetry task is absent, so
+      # a dropped or stale PackageReference would silently restore it. See the comment on the
+      # Avalonia.BuildServices reference in PCEdit.Desktop.csproj.
+      - name: Desktop build has Avalonia telemetry excluded
+        shell: bash
+        run: |
+          set -euo pipefail
+          f=PCEdit.Desktop/obj/PCEdit.Desktop.csproj.nuget.g.targets
+          if [[ ! -f "$f" ]]; then
+            echo "::error::$f not found - did the PCEdit.Desktop build step run?"; exit 1
+          fi
+          if grep -qi 'buildservices' "$f"; then
+            echo "::error file=PCEdit.Desktop/PCEdit.Desktop.csproj::Avalonia.BuildServices targets are imported again - the build-time telemetry opt-out has been lost. Restore the ExcludeAssets=\"all\" PackageReference."
+            exit 1
+          fi
+          echo ">> Avalonia.BuildServices targets are not imported; build-time telemetry is off."
+
       # The AppImage is only assembled at release time, so guard the ICU wiring here:
       # without it the Linux build FailFasts at startup on a distro with no system libicu.
       - name: Linux publish carries app-local ICU
