@@ -5,7 +5,7 @@ platforms — the .NET runtime is bundled, so no .NET install is needed on the t
 
 | Platform | Output | Script |
 |---|---|---|
-| Linux | `artifacts/PCEdit-<version>-x86_64.AppImage` | `build-appimage.sh` |
+| Linux | `artifacts/PCEdit-<version>-<build>.x86_64.AppImage` | `build-appimage.sh` |
 | Windows | `artifacts/PCEdit-<version>-win-x64.zip` | `build-windows.ps1` |
 | macOS | `artifacts/PCEdit-<version>-macos-{x64,arm64}.zip` (`PCEdit.app`) | `build-macos.sh <rid>` |
 
@@ -111,10 +111,10 @@ WSLg gives WSL2 a working Wayland + X11 display, so the AppImage opens a GUI the
 
 ```bash
 cd artifacts
-chmod +x PCEdit-*-x86_64.AppImage
-./PCEdit-*-x86_64.AppImage --appimage-extract-and-run            # or: sudo apt install libfuse2
-WAYLAND_DISPLAY= ./PCEdit-*-x86_64.AppImage --appimage-extract-and-run   # force the X11 path
-LANG=ja_JP.UTF-8 ./PCEdit-*-x86_64.AppImage --appimage-extract-and-run   # locale auto-select + CJK
+chmod +x PCEdit-*.AppImage
+./PCEdit-*.AppImage --appimage-extract-and-run            # or: sudo apt install libfuse2
+WAYLAND_DISPLAY= ./PCEdit-*.AppImage --appimage-extract-and-run   # force the X11 path
+LANG=ja_JP.UTF-8 ./PCEdit-*.AppImage --appimage-extract-and-run   # locale auto-select + CJK
 ```
 
 Per run, confirm: the window renders; `PCEdit.SaveFileHandler/Standard-2.json` loads,
@@ -166,11 +166,11 @@ sudo pacman -S --noconfirm libx11 libice libsm fontconfig mesa fuse2 noto-fonts-
 ### 3. Smoke test per distro
 ```bash
 cd /mnt/c/Users/<you>/…/PCEdit/artifacts
-chmod +x PCEdit-*-x86_64.AppImage
-./PCEdit-*-x86_64.AppImage --appimage-extract-and-run                       # opens under WSLg
-WAYLAND_DISPLAY= ./PCEdit-*-x86_64.AppImage --appimage-extract-and-run      # force X11
-LANG=ja_JP.UTF-8 ./PCEdit-*-x86_64.AppImage --appimage-extract-and-run     # locale + CJK glyphs
-./PCEdit-*-x86_64.AppImage --appimage-extract >/dev/null && \
+chmod +x PCEdit-*.AppImage
+./PCEdit-*.AppImage --appimage-extract-and-run                       # opens under WSLg
+WAYLAND_DISPLAY= ./PCEdit-*.AppImage --appimage-extract-and-run      # force X11
+LANG=ja_JP.UTF-8 ./PCEdit-*.AppImage --appimage-extract-and-run     # locale + CJK glyphs
+./PCEdit-*.AppImage --appimage-extract >/dev/null && \
   ldd squashfs-root/usr/bin/PCEdit | grep -i 'not found'                   # must print nothing
 ../deploy/verify-app-local-icu.sh squashfs-root                            # bundled ICU present
 ```
