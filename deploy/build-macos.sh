@@ -36,8 +36,14 @@ PUBLISH="$SCRIPT_DIR/OUT/$RID/publish"
 rm -rf "$SCRIPT_DIR/OUT/$RID"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 
+# One RID-agnostic restore, then a publish that skips its own: the committed packages.lock.json
+# files describe that restore (locked when CI=true), and a RID-specific restore would not match
+# them. See Directory.Build.props.
+echo ">> dotnet restore"
+dotnet restore "$REPO_ROOT/PCEdit.Desktop/PCEdit.Desktop.csproj"
+
 echo ">> dotnet publish $RID (self-contained) $VERSION"
-dotnet publish "$REPO_ROOT/PCEdit.Desktop/PCEdit.Desktop.csproj" \
+dotnet publish "$REPO_ROOT/PCEdit.Desktop/PCEdit.Desktop.csproj" --no-restore \
     -c Release -r "$RID" --self-contained true \
     -p:Version="$VERSION" -p:DebugType=None -p:DebugSymbols=false -p:PublishTrimmed=false \
     -o "$PUBLISH"
