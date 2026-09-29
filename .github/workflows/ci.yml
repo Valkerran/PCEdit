@@ -37,13 +37,17 @@ jobs:
           dotnet publish PCEdit.Desktop/PCEdit.Desktop.csproj -c Release -r linux-x64 --self-contained true -o "$RUNNER_TEMP/icu-check"
           deploy/verify-app-local-icu.sh "$RUNNER_TEMP/icu-check"
 
-      - name: Generated files are in sync with the string catalog
+      # A hand-edit of a generated file, or a generator edit that was never re-run, both
+      # show up here as a diff.
+      - name: Generated files are in sync with their generators
         run: |
           python3 tools/i18n/gen_satellites.py
           python3 tools/i18n/gen_metainfo.py
+          python3 tools/item-catalog/gen_catalog.py
           git diff --exit-code --ignore-cr-at-eol -- \
             'PCEdit.App.Core/Resources/Strings.*.resx' \
-            deploy/com.valkerran.pcedit.metainfo.xml
+            deploy/com.valkerran.pcedit.metainfo.xml \
+            PCEdit.App.Core/Data/ItemCatalog.json
 
   version-guard:
     runs-on: ubuntu-latest
