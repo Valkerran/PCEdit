@@ -39,6 +39,10 @@ public sealed class InventoryGroup
 
     public bool IsLogisticsContainer => Logistics is not null;
 
+    /// <summary>Whether the card shows the inventory id under its label. An unowned inventory's
+    /// label already is "Inventory #N", so repeating it would say the same thing twice.</summary>
+    public bool ShowInventoryIdCaption => Kind != InventoryKind.Other;
+
     public int Count => Items.Count;
 
     public bool HasItems => Count > 0;

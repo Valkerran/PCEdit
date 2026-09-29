@@ -86,10 +86,11 @@
   <data name="Inventories_None" xml:space="preserve"><value>Bu kayıtta envanter yok.</value></data>
   <data name="Inventories_Empty" xml:space="preserve"><value>Boş</value></data>
   <data name="Inventories_Move" xml:space="preserve"><value>Taşı…</value></data>
-  <data name="Inventories_MoveA11y" xml:space="preserve"><value>{0} ögesini başka bir envantere taşı</value></data>
+  <data name="Inventories_MoveA11y" xml:space="preserve"><value>{0} #{1} ögesini başka bir envantere taşı</value></data>
+  <data name="Inventories_ItemId" xml:space="preserve"><value>#{0}</value></data>
   <data name="Inventories_CapacityA11y" xml:space="preserve"><value>Kapasite {0} öge</value></data>
-  <data name="Inventories_Search" xml:space="preserve"><value>Envanterlerde ve eşyalarda ara</value></data>
-  <data name="Inventories_SearchA11y" xml:space="preserve"><value>Envanter listesini ada veya içeriğe göre filtrele</value></data>
+  <data name="Inventories_Search" xml:space="preserve"><value>Ada veya kimliğe göre ara</value></data>
+  <data name="Inventories_SearchA11y" xml:space="preserve"><value>Envanter listesini ada, içeriğe veya kimliğe göre filtrele</value></data>
   <data name="Inventories_NoMatch" xml:space="preserve"><value>Aramanızla eşleşen envanter veya eşya yok.</value></data>
   <data name="Inventories_FilterAll" xml:space="preserve"><value>Tümü</value></data>
   <data name="Inventories_FilterPlayers" xml:space="preserve"><value>Oyuncular</value></data>

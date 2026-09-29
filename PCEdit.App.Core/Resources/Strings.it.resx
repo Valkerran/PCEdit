@@ -86,10 +86,11 @@
   <data name="Inventories_None" xml:space="preserve"><value>Nessun inventario in questo salvataggio.</value></data>
   <data name="Inventories_Empty" xml:space="preserve"><value>Vuoto</value></data>
   <data name="Inventories_Move" xml:space="preserve"><value>Sposta…</value></data>
-  <data name="Inventories_MoveA11y" xml:space="preserve"><value>Sposta {0} in un altro inventario</value></data>
+  <data name="Inventories_MoveA11y" xml:space="preserve"><value>Sposta {0} n. {1} in un altro inventario</value></data>
+  <data name="Inventories_ItemId" xml:space="preserve"><value>n. {0}</value></data>
   <data name="Inventories_CapacityA11y" xml:space="preserve"><value>Capacità {0} oggetti</value></data>
-  <data name="Inventories_Search" xml:space="preserve"><value>Cerca inventari e oggetti</value></data>
-  <data name="Inventories_SearchA11y" xml:space="preserve"><value>Filtra l'elenco degli inventari per nome o contenuto</value></data>
+  <data name="Inventories_Search" xml:space="preserve"><value>Cerca per nome o ID</value></data>
+  <data name="Inventories_SearchA11y" xml:space="preserve"><value>Filtra l'elenco degli inventari per nome, contenuto o ID</value></data>
   <data name="Inventories_NoMatch" xml:space="preserve"><value>Nessun inventario o oggetto corrisponde alla ricerca.</value></data>
   <data name="Inventories_FilterAll" xml:space="preserve"><value>Tutti</value></data>
   <data name="Inventories_FilterPlayers" xml:space="preserve"><value>Giocatori</value></data>

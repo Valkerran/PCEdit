@@ -7,12 +7,12 @@ public sealed class InventoryGroupTests
     // A container whose label embeds its object id (as real labels do: "Storage (Object #1880)"),
     // with an inventory id that differs from it, holding one item whose display name and type id
     // differ - the case the fixture save cannot express, since its GIds are not in the catalog.
-    private static InventoryGroup Container() => new()
+    private static InventoryGroup Container(InventoryKind kind = InventoryKind.Container) => new()
     {
         InventoryId = 5,
         Label = "Storage (Object #1880)",
         Size = 10,
-        Kind = InventoryKind.Container,
+        Kind = kind,
         ContainerWorldObjectId = 1880,
         Items = [new InventoryItemView(4021, "Tree12Seed", 5, "Brojo Seed", "seed.png")],
     };
@@ -42,6 +42,16 @@ public sealed class InventoryGroupTests
     public void TextSearch_MatchesLabelItemNamesAndTypeIds(string loweredQuery)
     {
         Assert.True(Container().Matches(loweredQuery));
+    }
+
+    [Theory]
+    [InlineData(InventoryKind.PlayerInventory, true)]
+    [InlineData(InventoryKind.Equipment, true)]
+    [InlineData(InventoryKind.Container, true)]
+    [InlineData(InventoryKind.Other, false)] // its label already reads "Inventory #N"
+    public void ShowInventoryIdCaption_IsHiddenOnlyWhereTheLabelAlreadyIsTheId(InventoryKind kind, bool expected)
+    {
+        Assert.Equal(expected, Container(kind).ShowInventoryIdCaption);
     }
 
     [Fact]

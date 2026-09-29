@@ -86,10 +86,11 @@
   <data name="Inventories_None" xml:space="preserve"><value>此存档中没有库存。</value></data>
   <data name="Inventories_Empty" xml:space="preserve"><value>空</value></data>
   <data name="Inventories_Move" xml:space="preserve"><value>移动…</value></data>
-  <data name="Inventories_MoveA11y" xml:space="preserve"><value>将 {0} 移动到另一个库存</value></data>
+  <data name="Inventories_MoveA11y" xml:space="preserve"><value>将 {0} #{1} 移动到另一个库存</value></data>
+  <data name="Inventories_ItemId" xml:space="preserve"><value>#{0}</value></data>
   <data name="Inventories_CapacityA11y" xml:space="preserve"><value>容量 {0} 件物品</value></data>
-  <data name="Inventories_Search" xml:space="preserve"><value>搜索库存和物品</value></data>
-  <data name="Inventories_SearchA11y" xml:space="preserve"><value>按名称或内容筛选库存列表</value></data>
+  <data name="Inventories_Search" xml:space="preserve"><value>按名称或 ID 搜索</value></data>
+  <data name="Inventories_SearchA11y" xml:space="preserve"><value>按名称、内容或 ID 筛选库存列表</value></data>
   <data name="Inventories_NoMatch" xml:space="preserve"><value>没有与搜索匹配的库存或物品。</value></data>
   <data name="Inventories_FilterAll" xml:space="preserve"><value>全部</value></data>
   <data name="Inventories_FilterPlayers" xml:space="preserve"><value>玩家</value></data>
