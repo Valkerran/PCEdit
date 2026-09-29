@@ -71,6 +71,27 @@ jobs:
             deploy/com.valkerran.pcedit.metainfo.xml \
             PCEdit.App.Core/Data/ItemCatalog.json
 
+  # The lock files are generated on Linux, and the Release workflow restores them in locked mode
+  # on Windows and macOS runners too. A graph that resolved differently per OS would otherwise
+  # surface only mid-release; this catches it on the PR. (build-test covers Linux.)
+  lock-files-cross-os:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          global-json-file: global.json
+
+      - name: Restore (locked)
+        run: dotnet restore PCEdit.slnx
+
   version-guard:
     runs-on: ubuntu-latest
     steps:
