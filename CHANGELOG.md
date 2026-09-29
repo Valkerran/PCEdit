@@ -4,6 +4,18 @@ What changed in each release of PCEdit. Downloads for every version are on the
 [Releases page](https://github.com/Valkerran/PCEdit/releases); the newest is on the
 [latest release](https://github.com/Valkerran/PCEdit/releases/latest) page.
 
+## v1.6.0
+
+- **Planet Crafter 2.103 is supported.** The save format did not change: a world saved by
+  2.102 and then again by 2.103 has exactly the same structure, and PCEdit opens and saves 2.103
+  saves back unchanged. Saves from 2.008 and 2.102 still work as before. Checked on Steam; the
+  Xbox / PC Game Pass version of 2.103 has not been tested yet, but uses the same format as
+  Steam in every earlier version. ([#61](https://github.com/Valkerran/PCEdit/issues/61))
+- Every item in the 2.103 saves checked (Prime and Humble) already has its proper name in
+  PCEdit; nothing shows up as a raw in-game id.
+- **No change to the application itself**, on any platform (Linux, Windows or macOS): the
+  downloads work exactly as v1.5.1 did. Only the version number moves.
+
 ## v1.5.1
 
 - **No change to the application.** Build process only: every package the app is built from
