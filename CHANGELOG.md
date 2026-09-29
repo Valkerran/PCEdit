@@ -4,6 +4,21 @@ What changed in each release of PCEdit. Downloads for every version are on the
 [Releases page](https://github.com/Valkerran/PCEdit/releases); the newest is on the
 [latest release](https://github.com/Valkerran/PCEdit/releases/latest) page.
 
+## v1.4.1
+
+- **No change to the application.** Build and release process only: the pipeline that
+  produces the downloads was hardened. The tool that assembles the Linux AppImage is now a
+  fixed, checksum-verified release instead of whatever build was newest that day; only the
+  final publishing step can write to the repository; and every build action is pinned to an
+  exact version and moved off a runtime GitHub is retiring. The Windows and macOS downloads
+  are the same as v1.4.0 apart from the version stamp. The AppImage is expected to behave
+  identically, but it is now packed by that pinned tool.
+  ([#24](https://github.com/Valkerran/PCEdit/issues/24),
+  [#39](https://github.com/Valkerran/PCEdit/issues/39))
+
+- `RELEASING.md` now says what `SHA256SUMS.txt` does and does not prove: it shows a
+  download arrived intact, not who made it, and none of the builds is code-signed.
+
 ## v1.4.0
 
 - **Improved: item names on the Inventories page now match the game.** Several hundred
