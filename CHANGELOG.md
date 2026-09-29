@@ -4,6 +4,18 @@ What changed in each release of PCEdit. Downloads for every version are on the
 [Releases page](https://github.com/Valkerran/PCEdit/releases); the newest is on the
 [latest release](https://github.com/Valkerran/PCEdit/releases/latest) page.
 
+## v1.4.3
+
+- **No change to the application.** The downloads are the same as v1.4.2 apart from the
+  version stamp. PCEdit itself has never made a network connection of any kind, and still
+  does not. This release removes one from the *build*: the Avalonia UI framework PCEdit is
+  written with ships a component that reported each build to its authors (an anonymous
+  machine id, your operating system, which editor you build in, and similar), and PCEdit no
+  longer includes it. That component only ever ran while compiling the app from source, so
+  nobody running a downloaded PCEdit was affected; now it doesn't run for anyone.
+
+- The README has a new **Privacy** section setting out what PCEdit does and does not touch.
+
 ## v1.4.2
 
 - **Updated the UI framework.** PCEdit now runs on Avalonia 12.1.3 (from 12.1.1), which
