@@ -157,7 +157,7 @@
   "Inventories_FilterEquipment": "장비",
   "Inventories_FilterContainers": "컨테이너",
   "Inventories_FilterA11y": "표시할 인벤토리 유형",
-  "SelectInv_Search": "대상 검색",
+  "SelectInv_Search": "이름 또는 ID로 대상 검색",
   "Teleport_UseCurrentPosition": "플레이어의 현재 위치로 초기화",
   "Teleport_PositionReset": "위치를 {0}의 현재 위치로 초기화했습니다.",
   "Inventories_LogisticsSummary": "수요 {0} · 공급 {1} · 우선순위 {2}",

@@ -157,7 +157,7 @@
   "Inventories_FilterEquipment": "装備",
   "Inventories_FilterContainers": "コンテナ",
   "Inventories_FilterA11y": "表示するインベントリの種類",
-  "SelectInv_Search": "移動先を検索",
+  "SelectInv_Search": "名前または ID で移動先を検索",
   "Teleport_UseCurrentPosition": "プレイヤーの現在位置に戻す",
   "Teleport_PositionReset": "位置を {0} の現在地にリセットしました。",
   "Inventories_LogisticsSummary": "需要 {0} · 供給 {1} · 優先度 {2}",

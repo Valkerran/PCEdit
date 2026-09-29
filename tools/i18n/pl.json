@@ -157,7 +157,7 @@
   "Inventories_FilterEquipment": "Wyposażenie",
   "Inventories_FilterContainers": "Pojemniki",
   "Inventories_FilterA11y": "Pokaż, które typy ekwipunku",
-  "SelectInv_Search": "Szukaj miejsc docelowych",
+  "SelectInv_Search": "Szukaj miejsc docelowych według nazwy lub ID",
   "Teleport_UseCurrentPosition": "Przywróć do bieżącej pozycji gracza",
   "Teleport_PositionReset": "Pozycja przywrócona do bieżącej lokalizacji gracza {0}.",
   "Inventories_LogisticsSummary": "Popyt {0} · Podaż {1} · Priorytet {2}",

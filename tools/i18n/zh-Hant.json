@@ -157,7 +157,7 @@
   "Inventories_FilterEquipment": "裝備",
   "Inventories_FilterContainers": "容器",
   "Inventories_FilterA11y": "顯示哪些庫存類型",
-  "SelectInv_Search": "搜尋目的地",
+  "SelectInv_Search": "依名稱或 ID 搜尋目的地",
   "Teleport_UseCurrentPosition": "重設為玩家目前位置",
   "Teleport_PositionReset": "位置已重設為 {0} 的目前位置。",
   "Inventories_LogisticsSummary": "需求 {0} · 供應 {1} · 優先順序 {2}",

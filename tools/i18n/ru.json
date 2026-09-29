@@ -157,7 +157,7 @@
   "Inventories_FilterEquipment": "Снаряжение",
   "Inventories_FilterContainers": "Контейнеры",
   "Inventories_FilterA11y": "Показывать типы инвентарей",
-  "SelectInv_Search": "Поиск мест назначения",
+  "SelectInv_Search": "Поиск мест назначения по имени или ID",
   "Teleport_UseCurrentPosition": "Сбросить к текущей позиции игрока",
   "Teleport_PositionReset": "Позиция сброшена к текущему местоположению игрока {0}.",
   "Inventories_LogisticsSummary": "Спрос {0} · Поставка {1} · Приоритет {2}",

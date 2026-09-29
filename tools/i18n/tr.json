@@ -157,7 +157,7 @@
   "Inventories_FilterEquipment": "Ekipman",
   "Inventories_FilterContainers": "Kaplar",
   "Inventories_FilterA11y": "Hangi envanter türlerini göster",
-  "SelectInv_Search": "Hedefleri ara",
+  "SelectInv_Search": "Hedefleri ada veya kimliğe göre ara",
   "Teleport_UseCurrentPosition": "Oyuncunun mevcut konumuna sıfırla",
   "Teleport_PositionReset": "Konum, {0} adlı oyuncunun mevcut konumuna sıfırlandı.",
   "Inventories_LogisticsSummary": "Talep {0} · Arz {1} · Öncelik {2}",

@@ -284,6 +284,24 @@ public sealed class InventoryEditorTests
     }
 
     [Fact]
+    public void GetDestinationOptions_CarryKindAndOwningContainer()
+    {
+        var (editor, _) = CreateLoadedEditor();
+
+        var options = editor.GetDestinationOptions(worldObjectId: 200);
+
+        var container = options.Single(o => o.InventoryId == 30);
+        Assert.Equal(InventoryKind.Container, container.Kind);
+        Assert.Equal(100, container.ContainerWorldObjectId);
+        Assert.True(container.ShowInventoryIdCaption);
+
+        var unowned = options.Single(o => o.InventoryId == 99);
+        Assert.Equal(InventoryKind.Other, unowned.Kind);
+        Assert.Null(unowned.ContainerWorldObjectId);
+        Assert.False(unowned.ShowInventoryIdCaption); // its label already reads "Inventory #99"
+    }
+
+    [Fact]
     public void GetDestinationOptions_ReportsCountAndSize()
     {
         var (editor, _) = CreateLoadedEditor();

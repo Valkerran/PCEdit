@@ -157,7 +157,7 @@
   "Inventories_FilterEquipment": "装备",
   "Inventories_FilterContainers": "容器",
   "Inventories_FilterA11y": "显示哪些库存类型",
-  "SelectInv_Search": "搜索目标",
+  "SelectInv_Search": "按名称或 ID 搜索目标",
   "Teleport_UseCurrentPosition": "重置为玩家当前位置",
   "Teleport_PositionReset": "位置已重置为 {0} 的当前位置。",
   "Inventories_LogisticsSummary": "需求 {0} · 供应 {1} · 优先级 {2}",

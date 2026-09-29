@@ -110,7 +110,7 @@
   <data name="Inv_DestFull" xml:space="preserve"><value>L'inventaire de destination est plein ({0}/{1}).</value></data>
   <data name="SelectInv_Title" xml:space="preserve"><value>Déplacer l'objet</value></data>
   <data name="SelectInv_Heading" xml:space="preserve"><value>Choisir un inventaire de destination</value></data>
-  <data name="SelectInv_Search" xml:space="preserve"><value>Rechercher des destinations</value></data>
+  <data name="SelectInv_Search" xml:space="preserve"><value>Rechercher des destinations par nom ou ID</value></data>
   <data name="SelectInv_None" xml:space="preserve"><value>Aucun autre inventaire disponible.</value></data>
   <data name="SelectInv_MoveFailedTitle" xml:space="preserve"><value>Échec du déplacement</value></data>
   <data name="SelectInv_MoveIncomplete" xml:space="preserve"><value>Le déplacement n'a pas pu être effectué.</value></data>

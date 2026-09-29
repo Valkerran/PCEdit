@@ -99,11 +99,17 @@ public sealed class InventoryEditor(
 
         return save.Inventories
             .Where(inventory => inventory.Id != sourceInventoryId)
-            .Select(inventory => new InventoryOptionView(
-                inventory.Id,
-                DescribeInventory(save, inventory.Id, containersByInventoryId).Label,
-                WorldObjectIdsCodec.Parse(inventory.WorldObjectIds).Count,
-                inventory.Size))
+            .Select(inventory =>
+            {
+                var (label, kind, _) = DescribeInventory(save, inventory.Id, containersByInventoryId);
+                return new InventoryOptionView(
+                    inventory.Id,
+                    label,
+                    WorldObjectIdsCodec.Parse(inventory.WorldObjectIds).Count,
+                    inventory.Size,
+                    kind,
+                    containersByInventoryId.TryGetValue(inventory.Id, out var container) ? container.Id : null);
+            })
             .ToList();
     }
 

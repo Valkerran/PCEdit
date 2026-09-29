@@ -157,7 +157,7 @@
   "Inventories_FilterEquipment": "Equipo",
   "Inventories_FilterContainers": "Contenedores",
   "Inventories_FilterA11y": "Mostrar qué tipos de inventario",
-  "SelectInv_Search": "Buscar destinos",
+  "SelectInv_Search": "Buscar destinos por nombre o ID",
   "Teleport_UseCurrentPosition": "Restablecer a la posición actual del jugador",
   "Teleport_PositionReset": "Posición restablecida a la ubicación actual de {0}.",
   "Inventories_LogisticsSummary": "Demanda {0} · Suministro {1} · Prioridad {2}",

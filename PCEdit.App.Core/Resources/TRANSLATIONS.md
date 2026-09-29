@@ -49,11 +49,12 @@ every known group collapses to "Everything"). `Logistics_PriorityUnknown` ("Unkn
 a saved priority outside the game's -3..3 range — carried through an edit untouched.
 
 The inventory-ids pass (issue #3: show and search inventory / item ids) added
-`Inventories_ItemId` and reworded `Inventories_{Search,SearchA11y,MoveA11y}` — all
-machine-translated. `Inventories_ItemId` is the item's number label, so it follows each locale's
-existing number sign from `Inv_Fallback` (`#`, `nº`, `n.º`, `Nr.`, `nr`, `n.`, `№`) rather than a
-literal `#`; `Inventories_MoveA11y` gained a `{1}` (the item id) so a screen reader can tell two
-identical items apart. The card's inventory-id caption reuses `Inv_Fallback` itself.
+`Inventories_ItemId` and reworded `Inventories_{Search,SearchA11y,MoveA11y}` and
+`SelectInv_Search` — all machine-translated. `Inventories_ItemId` is the item's number label, so
+it follows each locale's existing number sign from `Inv_Fallback` (`#`, `nº`, `n.º`, `Nr.`, `nr`,
+`n.`, `№`) rather than a literal `#`; `Inventories_MoveA11y` gained a `{1}` (the item id) so a
+screen reader can tell two identical items apart. The inventory-id caption on the Inventories
+cards and the Move dialog's destinations reuses `Inv_Fallback` itself.
 
 | Culture | Language | Reviewed |
 |---|---|---|
