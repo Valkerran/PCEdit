@@ -43,14 +43,16 @@ internal sealed class LocConverter(string key) : IValueConverter
 
 /// <summary>
 /// <c>{m:LocFormat Key=Some_Key, Path=SomeProperty}</c> — formats the translated string for
-/// <c>Key</c> with one argument bound from <c>Path</c>. <c>FallbackKey</c> supplies the text when
-/// the argument is null/empty.
+/// <c>Key</c> with one argument bound from <c>Path</c>, plus an optional second from <c>Path2</c>
+/// (<c>{1}</c>). <c>FallbackKey</c> supplies the text when the first argument is null/empty.
 /// </summary>
 public sealed class LocFormatExtension : MarkupExtension
 {
     public string Key { get; set; } = string.Empty;
 
     public string Path { get; set; } = string.Empty;
+
+    public string? Path2 { get; set; }
 
     public string? FallbackKey { get; set; }
 
@@ -63,6 +65,11 @@ public sealed class LocFormatExtension : MarkupExtension
         };
         multi.Bindings.Add(new Binding("Current") { Source = Loc.Instance });
         multi.Bindings.Add(new Binding(Path));
+        if (!string.IsNullOrEmpty(Path2))
+        {
+            multi.Bindings.Add(new Binding(Path2));
+        }
+
         return multi;
     }
 }
@@ -78,6 +85,6 @@ internal sealed class LocFormatConverter(string key, string? fallbackKey) : IMul
             return Loc.Instance[fallbackKey];
         }
 
-        return Loc.Instance.Format(key, arg);
+        return Loc.Instance.Format(key, values.Skip(1).ToArray());
     }
 }

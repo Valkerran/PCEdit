@@ -37,8 +37,16 @@
                                     CommandParameter="{Binding}"
                                     AutomationProperties.Name="{Binding AccessibleLabel}">
                                 <Grid ColumnDefinitions="*,Auto">
-                                    <TextBlock Grid.Column="0" Text="{Binding Label}" />
-                                    <TextBlock Grid.Column="1" Text="{Binding CapacityLabel}" Classes="caption" />
+                                    <StackPanel Grid.Column="0">
+                                        <TextBlock Text="{Binding Label}" />
+                                        <!-- The inventory id (issue #3), as on the Inventories page:
+                                             destinations with the same name are otherwise identical. -->
+                                        <TextBlock Classes="caption"
+                                                   Text="{m:LocFormat Key=Inv_Fallback, Path=InventoryId}"
+                                                   IsVisible="{Binding ShowInventoryIdCaption}" />
+                                    </StackPanel>
+                                    <TextBlock Grid.Column="1" Text="{Binding CapacityLabel}" Classes="caption"
+                                               VerticalAlignment="Center" />
                                 </Grid>
                             </Button>
                         </DataTemplate>

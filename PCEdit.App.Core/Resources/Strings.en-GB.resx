@@ -86,10 +86,12 @@
   <data name="Inventories_None" xml:space="preserve"><value>No inventories in this save.</value></data>
   <data name="Inventories_Empty" xml:space="preserve"><value>Empty</value></data>
   <data name="Inventories_Move" xml:space="preserve"><value>Move…</value></data>
-  <data name="Inventories_MoveA11y" xml:space="preserve"><value>Move {0} to another inventory</value></data>
+  <data name="Inventories_MoveA11y" xml:space="preserve"><value>Move {0} #{1} to another inventory</value></data>
+  <data name="Inventories_ItemId" xml:space="preserve"><value>#{0}</value></data>
+  <data name="Inventories_ShowingSome" xml:space="preserve"><value>Showing {0} of {1} items</value></data>
   <data name="Inventories_CapacityA11y" xml:space="preserve"><value>Capacity {0} items</value></data>
-  <data name="Inventories_Search" xml:space="preserve"><value>Search inventories and items</value></data>
-  <data name="Inventories_SearchA11y" xml:space="preserve"><value>Filter the inventory list by name or contents</value></data>
+  <data name="Inventories_Search" xml:space="preserve"><value>Search by name or ID</value></data>
+  <data name="Inventories_SearchA11y" xml:space="preserve"><value>Filter the inventory list by name, contents or ID</value></data>
   <data name="Inventories_NoMatch" xml:space="preserve"><value>No inventories or items match your search.</value></data>
   <data name="Inventories_FilterAll" xml:space="preserve"><value>All</value></data>
   <data name="Inventories_FilterPlayers" xml:space="preserve"><value>Players</value></data>
@@ -109,7 +111,7 @@
   <data name="Inv_DestFull" xml:space="preserve"><value>The destination inventory is full ({0}/{1}).</value></data>
   <data name="SelectInv_Title" xml:space="preserve"><value>Move Item</value></data>
   <data name="SelectInv_Heading" xml:space="preserve"><value>Choose a destination inventory</value></data>
-  <data name="SelectInv_Search" xml:space="preserve"><value>Search destinations</value></data>
+  <data name="SelectInv_Search" xml:space="preserve"><value>Search destinations by name or ID</value></data>
   <data name="SelectInv_None" xml:space="preserve"><value>No other inventories available.</value></data>
   <data name="SelectInv_MoveFailedTitle" xml:space="preserve"><value>Move failed</value></data>
   <data name="SelectInv_MoveIncomplete" xml:space="preserve"><value>The move could not be completed.</value></data>

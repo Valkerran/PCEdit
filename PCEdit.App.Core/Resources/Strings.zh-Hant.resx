@@ -86,10 +86,12 @@
   <data name="Inventories_None" xml:space="preserve"><value>此存檔中沒有庫存。</value></data>
   <data name="Inventories_Empty" xml:space="preserve"><value>空</value></data>
   <data name="Inventories_Move" xml:space="preserve"><value>移動…</value></data>
-  <data name="Inventories_MoveA11y" xml:space="preserve"><value>將 {0} 移動到另一個庫存</value></data>
+  <data name="Inventories_MoveA11y" xml:space="preserve"><value>將 {0} #{1} 移動到另一個庫存</value></data>
+  <data name="Inventories_ItemId" xml:space="preserve"><value>#{0}</value></data>
+  <data name="Inventories_ShowingSome" xml:space="preserve"><value>顯示 {1} 個物品中的 {0} 個</value></data>
   <data name="Inventories_CapacityA11y" xml:space="preserve"><value>容量 {0} 件物品</value></data>
-  <data name="Inventories_Search" xml:space="preserve"><value>搜尋庫存與物品</value></data>
-  <data name="Inventories_SearchA11y" xml:space="preserve"><value>依名稱或內容篩選庫存清單</value></data>
+  <data name="Inventories_Search" xml:space="preserve"><value>依名稱或 ID 搜尋</value></data>
+  <data name="Inventories_SearchA11y" xml:space="preserve"><value>依名稱、內容或 ID 篩選庫存清單</value></data>
   <data name="Inventories_NoMatch" xml:space="preserve"><value>沒有符合搜尋的庫存或物品。</value></data>
   <data name="Inventories_FilterAll" xml:space="preserve"><value>全部</value></data>
   <data name="Inventories_FilterPlayers" xml:space="preserve"><value>玩家</value></data>
@@ -109,7 +111,7 @@
   <data name="Inv_DestFull" xml:space="preserve"><value>目標庫存已滿（{0}/{1}）。</value></data>
   <data name="SelectInv_Title" xml:space="preserve"><value>移動物品</value></data>
   <data name="SelectInv_Heading" xml:space="preserve"><value>選擇目標庫存</value></data>
-  <data name="SelectInv_Search" xml:space="preserve"><value>搜尋目的地</value></data>
+  <data name="SelectInv_Search" xml:space="preserve"><value>依名稱或 ID 搜尋目的地</value></data>
   <data name="SelectInv_None" xml:space="preserve"><value>沒有其他可用庫存。</value></data>
   <data name="SelectInv_MoveFailedTitle" xml:space="preserve"><value>移動失敗</value></data>
   <data name="SelectInv_MoveIncomplete" xml:space="preserve"><value>無法完成移動。</value></data>

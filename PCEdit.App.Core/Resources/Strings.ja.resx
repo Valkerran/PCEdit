@@ -86,10 +86,12 @@
   <data name="Inventories_None" xml:space="preserve"><value>このセーブにはインベントリがありません。</value></data>
   <data name="Inventories_Empty" xml:space="preserve"><value>空</value></data>
   <data name="Inventories_Move" xml:space="preserve"><value>移動…</value></data>
-  <data name="Inventories_MoveA11y" xml:space="preserve"><value>{0} を別のインベントリに移動</value></data>
+  <data name="Inventories_MoveA11y" xml:space="preserve"><value>{0} #{1} を別のインベントリに移動</value></data>
+  <data name="Inventories_ItemId" xml:space="preserve"><value>#{0}</value></data>
+  <data name="Inventories_ShowingSome" xml:space="preserve"><value>{1} 個中 {0} 個のアイテムを表示</value></data>
   <data name="Inventories_CapacityA11y" xml:space="preserve"><value>容量 {0} 個</value></data>
-  <data name="Inventories_Search" xml:space="preserve"><value>インベントリとアイテムを検索</value></data>
-  <data name="Inventories_SearchA11y" xml:space="preserve"><value>名前または内容でインベントリ一覧を絞り込む</value></data>
+  <data name="Inventories_Search" xml:space="preserve"><value>名前または ID で検索</value></data>
+  <data name="Inventories_SearchA11y" xml:space="preserve"><value>名前、内容、または ID でインベントリ一覧を絞り込む</value></data>
   <data name="Inventories_NoMatch" xml:space="preserve"><value>検索に一致するインベントリやアイテムはありません。</value></data>
   <data name="Inventories_FilterAll" xml:space="preserve"><value>すべて</value></data>
   <data name="Inventories_FilterPlayers" xml:space="preserve"><value>プレイヤー</value></data>
@@ -109,7 +111,7 @@
   <data name="Inv_DestFull" xml:space="preserve"><value>移動先のインベントリが満杯です（{0}/{1}）。</value></data>
   <data name="SelectInv_Title" xml:space="preserve"><value>アイテムを移動</value></data>
   <data name="SelectInv_Heading" xml:space="preserve"><value>移動先のインベントリを選択</value></data>
-  <data name="SelectInv_Search" xml:space="preserve"><value>移動先を検索</value></data>
+  <data name="SelectInv_Search" xml:space="preserve"><value>名前または ID で移動先を検索</value></data>
   <data name="SelectInv_None" xml:space="preserve"><value>他に利用できるインベントリがありません。</value></data>
   <data name="SelectInv_MoveFailedTitle" xml:space="preserve"><value>移動に失敗しました</value></data>
   <data name="SelectInv_MoveIncomplete" xml:space="preserve"><value>移動を完了できませんでした。</value></data>

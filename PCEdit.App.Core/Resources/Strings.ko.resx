@@ -86,10 +86,12 @@
   <data name="Inventories_None" xml:space="preserve"><value>이 저장에는 인벤토리가 없습니다.</value></data>
   <data name="Inventories_Empty" xml:space="preserve"><value>비어 있음</value></data>
   <data name="Inventories_Move" xml:space="preserve"><value>이동…</value></data>
-  <data name="Inventories_MoveA11y" xml:space="preserve"><value>{0}을(를) 다른 인벤토리로 이동</value></data>
+  <data name="Inventories_MoveA11y" xml:space="preserve"><value>{0} #{1}을(를) 다른 인벤토리로 이동</value></data>
+  <data name="Inventories_ItemId" xml:space="preserve"><value>#{0}</value></data>
+  <data name="Inventories_ShowingSome" xml:space="preserve"><value>아이템 {1}개 중 {0}개 표시</value></data>
   <data name="Inventories_CapacityA11y" xml:space="preserve"><value>용량 {0}개</value></data>
-  <data name="Inventories_Search" xml:space="preserve"><value>인벤토리 및 아이템 검색</value></data>
-  <data name="Inventories_SearchA11y" xml:space="preserve"><value>이름 또는 내용으로 인벤토리 목록 필터링</value></data>
+  <data name="Inventories_Search" xml:space="preserve"><value>이름 또는 ID로 검색</value></data>
+  <data name="Inventories_SearchA11y" xml:space="preserve"><value>이름, 내용 또는 ID로 인벤토리 목록 필터링</value></data>
   <data name="Inventories_NoMatch" xml:space="preserve"><value>검색과 일치하는 인벤토리나 아이템이 없습니다.</value></data>
   <data name="Inventories_FilterAll" xml:space="preserve"><value>전체</value></data>
   <data name="Inventories_FilterPlayers" xml:space="preserve"><value>플레이어</value></data>
@@ -109,7 +111,7 @@
   <data name="Inv_DestFull" xml:space="preserve"><value>대상 인벤토리가 가득 찼습니다 ({0}/{1}).</value></data>
   <data name="SelectInv_Title" xml:space="preserve"><value>아이템 이동</value></data>
   <data name="SelectInv_Heading" xml:space="preserve"><value>대상 인벤토리 선택</value></data>
-  <data name="SelectInv_Search" xml:space="preserve"><value>대상 검색</value></data>
+  <data name="SelectInv_Search" xml:space="preserve"><value>이름 또는 ID로 대상 검색</value></data>
   <data name="SelectInv_None" xml:space="preserve"><value>사용 가능한 다른 인벤토리가 없습니다.</value></data>
   <data name="SelectInv_MoveFailedTitle" xml:space="preserve"><value>이동 실패</value></data>
   <data name="SelectInv_MoveIncomplete" xml:space="preserve"><value>이동을 완료할 수 없습니다.</value></data>

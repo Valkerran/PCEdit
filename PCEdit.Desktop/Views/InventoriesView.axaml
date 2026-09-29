@@ -90,8 +90,15 @@
                         <Border Classes="card">
                             <StackPanel Spacing="10">
                                 <Grid ColumnDefinitions="*,Auto">
-                                    <TextBlock Grid.Column="0" Text="{Binding Label}" FontWeight="Bold" FontSize="15"
-                                               VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding Label}" FontWeight="Bold" FontSize="15"
+                                                   TextTrimming="CharacterEllipsis" />
+                                        <!-- The inventory id (issue #3). It reuses the fallback label's
+                                             already-translated "Inventory #{0}" wording. -->
+                                        <TextBlock Classes="caption"
+                                                   Text="{m:LocFormat Key=Inv_Fallback, Path=InventoryId}"
+                                                   IsVisible="{Binding ShowInventoryIdCaption}" />
+                                    </StackPanel>
                                     <Border Grid.Column="1" Classes="badge">
                                         <TextBlock Text="{Binding CapacityLabel}" FontSize="12" FontWeight="Bold"
                                                    AutomationProperties.Name="{m:LocFormat Key=Inventories_CapacityA11y, Path=CapacityLabel}" />
@@ -114,20 +121,30 @@
                                 <TextBlock Text="{m:Loc Inventories_Empty}" Classes="caption"
                                            IsVisible="{Binding !HasItems}" />
 
+                                <!-- A search matched only some of this inventory's items, so the card
+                                     lists just those; say so, or it reads as if that is all it holds. -->
+                                <TextBlock Classes="caption" IsVisible="{Binding IsNarrowed}"
+                                           Text="{m:LocFormat Key=Inventories_ShowingSome, Path=Items.Count, Path2=TotalItemCount}" />
+
                                 <ItemsControl ItemsSource="{Binding Items}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate x:DataType="models:InventoryItemView">
-                                            <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="10" Margin="0,3"
+                                            <Grid ColumnDefinitions="Auto,*,Auto,Auto" ColumnSpacing="10" Margin="0,3"
                                                   ToolTip.Tip="{Binding GId}">
                                                 <Image Grid.Column="0" Width="28" Height="28" VerticalAlignment="Center"
                                                        Source="{Binding IconFile, Converter={StaticResource Icon}}"
                                                        AutomationProperties.AccessibilityView="Raw" />
                                                 <TextBlock Grid.Column="1" VerticalAlignment="Center"
                                                            Text="{Binding DisplayName}" TextTrimming="CharacterEllipsis" />
-                                                <Button Grid.Column="2" Content="{m:Loc Inventories_Move}"
+                                                <!-- The item's world-object id (issue #3). Hidden from screen
+                                                     readers here because the Move button's name carries it. -->
+                                                <TextBlock Grid.Column="2" VerticalAlignment="Center" Classes="caption"
+                                                           Text="{m:LocFormat Key=Inventories_ItemId, Path=WorldObjectId}"
+                                                           AutomationProperties.AccessibilityView="Raw" />
+                                                <Button Grid.Column="3" Content="{m:Loc Inventories_Move}"
                                                         Command="{Binding DataContext.MoveItemCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                         CommandParameter="{Binding}"
-                                                        AutomationProperties.Name="{m:LocFormat Key=Inventories_MoveA11y, Path=DisplayName}" />
+                                                        AutomationProperties.Name="{m:LocFormat Key=Inventories_MoveA11y, Path=DisplayName, Path2=WorldObjectId}" />
                                             </Grid>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>

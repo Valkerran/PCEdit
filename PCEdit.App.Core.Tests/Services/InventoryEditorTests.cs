@@ -85,7 +85,7 @@ public sealed class InventoryEditorTests
 
         var aliceInventory = groups.Single(g => g.InventoryId == 10);
         Assert.Equal("Alice's Inventory", aliceInventory.Label);
-        Assert.Equal(2, aliceInventory.Count);
+        Assert.Equal(2, aliceInventory.TotalItemCount);
         Assert.Equal("2/5", aliceInventory.CapacityLabel);
     }
 
@@ -281,6 +281,24 @@ public sealed class InventoryEditorTests
 
         Assert.DoesNotContain(options, o => o.InventoryId == 10);
         Assert.Contains(options, o => o.InventoryId == 30);
+    }
+
+    [Fact]
+    public void GetDestinationOptions_CarryKindAndOwningContainer()
+    {
+        var (editor, _) = CreateLoadedEditor();
+
+        var options = editor.GetDestinationOptions(worldObjectId: 200);
+
+        var container = options.Single(o => o.InventoryId == 30);
+        Assert.Equal(InventoryKind.Container, container.Kind);
+        Assert.Equal(100, container.ContainerWorldObjectId);
+        Assert.True(container.ShowInventoryIdCaption);
+
+        var unowned = options.Single(o => o.InventoryId == 99);
+        Assert.Equal(InventoryKind.Other, unowned.Kind);
+        Assert.Null(unowned.ContainerWorldObjectId);
+        Assert.False(unowned.ShowInventoryIdCaption); // its label already reads "Inventory #99"
     }
 
     [Fact]

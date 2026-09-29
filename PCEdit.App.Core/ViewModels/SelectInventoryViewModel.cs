@@ -34,17 +34,9 @@ public sealed partial class SelectInventoryViewModel(
 
     public ObservableCollection<InventoryOptionView> Options { get; } = [];
 
-    /// <summary>Options narrowed by <see cref="Query"/> (a real save has hundreds of destinations).</summary>
-    public IReadOnlyList<InventoryOptionView> FilteredOptions
-    {
-        get
-        {
-            var term = Query.Trim();
-            return term.Length == 0
-                ? Options.ToList()
-                : Options.Where(o => o.Label.Contains(term, StringComparison.OrdinalIgnoreCase)).ToList();
-        }
-    }
+    /// <summary>Options narrowed by <see cref="Query"/> (a real save has hundreds of destinations):
+    /// by name, or by id with the same rule as the Inventories page.</summary>
+    public IReadOnlyList<InventoryOptionView> FilteredOptions => Options.Where(o => o.Matches(Query)).ToList();
 
     partial void OnQueryChanged(string value) => OnPropertyChanged(nameof(FilteredOptions));
 

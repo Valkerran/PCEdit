@@ -86,10 +86,12 @@
   <data name="Inventories_None" xml:space="preserve"><value>В этом сохранении нет инвентарей.</value></data>
   <data name="Inventories_Empty" xml:space="preserve"><value>Пусто</value></data>
   <data name="Inventories_Move" xml:space="preserve"><value>Переместить…</value></data>
-  <data name="Inventories_MoveA11y" xml:space="preserve"><value>Переместить {0} в другой инвентарь</value></data>
+  <data name="Inventories_MoveA11y" xml:space="preserve"><value>Переместить {0} №{1} в другой инвентарь</value></data>
+  <data name="Inventories_ItemId" xml:space="preserve"><value>№{0}</value></data>
+  <data name="Inventories_ShowingSome" xml:space="preserve"><value>Показано предметов: {0} из {1}</value></data>
   <data name="Inventories_CapacityA11y" xml:space="preserve"><value>Вместимость {0} предметов</value></data>
-  <data name="Inventories_Search" xml:space="preserve"><value>Поиск по инвентарям и предметам</value></data>
-  <data name="Inventories_SearchA11y" xml:space="preserve"><value>Фильтровать список инвентарей по имени или содержимому</value></data>
+  <data name="Inventories_Search" xml:space="preserve"><value>Поиск по имени или ID</value></data>
+  <data name="Inventories_SearchA11y" xml:space="preserve"><value>Фильтровать список инвентарей по имени, содержимому или ID</value></data>
   <data name="Inventories_NoMatch" xml:space="preserve"><value>Нет инвентарей или предметов, соответствующих запросу.</value></data>
   <data name="Inventories_FilterAll" xml:space="preserve"><value>Все</value></data>
   <data name="Inventories_FilterPlayers" xml:space="preserve"><value>Игроки</value></data>
@@ -109,7 +111,7 @@
   <data name="Inv_DestFull" xml:space="preserve"><value>Целевой инвентарь заполнен ({0}/{1}).</value></data>
   <data name="SelectInv_Title" xml:space="preserve"><value>Переместить предмет</value></data>
   <data name="SelectInv_Heading" xml:space="preserve"><value>Выберите целевой инвентарь</value></data>
-  <data name="SelectInv_Search" xml:space="preserve"><value>Поиск мест назначения</value></data>
+  <data name="SelectInv_Search" xml:space="preserve"><value>Поиск мест назначения по имени или ID</value></data>
   <data name="SelectInv_None" xml:space="preserve"><value>Других инвентарей нет.</value></data>
   <data name="SelectInv_MoveFailedTitle" xml:space="preserve"><value>Не удалось переместить</value></data>
   <data name="SelectInv_MoveIncomplete" xml:space="preserve"><value>Не удалось завершить перемещение.</value></data>
