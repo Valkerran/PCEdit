@@ -44,6 +44,25 @@ public sealed class ItemStackKeyTests
     }
 
     [Fact]
+    public void ItemsDifferingOnlyInWhereTheyLay_ShareAKey()
+    {
+        // Real shape from a stacking-mod save: every Eggplant in a Food Grower keeps the random
+        // rotation it was spawned with. Position, rotation and planet say where an object sat in
+        // the world, not what the item is - 100 of them must be one row, not 100.
+        Assert.Equal(
+            ItemStackKey.Of(new WorldObject
+            {
+                Id = 205710267, GId = "Vegetable0Growable", Growth = 100, Planet = -1140328421,
+                Position = "381.2548,145.2848,970.28", Rotation = "0.05755999,0.3741006,-0.026139,-0.925231",
+            }),
+            ItemStackKey.Of(new WorldObject
+            {
+                Id = 209207763, GId = "Vegetable0Growable", Growth = 100, Planet = 1,
+                Position = "0,0,0", Rotation = "0.03698213,0.7841589,-0.05127106,-0.6173317",
+            }));
+    }
+
+    [Fact]
     public void AFieldPresentOnOnlyOneItem_SeparatesThem()
     {
         Assert.NotEqual(

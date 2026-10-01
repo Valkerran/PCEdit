@@ -44,6 +44,29 @@
         <Setter Property="AutomationProperties.HeadingLevel" Value="1" />
     </Style>
 
+    <!--
+        Vital gauge values and status messages. The colour is set here with DynamicResource, never
+        from a converter, so it follows a live light/dark switch. A vital at "ok" keeps the default
+        TextPrimary; a status message with no kind class is informational. Order matters: when two
+        matching styles set the same property the later one wins, so plain "status" comes first.
+    -->
+    <Style Selector="TextBlock.vitalLow">
+        <Setter Property="Foreground" Value="{DynamicResource StatusWarningText}" />
+    </Style>
+    <Style Selector="TextBlock.vitalCritical">
+        <Setter Property="Foreground" Value="{DynamicResource StatusErrorText}" />
+    </Style>
+    <Style Selector="TextBlock.status">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Foreground" Value="{DynamicResource StatusInfoText}" />
+    </Style>
+    <Style Selector="TextBlock.status.success">
+        <Setter Property="Foreground" Value="{DynamicResource StatusSuccessText}" />
+    </Style>
+    <Style Selector="TextBlock.status.error">
+        <Setter Property="Foreground" Value="{DynamicResource StatusErrorText}" />
+    </Style>
+
     <Style Selector="TextBlock.caption">
         <Setter Property="Foreground" Value="{DynamicResource TextSecondary}" />
         <Setter Property="FontSize" Value="12.5" />
@@ -54,11 +77,6 @@
         <Setter Property="FontSize" Value="11" />
         <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="LetterSpacing" Value="0.5" />
-    </Style>
-
-    <Style Selector="TextBlock.status">
-        <Setter Property="FontSize" Value="14" />
-        <Setter Property="Foreground" Value="{DynamicResource StatusInfoText}" />
     </Style>
 
     <!-- The one flourish: a terraform-stage bar to the left of every section heading. -->

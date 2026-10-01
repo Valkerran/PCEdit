@@ -21,8 +21,9 @@
           Palette derived from The Planet Crafter's terraforming arc: a dead rust-coloured
           world turned to blue sky and green biosphere. Brand accent is a muted biosphere
           green (not an acid green); the terraform "spectrum" (rust -> sky -> green) shows
-          only on the nav selection indicator. Token KEYS must stay stable - StatusPalette
-          and the value converters resolve them by name.
+          only on the nav selection indicator. Token KEYS must stay stable - the styles in
+          Styles/Controls.axaml and the views resolve them by name, as DynamicResources so
+          colours follow a live light/dark switch.
         -->
 
         <!-- FluentTheme selection / focus visuals follow the brand green. -->
@@ -87,8 +88,10 @@
         <conv:StringNotEmptyConverter x:Key="StringNotEmpty" />
         <conv:DirtyStateTextConverter x:Key="DirtyStateText" />
         <conv:VitalStatusTextConverter x:Key="VitalText" />
-        <conv:VitalStatusColorConverter x:Key="VitalBrush" />
-        <conv:StatusKindToColorConverter x:Key="StatusBrush" />
+        <conv:VitalLevelIsConverter x:Key="VitalIsLow" Level="Low" />
+        <conv:VitalLevelIsConverter x:Key="VitalIsCritical" Level="Critical" />
+        <conv:StatusKindIsConverter x:Key="StatusIsSuccess" Kind="Success" />
+        <conv:StatusKindIsConverter x:Key="StatusIsError" Kind="Error" />
         <conv:IconPathConverter x:Key="Icon" />
         <conv:CountConverter x:Key="CountIsZero" Zero="True" />
         <conv:CountConverter x:Key="CountIsPositive" />

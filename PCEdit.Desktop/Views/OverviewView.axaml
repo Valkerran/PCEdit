@@ -95,25 +95,29 @@
                                         <StackPanel Grid.Column="0" Spacing="2">
                                             <TextBlock Text="{m:Loc Overview_Vital_Oxygen}" Classes="micro" TextTrimming="CharacterEllipsis" />
                                             <TextBlock Text="{Binding Oxygen, StringFormat='{}{0:0.#}'}" FontSize="16" FontWeight="Bold"
-                                                       Foreground="{Binding Oxygen, Converter={StaticResource VitalBrush}}" />
+                                                       Classes.vitalLow="{Binding Oxygen, Converter={StaticResource VitalIsLow}}"
+                                                       Classes.vitalCritical="{Binding Oxygen, Converter={StaticResource VitalIsCritical}}" />
                                             <TextBlock Text="{Binding Oxygen, Converter={StaticResource VitalText}}" Classes="caption" FontSize="12" />
                                         </StackPanel>
                                         <StackPanel Grid.Column="1" Spacing="2">
                                             <TextBlock Text="{m:Loc Overview_Vital_Thirst}" Classes="micro" TextTrimming="CharacterEllipsis" />
                                             <TextBlock Text="{Binding Thirst, StringFormat='{}{0:0.#}'}" FontSize="16" FontWeight="Bold"
-                                                       Foreground="{Binding Thirst, Converter={StaticResource VitalBrush}}" />
+                                                       Classes.vitalLow="{Binding Thirst, Converter={StaticResource VitalIsLow}}"
+                                                       Classes.vitalCritical="{Binding Thirst, Converter={StaticResource VitalIsCritical}}" />
                                             <TextBlock Text="{Binding Thirst, Converter={StaticResource VitalText}}" Classes="caption" FontSize="12" />
                                         </StackPanel>
                                         <StackPanel Grid.Column="2" Spacing="2">
                                             <TextBlock Text="{m:Loc Overview_Vital_Health}" Classes="micro" TextTrimming="CharacterEllipsis" />
                                             <TextBlock Text="{Binding Health, StringFormat='{}{0:0.#}'}" FontSize="16" FontWeight="Bold"
-                                                       Foreground="{Binding Health, Converter={StaticResource VitalBrush}}" />
+                                                       Classes.vitalLow="{Binding Health, Converter={StaticResource VitalIsLow}}"
+                                                       Classes.vitalCritical="{Binding Health, Converter={StaticResource VitalIsCritical}}" />
                                             <TextBlock Text="{Binding Health, Converter={StaticResource VitalText}}" Classes="caption" FontSize="12" />
                                         </StackPanel>
                                         <StackPanel Grid.Column="3" Spacing="2">
                                             <TextBlock Text="{m:Loc Overview_Vital_Toxicity}" Classes="micro" TextTrimming="CharacterEllipsis" />
                                             <TextBlock Text="{Binding Toxicity, StringFormat='{}{0:0.#}'}" FontSize="16" FontWeight="Bold"
-                                                       Foreground="{Binding Toxicity, Converter={StaticResource VitalBrush}, ConverterParameter=HighIsBad}" />
+                                                       Classes.vitalLow="{Binding Toxicity, Converter={StaticResource VitalIsLow}, ConverterParameter=HighIsBad}"
+                                                       Classes.vitalCritical="{Binding Toxicity, Converter={StaticResource VitalIsCritical}, ConverterParameter=HighIsBad}" />
                                             <TextBlock Text="{Binding Toxicity, Converter={StaticResource VitalText}, ConverterParameter=HighIsBad}" Classes="caption" FontSize="12" />
                                         </StackPanel>
                                     </Grid>
@@ -188,7 +192,9 @@
                                                 AutomationProperties.Name="{m:LocFormat Key=Terraform_ApplyA11y, Path=PlanetId}" />
                                         <TextBlock Text="{Binding StatusMessage}"
                                                    IsVisible="{Binding StatusMessage, Converter={StaticResource StringNotEmpty}}"
-                                                   Foreground="{Binding StatusKind, Converter={StaticResource StatusBrush}}" />
+                                                   Classes="status"
+                                                   Classes.success="{Binding StatusKind, Converter={StaticResource StatusIsSuccess}}"
+                                                   Classes.error="{Binding StatusKind, Converter={StaticResource StatusIsError}}" />
                                     </StackPanel>
                                 </StackPanel>
                             </Border>

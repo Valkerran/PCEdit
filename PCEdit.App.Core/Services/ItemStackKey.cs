@@ -9,6 +9,9 @@ namespace PCEdit.App.Core.Services;
 /// when everything else the save holds about them is equal. Most items carry just <c>id</c> and
 /// <c>gId</c>, but some do not - every <c>GeneticTrait</c> has its own <c>color</c> and
 /// <c>trtInd</c> - and merging those would hide which trait the player is moving (issue #64).
+/// Where the item once lay in the world (<c>pos</c>, <c>rot</c>, <c>planet</c>) is left out: crops
+/// keep the random rotation they were spawned with, and counting it split a grower's 100 Eggplants
+/// into 100 rows.
 /// </summary>
 public static class ItemStackKey
 {
@@ -21,9 +24,6 @@ public static class ItemStackKey
         Append(key, "liId", item.LinkedInventoryId);
         Append(key, "liGrps", item.LinkedInventoryGroups);
         Append(key, "siIds", item.SpawnedInstanceIds);
-        Append(key, "pos", item.Position);
-        Append(key, "rot", item.Rotation);
-        Append(key, "planet", item.Planet);
         Append(key, "grwth", item.Growth);
         Append(key, "count", item.MineableCount);
         Append(key, "color", item.Color);
