@@ -7,7 +7,7 @@
         x:DataType="vm:RepairViewModel"
         Icon="/Assets/appicon.png"
         Title="{m:Loc Repair_Title}"
-        Width="560" Height="600"
+        Width="620" Height="760"
         MinWidth="420" MinHeight="420"
         WindowStartupLocation="CenterOwner"
         ShowInTaskbar="False"

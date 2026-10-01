@@ -54,6 +54,9 @@ public static class LocKeys
     public const string Repair_Done = "Repair_Done";
     public const string Repair_Failed = "Repair_Failed";
     public const string Repair_FailedTitle = "Repair_FailedTitle";
+    public const string Repair_FreeSlots = "Repair_FreeSlots";
+    public const string Repair_PreviewMoved = "Repair_PreviewMoved";
+    public const string Repair_DoneMoved = "Repair_DoneMoved";
 
     public const string Vital_Ok = "Vital_Ok";
     public const string Vital_Low = "Vital_Low";

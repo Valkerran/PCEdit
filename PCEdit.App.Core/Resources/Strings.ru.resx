@@ -79,7 +79,6 @@
   <data name="Repair_KeepHint" xml:space="preserve"><value>1 оставляет ровно столько, сколько допускает игра без модов. Ни в одном контейнере не останется больше 7200 предметов, ниже предела загрузки игры.</value></data>
   <data name="Repair_Preview" xml:space="preserve"><value>Предметов к удалению: {0}. Затронуто контейнеров: {1}.</value></data>
   <data name="Repair_Nothing" xml:space="preserve"><value>При этой настройке удалять нечего.</value></data>
-  <data name="Repair_MostRemoved" xml:space="preserve"><value>Больше всего удалено</value></data>
   <data name="Repair_TypeCount" xml:space="preserve"><value>{0}: {1}</value></data>
   <data name="Repair_UnsavedChanges" xml:space="preserve"><value>Сначала сохраните остальные изменения. Если записать исправленную копию не удастся, PCEdit снова откроет исходный файл, чтобы отменить исправление, и эти изменения будут потеряны.</value></data>
   <data name="Repair_Apply" xml:space="preserve"><value>Сохранить исправленную копию…</value></data>
@@ -87,6 +86,16 @@
   <data name="Repair_Done" xml:space="preserve"><value>Удалено предметов: {0}. Исправленная копия сохранена как {1} и сейчас открыта; исходное сохранение не изменено.</value></data>
   <data name="Repair_Failed" xml:space="preserve"><value>Не удалось записать исправленную копию. Ничего не изменено: исходное сохранение снова открыто.</value></data>
   <data name="Repair_FailedTitle" xml:space="preserve"><value>Исправление не удалось</value></data>
+  <data name="Repair_MoveFirstHeading" xml:space="preserve"><value>Сначала переместить в свободное хранилище</value></data>
+  <data name="Repair_MoveFirstHint" xml:space="preserve"><value>Отметьте типы предметов, которые нужно сохранить, начиная с самых важных. Перед удалением они попадут в свободные ячейки ваших ящиков и шкафчиков в том же мире; то, что не поместится, будет удалено.</value></data>
+  <data name="Repair_FreeSlots" xml:space="preserve"><value>Свободных ячеек в вашем хранилище: {0}.</value></data>
+  <data name="Repair_PreviewMoved" xml:space="preserve"><value>Перемещено в свободное хранилище: {0}, в контейнеров: {1}.</value></data>
+  <data name="Repair_TypeChoiceA11y" xml:space="preserve"><value>Сначала переместить {0} в свободное хранилище</value></data>
+  <data name="Repair_MoveUp" xml:space="preserve"><value>Вверх</value></data>
+  <data name="Repair_MoveDown" xml:space="preserve"><value>Вниз</value></data>
+  <data name="Repair_MoveUpA11y" xml:space="preserve"><value>Переместить {0} вверх по списку</value></data>
+  <data name="Repair_MoveDownA11y" xml:space="preserve"><value>Переместить {0} вниз по списку</value></data>
+  <data name="Repair_DoneMoved" xml:space="preserve"><value>Перемещено в свободное хранилище: {0}.</value></data>
   <data name="Vital_Ok" xml:space="preserve"><value>Норма</value></data>
   <data name="Vital_Low" xml:space="preserve"><value>Низкий</value></data>
   <data name="Vital_Critical" xml:space="preserve"><value>Критический</value></data>
@@ -138,6 +147,13 @@
   <data name="Inventories_StackingAlways" xml:space="preserve"><value>Группами</value></data>
   <data name="Inventories_StackingNever" xml:space="preserve"><value>По одному</value></data>
   <data name="Inventories_GroupedForSize" xml:space="preserve"><value>Сгруппировано: слишком много предметов, чтобы показать по одному.</value></data>
+  <data name="Inventories_OriginBuilt" xml:space="preserve"><value>Построено вами</value></data>
+  <data name="Inventories_OriginMap" xml:space="preserve"><value>Карта</value></data>
+  <data name="Inventories_OriginWreck" xml:space="preserve"><value>Обломки</value></data>
+  <data name="Inventories_OriginBuiltHelp" xml:space="preserve"><value>Вы построили это.</value></data>
+  <data name="Inventories_OriginMapHelp" xml:space="preserve"><value>Размещено на карте игры: было там с самого начала мира.</value></data>
+  <data name="Inventories_OriginWreckHelp" xml:space="preserve"><value>Найдено в обломках.</value></data>
+  <data name="Inventories_FilterBuilt" xml:space="preserve"><value>Построено вами</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>Инвентарь игрока {0}</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>Снаряжение игрока {0}</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0} (объект №{1})</value></data>

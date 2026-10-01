@@ -30,6 +30,18 @@ public sealed record InventoryGroup
     /// </summary>
     public int? ContainerWorldObjectId { get; init; }
 
+    /// <summary>Who placed the inventory's owner - so players can spot what they built (issue #64).
+    /// <see cref="ContainerOrigin.Unknown"/> for a backpack, an unowned inventory, or a type the save
+    /// cannot settle; those cards carry no origin tag.</summary>
+    public ContainerOrigin Origin { get; init; }
+
+    // One flag per origin tag, so the view can pick the tag by visibility.
+    public bool IsBuilt => Origin == ContainerOrigin.Built;
+
+    public bool IsMapPlaced => Origin == ContainerOrigin.Map;
+
+    public bool IsWreck => Origin == ContainerOrigin.Wreck;
+
     /// <summary>The items the card lists: every item, or only the matching ones on a card
     /// narrowed by a search (see <see cref="NarrowTo"/>).</summary>
     public required List<InventoryItemView> Items { get; init; }

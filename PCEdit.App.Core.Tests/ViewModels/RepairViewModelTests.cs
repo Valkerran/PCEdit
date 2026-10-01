@@ -21,11 +21,14 @@ public sealed class RepairViewModelTests
         FakeScreenReaderAnnouncer Announcer);
 
     // Bob's one-slot inventory (20) holding two items: one to remove at 1x.
-    private static Rig Create(Action<SaveFileWorkspace>? beforeOpening = null)
+    private static Rig Create(
+        Action<SaveFileWorkspace>? beforeOpening = null,
+        Action<PCEdit.SaveFileHandler.Models.PlanetCrafterSaveFile>? adjust = null)
     {
         var store = new FakeSaveFileStore();
         var save = WorkspaceFixtures.Create();
         WorkspaceFixtures.OverFillBobsInventory(save);
+        adjust?.Invoke(save);
         store.Seed(Original, save);
         var localizer = new Localizer();
         var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
@@ -49,8 +52,93 @@ public sealed class RepairViewModelTests
         var rig = Create();
 
         Assert.Contains("1", rig.Vm.PreviewText);
-        Assert.Single(rig.Vm.TopTypes);
         Assert.True(rig.Vm.CanRepair);
+    }
+
+    // A Storage Crate on Prime, where Bob is, with room for his overflow.
+    private static void CrateOnPrime(PCEdit.SaveFileHandler.Models.PlanetCrafterSaveFile save)
+    {
+        save.WorldObjects.Add(new PCEdit.SaveFileHandler.Models.WorldObject
+        {
+            Id = 500, GId = "Container1", LinkedInventoryId = 40, Planet = PCEdit.SaveFileHandler.PlanetHash.Of("Prime"),
+        });
+        save.Inventories.Add(new PCEdit.SaveFileHandler.Models.Inventory { Id = 40, WorldObjectIds = "", Size = 5 });
+    }
+
+    // Alice's two-slot equipment (11) holding four items: two more types over capacity.
+    private static void OverFillAlicesEquipment(PCEdit.SaveFileHandler.Models.PlanetCrafterSaveFile save)
+    {
+        save.WorldObjects.Add(new PCEdit.SaveFileHandler.Models.WorldObject { Id = 310, GId = "Iron" });
+        save.WorldObjects.Add(new PCEdit.SaveFileHandler.Models.WorldObject { Id = 311, GId = "Cobalt" });
+        save.WorldObjects.Add(new PCEdit.SaveFileHandler.Models.WorldObject { Id = 312, GId = "Iron" });
+        save.WorldObjects.Add(new PCEdit.SaveFileHandler.Models.WorldObject { Id = 313, GId = "Cobalt" });
+        var index = save.Inventories.FindIndex(i => i.Id == 11);
+        save.Inventories[index] = save.Inventories[index] with { WorldObjectIds = "310,311,312,313" };
+    }
+
+    [Fact]
+    public void Opening_ListsEachTypeOverCapacity_NoneTicked()
+    {
+        var rig = Create();
+
+        var choice = Assert.Single(rig.Vm.PriorityTypes);
+        Assert.Equal("Item201", choice.GId);
+        Assert.False(choice.IsChecked);
+        Assert.Null(rig.Vm.MovedText);
+    }
+
+    [Fact]
+    public void TickingAType_PreviewsItMovingIntoFreeStorage()
+    {
+        var rig = Create(adjust: CrateOnPrime);
+
+        rig.Vm.PriorityTypes.Single().IsChecked = true;
+
+        Assert.NotNull(rig.Vm.MovedText);
+        Assert.Contains("1", rig.Vm.MovedText);
+        Assert.Contains("5", rig.Vm.FreeSlotsText); // the crate's five slots
+        Assert.True(rig.Vm.CanRepair); // nothing left to remove, but there is still a move to make
+    }
+
+    [Fact]
+    public void MovingATypeDown_ChangesItsPriority()
+    {
+        var rig = Create(adjust: OverFillAlicesEquipment);
+        var first = rig.Vm.PriorityTypes[0];
+
+        rig.Vm.MoveDownCommand.Execute(first);
+
+        Assert.Same(first, rig.Vm.PriorityTypes[1]);
+        rig.Vm.MoveUpCommand.Execute(first);
+        Assert.Same(first, rig.Vm.PriorityTypes[0]);
+    }
+
+    [Fact]
+    public void ChangingTheMultiple_KeepsTheTicks()
+    {
+        var rig = Create(adjust: OverFillAlicesEquipment);
+        var ticked = rig.Vm.PriorityTypes.First(c => c.GId == "Cobalt");
+        ticked.IsChecked = true;
+
+        rig.Vm.Multiple = 2; // Alice's four items now fit in 2 x 2 slots; Bob's two in 2 x 1
+
+        Assert.Empty(rig.Vm.PriorityTypes);
+        rig.Vm.Multiple = 1;
+        Assert.True(rig.Vm.PriorityTypes.First(c => c.GId == "Cobalt").IsChecked);
+    }
+
+    [Fact]
+    public async Task Repair_MovesTheTickedTypes_IntoTheCopy()
+    {
+        var rig = Create(adjust: CrateOnPrime);
+        rig.Vm.PriorityTypes.Single().IsChecked = true;
+
+        await rig.Vm.RepairCommand.ExecuteAsync(null);
+
+        Assert.Equal("201", IdsOf(rig.Workspace, 40));
+        Assert.Equal("200", IdsOf(rig.Workspace, 20));
+        Assert.Contains(rig.Workspace.Current!.WorldObjects, w => w.Id == 201);
+        Assert.Contains("1", Assert.Single(rig.Announcer.Announcements));
     }
 
     [Theory]
@@ -73,7 +161,7 @@ public sealed class RepairViewModelTests
         rig.Vm.Multiple = 2; // two items in one slot fit 2x
 
         Assert.False(rig.Vm.CanRepair);
-        Assert.Empty(rig.Vm.TopTypes);
+        Assert.Empty(rig.Vm.PriorityTypes);
     }
 
     [Fact]

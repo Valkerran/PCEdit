@@ -95,6 +95,19 @@ page) added `Inventories_Stacking{Label,A11y,Auto,AutoHint,Always,Never}` and
 for always grouping and never grouping; `Inventories_StackingAutoHint` is the Automatic chip's
 tooltip and screen-reader help text.
 
+The move-first repair (issue #64, phase 6b: move chosen item types into free storage before the
+repair removes anything) added `Repair_{MoveFirstHeading,MoveFirstHint,FreeSlots,PreviewMoved,
+TypeChoiceA11y,MoveUp,MoveDown,MoveUpA11y,MoveDownA11y,DoneMoved}` and dropped `Repair_MostRemoved`
+(the checklist replaced that list) — machine-translated. "Storage Crates and Lockers" in
+`Repair_MoveFirstHint` means the game's general-purpose storage; use the game's own names where
+the locale has them.
+
+The origin markers (issue #64: tag each Inventories card with who placed its container) added
+`Inventories_Origin{Built,Map,Wreck}` (the tag), `Inventories_Origin{Built,Map,Wreck}Help` (its
+tooltip and screen-reader help text) and `Inventories_FilterBuilt` (the filter chip) —
+machine-translated. "Map" means placed in the game's map by the developers, not a planet: the
+page's world filter already uses "world" for planets, so keep the two words distinct.
+
 | Culture | Language | Reviewed |
 |---|---|---|
 | en-US | English (United States) | n/a (source) |

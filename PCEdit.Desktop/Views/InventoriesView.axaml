@@ -62,6 +62,28 @@
         <Style Selector="Border.badge.nearLoadLimit PathIcon">
             <Setter Property="Foreground" Value="{DynamicResource StatusErrorText}" />
         </Style>
+
+        <!-- Origin tags (issue #64). "Built by you" stands out in the brand colour; the others stay
+             neutral. Later styles win, so the built variant follows the base tag. -->
+        <Style Selector="Border.originTag">
+            <Setter Property="Background" Value="{DynamicResource SurfaceBadge}" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Padding" Value="6,1" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style Selector="Border.originTag TextBlock">
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+        <Style Selector="Border.originTag.built">
+            <Setter Property="Background" Value="{DynamicResource BrandFill}" />
+        </Style>
+        <Style Selector="Border.originTag.built TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource TextOnBrand}" />
+        </Style>
+        <Style Selector="Border.originTag.built PathIcon">
+            <Setter Property="Foreground" Value="{DynamicResource TextOnBrand}" />
+        </Style>
     </UserControl.Styles>
 
     <Panel>
@@ -86,6 +108,8 @@
                                  IsChecked="{Binding Filter, Converter={StaticResource EnumIs}, ConverterParameter=Equipment, Mode=TwoWay}" />
                     <RadioButton Classes="chip" GroupName="invFilter" Content="{m:Loc Inventories_FilterContainers}"
                                  IsChecked="{Binding Filter, Converter={StaticResource EnumIs}, ConverterParameter=Containers, Mode=TwoWay}" />
+                    <RadioButton Classes="chip" GroupName="invFilter" Content="{m:Loc Inventories_FilterBuilt}"
+                                 IsChecked="{Binding Filter, Converter={StaticResource EnumIs}, ConverterParameter=BuiltByYou, Mode=TwoWay}" />
                     <!-- Only on a save with something flagged; the VM drops this filter when there is nothing to show. -->
                     <RadioButton Classes="chip" GroupName="invFilter"
                                  Content="{m:LocFormat Key=Inventories_FilterAttention, Path=AttentionCount}"
@@ -141,9 +165,32 @@
                                                    TextTrimming="CharacterEllipsis" />
                                         <!-- The inventory id (issue #3). It reuses the fallback label's
                                              already-translated "Inventory #{0}" wording. -->
-                                        <TextBlock Classes="caption"
-                                                   Text="{m:LocFormat Key=Inv_Fallback, Path=InventoryId}"
-                                                   IsVisible="{Binding ShowInventoryIdCaption}" />
+                                        <StackPanel Orientation="Horizontal" Spacing="8">
+                                            <TextBlock Classes="caption" VerticalAlignment="Center"
+                                                       Text="{m:LocFormat Key=Inv_Fallback, Path=InventoryId}"
+                                                       IsVisible="{Binding ShowInventoryIdCaption}" />
+                                            <!-- Who placed it (issue #64), so players can find what they built.
+                                                 Words, not colour alone; the help text explains the tag. -->
+                                            <Border Classes="originTag built" IsVisible="{Binding IsBuilt}"
+                                                    ToolTip.Tip="{m:Loc Inventories_OriginBuiltHelp}">
+                                                <StackPanel Orientation="Horizontal" Spacing="4">
+                                                    <PathIcon Width="10" Height="10" Data="{StaticResource BuiltGlyph}"
+                                                              AutomationProperties.AccessibilityView="Raw" />
+                                                    <TextBlock Text="{m:Loc Inventories_OriginBuilt}"
+                                                               AutomationProperties.HelpText="{m:Loc Inventories_OriginBuiltHelp}" />
+                                                </StackPanel>
+                                            </Border>
+                                            <Border Classes="originTag" IsVisible="{Binding IsMapPlaced}"
+                                                    ToolTip.Tip="{m:Loc Inventories_OriginMapHelp}">
+                                                <TextBlock Text="{m:Loc Inventories_OriginMap}"
+                                                           AutomationProperties.HelpText="{m:Loc Inventories_OriginMapHelp}" />
+                                            </Border>
+                                            <Border Classes="originTag" IsVisible="{Binding IsWreck}"
+                                                    ToolTip.Tip="{m:Loc Inventories_OriginWreckHelp}">
+                                                <TextBlock Text="{m:Loc Inventories_OriginWreck}"
+                                                           AutomationProperties.HelpText="{m:Loc Inventories_OriginWreckHelp}" />
+                                            </Border>
+                                        </StackPanel>
                                     </StackPanel>
                                     <Border Grid.Column="1" Classes="badge"
                                             Classes.overFull="{Binding IsOverFull}"

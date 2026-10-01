@@ -79,7 +79,6 @@
   <data name="Repair_KeepHint" xml:space="preserve"><value>1, modsuz oyunun izin verdiği kadarını tutar. Hiçbir kap, oyunun yükleme sınırının altında kalan 7.200 eşyadan fazlasını tutmaz.</value></data>
   <data name="Repair_Preview" xml:space="preserve"><value>Kaldırılacak eşya: {0}. Etkilenen kap: {1}.</value></data>
   <data name="Repair_Nothing" xml:space="preserve"><value>Bu ayarda kaldırılacak bir şey yok.</value></data>
-  <data name="Repair_MostRemoved" xml:space="preserve"><value>En çok kaldırılanlar</value></data>
   <data name="Repair_TypeCount" xml:space="preserve"><value>{0}: {1}</value></data>
   <data name="Repair_UnsavedChanges" xml:space="preserve"><value>Önce diğer değişikliklerinizi kaydedin. Onarılmış kopya yazılamazsa PCEdit onarımı geri almak için özgün dosyayı yeniden açar ve bu değişiklikler kaybolur.</value></data>
   <data name="Repair_Apply" xml:space="preserve"><value>Onarılmış kopyayı kaydet…</value></data>
@@ -87,6 +86,16 @@
   <data name="Repair_Done" xml:space="preserve"><value>Kaldırılan eşya: {0}. Onarılmış kopya {1} olarak kaydedildi ve şu an açık; özgün kayıt değişmedi.</value></data>
   <data name="Repair_Failed" xml:space="preserve"><value>Onarılmış kopya yazılamadı. Hiçbir şey değişmedi: özgün kayıt yeniden açık.</value></data>
   <data name="Repair_FailedTitle" xml:space="preserve"><value>Onarım başarısız</value></data>
+  <data name="Repair_MoveFirstHeading" xml:space="preserve"><value>Önce boş depolamaya taşı</value></data>
+  <data name="Repair_MoveFirstHint" xml:space="preserve"><value>Tutmak istediğiniz eşya türlerini işaretleyin, en önemlisi önce. Hiçbir şey kaldırılmadan önce aynı dünyadaki kendi sandık ve dolaplarınızın boş yuvalarına giderler; sığmayanlar kaldırılır.</value></data>
+  <data name="Repair_FreeSlots" xml:space="preserve"><value>Deponuzdaki boş yuva: {0}.</value></data>
+  <data name="Repair_PreviewMoved" xml:space="preserve"><value>Boş depolamaya taşınan: {0}, kaplara: {1}.</value></data>
+  <data name="Repair_TypeChoiceA11y" xml:space="preserve"><value>Önce {0} boş depolamaya taşı</value></data>
+  <data name="Repair_MoveUp" xml:space="preserve"><value>Yukarı</value></data>
+  <data name="Repair_MoveDown" xml:space="preserve"><value>Aşağı</value></data>
+  <data name="Repair_MoveUpA11y" xml:space="preserve"><value>{0} listede yukarı taşı</value></data>
+  <data name="Repair_MoveDownA11y" xml:space="preserve"><value>{0} listede aşağı taşı</value></data>
+  <data name="Repair_DoneMoved" xml:space="preserve"><value>Boş depolamaya taşınan: {0}.</value></data>
   <data name="Vital_Ok" xml:space="preserve"><value>İyi</value></data>
   <data name="Vital_Low" xml:space="preserve"><value>Düşük</value></data>
   <data name="Vital_Critical" xml:space="preserve"><value>Kritik</value></data>
@@ -138,6 +147,13 @@
   <data name="Inventories_StackingAlways" xml:space="preserve"><value>Gruplanmış</value></data>
   <data name="Inventories_StackingNever" xml:space="preserve"><value>Tek tek</value></data>
   <data name="Inventories_GroupedForSize" xml:space="preserve"><value>Gruplandı: tek tek listelemek için çok fazla eşya var.</value></data>
+  <data name="Inventories_OriginBuilt" xml:space="preserve"><value>Sizin yaptığınız</value></data>
+  <data name="Inventories_OriginMap" xml:space="preserve"><value>Harita</value></data>
+  <data name="Inventories_OriginWreck" xml:space="preserve"><value>Enkaz</value></data>
+  <data name="Inventories_OriginBuiltHelp" xml:space="preserve"><value>Bunu siz yaptınız.</value></data>
+  <data name="Inventories_OriginMapHelp" xml:space="preserve"><value>Oyunun haritasına yerleştirilmiş: dünya başladığında zaten oradaydı.</value></data>
+  <data name="Inventories_OriginWreckHelp" xml:space="preserve"><value>Bir enkazda bulundu.</value></data>
+  <data name="Inventories_FilterBuilt" xml:space="preserve"><value>Sizin yaptıklarınız</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>{0} adlı oyuncunun envanteri</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>{0} adlı oyuncunun ekipmanı</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0} (Nesne #{1})</value></data>

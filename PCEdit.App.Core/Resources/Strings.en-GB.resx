@@ -79,7 +79,6 @@
   <data name="Repair_KeepHint" xml:space="preserve"><value>1 keeps exactly what an unmodded game allows. No container keeps more than 7,200 items, under the game's load limit.</value></data>
   <data name="Repair_Preview" xml:space="preserve"><value>Items to remove: {0}. Containers affected: {1}.</value></data>
   <data name="Repair_Nothing" xml:space="preserve"><value>Nothing to remove at this setting.</value></data>
-  <data name="Repair_MostRemoved" xml:space="preserve"><value>Most removed</value></data>
   <data name="Repair_TypeCount" xml:space="preserve"><value>{0}: {1}</value></data>
   <data name="Repair_UnsavedChanges" xml:space="preserve"><value>Save your other changes first. If writing the repaired copy failed, PCEdit would reopen the original file to undo the repair, and those changes would be lost.</value></data>
   <data name="Repair_Apply" xml:space="preserve"><value>Save repaired copy…</value></data>
@@ -87,6 +86,16 @@
   <data name="Repair_Done" xml:space="preserve"><value>Items removed: {0}. The repaired copy is saved as {1} and is now open; the original save is unchanged.</value></data>
   <data name="Repair_Failed" xml:space="preserve"><value>The repaired copy could not be written. Nothing was changed: the original save is open again.</value></data>
   <data name="Repair_FailedTitle" xml:space="preserve"><value>Repair failed</value></data>
+  <data name="Repair_MoveFirstHeading" xml:space="preserve"><value>Move into free storage first</value></data>
+  <data name="Repair_MoveFirstHint" xml:space="preserve"><value>Tick the item types to keep, most important first. They go into free slots in your own Storage Crates and Lockers on the same world before anything is removed; whatever does not fit is removed.</value></data>
+  <data name="Repair_FreeSlots" xml:space="preserve"><value>Free slots in your storage: {0}.</value></data>
+  <data name="Repair_PreviewMoved" xml:space="preserve"><value>Moved to free storage: {0}, into containers: {1}.</value></data>
+  <data name="Repair_TypeChoiceA11y" xml:space="preserve"><value>Move {0} into free storage first</value></data>
+  <data name="Repair_MoveUp" xml:space="preserve"><value>Up</value></data>
+  <data name="Repair_MoveDown" xml:space="preserve"><value>Down</value></data>
+  <data name="Repair_MoveUpA11y" xml:space="preserve"><value>Move {0} up the list</value></data>
+  <data name="Repair_MoveDownA11y" xml:space="preserve"><value>Move {0} down the list</value></data>
+  <data name="Repair_DoneMoved" xml:space="preserve"><value>Moved to free storage: {0}.</value></data>
   <data name="Vital_Ok" xml:space="preserve"><value>OK</value></data>
   <data name="Vital_Low" xml:space="preserve"><value>Low</value></data>
   <data name="Vital_Critical" xml:space="preserve"><value>Critical</value></data>
@@ -138,6 +147,13 @@
   <data name="Inventories_StackingAlways" xml:space="preserve"><value>Grouped</value></data>
   <data name="Inventories_StackingNever" xml:space="preserve"><value>One by one</value></data>
   <data name="Inventories_GroupedForSize" xml:space="preserve"><value>Grouped: too many items to list one at a time.</value></data>
+  <data name="Inventories_OriginBuilt" xml:space="preserve"><value>Built by you</value></data>
+  <data name="Inventories_OriginMap" xml:space="preserve"><value>Map</value></data>
+  <data name="Inventories_OriginWreck" xml:space="preserve"><value>Wreck</value></data>
+  <data name="Inventories_OriginBuiltHelp" xml:space="preserve"><value>You built this.</value></data>
+  <data name="Inventories_OriginMapHelp" xml:space="preserve"><value>Placed in the game's map: it was already there when the world began.</value></data>
+  <data name="Inventories_OriginWreckHelp" xml:space="preserve"><value>Found in a wreck.</value></data>
+  <data name="Inventories_FilterBuilt" xml:space="preserve"><value>Built by you</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>{0}'s Inventory</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>{0}'s Equipment</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0} (Object #{1})</value></data>

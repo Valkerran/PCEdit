@@ -15,6 +15,7 @@ public enum InventoryFilter
     Equipment,
     Containers,
     NeedsAttention,
+    BuiltByYou,
 }
 
 public sealed partial class InventoriesViewModel(
@@ -134,6 +135,7 @@ public sealed partial class InventoriesViewModel(
         InventoryFilter.Equipment => g => g.Kind == InventoryKind.Equipment,
         InventoryFilter.Containers => g => g.Kind == InventoryKind.Container,
         InventoryFilter.NeedsAttention => g => g.NeedsAttention,
+        InventoryFilter.BuiltByYou => g => g.Origin == ContainerOrigin.Built,
         _ => _ => true,
     };
 

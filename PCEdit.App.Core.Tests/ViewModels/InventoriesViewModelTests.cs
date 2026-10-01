@@ -327,6 +327,22 @@ public sealed class InventoriesViewModelTests
     }
 
     [Fact]
+    public void BuiltByYouFilter_ShowsOnlyTheContainersThePlayerBuilt()
+    {
+        var vm = CreateLoaded(save =>
+        {
+            save.WorldObjects.Add(new PCEdit.SaveFileHandler.Models.WorldObject { Id = 205_000_000, GId = "Container1", LinkedInventoryId = 40 });
+            save.Inventories.Add(new PCEdit.SaveFileHandler.Models.Inventory { Id = 40, WorldObjectIds = "", Size = 5 });
+            save.WorldObjects.Add(new PCEdit.SaveFileHandler.Models.WorldObject { Id = 101_464_942, GId = "Container1", LinkedInventoryId = 41 });
+            save.Inventories.Add(new PCEdit.SaveFileHandler.Models.Inventory { Id = 41, WorldObjectIds = "", Size = 5 });
+        });
+
+        vm.Filter = InventoryFilter.BuiltByYou;
+
+        Assert.Equal([40], vm.Groups.Select(g => g.InventoryId).ToArray());
+    }
+
+    [Fact]
     public void OpenFileCommand_Navigates()
     {
         var nav = new FakeNavigationService();

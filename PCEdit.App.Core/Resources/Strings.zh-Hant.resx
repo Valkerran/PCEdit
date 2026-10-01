@@ -79,7 +79,6 @@
   <data name="Repair_KeepHint" xml:space="preserve"><value>1 只保留未安裝模組的遊戲所允許的數量。任何容器都不會保留超過 7,200 個物品，低於遊戲的載入上限。</value></data>
   <data name="Repair_Preview" xml:space="preserve"><value>要移除的物品：{0}。受影響的容器：{1}。</value></data>
   <data name="Repair_Nothing" xml:space="preserve"><value>此設定下沒有要移除的內容。</value></data>
-  <data name="Repair_MostRemoved" xml:space="preserve"><value>移除最多的物品</value></data>
   <data name="Repair_TypeCount" xml:space="preserve"><value>{0}：{1}</value></data>
   <data name="Repair_UnsavedChanges" xml:space="preserve"><value>請先儲存其他變更。如果寫入修復後的副本失敗，PCEdit 會重新開啟原始檔案以復原修復，這些變更將會遺失。</value></data>
   <data name="Repair_Apply" xml:space="preserve"><value>儲存修復後的副本…</value></data>
@@ -87,6 +86,16 @@
   <data name="Repair_Done" xml:space="preserve"><value>已移除的物品：{0}。修復後的副本已儲存為 {1} 並已開啟；原始存檔未被變更。</value></data>
   <data name="Repair_Failed" xml:space="preserve"><value>無法寫入修復後的副本。未做任何變更：原始存檔已重新開啟。</value></data>
   <data name="Repair_FailedTitle" xml:space="preserve"><value>修復失敗</value></data>
+  <data name="Repair_MoveFirstHeading" xml:space="preserve"><value>先移到空閒儲存</value></data>
+  <data name="Repair_MoveFirstHint" xml:space="preserve"><value>勾選要保留的物品類型，最重要的放前面。在移除任何物品之前，它們會被放入同一世界中你自己的儲物箱和儲物櫃的空格；放不下的會被移除。</value></data>
+  <data name="Repair_FreeSlots" xml:space="preserve"><value>儲存中的空格：{0}。</value></data>
+  <data name="Repair_PreviewMoved" xml:space="preserve"><value>已移到空閒儲存：{0}，放入容器：{1}。</value></data>
+  <data name="Repair_TypeChoiceA11y" xml:space="preserve"><value>先將 {0} 移到空閒儲存</value></data>
+  <data name="Repair_MoveUp" xml:space="preserve"><value>上移</value></data>
+  <data name="Repair_MoveDown" xml:space="preserve"><value>下移</value></data>
+  <data name="Repair_MoveUpA11y" xml:space="preserve"><value>將 {0} 在清單中上移</value></data>
+  <data name="Repair_MoveDownA11y" xml:space="preserve"><value>將 {0} 在清單中下移</value></data>
+  <data name="Repair_DoneMoved" xml:space="preserve"><value>已移到空閒儲存：{0}。</value></data>
   <data name="Vital_Ok" xml:space="preserve"><value>正常</value></data>
   <data name="Vital_Low" xml:space="preserve"><value>偏低</value></data>
   <data name="Vital_Critical" xml:space="preserve"><value>危急</value></data>
@@ -138,6 +147,13 @@
   <data name="Inventories_StackingAlways" xml:space="preserve"><value>合併</value></data>
   <data name="Inventories_StackingNever" xml:space="preserve"><value>逐個</value></data>
   <data name="Inventories_GroupedForSize" xml:space="preserve"><value>已合併：物品太多，無法逐個列出。</value></data>
+  <data name="Inventories_OriginBuilt" xml:space="preserve"><value>你建造的</value></data>
+  <data name="Inventories_OriginMap" xml:space="preserve"><value>地圖</value></data>
+  <data name="Inventories_OriginWreck" xml:space="preserve"><value>殘骸</value></data>
+  <data name="Inventories_OriginBuiltHelp" xml:space="preserve"><value>這是你建造的。</value></data>
+  <data name="Inventories_OriginMapHelp" xml:space="preserve"><value>放置在遊戲地圖中：世界開始時就已經在那裡。</value></data>
+  <data name="Inventories_OriginWreckHelp" xml:space="preserve"><value>在殘骸中找到。</value></data>
+  <data name="Inventories_FilterBuilt" xml:space="preserve"><value>你建造的</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>{0} 的庫存</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>{0} 的裝備</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0}（物體 #{1}）</value></data>

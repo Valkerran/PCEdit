@@ -79,7 +79,6 @@
   <data name="Repair_KeepHint" xml:space="preserve"><value>1 conserva exactamente lo que permite un juego sin mods. Ningún contenedor conserva más de 7.200 objetos, por debajo del límite de carga del juego.</value></data>
   <data name="Repair_Preview" xml:space="preserve"><value>Objetos que eliminar: {0}. Contenedores afectados: {1}.</value></data>
   <data name="Repair_Nothing" xml:space="preserve"><value>No hay nada que eliminar con este ajuste.</value></data>
-  <data name="Repair_MostRemoved" xml:space="preserve"><value>Los más eliminados</value></data>
   <data name="Repair_TypeCount" xml:space="preserve"><value>{0}: {1}</value></data>
   <data name="Repair_UnsavedChanges" xml:space="preserve"><value>Guarda primero tus otros cambios. Si fallara la escritura de la copia reparada, PCEdit volvería a abrir el archivo original para deshacer la reparación y esos cambios se perderían.</value></data>
   <data name="Repair_Apply" xml:space="preserve"><value>Guardar copia reparada…</value></data>
@@ -87,6 +86,16 @@
   <data name="Repair_Done" xml:space="preserve"><value>Objetos eliminados: {0}. La copia reparada se ha guardado como {1} y ahora está abierta; la partida original no ha cambiado.</value></data>
   <data name="Repair_Failed" xml:space="preserve"><value>No se pudo escribir la copia reparada. No se ha cambiado nada: la partida original vuelve a estar abierta.</value></data>
   <data name="Repair_FailedTitle" xml:space="preserve"><value>La reparación ha fallado</value></data>
+  <data name="Repair_MoveFirstHeading" xml:space="preserve"><value>Mover primero al almacenamiento libre</value></data>
+  <data name="Repair_MoveFirstHint" xml:space="preserve"><value>Marca los tipos de objeto que quieres conservar, los más importantes primero. Van a los huecos libres de tus propias cajas y taquillas del mismo mundo antes de eliminar nada; lo que no quepa se elimina.</value></data>
+  <data name="Repair_FreeSlots" xml:space="preserve"><value>Huecos libres en tu almacenamiento: {0}.</value></data>
+  <data name="Repair_PreviewMoved" xml:space="preserve"><value>Movidos al almacenamiento libre: {0}, a contenedores: {1}.</value></data>
+  <data name="Repair_TypeChoiceA11y" xml:space="preserve"><value>Mover {0} primero al almacenamiento libre</value></data>
+  <data name="Repair_MoveUp" xml:space="preserve"><value>Subir</value></data>
+  <data name="Repair_MoveDown" xml:space="preserve"><value>Bajar</value></data>
+  <data name="Repair_MoveUpA11y" xml:space="preserve"><value>Subir {0} en la lista</value></data>
+  <data name="Repair_MoveDownA11y" xml:space="preserve"><value>Bajar {0} en la lista</value></data>
+  <data name="Repair_DoneMoved" xml:space="preserve"><value>Movidos al almacenamiento libre: {0}.</value></data>
   <data name="Vital_Ok" xml:space="preserve"><value>Bien</value></data>
   <data name="Vital_Low" xml:space="preserve"><value>Bajo</value></data>
   <data name="Vital_Critical" xml:space="preserve"><value>Crítico</value></data>
@@ -138,6 +147,13 @@
   <data name="Inventories_StackingAlways" xml:space="preserve"><value>Agrupados</value></data>
   <data name="Inventories_StackingNever" xml:space="preserve"><value>Uno a uno</value></data>
   <data name="Inventories_GroupedForSize" xml:space="preserve"><value>Agrupados: demasiados objetos para mostrarlos uno a uno.</value></data>
+  <data name="Inventories_OriginBuilt" xml:space="preserve"><value>Construido por ti</value></data>
+  <data name="Inventories_OriginMap" xml:space="preserve"><value>Mapa</value></data>
+  <data name="Inventories_OriginWreck" xml:space="preserve"><value>Restos</value></data>
+  <data name="Inventories_OriginBuiltHelp" xml:space="preserve"><value>Lo construiste tú.</value></data>
+  <data name="Inventories_OriginMapHelp" xml:space="preserve"><value>Colocado en el mapa del juego: ya estaba ahí cuando empezó el mundo.</value></data>
+  <data name="Inventories_OriginWreckHelp" xml:space="preserve"><value>Encontrado en unos restos.</value></data>
+  <data name="Inventories_FilterBuilt" xml:space="preserve"><value>Construidos por ti</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>Inventario de {0}</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>Equipo de {0}</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0} (objeto n.º {1})</value></data>

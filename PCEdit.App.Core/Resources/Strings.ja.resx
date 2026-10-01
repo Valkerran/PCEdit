@@ -79,7 +79,6 @@
   <data name="Repair_KeepHint" xml:space="preserve"><value>1 は MOD なしのゲームで許される分だけを保持します。どのコンテナもゲームの読み込み上限を下回る 7,200 個を超えて保持しません。</value></data>
   <data name="Repair_Preview" xml:space="preserve"><value>削除するアイテム: {0}。対象のコンテナ: {1}。</value></data>
   <data name="Repair_Nothing" xml:space="preserve"><value>この設定では削除するものはありません。</value></data>
-  <data name="Repair_MostRemoved" xml:space="preserve"><value>削除が多いもの</value></data>
   <data name="Repair_TypeCount" xml:space="preserve"><value>{0}: {1}</value></data>
   <data name="Repair_UnsavedChanges" xml:space="preserve"><value>先にほかの変更を保存してください。修復したコピーの書き込みに失敗した場合、PCEdit は修復を取り消すために元のファイルを開き直し、それらの変更は失われます。</value></data>
   <data name="Repair_Apply" xml:space="preserve"><value>修復したコピーを保存…</value></data>
@@ -87,6 +86,16 @@
   <data name="Repair_Done" xml:space="preserve"><value>削除したアイテム: {0}。修復したコピーを {1} として保存し、現在開いています。元のセーブは変更されていません。</value></data>
   <data name="Repair_Failed" xml:space="preserve"><value>修復したコピーを書き込めませんでした。何も変更されていません。元のセーブを再び開いています。</value></data>
   <data name="Repair_FailedTitle" xml:space="preserve"><value>修復に失敗しました</value></data>
+  <data name="Repair_MoveFirstHeading" xml:space="preserve"><value>先に空きストレージへ移動</value></data>
+  <data name="Repair_MoveFirstHint" xml:space="preserve"><value>残したいアイテムの種類にチェックを入れてください (重要なものから順に)。削除の前に、同じワールドにある自分のストレージ箱やロッカーの空きスロットへ移動します。入りきらない分は削除されます。</value></data>
+  <data name="Repair_FreeSlots" xml:space="preserve"><value>ストレージの空きスロット: {0}。</value></data>
+  <data name="Repair_PreviewMoved" xml:space="preserve"><value>空きストレージへ移動: {0}、移動先のコンテナ: {1}。</value></data>
+  <data name="Repair_TypeChoiceA11y" xml:space="preserve"><value>{0} を先に空きストレージへ移動</value></data>
+  <data name="Repair_MoveUp" xml:space="preserve"><value>上へ</value></data>
+  <data name="Repair_MoveDown" xml:space="preserve"><value>下へ</value></data>
+  <data name="Repair_MoveUpA11y" xml:space="preserve"><value>{0} をリストの上へ移動</value></data>
+  <data name="Repair_MoveDownA11y" xml:space="preserve"><value>{0} をリストの下へ移動</value></data>
+  <data name="Repair_DoneMoved" xml:space="preserve"><value>空きストレージへ移動: {0}。</value></data>
   <data name="Vital_Ok" xml:space="preserve"><value>良好</value></data>
   <data name="Vital_Low" xml:space="preserve"><value>低下</value></data>
   <data name="Vital_Critical" xml:space="preserve"><value>危険</value></data>
@@ -138,6 +147,13 @@
   <data name="Inventories_StackingAlways" xml:space="preserve"><value>まとめる</value></data>
   <data name="Inventories_StackingNever" xml:space="preserve"><value>1 つずつ</value></data>
   <data name="Inventories_GroupedForSize" xml:space="preserve"><value>まとめて表示: 1 つずつ表示するにはアイテムが多すぎます。</value></data>
+  <data name="Inventories_OriginBuilt" xml:space="preserve"><value>自分で建設</value></data>
+  <data name="Inventories_OriginMap" xml:space="preserve"><value>マップ</value></data>
+  <data name="Inventories_OriginWreck" xml:space="preserve"><value>残骸</value></data>
+  <data name="Inventories_OriginBuiltHelp" xml:space="preserve"><value>あなたが建設しました。</value></data>
+  <data name="Inventories_OriginMapHelp" xml:space="preserve"><value>ゲームのマップに配置されています。ワールドの開始時からありました。</value></data>
+  <data name="Inventories_OriginWreckHelp" xml:space="preserve"><value>残骸で見つかりました。</value></data>
+  <data name="Inventories_FilterBuilt" xml:space="preserve"><value>自分で建設</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>{0} のインベントリ</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>{0} の装備</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0}（オブジェクト #{1}）</value></data>

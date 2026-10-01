@@ -373,6 +373,30 @@ public sealed class InventoryEditorTests
     }
 
     [Fact]
+    public void BuildInventoryGroups_TagsWhereEachContainerCameFrom()
+    {
+        var (editor, _) = CreateLoadedEditor(save =>
+        {
+            void Place(int id, string gId, int inventoryId)
+            {
+                save.WorldObjects.Add(new PCEdit.SaveFileHandler.Models.WorldObject { Id = id, GId = gId, LinkedInventoryId = inventoryId });
+                save.Inventories.Add(new PCEdit.SaveFileHandler.Models.Inventory { Id = inventoryId, WorldObjectIds = "", Size = 5 });
+            }
+
+            Place(205_000_000, "Container1", 40);                // runtime id, a type only players build
+            Place(101_464_942, "Container1", 41);                // a developers' crate from a real save
+            Place(204_000_000, "ProceduralWreckContainer1", 42); // a wreck crate
+        });
+
+        var origin = editor.BuildInventoryGroups().ToDictionary(g => g.InventoryId, g => g.Origin);
+
+        Assert.Equal(ContainerOrigin.Built, origin[40]);
+        Assert.Equal(ContainerOrigin.Map, origin[41]);
+        Assert.Equal(ContainerOrigin.Wreck, origin[42]);
+        Assert.Equal(ContainerOrigin.Unknown, origin[10]); // a player's backpack has no placed owner
+    }
+
+    [Fact]
     public void BuildInventoryGroups_ItemsContainCorrectWorldObjectIds()
     {
         var (editor, _) = CreateLoadedEditor();

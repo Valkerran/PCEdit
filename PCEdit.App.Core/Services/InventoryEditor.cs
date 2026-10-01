@@ -22,6 +22,7 @@ public sealed class InventoryEditor(
         var save = RequireCurrent();
         var worldObjectsById = IndexWorldObjects(save);
         var containersByInventoryId = BuildContainerLookup(save);
+        var wreckIds = ContainerOrigins.WreckIds(save);
 
         return save.Inventories
             .Select(inventory =>
@@ -37,6 +38,7 @@ public sealed class InventoryEditor(
                     ContainerWorldObjectId = containersByInventoryId.TryGetValue(inventory.Id, out var container)
                         ? container.Id
                         : null,
+                    Origin = container is null ? ContainerOrigin.Unknown : ContainerOrigins.Of(container, wreckIds),
                     Size = inventory.Size,
                     Logistics = logistics,
                     LogisticsSummary = logistics is null ? null : FormatLogisticsSummary(logistics),

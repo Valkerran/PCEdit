@@ -29,7 +29,11 @@
             </StackPanel>
             <TextBlock Text="{m:Loc Repair_KeepHint}" Classes="caption" TextWrapping="Wrap" />
 
-            <TextBlock Text="{Binding PreviewText}" FontWeight="Bold" TextWrapping="Wrap" />
+            <StackPanel Spacing="4">
+                <TextBlock Text="{Binding MovedText}" FontWeight="Bold" TextWrapping="Wrap"
+                           IsVisible="{Binding MovedText, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+                <TextBlock Text="{Binding PreviewText}" FontWeight="Bold" TextWrapping="Wrap" />
+            </StackPanel>
         </StackPanel>
 
         <StackPanel DockPanel.Dock="Bottom" Spacing="12" Margin="0,12,0,0">
@@ -42,16 +46,34 @@
             </StackPanel>
         </StackPanel>
 
-        <StackPanel Spacing="6" IsVisible="{Binding TopTypes.Count, Converter={StaticResource CountIsPositive}}">
-            <TextBlock Text="{m:Loc Repair_MostRemoved}" Classes="caption" />
-            <ItemsControl ItemsSource="{Binding TopTypes}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate x:DataType="x:String">
-                        <TextBlock Text="{Binding}" Margin="0,2" />
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </StackPanel>
+        <!-- Move into free storage first (issue #64, phase 6b): tick the types to keep, in order. -->
+        <DockPanel IsVisible="{Binding PriorityTypes.Count, Converter={StaticResource CountIsPositive}}">
+            <StackPanel DockPanel.Dock="Top" Spacing="4" Margin="0,0,0,8">
+                <TextBlock Text="{m:Loc Repair_MoveFirstHeading}" FontWeight="Bold" />
+                <TextBlock Text="{m:Loc Repair_MoveFirstHint}" Classes="caption" TextWrapping="Wrap" />
+                <TextBlock Text="{Binding FreeSlotsText}" Classes="caption" />
+            </StackPanel>
+            <ScrollViewer>
+                <ItemsControl ItemsSource="{Binding PriorityTypes}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="vm:RepairTypeChoice">
+                            <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="6" Margin="0,2,8,2">
+                                <CheckBox Grid.Column="0" IsChecked="{Binding IsChecked, Mode=TwoWay}" Content="{Binding Label}"
+                                          AutomationProperties.Name="{m:LocFormat Key=Repair_TypeChoiceA11y, Path=DisplayName}" />
+                                <Button Grid.Column="1" Content="{m:Loc Repair_MoveUp}"
+                                        Command="{Binding DataContext.MoveUpCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                        CommandParameter="{Binding}"
+                                        AutomationProperties.Name="{m:LocFormat Key=Repair_MoveUpA11y, Path=DisplayName}" />
+                                <Button Grid.Column="2" Content="{m:Loc Repair_MoveDown}"
+                                        Command="{Binding DataContext.MoveDownCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                        CommandParameter="{Binding}"
+                                        AutomationProperties.Name="{m:LocFormat Key=Repair_MoveDownA11y, Path=DisplayName}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </DockPanel>
     </DockPanel>
 
 </UserControl>
