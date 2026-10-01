@@ -34,6 +34,15 @@ public sealed class AvaloniaNavigationService(
         return Task.CompletedTask;
     }
 
+    public Task GoToInventoriesNeedingAttentionAsync()
+    {
+        // Set before navigating: the page keeps this filter through its Load() whenever there is
+        // anything to show, and the banner that calls this only appears when there is.
+        _services.GetRequiredService<InventoriesViewModel>().Filter = InventoryFilter.NeedsAttention;
+        _mainViewModel.NavigateTo(NavDestination.Inventories);
+        return Task.CompletedTask;
+    }
+
     public Task OpenSelectInventoryAsync(int worldObjectId) =>
         Dispatcher.UIThread.InvokeAsync(async () =>
         {

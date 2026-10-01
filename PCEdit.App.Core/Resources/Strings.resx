@@ -125,6 +125,11 @@
   <data name="Overview_Vital_Toxicity" xml:space="preserve"><value>TOXICITY</value></data>
   <data name="Overview_PlayerProgress" xml:space="preserve"><value>{0} objects crafted  ·  {1} terra tokens earned</value></data>
   <data name="Overview_GameVersion" xml:space="preserve"><value>Save written by game version {0}</value></data>
+  <data name="Overview_AttentionHeading" xml:space="preserve"><value>Some containers need attention</value></data>
+  <data name="Overview_AttentionOverCapacity" xml:space="preserve"><value>Containers holding more items than their size: {0}. An unmodded game never does this; it is typical of an inventory-stacking mod, and the game may stutter with a save like this.</value></data>
+  <data name="Overview_AttentionNearLoadLimit" xml:space="preserve"><value>Containers close to the game's limit of 8,000 items each: {0}. Items past that limit are lost when the game loads the save.</value></data>
+  <data name="Overview_AttentionShow" xml:space="preserve"><value>Show them</value></data>
+  <data name="Overview_AttentionShowA11y" xml:space="preserve"><value>Show the containers that need attention on the Inventories page</value></data>
 
   <data name="Vital_Ok" xml:space="preserve"><value>OK</value></data>
   <data name="Vital_Low" xml:space="preserve"><value>Low</value></data>

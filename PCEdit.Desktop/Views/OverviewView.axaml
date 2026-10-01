@@ -6,9 +6,56 @@
              x:Class="PCEdit.Desktop.Views.OverviewView"
              x:DataType="vm:OverviewViewModel">
 
+    <UserControl.Styles>
+        <!--
+            Over-full banner (issue #64): a bordered card in the warning colour, or the error colour
+            when a container is near the game's load cap. Glyph and words carry the state too,
+            never colour alone.
+        -->
+        <Style Selector="Border.attention">
+            <Setter Property="BorderBrush" Value="{DynamicResource StatusWarningText}" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+        <Style Selector="Border.attention PathIcon">
+            <Setter Property="Foreground" Value="{DynamicResource StatusWarningText}" />
+        </Style>
+        <Style Selector="Border.attention.nearLoadLimit">
+            <Setter Property="BorderBrush" Value="{DynamicResource StatusErrorText}" />
+        </Style>
+        <Style Selector="Border.attention.nearLoadLimit PathIcon">
+            <Setter Property="Foreground" Value="{DynamicResource StatusErrorText}" />
+        </Style>
+    </UserControl.Styles>
+
     <Panel>
         <ScrollViewer IsVisible="{Binding IsLoaded}">
             <StackPanel Margin="24" Spacing="20">
+
+                <Border Classes="card attention" IsVisible="{Binding HasAttention}"
+                        Classes.nearLoadLimit="{Binding NearLoadLimitText, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
+                        <Panel Grid.Column="0" VerticalAlignment="Top" Margin="0,2,0,0">
+                            <PathIcon Width="20" Height="20" Data="{StaticResource OverFullGlyph}"
+                                      IsVisible="{Binding NearLoadLimitText, Converter={x:Static StringConverters.IsNullOrEmpty}}"
+                                      AutomationProperties.AccessibilityView="Raw" />
+                            <PathIcon Width="20" Height="20" Data="{StaticResource NearLoadLimitGlyph}"
+                                      IsVisible="{Binding NearLoadLimitText, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                                      AutomationProperties.AccessibilityView="Raw" />
+                        </Panel>
+                        <StackPanel Grid.Column="1" Spacing="6">
+                            <TextBlock Text="{m:Loc Overview_AttentionHeading}" FontWeight="Bold" FontSize="15"
+                                       TextWrapping="Wrap" />
+                            <TextBlock Text="{Binding OverCapacityText}" TextWrapping="Wrap"
+                                       IsVisible="{Binding OverCapacityText, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+                            <TextBlock Text="{Binding NearLoadLimitText}" TextWrapping="Wrap"
+                                       IsVisible="{Binding NearLoadLimitText, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+                        </StackPanel>
+                        <Button Grid.Column="2" VerticalAlignment="Top"
+                                Content="{m:Loc Overview_AttentionShow}"
+                                Command="{Binding ShowAttentionCommand}"
+                                AutomationProperties.Name="{m:Loc Overview_AttentionShowA11y}" />
+                    </Grid>
+                </Border>
 
                 <TextBlock Classes="caption" Text="{Binding GameVersionText}"
                            IsVisible="{Binding GameVersionText, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />

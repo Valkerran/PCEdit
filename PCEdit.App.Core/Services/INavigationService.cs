@@ -13,6 +13,12 @@ public interface INavigationService
     Task GoToOpenFileAsync();
 
     /// <summary>
+    /// Switches the main content to the Inventories page, filtered to the inventories that need
+    /// attention (from the Overview's over-full banner, issue #64).
+    /// </summary>
+    Task GoToInventoriesNeedingAttentionAsync();
+
+    /// <summary>
     /// Opens the "choose a destination inventory" screen for the given world object,
     /// as a modal/secondary view.
     /// </summary>

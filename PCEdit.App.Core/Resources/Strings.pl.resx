@@ -64,6 +64,11 @@
   <data name="Overview_Vital_Toxicity" xml:space="preserve"><value>TOKSYCZNOŚĆ</value></data>
   <data name="Overview_PlayerProgress" xml:space="preserve"><value>wytworzono obiektów: {0}  ·  zdobyto żetonów terra: {1}</value></data>
   <data name="Overview_GameVersion" xml:space="preserve"><value>Zapis utworzony przez wersję gry {0}</value></data>
+  <data name="Overview_AttentionHeading" xml:space="preserve"><value>Niektóre pojemniki wymagają uwagi</value></data>
+  <data name="Overview_AttentionOverCapacity" xml:space="preserve"><value>Pojemniki z większą liczbą przedmiotów niż ich rozmiar: {0}. Gra bez modów nigdy tego nie robi; to typowe dla moda do stakowania w ekwipunku, a gra może się zacinać przy takim zapisie.</value></data>
+  <data name="Overview_AttentionNearLoadLimit" xml:space="preserve"><value>Pojemniki bliskie limitu gry wynoszącego 8000 przedmiotów na pojemnik: {0}. Przedmioty ponad ten limit przepadają, gdy gra wczytuje zapis.</value></data>
+  <data name="Overview_AttentionShow" xml:space="preserve"><value>Pokaż je</value></data>
+  <data name="Overview_AttentionShowA11y" xml:space="preserve"><value>Pokaż na stronie Ekwipunki pojemniki wymagające uwagi</value></data>
   <data name="Vital_Ok" xml:space="preserve"><value>OK</value></data>
   <data name="Vital_Low" xml:space="preserve"><value>Niski</value></data>
   <data name="Vital_Critical" xml:space="preserve"><value>Krytyczny</value></data>

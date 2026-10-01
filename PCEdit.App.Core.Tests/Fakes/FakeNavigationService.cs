@@ -7,6 +7,7 @@ internal sealed class FakeNavigationService : INavigationService
 {
     public int OverviewCount { get; private set; }
     public int OpenFileCount { get; private set; }
+    public int InventoriesNeedingAttentionCount { get; private set; }
     public List<int> SelectInventoryRequests { get; } = [];
     public List<int> LogisticsEditorRequests { get; } = [];
     public int CloseModalCount { get; private set; }
@@ -20,6 +21,12 @@ internal sealed class FakeNavigationService : INavigationService
     public Task GoToOpenFileAsync()
     {
         OpenFileCount++;
+        return Task.CompletedTask;
+    }
+
+    public Task GoToInventoriesNeedingAttentionAsync()
+    {
+        InventoriesNeedingAttentionCount++;
         return Task.CompletedTask;
     }
 

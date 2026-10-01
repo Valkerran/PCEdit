@@ -71,6 +71,11 @@ card) added `Inventories_StackCount` ("× {0}", the count beside a stacked row) 
 `{1}` = stack size) — machine-translated. A one-item row keeps `Inventories_ItemId` /
 `Inventories_MoveA11y`.
 
+The Overview attention banner (issue #64: a summary on the landing page when a save holds
+over-full containers) added `Overview_Attention{Heading,OverCapacity,NearLoadLimit,Show,ShowA11y}`
+— machine-translated. The two count lines put the number after a colon ("…: {0}.") so no locale
+needs plural forms.
+
 | Culture | Language | Reviewed |
 |---|---|---|
 | en-US | English (United States) | n/a (source) |

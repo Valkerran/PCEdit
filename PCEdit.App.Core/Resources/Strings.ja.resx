@@ -64,6 +64,11 @@
   <data name="Overview_Vital_Toxicity" xml:space="preserve"><value>毒性</value></data>
   <data name="Overview_PlayerProgress" xml:space="preserve"><value>作成したオブジェクト {0}  ·  獲得したテラトークン {1}</value></data>
   <data name="Overview_GameVersion" xml:space="preserve"><value>ゲームバージョン {0} が書き込んだセーブデータ</value></data>
+  <data name="Overview_AttentionHeading" xml:space="preserve"><value>一部のコンテナに確認が必要です</value></data>
+  <data name="Overview_AttentionOverCapacity" xml:space="preserve"><value>サイズを超えるアイテムが入っているコンテナ: {0}。MOD なしのゲームではこうなることはなく、インベントリのスタック MOD によく見られる状態です。このようなセーブではゲームがカクつくことがあります。</value></data>
+  <data name="Overview_AttentionNearLoadLimit" xml:space="preserve"><value>コンテナあたり 8,000 個というゲームの上限に近いコンテナ: {0}。上限を超えたアイテムは、ゲームがセーブを読み込むときに失われます。</value></data>
+  <data name="Overview_AttentionShow" xml:space="preserve"><value>表示する</value></data>
+  <data name="Overview_AttentionShowA11y" xml:space="preserve"><value>確認が必要なコンテナをインベントリページに表示</value></data>
   <data name="Vital_Ok" xml:space="preserve"><value>良好</value></data>
   <data name="Vital_Low" xml:space="preserve"><value>低下</value></data>
   <data name="Vital_Critical" xml:space="preserve"><value>危険</value></data>

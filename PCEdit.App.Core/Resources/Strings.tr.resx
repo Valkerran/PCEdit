@@ -64,6 +64,11 @@
   <data name="Overview_Vital_Toxicity" xml:space="preserve"><value>TOKSİKLİK</value></data>
   <data name="Overview_PlayerProgress" xml:space="preserve"><value>{0} nesne üretildi  ·  {1} terra jetonu kazanıldı</value></data>
   <data name="Overview_GameVersion" xml:space="preserve"><value>{0} oyun sürümü tarafından yazılan kayıt</value></data>
+  <data name="Overview_AttentionHeading" xml:space="preserve"><value>Bazı kaplar dikkat gerektiriyor</value></data>
+  <data name="Overview_AttentionOverCapacity" xml:space="preserve"><value>Boyutundan fazla eşya içeren kaplar: {0}. Modsuz oyun bunu asla yapmaz; bu durum envanter yığınlama modlarına özgüdür ve oyun böyle bir kayıtla takılabilir.</value></data>
+  <data name="Overview_AttentionNearLoadLimit" xml:space="preserve"><value>Oyunun kap başına 8.000 eşya sınırına yakın kaplar: {0}. Bu sınırı aşan eşyalar, oyun kaydı yüklediğinde kaybolur.</value></data>
+  <data name="Overview_AttentionShow" xml:space="preserve"><value>Göster</value></data>
+  <data name="Overview_AttentionShowA11y" xml:space="preserve"><value>Dikkat gerektiren kapları Envanterler sayfasında göster</value></data>
   <data name="Vital_Ok" xml:space="preserve"><value>İyi</value></data>
   <data name="Vital_Low" xml:space="preserve"><value>Düşük</value></data>
   <data name="Vital_Critical" xml:space="preserve"><value>Kritik</value></data>

@@ -64,6 +64,11 @@
   <data name="Overview_Vital_Toxicity" xml:space="preserve"><value>TOXICITÉ</value></data>
   <data name="Overview_PlayerProgress" xml:space="preserve"><value>{0} objets fabriqués  ·  {1} jetons de terra gagnés</value></data>
   <data name="Overview_GameVersion" xml:space="preserve"><value>Sauvegarde écrite par la version {0} du jeu</value></data>
+  <data name="Overview_AttentionHeading" xml:space="preserve"><value>Certains conteneurs demandent votre attention</value></data>
+  <data name="Overview_AttentionOverCapacity" xml:space="preserve"><value>Conteneurs contenant plus d'objets que leur taille : {0}. Un jeu sans mod ne fait jamais cela ; c'est typique d'un mod d'empilement d'inventaire, et le jeu peut saccader avec une telle sauvegarde.</value></data>
+  <data name="Overview_AttentionNearLoadLimit" xml:space="preserve"><value>Conteneurs proches de la limite du jeu de 8 000 objets chacun : {0}. Les objets au-delà de cette limite sont perdus au chargement de la sauvegarde.</value></data>
+  <data name="Overview_AttentionShow" xml:space="preserve"><value>Les afficher</value></data>
+  <data name="Overview_AttentionShowA11y" xml:space="preserve"><value>Afficher les conteneurs qui demandent votre attention sur la page Inventaires</value></data>
   <data name="Vital_Ok" xml:space="preserve"><value>OK</value></data>
   <data name="Vital_Low" xml:space="preserve"><value>Faible</value></data>
   <data name="Vital_Critical" xml:space="preserve"><value>Critique</value></data>

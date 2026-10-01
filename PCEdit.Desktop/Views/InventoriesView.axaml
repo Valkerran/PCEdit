@@ -64,12 +64,6 @@
         </Style>
     </UserControl.Styles>
 
-    <UserControl.Resources>
-        <!-- Even-odd fill ("F0") cuts the exclamation mark out of the shape. -->
-        <StreamGeometry x:Key="OverFullGlyph">F0 M12,2 L23,21 L1,21 Z M11,9 L13,9 L13,15 L11,15 Z M11,17 L13,17 L13,19 L11,19 Z</StreamGeometry>
-        <StreamGeometry x:Key="NearLoadLimitGlyph">F0 M7,1 L17,1 L23,7 L23,17 L17,23 L7,23 L1,17 L1,7 Z M11,6 L13,6 L13,14 L11,14 Z M11,16 L13,16 L13,18 L11,18 Z</StreamGeometry>
-    </UserControl.Resources>
-
     <Panel>
         <DockPanel IsVisible="{Binding IsLoaded}" Margin="24">
             <StackPanel DockPanel.Dock="Top" Spacing="12" Margin="0,0,0,16">

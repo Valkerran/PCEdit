@@ -64,6 +64,11 @@
   <data name="Overview_Vital_Toxicity" xml:space="preserve"><value>毒性</value></data>
   <data name="Overview_PlayerProgress" xml:space="preserve"><value>已製作 {0} 個物品  ·  已獲得 {1} 個地球化代幣</value></data>
   <data name="Overview_GameVersion" xml:space="preserve"><value>由遊戲版本 {0} 寫入的存檔</value></data>
+  <data name="Overview_AttentionHeading" xml:space="preserve"><value>部分容器需要注意</value></data>
+  <data name="Overview_AttentionOverCapacity" xml:space="preserve"><value>物品數量超過容量的容器：{0}。未安裝模組的遊戲不會出現這種情況；這通常由物品堆疊模組造成，遊戲讀取這樣的存檔可能會卡頓。</value></data>
+  <data name="Overview_AttentionNearLoadLimit" xml:space="preserve"><value>接近遊戲每個容器 8,000 個物品上限的容器：{0}。超出上限的物品會在遊戲載入存檔時遺失。</value></data>
+  <data name="Overview_AttentionShow" xml:space="preserve"><value>查看</value></data>
+  <data name="Overview_AttentionShowA11y" xml:space="preserve"><value>在庫存頁面查看需要注意的容器</value></data>
   <data name="Vital_Ok" xml:space="preserve"><value>正常</value></data>
   <data name="Vital_Low" xml:space="preserve"><value>偏低</value></data>
   <data name="Vital_Critical" xml:space="preserve"><value>危急</value></data>

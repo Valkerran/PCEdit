@@ -180,19 +180,10 @@ public sealed class InventoriesViewModelTests
         Assert.Equal([11, 21], vm.Groups.Select(g => g.InventoryId).OrderBy(id => id).ToArray());
     }
 
-    // Alice's two items moved into Bob's one-slot inventory (20): over-full, as a stacking mod leaves it.
-    private static void OverFillBobsInventory(PCEdit.SaveFileHandler.Models.PlanetCrafterSaveFile save)
-    {
-        var alice = save.Inventories.FindIndex(i => i.Id == 10);
-        save.Inventories[alice] = save.Inventories[alice] with { WorldObjectIds = "" };
-        var bob = save.Inventories.FindIndex(i => i.Id == 20);
-        save.Inventories[bob] = save.Inventories[bob] with { WorldObjectIds = "200,201" };
-    }
-
     [Fact]
     public void NeedsAttentionFilter_ShowsOnlyTheFlaggedInventories()
     {
-        var vm = CreateLoaded(OverFillBobsInventory);
+        var vm = CreateLoaded(WorkspaceFixtures.OverFillBobsInventory);
 
         vm.Filter = InventoryFilter.NeedsAttention;
 
@@ -202,7 +193,7 @@ public sealed class InventoriesViewModelTests
     [Fact]
     public void AttentionCount_CountsFlaggedInventories_WhateverTheCurrentFilter()
     {
-        var vm = CreateLoaded(OverFillBobsInventory);
+        var vm = CreateLoaded(WorkspaceFixtures.OverFillBobsInventory);
 
         vm.Filter = InventoryFilter.Equipment;
         vm.Query = "zzz-nothing";

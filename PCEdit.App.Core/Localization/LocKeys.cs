@@ -45,6 +45,8 @@ public static class LocKeys
     public const string Overview_PlayerLocation = "Overview_PlayerLocation";
     public const string Overview_PlayerProgress = "Overview_PlayerProgress";
     public const string Overview_GameVersion = "Overview_GameVersion";
+    public const string Overview_AttentionOverCapacity = "Overview_AttentionOverCapacity";
+    public const string Overview_AttentionNearLoadLimit = "Overview_AttentionNearLoadLimit";
 
     public const string Vital_Ok = "Vital_Ok";
     public const string Vital_Low = "Vital_Low";

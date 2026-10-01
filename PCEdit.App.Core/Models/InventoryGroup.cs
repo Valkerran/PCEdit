@@ -96,9 +96,12 @@ public sealed record InventoryGroup
     public InventoryFill Fill => TotalItemCount switch
     {
         > NearLoadLimitThreshold => InventoryFill.NearLoadLimit,
-        var count when count > Size => InventoryFill.OverFull,
+        _ when IsOverCapacity => InventoryFill.OverFull,
         _ => InventoryFill.Normal,
     };
+
+    /// <summary>More items than slots - never produced by an unmodded game.</summary>
+    public bool IsOverCapacity => TotalItemCount > Size;
 
     public bool NeedsAttention => Fill != InventoryFill.Normal;
 

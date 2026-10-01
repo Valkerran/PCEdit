@@ -64,6 +64,11 @@
   <data name="Overview_Vital_Toxicity" xml:space="preserve"><value>ТОКСИЧНОСТЬ</value></data>
   <data name="Overview_PlayerProgress" xml:space="preserve"><value>создано объектов: {0}  ·  получено терра-жетонов: {1}</value></data>
   <data name="Overview_GameVersion" xml:space="preserve"><value>Сохранение создано игрой версии {0}</value></data>
+  <data name="Overview_AttentionHeading" xml:space="preserve"><value>Некоторые контейнеры требуют внимания</value></data>
+  <data name="Overview_AttentionOverCapacity" xml:space="preserve"><value>Контейнеров, где предметов больше, чем ячеек: {0}. Игра без модов так никогда не делает; это типично для мода на стаки в инвентаре, и с таким сохранением игра может подтормаживать.</value></data>
+  <data name="Overview_AttentionNearLoadLimit" xml:space="preserve"><value>Контейнеров близко к пределу игры в 8000 предметов на контейнер: {0}. Предметы сверх этого предела теряются, когда игра загружает сохранение.</value></data>
+  <data name="Overview_AttentionShow" xml:space="preserve"><value>Показать их</value></data>
+  <data name="Overview_AttentionShowA11y" xml:space="preserve"><value>Показать на странице «Инвентари» контейнеры, требующие внимания</value></data>
   <data name="Vital_Ok" xml:space="preserve"><value>Норма</value></data>
   <data name="Vital_Low" xml:space="preserve"><value>Низкий</value></data>
   <data name="Vital_Critical" xml:space="preserve"><value>Критический</value></data>
