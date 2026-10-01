@@ -121,6 +121,12 @@
   <data name="Inv_AlreadyThere" xml:space="preserve"><value>Ten przedmiot już jest w tym ekwipunku.</value></data>
   <data name="Inv_DestNotFound" xml:space="preserve"><value>Nie znaleziono docelowego ekwipunku.</value></data>
   <data name="Inv_DestFull" xml:space="preserve"><value>Docelowy ekwipunek jest pełny ({0}/{1}).</value></data>
+  <data name="Inv_DestNoRoom" xml:space="preserve"><value>Za mało miejsca w miejscu docelowym: wolne {0}, do przeniesienia {1}.</value></data>
+  <data name="SelectInv_Quantity" xml:space="preserve"><value>Ilość</value></data>
+  <data name="SelectInv_QuantityA11y" xml:space="preserve"><value>Ilość do przeniesienia, od 1 do {0}</value></data>
+  <data name="SelectInv_All" xml:space="preserve"><value>Wszystko</value></data>
+  <data name="SelectInv_AllA11y" xml:space="preserve"><value>Przenieś cały stos ({0})</value></data>
+  <data name="SelectInv_MovedMany" xml:space="preserve"><value>Przedmioty przeniesione do {1}: {0}.</value></data>
   <data name="SelectInv_Title" xml:space="preserve"><value>Przenieś przedmiot</value></data>
   <data name="SelectInv_Heading" xml:space="preserve"><value>Wybierz docelowy ekwipunek</value></data>
   <data name="SelectInv_Search" xml:space="preserve"><value>Szukaj miejsc docelowych według nazwy lub ID</value></data>

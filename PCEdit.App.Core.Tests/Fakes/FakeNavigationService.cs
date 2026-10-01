@@ -8,7 +8,7 @@ internal sealed class FakeNavigationService : INavigationService
     public int OverviewCount { get; private set; }
     public int OpenFileCount { get; private set; }
     public int InventoriesNeedingAttentionCount { get; private set; }
-    public List<int> SelectInventoryRequests { get; } = [];
+    public List<IReadOnlyList<int>> SelectInventoryRequests { get; } = [];
     public List<int> LogisticsEditorRequests { get; } = [];
     public int CloseModalCount { get; private set; }
 
@@ -30,9 +30,9 @@ internal sealed class FakeNavigationService : INavigationService
         return Task.CompletedTask;
     }
 
-    public Task OpenSelectInventoryAsync(int worldObjectId)
+    public Task OpenSelectInventoryAsync(IReadOnlyList<int> worldObjectIds)
     {
-        SelectInventoryRequests.Add(worldObjectId);
+        SelectInventoryRequests.Add(worldObjectIds);
         return Task.CompletedTask;
     }
 

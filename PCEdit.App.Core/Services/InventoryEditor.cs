@@ -127,12 +127,19 @@ public sealed class InventoryEditor(
             .ToList();
     }
 
-    public MoveItemResult TryMoveItem(int worldObjectId, int destinationInventoryId)
-    {
-        var save = RequireCurrent();
+    public MoveItemResult TryMoveItem(int worldObjectId, int destinationInventoryId) =>
+        TryMoveItems([worldObjectId], destinationInventoryId);
 
-        var source = FindOwningInventory(save, worldObjectId);
-        if (source is null)
+    public MoveItemResult TryMoveItems(IReadOnlyList<int> worldObjectIds, int destinationInventoryId)
+    {
+        if (worldObjectIds.Count == 0 || worldObjectIds.Distinct().Count() != worldObjectIds.Count)
+        {
+            throw new ArgumentException("Expected one or more distinct world object ids.", nameof(worldObjectIds));
+        }
+
+        var save = RequireCurrent();
+        var source = FindOwningInventory(save, worldObjectIds[0]);
+        if (source is null || !HoldsAll(source, worldObjectIds))
         {
             return MoveItemResult.Fail(_localizer[LocKeys.Inv_NotInInventory]);
         }
@@ -148,21 +155,49 @@ public sealed class InventoryEditor(
             return MoveItemResult.Fail(_localizer[LocKeys.Inv_DestNotFound]);
         }
 
-        var destinationIds = WorldObjectIdsCodec.Parse(destination.WorldObjectIds);
-        if (destinationIds.Count >= destination.Size)
+        if (DescribeLackOfRoom(destination, worldObjectIds.Count) is { } noRoom)
         {
-            return MoveItemResult.Fail(_localizer.Format(LocKeys.Inv_DestFull, destinationIds.Count, destination.Size));
+            return MoveItemResult.Fail(noRoom);
         }
 
-        _workspace.ReplaceInventory(source.Id, inventory => WithWorldObjectIds(
-            inventory,
-            WorldObjectIdsCodec.Parse(inventory.WorldObjectIds).Where(id => id != worldObjectId)));
-
-        _workspace.ReplaceInventory(destination.Id, inventory => WithWorldObjectIds(
-            inventory,
-            WorldObjectIdsCodec.Parse(inventory.WorldObjectIds).Append(worldObjectId)));
-
+        MoveAll(source.Id, destination.Id, worldObjectIds);
         return MoveItemResult.Ok();
+    }
+
+    private static bool HoldsAll(Inventory inventory, IReadOnlyList<int> worldObjectIds)
+    {
+        var held = WorldObjectIdsCodec.Parse(inventory.WorldObjectIds).ToHashSet();
+        return worldObjectIds.All(held.Contains);
+    }
+
+    /// <summary>
+    /// Why the destination cannot take <paramref name="count"/> more items, or null when it can.
+    /// Its stored size is the limit - the game builds a fresh inventory with one item per slot,
+    /// and PCEdit must never be the thing that makes one over-full (issue #64).
+    /// </summary>
+    private string? DescribeLackOfRoom(Inventory destination, int count)
+    {
+        var held = WorldObjectIdsCodec.Parse(destination.WorldObjectIds).Count;
+        var free = destination.Size - held;
+        if (free <= 0)
+        {
+            return _localizer.Format(LocKeys.Inv_DestFull, held, destination.Size);
+        }
+
+        return free < count ? _localizer.Format(LocKeys.Inv_DestNoRoom, free, count) : null;
+    }
+
+    /// <summary>Removes the items from the source and appends them, in order, to the destination.</summary>
+    private void MoveAll(int sourceInventoryId, int destinationInventoryId, IReadOnlyList<int> worldObjectIds)
+    {
+        var moving = worldObjectIds.ToHashSet();
+        _workspace.ReplaceInventory(sourceInventoryId, inventory => WithWorldObjectIds(
+            inventory,
+            WorldObjectIdsCodec.Parse(inventory.WorldObjectIds).Where(id => !moving.Contains(id))));
+
+        _workspace.ReplaceInventory(destinationInventoryId, inventory => WithWorldObjectIds(
+            inventory,
+            WorldObjectIdsCodec.Parse(inventory.WorldObjectIds).Concat(worldObjectIds)));
     }
 
     public LogisticsContainerView? GetLogisticsContainer(int inventoryId)

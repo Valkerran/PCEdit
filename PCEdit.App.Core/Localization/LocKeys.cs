@@ -70,6 +70,8 @@ public static class LocKeys
     public const string Inv_AlreadyThere = "Inv_AlreadyThere";
     public const string Inv_DestNotFound = "Inv_DestNotFound";
     public const string Inv_DestFull = "Inv_DestFull";
+    public const string Inv_DestNoRoom = "Inv_DestNoRoom";
+    public const string SelectInv_MovedMany = "SelectInv_MovedMany";
 
     public const string SelectInv_MoveFailedTitle = "SelectInv_MoveFailedTitle";
     public const string SelectInv_MoveIncomplete = "SelectInv_MoveIncomplete";

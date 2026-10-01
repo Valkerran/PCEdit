@@ -121,6 +121,12 @@
   <data name="Inv_AlreadyThere" xml:space="preserve"><value>このアイテムはすでにそのインベントリにあります。</value></data>
   <data name="Inv_DestNotFound" xml:space="preserve"><value>移動先のインベントリが見つかりませんでした。</value></data>
   <data name="Inv_DestFull" xml:space="preserve"><value>移動先のインベントリが満杯です（{0}/{1}）。</value></data>
+  <data name="Inv_DestNoRoom" xml:space="preserve"><value>移動先の空きが足りません: 空き {0}、移動 {1}。</value></data>
+  <data name="SelectInv_Quantity" xml:space="preserve"><value>数量</value></data>
+  <data name="SelectInv_QuantityA11y" xml:space="preserve"><value>移動する数量 (1～{0})</value></data>
+  <data name="SelectInv_All" xml:space="preserve"><value>すべて</value></data>
+  <data name="SelectInv_AllA11y" xml:space="preserve"><value>スタック全体を移動 ({0})</value></data>
+  <data name="SelectInv_MovedMany" xml:space="preserve"><value>{1} に移動したアイテム: {0}。</value></data>
   <data name="SelectInv_Title" xml:space="preserve"><value>アイテムを移動</value></data>
   <data name="SelectInv_Heading" xml:space="preserve"><value>移動先のインベントリを選択</value></data>
   <data name="SelectInv_Search" xml:space="preserve"><value>名前または ID で移動先を検索</value></data>

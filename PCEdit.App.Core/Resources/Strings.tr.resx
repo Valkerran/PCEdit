@@ -121,6 +121,12 @@
   <data name="Inv_AlreadyThere" xml:space="preserve"><value>Bu öge zaten o envanterde.</value></data>
   <data name="Inv_DestNotFound" xml:space="preserve"><value>Hedef envanter bulunamadı.</value></data>
   <data name="Inv_DestFull" xml:space="preserve"><value>Hedef envanter dolu ({0}/{1}).</value></data>
+  <data name="Inv_DestNoRoom" xml:space="preserve"><value>Hedefte yeterli yer yok: {0} boş, taşınacak {1}.</value></data>
+  <data name="SelectInv_Quantity" xml:space="preserve"><value>Miktar</value></data>
+  <data name="SelectInv_QuantityA11y" xml:space="preserve"><value>Taşınacak miktar, 1 ile {0} arası</value></data>
+  <data name="SelectInv_All" xml:space="preserve"><value>Tümü</value></data>
+  <data name="SelectInv_AllA11y" xml:space="preserve"><value>Tüm yığını taşı ({0})</value></data>
+  <data name="SelectInv_MovedMany" xml:space="preserve"><value>{1} envanterine taşınan eşya: {0}.</value></data>
   <data name="SelectInv_Title" xml:space="preserve"><value>Ögeyi Taşı</value></data>
   <data name="SelectInv_Heading" xml:space="preserve"><value>Bir hedef envanter seçin</value></data>
   <data name="SelectInv_Search" xml:space="preserve"><value>Hedefleri ada veya kimliğe göre ara</value></data>

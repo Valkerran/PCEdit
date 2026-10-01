@@ -19,10 +19,11 @@ public interface INavigationService
     Task GoToInventoriesNeedingAttentionAsync();
 
     /// <summary>
-    /// Opens the "choose a destination inventory" screen for the given world object,
-    /// as a modal/secondary view.
+    /// Opens the "choose a destination inventory" screen, as a modal/secondary view, for a stack
+    /// of items from one inventory in the save's order; the player picks how many of them to move.
+    /// A single item is a stack of one.
     /// </summary>
-    Task OpenSelectInventoryAsync(int worldObjectId);
+    Task OpenSelectInventoryAsync(IReadOnlyList<int> worldObjectIds);
 
     /// <summary>Opens the demand/supply editor for a logistics container, as a modal view.</summary>
     Task OpenLogisticsEditorAsync(int inventoryId);

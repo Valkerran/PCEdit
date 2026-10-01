@@ -186,6 +186,12 @@
   <data name="Inv_AlreadyThere" xml:space="preserve"><value>This item is already in that inventory.</value></data>
   <data name="Inv_DestNotFound" xml:space="preserve"><value>The destination inventory was not found.</value></data>
   <data name="Inv_DestFull" xml:space="preserve"><value>The destination inventory is full ({0}/{1}).</value></data>
+  <data name="Inv_DestNoRoom" xml:space="preserve"><value>Not enough room in the destination: {0} free, {1} to move.</value></data>
+  <data name="SelectInv_Quantity" xml:space="preserve"><value>How many to move</value></data>
+  <data name="SelectInv_QuantityA11y" xml:space="preserve"><value>How many to move, from 1 to {0}</value></data>
+  <data name="SelectInv_All" xml:space="preserve"><value>All</value></data>
+  <data name="SelectInv_AllA11y" xml:space="preserve"><value>Move the whole stack ({0})</value></data>
+  <data name="SelectInv_MovedMany" xml:space="preserve"><value>Items moved to {1}: {0}.</value></data>
 
   <data name="SelectInv_Title" xml:space="preserve"><value>Move Item</value></data>
   <data name="SelectInv_Heading" xml:space="preserve"><value>Choose a destination inventory</value></data>

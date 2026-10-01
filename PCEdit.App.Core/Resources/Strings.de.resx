@@ -121,6 +121,12 @@
   <data name="Inv_AlreadyThere" xml:space="preserve"><value>Dieser Gegenstand ist bereits in diesem Inventar.</value></data>
   <data name="Inv_DestNotFound" xml:space="preserve"><value>Das Zielinventar wurde nicht gefunden.</value></data>
   <data name="Inv_DestFull" xml:space="preserve"><value>Das Zielinventar ist voll ({0}/{1}).</value></data>
+  <data name="Inv_DestNoRoom" xml:space="preserve"><value>Nicht genug Platz im Ziel: {0} frei, {1} zu verschieben.</value></data>
+  <data name="SelectInv_Quantity" xml:space="preserve"><value>Anzahl</value></data>
+  <data name="SelectInv_QuantityA11y" xml:space="preserve"><value>Anzahl zum Verschieben, von 1 bis {0}</value></data>
+  <data name="SelectInv_All" xml:space="preserve"><value>Alle</value></data>
+  <data name="SelectInv_AllA11y" xml:space="preserve"><value>Den ganzen Stapel verschieben ({0})</value></data>
+  <data name="SelectInv_MovedMany" xml:space="preserve"><value>Gegenstände nach {1} verschoben: {0}.</value></data>
   <data name="SelectInv_Title" xml:space="preserve"><value>Gegenstand verschieben</value></data>
   <data name="SelectInv_Heading" xml:space="preserve"><value>Zielinventar wählen</value></data>
   <data name="SelectInv_Search" xml:space="preserve"><value>Ziele nach Name oder ID suchen</value></data>

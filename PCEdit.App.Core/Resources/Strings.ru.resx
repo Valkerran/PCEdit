@@ -121,6 +121,12 @@
   <data name="Inv_AlreadyThere" xml:space="preserve"><value>Этот предмет уже находится в этом инвентаре.</value></data>
   <data name="Inv_DestNotFound" xml:space="preserve"><value>Целевой инвентарь не найден.</value></data>
   <data name="Inv_DestFull" xml:space="preserve"><value>Целевой инвентарь заполнен ({0}/{1}).</value></data>
+  <data name="Inv_DestNoRoom" xml:space="preserve"><value>Недостаточно места в месте назначения: свободно {0}, нужно переместить {1}.</value></data>
+  <data name="SelectInv_Quantity" xml:space="preserve"><value>Количество</value></data>
+  <data name="SelectInv_QuantityA11y" xml:space="preserve"><value>Сколько переместить, от 1 до {0}</value></data>
+  <data name="SelectInv_All" xml:space="preserve"><value>Все</value></data>
+  <data name="SelectInv_AllA11y" xml:space="preserve"><value>Переместить всю стопку ({0})</value></data>
+  <data name="SelectInv_MovedMany" xml:space="preserve"><value>Перемещено предметов в {1}: {0}.</value></data>
   <data name="SelectInv_Title" xml:space="preserve"><value>Переместить предмет</value></data>
   <data name="SelectInv_Heading" xml:space="preserve"><value>Выберите целевой инвентарь</value></data>
   <data name="SelectInv_Search" xml:space="preserve"><value>Поиск мест назначения по имени или ID</value></data>

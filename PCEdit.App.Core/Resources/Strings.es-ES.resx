@@ -121,6 +121,12 @@
   <data name="Inv_AlreadyThere" xml:space="preserve"><value>Este objeto ya está en ese inventario.</value></data>
   <data name="Inv_DestNotFound" xml:space="preserve"><value>No se encontró el inventario de destino.</value></data>
   <data name="Inv_DestFull" xml:space="preserve"><value>El inventario de destino está lleno ({0}/{1}).</value></data>
+  <data name="Inv_DestNoRoom" xml:space="preserve"><value>No hay espacio suficiente en el destino: {0} libres, {1} por mover.</value></data>
+  <data name="SelectInv_Quantity" xml:space="preserve"><value>Cantidad</value></data>
+  <data name="SelectInv_QuantityA11y" xml:space="preserve"><value>Cantidad que mover, de 1 a {0}</value></data>
+  <data name="SelectInv_All" xml:space="preserve"><value>Todo</value></data>
+  <data name="SelectInv_AllA11y" xml:space="preserve"><value>Mover toda la pila ({0})</value></data>
+  <data name="SelectInv_MovedMany" xml:space="preserve"><value>Objetos movidos a {1}: {0}.</value></data>
   <data name="SelectInv_Title" xml:space="preserve"><value>Mover objeto</value></data>
   <data name="SelectInv_Heading" xml:space="preserve"><value>Elige un inventario de destino</value></data>
   <data name="SelectInv_Search" xml:space="preserve"><value>Buscar destinos por nombre o ID</value></data>

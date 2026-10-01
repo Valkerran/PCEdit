@@ -43,11 +43,11 @@ public sealed class AvaloniaNavigationService(
         return Task.CompletedTask;
     }
 
-    public Task OpenSelectInventoryAsync(int worldObjectId) =>
+    public Task OpenSelectInventoryAsync(IReadOnlyList<int> worldObjectIds) =>
         Dispatcher.UIThread.InvokeAsync(async () =>
         {
             var vm = _services.GetRequiredService<SelectInventoryViewModel>();
-            vm.Initialize(worldObjectId);
+            vm.Initialize(worldObjectIds);
 
             _modal = new SelectInventoryWindow { DataContext = vm };
             await _modal.ShowDialog(_mainWindow.Require());

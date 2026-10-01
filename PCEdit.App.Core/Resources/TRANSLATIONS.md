@@ -76,6 +76,13 @@ over-full containers) added `Overview_Attention{Heading,OverCapacity,NearLoadLim
 — machine-translated. The two count lines put the number after a colon ("…: {0}.") so no locale
 needs plural forms.
 
+The partial-stack move (issue #64, phase 3: choose how many of a stack the Move dialog moves)
+added `Inv_DestNoRoom` ("…: {0} free, {1} to move."), `SelectInv_{Quantity,QuantityA11y,All,AllA11y}`
+(`{0}` = the stack size) and `SelectInv_MovedMany` ("Items moved to {1}: {0}.") — all
+machine-translated. Full and over-full destinations are not offered at all; a disabled one's
+screen-reader name ("…, room for {N}, …") is still built in English in
+`InventoryOptionView.AccessibleLabel` (see *Not yet localized*).
+
 | Culture | Language | Reviewed |
 |---|---|---|
 | en-US | English (United States) | n/a (source) |

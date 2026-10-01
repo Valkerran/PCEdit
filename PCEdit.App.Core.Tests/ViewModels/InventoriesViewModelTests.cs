@@ -241,7 +241,7 @@ public sealed class InventoriesViewModelTests
     }
 
     [Fact]
-    public async Task MoveStackCommand_OpensTheMoveDialogForTheStacksLastItem()
+    public async Task MoveStackCommand_OpensTheMoveDialogForTheWholeStack()
     {
         var nav = new FakeNavigationService();
         var vm = CreateLoaded(navigation: nav);
@@ -249,7 +249,7 @@ public sealed class InventoriesViewModelTests
 
         await vm.MoveStackCommand.ExecuteAsync(stack);
 
-        Assert.Equal([5100], nav.SelectInventoryRequests);
+        Assert.Equal([4022, 5100], Assert.Single(nav.SelectInventoryRequests));
     }
 
     [Fact]

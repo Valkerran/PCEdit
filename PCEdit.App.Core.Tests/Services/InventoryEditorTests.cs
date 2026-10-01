@@ -63,6 +63,57 @@ public sealed class InventoryEditorTests
     }
 
     [Fact]
+    public void TryMoveItems_MovesEveryGivenItem_KeepingTheirOrder()
+    {
+        var (editor, workspace) = CreateLoadedEditor();
+
+        var result = editor.TryMoveItems([200, 201], destinationInventoryId: 30); // 30 holds 202, room for 2
+
+        Assert.True(result.Success);
+        Assert.Equal("", workspace.Current!.Inventories.Single(i => i.Id == 10).WorldObjectIds);
+        Assert.Equal("202,200,201", workspace.Current!.Inventories.Single(i => i.Id == 30).WorldObjectIds);
+    }
+
+    [Fact]
+    public void TryMoveItems_WithoutRoomForThemAll_MovesNothing()
+    {
+        // Moving part of a stack is all-or-nothing: a half-done move would leave the player
+        // guessing which items went where.
+        var (editor, workspace) = CreateLoadedEditor();
+
+        var result = editor.TryMoveItems([200, 201], destinationInventoryId: 20); // one empty slot
+
+        Assert.False(result.Success);
+        Assert.Contains("1", result.ErrorMessage); // the free room
+        Assert.Equal("200,201", workspace.Current!.Inventories.Single(i => i.Id == 10).WorldObjectIds);
+        Assert.Equal("", workspace.Current!.Inventories.Single(i => i.Id == 20).WorldObjectIds);
+        Assert.False(workspace.IsDirty);
+    }
+
+    [Fact]
+    public void TryMoveItems_FromMoreThanOneInventory_MovesNothing()
+    {
+        var (editor, workspace) = CreateLoadedEditor();
+
+        var result = editor.TryMoveItems([200, 202], destinationInventoryId: 21); // 202 is in 30, not 10
+
+        Assert.False(result.Success);
+        Assert.False(workspace.IsDirty);
+    }
+
+    [Fact]
+    public void TryMoveItems_OutOfAnOverFullInventory_IsAllowed()
+    {
+        // That is how a player repairs a stacking-mod chest by hand (issue #64).
+        var (editor, workspace) = CreateLoadedEditor(WorkspaceFixtures.OverFillBobsInventory);
+
+        var result = editor.TryMoveItems([201], destinationInventoryId: 30);
+
+        Assert.True(result.Success);
+        Assert.Equal("200", workspace.Current!.Inventories.Single(i => i.Id == 20).WorldObjectIds);
+    }
+
+    [Fact]
     public void TryMoveItem_KeepsEntriesItCouldNotRead()
     {
         // Skipping an unreadable entry for display is fine. Dropping it on write is data loss -

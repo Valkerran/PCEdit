@@ -15,6 +15,18 @@
                 <TextBlock Text="{m:Loc SelectInv_Heading}" Classes="h2" VerticalAlignment="Center" />
             </StackPanel>
             <TextBox Text="{Binding Query, Mode=TwoWay}" PlaceholderText="{m:Loc SelectInv_Search}" />
+            <!-- Moving part of a stack (issue #64): only shown when there is more than one item.
+                 Destinations without room for the chosen quantity are disabled below. -->
+            <StackPanel Orientation="Horizontal" Spacing="10" IsVisible="{Binding IsStack}">
+                <TextBlock Text="{m:Loc SelectInv_Quantity}" VerticalAlignment="Center" />
+                <NumericUpDown Value="{Binding Quantity, Mode=TwoWay}" Minimum="1" Maximum="{Binding MaxQuantity}"
+                               Increment="1" FormatString="0" ParsingNumberStyle="Integer" MinWidth="140"
+                               AutomationProperties.Name="{m:LocFormat Key=SelectInv_QuantityA11y, Path=MaxQuantity}" />
+                <TextBlock Text="{Binding MaxQuantity, StringFormat='/ {0}'}" VerticalAlignment="Center" Classes="caption"
+                           AutomationProperties.AccessibilityView="Raw" />
+                <Button Content="{m:Loc SelectInv_All}" Command="{Binding AllCommand}"
+                        AutomationProperties.Name="{m:LocFormat Key=SelectInv_AllA11y, Path=MaxQuantity}" />
+            </StackPanel>
         </StackPanel>
 
         <StackPanel DockPanel.Dock="Bottom" Spacing="12" Margin="0,12,0,0">
@@ -27,12 +39,12 @@
         <ScrollViewer>
             <StackPanel Spacing="8">
                 <TextBlock Text="{m:Loc SelectInv_None}" Classes="caption" HorizontalAlignment="Center"
-                           IsVisible="{Binding Options.Count, Converter={StaticResource CountIsZero}}" />
+                           IsVisible="{Binding HasNoDestinations}" />
                 <ItemsControl ItemsSource="{Binding FilteredOptions}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate x:DataType="models:InventoryOptionView">
                             <Button Classes="link" HorizontalAlignment="Stretch" Margin="0,0,0,6"
-                                    IsEnabled="{Binding !IsFull}"
+                                    IsEnabled="{Binding HasRoom}"
                                     Command="{Binding #Root.DataContext.SelectCommand}"
                                     CommandParameter="{Binding}"
                                     AutomationProperties.Name="{Binding AccessibleLabel}">
