@@ -77,6 +77,7 @@ public sealed class PlanetCrafterSaveFileStoreTests : IDisposable
     [InlineData("Standard-2.json")]
     [InlineData("mini-save.json")]
     [InlineData("Humble-2.102.json")]
+    [InlineData("Humble-2.103.json")]
     public void SaveThenLoad_OfAnUnchangedSave_IsByteIdenticalOnDisk(string fixtureName)
     {
         var source = Path.Combine(AppContext.BaseDirectory, "TestData", fixtureName);

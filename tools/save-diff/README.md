@@ -42,3 +42,12 @@ catalogs do not cover yet.
 Framing, section count/order, BOM behaviour, and every key in sections 1–9 were unchanged on both
 platforms. The only schema change was **`logisticsPaused` added to section 0 (unlocks)** — modelled
 as `SaveFileUnlocks.LogisticsPaused` (nullable, so a pre-2.102 save does not gain the key on save).
+
+## Result for 2.102 → 2.103
+
+Checked on Steam only, on the same world before and after: `Chill-1` (Humble), saved by 2.102
+(`Humble-2.102.json`) and then loaded and saved in-game by 2.103 (`Humble-2.103.json`). Framing,
+section count/order, BOM behaviour and **every key in all ten sections were unchanged**; the only
+metadata difference was `version`. Two unrelated 2.103 Prime saves (7,000+ world objects each)
+confirmed it: no key absent from every 2.008 / 2.102 sample, byte-identical PCEdit round-trip, and
+`report_missing.py` found no uncovered content ids. No model change was needed.

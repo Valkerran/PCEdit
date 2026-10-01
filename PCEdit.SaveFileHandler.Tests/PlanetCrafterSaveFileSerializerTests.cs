@@ -206,6 +206,7 @@ public sealed class PlanetCrafterSaveFileSerializerTests
     [InlineData("Standard-2.json")]
     [InlineData("mini-save.json")]
     [InlineData("Humble-2.102.json")]
+    [InlineData("Humble-2.103.json")]
     [InlineData("Interplanetary-2.102.json")]
     public void RoundTrip_RealSampleSaveFile_PreservesEveryKeyAndValue(string fixtureName)
     {
@@ -223,6 +224,7 @@ public sealed class PlanetCrafterSaveFileSerializerTests
     [InlineData("Standard-2.json")]
     [InlineData("mini-save.json")]
     [InlineData("Humble-2.102.json")]
+    [InlineData("Humble-2.103.json")]
     [InlineData("Interplanetary-2.102.json")]
     public void RoundTrip_RealSampleSaveFile_ReserializesCharacterForCharacter(string fixtureName)
     {

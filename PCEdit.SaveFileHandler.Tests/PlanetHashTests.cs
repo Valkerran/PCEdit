@@ -23,11 +23,12 @@ public sealed class PlanetHashTests
         Assert.Equal(expected, PlanetHash.Of(planetId));
     }
 
-    // Both fixtures are single-planet saves (2.008 Prime / 2.102 Humble), so every placed world
-    // object must carry that planet's hash.
+    // Every fixture here is a single-planet save (2.008 Prime / 2.102 + 2.103 Humble), so every
+    // placed world object must carry that planet's hash.
     [Theory]
     [InlineData("Standard-2.json")]
     [InlineData("Humble-2.102.json")]
+    [InlineData("Humble-2.103.json")]
     public void Of_MatchesThePlanetIntOnARealSaveFilesWorldObjects(string fixtureName)
     {
         var path = Path.Combine(AppContext.BaseDirectory, "TestData", fixtureName);
