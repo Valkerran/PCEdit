@@ -197,6 +197,8 @@
   "Inventories_FillNearLoadLimit": "near load limit",
   "Inventories_FillOverFullHelp": "Holds {0} items in {1} slots. An unmodded game never fills a container past its size; this is typical of an inventory-stacking mod.",
   "Inventories_FillNearLoadLimitHelp": "Holds {0} items. The game loads at most 8,000 items into one inventory and silently drops the rest.",
+  "Inventories_StackCount": "× {0}",
+  "Inventories_MoveStackA11y": "Move one {0}, from a stack of {1}, to another inventory",
   "Teleport_LandmarkAllWorlds": "Show landmarks from all worlds",
   "Teleport_AimedAtWorld": "Aimed at {0}. Adjust X / Y / Z or pick a landmark for a precise spot.",
   "Teleport_MultiplayerNote": "Changes apply to the selected player only. For a player who is not the game's host, edit while they are offline and check the result in-game.",

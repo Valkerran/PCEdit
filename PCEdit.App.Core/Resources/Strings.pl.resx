@@ -106,6 +106,8 @@
   <data name="Inventories_FillNearLoadLimit" xml:space="preserve"><value>blisko limitu wczytywania</value></data>
   <data name="Inventories_FillOverFullHelp" xml:space="preserve"><value>Zawiera {0} przedmiotów w {1} miejscach. Gra bez modów nigdy nie zapełnia pojemnika ponad jego rozmiar; to typowe dla moda do stakowania w ekwipunku.</value></data>
   <data name="Inventories_FillNearLoadLimitHelp" xml:space="preserve"><value>Zawiera {0} przedmiotów. Gra wczytuje najwyżej 8000 przedmiotów do jednego ekwipunku, a resztę po cichu odrzuca.</value></data>
+  <data name="Inventories_StackCount" xml:space="preserve"><value>× {0}</value></data>
+  <data name="Inventories_MoveStackA11y" xml:space="preserve"><value>Przenieś jeden przedmiot „{0}” ze stosu {1} do innego ekwipunku</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>Ekwipunek gracza {0}</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>Wyposażenie gracza {0}</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0} (obiekt nr {1})</value></data>

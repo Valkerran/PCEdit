@@ -129,10 +129,11 @@ public sealed partial class InventoriesViewModel(
         OnPropertyChanged(nameof(IsFilteredEmpty));
     }
 
+    /// <summary>Moves one item of the stack: its last, as the game takes overflow from the end.</summary>
     [RelayCommand]
-    private async Task MoveItemAsync(InventoryItemView item)
+    private async Task MoveStackAsync(InventoryStackView stack)
     {
-        await _navigation.OpenSelectInventoryAsync(item.WorldObjectId);
+        await _navigation.OpenSelectInventoryAsync(stack.LastWorldObjectId);
     }
 
     [RelayCommand]

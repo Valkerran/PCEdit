@@ -190,9 +190,11 @@
                                 <TextBlock Classes="caption" IsVisible="{Binding IsNarrowed}"
                                            Text="{m:LocFormat Key=Inventories_ShowingSome, Path=Items.Count, Path2=TotalItemCount}" />
 
-                                <ItemsControl ItemsSource="{Binding Items}">
+                                <!-- One row per stack, not per item (issue #64): a stacking-mod chest holds thousands of
+                                     one item, and a row each froze the page for seconds. -->
+                                <ItemsControl ItemsSource="{Binding Stacks}">
                                     <ItemsControl.ItemTemplate>
-                                        <DataTemplate x:DataType="models:InventoryItemView">
+                                        <DataTemplate x:DataType="models:InventoryStackView">
                                             <Grid ColumnDefinitions="Auto,*,Auto,Auto" ColumnSpacing="10" Margin="0,3"
                                                   ToolTip.Tip="{Binding GId}">
                                                 <Image Grid.Column="0" Width="28" Height="28" VerticalAlignment="Center"
@@ -200,15 +202,26 @@
                                                        AutomationProperties.AccessibilityView="Raw" />
                                                 <TextBlock Grid.Column="1" VerticalAlignment="Center"
                                                            Text="{Binding DisplayName}" TextTrimming="CharacterEllipsis" />
-                                                <!-- The item's world-object id (issue #3). Hidden from screen
-                                                     readers here because the Move button's name carries it. -->
+                                                <!-- A lone item shows its world-object id (issue #3), a stack its count. Both are
+                                                     hidden from screen readers here because the Move button's name carries them. -->
                                                 <TextBlock Grid.Column="2" VerticalAlignment="Center" Classes="caption"
-                                                           Text="{m:LocFormat Key=Inventories_ItemId, Path=WorldObjectId}"
+                                                           IsVisible="{Binding IsSingle}"
+                                                           Text="{m:LocFormat Key=Inventories_ItemId, Path=FirstWorldObjectId}"
+                                                           AutomationProperties.AccessibilityView="Raw" />
+                                                <TextBlock Grid.Column="2" VerticalAlignment="Center" FontWeight="Bold"
+                                                           IsVisible="{Binding !IsSingle}"
+                                                           Text="{m:LocFormat Key=Inventories_StackCount, Path=Count}"
                                                            AutomationProperties.AccessibilityView="Raw" />
                                                 <Button Grid.Column="3" Content="{m:Loc Inventories_Move}"
-                                                        Command="{Binding DataContext.MoveItemCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                        IsVisible="{Binding IsSingle}"
+                                                        Command="{Binding DataContext.MoveStackCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                         CommandParameter="{Binding}"
-                                                        AutomationProperties.Name="{m:LocFormat Key=Inventories_MoveA11y, Path=DisplayName, Path2=WorldObjectId}" />
+                                                        AutomationProperties.Name="{m:LocFormat Key=Inventories_MoveA11y, Path=DisplayName, Path2=FirstWorldObjectId}" />
+                                                <Button Grid.Column="3" Content="{m:Loc Inventories_Move}"
+                                                        IsVisible="{Binding !IsSingle}"
+                                                        Command="{Binding DataContext.MoveStackCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                        CommandParameter="{Binding}"
+                                                        AutomationProperties.Name="{m:LocFormat Key=Inventories_MoveStackA11y, Path=DisplayName, Path2=Count}" />
                                             </Grid>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>

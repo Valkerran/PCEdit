@@ -106,6 +106,8 @@
   <data name="Inventories_FillNearLoadLimit" xml:space="preserve"><value>близко к пределу загрузки</value></data>
   <data name="Inventories_FillOverFullHelp" xml:space="preserve"><value>Предметов: {0} при {1} ячейках. Игра без модов никогда не заполняет контейнер сверх его размера; это типично для мода на стаки в инвентаре.</value></data>
   <data name="Inventories_FillNearLoadLimitHelp" xml:space="preserve"><value>Предметов: {0}. Игра загружает в один инвентарь не более 8000 предметов и молча отбрасывает остальные.</value></data>
+  <data name="Inventories_StackCount" xml:space="preserve"><value>× {0}</value></data>
+  <data name="Inventories_MoveStackA11y" xml:space="preserve"><value>Переместить один предмет «{0}» из стопки ({1} шт.) в другой инвентарь</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>Инвентарь игрока {0}</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>Снаряжение игрока {0}</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0} (объект №{1})</value></data>

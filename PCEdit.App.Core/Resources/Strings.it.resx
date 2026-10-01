@@ -106,6 +106,8 @@
   <data name="Inventories_FillNearLoadLimit" xml:space="preserve"><value>vicino al limite di caricamento</value></data>
   <data name="Inventories_FillOverFullHelp" xml:space="preserve"><value>Contiene {0} oggetti in {1} slot. Un gioco senza mod non riempie mai un contenitore oltre la sua capienza; è tipico di una mod di impilamento dell'inventario.</value></data>
   <data name="Inventories_FillNearLoadLimitHelp" xml:space="preserve"><value>Contiene {0} oggetti. Il gioco carica al massimo 8.000 oggetti per inventario e scarta il resto senza avvisare.</value></data>
+  <data name="Inventories_StackCount" xml:space="preserve"><value>× {0}</value></data>
+  <data name="Inventories_MoveStackA11y" xml:space="preserve"><value>Sposta un oggetto «{0}» da una pila di {1} in un altro inventario</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>Inventario di {0}</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>Equipaggiamento di {0}</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0} (oggetto n. {1})</value></data>

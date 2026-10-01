@@ -138,6 +138,73 @@ public sealed class InventoryGroupTests
         Assert.True(Container().Matches(string.Empty));
     }
 
+    [Fact]
+    public void Stacks_GroupItemsOfOneKind_InTheOrderTheyFirstAppear()
+    {
+        var stacks = MixedContainer().Stacks;
+
+        Assert.Equal(["Brojo Seed", "Iron"], stacks.Select(s => s.DisplayName).ToArray());
+        Assert.Equal([4021], stacks[0].WorldObjectIds);
+        Assert.Equal([4022, 5100], stacks[1].WorldObjectIds);
+    }
+
+    [Fact]
+    public void Stacks_KeepItemsWithDifferentStackKeysApart()
+    {
+        // Two traits of the same type but different trait data must stay separately movable.
+        var card = MixedContainer() with
+        {
+            Items =
+            [
+                new InventoryItemView(1, "GeneticTrait", 5, "Genetic Trait", "dna.png") { StackKey = "trait-a" },
+                new InventoryItemView(2, "GeneticTrait", 5, "Genetic Trait", "dna.png") { StackKey = "trait-b" },
+                new InventoryItemView(3, "GeneticTrait", 5, "Genetic Trait", "dna.png") { StackKey = "trait-a" },
+            ],
+        };
+
+        Assert.Equal([[1, 3], [2]], card.Stacks.Select(s => s.WorldObjectIds.ToArray()).ToArray());
+    }
+
+    [Fact]
+    public void AStack_ReportsItsCountAndTheItemAMoveTakes()
+    {
+        var iron = MixedContainer().Stacks[1];
+
+        Assert.Equal(2, iron.Count);
+        Assert.False(iron.IsSingle);
+        Assert.Equal(5100, iron.LastWorldObjectId); // the last in the save's order, like the game's overflow
+    }
+
+    [Fact]
+    public void NarrowTo_ATextSearch_StillGroupsTheMatches()
+    {
+        var narrowed = MixedContainer().NarrowTo("iron")!;
+
+        var stack = Assert.Single(narrowed.Stacks);
+        Assert.Equal([4022, 5100], stack.WorldObjectIds);
+    }
+
+    [Fact]
+    public void NarrowTo_AnIdSearch_ListsEachMatchingItemOnItsOwnRow()
+    {
+        // Searching by id is how a player finds one particular item; grouping it back into a
+        // stack would hide which one a Move would take.
+        var card = MixedContainer() with
+        {
+            Items =
+            [
+                new InventoryItemView(4022, "Iron", 5, "Iron", "ore.png"),
+                new InventoryItemView(4023, "Iron", 5, "Iron", "ore.png"),
+                new InventoryItemView(5100, "Iron", 5, "Iron", "ore.png"),
+            ],
+        };
+
+        var narrowed = card.NarrowTo("402")!;
+
+        Assert.Equal([[4022], [4023]], narrowed.Stacks.Select(s => s.WorldObjectIds.ToArray()).ToArray());
+        Assert.All(narrowed.Stacks, s => Assert.True(s.IsSingle));
+    }
+
     // A card holding `count` items in `size` slots; the items themselves don't matter to the fill.
     private static InventoryGroup Filled(int count, int size) => new()
     {

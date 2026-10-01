@@ -11,7 +11,9 @@ public sealed class InventoriesViewModelTests
 {
     private const string Path = @"C:\fake\save.txt";
 
-    private static InventoriesViewModel CreateLoaded(Action<PCEdit.SaveFileHandler.Models.PlanetCrafterSaveFile>? adjust = null)
+    private static InventoriesViewModel CreateLoaded(
+        Action<PCEdit.SaveFileHandler.Models.PlanetCrafterSaveFile>? adjust = null,
+        FakeNavigationService? navigation = null)
     {
         var store = new FakeSaveFileStore();
         var save = WorkspaceFixtures.Create();
@@ -21,7 +23,7 @@ public sealed class InventoriesViewModelTests
         var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         workspace.Load(Path);
         var itemCatalog = new ItemCatalog();
-        var vm = new InventoriesViewModel(workspace, new InventoryEditor(workspace, itemCatalog, new LogisticsGroupCatalog(itemCatalog), localizer, new PlanetIndex(workspace)), new FakeNavigationService(), localizer);
+        var vm = new InventoriesViewModel(workspace, new InventoryEditor(workspace, itemCatalog, new LogisticsGroupCatalog(itemCatalog), localizer, new PlanetIndex(workspace)), navigation ?? new FakeNavigationService(), localizer);
         vm.Load();
         return vm;
     }
@@ -245,6 +247,18 @@ public sealed class InventoriesViewModelTests
 
         Assert.Empty(vm.Groups);
         Assert.True(vm.IsFilteredEmpty);
+    }
+
+    [Fact]
+    public async Task MoveStackCommand_OpensTheMoveDialogForTheStacksLastItem()
+    {
+        var nav = new FakeNavigationService();
+        var vm = CreateLoaded(navigation: nav);
+        var stack = new InventoryStackView("Iron", "Iron", "ore.png", [4022, 5100]);
+
+        await vm.MoveStackCommand.ExecuteAsync(stack);
+
+        Assert.Equal([5100], nav.SelectInventoryRequests);
     }
 
     [Fact]

@@ -106,6 +106,8 @@
   <data name="Inventories_FillNearLoadLimit" xml:space="preserve"><value>로드 한도 근접</value></data>
   <data name="Inventories_FillOverFullHelp" xml:space="preserve"><value>슬롯 {1}개에 아이템 {0}개가 있습니다. 모드 없는 게임은 컨테이너를 크기 이상으로 채우지 않으며, 인벤토리 스택 모드에서 흔히 나타나는 상태입니다.</value></data>
   <data name="Inventories_FillNearLoadLimitHelp" xml:space="preserve"><value>아이템 {0}개가 있습니다. 게임은 인벤토리 하나에 최대 8,000개까지만 불러오고 나머지는 경고 없이 버립니다.</value></data>
+  <data name="Inventories_StackCount" xml:space="preserve"><value>× {0}</value></data>
+  <data name="Inventories_MoveStackA11y" xml:space="preserve"><value>{1}개 묶음에서 {0} 1개를 다른 인벤토리로 이동</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>{0}의 인벤토리</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>{0}의 장비</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0} (오브젝트 #{1})</value></data>

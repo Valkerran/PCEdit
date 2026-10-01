@@ -106,6 +106,8 @@
   <data name="Inventories_FillNearLoadLimit" xml:space="preserve"><value>nahe Ladegrenze</value></data>
   <data name="Inventories_FillOverFullHelp" xml:space="preserve"><value>Enthält {0} Gegenstände auf {1} Plätzen. Ein Spiel ohne Mods füllt einen Behälter nie über seine Größe hinaus; das ist typisch für eine Mod zum Stapeln im Inventar.</value></data>
   <data name="Inventories_FillNearLoadLimitHelp" xml:space="preserve"><value>Enthält {0} Gegenstände. Das Spiel lädt höchstens 8.000 Gegenstände pro Inventar und verwirft den Rest ohne Hinweis.</value></data>
+  <data name="Inventories_StackCount" xml:space="preserve"><value>× {0}</value></data>
+  <data name="Inventories_MoveStackA11y" xml:space="preserve"><value>Einen Gegenstand „{0}“ aus einem Stapel von {1} in ein anderes Inventar verschieben</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>Inventar von {0}</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>Ausrüstung von {0}</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0} (Objekt Nr. {1})</value></data>

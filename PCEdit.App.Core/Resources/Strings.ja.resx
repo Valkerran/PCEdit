@@ -106,6 +106,8 @@
   <data name="Inventories_FillNearLoadLimit" xml:space="preserve"><value>読み込み上限に接近</value></data>
   <data name="Inventories_FillOverFullHelp" xml:space="preserve"><value>{1} スロットに {0} 個のアイテムがあります。MOD なしのゲームではコンテナがサイズを超えることはなく、インベントリのスタック MOD によく見られる状態です。</value></data>
   <data name="Inventories_FillNearLoadLimitHelp" xml:space="preserve"><value>{0} 個のアイテムがあります。ゲームは 1 つのインベントリに最大 8,000 個までしか読み込まず、残りは警告なく破棄されます。</value></data>
+  <data name="Inventories_StackCount" xml:space="preserve"><value>× {0}</value></data>
+  <data name="Inventories_MoveStackA11y" xml:space="preserve"><value>{1} 個のスタックから {0} を 1 個、別のインベントリに移動</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>{0} のインベントリ</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>{0} の装備</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0}（オブジェクト #{1}）</value></data>

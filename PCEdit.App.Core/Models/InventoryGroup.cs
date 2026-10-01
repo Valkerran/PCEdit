@@ -61,6 +61,24 @@ public sealed record InventoryGroup
     /// label already is "Inventory #N", so repeating it would say the same thing twice.</summary>
     public bool ShowInventoryIdCaption => Kind != InventoryKind.Other;
 
+    /// <summary>
+    /// The card's rows: <see cref="Items"/> grouped by stack key in the order each key first
+    /// appears, or one row per item on a card narrowed by an id search. Built on each read, not
+    /// cached: a cache would be carried into the copy <see cref="NarrowTo"/> makes with
+    /// <c>with</c>, giving the narrowed card the unnarrowed rows. The view reads it once per card.
+    /// </summary>
+    public IReadOnlyList<InventoryStackView> Stacks => OneRowPerItem
+        ? Items.Select(item => new InventoryStackView(item.GId, item.DisplayName, item.IconFile, [item.WorldObjectId])).ToList()
+        : Items.GroupBy(item => item.StackKey, StringComparer.Ordinal)
+            .Select(stack =>
+            {
+                var first = stack.First();
+                return new InventoryStackView(first.GId, first.DisplayName, first.IconFile, stack.Select(i => i.WorldObjectId).ToList());
+            })
+            .ToList();
+
+    private bool OneRowPerItem { get; init; }
+
     public bool HasItems => TotalItemCount > 0;
 
     public string CapacityLabel => $"{TotalItemCount}/{Size}";
@@ -112,9 +130,14 @@ public sealed record InventoryGroup
             return null;
         }
 
-        return matching.Count == Items.Count
-            ? this
-            : this with { Items = matching, TotalItemCount = TotalItemCount };
+        // An id search lists each match on its own row even when every item matched: the user is
+        // after particular items, and a stack row would hide which one a Move takes.
+        if (matching.Count == Items.Count && digits is null)
+        {
+            return this;
+        }
+
+        return this with { Items = matching, TotalItemCount = TotalItemCount, OneRowPerItem = digits is not null };
     }
 
     /// <summary>True when this card would be shown at all for a search term.</summary>

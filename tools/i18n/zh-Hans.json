@@ -197,6 +197,8 @@
   "Inventories_FillNearLoadLimit": "接近加载上限",
   "Inventories_FillOverFullHelp": "{1} 个格子中有 {0} 个物品。未安装模组的游戏不会让容器超出其容量；这通常由物品堆叠模组造成。",
   "Inventories_FillNearLoadLimitHelp": "有 {0} 个物品。游戏每个库存最多加载 8,000 个物品，其余会被静默丢弃。",
+  "Inventories_StackCount": "× {0}",
+  "Inventories_MoveStackA11y": "从 {1} 个的堆叠中将 1 个 {0} 移动到另一个库存",
   "Teleport_LandmarkAllWorlds": "显示所有世界的地标",
   "Teleport_AimedAtWorld": "已瞄准 {0}。调整 X / Y / Z 或选择一个地标以确定精确位置。",
   "Teleport_MultiplayerNote": "更改仅应用于所选玩家。对于非游戏主机的玩家，请在其离线时进行编辑，并在游戏中确认结果。",

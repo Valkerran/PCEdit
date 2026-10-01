@@ -106,6 +106,8 @@
   <data name="Inventories_FillNearLoadLimit" xml:space="preserve"><value>yükleme sınırına yakın</value></data>
   <data name="Inventories_FillOverFullHelp" xml:space="preserve"><value>{1} yuvada {0} eşya var. Modsuz oyun bir kabı asla boyutunun üzerinde doldurmaz; bu durum envanter yığınlama modlarına özgüdür.</value></data>
   <data name="Inventories_FillNearLoadLimitHelp" xml:space="preserve"><value>{0} eşya var. Oyun bir envantere en fazla 8.000 eşya yükler ve gerisini sessizce atar.</value></data>
+  <data name="Inventories_StackCount" xml:space="preserve"><value>× {0}</value></data>
+  <data name="Inventories_MoveStackA11y" xml:space="preserve"><value>{1} adetlik yığından bir {0} ögesini başka bir envantere taşı</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>{0} adlı oyuncunun envanteri</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>{0} adlı oyuncunun ekipmanı</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0} (Nesne #{1})</value></data>

@@ -197,6 +197,8 @@
   "Inventories_FillNearLoadLimit": "cerca del límite de carga",
   "Inventories_FillOverFullHelp": "Contiene {0} objetos en {1} huecos. Un juego sin mods nunca llena un contenedor por encima de su tamaño; es típico de un mod de apilamiento de inventario.",
   "Inventories_FillNearLoadLimitHelp": "Contiene {0} objetos. El juego carga como máximo 8.000 objetos por inventario y descarta el resto sin avisar.",
+  "Inventories_StackCount": "× {0}",
+  "Inventories_MoveStackA11y": "Mover un objeto «{0}» de una pila de {1} a otro inventario",
   "Teleport_LandmarkAllWorlds": "Mostrar puntos de referencia de todos los mundos",
   "Teleport_AimedAtWorld": "Apuntando a {0}. Ajusta X / Y / Z o elige un punto de referencia para un lugar preciso.",
   "Teleport_MultiplayerNote": "Los cambios se aplican solo al jugador seleccionado. Para un jugador que no es el anfitrión de la partida, edítalo mientras está desconectado y comprueba el resultado en el juego.",

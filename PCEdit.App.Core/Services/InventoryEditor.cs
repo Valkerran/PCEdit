@@ -99,7 +99,10 @@ public sealed class InventoryEditor(
     private InventoryItemView ToItemView(WorldObject worldObject, int inventoryId)
     {
         var info = _itemCatalog.Resolve(worldObject.GId);
-        return new InventoryItemView(worldObject.Id, worldObject.GId, inventoryId, info.DisplayName, info.IconFile);
+        return new InventoryItemView(worldObject.Id, worldObject.GId, inventoryId, info.DisplayName, info.IconFile)
+        {
+            StackKey = ItemStackKey.Of(worldObject),
+        };
     }
 
     public List<InventoryOptionView> GetDestinationOptions(int worldObjectId)

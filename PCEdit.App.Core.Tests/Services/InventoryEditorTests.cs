@@ -306,6 +306,22 @@ public sealed class InventoryEditorTests
     }
 
     [Fact]
+    public void BuildInventoryGroups_StacksItemsThatDifferOnlyByTheirId()
+    {
+        var (editor, _) = CreateLoadedEditor(save =>
+        {
+            save.WorldObjects.Add(new PCEdit.SaveFileHandler.Models.WorldObject { Id = 300, GId = "GeneticTrait", Color = "1-0-0-0" });
+            save.WorldObjects.Add(new PCEdit.SaveFileHandler.Models.WorldObject { Id = 301, GId = "GeneticTrait", Color = "1-0-0-0" });
+            save.WorldObjects.Add(new PCEdit.SaveFileHandler.Models.WorldObject { Id = 302, GId = "GeneticTrait", Color = "0-1-0-0" });
+            SetIdList(save, 30, "300,301,302");
+        });
+
+        var container = editor.BuildInventoryGroups().Single(g => g.InventoryId == 30);
+
+        Assert.Equal([[300, 301], [302]], container.Stacks.Select(s => s.WorldObjectIds.ToArray()).ToArray());
+    }
+
+    [Fact]
     public void BuildInventoryGroups_ItemsContainCorrectWorldObjectIds()
     {
         var (editor, _) = CreateLoadedEditor();

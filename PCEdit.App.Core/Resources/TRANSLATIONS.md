@@ -65,6 +65,12 @@ NearLoadLimit}Help` (the badge tooltip, also its screen-reader help text) — al
 machine-translated. The 8,000 in `Inventories_FillNearLoadLimitHelp` is the game's per-inventory
 load cap, written in each locale's own digit grouping.
 
+The stack-rows pass (issue #64, phase 2: one row per stack of identical items on an Inventories
+card) added `Inventories_StackCount` ("× {0}", the count beside a stacked row) and
+`Inventories_MoveStackA11y` (the Move button's screen-reader name on a stack, `{0}` = item name,
+`{1}` = stack size) — machine-translated. A one-item row keeps `Inventories_ItemId` /
+`Inventories_MoveA11y`.
+
 | Culture | Language | Reviewed |
 |---|---|---|
 | en-US | English (United States) | n/a (source) |

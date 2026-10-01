@@ -106,6 +106,8 @@
   <data name="Inventories_FillNearLoadLimit" xml:space="preserve"><value>perto do limite de carregamento</value></data>
   <data name="Inventories_FillOverFullHelp" xml:space="preserve"><value>Contém {0} itens em {1} espaços. Um jogo sem mods nunca enche um contentor acima do seu tamanho; isto é típico de um mod de empilhamento de inventário.</value></data>
   <data name="Inventories_FillNearLoadLimitHelp" xml:space="preserve"><value>Contém {0} itens. O jogo carrega no máximo 8000 itens por inventário e descarta o resto sem aviso.</value></data>
+  <data name="Inventories_StackCount" xml:space="preserve"><value>× {0}</value></data>
+  <data name="Inventories_MoveStackA11y" xml:space="preserve"><value>Mover um item «{0}» de uma pilha de {1} para outro inventário</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>Inventário de {0}</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>Equipamento de {0}</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0} (objeto n.º {1})</value></data>

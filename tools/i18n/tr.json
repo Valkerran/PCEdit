@@ -197,6 +197,8 @@
   "Inventories_FillNearLoadLimit": "yükleme sınırına yakın",
   "Inventories_FillOverFullHelp": "{1} yuvada {0} eşya var. Modsuz oyun bir kabı asla boyutunun üzerinde doldurmaz; bu durum envanter yığınlama modlarına özgüdür.",
   "Inventories_FillNearLoadLimitHelp": "{0} eşya var. Oyun bir envantere en fazla 8.000 eşya yükler ve gerisini sessizce atar.",
+  "Inventories_StackCount": "× {0}",
+  "Inventories_MoveStackA11y": "{1} adetlik yığından bir {0} ögesini başka bir envantere taşı",
   "Teleport_LandmarkAllWorlds": "Tüm dünyalardan önemli noktaları göster",
   "Teleport_AimedAtWorld": "{0} hedeflendi. Kesin bir nokta için X / Y / Z değerlerini ayarlayın veya bir önemli nokta seçin.",
   "Teleport_MultiplayerNote": "Değişiklikler yalnızca seçili oyuncuya uygulanır. Oyunun ana bilgisayarı olmayan bir oyuncuyu çevrimdışıyken düzenleyin ve sonucu oyun içinde kontrol edin.",

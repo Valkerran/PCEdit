@@ -197,6 +197,8 @@
   "Inventories_FillNearLoadLimit": "読み込み上限に接近",
   "Inventories_FillOverFullHelp": "{1} スロットに {0} 個のアイテムがあります。MOD なしのゲームではコンテナがサイズを超えることはなく、インベントリのスタック MOD によく見られる状態です。",
   "Inventories_FillNearLoadLimitHelp": "{0} 個のアイテムがあります。ゲームは 1 つのインベントリに最大 8,000 個までしか読み込まず、残りは警告なく破棄されます。",
+  "Inventories_StackCount": "× {0}",
+  "Inventories_MoveStackA11y": "{1} 個のスタックから {0} を 1 個、別のインベントリに移動",
   "Teleport_LandmarkAllWorlds": "すべてのワールドのランドマークを表示",
   "Teleport_AimedAtWorld": "{0} を狙っています。X / Y / Z を調整するか、正確な位置のためにランドマークを選んでください。",
   "Teleport_MultiplayerNote": "変更は選択したプレイヤーにのみ適用されます。ゲームのホストではないプレイヤーは、オフラインのときに編集し、ゲーム内で結果を確認してください。",
