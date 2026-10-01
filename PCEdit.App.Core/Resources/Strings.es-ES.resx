@@ -101,6 +101,11 @@
   <data name="Inventories_FilterWorldA11y" xml:space="preserve"><value>Filtrar inventarios por mundo</value></data>
   <data name="Inventories_WorldAll" xml:space="preserve"><value>Todos los mundos</value></data>
   <data name="Inventories_WorldUnknown" xml:space="preserve"><value>Mundo desconocido</value></data>
+  <data name="Inventories_FilterAttention" xml:space="preserve"><value>Requiere atención ({0})</value></data>
+  <data name="Inventories_FillOverFull" xml:space="preserve"><value>sobrecargado</value></data>
+  <data name="Inventories_FillNearLoadLimit" xml:space="preserve"><value>cerca del límite de carga</value></data>
+  <data name="Inventories_FillOverFullHelp" xml:space="preserve"><value>Contiene {0} objetos en {1} huecos. Un juego sin mods nunca llena un contenedor por encima de su tamaño; es típico de un mod de apilamiento de inventario.</value></data>
+  <data name="Inventories_FillNearLoadLimitHelp" xml:space="preserve"><value>Contiene {0} objetos. El juego carga como máximo 8.000 objetos por inventario y descarta el resto sin avisar.</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>Inventario de {0}</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>Equipo de {0}</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0} (objeto n.º {1})</value></data>

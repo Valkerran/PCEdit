@@ -57,6 +57,14 @@ it follows each locale's existing number sign from `Inv_Fallback` (`#`, `nº`, `
 screen reader can tell two identical items apart. The inventory-id caption on the Inventories
 cards and the Move dialog's destinations reuses `Inv_Fallback` itself.
 
+The over-full warning pass (issue #64, phase 1: flag inventories holding more items than slots,
+as an inventory-stacking mod leaves them) added `Inventories_FilterAttention` (the "Needs
+attention ({0})" filter chip, `{0}` = flagged inventory count), `Inventories_Fill{OverFull,
+NearLoadLimit}` (the word shown in a card's capacity badge) and `Inventories_Fill{OverFull,
+NearLoadLimit}Help` (the badge tooltip, also its screen-reader help text) — all
+machine-translated. The 8,000 in `Inventories_FillNearLoadLimitHelp` is the game's per-inventory
+load cap, written in each locale's own digit grouping.
+
 | Culture | Language | Reviewed |
 |---|---|---|
 | en-US | English (United States) | n/a (source) |

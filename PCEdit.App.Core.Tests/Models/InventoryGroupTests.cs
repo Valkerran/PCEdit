@@ -137,4 +137,60 @@ public sealed class InventoryGroupTests
     {
         Assert.True(Container().Matches(string.Empty));
     }
+
+    // A card holding `count` items in `size` slots; the items themselves don't matter to the fill.
+    private static InventoryGroup Filled(int count, int size) => new()
+    {
+        InventoryId = 7,
+        Label = "Storage",
+        Size = size,
+        Kind = InventoryKind.Container,
+        Items = [],
+        TotalItemCount = count,
+    };
+
+    [Theory]
+    [InlineData(0, 15, InventoryFill.Normal)]
+    [InlineData(15, 15, InventoryFill.Normal)]            // full is not over-full
+    [InlineData(16, 15, InventoryFill.OverFull)]
+    [InlineData(1500, 15, InventoryFill.OverFull)]        // a 100x stacking-mod chest
+    [InlineData(7200, 80, InventoryFill.OverFull)]
+    [InlineData(7201, 80, InventoryFill.NearLoadLimit)]   // past 90% of the game's 8000-item load cap
+    [InlineData(7201, 10000, InventoryFill.NearLoadLimit)] // the cap applies whatever the size
+    public void Fill_ClassifiesTheItemCountAgainstTheSizeAndTheGamesLoadCap(int count, int size, InventoryFill expected)
+    {
+        Assert.Equal(expected, Filled(count, size).Fill);
+    }
+
+    [Fact]
+    public void Fill_OfANarrowedCard_UsesTheTrueItemCount()
+    {
+        var overFull = MixedContainer() with { Size = 2 };
+
+        var narrowed = overFull.NarrowTo("brojo")!;
+
+        Assert.Single(narrowed.Items);
+        Assert.Equal(InventoryFill.OverFull, narrowed.Fill);
+    }
+
+    [Theory]
+    [InlineData(15, 15, false, false)]
+    [InlineData(16, 15, true, false)]
+    [InlineData(7201, 80, false, true)] // near the load limit replaces over-full, never both
+    public void IsOverFullAndIsNearLoadLimit_SelectExactlyOneBadgeState(int count, int size, bool overFull, bool nearLimit)
+    {
+        var card = Filled(count, size);
+
+        Assert.Equal(overFull, card.IsOverFull);
+        Assert.Equal(nearLimit, card.IsNearLoadLimit);
+    }
+
+    [Theory]
+    [InlineData(15, 15, false)]
+    [InlineData(16, 15, true)]
+    [InlineData(7201, 10000, true)]
+    public void NeedsAttention_IsTrueForAnyFillBeyondNormal(int count, int size, bool expected)
+    {
+        Assert.Equal(expected, Filled(count, size).NeedsAttention);
+    }
 }

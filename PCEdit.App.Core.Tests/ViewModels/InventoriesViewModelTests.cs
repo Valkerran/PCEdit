@@ -11,10 +11,12 @@ public sealed class InventoriesViewModelTests
 {
     private const string Path = @"C:\fake\save.txt";
 
-    private static InventoriesViewModel CreateLoaded()
+    private static InventoriesViewModel CreateLoaded(Action<PCEdit.SaveFileHandler.Models.PlanetCrafterSaveFile>? adjust = null)
     {
         var store = new FakeSaveFileStore();
-        store.Seed(Path, WorkspaceFixtures.Create());
+        var save = WorkspaceFixtures.Create();
+        adjust?.Invoke(save);
+        store.Seed(Path, save);
         var localizer = new Localizer();
         var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         workspace.Load(Path);
@@ -174,6 +176,64 @@ public sealed class InventoriesViewModelTests
 
         Assert.All(vm.Groups, g => Assert.Equal(InventoryKind.Equipment, g.Kind));
         Assert.Equal([11, 21], vm.Groups.Select(g => g.InventoryId).OrderBy(id => id).ToArray());
+    }
+
+    // Alice's two items moved into Bob's one-slot inventory (20): over-full, as a stacking mod leaves it.
+    private static void OverFillBobsInventory(PCEdit.SaveFileHandler.Models.PlanetCrafterSaveFile save)
+    {
+        var alice = save.Inventories.FindIndex(i => i.Id == 10);
+        save.Inventories[alice] = save.Inventories[alice] with { WorldObjectIds = "" };
+        var bob = save.Inventories.FindIndex(i => i.Id == 20);
+        save.Inventories[bob] = save.Inventories[bob] with { WorldObjectIds = "200,201" };
+    }
+
+    [Fact]
+    public void NeedsAttentionFilter_ShowsOnlyTheFlaggedInventories()
+    {
+        var vm = CreateLoaded(OverFillBobsInventory);
+
+        vm.Filter = InventoryFilter.NeedsAttention;
+
+        Assert.Equal([20], vm.Groups.Select(g => g.InventoryId).ToArray());
+    }
+
+    [Fact]
+    public void AttentionCount_CountsFlaggedInventories_WhateverTheCurrentFilter()
+    {
+        var vm = CreateLoaded(OverFillBobsInventory);
+
+        vm.Filter = InventoryFilter.Equipment;
+        vm.Query = "zzz-nothing";
+
+        Assert.Equal(1, vm.AttentionCount);
+    }
+
+    [Fact]
+    public void Load_OfASaveWithNothingFlagged_DropsANeedsAttentionFilter()
+    {
+        // The chip hides when nothing is flagged, so a filter left on it from the previous save
+        // would leave an empty page with no visible way out.
+        var store = new FakeSaveFileStore();
+        store.Seed(Path, WorkspaceFixtures.Create());
+        var localizer = new Localizer();
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
+        workspace.Load(Path);
+        var itemCatalog = new ItemCatalog();
+        var clean = new InventoriesViewModel(workspace, new InventoryEditor(workspace, itemCatalog, new LogisticsGroupCatalog(itemCatalog), localizer, new PlanetIndex(workspace)), new FakeNavigationService(), localizer)
+        {
+            Filter = InventoryFilter.NeedsAttention,
+        };
+
+        clean.Load();
+
+        Assert.Equal(InventoryFilter.All, clean.Filter);
+        Assert.Equal(6, clean.Groups.Count);
+    }
+
+    [Fact]
+    public void AttentionCount_IsZeroForAnUnmoddedSave()
+    {
+        Assert.Equal(0, CreateLoaded().AttentionCount);
     }
 
     [Fact]

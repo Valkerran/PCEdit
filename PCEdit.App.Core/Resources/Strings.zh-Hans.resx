@@ -101,6 +101,11 @@
   <data name="Inventories_FilterWorldA11y" xml:space="preserve"><value>按世界筛选库存</value></data>
   <data name="Inventories_WorldAll" xml:space="preserve"><value>所有世界</value></data>
   <data name="Inventories_WorldUnknown" xml:space="preserve"><value>未知世界</value></data>
+  <data name="Inventories_FilterAttention" xml:space="preserve"><value>需要注意 ({0})</value></data>
+  <data name="Inventories_FillOverFull" xml:space="preserve"><value>超出容量</value></data>
+  <data name="Inventories_FillNearLoadLimit" xml:space="preserve"><value>接近加载上限</value></data>
+  <data name="Inventories_FillOverFullHelp" xml:space="preserve"><value>{1} 个格子中有 {0} 个物品。未安装模组的游戏不会让容器超出其容量；这通常由物品堆叠模组造成。</value></data>
+  <data name="Inventories_FillNearLoadLimitHelp" xml:space="preserve"><value>有 {0} 个物品。游戏每个库存最多加载 8,000 个物品，其余会被静默丢弃。</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>{0} 的库存</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>{0} 的装备</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0}（物体 #{1}）</value></data>

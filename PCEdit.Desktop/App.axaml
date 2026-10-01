@@ -91,6 +91,7 @@
         <conv:StatusKindToColorConverter x:Key="StatusBrush" />
         <conv:IconPathConverter x:Key="Icon" />
         <conv:CountConverter x:Key="CountIsZero" Zero="True" />
+        <conv:CountConverter x:Key="CountIsPositive" />
         <conv:InventoryFilterConverter x:Key="InvFilter" />
 
       </ResourceDictionary>

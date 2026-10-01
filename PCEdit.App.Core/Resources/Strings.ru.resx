@@ -101,6 +101,11 @@
   <data name="Inventories_FilterWorldA11y" xml:space="preserve"><value>Фильтровать инвентари по миру</value></data>
   <data name="Inventories_WorldAll" xml:space="preserve"><value>Все миры</value></data>
   <data name="Inventories_WorldUnknown" xml:space="preserve"><value>Неизвестный мир</value></data>
+  <data name="Inventories_FilterAttention" xml:space="preserve"><value>Требует внимания ({0})</value></data>
+  <data name="Inventories_FillOverFull" xml:space="preserve"><value>переполнен</value></data>
+  <data name="Inventories_FillNearLoadLimit" xml:space="preserve"><value>близко к пределу загрузки</value></data>
+  <data name="Inventories_FillOverFullHelp" xml:space="preserve"><value>Предметов: {0} при {1} ячейках. Игра без модов никогда не заполняет контейнер сверх его размера; это типично для мода на стаки в инвентаре.</value></data>
+  <data name="Inventories_FillNearLoadLimitHelp" xml:space="preserve"><value>Предметов: {0}. Игра загружает в один инвентарь не более 8000 предметов и молча отбрасывает остальные.</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>Инвентарь игрока {0}</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>Снаряжение игрока {0}</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0} (объект №{1})</value></data>

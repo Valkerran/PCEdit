@@ -262,6 +262,50 @@ public sealed class InventoryEditorTests
     }
 
     [Fact]
+    public void BuildInventoryGroups_LabelsAMachinesSecondInventoryByItsSiIdsOwner()
+    {
+        // A farm, ore breaker or algae generator keeps its output in a second inventory, linked
+        // through "siIds" rather than "liId". Unread, those showed as "Inventory #N" (issue #64).
+        var (editor, _) = CreateLoadedEditor(save => save.WorldObjects.Add(new PCEdit.SaveFileHandler.Models.WorldObject
+        {
+            Id = 101,
+            GId = "MachineX",
+            LinkedInventoryId = 11,
+            SpawnedInstanceIds = "99",
+            Planet = PCEdit.SaveFileHandler.PlanetHash.Of("Prime"),
+        }));
+
+        var output = editor.BuildInventoryGroups().Single(g => g.InventoryId == 99);
+
+        Assert.Equal("MachineX (Object #101)", output.Label);
+        Assert.Equal(InventoryKind.Container, output.Kind);
+        Assert.Equal(101, output.ContainerWorldObjectId);
+        Assert.Equal("Prime", output.PlanetId);
+    }
+
+    [Fact]
+    public void BuildInventoryGroups_PrefersTheLiIdOwnerOverASiIdsReference()
+    {
+        var (editor, _) = CreateLoadedEditor(save => save.WorldObjects.Add(
+            new PCEdit.SaveFileHandler.Models.WorldObject { Id = 101, GId = "MachineX", SpawnedInstanceIds = "30" }));
+
+        var container = editor.BuildInventoryGroups().Single(g => g.InventoryId == 30);
+
+        Assert.Equal("StorageContainer (Object #100)", container.Label);
+    }
+
+    [Fact]
+    public void BuildInventoryGroups_SkipsAnSiIdsEntryItCannotRead()
+    {
+        var (editor, _) = CreateLoadedEditor(save => save.WorldObjects.Add(
+            new PCEdit.SaveFileHandler.Models.WorldObject { Id = 101, GId = "MachineX", SpawnedInstanceIds = "junk,99" }));
+
+        var output = editor.BuildInventoryGroups().Single(g => g.InventoryId == 99);
+
+        Assert.Equal("MachineX (Object #101)", output.Label);
+    }
+
+    [Fact]
     public void BuildInventoryGroups_ItemsContainCorrectWorldObjectIds()
     {
         var (editor, _) = CreateLoadedEditor();

@@ -65,6 +65,30 @@ public sealed record InventoryGroup
 
     public string CapacityLabel => $"{TotalItemCount}/{Size}";
 
+    /// <summary>
+    /// The game loads at most this many items into one inventory and silently drops the rest
+    /// (akarnokd, Steam discussion 4333104955967772102; issue #64).
+    /// </summary>
+    private const int GameLoadCap = 8000;
+
+    /// <summary>Warn at 90% of <see cref="GameLoadCap"/>, while there is still room to act.</summary>
+    private const int NearLoadLimitThreshold = GameLoadCap * 9 / 10;
+
+    /// <summary>Measured on <see cref="TotalItemCount"/>, so a card narrowed by a search keeps its warning.</summary>
+    public InventoryFill Fill => TotalItemCount switch
+    {
+        > NearLoadLimitThreshold => InventoryFill.NearLoadLimit,
+        var count when count > Size => InventoryFill.OverFull,
+        _ => InventoryFill.Normal,
+    };
+
+    public bool NeedsAttention => Fill != InventoryFill.Normal;
+
+    // One flag per badge state, so the view can pick an icon and a localized word by visibility.
+    public bool IsOverFull => Fill == InventoryFill.OverFull;
+
+    public bool IsNearLoadLimit => Fill == InventoryFill.NearLoadLimit;
+
     /// <summary>True when a search narrowed the card to some of its items.</summary>
     public bool IsNarrowed => Items.Count < TotalItemCount;
 

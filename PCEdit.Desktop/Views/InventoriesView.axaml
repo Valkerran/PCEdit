@@ -36,7 +36,39 @@
         <Style Selector="RadioButton.chip">
             <Setter Property="Margin" Value="0,0,8,0" />
         </Style>
+
+        <!--
+            Capacity badge states (issue #64). Colour comes from DynamicResource so it follows a
+            live light/dark switch; every state also carries its own glyph and word, never colour
+            alone. The selectors stop at the badge, so the tooltip popup keeps its own colours.
+        -->
+        <Style Selector="Border.badge.overFull">
+            <Setter Property="BorderBrush" Value="{DynamicResource StatusWarningText}" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+        <Style Selector="Border.badge.overFull TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource StatusWarningText}" />
+        </Style>
+        <Style Selector="Border.badge.overFull PathIcon">
+            <Setter Property="Foreground" Value="{DynamicResource StatusWarningText}" />
+        </Style>
+        <Style Selector="Border.badge.nearLoadLimit">
+            <Setter Property="BorderBrush" Value="{DynamicResource StatusErrorText}" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+        <Style Selector="Border.badge.nearLoadLimit TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource StatusErrorText}" />
+        </Style>
+        <Style Selector="Border.badge.nearLoadLimit PathIcon">
+            <Setter Property="Foreground" Value="{DynamicResource StatusErrorText}" />
+        </Style>
     </UserControl.Styles>
+
+    <UserControl.Resources>
+        <!-- Even-odd fill ("F0") cuts the exclamation mark out of the shape. -->
+        <StreamGeometry x:Key="OverFullGlyph">F0 M12,2 L23,21 L1,21 Z M11,9 L13,9 L13,15 L11,15 Z M11,17 L13,17 L13,19 L11,19 Z</StreamGeometry>
+        <StreamGeometry x:Key="NearLoadLimitGlyph">F0 M7,1 L17,1 L23,7 L23,17 L17,23 L7,23 L1,17 L1,7 Z M11,6 L13,6 L13,14 L11,14 Z M11,16 L13,16 L13,18 L11,18 Z</StreamGeometry>
+    </UserControl.Resources>
 
     <Panel>
         <DockPanel IsVisible="{Binding IsLoaded}" Margin="24">
@@ -60,6 +92,11 @@
                                  IsChecked="{Binding Filter, Converter={StaticResource InvFilter}, ConverterParameter=Equipment, Mode=TwoWay}" />
                     <RadioButton Classes="chip" GroupName="invFilter" Content="{m:Loc Inventories_FilterContainers}"
                                  IsChecked="{Binding Filter, Converter={StaticResource InvFilter}, ConverterParameter=Containers, Mode=TwoWay}" />
+                    <!-- Only on a save with something flagged; the VM drops this filter when there is nothing to show. -->
+                    <RadioButton Classes="chip" GroupName="invFilter"
+                                 Content="{m:LocFormat Key=Inventories_FilterAttention, Path=AttentionCount}"
+                                 IsVisible="{Binding AttentionCount, Converter={StaticResource CountIsPositive}}"
+                                 IsChecked="{Binding Filter, Converter={StaticResource InvFilter}, ConverterParameter=NeedsAttention, Mode=TwoWay}" />
                 </StackPanel>
 
                 <ComboBox ItemsSource="{Binding WorldOptions}" SelectedItem="{Binding SelectedWorld}"
@@ -99,9 +136,36 @@
                                                    Text="{m:LocFormat Key=Inv_Fallback, Path=InventoryId}"
                                                    IsVisible="{Binding ShowInventoryIdCaption}" />
                                     </StackPanel>
-                                    <Border Grid.Column="1" Classes="badge">
-                                        <TextBlock Text="{Binding CapacityLabel}" FontSize="12" FontWeight="Bold"
-                                                   AutomationProperties.Name="{m:LocFormat Key=Inventories_CapacityA11y, Path=CapacityLabel}" />
+                                    <Border Grid.Column="1" Classes="badge"
+                                            Classes.overFull="{Binding IsOverFull}"
+                                            Classes.nearLoadLimit="{Binding IsNearLoadLimit}"
+                                            ToolTip.ServiceEnabled="{Binding NeedsAttention}">
+                                        <ToolTip.Tip>
+                                            <Panel MaxWidth="320">
+                                                <TextBlock TextWrapping="Wrap" IsVisible="{Binding IsOverFull}"
+                                                           Text="{m:LocFormat Key=Inventories_FillOverFullHelp, Path=TotalItemCount, Path2=Size}" />
+                                                <TextBlock TextWrapping="Wrap" IsVisible="{Binding IsNearLoadLimit}"
+                                                           Text="{m:LocFormat Key=Inventories_FillNearLoadLimitHelp, Path=TotalItemCount}" />
+                                            </Panel>
+                                        </ToolTip.Tip>
+                                        <StackPanel Orientation="Horizontal" Spacing="6">
+                                            <PathIcon Width="12" Height="12" Data="{StaticResource OverFullGlyph}"
+                                                      IsVisible="{Binding IsOverFull}"
+                                                      AutomationProperties.AccessibilityView="Raw" />
+                                            <PathIcon Width="12" Height="12" Data="{StaticResource NearLoadLimitGlyph}"
+                                                      IsVisible="{Binding IsNearLoadLimit}"
+                                                      AutomationProperties.AccessibilityView="Raw" />
+                                            <TextBlock Text="{Binding CapacityLabel}" FontSize="12" FontWeight="Bold"
+                                                       AutomationProperties.Name="{m:LocFormat Key=Inventories_CapacityA11y, Path=CapacityLabel}" />
+                                            <!-- The word is what a screen reader hears; HelpText carries the tooltip's
+                                                 explanation, which a mouse-less user can't hover for. -->
+                                            <TextBlock Text="{m:Loc Inventories_FillOverFull}" FontSize="12" FontWeight="Bold"
+                                                       IsVisible="{Binding IsOverFull}"
+                                                       AutomationProperties.HelpText="{m:LocFormat Key=Inventories_FillOverFullHelp, Path=TotalItemCount, Path2=Size}" />
+                                            <TextBlock Text="{m:Loc Inventories_FillNearLoadLimit}" FontSize="12" FontWeight="Bold"
+                                                       IsVisible="{Binding IsNearLoadLimit}"
+                                                       AutomationProperties.HelpText="{m:LocFormat Key=Inventories_FillNearLoadLimitHelp, Path=TotalItemCount}" />
+                                        </StackPanel>
                                     </Border>
                                 </Grid>
 

@@ -70,6 +70,9 @@ public sealed class InventoryEditor(
     /// Index of the storage object that owns each linked inventory. Built once per call so
     /// <see cref="DescribeInventory"/> is O(1) per inventory rather than scanning every world object
     /// (a real save has thousands of world objects and hundreds of inventories).
+    /// A machine's second inventory (a farm's or ore breaker's output) is linked through
+    /// <c>siIds</c> instead of <c>liId</c>; it is indexed in a second pass so an <c>liId</c> owner
+    /// always wins. In every sample save each <c>siIds</c> value is an inventory id (issue #64).
     /// </summary>
     private static Dictionary<int, WorldObject> BuildContainerLookup(PlanetCrafterSaveFile save)
     {
@@ -77,6 +80,14 @@ public sealed class InventoryEditor(
         foreach (var worldObject in save.WorldObjects)
         {
             if (worldObject.LinkedInventoryId is { } inventoryId)
+            {
+                lookup.TryAdd(inventoryId, worldObject);
+            }
+        }
+
+        foreach (var worldObject in save.WorldObjects)
+        {
+            foreach (var inventoryId in WorldObjectIdsCodec.Parse(worldObject.SpawnedInstanceIds))
             {
                 lookup.TryAdd(inventoryId, worldObject);
             }

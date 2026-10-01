@@ -14,6 +14,7 @@ public enum InventoryFilter
     Players,
     Equipment,
     Containers,
+    NeedsAttention,
 }
 
 public sealed partial class InventoriesViewModel(
@@ -55,10 +56,21 @@ public sealed partial class InventoriesViewModel(
     /// them all — so the view can distinguish "no results" from "nothing loaded".</summary>
     public bool IsFilteredEmpty => _allGroups.Count > 0 && Groups.Count == 0;
 
+    /// <summary>How many inventories, across the whole save, the "Needs attention" filter would
+    /// show - for its chip label, so the problem is visible before the user filters for it.</summary>
+    public int AttentionCount { get; private set; }
+
     public void Load()
     {
         OnPropertyChanged(nameof(IsLoaded));
         _allGroups = _workspace.IsLoaded ? _inventoryEditor.BuildInventoryGroups() : [];
+        AttentionCount = _allGroups.Count(g => g.NeedsAttention);
+        OnPropertyChanged(nameof(AttentionCount));
+        if (AttentionCount == 0 && Filter == InventoryFilter.NeedsAttention)
+        {
+            // The view hides the chip when nothing is flagged; don't strand the user on it.
+            Filter = InventoryFilter.All;
+        }
         RebuildWorldOptions();
         ApplyFilter();
     }
@@ -96,12 +108,13 @@ public sealed partial class InventoriesViewModel(
     private void ApplyFilter()
     {
         var term = Query.Trim().ToLowerInvariant();
-        var kind = Filter switch
+        Func<InventoryGroup, bool> passesFilter = Filter switch
         {
-            InventoryFilter.Players => (InventoryKind?)InventoryKind.PlayerInventory,
-            InventoryFilter.Equipment => InventoryKind.Equipment,
-            InventoryFilter.Containers => InventoryKind.Container,
-            _ => null,
+            InventoryFilter.Players => g => g.Kind == InventoryKind.PlayerInventory,
+            InventoryFilter.Equipment => g => g.Kind == InventoryKind.Equipment,
+            InventoryFilter.Containers => g => g.Kind == InventoryKind.Container,
+            InventoryFilter.NeedsAttention => g => g.NeedsAttention,
+            _ => _ => true,
         };
         var world = SelectedWorld;
 
@@ -109,8 +122,7 @@ public sealed partial class InventoriesViewModel(
         // matching items when only its contents do - so a search for one item does not bury it
         // among everything else in its container. _allGroups itself is never modified.
         Groups = _allGroups
-            .Where(g => (kind is null || g.Kind == kind)
-                        && (world is null || world.Accepts(g.PlanetId)))
+            .Where(g => passesFilter(g) && (world is null || world.Accepts(g.PlanetId)))
             .Select(g => g.NarrowTo(term))
             .OfType<InventoryGroup>()
             .ToList();

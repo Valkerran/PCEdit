@@ -101,6 +101,11 @@
   <data name="Inventories_FilterWorldA11y" xml:space="preserve"><value>Envanterleri dünyaya göre filtrele</value></data>
   <data name="Inventories_WorldAll" xml:space="preserve"><value>Tüm dünyalar</value></data>
   <data name="Inventories_WorldUnknown" xml:space="preserve"><value>Bilinmeyen dünya</value></data>
+  <data name="Inventories_FilterAttention" xml:space="preserve"><value>Dikkat gerekiyor ({0})</value></data>
+  <data name="Inventories_FillOverFull" xml:space="preserve"><value>aşırı dolu</value></data>
+  <data name="Inventories_FillNearLoadLimit" xml:space="preserve"><value>yükleme sınırına yakın</value></data>
+  <data name="Inventories_FillOverFullHelp" xml:space="preserve"><value>{1} yuvada {0} eşya var. Modsuz oyun bir kabı asla boyutunun üzerinde doldurmaz; bu durum envanter yığınlama modlarına özgüdür.</value></data>
+  <data name="Inventories_FillNearLoadLimitHelp" xml:space="preserve"><value>{0} eşya var. Oyun bir envantere en fazla 8.000 eşya yükler ve gerisini sessizce atar.</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>{0} adlı oyuncunun envanteri</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>{0} adlı oyuncunun ekipmanı</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0} (Nesne #{1})</value></data>

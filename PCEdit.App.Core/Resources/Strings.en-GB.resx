@@ -101,6 +101,11 @@
   <data name="Inventories_FilterWorldA11y" xml:space="preserve"><value>Filter inventories by world</value></data>
   <data name="Inventories_WorldAll" xml:space="preserve"><value>All worlds</value></data>
   <data name="Inventories_WorldUnknown" xml:space="preserve"><value>Unknown world</value></data>
+  <data name="Inventories_FilterAttention" xml:space="preserve"><value>Needs attention ({0})</value></data>
+  <data name="Inventories_FillOverFull" xml:space="preserve"><value>over-full</value></data>
+  <data name="Inventories_FillNearLoadLimit" xml:space="preserve"><value>near load limit</value></data>
+  <data name="Inventories_FillOverFullHelp" xml:space="preserve"><value>Holds {0} items in {1} slots. An unmodded game never fills a container past its size; this is typical of an inventory-stacking mod.</value></data>
+  <data name="Inventories_FillNearLoadLimitHelp" xml:space="preserve"><value>Holds {0} items. The game loads at most 8,000 items into one inventory and silently drops the rest.</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>{0}'s Inventory</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>{0}'s Equipment</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0} (Object #{1})</value></data>

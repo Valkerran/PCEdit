@@ -101,6 +101,11 @@
   <data name="Inventories_FilterWorldA11y" xml:space="preserve"><value>ワールドでインベントリを絞り込む</value></data>
   <data name="Inventories_WorldAll" xml:space="preserve"><value>すべてのワールド</value></data>
   <data name="Inventories_WorldUnknown" xml:space="preserve"><value>不明なワールド</value></data>
+  <data name="Inventories_FilterAttention" xml:space="preserve"><value>要確認 ({0})</value></data>
+  <data name="Inventories_FillOverFull" xml:space="preserve"><value>容量超過</value></data>
+  <data name="Inventories_FillNearLoadLimit" xml:space="preserve"><value>読み込み上限に接近</value></data>
+  <data name="Inventories_FillOverFullHelp" xml:space="preserve"><value>{1} スロットに {0} 個のアイテムがあります。MOD なしのゲームではコンテナがサイズを超えることはなく、インベントリのスタック MOD によく見られる状態です。</value></data>
+  <data name="Inventories_FillNearLoadLimitHelp" xml:space="preserve"><value>{0} 個のアイテムがあります。ゲームは 1 つのインベントリに最大 8,000 個までしか読み込まず、残りは警告なく破棄されます。</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>{0} のインベントリ</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>{0} の装備</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0}（オブジェクト #{1}）</value></data>
