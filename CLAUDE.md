@@ -209,7 +209,7 @@ Layering, each with a small interface for testability/DI:
 
 - `IJsonRecordSerializer` / `JsonRecordSerializer` — wraps `System.Text.Json` with camelCase naming and `WhenWritingNull` ignore semantics; deserializes/serializes a single record (section or list item) and wraps `JsonException` in `InvalidDataException` with the offending section index. Also holds `GameDecimalConverter` (the game writes every decimal with a fractional part — force `N.0`, never `N`). Every leaf model has a `[JsonExtensionData] ExtensionData` dictionary, so a JSON key no model names is **preserved** across a round-trip, not silently dropped. `WorldObject` goes further: the game's world-object key order is not stable (proven — the same pair of keys appears in both orders across records), so `WorldObjectConverter` records each record's key order on read and replays it on write, keeping unknown keys in place too. Tests: `RoundTrip_RealSampleSaveFile_ReserializesCharacterForCharacter` (whole-file, string-exact) and `PlanetCrafterSaveFileStoreTests.SaveThenLoad_...IsByteIdenticalOnDisk` (with BOM); `WorldObjectConverterTests` / `GameDecimalFormatTests` for the pieces; `GameFormatKeyMappingTests` pins the abbreviated-key spellings a symmetric model round-trip can't catch.
 - `IPlanetCrafterSaveFileSerializer` / `PlanetCrafterSaveFileSerializer` — splits/joins the 10 sections (framing above), delegating record-level (de)serialization to `IJsonRecordSerializer`. `Deserialize` is lenient about whitespace/line-endings; `Serialize` reproduces the game framing exactly. The section split matches an `@` **only when the framing line breaks bracket it** — an `@` inside a JSON string is player-typed free text (a container/sign label, a player name) and must not split the file; splitting on the bare character truncated those saves, and in one placement dropped data with no error at all (#38). Do not simplify it back to `Split('@')`.
-- `IPlanetCrafterSaveFileStore` / `PlanetCrafterSaveFileStore` — file I/O (`Load`/`Save` by path). `Load` uses `File.ReadAllText` (strips any BOM); `Save` re-checks the target file's first bytes and writes UTF-8 with a BOM only if the existing file had one (or the path is new) — matching Steam-with-BOM and Game-Pass-without. It writes through a sibling `.pcedit-tmp` file, flushed to disk, then swaps it in with an atomic `File.Move(overwrite: true)`, so an interrupted write can never leave a truncated save (#36); the BOM probe therefore has to read the **original** path, before the swap, not the temp file.
+- `IPlanetCrafterSaveFileStore` / `PlanetCrafterSaveFileStore` — file I/O (`Load`/`Save` by path). `Load` uses `File.ReadAllText` (strips any BOM); `Save` re-checks the target file's first bytes and writes UTF-8 with a BOM only if the existing file had one (or the path is new) — matching Steam-with-BOM and Game-Pass-without. It writes through a sibling `.pcedit-tmp` file, flushed to disk, then swaps it in with an atomic `File.Move(overwrite: true)`, so an interrupted write can never leave a truncated save (#36); the BOM probe therefore has to read the **original** path, before the swap, not the temp file. `SaveCopy(source, target, save)` writes to a new file through the same atomic write but takes its framing from the **source** - a repaired copy of a BOM-less Game Pass save must stay BOM-less - and refuses a target that is the source itself (compared as full paths, case-insensitively on Windows/macOS).
 
 Model conventions worth knowing before adding/editing a model in `PCEdit.SaveFileHandler/Models/`:
 - Fields that are always present in the save file are `required` properties; fields the game may omit are nullable (`decimal?`, `string?`, etc.) — get this right or `Save`/round-trip will crash or lose data.
@@ -239,7 +239,7 @@ implementations of a handful of interfaces.
 holding the loaded `PlanetCrafterSaveFile`, its path, `IsDirty`, and `SaveStatus`. ViewModels never
 build a modified model themselves; they call `MutateUnlocks` / `ReplaceTerraformation` /
 `ReplacePlayer` / `ReplaceInventory` / `GrantTerraTokens`, which apply the
-root-rebuild-vs-list-replace pattern above and flip `IsDirty`. `Save` first copies the file aside via `ISaveBackupService`, once per load rather than once per save — by the second save the file on disk is already PCEdit's own output, and the pristine copy is the only one that cannot be reconstructed. A failed backup is traced and the save proceeds: refusing the user's edit because a safety copy failed inverts the priority. Note the backups deliberately sit under `LocalApplicationData`, **not** the `ApplicationData` holding `settings.json` — on Windows that is the roaming profile, and megabytes of save copies should not sync between machines.
+root-rebuild-vs-list-replace pattern above and flip `IsDirty`. `Save` first copies the file aside via `ISaveBackupService`, once per load rather than once per save — by the second save the file on disk is already PCEdit's own output, and the pristine copy is the only one that cannot be reconstructed. A failed backup is traced and the save proceeds: refusing the user's edit because a safety copy failed inverts the priority. Note the backups deliberately sit under `LocalApplicationData`, **not** the `ApplicationData` holding `settings.json` — on Windows that is the roaming profile, and megabytes of save copies should not sync between machines. `SaveCopy(path)` writes the loaded save to a new file and switches `FilePath` to it, so later saves go to the copy and the file it came from is never written (the repair, below, depends on this); it marks the backup as taken, since the copy is PCEdit's own output. `RemoveWorldObjects(ids)` deletes world-object records - callers take the items out of every inventory first.
 
 **Page ViewModels re-read workspace state in a `Load()` method** (`ViewModels/ILoadable`) rather than
 caching it, so switching pages always reflects the latest in-memory edits. Page ViewModels are
@@ -248,11 +248,16 @@ page last loaded (see `PCEdit.Desktop/ViewModels/MainWindowViewModel`).
 
 **`Services/IInventoryEditor` (`InventoryEditor`)** holds inventory-item domain logic: an item is "in"
 an inventory when its `WorldObject.Id` appears in that `Inventory.WorldObjectIds` comma-string
-(`Services/WorldObjectIdsCodec`, which **skips entries it cannot read and carries them through a rewrite untouched** — a save can hold a non-int in that list, and dropping it on a move would be data loss, #37); `TryMoveItem` removes from source before adding to destination and
-rejects a move into an inventory already at `Inventory.Size`. `BuildInventoryGroups` is O(n) — it
+(`Services/WorldObjectIdsCodec`, which **skips entries it cannot read and carries them through a rewrite untouched** — a save can hold a non-int in that list, and dropping it on a move would be data loss, #37); `TryMoveItems` (with `TryMoveItem` as its one-item case) moves items from one inventory into another, all or none: it fails without changing anything unless they are all in one source and the destination has room for every one against its stored `Inventory.Size`, so PCEdit never makes an inventory over-full; moving *out of* an over-full one is always allowed. `BuildInventoryGroups` is O(n) — it
 pre-indexes world objects and container→inventory links (a real save has ~500 inventories /
 ~5000 world objects) and tags each `InventoryGroup` with an `InventoryKind` for the page's type
-filter and a `PlanetId` (via `IPlanetIndex`) for its world filter. `Services/PositionCodec` handles the `"x,y,z"` string shared by `PlayerData.PlayerPosition` / `WorldObject.Position`; use `TryParse` for anything read out of a save — `Parse` throws and is only for a position already known to be well-formed.
+filter, a `PlanetId` (via `IPlanetIndex`) for its world filter, and a `ContainerOrigin`. A machine's second (output) inventory is linked through `siIds`, not `liId`; `BuildContainerLookup` indexes both, `liId` winning. `Services/PositionCodec` handles the `"x,y,z"` string shared by `PlayerData.PlayerPosition` / `WorldObject.Position`; use `TryParse` for anything read out of a save — `Parse` throws and is only for a position already known to be well-formed.
+
+**Over-full containers (issue #64).** An inventory-stacking mod keeps a container's `size` but lists every stacked item, leaving `count(woIds) > size`. The pieces:
+- `InventoryGroup.Fill` (`Models/InventoryFill`): over-full (more items than slots) or near the load limit (over 7,200 items, 90% of the game's 8,000-per-inventory load cap). It drives the capacity badge, the "Needs attention" filter and the Overview banner, which all count the same cards.
+- Stack rows: `InventoryGroup.Stacks` groups items sharing `Services/ItemStackKey` - the item minus its id and where it lay (`pos`/`rot`/`planet`), so genetic traits and crops at different growth stay apart. Whether a card groups is the "Identical items" setting (`Models/StackingMode`, stored by `IInventoryDisplayStore`): Automatic groups only a save with containers needing attention; any card over `InventoryGroup.MaxItemsListedOneByOne` (500) groups regardless, even for an id search - a row per item on a 7,738-item chest froze the page for 6 s.
+- `Services/ContainerOrigins` classifies a placed object: **Map** (id 100,000,000-199,999,999 - the developers' objects, the same ids in every save), **Wreck** (wreck-only types, or listed in a procedural instance's `woIdsGenerated`), **Built** (a runtime id whose type never also spawns in wrecks), else **Unknown** - countertops, fridges and the vault also turn up as wreck furniture and section 9 is incomplete on some saves, so they are not guessed.
+- The repair: `Services/OverflowRepair` trims every inventory to N x its size (never past 7,200), removing the last items and their world-object records but never an item that owns an inventory or an entry it cannot read. Ticked item types first move into free slots via `Services/FreeStorage` - Built `Container1/2/3` only, not logistics, same planet as the source, a crate already holding the type before the emptiest. `RepairViewModel` previews it, then applies it and writes the result with `SaveCopy`: the opened save is never written, and a failed copy reopens the original, which is why the repair waits for other unsaved edits to be saved first.
 
 **`Services/IPlanetIndex` (`PlanetIndex`)** resolves the worlds in a save: `KnownPlanetIds()` is the
 ordered union of every `PlanetId` (metadata + terraformations + players), and `ResolvePlanetId(int?)`
@@ -286,20 +291,24 @@ container's `Planet`) and is `null` for orphan inventories.
 
 | Interface | Avalonia impl |
 |---|---|
-| `IFilePickerService` | `AvaloniaFilePickerService` (`IStorageProvider`) |
+| `IFilePickerService` | `AvaloniaFilePickerService` (`IStorageProvider`: open, and the save-as for a repaired copy, owned by the active window so it opens over the repair dialog) |
 | `INavigationService` | `AvaloniaNavigationService` (drives `MainWindowViewModel` + a modal `Window`) |
 | `IDialogService` | `AvaloniaDialogService` (`MessageDialog` window) |
 | `IScreenReaderAnnouncer` | `AvaloniaScreenReaderAnnouncer` (hidden live-region `TextBlock`) |
 | `IAppVersionInfo` | `AvaloniaAppVersionInfo` |
-| `ILanguageStore`, `IDisclaimerGate` | `JsonSettingsStore` (`~/.config/PCEdit/settings.json`) |
+| `ILanguageStore`, `IDisclaimerGate`, `IInventoryDisplayStore` | `JsonSettingsStore` (`~/.config/PCEdit/settings.json`; an unreadable stored value falls back to the default) |
 | `ISaveBackupService` | `LocalFileSaveBackupService` (`<LocalApplicationData>/PCEdit/backups`) |
 
 The head wires these in its composition root (`PCEdit.Desktop/App.axaml.cs`), registering the Core
 services as singletons and page ViewModels per the pattern above. The interfaces stay UI-agnostic so
 `PCEdit.App.Core` never takes an Avalonia dependency.
 
-`Presentation/VitalStatus` + `Presentation/StatusPalette` hold the classify-a-value and
-value→resource-key logic; each head has a thin `IValueConverter` wrapper over them.
+`Presentation/VitalStatus` classifies a vital gauge value. Colour never comes from a converter that
+resolves a brush - that keeps the old theme's colour after a live light/dark switch. Instead thin
+converters (`VitalLevelIsConverter`, `StatusKindIsConverter`, `EnumIsConverter` for radio groups)
+set style classes, and `Styles/Controls.axaml` colours them with `DynamicResource`
+(`TextBlock.vitalLow` / `.vitalCritical`, `TextBlock.status` / `.status.success` / `.status.error`).
+When two matching styles set the same property the later one wins, so order them general first.
 
 ## Architecture: the Avalonia head (`PCEdit.Desktop`)
 
@@ -324,7 +333,7 @@ Palette / theme: `App.axaml` defines colour tokens (`SurfacePage`, `SurfaceCard`
 `Status*Text`, …) in `ResourceDictionary.ThemeDictionaries` (`Light` + `Dark`) — a Planet-Crafter
 terraforming palette (rust world → blue sky → green biosphere; brand accent is a muted biosphere
 green). `RequestedThemeVariant="Default"` so the desktop head follows the OS theme. The token **keys**
-are referenced from `PCEdit.App.Core` (`StatusPalette` / the value converters) — keep them stable.
+are referenced by name from the styles and views, always as `DynamicResource` — keep them stable.
 `Styles/Controls.axaml` holds the type scale (`h1` hero / `pageHeading` / `h2` section / `caption` /
 `micro`) and `Border.headingRule` (the green bar left of every section heading). Inter is the
 app-wide font (`Program.cs` `WithInterFont()`).
@@ -336,8 +345,12 @@ XAML notes:
   executable is `PCEdit` (which is what the AppImage packaging expects).
 - The Inventories list virtualizes (a `ListBox`, **not** wrapped in a `ScrollViewer`) — a wrapping
   scroll viewer gives it infinite height and defeats virtualization. The page has a search box +
-  type-filter radio group above it; the VM (`InventoriesViewModel`) filters a prebuilt
-  `_allGroups` into `Groups` in memory (`InventoryGroup.Matches` / `.Kind`).
+  type-filter radio group above it (All / Players / Equipment / Containers / Built by you / Needs
+  attention), then the "Identical items" chips; the VM (`InventoriesViewModel`) filters a prebuilt
+  `_allGroups` into `Groups` in memory (`InventoryGroup.NarrowTo` / `.Kind`). A card's rows are
+  `Stacks`, not items; its capacity badge takes the `overFull` / `nearLoadLimit` classes, and an
+  origin tag ("Built by you" / "Map" / "Wreck") sits beside the inventory id. The glyphs for both
+  live in `App.axaml` (`OverFullGlyph`, `NearLoadLimitGlyph`, `BuiltGlyph`).
 - `TextBox` placeholder is `PlaceholderText` (not the obsolete `Watermark`).
 
 ## Localization

@@ -76,6 +76,19 @@ Where PCEdit can work out which world something belongs to, it shows it:
 - **Teleport** — each landmark shows the planet it sits on, and the landmark list is trimmed to
   your chosen destination world (tick *Show landmarks from all worlds* to see every one).
 
+### Inventories and saves changed by mods
+
+- **Identical items** in a container can show as one row with a count. The *Identical items*
+  setting on the Inventories page chooses: *Automatic* (only on a save with containers that need
+  attention), *Grouped* or *One by one*. **Move** on a row asks how many to move.
+- Each container is tagged **Built by you**, **Map** (placed by the developers) or **Wreck**;
+  the **Built by you** filter lists just your own.
+- A save altered by an inventory-stacking mod can leave containers holding far more than their
+  size. PCEdit flags them (an Overview banner, badges, and a **Needs attention** filter), and
+  **Repair…** on the Overview trims them back, optionally moving chosen item types into free
+  slots in your own storage first. The repair is written to **a new save file**; the save you
+  opened is never changed.
+
 ### Teleport
 
 Teleport edits **only the player selected in the dropdown**. It writes that player's position and
