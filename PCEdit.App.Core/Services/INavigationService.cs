@@ -25,6 +25,9 @@ public interface INavigationService
     /// </summary>
     Task OpenSelectInventoryAsync(IReadOnlyList<int> worldObjectIds);
 
+    /// <summary>Opens the over-full container repair, as a modal view (issue #64).</summary>
+    Task OpenRepairAsync();
+
     /// <summary>Opens the demand/supply editor for a logistics container, as a modal view.</summary>
     Task OpenLogisticsEditorAsync(int inventoryId);
 

@@ -11,6 +11,13 @@ internal sealed class FakeNavigationService : INavigationService
     public List<IReadOnlyList<int>> SelectInventoryRequests { get; } = [];
     public List<int> LogisticsEditorRequests { get; } = [];
     public int CloseModalCount { get; private set; }
+    public int RepairCount { get; private set; }
+
+    public Task OpenRepairAsync()
+    {
+        RepairCount++;
+        return Task.CompletedTask;
+    }
 
     public Task GoToOverviewAsync()
     {

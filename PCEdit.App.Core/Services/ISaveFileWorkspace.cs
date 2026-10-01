@@ -19,6 +19,13 @@ public interface ISaveFileWorkspace : INotifyPropertyChanged
 
     void Save();
 
+    /// <summary>
+    /// Writes the loaded save to a new file and carries on from there, so later saves go to the
+    /// copy and the file it was loaded from is never written. Throws if the copy cannot be written,
+    /// leaving the workspace on the original file.
+    /// </summary>
+    void SaveCopy(string targetPath);
+
     void MutateUnlocks(Func<SaveFileUnlocks, SaveFileUnlocks> mutate);
 
     void ReplaceTerraformation(string planetId, Func<PlanetTerraformation, PlanetTerraformation> mutate);
@@ -26,6 +33,12 @@ public interface ISaveFileWorkspace : INotifyPropertyChanged
     void ReplacePlayer(long playerId, Func<PlayerData, PlayerData> mutate);
 
     void ReplaceInventory(int inventoryId, Func<Inventory, Inventory> mutate);
+
+    /// <summary>
+    /// Deletes the world-object records with these ids. Callers first take the items out of
+    /// every inventory that lists them; a record no inventory lists is an item that no longer exists.
+    /// </summary>
+    void RemoveWorldObjects(IReadOnlySet<int> worldObjectIds);
 
     /// <summary>
     /// Adds <paramref name="amount"/> tokens to the unlocks totals and the player's earned total,

@@ -280,19 +280,11 @@ public sealed class InventoryEditor(
         return groupIds.Count.ToString(System.Globalization.CultureInfo.CurrentCulture);
     }
 
-    /// <summary>
-    /// Rewrites an inventory's id list, carrying through any entry PCEdit could not read as an id.
-    /// Both mutating paths go through here, so moving an item can never quietly delete the parts
-    /// of the list it did not understand.
-    /// </summary>
+    /// <summary>Rewrites an inventory's id list, keeping what PCEdit could not read (see
+    /// <see cref="WorldObjectIdsCodec.Rewrite"/>).</summary>
     private static Inventory WithWorldObjectIds(Inventory inventory, IEnumerable<int> ids)
     {
-        return inventory with
-        {
-            WorldObjectIds = WorldObjectIdsCodec.Join(
-                ids,
-                WorldObjectIdsCodec.ParseUnreadable(inventory.WorldObjectIds))
-        };
+        return inventory with { WorldObjectIds = WorldObjectIdsCodec.Rewrite(inventory.WorldObjectIds, ids) };
     }
 
     private static Inventory? FindOwningInventory(PlanetCrafterSaveFile save, int worldObjectId)

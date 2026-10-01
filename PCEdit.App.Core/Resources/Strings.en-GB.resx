@@ -69,6 +69,24 @@
   <data name="Overview_AttentionNearLoadLimit" xml:space="preserve"><value>Containers close to the game's limit of 8,000 items each: {0}. Items past that limit are lost when the game loads the save.</value></data>
   <data name="Overview_AttentionShow" xml:space="preserve"><value>Show them</value></data>
   <data name="Overview_AttentionShowA11y" xml:space="preserve"><value>Show the containers that need attention on the Inventories page</value></data>
+  <data name="Overview_AttentionRepair" xml:space="preserve"><value>Repair…</value></data>
+  <data name="Overview_AttentionRepairA11y" xml:space="preserve"><value>Repair the over-full containers into a new copy of the save</value></data>
+  <data name="Repair_Title" xml:space="preserve"><value>Repair over-full containers</value></data>
+  <data name="Repair_Intro" xml:space="preserve"><value>Removes the items beyond what each container can hold, starting with the last ones listed, and writes the result to a new save file. The save you opened is not changed.</value></data>
+  <data name="Repair_Keep" xml:space="preserve"><value>Keep at most</value></data>
+  <data name="Repair_KeepSuffix" xml:space="preserve"><value>× each container's size</value></data>
+  <data name="Repair_KeepA11y" xml:space="preserve"><value>Keep at most this many times each container's size, from 1 to 100</value></data>
+  <data name="Repair_KeepHint" xml:space="preserve"><value>1 keeps exactly what an unmodded game allows. No container keeps more than 7,200 items, under the game's load limit.</value></data>
+  <data name="Repair_Preview" xml:space="preserve"><value>Items to remove: {0}. Containers affected: {1}.</value></data>
+  <data name="Repair_Nothing" xml:space="preserve"><value>Nothing to remove at this setting.</value></data>
+  <data name="Repair_MostRemoved" xml:space="preserve"><value>Most removed</value></data>
+  <data name="Repair_TypeCount" xml:space="preserve"><value>{0}: {1}</value></data>
+  <data name="Repair_UnsavedChanges" xml:space="preserve"><value>Save your other changes first. If writing the repaired copy failed, PCEdit would reopen the original file to undo the repair, and those changes would be lost.</value></data>
+  <data name="Repair_Apply" xml:space="preserve"><value>Save repaired copy…</value></data>
+  <data name="Repair_SaveTitle" xml:space="preserve"><value>Save the repaired copy as</value></data>
+  <data name="Repair_Done" xml:space="preserve"><value>Items removed: {0}. The repaired copy is saved as {1} and is now open; the original save is unchanged.</value></data>
+  <data name="Repair_Failed" xml:space="preserve"><value>The repaired copy could not be written. Nothing was changed: the original save is open again.</value></data>
+  <data name="Repair_FailedTitle" xml:space="preserve"><value>Repair failed</value></data>
   <data name="Vital_Ok" xml:space="preserve"><value>OK</value></data>
   <data name="Vital_Low" xml:space="preserve"><value>Low</value></data>
   <data name="Vital_Critical" xml:space="preserve"><value>Critical</value></data>

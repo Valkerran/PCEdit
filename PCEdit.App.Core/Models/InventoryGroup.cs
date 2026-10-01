@@ -89,8 +89,9 @@ public sealed record InventoryGroup
     /// </summary>
     private const int GameLoadCap = 8000;
 
-    /// <summary>Warn at 90% of <see cref="GameLoadCap"/>, while there is still room to act.</summary>
-    private const int NearLoadLimitThreshold = GameLoadCap * 9 / 10;
+    /// <summary>Warn at 90% of <see cref="GameLoadCap"/>, while there is still room to act. A
+    /// repair never leaves an inventory holding more than this.</summary>
+    public const int NearLoadLimitThreshold = GameLoadCap * 9 / 10;
 
     /// <summary>Measured on <see cref="TotalItemCount"/>, so a card narrowed by a search keeps its warning.</summary>
     public InventoryFill Fill => TotalItemCount switch

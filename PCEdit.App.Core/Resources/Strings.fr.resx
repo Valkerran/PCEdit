@@ -69,6 +69,24 @@
   <data name="Overview_AttentionNearLoadLimit" xml:space="preserve"><value>Conteneurs proches de la limite du jeu de 8 000 objets chacun : {0}. Les objets au-delà de cette limite sont perdus au chargement de la sauvegarde.</value></data>
   <data name="Overview_AttentionShow" xml:space="preserve"><value>Les afficher</value></data>
   <data name="Overview_AttentionShowA11y" xml:space="preserve"><value>Afficher les conteneurs qui demandent votre attention sur la page Inventaires</value></data>
+  <data name="Overview_AttentionRepair" xml:space="preserve"><value>Réparer…</value></data>
+  <data name="Overview_AttentionRepairA11y" xml:space="preserve"><value>Réparer les conteneurs surchargés dans une nouvelle copie de la sauvegarde</value></data>
+  <data name="Repair_Title" xml:space="preserve"><value>Réparer les conteneurs surchargés</value></data>
+  <data name="Repair_Intro" xml:space="preserve"><value>Supprime les objets au-delà de ce que chaque conteneur peut contenir, en commençant par les derniers de la liste, et écrit le résultat dans un nouveau fichier de sauvegarde. La sauvegarde ouverte n'est pas modifiée.</value></data>
+  <data name="Repair_Keep" xml:space="preserve"><value>Garder au plus</value></data>
+  <data name="Repair_KeepSuffix" xml:space="preserve"><value>× la taille de chaque conteneur</value></data>
+  <data name="Repair_KeepA11y" xml:space="preserve"><value>Garder au plus ce nombre de fois la taille de chaque conteneur, de 1 à 100</value></data>
+  <data name="Repair_KeepHint" xml:space="preserve"><value>1 garde exactement ce qu'un jeu sans mod permet. Aucun conteneur ne garde plus de 7 200 objets, sous la limite de chargement du jeu.</value></data>
+  <data name="Repair_Preview" xml:space="preserve"><value>Objets à supprimer : {0}. Conteneurs concernés : {1}.</value></data>
+  <data name="Repair_Nothing" xml:space="preserve"><value>Rien à supprimer avec ce réglage.</value></data>
+  <data name="Repair_MostRemoved" xml:space="preserve"><value>Les plus supprimés</value></data>
+  <data name="Repair_TypeCount" xml:space="preserve"><value>{0} : {1}</value></data>
+  <data name="Repair_UnsavedChanges" xml:space="preserve"><value>Enregistrez d'abord vos autres modifications. Si l'écriture de la copie réparée échouait, PCEdit rouvrirait le fichier d'origine pour annuler la réparation, et ces modifications seraient perdues.</value></data>
+  <data name="Repair_Apply" xml:space="preserve"><value>Enregistrer la copie réparée…</value></data>
+  <data name="Repair_SaveTitle" xml:space="preserve"><value>Enregistrer la copie réparée sous</value></data>
+  <data name="Repair_Done" xml:space="preserve"><value>Objets supprimés : {0}. La copie réparée est enregistrée sous {1} et est maintenant ouverte ; la sauvegarde d'origine est inchangée.</value></data>
+  <data name="Repair_Failed" xml:space="preserve"><value>La copie réparée n'a pas pu être écrite. Rien n'a été modifié : la sauvegarde d'origine est de nouveau ouverte.</value></data>
+  <data name="Repair_FailedTitle" xml:space="preserve"><value>Échec de la réparation</value></data>
   <data name="Vital_Ok" xml:space="preserve"><value>OK</value></data>
   <data name="Vital_Low" xml:space="preserve"><value>Faible</value></data>
   <data name="Vital_Critical" xml:space="preserve"><value>Critique</value></data>

@@ -259,6 +259,70 @@ public sealed class SaveFileWorkspaceTests
         Assert.Throws<InvalidOperationException>(() => workspace.ReplaceInventory(12345, i => i));
     }
 
+    private const string CopyPath = @"C:\fake\save-copy.txt";
+
+    [Fact]
+    public void SaveCopy_WritesTheCopy_AndSwitchesToIt_WithoutTouchingTheOriginal()
+    {
+        var (workspace, store, _) = CreateLoadedWorkspaceWithBackups(); // dirty: a grant pending
+
+        workspace.SaveCopy(CopyPath);
+
+        Assert.Equal([(Path, CopyPath)], store.Copies);
+        Assert.Equal(0, store.SaveCallCount); // the original path was never written
+        Assert.Equal(CopyPath, workspace.FilePath);
+        Assert.False(workspace.IsDirty);
+    }
+
+    [Fact]
+    public void Save_AfterSaveCopy_WritesTheCopy_WithoutBackingItUp()
+    {
+        // The copy is PCEdit's own output; the pristine original is the file left untouched.
+        var (workspace, store, backups) = CreateLoadedWorkspaceWithBackups();
+        workspace.SaveCopy(CopyPath);
+        workspace.GrantTerraTokens(1, 1);
+
+        workspace.Save();
+
+        Assert.Equal(1, store.SaveCallCount);
+        Assert.True(store.Contains(CopyPath));
+        Assert.Empty(backups.BackedUpPaths);
+    }
+
+    [Fact]
+    public void SaveCopy_WhenTheWriteFails_Throws_AndStaysOnTheOriginal()
+    {
+        var (workspace, store, _) = CreateLoadedWorkspaceWithBackups();
+        store.FailSaveCopy = true;
+
+        Assert.Throws<IOException>(() => workspace.SaveCopy(CopyPath));
+
+        Assert.Equal(Path, workspace.FilePath);
+        Assert.True(workspace.IsDirty);
+    }
+
+    [Fact]
+    public void RemoveWorldObjects_DeletesThoseRecords_AndSetsDirty()
+    {
+        var (workspace, _) = CreateLoadedWorkspace();
+
+        workspace.RemoveWorldObjects(new HashSet<int> { 200, 201 });
+
+        Assert.Equal([100, 202], workspace.Current!.WorldObjects.Select(w => w.Id).ToArray());
+        Assert.True(workspace.IsDirty);
+    }
+
+    [Fact]
+    public void RemoveWorldObjects_OfNothing_LeavesTheSaveClean()
+    {
+        var (workspace, _) = CreateLoadedWorkspace();
+
+        workspace.RemoveWorldObjects(new HashSet<int>());
+
+        Assert.Equal(4, workspace.Current!.WorldObjects.Count);
+        Assert.False(workspace.IsDirty);
+    }
+
     [Fact]
     public void GrantTerraTokens_NonPositiveAmount_ThrowsArgumentOutOfRangeException()
     {

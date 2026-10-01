@@ -69,6 +69,24 @@
   <data name="Overview_AttentionNearLoadLimit" xml:space="preserve"><value>Behälter nahe der Grenze des Spiels von 8.000 Gegenständen pro Behälter: {0}. Gegenstände über dieser Grenze gehen verloren, wenn das Spiel den Spielstand lädt.</value></data>
   <data name="Overview_AttentionShow" xml:space="preserve"><value>Anzeigen</value></data>
   <data name="Overview_AttentionShowA11y" xml:space="preserve"><value>Die Behälter, die Aufmerksamkeit benötigen, auf der Inventarseite anzeigen</value></data>
+  <data name="Overview_AttentionRepair" xml:space="preserve"><value>Reparieren…</value></data>
+  <data name="Overview_AttentionRepairA11y" xml:space="preserve"><value>Die überfüllten Behälter in eine neue Kopie des Spielstands reparieren</value></data>
+  <data name="Repair_Title" xml:space="preserve"><value>Überfüllte Behälter reparieren</value></data>
+  <data name="Repair_Intro" xml:space="preserve"><value>Entfernt die Gegenstände, die über das hinausgehen, was ein Behälter fassen kann – beginnend mit den zuletzt aufgeführten – und schreibt das Ergebnis in eine neue Spielstanddatei. Der geöffnete Spielstand wird nicht verändert.</value></data>
+  <data name="Repair_Keep" xml:space="preserve"><value>Höchstens</value></data>
+  <data name="Repair_KeepSuffix" xml:space="preserve"><value>× die Größe jedes Behälters behalten</value></data>
+  <data name="Repair_KeepA11y" xml:space="preserve"><value>Höchstens so viel Mal die Größe jedes Behälters behalten, von 1 bis 100</value></data>
+  <data name="Repair_KeepHint" xml:space="preserve"><value>1 behält genau das, was ein Spiel ohne Mods erlaubt. Kein Behälter behält mehr als 7.200 Gegenstände, unterhalb der Ladegrenze des Spiels.</value></data>
+  <data name="Repair_Preview" xml:space="preserve"><value>Zu entfernende Gegenstände: {0}. Betroffene Behälter: {1}.</value></data>
+  <data name="Repair_Nothing" xml:space="preserve"><value>Bei dieser Einstellung gibt es nichts zu entfernen.</value></data>
+  <data name="Repair_MostRemoved" xml:space="preserve"><value>Am meisten entfernt</value></data>
+  <data name="Repair_TypeCount" xml:space="preserve"><value>{0}: {1}</value></data>
+  <data name="Repair_UnsavedChanges" xml:space="preserve"><value>Speichern Sie zuerst Ihre anderen Änderungen. Falls das Schreiben der reparierten Kopie fehlschlägt, öffnet PCEdit die Originaldatei erneut, um die Reparatur rückgängig zu machen, und diese Änderungen gingen verloren.</value></data>
+  <data name="Repair_Apply" xml:space="preserve"><value>Reparierte Kopie speichern…</value></data>
+  <data name="Repair_SaveTitle" xml:space="preserve"><value>Reparierte Kopie speichern unter</value></data>
+  <data name="Repair_Done" xml:space="preserve"><value>Entfernte Gegenstände: {0}. Die reparierte Kopie ist als {1} gespeichert und jetzt geöffnet; der ursprüngliche Spielstand ist unverändert.</value></data>
+  <data name="Repair_Failed" xml:space="preserve"><value>Die reparierte Kopie konnte nicht geschrieben werden. Es wurde nichts geändert: Der ursprüngliche Spielstand ist wieder geöffnet.</value></data>
+  <data name="Repair_FailedTitle" xml:space="preserve"><value>Reparatur fehlgeschlagen</value></data>
   <data name="Vital_Ok" xml:space="preserve"><value>OK</value></data>
   <data name="Vital_Low" xml:space="preserve"><value>Niedrig</value></data>
   <data name="Vital_Critical" xml:space="preserve"><value>Kritisch</value></data>

@@ -70,6 +70,20 @@ public sealed class AvaloniaNavigationService(
             _mainViewModel.ReloadCurrent();
         });
 
+    public Task OpenRepairAsync() =>
+        Dispatcher.UIThread.InvokeAsync(async () =>
+        {
+            var vm = _services.GetRequiredService<RepairViewModel>();
+            vm.Initialize();
+
+            _modal = new RepairWindow { DataContext = vm };
+            await _modal.ShowDialog(_mainWindow.Require());
+            _modal = null;
+
+            // A repair switches the workspace to the new copy; refresh whatever page is showing.
+            _mainViewModel.ReloadCurrent();
+        });
+
     public Task CloseModalAsync()
     {
         _modal?.Close();

@@ -60,6 +60,7 @@ public partial class App : Application
         services.AddSingleton<ISaveFileWorkspace, SaveFileWorkspace>();
         services.AddSingleton<IPlanetIndex, PlanetIndex>();
         services.AddSingleton<IInventoryEditor, InventoryEditor>();
+        services.AddSingleton<IOverflowRepair, OverflowRepair>();
         services.AddSingleton<IFilePickerService, AvaloniaFilePickerService>();
 
         services.AddSingleton<AvaloniaNavigationService>();
@@ -81,6 +82,7 @@ public partial class App : Application
         // Transient: opened per-move as a modal with a fresh Initialize(worldObjectId).
         services.AddTransient<SelectInventoryViewModel>();
         services.AddTransient<LogisticsEditorViewModel>();
+        services.AddTransient<RepairViewModel>();
 
         return services.BuildServiceProvider();
     }

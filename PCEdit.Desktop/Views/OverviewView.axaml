@@ -50,10 +50,16 @@
                             <TextBlock Text="{Binding NearLoadLimitText}" TextWrapping="Wrap"
                                        IsVisible="{Binding NearLoadLimitText, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
                         </StackPanel>
-                        <Button Grid.Column="2" VerticalAlignment="Top"
-                                Content="{m:Loc Overview_AttentionShow}"
-                                Command="{Binding ShowAttentionCommand}"
-                                AutomationProperties.Name="{m:Loc Overview_AttentionShowA11y}" />
+                        <StackPanel Grid.Column="2" VerticalAlignment="Top" Spacing="8">
+                            <Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                                    Content="{m:Loc Overview_AttentionShow}"
+                                    Command="{Binding ShowAttentionCommand}"
+                                    AutomationProperties.Name="{m:Loc Overview_AttentionShowA11y}" />
+                            <Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                                    Content="{m:Loc Overview_AttentionRepair}"
+                                    Command="{Binding RepairCommand}"
+                                    AutomationProperties.Name="{m:Loc Overview_AttentionRepairA11y}" />
+                        </StackPanel>
                     </Grid>
                 </Border>
 

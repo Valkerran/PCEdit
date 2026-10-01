@@ -69,6 +69,24 @@
   <data name="Overview_AttentionNearLoadLimit" xml:space="preserve"><value>Oyunun kap başına 8.000 eşya sınırına yakın kaplar: {0}. Bu sınırı aşan eşyalar, oyun kaydı yüklediğinde kaybolur.</value></data>
   <data name="Overview_AttentionShow" xml:space="preserve"><value>Göster</value></data>
   <data name="Overview_AttentionShowA11y" xml:space="preserve"><value>Dikkat gerektiren kapları Envanterler sayfasında göster</value></data>
+  <data name="Overview_AttentionRepair" xml:space="preserve"><value>Onar…</value></data>
+  <data name="Overview_AttentionRepairA11y" xml:space="preserve"><value>Aşırı dolu kapları kaydın yeni bir kopyasında onar</value></data>
+  <data name="Repair_Title" xml:space="preserve"><value>Aşırı dolu kapları onar</value></data>
+  <data name="Repair_Intro" xml:space="preserve"><value>Her kabın alabileceğinden fazla eşyayı, listedeki son eşyalardan başlayarak kaldırır ve sonucu yeni bir kayıt dosyasına yazar. Açtığınız kayıt değiştirilmez.</value></data>
+  <data name="Repair_Keep" xml:space="preserve"><value>En fazla</value></data>
+  <data name="Repair_KeepSuffix" xml:space="preserve"><value>× her kabın boyutu kadar tut</value></data>
+  <data name="Repair_KeepA11y" xml:space="preserve"><value>Her kabın boyutunun en fazla bu kadar katını tut, 1 ile 100 arası</value></data>
+  <data name="Repair_KeepHint" xml:space="preserve"><value>1, modsuz oyunun izin verdiği kadarını tutar. Hiçbir kap, oyunun yükleme sınırının altında kalan 7.200 eşyadan fazlasını tutmaz.</value></data>
+  <data name="Repair_Preview" xml:space="preserve"><value>Kaldırılacak eşya: {0}. Etkilenen kap: {1}.</value></data>
+  <data name="Repair_Nothing" xml:space="preserve"><value>Bu ayarda kaldırılacak bir şey yok.</value></data>
+  <data name="Repair_MostRemoved" xml:space="preserve"><value>En çok kaldırılanlar</value></data>
+  <data name="Repair_TypeCount" xml:space="preserve"><value>{0}: {1}</value></data>
+  <data name="Repair_UnsavedChanges" xml:space="preserve"><value>Önce diğer değişikliklerinizi kaydedin. Onarılmış kopya yazılamazsa PCEdit onarımı geri almak için özgün dosyayı yeniden açar ve bu değişiklikler kaybolur.</value></data>
+  <data name="Repair_Apply" xml:space="preserve"><value>Onarılmış kopyayı kaydet…</value></data>
+  <data name="Repair_SaveTitle" xml:space="preserve"><value>Onarılmış kopyayı farklı kaydet</value></data>
+  <data name="Repair_Done" xml:space="preserve"><value>Kaldırılan eşya: {0}. Onarılmış kopya {1} olarak kaydedildi ve şu an açık; özgün kayıt değişmedi.</value></data>
+  <data name="Repair_Failed" xml:space="preserve"><value>Onarılmış kopya yazılamadı. Hiçbir şey değişmedi: özgün kayıt yeniden açık.</value></data>
+  <data name="Repair_FailedTitle" xml:space="preserve"><value>Onarım başarısız</value></data>
   <data name="Vital_Ok" xml:space="preserve"><value>İyi</value></data>
   <data name="Vital_Low" xml:space="preserve"><value>Düşük</value></data>
   <data name="Vital_Critical" xml:space="preserve"><value>Kritik</value></data>

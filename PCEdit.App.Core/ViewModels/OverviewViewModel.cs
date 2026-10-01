@@ -126,5 +126,8 @@ public sealed partial class OverviewViewModel(
     private Task ShowAttention() => _navigation.GoToInventoriesNeedingAttentionAsync();
 
     [RelayCommand]
+    private Task Repair() => _navigation.OpenRepairAsync();
+
+    [RelayCommand]
     private Task OpenFile() => _navigation.GoToOpenFileAsync();
 }

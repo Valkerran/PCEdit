@@ -69,6 +69,24 @@
   <data name="Overview_AttentionNearLoadLimit" xml:space="preserve"><value>接近游戏每个容器 8,000 个物品上限的容器：{0}。超出上限的物品会在游戏加载存档时丢失。</value></data>
   <data name="Overview_AttentionShow" xml:space="preserve"><value>查看</value></data>
   <data name="Overview_AttentionShowA11y" xml:space="preserve"><value>在库存页面查看需要注意的容器</value></data>
+  <data name="Overview_AttentionRepair" xml:space="preserve"><value>修复…</value></data>
+  <data name="Overview_AttentionRepairA11y" xml:space="preserve"><value>将超出容量的容器修复到存档的新副本中</value></data>
+  <data name="Repair_Title" xml:space="preserve"><value>修复超出容量的容器</value></data>
+  <data name="Repair_Intro" xml:space="preserve"><value>移除每个容器容量之外的物品（从列表末尾开始），并将结果写入新的存档文件。已打开的存档不会被更改。</value></data>
+  <data name="Repair_Keep" xml:space="preserve"><value>最多保留</value></data>
+  <data name="Repair_KeepSuffix" xml:space="preserve"><value>× 每个容器的容量</value></data>
+  <data name="Repair_KeepA11y" xml:space="preserve"><value>最多保留每个容器容量的多少倍，1 到 100</value></data>
+  <data name="Repair_KeepHint" xml:space="preserve"><value>1 只保留未安装模组的游戏所允许的数量。任何容器都不会保留超过 7,200 个物品，低于游戏的加载上限。</value></data>
+  <data name="Repair_Preview" xml:space="preserve"><value>要移除的物品：{0}。受影响的容器：{1}。</value></data>
+  <data name="Repair_Nothing" xml:space="preserve"><value>此设置下没有要移除的内容。</value></data>
+  <data name="Repair_MostRemoved" xml:space="preserve"><value>移除最多的物品</value></data>
+  <data name="Repair_TypeCount" xml:space="preserve"><value>{0}：{1}</value></data>
+  <data name="Repair_UnsavedChanges" xml:space="preserve"><value>请先保存其他更改。如果写入修复后的副本失败，PCEdit 会重新打开原始文件以撤销修复，这些更改将会丢失。</value></data>
+  <data name="Repair_Apply" xml:space="preserve"><value>保存修复后的副本…</value></data>
+  <data name="Repair_SaveTitle" xml:space="preserve"><value>将修复后的副本另存为</value></data>
+  <data name="Repair_Done" xml:space="preserve"><value>已移除的物品：{0}。修复后的副本已保存为 {1} 并已打开；原始存档未被更改。</value></data>
+  <data name="Repair_Failed" xml:space="preserve"><value>无法写入修复后的副本。未做任何更改：原始存档已重新打开。</value></data>
+  <data name="Repair_FailedTitle" xml:space="preserve"><value>修复失败</value></data>
   <data name="Vital_Ok" xml:space="preserve"><value>正常</value></data>
   <data name="Vital_Low" xml:space="preserve"><value>偏低</value></data>
   <data name="Vital_Critical" xml:space="preserve"><value>危急</value></data>

@@ -69,6 +69,24 @@
   <data name="Overview_AttentionNearLoadLimit" xml:space="preserve"><value>Contentores perto do limite do jogo de 8000 itens cada: {0}. Os itens acima desse limite perdem-se quando o jogo carrega o jogo guardado.</value></data>
   <data name="Overview_AttentionShow" xml:space="preserve"><value>Mostrá-los</value></data>
   <data name="Overview_AttentionShowA11y" xml:space="preserve"><value>Mostrar na página Inventários os contentores que requerem atenção</value></data>
+  <data name="Overview_AttentionRepair" xml:space="preserve"><value>Reparar…</value></data>
+  <data name="Overview_AttentionRepairA11y" xml:space="preserve"><value>Reparar os contentores sobrelotados numa nova cópia do jogo guardado</value></data>
+  <data name="Repair_Title" xml:space="preserve"><value>Reparar contentores sobrelotados</value></data>
+  <data name="Repair_Intro" xml:space="preserve"><value>Remove os itens além do que cada contentor pode conter, começando pelos últimos da lista, e escreve o resultado num novo ficheiro de jogo guardado. O jogo guardado aberto não é alterado.</value></data>
+  <data name="Repair_Keep" xml:space="preserve"><value>Manter no máximo</value></data>
+  <data name="Repair_KeepSuffix" xml:space="preserve"><value>× o tamanho de cada contentor</value></data>
+  <data name="Repair_KeepA11y" xml:space="preserve"><value>Manter no máximo este número de vezes o tamanho de cada contentor, de 1 a 100</value></data>
+  <data name="Repair_KeepHint" xml:space="preserve"><value>1 mantém exatamente o que um jogo sem mods permite. Nenhum contentor mantém mais de 7200 itens, abaixo do limite de carregamento do jogo.</value></data>
+  <data name="Repair_Preview" xml:space="preserve"><value>Itens a remover: {0}. Contentores afetados: {1}.</value></data>
+  <data name="Repair_Nothing" xml:space="preserve"><value>Nada a remover com esta definição.</value></data>
+  <data name="Repair_MostRemoved" xml:space="preserve"><value>Os mais removidos</value></data>
+  <data name="Repair_TypeCount" xml:space="preserve"><value>{0}: {1}</value></data>
+  <data name="Repair_UnsavedChanges" xml:space="preserve"><value>Guarde primeiro as outras alterações. Se a escrita da cópia reparada falhasse, o PCEdit voltaria a abrir o ficheiro original para anular a reparação, e essas alterações perder-se-iam.</value></data>
+  <data name="Repair_Apply" xml:space="preserve"><value>Guardar cópia reparada…</value></data>
+  <data name="Repair_SaveTitle" xml:space="preserve"><value>Guardar a cópia reparada como</value></data>
+  <data name="Repair_Done" xml:space="preserve"><value>Itens removidos: {0}. A cópia reparada foi guardada como {1} e está agora aberta; o jogo guardado original não foi alterado.</value></data>
+  <data name="Repair_Failed" xml:space="preserve"><value>Não foi possível escrever a cópia reparada. Nada foi alterado: o jogo guardado original está aberto novamente.</value></data>
+  <data name="Repair_FailedTitle" xml:space="preserve"><value>A reparação falhou</value></data>
   <data name="Vital_Ok" xml:space="preserve"><value>OK</value></data>
   <data name="Vital_Low" xml:space="preserve"><value>Baixo</value></data>
   <data name="Vital_Critical" xml:space="preserve"><value>Crítico</value></data>

@@ -69,6 +69,24 @@
   <data name="Overview_AttentionNearLoadLimit" xml:space="preserve"><value>Контейнеров близко к пределу игры в 8000 предметов на контейнер: {0}. Предметы сверх этого предела теряются, когда игра загружает сохранение.</value></data>
   <data name="Overview_AttentionShow" xml:space="preserve"><value>Показать их</value></data>
   <data name="Overview_AttentionShowA11y" xml:space="preserve"><value>Показать на странице «Инвентари» контейнеры, требующие внимания</value></data>
+  <data name="Overview_AttentionRepair" xml:space="preserve"><value>Исправить…</value></data>
+  <data name="Overview_AttentionRepairA11y" xml:space="preserve"><value>Исправить переполненные контейнеры в новой копии сохранения</value></data>
+  <data name="Repair_Title" xml:space="preserve"><value>Исправление переполненных контейнеров</value></data>
+  <data name="Repair_Intro" xml:space="preserve"><value>Удаляет предметы сверх вместимости каждого контейнера, начиная с последних в списке, и записывает результат в новый файл сохранения. Открытое сохранение не изменяется.</value></data>
+  <data name="Repair_Keep" xml:space="preserve"><value>Оставить не более</value></data>
+  <data name="Repair_KeepSuffix" xml:space="preserve"><value>× размер каждого контейнера</value></data>
+  <data name="Repair_KeepA11y" xml:space="preserve"><value>Оставить не более этого числа размеров каждого контейнера, от 1 до 100</value></data>
+  <data name="Repair_KeepHint" xml:space="preserve"><value>1 оставляет ровно столько, сколько допускает игра без модов. Ни в одном контейнере не останется больше 7200 предметов, ниже предела загрузки игры.</value></data>
+  <data name="Repair_Preview" xml:space="preserve"><value>Предметов к удалению: {0}. Затронуто контейнеров: {1}.</value></data>
+  <data name="Repair_Nothing" xml:space="preserve"><value>При этой настройке удалять нечего.</value></data>
+  <data name="Repair_MostRemoved" xml:space="preserve"><value>Больше всего удалено</value></data>
+  <data name="Repair_TypeCount" xml:space="preserve"><value>{0}: {1}</value></data>
+  <data name="Repair_UnsavedChanges" xml:space="preserve"><value>Сначала сохраните остальные изменения. Если записать исправленную копию не удастся, PCEdit снова откроет исходный файл, чтобы отменить исправление, и эти изменения будут потеряны.</value></data>
+  <data name="Repair_Apply" xml:space="preserve"><value>Сохранить исправленную копию…</value></data>
+  <data name="Repair_SaveTitle" xml:space="preserve"><value>Сохранить исправленную копию как</value></data>
+  <data name="Repair_Done" xml:space="preserve"><value>Удалено предметов: {0}. Исправленная копия сохранена как {1} и сейчас открыта; исходное сохранение не изменено.</value></data>
+  <data name="Repair_Failed" xml:space="preserve"><value>Не удалось записать исправленную копию. Ничего не изменено: исходное сохранение снова открыто.</value></data>
+  <data name="Repair_FailedTitle" xml:space="preserve"><value>Исправление не удалось</value></data>
   <data name="Vital_Ok" xml:space="preserve"><value>Норма</value></data>
   <data name="Vital_Low" xml:space="preserve"><value>Низкий</value></data>
   <data name="Vital_Critical" xml:space="preserve"><value>Критический</value></data>

@@ -116,6 +116,17 @@ public sealed class OverviewViewModelTests
     }
 
     [Fact]
+    public async Task RepairCommand_OpensTheRepair()
+    {
+        var nav = new FakeNavigationService();
+        var vm = CreateLoaded(nav, WorkspaceFixtures.OverFillBobsInventory);
+
+        await vm.RepairCommand.ExecuteAsync(null);
+
+        Assert.Equal(1, nav.RepairCount);
+    }
+
+    [Fact]
     public void OpenFileCommand_Navigates()
     {
         var nav = new FakeNavigationService();

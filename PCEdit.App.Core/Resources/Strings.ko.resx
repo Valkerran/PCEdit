@@ -69,6 +69,24 @@
   <data name="Overview_AttentionNearLoadLimit" xml:space="preserve"><value>컨테이너당 8,000개라는 게임 한도에 가까운 컨테이너: {0}. 한도를 넘는 아이템은 게임이 세이브를 불러올 때 사라집니다.</value></data>
   <data name="Overview_AttentionShow" xml:space="preserve"><value>보기</value></data>
   <data name="Overview_AttentionShowA11y" xml:space="preserve"><value>확인이 필요한 컨테이너를 인벤토리 페이지에서 보기</value></data>
+  <data name="Overview_AttentionRepair" xml:space="preserve"><value>복구…</value></data>
+  <data name="Overview_AttentionRepairA11y" xml:space="preserve"><value>용량을 초과한 컨테이너를 세이브의 새 사본으로 복구</value></data>
+  <data name="Repair_Title" xml:space="preserve"><value>용량을 초과한 컨테이너 복구</value></data>
+  <data name="Repair_Intro" xml:space="preserve"><value>각 컨테이너에 들어갈 수 있는 양을 넘는 아이템을 목록의 마지막 것부터 제거하고, 결과를 새 세이브 파일에 씁니다. 열어 둔 세이브는 바뀌지 않습니다.</value></data>
+  <data name="Repair_Keep" xml:space="preserve"><value>최대</value></data>
+  <data name="Repair_KeepSuffix" xml:space="preserve"><value>× 각 컨테이너 크기만큼 유지</value></data>
+  <data name="Repair_KeepA11y" xml:space="preserve"><value>각 컨테이너 크기의 최대 몇 배까지 유지할지, 1~100</value></data>
+  <data name="Repair_KeepHint" xml:space="preserve"><value>1은 모드 없는 게임이 허용하는 만큼만 유지합니다. 어떤 컨테이너도 게임 로드 한도보다 낮은 7,200개를 넘게 유지하지 않습니다.</value></data>
+  <data name="Repair_Preview" xml:space="preserve"><value>제거할 아이템: {0}. 영향받는 컨테이너: {1}.</value></data>
+  <data name="Repair_Nothing" xml:space="preserve"><value>이 설정에서는 제거할 것이 없습니다.</value></data>
+  <data name="Repair_MostRemoved" xml:space="preserve"><value>가장 많이 제거되는 아이템</value></data>
+  <data name="Repair_TypeCount" xml:space="preserve"><value>{0}: {1}</value></data>
+  <data name="Repair_UnsavedChanges" xml:space="preserve"><value>먼저 다른 변경 사항을 저장하세요. 복구된 사본을 쓰지 못하면 PCEdit가 복구를 되돌리기 위해 원본 파일을 다시 열며, 그 변경 사항은 사라집니다.</value></data>
+  <data name="Repair_Apply" xml:space="preserve"><value>복구된 사본 저장…</value></data>
+  <data name="Repair_SaveTitle" xml:space="preserve"><value>복구된 사본을 다른 이름으로 저장</value></data>
+  <data name="Repair_Done" xml:space="preserve"><value>제거한 아이템: {0}. 복구된 사본을 {1}(으)로 저장했고 지금 열려 있습니다. 원본 세이브는 바뀌지 않았습니다.</value></data>
+  <data name="Repair_Failed" xml:space="preserve"><value>복구된 사본을 쓸 수 없었습니다. 아무것도 바뀌지 않았으며 원본 세이브가 다시 열려 있습니다.</value></data>
+  <data name="Repair_FailedTitle" xml:space="preserve"><value>복구 실패</value></data>
   <data name="Vital_Ok" xml:space="preserve"><value>양호</value></data>
   <data name="Vital_Low" xml:space="preserve"><value>낮음</value></data>
   <data name="Vital_Critical" xml:space="preserve"><value>위험</value></data>

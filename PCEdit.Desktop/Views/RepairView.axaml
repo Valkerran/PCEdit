@@ -1,0 +1,57 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:PCEdit.App.Core.ViewModels;assembly=PCEdit.App.Core"
+             xmlns:m="using:PCEdit.Desktop.Markup"
+             x:Class="PCEdit.Desktop.Views.RepairView"
+             x:DataType="vm:RepairViewModel">
+
+    <!--
+        Over-full container repair (issue #64). Previews what trimming every container to N times
+        its size would remove, then writes the result to a new save file the player picks: the
+        save that was opened is never written.
+    -->
+    <DockPanel Margin="20">
+        <StackPanel DockPanel.Dock="Top" Spacing="12" Margin="0,0,0,12">
+            <StackPanel Orientation="Horizontal" Spacing="10">
+                <Border Classes="headingRule" />
+                <TextBlock Text="{m:Loc Repair_Title}" Classes="h2" VerticalAlignment="Center" />
+            </StackPanel>
+
+            <TextBlock Text="{m:Loc Repair_Intro}" TextWrapping="Wrap" />
+
+            <StackPanel Orientation="Horizontal" Spacing="10">
+                <TextBlock Text="{m:Loc Repair_Keep}" VerticalAlignment="Center" />
+                <NumericUpDown Value="{Binding Multiple, Mode=TwoWay}" Minimum="1" Maximum="100"
+                               Increment="1" FormatString="0" ParsingNumberStyle="Integer" MinWidth="120"
+                               AutomationProperties.Name="{m:Loc Repair_KeepA11y}" />
+                <TextBlock Text="{m:Loc Repair_KeepSuffix}" VerticalAlignment="Center"
+                           AutomationProperties.AccessibilityView="Raw" />
+            </StackPanel>
+            <TextBlock Text="{m:Loc Repair_KeepHint}" Classes="caption" TextWrapping="Wrap" />
+
+            <TextBlock Text="{Binding PreviewText}" FontWeight="Bold" TextWrapping="Wrap" />
+        </StackPanel>
+
+        <StackPanel DockPanel.Dock="Bottom" Spacing="12" Margin="0,12,0,0">
+            <TextBlock Text="{m:Loc Repair_UnsavedChanges}" TextWrapping="Wrap"
+                       Foreground="{DynamicResource StatusWarningText}"
+                       IsVisible="{Binding HasUnsavedChanges}" />
+            <StackPanel Orientation="Horizontal" Spacing="10">
+                <Button Classes="accent" Content="{m:Loc Repair_Apply}" Command="{Binding RepairCommand}" />
+                <Button Content="{m:Loc Common_Cancel}" Command="{Binding CancelCommand}" />
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Spacing="6" IsVisible="{Binding TopTypes.Count, Converter={StaticResource CountIsPositive}}">
+            <TextBlock Text="{m:Loc Repair_MostRemoved}" Classes="caption" />
+            <ItemsControl ItemsSource="{Binding TopTypes}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="x:String">
+                        <TextBlock Text="{Binding}" Margin="0,2" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </DockPanel>
+
+</UserControl>

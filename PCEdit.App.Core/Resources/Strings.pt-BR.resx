@@ -69,6 +69,24 @@
   <data name="Overview_AttentionNearLoadLimit" xml:space="preserve"><value>Contêineres perto do limite do jogo de 8.000 itens cada: {0}. Os itens acima desse limite se perdem quando o jogo carrega o save.</value></data>
   <data name="Overview_AttentionShow" xml:space="preserve"><value>Mostrar</value></data>
   <data name="Overview_AttentionShowA11y" xml:space="preserve"><value>Mostrar na página Inventários os contêineres que precisam de atenção</value></data>
+  <data name="Overview_AttentionRepair" xml:space="preserve"><value>Reparar…</value></data>
+  <data name="Overview_AttentionRepairA11y" xml:space="preserve"><value>Reparar os contêineres superlotados em uma nova cópia do save</value></data>
+  <data name="Repair_Title" xml:space="preserve"><value>Reparar contêineres superlotados</value></data>
+  <data name="Repair_Intro" xml:space="preserve"><value>Remove os itens além do que cada contêiner comporta, começando pelos últimos da lista, e grava o resultado em um novo arquivo de save. O save aberto não é alterado.</value></data>
+  <data name="Repair_Keep" xml:space="preserve"><value>Manter no máximo</value></data>
+  <data name="Repair_KeepSuffix" xml:space="preserve"><value>× o tamanho de cada contêiner</value></data>
+  <data name="Repair_KeepA11y" xml:space="preserve"><value>Manter no máximo esse número de vezes o tamanho de cada contêiner, de 1 a 100</value></data>
+  <data name="Repair_KeepHint" xml:space="preserve"><value>1 mantém exatamente o que um jogo sem mods permite. Nenhum contêiner mantém mais de 7.200 itens, abaixo do limite de carregamento do jogo.</value></data>
+  <data name="Repair_Preview" xml:space="preserve"><value>Itens a remover: {0}. Contêineres afetados: {1}.</value></data>
+  <data name="Repair_Nothing" xml:space="preserve"><value>Nada a remover com esta configuração.</value></data>
+  <data name="Repair_MostRemoved" xml:space="preserve"><value>Os mais removidos</value></data>
+  <data name="Repair_TypeCount" xml:space="preserve"><value>{0}: {1}</value></data>
+  <data name="Repair_UnsavedChanges" xml:space="preserve"><value>Salve primeiro suas outras alterações. Se a gravação da cópia reparada falhasse, o PCEdit reabriria o arquivo original para desfazer o reparo, e essas alterações seriam perdidas.</value></data>
+  <data name="Repair_Apply" xml:space="preserve"><value>Salvar cópia reparada…</value></data>
+  <data name="Repair_SaveTitle" xml:space="preserve"><value>Salvar a cópia reparada como</value></data>
+  <data name="Repair_Done" xml:space="preserve"><value>Itens removidos: {0}. A cópia reparada foi salva como {1} e agora está aberta; o save original não foi alterado.</value></data>
+  <data name="Repair_Failed" xml:space="preserve"><value>Não foi possível gravar a cópia reparada. Nada foi alterado: o save original está aberto novamente.</value></data>
+  <data name="Repair_FailedTitle" xml:space="preserve"><value>Falha no reparo</value></data>
   <data name="Vital_Ok" xml:space="preserve"><value>OK</value></data>
   <data name="Vital_Low" xml:space="preserve"><value>Baixo</value></data>
   <data name="Vital_Critical" xml:space="preserve"><value>Crítico</value></data>

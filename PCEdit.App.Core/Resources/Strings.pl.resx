@@ -69,6 +69,24 @@
   <data name="Overview_AttentionNearLoadLimit" xml:space="preserve"><value>Pojemniki bliskie limitu gry wynoszącego 8000 przedmiotów na pojemnik: {0}. Przedmioty ponad ten limit przepadają, gdy gra wczytuje zapis.</value></data>
   <data name="Overview_AttentionShow" xml:space="preserve"><value>Pokaż je</value></data>
   <data name="Overview_AttentionShowA11y" xml:space="preserve"><value>Pokaż na stronie Ekwipunki pojemniki wymagające uwagi</value></data>
+  <data name="Overview_AttentionRepair" xml:space="preserve"><value>Napraw…</value></data>
+  <data name="Overview_AttentionRepairA11y" xml:space="preserve"><value>Napraw przepełnione pojemniki w nowej kopii zapisu</value></data>
+  <data name="Repair_Title" xml:space="preserve"><value>Napraw przepełnione pojemniki</value></data>
+  <data name="Repair_Intro" xml:space="preserve"><value>Usuwa przedmioty ponad pojemność każdego pojemnika, zaczynając od ostatnich na liście, i zapisuje wynik w nowym pliku zapisu. Otwarty zapis nie zostaje zmieniony.</value></data>
+  <data name="Repair_Keep" xml:space="preserve"><value>Zachowaj najwyżej</value></data>
+  <data name="Repair_KeepSuffix" xml:space="preserve"><value>× rozmiar każdego pojemnika</value></data>
+  <data name="Repair_KeepA11y" xml:space="preserve"><value>Zachowaj najwyżej tyle razy rozmiar każdego pojemnika, od 1 do 100</value></data>
+  <data name="Repair_KeepHint" xml:space="preserve"><value>1 zachowuje dokładnie tyle, ile pozwala gra bez modów. Żaden pojemnik nie zachowa więcej niż 7200 przedmiotów, poniżej limitu wczytywania gry.</value></data>
+  <data name="Repair_Preview" xml:space="preserve"><value>Przedmioty do usunięcia: {0}. Pojemniki objęte zmianą: {1}.</value></data>
+  <data name="Repair_Nothing" xml:space="preserve"><value>Przy tym ustawieniu nie ma nic do usunięcia.</value></data>
+  <data name="Repair_MostRemoved" xml:space="preserve"><value>Najwięcej usuniętych</value></data>
+  <data name="Repair_TypeCount" xml:space="preserve"><value>{0}: {1}</value></data>
+  <data name="Repair_UnsavedChanges" xml:space="preserve"><value>Najpierw zapisz pozostałe zmiany. Gdyby zapis naprawionej kopii się nie powiódł, PCEdit ponownie otworzyłby oryginalny plik, aby cofnąć naprawę, a te zmiany przepadłyby.</value></data>
+  <data name="Repair_Apply" xml:space="preserve"><value>Zapisz naprawioną kopię…</value></data>
+  <data name="Repair_SaveTitle" xml:space="preserve"><value>Zapisz naprawioną kopię jako</value></data>
+  <data name="Repair_Done" xml:space="preserve"><value>Usunięte przedmioty: {0}. Naprawiona kopia została zapisana jako {1} i jest teraz otwarta; oryginalny zapis pozostał bez zmian.</value></data>
+  <data name="Repair_Failed" xml:space="preserve"><value>Nie udało się zapisać naprawionej kopii. Nic nie zostało zmienione: oryginalny zapis jest ponownie otwarty.</value></data>
+  <data name="Repair_FailedTitle" xml:space="preserve"><value>Naprawa nie powiodła się</value></data>
   <data name="Vital_Ok" xml:space="preserve"><value>OK</value></data>
   <data name="Vital_Low" xml:space="preserve"><value>Niski</value></data>
   <data name="Vital_Critical" xml:space="preserve"><value>Krytyczny</value></data>

@@ -83,6 +83,12 @@ machine-translated. Full and over-full destinations are not offered at all; a di
 screen-reader name ("…, room for {N}, …") is still built in English in
 `InventoryOptionView.AccessibleLabel` (see *Not yet localized*).
 
+The repair (issue #64, phase 6: trim over-full containers into a new copy of the save) added
+`Overview_AttentionRepair{,A11y}` and `Repair_*` — all machine-translated. `Repair_Preview` and
+`Repair_Done` put counts after a colon, like the banner, so no locale needs plural forms;
+`Repair_TypeCount` is the "{0}: {1}" line per item type (French and the CJK locales use their own
+colon). `Repair_KeepHint` names the 7,200-item ceiling in each locale's own digit grouping.
+
 | Culture | Language | Reviewed |
 |---|---|---|
 | en-US | English (United States) | n/a (source) |

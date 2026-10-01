@@ -47,6 +47,13 @@ public static class LocKeys
     public const string Overview_GameVersion = "Overview_GameVersion";
     public const string Overview_AttentionOverCapacity = "Overview_AttentionOverCapacity";
     public const string Overview_AttentionNearLoadLimit = "Overview_AttentionNearLoadLimit";
+    public const string Repair_Preview = "Repair_Preview";
+    public const string Repair_Nothing = "Repair_Nothing";
+    public const string Repair_TypeCount = "Repair_TypeCount";
+    public const string Repair_SaveTitle = "Repair_SaveTitle";
+    public const string Repair_Done = "Repair_Done";
+    public const string Repair_Failed = "Repair_Failed";
+    public const string Repair_FailedTitle = "Repair_FailedTitle";
 
     public const string Vital_Ok = "Vital_Ok";
     public const string Vital_Low = "Vital_Low";
