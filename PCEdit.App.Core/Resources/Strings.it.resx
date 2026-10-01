@@ -131,6 +131,13 @@
   <data name="Inventories_FillNearLoadLimitHelp" xml:space="preserve"><value>Contiene {0} oggetti. Il gioco carica al massimo 8.000 oggetti per inventario e scarta il resto senza avvisare.</value></data>
   <data name="Inventories_StackCount" xml:space="preserve"><value>× {0}</value></data>
   <data name="Inventories_MoveStackA11y" xml:space="preserve"><value>Sposta un oggetto «{0}» da una pila di {1} in un altro inventario</value></data>
+  <data name="Inventories_StackingLabel" xml:space="preserve"><value>Oggetti identici:</value></data>
+  <data name="Inventories_StackingA11y" xml:space="preserve"><value>Come mostrare gli oggetti identici</value></data>
+  <data name="Inventories_StackingAuto" xml:space="preserve"><value>Automatico</value></data>
+  <data name="Inventories_StackingAutoHint" xml:space="preserve"><value>Una riga per oggetto, raggruppati solo se il salvataggio ha contenitori che richiedono attenzione.</value></data>
+  <data name="Inventories_StackingAlways" xml:space="preserve"><value>Raggruppati</value></data>
+  <data name="Inventories_StackingNever" xml:space="preserve"><value>Uno per uno</value></data>
+  <data name="Inventories_GroupedForSize" xml:space="preserve"><value>Raggruppati: troppi oggetti per elencarli uno per uno.</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>Inventario di {0}</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>Equipaggiamento di {0}</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0} (oggetto n. {1})</value></data>

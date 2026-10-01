@@ -131,6 +131,13 @@
   <data name="Inventories_FillNearLoadLimitHelp" xml:space="preserve"><value>Holds {0} items. The game loads at most 8,000 items into one inventory and silently drops the rest.</value></data>
   <data name="Inventories_StackCount" xml:space="preserve"><value>× {0}</value></data>
   <data name="Inventories_MoveStackA11y" xml:space="preserve"><value>Move one {0}, from a stack of {1}, to another inventory</value></data>
+  <data name="Inventories_StackingLabel" xml:space="preserve"><value>Identical items:</value></data>
+  <data name="Inventories_StackingA11y" xml:space="preserve"><value>How to show identical items</value></data>
+  <data name="Inventories_StackingAuto" xml:space="preserve"><value>Automatic</value></data>
+  <data name="Inventories_StackingAutoHint" xml:space="preserve"><value>One row per item, grouped only when the save has containers that need attention.</value></data>
+  <data name="Inventories_StackingAlways" xml:space="preserve"><value>Grouped</value></data>
+  <data name="Inventories_StackingNever" xml:space="preserve"><value>One by one</value></data>
+  <data name="Inventories_GroupedForSize" xml:space="preserve"><value>Grouped: too many items to list one at a time.</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>{0}'s Inventory</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>{0}'s Equipment</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0} (Object #{1})</value></data>

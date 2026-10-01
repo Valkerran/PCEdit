@@ -89,6 +89,12 @@ The repair (issue #64, phase 6: trim over-full containers into a new copy of the
 `Repair_TypeCount` is the "{0}: {1}" line per item type (French and the CJK locales use their own
 colon). `Repair_KeepHint` names the 7,200-item ceiling in each locale's own digit grouping.
 
+The identical-items setting (issue #64, phase 2b: one row per item or per stack on the Inventories
+page) added `Inventories_Stacking{Label,A11y,Auto,AutoHint,Always,Never}` and
+`Inventories_GroupedForSize` — machine-translated. "Grouped" / "One by one" are the chip labels
+for always grouping and never grouping; `Inventories_StackingAutoHint` is the Automatic chip's
+tooltip and screen-reader help text.
+
 | Culture | Language | Reviewed |
 |---|---|---|
 | en-US | English (United States) | n/a (source) |

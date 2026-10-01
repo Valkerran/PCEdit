@@ -63,11 +63,12 @@ public sealed record InventoryGroup
 
     /// <summary>
     /// The card's rows: <see cref="Items"/> grouped by stack key in the order each key first
-    /// appears, or one row per item on a card narrowed by an id search. Built on each read, not
+    /// appears, or one row per item when <see cref="ListEachItem"/> or an id search asks for it (up
+    /// to <see cref="MaxItemsListedOneByOne"/>). Built on each read, not
     /// cached: a cache would be carried into the copy <see cref="NarrowTo"/> makes with
     /// <c>with</c>, giving the narrowed card the unnarrowed rows. The view reads it once per card.
     /// </summary>
-    public IReadOnlyList<InventoryStackView> Stacks => OneRowPerItem
+    public IReadOnlyList<InventoryStackView> Stacks => WantsRowPerItem && !IsGroupedForSize
         ? Items.Select(item => new InventoryStackView(item.GId, item.DisplayName, item.IconFile, [item.WorldObjectId])).ToList()
         : Items.GroupBy(item => item.StackKey, StringComparer.Ordinal)
             .Select(stack =>
@@ -77,7 +78,27 @@ public sealed record InventoryGroup
             })
             .ToList();
 
+    // Set by NarrowTo for an id search: the player is after particular items.
     private bool OneRowPerItem { get; init; }
+
+    /// <summary>
+    /// The most items a card lists one row each. Past it the card groups whatever was asked: a row
+    /// per item on a stacking-mod chest built tens of thousands of controls and froze the page
+    /// for seconds (issue #64). A performance guard, not a game rule.
+    /// </summary>
+    public const int MaxItemsListedOneByOne = 500;
+
+    /// <summary>
+    /// One row per item rather than per stack, so each item's id shows at a glance. Set from the
+    /// "identical items" setting; <see cref="MaxItemsListedOneByOne"/> still applies.
+    /// </summary>
+    public bool ListEachItem { get; init; }
+
+    private bool WantsRowPerItem => ListEachItem || OneRowPerItem;
+
+    /// <summary>True when a row per item was asked for but the card is too big, so it is grouped -
+    /// the view says so, or it would look like the setting was ignored.</summary>
+    public bool IsGroupedForSize => WantsRowPerItem && Items.Count > MaxItemsListedOneByOne;
 
     public bool HasItems => TotalItemCount > 0;
 

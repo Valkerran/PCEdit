@@ -131,6 +131,13 @@
   <data name="Inventories_FillNearLoadLimitHelp" xml:space="preserve"><value>{0} eşya var. Oyun bir envantere en fazla 8.000 eşya yükler ve gerisini sessizce atar.</value></data>
   <data name="Inventories_StackCount" xml:space="preserve"><value>× {0}</value></data>
   <data name="Inventories_MoveStackA11y" xml:space="preserve"><value>{1} adetlik yığından bir {0} ögesini başka bir envantere taşı</value></data>
+  <data name="Inventories_StackingLabel" xml:space="preserve"><value>Aynı eşyalar:</value></data>
+  <data name="Inventories_StackingA11y" xml:space="preserve"><value>Aynı eşyaların nasıl gösterileceği</value></data>
+  <data name="Inventories_StackingAuto" xml:space="preserve"><value>Otomatik</value></data>
+  <data name="Inventories_StackingAutoHint" xml:space="preserve"><value>Her eşya için bir satır; yalnızca kayıtta dikkat gerektiren kaplar varsa gruplanır.</value></data>
+  <data name="Inventories_StackingAlways" xml:space="preserve"><value>Gruplanmış</value></data>
+  <data name="Inventories_StackingNever" xml:space="preserve"><value>Tek tek</value></data>
+  <data name="Inventories_GroupedForSize" xml:space="preserve"><value>Gruplandı: tek tek listelemek için çok fazla eşya var.</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>{0} adlı oyuncunun envanteri</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>{0} adlı oyuncunun ekipmanı</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0} (Nesne #{1})</value></data>

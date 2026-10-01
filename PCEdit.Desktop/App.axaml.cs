@@ -50,6 +50,7 @@ public partial class App : Application
         services.AddSingleton<JsonSettingsStore>();
         services.AddSingleton<ILanguageStore>(sp => sp.GetRequiredService<JsonSettingsStore>());
         services.AddSingleton<IDisclaimerGate>(sp => sp.GetRequiredService<JsonSettingsStore>());
+        services.AddSingleton<IInventoryDisplayStore>(sp => sp.GetRequiredService<JsonSettingsStore>());
         services.AddSingleton<IAppVersionInfo, AvaloniaAppVersionInfo>();
 
         services.AddSingleton<MainWindowAccessor>();

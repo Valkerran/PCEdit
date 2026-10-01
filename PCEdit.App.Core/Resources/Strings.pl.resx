@@ -131,6 +131,13 @@
   <data name="Inventories_FillNearLoadLimitHelp" xml:space="preserve"><value>Zawiera {0} przedmiotów. Gra wczytuje najwyżej 8000 przedmiotów do jednego ekwipunku, a resztę po cichu odrzuca.</value></data>
   <data name="Inventories_StackCount" xml:space="preserve"><value>× {0}</value></data>
   <data name="Inventories_MoveStackA11y" xml:space="preserve"><value>Przenieś jeden przedmiot „{0}” ze stosu {1} do innego ekwipunku</value></data>
+  <data name="Inventories_StackingLabel" xml:space="preserve"><value>Identyczne przedmioty:</value></data>
+  <data name="Inventories_StackingA11y" xml:space="preserve"><value>Jak pokazywać identyczne przedmioty</value></data>
+  <data name="Inventories_StackingAuto" xml:space="preserve"><value>Automatycznie</value></data>
+  <data name="Inventories_StackingAutoHint" xml:space="preserve"><value>Jeden wiersz na przedmiot, grupowane tylko wtedy, gdy zapis ma pojemniki wymagające uwagi.</value></data>
+  <data name="Inventories_StackingAlways" xml:space="preserve"><value>Grupowane</value></data>
+  <data name="Inventories_StackingNever" xml:space="preserve"><value>Pojedynczo</value></data>
+  <data name="Inventories_GroupedForSize" xml:space="preserve"><value>Grupowane: za dużo przedmiotów, by wypisać je pojedynczo.</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>Ekwipunek gracza {0}</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>Wyposażenie gracza {0}</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0} (obiekt nr {1})</value></data>

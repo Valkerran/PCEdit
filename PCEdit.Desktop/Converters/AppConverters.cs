@@ -72,17 +72,19 @@ public sealed class IconPathConverter : IValueConverter
         throw new NotSupportedException();
 }
 
-/// <summary>Two-way match between an <see cref="InventoryFilter"/> and a name (ConverterParameter),
-/// for binding a group of RadioButtons to the single filter property.</summary>
-public sealed class InventoryFilterConverter : IValueConverter
+/// <summary>Two-way match between any enum value and a member name (ConverterParameter), for
+/// binding a group of RadioButtons to one enum property - the Inventories type filter and the
+/// identical-items setting both use it.</summary>
+public sealed class EnumIsConverter : IValueConverter
 {
     public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture) =>
-        value is InventoryFilter f && parameter is string s &&
-        string.Equals(f.ToString(), s, StringComparison.OrdinalIgnoreCase);
+        value is Enum member && parameter is string name &&
+        string.Equals(member.ToString(), name, StringComparison.OrdinalIgnoreCase);
 
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture) =>
-        value is true && parameter is string s && Enum.TryParse<InventoryFilter>(s, ignoreCase: true, out var f)
-            ? f
+        value is true && parameter is string name && targetType.IsEnum
+            && Enum.TryParse(targetType, name, ignoreCase: true, out var member)
+            ? member
             : BindingOperations.DoNothing;
 }
 

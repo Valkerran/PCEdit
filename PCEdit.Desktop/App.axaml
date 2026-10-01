@@ -95,7 +95,7 @@
         <conv:IconPathConverter x:Key="Icon" />
         <conv:CountConverter x:Key="CountIsZero" Zero="True" />
         <conv:CountConverter x:Key="CountIsPositive" />
-        <conv:InventoryFilterConverter x:Key="InvFilter" />
+        <conv:EnumIsConverter x:Key="EnumIs" />
 
         <!-- Over-full / near-load-limit glyphs (issue #64), shared by the Inventories badges and the
              Overview banner. Even-odd fill ("F0") cuts the exclamation mark out of the shape. -->

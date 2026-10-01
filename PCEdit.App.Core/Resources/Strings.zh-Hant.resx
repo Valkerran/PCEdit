@@ -131,6 +131,13 @@
   <data name="Inventories_FillNearLoadLimitHelp" xml:space="preserve"><value>有 {0} 個物品。遊戲每個庫存最多載入 8,000 個物品，其餘會被默默丟棄。</value></data>
   <data name="Inventories_StackCount" xml:space="preserve"><value>× {0}</value></data>
   <data name="Inventories_MoveStackA11y" xml:space="preserve"><value>從 {1} 個的堆疊中將 1 個 {0} 移動到另一個庫存</value></data>
+  <data name="Inventories_StackingLabel" xml:space="preserve"><value>相同物品：</value></data>
+  <data name="Inventories_StackingA11y" xml:space="preserve"><value>相同物品的顯示方式</value></data>
+  <data name="Inventories_StackingAuto" xml:space="preserve"><value>自動</value></data>
+  <data name="Inventories_StackingAutoHint" xml:space="preserve"><value>每個物品一行；只有存檔中有需要注意的容器時才合併顯示。</value></data>
+  <data name="Inventories_StackingAlways" xml:space="preserve"><value>合併</value></data>
+  <data name="Inventories_StackingNever" xml:space="preserve"><value>逐個</value></data>
+  <data name="Inventories_GroupedForSize" xml:space="preserve"><value>已合併：物品太多，無法逐個列出。</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>{0} 的庫存</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>{0} 的裝備</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0}（物體 #{1}）</value></data>

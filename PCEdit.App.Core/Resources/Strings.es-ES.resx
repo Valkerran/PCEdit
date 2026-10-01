@@ -131,6 +131,13 @@
   <data name="Inventories_FillNearLoadLimitHelp" xml:space="preserve"><value>Contiene {0} objetos. El juego carga como máximo 8.000 objetos por inventario y descarta el resto sin avisar.</value></data>
   <data name="Inventories_StackCount" xml:space="preserve"><value>× {0}</value></data>
   <data name="Inventories_MoveStackA11y" xml:space="preserve"><value>Mover un objeto «{0}» de una pila de {1} a otro inventario</value></data>
+  <data name="Inventories_StackingLabel" xml:space="preserve"><value>Objetos idénticos:</value></data>
+  <data name="Inventories_StackingA11y" xml:space="preserve"><value>Cómo mostrar los objetos idénticos</value></data>
+  <data name="Inventories_StackingAuto" xml:space="preserve"><value>Automático</value></data>
+  <data name="Inventories_StackingAutoHint" xml:space="preserve"><value>Una fila por objeto; agrupados solo si la partida tiene contenedores que requieren atención.</value></data>
+  <data name="Inventories_StackingAlways" xml:space="preserve"><value>Agrupados</value></data>
+  <data name="Inventories_StackingNever" xml:space="preserve"><value>Uno a uno</value></data>
+  <data name="Inventories_GroupedForSize" xml:space="preserve"><value>Agrupados: demasiados objetos para mostrarlos uno a uno.</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>Inventario de {0}</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>Equipo de {0}</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0} (objeto n.º {1})</value></data>

@@ -131,6 +131,13 @@
   <data name="Inventories_FillNearLoadLimitHelp" xml:space="preserve"><value>Enthält {0} Gegenstände. Das Spiel lädt höchstens 8.000 Gegenstände pro Inventar und verwirft den Rest ohne Hinweis.</value></data>
   <data name="Inventories_StackCount" xml:space="preserve"><value>× {0}</value></data>
   <data name="Inventories_MoveStackA11y" xml:space="preserve"><value>Einen Gegenstand „{0}“ aus einem Stapel von {1} in ein anderes Inventar verschieben</value></data>
+  <data name="Inventories_StackingLabel" xml:space="preserve"><value>Gleiche Gegenstände:</value></data>
+  <data name="Inventories_StackingA11y" xml:space="preserve"><value>Wie gleiche Gegenstände angezeigt werden</value></data>
+  <data name="Inventories_StackingAuto" xml:space="preserve"><value>Automatisch</value></data>
+  <data name="Inventories_StackingAutoHint" xml:space="preserve"><value>Eine Zeile pro Gegenstand, gruppiert nur, wenn der Spielstand Behälter enthält, die Aufmerksamkeit benötigen.</value></data>
+  <data name="Inventories_StackingAlways" xml:space="preserve"><value>Gruppiert</value></data>
+  <data name="Inventories_StackingNever" xml:space="preserve"><value>Einzeln</value></data>
+  <data name="Inventories_GroupedForSize" xml:space="preserve"><value>Gruppiert: zu viele Gegenstände, um sie einzeln aufzulisten.</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>Inventar von {0}</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>Ausrüstung von {0}</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0} (Objekt Nr. {1})</value></data>

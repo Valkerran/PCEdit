@@ -131,6 +131,13 @@
   <data name="Inventories_FillNearLoadLimitHelp" xml:space="preserve"><value>아이템 {0}개가 있습니다. 게임은 인벤토리 하나에 최대 8,000개까지만 불러오고 나머지는 경고 없이 버립니다.</value></data>
   <data name="Inventories_StackCount" xml:space="preserve"><value>× {0}</value></data>
   <data name="Inventories_MoveStackA11y" xml:space="preserve"><value>{1}개 묶음에서 {0} 1개를 다른 인벤토리로 이동</value></data>
+  <data name="Inventories_StackingLabel" xml:space="preserve"><value>같은 아이템:</value></data>
+  <data name="Inventories_StackingA11y" xml:space="preserve"><value>같은 아이템 표시 방법</value></data>
+  <data name="Inventories_StackingAuto" xml:space="preserve"><value>자동</value></data>
+  <data name="Inventories_StackingAutoHint" xml:space="preserve"><value>아이템마다 한 줄로 표시하고, 확인이 필요한 컨테이너가 있는 세이브에서만 묶어서 표시합니다.</value></data>
+  <data name="Inventories_StackingAlways" xml:space="preserve"><value>묶어서</value></data>
+  <data name="Inventories_StackingNever" xml:space="preserve"><value>하나씩</value></data>
+  <data name="Inventories_GroupedForSize" xml:space="preserve"><value>묶어서 표시: 하나씩 나열하기에는 아이템이 너무 많습니다.</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>{0}의 인벤토리</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>{0}의 장비</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0} (오브젝트 #{1})</value></data>

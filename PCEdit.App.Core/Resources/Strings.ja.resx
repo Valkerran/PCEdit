@@ -131,6 +131,13 @@
   <data name="Inventories_FillNearLoadLimitHelp" xml:space="preserve"><value>{0} 個のアイテムがあります。ゲームは 1 つのインベントリに最大 8,000 個までしか読み込まず、残りは警告なく破棄されます。</value></data>
   <data name="Inventories_StackCount" xml:space="preserve"><value>× {0}</value></data>
   <data name="Inventories_MoveStackA11y" xml:space="preserve"><value>{1} 個のスタックから {0} を 1 個、別のインベントリに移動</value></data>
+  <data name="Inventories_StackingLabel" xml:space="preserve"><value>同じアイテム:</value></data>
+  <data name="Inventories_StackingA11y" xml:space="preserve"><value>同じアイテムの表示方法</value></data>
+  <data name="Inventories_StackingAuto" xml:space="preserve"><value>自動</value></data>
+  <data name="Inventories_StackingAutoHint" xml:space="preserve"><value>アイテムごとに 1 行。確認が必要なコンテナがあるセーブでのみまとめて表示します。</value></data>
+  <data name="Inventories_StackingAlways" xml:space="preserve"><value>まとめる</value></data>
+  <data name="Inventories_StackingNever" xml:space="preserve"><value>1 つずつ</value></data>
+  <data name="Inventories_GroupedForSize" xml:space="preserve"><value>まとめて表示: 1 つずつ表示するにはアイテムが多すぎます。</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>{0} のインベントリ</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>{0} の装備</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0}（オブジェクト #{1}）</value></data>

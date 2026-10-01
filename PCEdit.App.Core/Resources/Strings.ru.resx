@@ -131,6 +131,13 @@
   <data name="Inventories_FillNearLoadLimitHelp" xml:space="preserve"><value>Предметов: {0}. Игра загружает в один инвентарь не более 8000 предметов и молча отбрасывает остальные.</value></data>
   <data name="Inventories_StackCount" xml:space="preserve"><value>× {0}</value></data>
   <data name="Inventories_MoveStackA11y" xml:space="preserve"><value>Переместить один предмет «{0}» из стопки ({1} шт.) в другой инвентарь</value></data>
+  <data name="Inventories_StackingLabel" xml:space="preserve"><value>Одинаковые предметы:</value></data>
+  <data name="Inventories_StackingA11y" xml:space="preserve"><value>Как показывать одинаковые предметы</value></data>
+  <data name="Inventories_StackingAuto" xml:space="preserve"><value>Автоматически</value></data>
+  <data name="Inventories_StackingAutoHint" xml:space="preserve"><value>По строке на предмет; группируются, только если в сохранении есть контейнеры, требующие внимания.</value></data>
+  <data name="Inventories_StackingAlways" xml:space="preserve"><value>Группами</value></data>
+  <data name="Inventories_StackingNever" xml:space="preserve"><value>По одному</value></data>
+  <data name="Inventories_GroupedForSize" xml:space="preserve"><value>Сгруппировано: слишком много предметов, чтобы показать по одному.</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>Инвентарь игрока {0}</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>Снаряжение игрока {0}</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0} (объект №{1})</value></data>

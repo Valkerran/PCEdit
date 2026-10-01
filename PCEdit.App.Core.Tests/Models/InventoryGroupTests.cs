@@ -205,6 +205,51 @@ public sealed class InventoryGroupTests
         Assert.All(narrowed.Stacks, s => Assert.True(s.IsSingle));
     }
 
+    // `count` Iron items in one card - the same stack, so grouped they make one row.
+    // No container object id, so an id search can only match the items.
+    private static InventoryGroup Irons(int count) => MixedContainer() with
+    {
+        ContainerWorldObjectId = null,
+        Items = Enumerable.Range(1, count).Select(id => new InventoryItemView(id, "Iron", 5, "Iron", "ore.png")).ToList(),
+    };
+
+    [Fact]
+    public void ListEachItem_GivesEveryItemItsOwnRow()
+    {
+        var card = Irons(3) with { ListEachItem = true };
+
+        Assert.Equal(3, card.Stacks.Count);
+        Assert.All(card.Stacks, s => Assert.True(s.IsSingle));
+        Assert.False(card.IsGroupedForSize);
+    }
+
+    [Fact]
+    public void ListEachItem_OnACardTooBigToList_StillGroups_AndSaysSo()
+    {
+        // A row per item on a stacking-mod chest froze the page for seconds (issue #64).
+        var card = Irons(InventoryGroup.MaxItemsListedOneByOne + 1) with { ListEachItem = true };
+
+        Assert.Single(card.Stacks);
+        Assert.True(card.IsGroupedForSize);
+    }
+
+    [Fact]
+    public void AnIdSearchMatchingTooManyItems_StillGroups()
+    {
+        // Ids 1, 10-19, 100-199 and 1000-1999 start with "1": 1,111 matches, past the limit.
+        var narrowed = Irons(2000).NarrowTo("1")!;
+
+        Assert.Equal(1111, narrowed.Items.Count);
+        Assert.True(narrowed.IsGroupedForSize);
+        Assert.Single(narrowed.Stacks);
+    }
+
+    [Fact]
+    public void AGroupedCard_IsNotFlaggedAsGroupedForSize()
+    {
+        Assert.False(Irons(InventoryGroup.MaxItemsListedOneByOne + 1).IsGroupedForSize);
+    }
+
     // A card holding `count` items in `size` slots; the items themselves don't matter to the fill.
     private static InventoryGroup Filled(int count, int size) => new()
     {

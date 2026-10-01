@@ -79,18 +79,33 @@
                 <StackPanel Orientation="Horizontal"
                             AutomationProperties.Name="{m:Loc Inventories_FilterA11y}">
                     <RadioButton Classes="chip" GroupName="invFilter" Content="{m:Loc Inventories_FilterAll}"
-                                 IsChecked="{Binding Filter, Converter={StaticResource InvFilter}, ConverterParameter=All, Mode=TwoWay}" />
+                                 IsChecked="{Binding Filter, Converter={StaticResource EnumIs}, ConverterParameter=All, Mode=TwoWay}" />
                     <RadioButton Classes="chip" GroupName="invFilter" Content="{m:Loc Inventories_FilterPlayers}"
-                                 IsChecked="{Binding Filter, Converter={StaticResource InvFilter}, ConverterParameter=Players, Mode=TwoWay}" />
+                                 IsChecked="{Binding Filter, Converter={StaticResource EnumIs}, ConverterParameter=Players, Mode=TwoWay}" />
                     <RadioButton Classes="chip" GroupName="invFilter" Content="{m:Loc Inventories_FilterEquipment}"
-                                 IsChecked="{Binding Filter, Converter={StaticResource InvFilter}, ConverterParameter=Equipment, Mode=TwoWay}" />
+                                 IsChecked="{Binding Filter, Converter={StaticResource EnumIs}, ConverterParameter=Equipment, Mode=TwoWay}" />
                     <RadioButton Classes="chip" GroupName="invFilter" Content="{m:Loc Inventories_FilterContainers}"
-                                 IsChecked="{Binding Filter, Converter={StaticResource InvFilter}, ConverterParameter=Containers, Mode=TwoWay}" />
+                                 IsChecked="{Binding Filter, Converter={StaticResource EnumIs}, ConverterParameter=Containers, Mode=TwoWay}" />
                     <!-- Only on a save with something flagged; the VM drops this filter when there is nothing to show. -->
                     <RadioButton Classes="chip" GroupName="invFilter"
                                  Content="{m:LocFormat Key=Inventories_FilterAttention, Path=AttentionCount}"
                                  IsVisible="{Binding AttentionCount, Converter={StaticResource CountIsPositive}}"
-                                 IsChecked="{Binding Filter, Converter={StaticResource InvFilter}, ConverterParameter=NeedsAttention, Mode=TwoWay}" />
+                                 IsChecked="{Binding Filter, Converter={StaticResource EnumIs}, ConverterParameter=NeedsAttention, Mode=TwoWay}" />
+                </StackPanel>
+
+                <!-- How identical items show (issue #64): a row each, so ids show at a glance, or one
+                     row per stack. Automatic groups only a save with containers needing attention. -->
+                <StackPanel Orientation="Horizontal"
+                            AutomationProperties.Name="{m:Loc Inventories_StackingA11y}">
+                    <TextBlock Text="{m:Loc Inventories_StackingLabel}" VerticalAlignment="Center" Margin="0,0,10,0" />
+                    <RadioButton Classes="chip" GroupName="invStacking" Content="{m:Loc Inventories_StackingAuto}"
+                                 ToolTip.Tip="{m:Loc Inventories_StackingAutoHint}"
+                                 AutomationProperties.HelpText="{m:Loc Inventories_StackingAutoHint}"
+                                 IsChecked="{Binding StackingMode, Converter={StaticResource EnumIs}, ConverterParameter=Automatic, Mode=TwoWay}" />
+                    <RadioButton Classes="chip" GroupName="invStacking" Content="{m:Loc Inventories_StackingAlways}"
+                                 IsChecked="{Binding StackingMode, Converter={StaticResource EnumIs}, ConverterParameter=Always, Mode=TwoWay}" />
+                    <RadioButton Classes="chip" GroupName="invStacking" Content="{m:Loc Inventories_StackingNever}"
+                                 IsChecked="{Binding StackingMode, Converter={StaticResource EnumIs}, ConverterParameter=Never, Mode=TwoWay}" />
                 </StackPanel>
 
                 <ComboBox ItemsSource="{Binding WorldOptions}" SelectedItem="{Binding SelectedWorld}"
@@ -181,6 +196,9 @@
 
                                 <!-- A search matched only some of this inventory's items, so the card
                                      lists just those; say so, or it reads as if that is all it holds. -->
+                                <TextBlock Classes="caption" IsVisible="{Binding IsGroupedForSize}"
+                                           Text="{m:Loc Inventories_GroupedForSize}" />
+
                                 <TextBlock Classes="caption" IsVisible="{Binding IsNarrowed}"
                                            Text="{m:LocFormat Key=Inventories_ShowingSome, Path=Items.Count, Path2=TotalItemCount}" />
 

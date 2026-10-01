@@ -21,7 +21,8 @@ public sealed partial class InventoriesViewModel(
     ISaveFileWorkspace workspace,
     IInventoryEditor inventoryEditor,
     INavigationService navigation,
-    ILocalizer localizer) : ObservableObject, ILoadable
+    ILocalizer localizer,
+    IInventoryDisplayStore displayStore) : ObservableObject, ILoadable
 {
     private readonly ISaveFileWorkspace _workspace = workspace;
     private readonly IInventoryEditor _inventoryEditor = inventoryEditor;
@@ -59,6 +60,27 @@ public sealed partial class InventoriesViewModel(
     /// <summary>How many inventories, across the whole save, the "Needs attention" filter would
     /// show - for its chip label, so the problem is visible before the user filters for it.</summary>
     public int AttentionCount { get; private set; }
+
+    /// <summary>How identical items are shown; remembered across runs (issue #64).</summary>
+    [ObservableProperty]
+    private StackingMode _stackingMode = displayStore.GetStackingMode();
+
+    partial void OnStackingModeChanged(StackingMode value)
+    {
+        displayStore.SaveStackingMode(value);
+        ApplyFilter();
+    }
+
+    /// <summary>
+    /// One row per item unless grouping is chosen - or, when left automatic, unless the save has
+    /// containers that need attention, where a row per item would freeze the page.
+    /// </summary>
+    private bool ListEachItem => StackingMode switch
+    {
+        StackingMode.Always => false,
+        StackingMode.Never => true,
+        _ => AttentionCount == 0,
+    };
 
     public void Load()
     {
@@ -105,25 +127,29 @@ public sealed partial class InventoriesViewModel(
         OnPropertyChanged(nameof(ShowWorldFilter));
     }
 
+    /// <summary>The type filter chips: which cards the selected <see cref="Filter"/> keeps.</summary>
+    private Func<InventoryGroup, bool> TypeFilter() => Filter switch
+    {
+        InventoryFilter.Players => g => g.Kind == InventoryKind.PlayerInventory,
+        InventoryFilter.Equipment => g => g.Kind == InventoryKind.Equipment,
+        InventoryFilter.Containers => g => g.Kind == InventoryKind.Container,
+        InventoryFilter.NeedsAttention => g => g.NeedsAttention,
+        _ => _ => true,
+    };
+
     private void ApplyFilter()
     {
         var term = Query.Trim().ToLowerInvariant();
-        Func<InventoryGroup, bool> passesFilter = Filter switch
-        {
-            InventoryFilter.Players => g => g.Kind == InventoryKind.PlayerInventory,
-            InventoryFilter.Equipment => g => g.Kind == InventoryKind.Equipment,
-            InventoryFilter.Containers => g => g.Kind == InventoryKind.Container,
-            InventoryFilter.NeedsAttention => g => g.NeedsAttention,
-            _ => _ => true,
-        };
+        var passesFilter = TypeFilter();
         var world = SelectedWorld;
+        var listEachItem = ListEachItem;
 
         // NarrowTo keeps a card whole when the inventory itself matches, and cuts it down to the
         // matching items when only its contents do - so a search for one item does not bury it
         // among everything else in its container. _allGroups itself is never modified.
         Groups = _allGroups
             .Where(g => passesFilter(g) && (world is null || world.Accepts(g.PlanetId)))
-            .Select(g => g.NarrowTo(term))
+            .Select(g => (g with { ListEachItem = listEachItem }).NarrowTo(term))
             .OfType<InventoryGroup>()
             .ToList();
         OnPropertyChanged(nameof(IsFilteredEmpty));
