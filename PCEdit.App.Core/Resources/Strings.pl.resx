@@ -64,6 +64,38 @@
   <data name="Overview_Vital_Toxicity" xml:space="preserve"><value>TOKSYCZNOŚĆ</value></data>
   <data name="Overview_PlayerProgress" xml:space="preserve"><value>wytworzono obiektów: {0}  ·  zdobyto żetonów terra: {1}</value></data>
   <data name="Overview_GameVersion" xml:space="preserve"><value>Zapis utworzony przez wersję gry {0}</value></data>
+  <data name="Overview_AttentionHeading" xml:space="preserve"><value>Niektóre pojemniki wymagają uwagi</value></data>
+  <data name="Overview_AttentionOverCapacity" xml:space="preserve"><value>Pojemniki z większą liczbą przedmiotów niż ich rozmiar: {0}. Gra bez modów nigdy tego nie robi; to typowe dla moda do stakowania w ekwipunku, a gra może się zacinać przy takim zapisie.</value></data>
+  <data name="Overview_AttentionNearLoadLimit" xml:space="preserve"><value>Pojemniki bliskie limitu gry wynoszącego 8000 przedmiotów na pojemnik: {0}. Przedmioty ponad ten limit przepadają, gdy gra wczytuje zapis.</value></data>
+  <data name="Overview_AttentionShow" xml:space="preserve"><value>Pokaż je</value></data>
+  <data name="Overview_AttentionShowA11y" xml:space="preserve"><value>Pokaż na stronie Ekwipunki pojemniki wymagające uwagi</value></data>
+  <data name="Overview_AttentionRepair" xml:space="preserve"><value>Napraw…</value></data>
+  <data name="Overview_AttentionRepairA11y" xml:space="preserve"><value>Napraw przepełnione pojemniki w nowej kopii zapisu</value></data>
+  <data name="Repair_Title" xml:space="preserve"><value>Napraw przepełnione pojemniki</value></data>
+  <data name="Repair_Intro" xml:space="preserve"><value>Usuwa przedmioty ponad pojemność każdego pojemnika, zaczynając od ostatnich na liście, i zapisuje wynik w nowym pliku zapisu. Otwarty zapis nie zostaje zmieniony.</value></data>
+  <data name="Repair_Keep" xml:space="preserve"><value>Zachowaj najwyżej</value></data>
+  <data name="Repair_KeepSuffix" xml:space="preserve"><value>× rozmiar każdego pojemnika</value></data>
+  <data name="Repair_KeepA11y" xml:space="preserve"><value>Zachowaj najwyżej tyle razy rozmiar każdego pojemnika, od 1 do 100</value></data>
+  <data name="Repair_KeepHint" xml:space="preserve"><value>1 zachowuje dokładnie tyle, ile pozwala gra bez modów. Żaden pojemnik nie zachowa więcej niż 7200 przedmiotów, poniżej limitu wczytywania gry.</value></data>
+  <data name="Repair_Preview" xml:space="preserve"><value>Przedmioty do usunięcia: {0}. Pojemniki objęte zmianą: {1}.</value></data>
+  <data name="Repair_Nothing" xml:space="preserve"><value>Przy tym ustawieniu nie ma nic do usunięcia.</value></data>
+  <data name="Repair_TypeCount" xml:space="preserve"><value>{0}: {1}</value></data>
+  <data name="Repair_UnsavedChanges" xml:space="preserve"><value>Najpierw zapisz pozostałe zmiany. Gdyby zapis naprawionej kopii się nie powiódł, PCEdit ponownie otworzyłby oryginalny plik, aby cofnąć naprawę, a te zmiany przepadłyby.</value></data>
+  <data name="Repair_Apply" xml:space="preserve"><value>Zapisz naprawioną kopię…</value></data>
+  <data name="Repair_SaveTitle" xml:space="preserve"><value>Zapisz naprawioną kopię jako</value></data>
+  <data name="Repair_Done" xml:space="preserve"><value>Usunięte przedmioty: {0}. Naprawiona kopia została zapisana jako {1} i jest teraz otwarta; oryginalny zapis pozostał bez zmian.</value></data>
+  <data name="Repair_Failed" xml:space="preserve"><value>Nie udało się zapisać naprawionej kopii. Nic nie zostało zmienione: oryginalny zapis jest ponownie otwarty.</value></data>
+  <data name="Repair_FailedTitle" xml:space="preserve"><value>Naprawa nie powiodła się</value></data>
+  <data name="Repair_MoveFirstHeading" xml:space="preserve"><value>Najpierw przenieś do wolnego miejsca</value></data>
+  <data name="Repair_MoveFirstHint" xml:space="preserve"><value>Zaznacz rodzaje przedmiotów do zachowania, najważniejsze najpierw. Trafią do wolnych miejsc w Twoich skrzyniach i szafkach na tym samym świecie, zanim cokolwiek zostanie usunięte; to, co się nie zmieści, zostanie usunięte.</value></data>
+  <data name="Repair_FreeSlots" xml:space="preserve"><value>Wolne miejsca w Twoim magazynie: {0}.</value></data>
+  <data name="Repair_PreviewMoved" xml:space="preserve"><value>Przeniesione do wolnego miejsca: {0}, do pojemników: {1}.</value></data>
+  <data name="Repair_TypeChoiceA11y" xml:space="preserve"><value>Najpierw przenieś {0} do wolnego miejsca</value></data>
+  <data name="Repair_MoveUp" xml:space="preserve"><value>W górę</value></data>
+  <data name="Repair_MoveDown" xml:space="preserve"><value>W dół</value></data>
+  <data name="Repair_MoveUpA11y" xml:space="preserve"><value>Przesuń {0} w górę listy</value></data>
+  <data name="Repair_MoveDownA11y" xml:space="preserve"><value>Przesuń {0} w dół listy</value></data>
+  <data name="Repair_DoneMoved" xml:space="preserve"><value>Przeniesione do wolnego miejsca: {0}.</value></data>
   <data name="Vital_Ok" xml:space="preserve"><value>OK</value></data>
   <data name="Vital_Low" xml:space="preserve"><value>Niski</value></data>
   <data name="Vital_Critical" xml:space="preserve"><value>Krytyczny</value></data>
@@ -101,6 +133,27 @@
   <data name="Inventories_FilterWorldA11y" xml:space="preserve"><value>Filtruj ekwipunki według świata</value></data>
   <data name="Inventories_WorldAll" xml:space="preserve"><value>Wszystkie światy</value></data>
   <data name="Inventories_WorldUnknown" xml:space="preserve"><value>Nieznany świat</value></data>
+  <data name="Inventories_FilterAttention" xml:space="preserve"><value>Wymaga uwagi ({0})</value></data>
+  <data name="Inventories_FillOverFull" xml:space="preserve"><value>przepełniony</value></data>
+  <data name="Inventories_FillNearLoadLimit" xml:space="preserve"><value>blisko limitu wczytywania</value></data>
+  <data name="Inventories_FillOverFullHelp" xml:space="preserve"><value>Zawiera {0} przedmiotów w {1} miejscach. Gra bez modów nigdy nie zapełnia pojemnika ponad jego rozmiar; to typowe dla moda do stakowania w ekwipunku.</value></data>
+  <data name="Inventories_FillNearLoadLimitHelp" xml:space="preserve"><value>Zawiera {0} przedmiotów. Gra wczytuje najwyżej 8000 przedmiotów do jednego ekwipunku, a resztę po cichu odrzuca.</value></data>
+  <data name="Inventories_StackCount" xml:space="preserve"><value>× {0}</value></data>
+  <data name="Inventories_MoveStackA11y" xml:space="preserve"><value>Przenieś jeden przedmiot „{0}” ze stosu {1} do innego ekwipunku</value></data>
+  <data name="Inventories_StackingLabel" xml:space="preserve"><value>Identyczne przedmioty:</value></data>
+  <data name="Inventories_StackingA11y" xml:space="preserve"><value>Jak pokazywać identyczne przedmioty</value></data>
+  <data name="Inventories_StackingAuto" xml:space="preserve"><value>Automatycznie</value></data>
+  <data name="Inventories_StackingAutoHint" xml:space="preserve"><value>Jeden wiersz na przedmiot, grupowane tylko wtedy, gdy zapis ma pojemniki wymagające uwagi.</value></data>
+  <data name="Inventories_StackingAlways" xml:space="preserve"><value>Grupowane</value></data>
+  <data name="Inventories_StackingNever" xml:space="preserve"><value>Pojedynczo</value></data>
+  <data name="Inventories_GroupedForSize" xml:space="preserve"><value>Grupowane: za dużo przedmiotów, by wypisać je pojedynczo.</value></data>
+  <data name="Inventories_OriginBuilt" xml:space="preserve"><value>Zbudowane przez ciebie</value></data>
+  <data name="Inventories_OriginMap" xml:space="preserve"><value>Mapa</value></data>
+  <data name="Inventories_OriginWreck" xml:space="preserve"><value>Wrak</value></data>
+  <data name="Inventories_OriginBuiltHelp" xml:space="preserve"><value>To zbudowałeś ty.</value></data>
+  <data name="Inventories_OriginMapHelp" xml:space="preserve"><value>Umieszczone na mapie gry: było tam już na początku świata.</value></data>
+  <data name="Inventories_OriginWreckHelp" xml:space="preserve"><value>Znalezione we wraku.</value></data>
+  <data name="Inventories_FilterBuilt" xml:space="preserve"><value>Zbudowane przez ciebie</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>Ekwipunek gracza {0}</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>Wyposażenie gracza {0}</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0} (obiekt nr {1})</value></data>
@@ -109,6 +162,12 @@
   <data name="Inv_AlreadyThere" xml:space="preserve"><value>Ten przedmiot już jest w tym ekwipunku.</value></data>
   <data name="Inv_DestNotFound" xml:space="preserve"><value>Nie znaleziono docelowego ekwipunku.</value></data>
   <data name="Inv_DestFull" xml:space="preserve"><value>Docelowy ekwipunek jest pełny ({0}/{1}).</value></data>
+  <data name="Inv_DestNoRoom" xml:space="preserve"><value>Za mało miejsca w miejscu docelowym: wolne {0}, do przeniesienia {1}.</value></data>
+  <data name="SelectInv_Quantity" xml:space="preserve"><value>Ilość</value></data>
+  <data name="SelectInv_QuantityA11y" xml:space="preserve"><value>Ilość do przeniesienia, od 1 do {0}</value></data>
+  <data name="SelectInv_All" xml:space="preserve"><value>Wszystko</value></data>
+  <data name="SelectInv_AllA11y" xml:space="preserve"><value>Przenieś cały stos ({0})</value></data>
+  <data name="SelectInv_MovedMany" xml:space="preserve"><value>Przedmioty przeniesione do {1}: {0}.</value></data>
   <data name="SelectInv_Title" xml:space="preserve"><value>Przenieś przedmiot</value></data>
   <data name="SelectInv_Heading" xml:space="preserve"><value>Wybierz docelowy ekwipunek</value></data>
   <data name="SelectInv_Search" xml:space="preserve"><value>Szukaj miejsc docelowych według nazwy lub ID</value></data>

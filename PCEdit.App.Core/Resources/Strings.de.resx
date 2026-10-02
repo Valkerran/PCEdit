@@ -64,6 +64,38 @@
   <data name="Overview_Vital_Toxicity" xml:space="preserve"><value>TOXIZITÄT</value></data>
   <data name="Overview_PlayerProgress" xml:space="preserve"><value>{0} Objekte gefertigt  ·  {1} Terra-Token verdient</value></data>
   <data name="Overview_GameVersion" xml:space="preserve"><value>Spielstand geschrieben von Spielversion {0}</value></data>
+  <data name="Overview_AttentionHeading" xml:space="preserve"><value>Einige Behälter benötigen Aufmerksamkeit</value></data>
+  <data name="Overview_AttentionOverCapacity" xml:space="preserve"><value>Behälter mit mehr Gegenständen als Plätzen: {0}. Ein Spiel ohne Mods erzeugt das nie; es ist typisch für eine Mod zum Stapeln im Inventar, und das Spiel kann mit einem solchen Spielstand ruckeln.</value></data>
+  <data name="Overview_AttentionNearLoadLimit" xml:space="preserve"><value>Behälter nahe der Grenze des Spiels von 8.000 Gegenständen pro Behälter: {0}. Gegenstände über dieser Grenze gehen verloren, wenn das Spiel den Spielstand lädt.</value></data>
+  <data name="Overview_AttentionShow" xml:space="preserve"><value>Anzeigen</value></data>
+  <data name="Overview_AttentionShowA11y" xml:space="preserve"><value>Die Behälter, die Aufmerksamkeit benötigen, auf der Inventarseite anzeigen</value></data>
+  <data name="Overview_AttentionRepair" xml:space="preserve"><value>Reparieren…</value></data>
+  <data name="Overview_AttentionRepairA11y" xml:space="preserve"><value>Die überfüllten Behälter in eine neue Kopie des Spielstands reparieren</value></data>
+  <data name="Repair_Title" xml:space="preserve"><value>Überfüllte Behälter reparieren</value></data>
+  <data name="Repair_Intro" xml:space="preserve"><value>Entfernt die Gegenstände, die über das hinausgehen, was ein Behälter fassen kann – beginnend mit den zuletzt aufgeführten – und schreibt das Ergebnis in eine neue Spielstanddatei. Der geöffnete Spielstand wird nicht verändert.</value></data>
+  <data name="Repair_Keep" xml:space="preserve"><value>Höchstens</value></data>
+  <data name="Repair_KeepSuffix" xml:space="preserve"><value>× die Größe jedes Behälters behalten</value></data>
+  <data name="Repair_KeepA11y" xml:space="preserve"><value>Höchstens so viel Mal die Größe jedes Behälters behalten, von 1 bis 100</value></data>
+  <data name="Repair_KeepHint" xml:space="preserve"><value>1 behält genau das, was ein Spiel ohne Mods erlaubt. Kein Behälter behält mehr als 7.200 Gegenstände, unterhalb der Ladegrenze des Spiels.</value></data>
+  <data name="Repair_Preview" xml:space="preserve"><value>Zu entfernende Gegenstände: {0}. Betroffene Behälter: {1}.</value></data>
+  <data name="Repair_Nothing" xml:space="preserve"><value>Bei dieser Einstellung gibt es nichts zu entfernen.</value></data>
+  <data name="Repair_TypeCount" xml:space="preserve"><value>{0}: {1}</value></data>
+  <data name="Repair_UnsavedChanges" xml:space="preserve"><value>Speichern Sie zuerst Ihre anderen Änderungen. Falls das Schreiben der reparierten Kopie fehlschlägt, öffnet PCEdit die Originaldatei erneut, um die Reparatur rückgängig zu machen, und diese Änderungen gingen verloren.</value></data>
+  <data name="Repair_Apply" xml:space="preserve"><value>Reparierte Kopie speichern…</value></data>
+  <data name="Repair_SaveTitle" xml:space="preserve"><value>Reparierte Kopie speichern unter</value></data>
+  <data name="Repair_Done" xml:space="preserve"><value>Entfernte Gegenstände: {0}. Die reparierte Kopie ist als {1} gespeichert und jetzt geöffnet; der ursprüngliche Spielstand ist unverändert.</value></data>
+  <data name="Repair_Failed" xml:space="preserve"><value>Die reparierte Kopie konnte nicht geschrieben werden. Es wurde nichts geändert: Der ursprüngliche Spielstand ist wieder geöffnet.</value></data>
+  <data name="Repair_FailedTitle" xml:space="preserve"><value>Reparatur fehlgeschlagen</value></data>
+  <data name="Repair_MoveFirstHeading" xml:space="preserve"><value>Zuerst in freien Lagerplatz verschieben</value></data>
+  <data name="Repair_MoveFirstHint" xml:space="preserve"><value>Haken Sie die Gegenstandsarten an, die Sie behalten möchten, die wichtigsten zuerst. Sie kommen vor dem Entfernen in freie Plätze Ihrer eigenen Lagerkisten und Schränke auf derselben Welt; was nicht passt, wird entfernt.</value></data>
+  <data name="Repair_FreeSlots" xml:space="preserve"><value>Freie Plätze in Ihrem Lager: {0}.</value></data>
+  <data name="Repair_PreviewMoved" xml:space="preserve"><value>In freien Lagerplatz verschoben: {0}, in Behälter: {1}.</value></data>
+  <data name="Repair_TypeChoiceA11y" xml:space="preserve"><value>{0} zuerst in freien Lagerplatz verschieben</value></data>
+  <data name="Repair_MoveUp" xml:space="preserve"><value>Hoch</value></data>
+  <data name="Repair_MoveDown" xml:space="preserve"><value>Runter</value></data>
+  <data name="Repair_MoveUpA11y" xml:space="preserve"><value>{0} in der Liste nach oben verschieben</value></data>
+  <data name="Repair_MoveDownA11y" xml:space="preserve"><value>{0} in der Liste nach unten verschieben</value></data>
+  <data name="Repair_DoneMoved" xml:space="preserve"><value>In freien Lagerplatz verschoben: {0}.</value></data>
   <data name="Vital_Ok" xml:space="preserve"><value>OK</value></data>
   <data name="Vital_Low" xml:space="preserve"><value>Niedrig</value></data>
   <data name="Vital_Critical" xml:space="preserve"><value>Kritisch</value></data>
@@ -101,6 +133,27 @@
   <data name="Inventories_FilterWorldA11y" xml:space="preserve"><value>Inventare nach Welt filtern</value></data>
   <data name="Inventories_WorldAll" xml:space="preserve"><value>Alle Welten</value></data>
   <data name="Inventories_WorldUnknown" xml:space="preserve"><value>Unbekannte Welt</value></data>
+  <data name="Inventories_FilterAttention" xml:space="preserve"><value>Benötigt Aufmerksamkeit ({0})</value></data>
+  <data name="Inventories_FillOverFull" xml:space="preserve"><value>überfüllt</value></data>
+  <data name="Inventories_FillNearLoadLimit" xml:space="preserve"><value>nahe Ladegrenze</value></data>
+  <data name="Inventories_FillOverFullHelp" xml:space="preserve"><value>Enthält {0} Gegenstände auf {1} Plätzen. Ein Spiel ohne Mods füllt einen Behälter nie über seine Größe hinaus; das ist typisch für eine Mod zum Stapeln im Inventar.</value></data>
+  <data name="Inventories_FillNearLoadLimitHelp" xml:space="preserve"><value>Enthält {0} Gegenstände. Das Spiel lädt höchstens 8.000 Gegenstände pro Inventar und verwirft den Rest ohne Hinweis.</value></data>
+  <data name="Inventories_StackCount" xml:space="preserve"><value>× {0}</value></data>
+  <data name="Inventories_MoveStackA11y" xml:space="preserve"><value>Einen Gegenstand „{0}“ aus einem Stapel von {1} in ein anderes Inventar verschieben</value></data>
+  <data name="Inventories_StackingLabel" xml:space="preserve"><value>Gleiche Gegenstände:</value></data>
+  <data name="Inventories_StackingA11y" xml:space="preserve"><value>Wie gleiche Gegenstände angezeigt werden</value></data>
+  <data name="Inventories_StackingAuto" xml:space="preserve"><value>Automatisch</value></data>
+  <data name="Inventories_StackingAutoHint" xml:space="preserve"><value>Eine Zeile pro Gegenstand, gruppiert nur, wenn der Spielstand Behälter enthält, die Aufmerksamkeit benötigen.</value></data>
+  <data name="Inventories_StackingAlways" xml:space="preserve"><value>Gruppiert</value></data>
+  <data name="Inventories_StackingNever" xml:space="preserve"><value>Einzeln</value></data>
+  <data name="Inventories_GroupedForSize" xml:space="preserve"><value>Gruppiert: zu viele Gegenstände, um sie einzeln aufzulisten.</value></data>
+  <data name="Inventories_OriginBuilt" xml:space="preserve"><value>Von dir gebaut</value></data>
+  <data name="Inventories_OriginMap" xml:space="preserve"><value>Karte</value></data>
+  <data name="Inventories_OriginWreck" xml:space="preserve"><value>Wrack</value></data>
+  <data name="Inventories_OriginBuiltHelp" xml:space="preserve"><value>Du hast das gebaut.</value></data>
+  <data name="Inventories_OriginMapHelp" xml:space="preserve"><value>Auf der Karte des Spiels platziert: Es war schon da, als die Welt begann.</value></data>
+  <data name="Inventories_OriginWreckHelp" xml:space="preserve"><value>In einem Wrack gefunden.</value></data>
+  <data name="Inventories_FilterBuilt" xml:space="preserve"><value>Von dir gebaut</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>Inventar von {0}</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>Ausrüstung von {0}</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0} (Objekt Nr. {1})</value></data>
@@ -109,6 +162,12 @@
   <data name="Inv_AlreadyThere" xml:space="preserve"><value>Dieser Gegenstand ist bereits in diesem Inventar.</value></data>
   <data name="Inv_DestNotFound" xml:space="preserve"><value>Das Zielinventar wurde nicht gefunden.</value></data>
   <data name="Inv_DestFull" xml:space="preserve"><value>Das Zielinventar ist voll ({0}/{1}).</value></data>
+  <data name="Inv_DestNoRoom" xml:space="preserve"><value>Nicht genug Platz im Ziel: {0} frei, {1} zu verschieben.</value></data>
+  <data name="SelectInv_Quantity" xml:space="preserve"><value>Anzahl</value></data>
+  <data name="SelectInv_QuantityA11y" xml:space="preserve"><value>Anzahl zum Verschieben, von 1 bis {0}</value></data>
+  <data name="SelectInv_All" xml:space="preserve"><value>Alle</value></data>
+  <data name="SelectInv_AllA11y" xml:space="preserve"><value>Den ganzen Stapel verschieben ({0})</value></data>
+  <data name="SelectInv_MovedMany" xml:space="preserve"><value>Gegenstände nach {1} verschoben: {0}.</value></data>
   <data name="SelectInv_Title" xml:space="preserve"><value>Gegenstand verschieben</value></data>
   <data name="SelectInv_Heading" xml:space="preserve"><value>Zielinventar wählen</value></data>
   <data name="SelectInv_Search" xml:space="preserve"><value>Ziele nach Name oder ID suchen</value></data>

@@ -64,6 +64,38 @@
   <data name="Overview_Vital_Toxicity" xml:space="preserve"><value>독성</value></data>
   <data name="Overview_PlayerProgress" xml:space="preserve"><value>제작한 오브젝트 {0}개  ·  획득한 테라 토큰 {1}개</value></data>
   <data name="Overview_GameVersion" xml:space="preserve"><value>게임 버전 {0}에서 저장된 파일</value></data>
+  <data name="Overview_AttentionHeading" xml:space="preserve"><value>일부 컨테이너를 확인해야 합니다</value></data>
+  <data name="Overview_AttentionOverCapacity" xml:space="preserve"><value>크기보다 많은 아이템이 든 컨테이너: {0}. 모드 없는 게임에서는 이런 일이 없으며, 인벤토리 스택 모드에서 흔히 나타납니다. 이런 세이브에서는 게임이 끊길 수 있습니다.</value></data>
+  <data name="Overview_AttentionNearLoadLimit" xml:space="preserve"><value>컨테이너당 8,000개라는 게임 한도에 가까운 컨테이너: {0}. 한도를 넘는 아이템은 게임이 세이브를 불러올 때 사라집니다.</value></data>
+  <data name="Overview_AttentionShow" xml:space="preserve"><value>보기</value></data>
+  <data name="Overview_AttentionShowA11y" xml:space="preserve"><value>확인이 필요한 컨테이너를 인벤토리 페이지에서 보기</value></data>
+  <data name="Overview_AttentionRepair" xml:space="preserve"><value>복구…</value></data>
+  <data name="Overview_AttentionRepairA11y" xml:space="preserve"><value>용량을 초과한 컨테이너를 세이브의 새 사본으로 복구</value></data>
+  <data name="Repair_Title" xml:space="preserve"><value>용량을 초과한 컨테이너 복구</value></data>
+  <data name="Repair_Intro" xml:space="preserve"><value>각 컨테이너에 들어갈 수 있는 양을 넘는 아이템을 목록의 마지막 것부터 제거하고, 결과를 새 세이브 파일에 씁니다. 열어 둔 세이브는 바뀌지 않습니다.</value></data>
+  <data name="Repair_Keep" xml:space="preserve"><value>최대</value></data>
+  <data name="Repair_KeepSuffix" xml:space="preserve"><value>× 각 컨테이너 크기만큼 유지</value></data>
+  <data name="Repair_KeepA11y" xml:space="preserve"><value>각 컨테이너 크기의 최대 몇 배까지 유지할지, 1~100</value></data>
+  <data name="Repair_KeepHint" xml:space="preserve"><value>1은 모드 없는 게임이 허용하는 만큼만 유지합니다. 어떤 컨테이너도 게임 로드 한도보다 낮은 7,200개를 넘게 유지하지 않습니다.</value></data>
+  <data name="Repair_Preview" xml:space="preserve"><value>제거할 아이템: {0}. 영향받는 컨테이너: {1}.</value></data>
+  <data name="Repair_Nothing" xml:space="preserve"><value>이 설정에서는 제거할 것이 없습니다.</value></data>
+  <data name="Repair_TypeCount" xml:space="preserve"><value>{0}: {1}</value></data>
+  <data name="Repair_UnsavedChanges" xml:space="preserve"><value>먼저 다른 변경 사항을 저장하세요. 복구된 사본을 쓰지 못하면 PCEdit가 복구를 되돌리기 위해 원본 파일을 다시 열며, 그 변경 사항은 사라집니다.</value></data>
+  <data name="Repair_Apply" xml:space="preserve"><value>복구된 사본 저장…</value></data>
+  <data name="Repair_SaveTitle" xml:space="preserve"><value>복구된 사본을 다른 이름으로 저장</value></data>
+  <data name="Repair_Done" xml:space="preserve"><value>제거한 아이템: {0}. 복구된 사본을 {1}(으)로 저장했고 지금 열려 있습니다. 원본 세이브는 바뀌지 않았습니다.</value></data>
+  <data name="Repair_Failed" xml:space="preserve"><value>복구된 사본을 쓸 수 없었습니다. 아무것도 바뀌지 않았으며 원본 세이브가 다시 열려 있습니다.</value></data>
+  <data name="Repair_FailedTitle" xml:space="preserve"><value>복구 실패</value></data>
+  <data name="Repair_MoveFirstHeading" xml:space="preserve"><value>먼저 빈 저장 공간으로 옮기기</value></data>
+  <data name="Repair_MoveFirstHint" xml:space="preserve"><value>남길 아이템 종류를 중요한 순서대로 선택하세요. 제거하기 전에 같은 월드에 있는 내 보관 상자와 사물함의 빈 칸으로 옮기며, 들어가지 않는 것은 제거됩니다.</value></data>
+  <data name="Repair_FreeSlots" xml:space="preserve"><value>저장 공간의 빈 칸: {0}.</value></data>
+  <data name="Repair_PreviewMoved" xml:space="preserve"><value>빈 저장 공간으로 옮김: {0}, 대상 컨테이너: {1}.</value></data>
+  <data name="Repair_TypeChoiceA11y" xml:space="preserve"><value>{0}을(를) 먼저 빈 저장 공간으로 옮기기</value></data>
+  <data name="Repair_MoveUp" xml:space="preserve"><value>위로</value></data>
+  <data name="Repair_MoveDown" xml:space="preserve"><value>아래로</value></data>
+  <data name="Repair_MoveUpA11y" xml:space="preserve"><value>{0}을(를) 목록에서 위로 이동</value></data>
+  <data name="Repair_MoveDownA11y" xml:space="preserve"><value>{0}을(를) 목록에서 아래로 이동</value></data>
+  <data name="Repair_DoneMoved" xml:space="preserve"><value>빈 저장 공간으로 옮김: {0}.</value></data>
   <data name="Vital_Ok" xml:space="preserve"><value>양호</value></data>
   <data name="Vital_Low" xml:space="preserve"><value>낮음</value></data>
   <data name="Vital_Critical" xml:space="preserve"><value>위험</value></data>
@@ -101,6 +133,27 @@
   <data name="Inventories_FilterWorldA11y" xml:space="preserve"><value>월드별로 인벤토리 필터링</value></data>
   <data name="Inventories_WorldAll" xml:space="preserve"><value>모든 월드</value></data>
   <data name="Inventories_WorldUnknown" xml:space="preserve"><value>알 수 없는 월드</value></data>
+  <data name="Inventories_FilterAttention" xml:space="preserve"><value>확인 필요 ({0})</value></data>
+  <data name="Inventories_FillOverFull" xml:space="preserve"><value>용량 초과</value></data>
+  <data name="Inventories_FillNearLoadLimit" xml:space="preserve"><value>로드 한도 근접</value></data>
+  <data name="Inventories_FillOverFullHelp" xml:space="preserve"><value>슬롯 {1}개에 아이템 {0}개가 있습니다. 모드 없는 게임은 컨테이너를 크기 이상으로 채우지 않으며, 인벤토리 스택 모드에서 흔히 나타나는 상태입니다.</value></data>
+  <data name="Inventories_FillNearLoadLimitHelp" xml:space="preserve"><value>아이템 {0}개가 있습니다. 게임은 인벤토리 하나에 최대 8,000개까지만 불러오고 나머지는 경고 없이 버립니다.</value></data>
+  <data name="Inventories_StackCount" xml:space="preserve"><value>× {0}</value></data>
+  <data name="Inventories_MoveStackA11y" xml:space="preserve"><value>{1}개 묶음에서 {0} 1개를 다른 인벤토리로 이동</value></data>
+  <data name="Inventories_StackingLabel" xml:space="preserve"><value>같은 아이템:</value></data>
+  <data name="Inventories_StackingA11y" xml:space="preserve"><value>같은 아이템 표시 방법</value></data>
+  <data name="Inventories_StackingAuto" xml:space="preserve"><value>자동</value></data>
+  <data name="Inventories_StackingAutoHint" xml:space="preserve"><value>아이템마다 한 줄로 표시하고, 확인이 필요한 컨테이너가 있는 세이브에서만 묶어서 표시합니다.</value></data>
+  <data name="Inventories_StackingAlways" xml:space="preserve"><value>묶어서</value></data>
+  <data name="Inventories_StackingNever" xml:space="preserve"><value>하나씩</value></data>
+  <data name="Inventories_GroupedForSize" xml:space="preserve"><value>묶어서 표시: 하나씩 나열하기에는 아이템이 너무 많습니다.</value></data>
+  <data name="Inventories_OriginBuilt" xml:space="preserve"><value>직접 건설</value></data>
+  <data name="Inventories_OriginMap" xml:space="preserve"><value>맵</value></data>
+  <data name="Inventories_OriginWreck" xml:space="preserve"><value>잔해</value></data>
+  <data name="Inventories_OriginBuiltHelp" xml:space="preserve"><value>직접 건설한 것입니다.</value></data>
+  <data name="Inventories_OriginMapHelp" xml:space="preserve"><value>게임 맵에 배치되어 있습니다. 월드가 시작될 때부터 있었습니다.</value></data>
+  <data name="Inventories_OriginWreckHelp" xml:space="preserve"><value>잔해에서 발견했습니다.</value></data>
+  <data name="Inventories_FilterBuilt" xml:space="preserve"><value>직접 건설</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>{0}의 인벤토리</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>{0}의 장비</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0} (오브젝트 #{1})</value></data>
@@ -109,6 +162,12 @@
   <data name="Inv_AlreadyThere" xml:space="preserve"><value>이 아이템은 이미 해당 인벤토리에 있습니다.</value></data>
   <data name="Inv_DestNotFound" xml:space="preserve"><value>대상 인벤토리를 찾을 수 없습니다.</value></data>
   <data name="Inv_DestFull" xml:space="preserve"><value>대상 인벤토리가 가득 찼습니다 ({0}/{1}).</value></data>
+  <data name="Inv_DestNoRoom" xml:space="preserve"><value>대상에 공간이 부족합니다: 빈 칸 {0}, 이동할 아이템 {1}.</value></data>
+  <data name="SelectInv_Quantity" xml:space="preserve"><value>수량</value></data>
+  <data name="SelectInv_QuantityA11y" xml:space="preserve"><value>이동할 수량, 1~{0}</value></data>
+  <data name="SelectInv_All" xml:space="preserve"><value>전부</value></data>
+  <data name="SelectInv_AllA11y" xml:space="preserve"><value>묶음 전체 이동 ({0})</value></data>
+  <data name="SelectInv_MovedMany" xml:space="preserve"><value>{1}(으)로 이동한 아이템: {0}.</value></data>
   <data name="SelectInv_Title" xml:space="preserve"><value>아이템 이동</value></data>
   <data name="SelectInv_Heading" xml:space="preserve"><value>대상 인벤토리 선택</value></data>
   <data name="SelectInv_Search" xml:space="preserve"><value>이름 또는 ID로 대상 검색</value></data>

@@ -38,10 +38,43 @@ public sealed class PlanetCrafterSaveFileStore(IPlanetCrafterSaveFileSerializer 
         ArgumentException.ThrowIfNullOrWhiteSpace(path);
         ArgumentNullException.ThrowIfNull(saveFile);
 
+        Write(path, framingFrom: path, saveFile);
+    }
+
+    public void SaveCopy(string sourcePath, string targetPath, PlanetCrafterSaveFile saveFile)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(sourcePath);
+        ArgumentException.ThrowIfNullOrWhiteSpace(targetPath);
+        ArgumentNullException.ThrowIfNull(saveFile);
+
+        if (SameFile(sourcePath, targetPath))
+        {
+            throw new ArgumentException("A copy must not overwrite the save it was made from.", nameof(targetPath));
+        }
+
+        Write(targetPath, framingFrom: sourcePath, saveFile);
+    }
+
+    /// <summary>Whether two paths name the same file, compared canonically - Windows and macOS
+    /// file systems ignore case by default, Linux does not.</summary>
+    private static bool SameFile(string first, string second)
+    {
+        var comparison = OperatingSystem.IsWindows() || OperatingSystem.IsMacOS()
+            ? StringComparison.OrdinalIgnoreCase
+            : StringComparison.Ordinal;
+        return string.Equals(Path.GetFullPath(first), Path.GetFullPath(second), comparison);
+    }
+
+    /// <summary>
+    /// Serializes the save to <paramref name="path"/> with the framing of the file at
+    /// <paramref name="framingFrom"/>: a BOM only if that file has one, or does not exist yet.
+    /// </summary>
+    private void Write(string path, string framingFrom, PlanetCrafterSaveFile saveFile)
+    {
         // Probe the file already on disk, and serialize, before anything is written - neither may
         // be able to fail once the target has been touched. The probe in particular has to read
         // the original, not the temp file, or the BOM-less Game Pass path regresses.
-        var encoding = FileStartsWithBom(path) ? Utf8WithBom : Utf8WithoutBom;
+        var encoding = FileStartsWithBom(framingFrom) ? Utf8WithBom : Utf8WithoutBom;
         var content = _serializer.Serialize(saveFile);
 
         var tempPath = path + TempSuffix;

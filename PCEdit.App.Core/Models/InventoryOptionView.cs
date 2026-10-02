@@ -12,12 +12,22 @@ public sealed record InventoryOptionView(
 {
     public bool IsFull => Count >= Size;
 
+    /// <summary>How many items the move needs room for; set by the dialog from its quantity.</summary>
+    public int RequiredRoom { get; init; } = 1;
+
+    /// <summary>Free slots against the stored size - never negative, even for an over-full inventory.</summary>
+    public int Free => Math.Max(0, Size - Count);
+
+    /// <summary>Whether this destination can take the move; the dialog disables it otherwise.</summary>
+    public bool HasRoom => Free >= RequiredRoom;
+
     public string CapacityLabel => $"{Count}/{Size}";
 
-    /// <summary>Accessible name for the destination button, including the full/disabled reason.</summary>
-    public string AccessibleLabel => IsFull
-        ? $"{Label}, full, {CapacityLabel}"
-        : $"{Label}, {CapacityLabel}";
+    /// <summary>Accessible name for the destination button, including why it is disabled. Full
+    /// inventories are not offered at all, so the reason is always the room left.</summary>
+    public string AccessibleLabel => HasRoom
+        ? $"{Label}, {CapacityLabel}"
+        : $"{Label}, room for {Free}, {CapacityLabel}";
 
     /// <summary>Whether the destination shows its inventory id under its label - as on the
     /// Inventories page, not for an unowned inventory whose label already is "Inventory #N".</summary>

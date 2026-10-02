@@ -30,7 +30,9 @@
             <TextBlock HorizontalAlignment="Center"
                        Text="{Binding StatusMessage}"
                        IsVisible="{Binding StatusMessage, Converter={StaticResource StringNotEmpty}}"
-                       Foreground="{Binding StatusKind, Converter={StaticResource StatusBrush}}" />
+                       Classes="status"
+                       Classes.success="{Binding StatusKind, Converter={StaticResource StatusIsSuccess}}"
+                       Classes.error="{Binding StatusKind, Converter={StaticResource StatusIsError}}" />
         </StackPanel>
     </ScrollViewer>
 

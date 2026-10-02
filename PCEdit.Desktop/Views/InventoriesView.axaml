@@ -36,6 +36,54 @@
         <Style Selector="RadioButton.chip">
             <Setter Property="Margin" Value="0,0,8,0" />
         </Style>
+
+        <!--
+            Capacity badge states (issue #64). Colour comes from DynamicResource so it follows a
+            live light/dark switch; every state also carries its own glyph and word, never colour
+            alone. The selectors stop at the badge, so the tooltip popup keeps its own colours.
+        -->
+        <Style Selector="Border.badge.overFull">
+            <Setter Property="BorderBrush" Value="{DynamicResource StatusWarningText}" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+        <Style Selector="Border.badge.overFull TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource StatusWarningText}" />
+        </Style>
+        <Style Selector="Border.badge.overFull PathIcon">
+            <Setter Property="Foreground" Value="{DynamicResource StatusWarningText}" />
+        </Style>
+        <Style Selector="Border.badge.nearLoadLimit">
+            <Setter Property="BorderBrush" Value="{DynamicResource StatusErrorText}" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+        <Style Selector="Border.badge.nearLoadLimit TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource StatusErrorText}" />
+        </Style>
+        <Style Selector="Border.badge.nearLoadLimit PathIcon">
+            <Setter Property="Foreground" Value="{DynamicResource StatusErrorText}" />
+        </Style>
+
+        <!-- Origin tags (issue #64). "Built by you" stands out in the brand colour; the others stay
+             neutral. Later styles win, so the built variant follows the base tag. -->
+        <Style Selector="Border.originTag">
+            <Setter Property="Background" Value="{DynamicResource SurfaceBadge}" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Padding" Value="6,1" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style Selector="Border.originTag TextBlock">
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+        <Style Selector="Border.originTag.built">
+            <Setter Property="Background" Value="{DynamicResource BrandFill}" />
+        </Style>
+        <Style Selector="Border.originTag.built TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource TextOnBrand}" />
+        </Style>
+        <Style Selector="Border.originTag.built PathIcon">
+            <Setter Property="Foreground" Value="{DynamicResource TextOnBrand}" />
+        </Style>
     </UserControl.Styles>
 
     <Panel>
@@ -53,13 +101,35 @@
                 <StackPanel Orientation="Horizontal"
                             AutomationProperties.Name="{m:Loc Inventories_FilterA11y}">
                     <RadioButton Classes="chip" GroupName="invFilter" Content="{m:Loc Inventories_FilterAll}"
-                                 IsChecked="{Binding Filter, Converter={StaticResource InvFilter}, ConverterParameter=All, Mode=TwoWay}" />
+                                 IsChecked="{Binding Filter, Converter={StaticResource EnumIs}, ConverterParameter=All, Mode=TwoWay}" />
                     <RadioButton Classes="chip" GroupName="invFilter" Content="{m:Loc Inventories_FilterPlayers}"
-                                 IsChecked="{Binding Filter, Converter={StaticResource InvFilter}, ConverterParameter=Players, Mode=TwoWay}" />
+                                 IsChecked="{Binding Filter, Converter={StaticResource EnumIs}, ConverterParameter=Players, Mode=TwoWay}" />
                     <RadioButton Classes="chip" GroupName="invFilter" Content="{m:Loc Inventories_FilterEquipment}"
-                                 IsChecked="{Binding Filter, Converter={StaticResource InvFilter}, ConverterParameter=Equipment, Mode=TwoWay}" />
+                                 IsChecked="{Binding Filter, Converter={StaticResource EnumIs}, ConverterParameter=Equipment, Mode=TwoWay}" />
                     <RadioButton Classes="chip" GroupName="invFilter" Content="{m:Loc Inventories_FilterContainers}"
-                                 IsChecked="{Binding Filter, Converter={StaticResource InvFilter}, ConverterParameter=Containers, Mode=TwoWay}" />
+                                 IsChecked="{Binding Filter, Converter={StaticResource EnumIs}, ConverterParameter=Containers, Mode=TwoWay}" />
+                    <RadioButton Classes="chip" GroupName="invFilter" Content="{m:Loc Inventories_FilterBuilt}"
+                                 IsChecked="{Binding Filter, Converter={StaticResource EnumIs}, ConverterParameter=BuiltByYou, Mode=TwoWay}" />
+                    <!-- Only on a save with something flagged; the VM drops this filter when there is nothing to show. -->
+                    <RadioButton Classes="chip" GroupName="invFilter"
+                                 Content="{m:LocFormat Key=Inventories_FilterAttention, Path=AttentionCount}"
+                                 IsVisible="{Binding AttentionCount, Converter={StaticResource CountIsPositive}}"
+                                 IsChecked="{Binding Filter, Converter={StaticResource EnumIs}, ConverterParameter=NeedsAttention, Mode=TwoWay}" />
+                </StackPanel>
+
+                <!-- How identical items show (issue #64): a row each, so ids show at a glance, or one
+                     row per stack. Automatic groups only a save with containers needing attention. -->
+                <StackPanel Orientation="Horizontal"
+                            AutomationProperties.Name="{m:Loc Inventories_StackingA11y}">
+                    <TextBlock Text="{m:Loc Inventories_StackingLabel}" VerticalAlignment="Center" Margin="0,0,10,0" />
+                    <RadioButton Classes="chip" GroupName="invStacking" Content="{m:Loc Inventories_StackingAuto}"
+                                 ToolTip.Tip="{m:Loc Inventories_StackingAutoHint}"
+                                 AutomationProperties.HelpText="{m:Loc Inventories_StackingAutoHint}"
+                                 IsChecked="{Binding StackingMode, Converter={StaticResource EnumIs}, ConverterParameter=Automatic, Mode=TwoWay}" />
+                    <RadioButton Classes="chip" GroupName="invStacking" Content="{m:Loc Inventories_StackingAlways}"
+                                 IsChecked="{Binding StackingMode, Converter={StaticResource EnumIs}, ConverterParameter=Always, Mode=TwoWay}" />
+                    <RadioButton Classes="chip" GroupName="invStacking" Content="{m:Loc Inventories_StackingNever}"
+                                 IsChecked="{Binding StackingMode, Converter={StaticResource EnumIs}, ConverterParameter=Never, Mode=TwoWay}" />
                 </StackPanel>
 
                 <ComboBox ItemsSource="{Binding WorldOptions}" SelectedItem="{Binding SelectedWorld}"
@@ -95,13 +165,63 @@
                                                    TextTrimming="CharacterEllipsis" />
                                         <!-- The inventory id (issue #3). It reuses the fallback label's
                                              already-translated "Inventory #{0}" wording. -->
-                                        <TextBlock Classes="caption"
-                                                   Text="{m:LocFormat Key=Inv_Fallback, Path=InventoryId}"
-                                                   IsVisible="{Binding ShowInventoryIdCaption}" />
+                                        <StackPanel Orientation="Horizontal" Spacing="8">
+                                            <TextBlock Classes="caption" VerticalAlignment="Center"
+                                                       Text="{m:LocFormat Key=Inv_Fallback, Path=InventoryId}"
+                                                       IsVisible="{Binding ShowInventoryIdCaption}" />
+                                            <!-- Who placed it (issue #64), so players can find what they built.
+                                                 Words, not colour alone; the help text explains the tag. -->
+                                            <Border Classes="originTag built" IsVisible="{Binding IsBuilt}"
+                                                    ToolTip.Tip="{m:Loc Inventories_OriginBuiltHelp}">
+                                                <StackPanel Orientation="Horizontal" Spacing="4">
+                                                    <PathIcon Width="10" Height="10" Data="{StaticResource BuiltGlyph}"
+                                                              AutomationProperties.AccessibilityView="Raw" />
+                                                    <TextBlock Text="{m:Loc Inventories_OriginBuilt}"
+                                                               AutomationProperties.HelpText="{m:Loc Inventories_OriginBuiltHelp}" />
+                                                </StackPanel>
+                                            </Border>
+                                            <Border Classes="originTag" IsVisible="{Binding IsMapPlaced}"
+                                                    ToolTip.Tip="{m:Loc Inventories_OriginMapHelp}">
+                                                <TextBlock Text="{m:Loc Inventories_OriginMap}"
+                                                           AutomationProperties.HelpText="{m:Loc Inventories_OriginMapHelp}" />
+                                            </Border>
+                                            <Border Classes="originTag" IsVisible="{Binding IsWreck}"
+                                                    ToolTip.Tip="{m:Loc Inventories_OriginWreckHelp}">
+                                                <TextBlock Text="{m:Loc Inventories_OriginWreck}"
+                                                           AutomationProperties.HelpText="{m:Loc Inventories_OriginWreckHelp}" />
+                                            </Border>
+                                        </StackPanel>
                                     </StackPanel>
-                                    <Border Grid.Column="1" Classes="badge">
-                                        <TextBlock Text="{Binding CapacityLabel}" FontSize="12" FontWeight="Bold"
-                                                   AutomationProperties.Name="{m:LocFormat Key=Inventories_CapacityA11y, Path=CapacityLabel}" />
+                                    <Border Grid.Column="1" Classes="badge"
+                                            Classes.overFull="{Binding IsOverFull}"
+                                            Classes.nearLoadLimit="{Binding IsNearLoadLimit}"
+                                            ToolTip.ServiceEnabled="{Binding NeedsAttention}">
+                                        <ToolTip.Tip>
+                                            <Panel MaxWidth="320">
+                                                <TextBlock TextWrapping="Wrap" IsVisible="{Binding IsOverFull}"
+                                                           Text="{m:LocFormat Key=Inventories_FillOverFullHelp, Path=TotalItemCount, Path2=Size}" />
+                                                <TextBlock TextWrapping="Wrap" IsVisible="{Binding IsNearLoadLimit}"
+                                                           Text="{m:LocFormat Key=Inventories_FillNearLoadLimitHelp, Path=TotalItemCount}" />
+                                            </Panel>
+                                        </ToolTip.Tip>
+                                        <StackPanel Orientation="Horizontal" Spacing="6">
+                                            <PathIcon Width="12" Height="12" Data="{StaticResource OverFullGlyph}"
+                                                      IsVisible="{Binding IsOverFull}"
+                                                      AutomationProperties.AccessibilityView="Raw" />
+                                            <PathIcon Width="12" Height="12" Data="{StaticResource NearLoadLimitGlyph}"
+                                                      IsVisible="{Binding IsNearLoadLimit}"
+                                                      AutomationProperties.AccessibilityView="Raw" />
+                                            <TextBlock Text="{Binding CapacityLabel}" FontSize="12" FontWeight="Bold"
+                                                       AutomationProperties.Name="{m:LocFormat Key=Inventories_CapacityA11y, Path=CapacityLabel}" />
+                                            <!-- The word is what a screen reader hears; HelpText carries the tooltip's
+                                                 explanation, which a mouse-less user can't hover for. -->
+                                            <TextBlock Text="{m:Loc Inventories_FillOverFull}" FontSize="12" FontWeight="Bold"
+                                                       IsVisible="{Binding IsOverFull}"
+                                                       AutomationProperties.HelpText="{m:LocFormat Key=Inventories_FillOverFullHelp, Path=TotalItemCount, Path2=Size}" />
+                                            <TextBlock Text="{m:Loc Inventories_FillNearLoadLimit}" FontSize="12" FontWeight="Bold"
+                                                       IsVisible="{Binding IsNearLoadLimit}"
+                                                       AutomationProperties.HelpText="{m:LocFormat Key=Inventories_FillNearLoadLimitHelp, Path=TotalItemCount}" />
+                                        </StackPanel>
                                     </Border>
                                 </Grid>
 
@@ -123,12 +243,17 @@
 
                                 <!-- A search matched only some of this inventory's items, so the card
                                      lists just those; say so, or it reads as if that is all it holds. -->
+                                <TextBlock Classes="caption" IsVisible="{Binding IsGroupedForSize}"
+                                           Text="{m:Loc Inventories_GroupedForSize}" />
+
                                 <TextBlock Classes="caption" IsVisible="{Binding IsNarrowed}"
                                            Text="{m:LocFormat Key=Inventories_ShowingSome, Path=Items.Count, Path2=TotalItemCount}" />
 
-                                <ItemsControl ItemsSource="{Binding Items}">
+                                <!-- One row per stack, not per item (issue #64): a stacking-mod chest holds thousands of
+                                     one item, and a row each froze the page for seconds. -->
+                                <ItemsControl ItemsSource="{Binding Stacks}">
                                     <ItemsControl.ItemTemplate>
-                                        <DataTemplate x:DataType="models:InventoryItemView">
+                                        <DataTemplate x:DataType="models:InventoryStackView">
                                             <Grid ColumnDefinitions="Auto,*,Auto,Auto" ColumnSpacing="10" Margin="0,3"
                                                   ToolTip.Tip="{Binding GId}">
                                                 <Image Grid.Column="0" Width="28" Height="28" VerticalAlignment="Center"
@@ -136,15 +261,26 @@
                                                        AutomationProperties.AccessibilityView="Raw" />
                                                 <TextBlock Grid.Column="1" VerticalAlignment="Center"
                                                            Text="{Binding DisplayName}" TextTrimming="CharacterEllipsis" />
-                                                <!-- The item's world-object id (issue #3). Hidden from screen
-                                                     readers here because the Move button's name carries it. -->
+                                                <!-- A lone item shows its world-object id (issue #3), a stack its count. Both are
+                                                     hidden from screen readers here because the Move button's name carries them. -->
                                                 <TextBlock Grid.Column="2" VerticalAlignment="Center" Classes="caption"
-                                                           Text="{m:LocFormat Key=Inventories_ItemId, Path=WorldObjectId}"
+                                                           IsVisible="{Binding IsSingle}"
+                                                           Text="{m:LocFormat Key=Inventories_ItemId, Path=FirstWorldObjectId}"
+                                                           AutomationProperties.AccessibilityView="Raw" />
+                                                <TextBlock Grid.Column="2" VerticalAlignment="Center" FontWeight="Bold"
+                                                           IsVisible="{Binding !IsSingle}"
+                                                           Text="{m:LocFormat Key=Inventories_StackCount, Path=Count}"
                                                            AutomationProperties.AccessibilityView="Raw" />
                                                 <Button Grid.Column="3" Content="{m:Loc Inventories_Move}"
-                                                        Command="{Binding DataContext.MoveItemCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                        IsVisible="{Binding IsSingle}"
+                                                        Command="{Binding DataContext.MoveStackCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                         CommandParameter="{Binding}"
-                                                        AutomationProperties.Name="{m:LocFormat Key=Inventories_MoveA11y, Path=DisplayName, Path2=WorldObjectId}" />
+                                                        AutomationProperties.Name="{m:LocFormat Key=Inventories_MoveA11y, Path=DisplayName, Path2=FirstWorldObjectId}" />
+                                                <Button Grid.Column="3" Content="{m:Loc Inventories_Move}"
+                                                        IsVisible="{Binding !IsSingle}"
+                                                        Command="{Binding DataContext.MoveStackCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                        CommandParameter="{Binding}"
+                                                        AutomationProperties.Name="{m:LocFormat Key=Inventories_MoveStackA11y, Path=DisplayName, Path2=Count}" />
                                             </Grid>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>

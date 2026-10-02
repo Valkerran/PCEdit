@@ -80,6 +80,18 @@ internal static class WorkspaceFixtures
     }
 
     /// <summary>
+    /// Moves Alice's two items into Bob's one-slot inventory (20), leaving it over-full - the
+    /// shape an inventory-stacking mod leaves behind (issue #64).
+    /// </summary>
+    public static void OverFillBobsInventory(PlanetCrafterSaveFile save)
+    {
+        var alice = save.Inventories.FindIndex(i => i.Id == 10);
+        save.Inventories[alice] = save.Inventories[alice] with { WorldObjectIds = "" };
+        var bob = save.Inventories.FindIndex(i => i.Id == 20);
+        save.Inventories[bob] = save.Inventories[bob] with { WorldObjectIds = "200,201" };
+    }
+
+    /// <summary>
     /// <see cref="Create"/> extended to two worlds: Alice stays on "Prime", Bob moves to
     /// "Aqualis", and the storage container (world object 100 → inventory 30) is placed on
     /// "Aqualis" via its <c>planet</c> hash. Inventory 99 stays orphaned (no world).

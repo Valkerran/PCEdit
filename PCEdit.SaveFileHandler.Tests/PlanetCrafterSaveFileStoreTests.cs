@@ -7,6 +7,8 @@ public sealed class PlanetCrafterSaveFileStoreTests : IDisposable
     private readonly PlanetCrafterSaveFileStore _store = new(new PlanetCrafterSaveFileSerializer(new JsonRecordSerializer()));
     private readonly string _tempFile = Path.Combine(Path.GetTempPath(), $"pcedit-test-{Guid.NewGuid():N}.txt");
 
+    private readonly string _copyFile = Path.Combine(Path.GetTempPath(), $"pcedit-test-{Guid.NewGuid():N}-copy.txt");
+
     /// <summary>Where Save stages its write before swapping it in.</summary>
     private string TempPath => _tempFile + ".pcedit-tmp";
 
@@ -15,6 +17,11 @@ public sealed class PlanetCrafterSaveFileStoreTests : IDisposable
         if (File.Exists(_tempFile))
         {
             File.Delete(_tempFile);
+        }
+
+        if (File.Exists(_copyFile))
+        {
+            File.Delete(_copyFile);
         }
 
         // A completed save leaves nothing here; one test occupies the path on purpose.
@@ -137,6 +144,44 @@ public sealed class PlanetCrafterSaveFileStoreTests : IDisposable
         _store.Save(_tempFile, _store.Load(_tempFile));
 
         Assert.Equal(original, File.ReadAllBytes(_tempFile));
+    }
+
+    [Fact]
+    public void SaveCopy_OfABomLessGamePassSave_StaysBomLess_AndLeavesTheOriginalAlone()
+    {
+        // A repaired copy is a new path, which would normally get a BOM - and a BOM makes the
+        // Game Pass build reject the save. The copy follows the original instead (issue #64).
+        var source = Path.Combine(AppContext.BaseDirectory, "TestData", "Interplanetary-2.102.json");
+        File.Copy(source, _tempFile, overwrite: true);
+
+        _store.SaveCopy(_tempFile, _copyFile, _store.Load(_tempFile));
+
+        Assert.Equal(File.ReadAllBytes(source), File.ReadAllBytes(_copyFile));
+        Assert.Equal(File.ReadAllBytes(source), File.ReadAllBytes(_tempFile));
+    }
+
+    [Fact]
+    public void SaveCopy_OfASteamSave_KeepsTheBom()
+    {
+        var source = Path.Combine(AppContext.BaseDirectory, "TestData", "mini-save.json");
+        File.Copy(source, _tempFile, overwrite: true);
+
+        _store.SaveCopy(_tempFile, _copyFile, _store.Load(_tempFile));
+
+        Assert.Equal(File.ReadAllBytes(source), File.ReadAllBytes(_copyFile));
+    }
+
+    [Fact]
+    public void SaveCopy_OntoTheOriginalItself_IsRefused()
+    {
+        // The whole point of a copy is that the original survives; compared as full paths, so a
+        // relative or differently-cased spelling of the same file is caught too.
+        var source = Path.Combine(AppContext.BaseDirectory, "TestData", "mini-save.json");
+        File.Copy(source, _tempFile, overwrite: true);
+        var sameFile = Path.Combine(Path.GetDirectoryName(_tempFile)!, ".", Path.GetFileName(_tempFile));
+
+        Assert.Throws<ArgumentException>(() => _store.SaveCopy(_tempFile, sameFile, _store.Load(_tempFile)));
+        Assert.Equal(File.ReadAllBytes(source), File.ReadAllBytes(_tempFile));
     }
 
     [Fact]

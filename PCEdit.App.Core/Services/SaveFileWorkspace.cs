@@ -103,6 +103,23 @@ public sealed partial class SaveFileWorkspace : ObservableObject, ISaveFileWorks
         }
     }
 
+    public void SaveCopy(string targetPath)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(targetPath);
+        if (Current is null || FilePath is null)
+        {
+            throw new InvalidOperationException("No save file is loaded.");
+        }
+
+        _store.SaveCopy(FilePath, targetPath, Current);
+        FilePath = targetPath;
+        IsDirty = false;
+
+        // The copy is PCEdit's own output: nothing in it needs preserving. The pristine save is
+        // the file it came from, which this never writes.
+        _backedUpSinceLoad = true;
+    }
+
     /// <summary>
     /// Copies the save aside as it was before PCEdit first wrote to it.
     /// </summary>
@@ -183,6 +200,18 @@ public sealed partial class SaveFileWorkspace : ObservableObject, ISaveFileWorks
         }
 
         save.Inventories[index] = mutate(save.Inventories[index]);
+        IsDirty = true;
+        OnPropertyChanged(nameof(Current));
+    }
+
+    public void RemoveWorldObjects(IReadOnlySet<int> worldObjectIds)
+    {
+        var save = RequireCurrent();
+        if (save.WorldObjects.RemoveAll(w => worldObjectIds.Contains(w.Id)) == 0)
+        {
+            return;
+        }
+
         IsDirty = true;
         OnPropertyChanged(nameof(Current));
     }

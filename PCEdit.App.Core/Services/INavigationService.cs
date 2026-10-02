@@ -13,10 +13,20 @@ public interface INavigationService
     Task GoToOpenFileAsync();
 
     /// <summary>
-    /// Opens the "choose a destination inventory" screen for the given world object,
-    /// as a modal/secondary view.
+    /// Switches the main content to the Inventories page, filtered to the inventories that need
+    /// attention (from the Overview's over-full banner, issue #64).
     /// </summary>
-    Task OpenSelectInventoryAsync(int worldObjectId);
+    Task GoToInventoriesNeedingAttentionAsync();
+
+    /// <summary>
+    /// Opens the "choose a destination inventory" screen, as a modal/secondary view, for a stack
+    /// of items from one inventory in the save's order; the player picks how many of them to move.
+    /// A single item is a stack of one.
+    /// </summary>
+    Task OpenSelectInventoryAsync(IReadOnlyList<int> worldObjectIds);
+
+    /// <summary>Opens the over-full container repair, as a modal view (issue #64).</summary>
+    Task OpenRepairAsync();
 
     /// <summary>Opens the demand/supply editor for a logistics container, as a modal view.</summary>
     Task OpenLogisticsEditorAsync(int inventoryId);

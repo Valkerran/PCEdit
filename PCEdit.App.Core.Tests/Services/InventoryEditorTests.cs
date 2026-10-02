@@ -63,6 +63,57 @@ public sealed class InventoryEditorTests
     }
 
     [Fact]
+    public void TryMoveItems_MovesEveryGivenItem_KeepingTheirOrder()
+    {
+        var (editor, workspace) = CreateLoadedEditor();
+
+        var result = editor.TryMoveItems([200, 201], destinationInventoryId: 30); // 30 holds 202, room for 2
+
+        Assert.True(result.Success);
+        Assert.Equal("", workspace.Current!.Inventories.Single(i => i.Id == 10).WorldObjectIds);
+        Assert.Equal("202,200,201", workspace.Current!.Inventories.Single(i => i.Id == 30).WorldObjectIds);
+    }
+
+    [Fact]
+    public void TryMoveItems_WithoutRoomForThemAll_MovesNothing()
+    {
+        // Moving part of a stack is all-or-nothing: a half-done move would leave the player
+        // guessing which items went where.
+        var (editor, workspace) = CreateLoadedEditor();
+
+        var result = editor.TryMoveItems([200, 201], destinationInventoryId: 20); // one empty slot
+
+        Assert.False(result.Success);
+        Assert.Contains("1", result.ErrorMessage); // the free room
+        Assert.Equal("200,201", workspace.Current!.Inventories.Single(i => i.Id == 10).WorldObjectIds);
+        Assert.Equal("", workspace.Current!.Inventories.Single(i => i.Id == 20).WorldObjectIds);
+        Assert.False(workspace.IsDirty);
+    }
+
+    [Fact]
+    public void TryMoveItems_FromMoreThanOneInventory_MovesNothing()
+    {
+        var (editor, workspace) = CreateLoadedEditor();
+
+        var result = editor.TryMoveItems([200, 202], destinationInventoryId: 21); // 202 is in 30, not 10
+
+        Assert.False(result.Success);
+        Assert.False(workspace.IsDirty);
+    }
+
+    [Fact]
+    public void TryMoveItems_OutOfAnOverFullInventory_IsAllowed()
+    {
+        // That is how a player repairs a stacking-mod chest by hand (issue #64).
+        var (editor, workspace) = CreateLoadedEditor(WorkspaceFixtures.OverFillBobsInventory);
+
+        var result = editor.TryMoveItems([201], destinationInventoryId: 30);
+
+        Assert.True(result.Success);
+        Assert.Equal("200", workspace.Current!.Inventories.Single(i => i.Id == 20).WorldObjectIds);
+    }
+
+    [Fact]
     public void TryMoveItem_KeepsEntriesItCouldNotRead()
     {
         // Skipping an unreadable entry for display is fine. Dropping it on write is data loss -
@@ -259,6 +310,90 @@ public sealed class InventoryEditorTests
 
         var orphan = groups.Single(g => g.InventoryId == 99);
         Assert.Equal("Inventory #99", orphan.Label);
+    }
+
+    [Fact]
+    public void BuildInventoryGroups_LabelsAMachinesSecondInventoryByItsSiIdsOwner()
+    {
+        // A farm, ore breaker or algae generator keeps its output in a second inventory, linked
+        // through "siIds" rather than "liId". Unread, those showed as "Inventory #N" (issue #64).
+        var (editor, _) = CreateLoadedEditor(save => save.WorldObjects.Add(new PCEdit.SaveFileHandler.Models.WorldObject
+        {
+            Id = 101,
+            GId = "MachineX",
+            LinkedInventoryId = 11,
+            SpawnedInstanceIds = "99",
+            Planet = PCEdit.SaveFileHandler.PlanetHash.Of("Prime"),
+        }));
+
+        var output = editor.BuildInventoryGroups().Single(g => g.InventoryId == 99);
+
+        Assert.Equal("MachineX (Object #101)", output.Label);
+        Assert.Equal(InventoryKind.Container, output.Kind);
+        Assert.Equal(101, output.ContainerWorldObjectId);
+        Assert.Equal("Prime", output.PlanetId);
+    }
+
+    [Fact]
+    public void BuildInventoryGroups_PrefersTheLiIdOwnerOverASiIdsReference()
+    {
+        var (editor, _) = CreateLoadedEditor(save => save.WorldObjects.Add(
+            new PCEdit.SaveFileHandler.Models.WorldObject { Id = 101, GId = "MachineX", SpawnedInstanceIds = "30" }));
+
+        var container = editor.BuildInventoryGroups().Single(g => g.InventoryId == 30);
+
+        Assert.Equal("StorageContainer (Object #100)", container.Label);
+    }
+
+    [Fact]
+    public void BuildInventoryGroups_SkipsAnSiIdsEntryItCannotRead()
+    {
+        var (editor, _) = CreateLoadedEditor(save => save.WorldObjects.Add(
+            new PCEdit.SaveFileHandler.Models.WorldObject { Id = 101, GId = "MachineX", SpawnedInstanceIds = "junk,99" }));
+
+        var output = editor.BuildInventoryGroups().Single(g => g.InventoryId == 99);
+
+        Assert.Equal("MachineX (Object #101)", output.Label);
+    }
+
+    [Fact]
+    public void BuildInventoryGroups_StacksItemsThatDifferOnlyByTheirId()
+    {
+        var (editor, _) = CreateLoadedEditor(save =>
+        {
+            save.WorldObjects.Add(new PCEdit.SaveFileHandler.Models.WorldObject { Id = 300, GId = "GeneticTrait", Color = "1-0-0-0" });
+            save.WorldObjects.Add(new PCEdit.SaveFileHandler.Models.WorldObject { Id = 301, GId = "GeneticTrait", Color = "1-0-0-0" });
+            save.WorldObjects.Add(new PCEdit.SaveFileHandler.Models.WorldObject { Id = 302, GId = "GeneticTrait", Color = "0-1-0-0" });
+            SetIdList(save, 30, "300,301,302");
+        });
+
+        var container = editor.BuildInventoryGroups().Single(g => g.InventoryId == 30);
+
+        Assert.Equal([[300, 301], [302]], container.Stacks.Select(s => s.WorldObjectIds.ToArray()).ToArray());
+    }
+
+    [Fact]
+    public void BuildInventoryGroups_TagsWhereEachContainerCameFrom()
+    {
+        var (editor, _) = CreateLoadedEditor(save =>
+        {
+            void Place(int id, string gId, int inventoryId)
+            {
+                save.WorldObjects.Add(new PCEdit.SaveFileHandler.Models.WorldObject { Id = id, GId = gId, LinkedInventoryId = inventoryId });
+                save.Inventories.Add(new PCEdit.SaveFileHandler.Models.Inventory { Id = inventoryId, WorldObjectIds = "", Size = 5 });
+            }
+
+            Place(205_000_000, "Container1", 40);                // runtime id, a type only players build
+            Place(101_464_942, "Container1", 41);                // a developers' crate from a real save
+            Place(204_000_000, "ProceduralWreckContainer1", 42); // a wreck crate
+        });
+
+        var origin = editor.BuildInventoryGroups().ToDictionary(g => g.InventoryId, g => g.Origin);
+
+        Assert.Equal(ContainerOrigin.Built, origin[40]);
+        Assert.Equal(ContainerOrigin.Map, origin[41]);
+        Assert.Equal(ContainerOrigin.Wreck, origin[42]);
+        Assert.Equal(ContainerOrigin.Unknown, origin[10]); // a player's backpack has no placed owner
     }
 
     [Fact]

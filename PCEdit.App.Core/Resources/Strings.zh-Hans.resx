@@ -64,6 +64,38 @@
   <data name="Overview_Vital_Toxicity" xml:space="preserve"><value>毒性</value></data>
   <data name="Overview_PlayerProgress" xml:space="preserve"><value>已制作 {0} 个物品  ·  已获得 {1} 个地球化代币</value></data>
   <data name="Overview_GameVersion" xml:space="preserve"><value>由游戏版本 {0} 写入的存档</value></data>
+  <data name="Overview_AttentionHeading" xml:space="preserve"><value>部分容器需要注意</value></data>
+  <data name="Overview_AttentionOverCapacity" xml:space="preserve"><value>物品数量超过容量的容器：{0}。未安装模组的游戏不会出现这种情况；这通常由物品堆叠模组造成，游戏读取这样的存档可能会卡顿。</value></data>
+  <data name="Overview_AttentionNearLoadLimit" xml:space="preserve"><value>接近游戏每个容器 8,000 个物品上限的容器：{0}。超出上限的物品会在游戏加载存档时丢失。</value></data>
+  <data name="Overview_AttentionShow" xml:space="preserve"><value>查看</value></data>
+  <data name="Overview_AttentionShowA11y" xml:space="preserve"><value>在库存页面查看需要注意的容器</value></data>
+  <data name="Overview_AttentionRepair" xml:space="preserve"><value>修复…</value></data>
+  <data name="Overview_AttentionRepairA11y" xml:space="preserve"><value>将超出容量的容器修复到存档的新副本中</value></data>
+  <data name="Repair_Title" xml:space="preserve"><value>修复超出容量的容器</value></data>
+  <data name="Repair_Intro" xml:space="preserve"><value>移除每个容器容量之外的物品（从列表末尾开始），并将结果写入新的存档文件。已打开的存档不会被更改。</value></data>
+  <data name="Repair_Keep" xml:space="preserve"><value>最多保留</value></data>
+  <data name="Repair_KeepSuffix" xml:space="preserve"><value>× 每个容器的容量</value></data>
+  <data name="Repair_KeepA11y" xml:space="preserve"><value>最多保留每个容器容量的多少倍，1 到 100</value></data>
+  <data name="Repair_KeepHint" xml:space="preserve"><value>1 只保留未安装模组的游戏所允许的数量。任何容器都不会保留超过 7,200 个物品，低于游戏的加载上限。</value></data>
+  <data name="Repair_Preview" xml:space="preserve"><value>要移除的物品：{0}。受影响的容器：{1}。</value></data>
+  <data name="Repair_Nothing" xml:space="preserve"><value>此设置下没有要移除的内容。</value></data>
+  <data name="Repair_TypeCount" xml:space="preserve"><value>{0}：{1}</value></data>
+  <data name="Repair_UnsavedChanges" xml:space="preserve"><value>请先保存其他更改。如果写入修复后的副本失败，PCEdit 会重新打开原始文件以撤销修复，这些更改将会丢失。</value></data>
+  <data name="Repair_Apply" xml:space="preserve"><value>保存修复后的副本…</value></data>
+  <data name="Repair_SaveTitle" xml:space="preserve"><value>将修复后的副本另存为</value></data>
+  <data name="Repair_Done" xml:space="preserve"><value>已移除的物品：{0}。修复后的副本已保存为 {1} 并已打开；原始存档未被更改。</value></data>
+  <data name="Repair_Failed" xml:space="preserve"><value>无法写入修复后的副本。未做任何更改：原始存档已重新打开。</value></data>
+  <data name="Repair_FailedTitle" xml:space="preserve"><value>修复失败</value></data>
+  <data name="Repair_MoveFirstHeading" xml:space="preserve"><value>先移到空闲存储</value></data>
+  <data name="Repair_MoveFirstHint" xml:space="preserve"><value>勾选要保留的物品类型，最重要的放前面。在移除任何物品之前，它们会被放入同一世界中你自己的储物箱和储物柜的空格；放不下的会被移除。</value></data>
+  <data name="Repair_FreeSlots" xml:space="preserve"><value>存储中的空格：{0}。</value></data>
+  <data name="Repair_PreviewMoved" xml:space="preserve"><value>已移到空闲存储：{0}，放入容器：{1}。</value></data>
+  <data name="Repair_TypeChoiceA11y" xml:space="preserve"><value>先将 {0} 移到空闲存储</value></data>
+  <data name="Repair_MoveUp" xml:space="preserve"><value>上移</value></data>
+  <data name="Repair_MoveDown" xml:space="preserve"><value>下移</value></data>
+  <data name="Repair_MoveUpA11y" xml:space="preserve"><value>将 {0} 在列表中上移</value></data>
+  <data name="Repair_MoveDownA11y" xml:space="preserve"><value>将 {0} 在列表中下移</value></data>
+  <data name="Repair_DoneMoved" xml:space="preserve"><value>已移到空闲存储：{0}。</value></data>
   <data name="Vital_Ok" xml:space="preserve"><value>正常</value></data>
   <data name="Vital_Low" xml:space="preserve"><value>偏低</value></data>
   <data name="Vital_Critical" xml:space="preserve"><value>危急</value></data>
@@ -101,6 +133,27 @@
   <data name="Inventories_FilterWorldA11y" xml:space="preserve"><value>按世界筛选库存</value></data>
   <data name="Inventories_WorldAll" xml:space="preserve"><value>所有世界</value></data>
   <data name="Inventories_WorldUnknown" xml:space="preserve"><value>未知世界</value></data>
+  <data name="Inventories_FilterAttention" xml:space="preserve"><value>需要注意 ({0})</value></data>
+  <data name="Inventories_FillOverFull" xml:space="preserve"><value>超出容量</value></data>
+  <data name="Inventories_FillNearLoadLimit" xml:space="preserve"><value>接近加载上限</value></data>
+  <data name="Inventories_FillOverFullHelp" xml:space="preserve"><value>{1} 个格子中有 {0} 个物品。未安装模组的游戏不会让容器超出其容量；这通常由物品堆叠模组造成。</value></data>
+  <data name="Inventories_FillNearLoadLimitHelp" xml:space="preserve"><value>有 {0} 个物品。游戏每个库存最多加载 8,000 个物品，其余会被静默丢弃。</value></data>
+  <data name="Inventories_StackCount" xml:space="preserve"><value>× {0}</value></data>
+  <data name="Inventories_MoveStackA11y" xml:space="preserve"><value>从 {1} 个的堆叠中将 1 个 {0} 移动到另一个库存</value></data>
+  <data name="Inventories_StackingLabel" xml:space="preserve"><value>相同物品：</value></data>
+  <data name="Inventories_StackingA11y" xml:space="preserve"><value>相同物品的显示方式</value></data>
+  <data name="Inventories_StackingAuto" xml:space="preserve"><value>自动</value></data>
+  <data name="Inventories_StackingAutoHint" xml:space="preserve"><value>每个物品一行；只有存档中有需要注意的容器时才合并显示。</value></data>
+  <data name="Inventories_StackingAlways" xml:space="preserve"><value>合并</value></data>
+  <data name="Inventories_StackingNever" xml:space="preserve"><value>逐个</value></data>
+  <data name="Inventories_GroupedForSize" xml:space="preserve"><value>已合并：物品太多，无法逐个列出。</value></data>
+  <data name="Inventories_OriginBuilt" xml:space="preserve"><value>你建造的</value></data>
+  <data name="Inventories_OriginMap" xml:space="preserve"><value>地图</value></data>
+  <data name="Inventories_OriginWreck" xml:space="preserve"><value>残骸</value></data>
+  <data name="Inventories_OriginBuiltHelp" xml:space="preserve"><value>这是你建造的。</value></data>
+  <data name="Inventories_OriginMapHelp" xml:space="preserve"><value>放置在游戏地图中：世界开始时就已经在那里。</value></data>
+  <data name="Inventories_OriginWreckHelp" xml:space="preserve"><value>在残骸中找到。</value></data>
+  <data name="Inventories_FilterBuilt" xml:space="preserve"><value>你建造的</value></data>
   <data name="Inv_PlayerInventory" xml:space="preserve"><value>{0} 的库存</value></data>
   <data name="Inv_PlayerEquipment" xml:space="preserve"><value>{0} 的装备</value></data>
   <data name="Inv_Container" xml:space="preserve"><value>{0}（物体 #{1}）</value></data>
@@ -109,6 +162,12 @@
   <data name="Inv_AlreadyThere" xml:space="preserve"><value>该物品已在该库存中。</value></data>
   <data name="Inv_DestNotFound" xml:space="preserve"><value>未找到目标库存。</value></data>
   <data name="Inv_DestFull" xml:space="preserve"><value>目标库存已满（{0}/{1}）。</value></data>
+  <data name="Inv_DestNoRoom" xml:space="preserve"><value>目标空间不足：空闲 {0}，需移动 {1}。</value></data>
+  <data name="SelectInv_Quantity" xml:space="preserve"><value>数量</value></data>
+  <data name="SelectInv_QuantityA11y" xml:space="preserve"><value>要移动的数量，1 到 {0}</value></data>
+  <data name="SelectInv_All" xml:space="preserve"><value>全部</value></data>
+  <data name="SelectInv_AllA11y" xml:space="preserve"><value>移动整个堆叠（{0}）</value></data>
+  <data name="SelectInv_MovedMany" xml:space="preserve"><value>已移动到 {1} 的物品：{0}。</value></data>
   <data name="SelectInv_Title" xml:space="preserve"><value>移动物品</value></data>
   <data name="SelectInv_Heading" xml:space="preserve"><value>选择目标库存</value></data>
   <data name="SelectInv_Search" xml:space="preserve"><value>按名称或 ID 搜索目标</value></data>

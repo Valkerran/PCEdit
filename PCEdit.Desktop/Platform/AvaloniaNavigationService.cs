@@ -34,11 +34,20 @@ public sealed class AvaloniaNavigationService(
         return Task.CompletedTask;
     }
 
-    public Task OpenSelectInventoryAsync(int worldObjectId) =>
+    public Task GoToInventoriesNeedingAttentionAsync()
+    {
+        // Set before navigating: the page keeps this filter through its Load() whenever there is
+        // anything to show, and the banner that calls this only appears when there is.
+        _services.GetRequiredService<InventoriesViewModel>().Filter = InventoryFilter.NeedsAttention;
+        _mainViewModel.NavigateTo(NavDestination.Inventories);
+        return Task.CompletedTask;
+    }
+
+    public Task OpenSelectInventoryAsync(IReadOnlyList<int> worldObjectIds) =>
         Dispatcher.UIThread.InvokeAsync(async () =>
         {
             var vm = _services.GetRequiredService<SelectInventoryViewModel>();
-            vm.Initialize(worldObjectId);
+            vm.Initialize(worldObjectIds);
 
             _modal = new SelectInventoryWindow { DataContext = vm };
             await _modal.ShowDialog(_mainWindow.Require());
@@ -58,6 +67,20 @@ public sealed class AvaloniaNavigationService(
             await _modal.ShowDialog(_mainWindow.Require());
             _modal = null;
 
+            _mainViewModel.ReloadCurrent();
+        });
+
+    public Task OpenRepairAsync() =>
+        Dispatcher.UIThread.InvokeAsync(async () =>
+        {
+            var vm = _services.GetRequiredService<RepairViewModel>();
+            vm.Initialize();
+
+            _modal = new RepairWindow { DataContext = vm };
+            await _modal.ShowDialog(_mainWindow.Require());
+            _modal = null;
+
+            // A repair switches the workspace to the new copy; refresh whatever page is showing.
             _mainViewModel.ReloadCurrent();
         });
 

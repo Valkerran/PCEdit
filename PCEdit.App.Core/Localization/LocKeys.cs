@@ -45,6 +45,18 @@ public static class LocKeys
     public const string Overview_PlayerLocation = "Overview_PlayerLocation";
     public const string Overview_PlayerProgress = "Overview_PlayerProgress";
     public const string Overview_GameVersion = "Overview_GameVersion";
+    public const string Overview_AttentionOverCapacity = "Overview_AttentionOverCapacity";
+    public const string Overview_AttentionNearLoadLimit = "Overview_AttentionNearLoadLimit";
+    public const string Repair_Preview = "Repair_Preview";
+    public const string Repair_Nothing = "Repair_Nothing";
+    public const string Repair_TypeCount = "Repair_TypeCount";
+    public const string Repair_SaveTitle = "Repair_SaveTitle";
+    public const string Repair_Done = "Repair_Done";
+    public const string Repair_Failed = "Repair_Failed";
+    public const string Repair_FailedTitle = "Repair_FailedTitle";
+    public const string Repair_FreeSlots = "Repair_FreeSlots";
+    public const string Repair_PreviewMoved = "Repair_PreviewMoved";
+    public const string Repair_DoneMoved = "Repair_DoneMoved";
 
     public const string Vital_Ok = "Vital_Ok";
     public const string Vital_Low = "Vital_Low";
@@ -68,6 +80,8 @@ public static class LocKeys
     public const string Inv_AlreadyThere = "Inv_AlreadyThere";
     public const string Inv_DestNotFound = "Inv_DestNotFound";
     public const string Inv_DestFull = "Inv_DestFull";
+    public const string Inv_DestNoRoom = "Inv_DestNoRoom";
+    public const string SelectInv_MovedMany = "SelectInv_MovedMany";
 
     public const string SelectInv_MoveFailedTitle = "SelectInv_MoveFailedTitle";
     public const string SelectInv_MoveIncomplete = "SelectInv_MoveIncomplete";

@@ -4,6 +4,50 @@ What changed in each release of PCEdit. Downloads for every version are on the
 [Releases page](https://github.com/Valkerran/PCEdit/releases); the newest is on the
 [latest release](https://github.com/Valkerran/PCEdit/releases/latest) page.
 
+## v1.7.0
+
+Help for saves altered by an inventory-stacking mod, which can leave containers holding far more
+than they should and the game stuttering or freezing. ([#64](https://github.com/Valkerran/PCEdit/issues/64))
+
+- **New: PCEdit warns you about over-full containers.** When you open a save, the Overview says
+  how many containers hold more items than their size, and how many are close to the game's
+  limit of 8,000 items in one container, past which the game drops the rest when it loads. On
+  the Inventories page those containers carry an "over-full" or "near load limit" badge, and a
+  **Needs attention** filter lists just them. An unmodded save shows none of this.
+
+- **New: Repair, without touching your save.** **Repair…** on the Overview trims every container
+  back to its size (or a multiple of it you choose), showing exactly what it will remove before
+  it does anything. You can tick item types to keep: they move into free slots in your own
+  storage crates first, and only what does not fit is removed. The result is written to **a new
+  save file** beside the original, in the next free save slot so it shows up in the game; the
+  save you opened is never changed, so if the repaired copy misbehaves, the original is still
+  there. A copy of an Xbox / PC Game Pass save keeps that version's file format.
+
+- **New: move part of a stack.** Moving items now asks how many to move, with an **All**
+  button. Full containers are no longer offered as destinations, and one without room for
+  the number you picked is greyed out.
+
+- **New: see what you built.** Each container on the Inventories page is tagged **Built by
+  you**, **Map** (placed in the game's map by the developers) or **Wreck**, and a **Built by
+  you** filter lists just your own. Where the save cannot tell (a countertop, fridge or vault
+  can be either built or found in a wreck), there is no tag rather than a guess.
+
+- **Improved: big saves no longer freeze the Inventories page.** Identical items in a
+  container can show as one row with a count ("Wheat x 1500"). On a modded save with 276,000
+  items, opening the largest container went from a 6-second freeze to about 50 ms. A new
+  **Identical items** setting chooses: *Automatic* (the default) groups only on a save with
+  containers that need attention and otherwise lists every item with its id as before;
+  *Grouped* and *One by one* force either. PCEdit remembers your choice.
+
+- **Fixed:** the player vitals on the Overview (and the colour of status messages) stayed in
+  the old theme's colours when the system switched between light and dark mode with PCEdit open,
+  leaving the numbers nearly invisible in dark mode.
+
+- The new text is machine-translated in all 14 non-English languages.
+
+- Applies to every platform (Linux, Windows and macOS) alike. No new dependencies, and no change
+  to how PCEdit reads or writes saves: an unedited save still saves back byte for byte.
+
 ## v1.6.0
 
 - **Planet Crafter 2.103 is supported.** The save format did not change: a world saved by

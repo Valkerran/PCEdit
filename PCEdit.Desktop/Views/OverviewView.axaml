@@ -6,9 +6,62 @@
              x:Class="PCEdit.Desktop.Views.OverviewView"
              x:DataType="vm:OverviewViewModel">
 
+    <UserControl.Styles>
+        <!--
+            Over-full banner (issue #64): a bordered card in the warning colour, or the error colour
+            when a container is near the game's load cap. Glyph and words carry the state too,
+            never colour alone.
+        -->
+        <Style Selector="Border.attention">
+            <Setter Property="BorderBrush" Value="{DynamicResource StatusWarningText}" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+        <Style Selector="Border.attention PathIcon">
+            <Setter Property="Foreground" Value="{DynamicResource StatusWarningText}" />
+        </Style>
+        <Style Selector="Border.attention.nearLoadLimit">
+            <Setter Property="BorderBrush" Value="{DynamicResource StatusErrorText}" />
+        </Style>
+        <Style Selector="Border.attention.nearLoadLimit PathIcon">
+            <Setter Property="Foreground" Value="{DynamicResource StatusErrorText}" />
+        </Style>
+    </UserControl.Styles>
+
     <Panel>
         <ScrollViewer IsVisible="{Binding IsLoaded}">
             <StackPanel Margin="24" Spacing="20">
+
+                <Border Classes="card attention" IsVisible="{Binding HasAttention}"
+                        Classes.nearLoadLimit="{Binding NearLoadLimitText, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
+                        <Panel Grid.Column="0" VerticalAlignment="Top" Margin="0,2,0,0">
+                            <PathIcon Width="20" Height="20" Data="{StaticResource OverFullGlyph}"
+                                      IsVisible="{Binding NearLoadLimitText, Converter={x:Static StringConverters.IsNullOrEmpty}}"
+                                      AutomationProperties.AccessibilityView="Raw" />
+                            <PathIcon Width="20" Height="20" Data="{StaticResource NearLoadLimitGlyph}"
+                                      IsVisible="{Binding NearLoadLimitText, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                                      AutomationProperties.AccessibilityView="Raw" />
+                        </Panel>
+                        <StackPanel Grid.Column="1" Spacing="6">
+                            <TextBlock Text="{m:Loc Overview_AttentionHeading}" FontWeight="Bold" FontSize="15"
+                                       TextWrapping="Wrap" />
+                            <TextBlock Text="{Binding OverCapacityText}" TextWrapping="Wrap"
+                                       IsVisible="{Binding OverCapacityText, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+                            <TextBlock Text="{Binding NearLoadLimitText}" TextWrapping="Wrap"
+                                       IsVisible="{Binding NearLoadLimitText, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="2" VerticalAlignment="Top" Spacing="8">
+                            <Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                                    Content="{m:Loc Overview_AttentionShow}"
+                                    Command="{Binding ShowAttentionCommand}"
+                                    AutomationProperties.Name="{m:Loc Overview_AttentionShowA11y}" />
+                            <Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                                    Content="{m:Loc Overview_AttentionRepair}"
+                                    Command="{Binding RepairCommand}"
+                                    AutomationProperties.Name="{m:Loc Overview_AttentionRepairA11y}" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
 
                 <TextBlock Classes="caption" Text="{Binding GameVersionText}"
                            IsVisible="{Binding GameVersionText, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
@@ -42,25 +95,29 @@
                                         <StackPanel Grid.Column="0" Spacing="2">
                                             <TextBlock Text="{m:Loc Overview_Vital_Oxygen}" Classes="micro" TextTrimming="CharacterEllipsis" />
                                             <TextBlock Text="{Binding Oxygen, StringFormat='{}{0:0.#}'}" FontSize="16" FontWeight="Bold"
-                                                       Foreground="{Binding Oxygen, Converter={StaticResource VitalBrush}}" />
+                                                       Classes.vitalLow="{Binding Oxygen, Converter={StaticResource VitalIsLow}}"
+                                                       Classes.vitalCritical="{Binding Oxygen, Converter={StaticResource VitalIsCritical}}" />
                                             <TextBlock Text="{Binding Oxygen, Converter={StaticResource VitalText}}" Classes="caption" FontSize="12" />
                                         </StackPanel>
                                         <StackPanel Grid.Column="1" Spacing="2">
                                             <TextBlock Text="{m:Loc Overview_Vital_Thirst}" Classes="micro" TextTrimming="CharacterEllipsis" />
                                             <TextBlock Text="{Binding Thirst, StringFormat='{}{0:0.#}'}" FontSize="16" FontWeight="Bold"
-                                                       Foreground="{Binding Thirst, Converter={StaticResource VitalBrush}}" />
+                                                       Classes.vitalLow="{Binding Thirst, Converter={StaticResource VitalIsLow}}"
+                                                       Classes.vitalCritical="{Binding Thirst, Converter={StaticResource VitalIsCritical}}" />
                                             <TextBlock Text="{Binding Thirst, Converter={StaticResource VitalText}}" Classes="caption" FontSize="12" />
                                         </StackPanel>
                                         <StackPanel Grid.Column="2" Spacing="2">
                                             <TextBlock Text="{m:Loc Overview_Vital_Health}" Classes="micro" TextTrimming="CharacterEllipsis" />
                                             <TextBlock Text="{Binding Health, StringFormat='{}{0:0.#}'}" FontSize="16" FontWeight="Bold"
-                                                       Foreground="{Binding Health, Converter={StaticResource VitalBrush}}" />
+                                                       Classes.vitalLow="{Binding Health, Converter={StaticResource VitalIsLow}}"
+                                                       Classes.vitalCritical="{Binding Health, Converter={StaticResource VitalIsCritical}}" />
                                             <TextBlock Text="{Binding Health, Converter={StaticResource VitalText}}" Classes="caption" FontSize="12" />
                                         </StackPanel>
                                         <StackPanel Grid.Column="3" Spacing="2">
                                             <TextBlock Text="{m:Loc Overview_Vital_Toxicity}" Classes="micro" TextTrimming="CharacterEllipsis" />
                                             <TextBlock Text="{Binding Toxicity, StringFormat='{}{0:0.#}'}" FontSize="16" FontWeight="Bold"
-                                                       Foreground="{Binding Toxicity, Converter={StaticResource VitalBrush}, ConverterParameter=HighIsBad}" />
+                                                       Classes.vitalLow="{Binding Toxicity, Converter={StaticResource VitalIsLow}, ConverterParameter=HighIsBad}"
+                                                       Classes.vitalCritical="{Binding Toxicity, Converter={StaticResource VitalIsCritical}, ConverterParameter=HighIsBad}" />
                                             <TextBlock Text="{Binding Toxicity, Converter={StaticResource VitalText}, ConverterParameter=HighIsBad}" Classes="caption" FontSize="12" />
                                         </StackPanel>
                                     </Grid>
@@ -135,7 +192,9 @@
                                                 AutomationProperties.Name="{m:LocFormat Key=Terraform_ApplyA11y, Path=PlanetId}" />
                                         <TextBlock Text="{Binding StatusMessage}"
                                                    IsVisible="{Binding StatusMessage, Converter={StaticResource StringNotEmpty}}"
-                                                   Foreground="{Binding StatusKind, Converter={StaticResource StatusBrush}}" />
+                                                   Classes="status"
+                                                   Classes.success="{Binding StatusKind, Converter={StaticResource StatusIsSuccess}}"
+                                                   Classes.error="{Binding StatusKind, Converter={StaticResource StatusIsError}}" />
                                     </StackPanel>
                                 </StackPanel>
                             </Border>

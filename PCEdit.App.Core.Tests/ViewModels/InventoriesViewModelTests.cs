@@ -11,15 +11,20 @@ public sealed class InventoriesViewModelTests
 {
     private const string Path = @"C:\fake\save.txt";
 
-    private static InventoriesViewModel CreateLoaded()
+    private static InventoriesViewModel CreateLoaded(
+        Action<PCEdit.SaveFileHandler.Models.PlanetCrafterSaveFile>? adjust = null,
+        FakeNavigationService? navigation = null,
+        FakeInventoryDisplayStore? display = null)
     {
         var store = new FakeSaveFileStore();
-        store.Seed(Path, WorkspaceFixtures.Create());
+        var save = WorkspaceFixtures.Create();
+        adjust?.Invoke(save);
+        store.Seed(Path, save);
         var localizer = new Localizer();
         var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         workspace.Load(Path);
         var itemCatalog = new ItemCatalog();
-        var vm = new InventoriesViewModel(workspace, new InventoryEditor(workspace, itemCatalog, new LogisticsGroupCatalog(itemCatalog), localizer, new PlanetIndex(workspace)), new FakeNavigationService(), localizer);
+        var vm = new InventoriesViewModel(workspace, new InventoryEditor(workspace, itemCatalog, new LogisticsGroupCatalog(itemCatalog), localizer, new PlanetIndex(workspace)), navigation ?? new FakeNavigationService(), localizer, display ?? new FakeInventoryDisplayStore());
         vm.Load();
         return vm;
     }
@@ -51,7 +56,7 @@ public sealed class InventoriesViewModelTests
         var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         workspace.Load(Path);
         var itemCatalog = new ItemCatalog();
-        var vm = new InventoriesViewModel(workspace, new InventoryEditor(workspace, itemCatalog, new LogisticsGroupCatalog(itemCatalog), localizer, new PlanetIndex(workspace)), new FakeNavigationService(), localizer);
+        var vm = new InventoriesViewModel(workspace, new InventoryEditor(workspace, itemCatalog, new LogisticsGroupCatalog(itemCatalog), localizer, new PlanetIndex(workspace)), new FakeNavigationService(), localizer, new FakeInventoryDisplayStore());
         vm.Load();
         return vm;
     }
@@ -177,6 +182,55 @@ public sealed class InventoriesViewModelTests
     }
 
     [Fact]
+    public void NeedsAttentionFilter_ShowsOnlyTheFlaggedInventories()
+    {
+        var vm = CreateLoaded(WorkspaceFixtures.OverFillBobsInventory);
+
+        vm.Filter = InventoryFilter.NeedsAttention;
+
+        Assert.Equal([20], vm.Groups.Select(g => g.InventoryId).ToArray());
+    }
+
+    [Fact]
+    public void AttentionCount_CountsFlaggedInventories_WhateverTheCurrentFilter()
+    {
+        var vm = CreateLoaded(WorkspaceFixtures.OverFillBobsInventory);
+
+        vm.Filter = InventoryFilter.Equipment;
+        vm.Query = "zzz-nothing";
+
+        Assert.Equal(1, vm.AttentionCount);
+    }
+
+    [Fact]
+    public void Load_OfASaveWithNothingFlagged_DropsANeedsAttentionFilter()
+    {
+        // The chip hides when nothing is flagged, so a filter left on it from the previous save
+        // would leave an empty page with no visible way out.
+        var store = new FakeSaveFileStore();
+        store.Seed(Path, WorkspaceFixtures.Create());
+        var localizer = new Localizer();
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
+        workspace.Load(Path);
+        var itemCatalog = new ItemCatalog();
+        var clean = new InventoriesViewModel(workspace, new InventoryEditor(workspace, itemCatalog, new LogisticsGroupCatalog(itemCatalog), localizer, new PlanetIndex(workspace)), new FakeNavigationService(), localizer, new FakeInventoryDisplayStore())
+        {
+            Filter = InventoryFilter.NeedsAttention,
+        };
+
+        clean.Load();
+
+        Assert.Equal(InventoryFilter.All, clean.Filter);
+        Assert.Equal(6, clean.Groups.Count);
+    }
+
+    [Fact]
+    public void AttentionCount_IsZeroForAnUnmoddedSave()
+    {
+        Assert.Equal(0, CreateLoaded().AttentionCount);
+    }
+
+    [Fact]
     public void QueryWithNoMatch_ReportsFilteredEmpty()
     {
         var vm = CreateLoaded();
@@ -188,6 +242,107 @@ public sealed class InventoriesViewModelTests
     }
 
     [Fact]
+    public async Task MoveStackCommand_OpensTheMoveDialogForTheWholeStack()
+    {
+        var nav = new FakeNavigationService();
+        var vm = CreateLoaded(navigation: nav);
+        var stack = new InventoryStackView("Iron", "Iron", "ore.png", [4022, 5100]);
+
+        await vm.MoveStackCommand.ExecuteAsync(stack);
+
+        Assert.Equal([4022, 5100], Assert.Single(nav.SelectInventoryRequests));
+    }
+
+    // Three identical Iron items in the storage container (inventory 30, three slots): one stack
+    // when grouped, three rows when listed one by one.
+    private static void ThreeIronsInTheStorageContainer(PCEdit.SaveFileHandler.Models.PlanetCrafterSaveFile save)
+    {
+        save.WorldObjects.AddRange(new[] { 300, 301, 302 }.Select(id => new PCEdit.SaveFileHandler.Models.WorldObject { Id = id, GId = "Iron" }));
+        var index = save.Inventories.FindIndex(i => i.Id == 30);
+        save.Inventories[index] = save.Inventories[index] with { WorldObjectIds = "300,301,302" };
+    }
+
+    private static void ThreeIronsAndAnOverFullInventory(PCEdit.SaveFileHandler.Models.PlanetCrafterSaveFile save)
+    {
+        ThreeIronsInTheStorageContainer(save);
+        WorkspaceFixtures.OverFillBobsInventory(save);
+    }
+
+    private static int RowsOfTheStorageContainer(InventoriesViewModel vm) =>
+        vm.Groups.Single(g => g.InventoryId == 30).Stacks.Count;
+
+    [Fact]
+    public void Automatic_OnASaveWithNothingFlagged_ListsEachItem()
+    {
+        var vm = CreateLoaded(ThreeIronsInTheStorageContainer);
+
+        Assert.Equal(StackingMode.Automatic, vm.StackingMode);
+        Assert.Equal(3, RowsOfTheStorageContainer(vm));
+    }
+
+    [Fact]
+    public void Automatic_OnASaveWithContainersNeedingAttention_Groups()
+    {
+        Assert.Equal(1, RowsOfTheStorageContainer(CreateLoaded(ThreeIronsAndAnOverFullInventory)));
+    }
+
+    [Fact]
+    public void Always_Groups_EvenOnACleanSave()
+    {
+        var vm = CreateLoaded(ThreeIronsInTheStorageContainer);
+
+        vm.StackingMode = StackingMode.Always;
+
+        Assert.Equal(1, RowsOfTheStorageContainer(vm));
+    }
+
+    [Fact]
+    public void Never_ListsEachItem_EvenOnAFlaggedSave()
+    {
+        var vm = CreateLoaded(ThreeIronsAndAnOverFullInventory);
+
+        vm.StackingMode = StackingMode.Never;
+
+        Assert.Equal(3, RowsOfTheStorageContainer(vm));
+    }
+
+    [Fact]
+    public void ChangingTheMode_IsRemembered()
+    {
+        var display = new FakeInventoryDisplayStore();
+        var vm = CreateLoaded(display: display);
+
+        vm.StackingMode = StackingMode.Never;
+
+        Assert.Equal([StackingMode.Never], display.Saved);
+    }
+
+    [Fact]
+    public void TheRememberedMode_IsUsedOnLoad()
+    {
+        var vm = CreateLoaded(ThreeIronsInTheStorageContainer, display: new FakeInventoryDisplayStore { Stored = StackingMode.Always });
+
+        Assert.Equal(StackingMode.Always, vm.StackingMode);
+        Assert.Equal(1, RowsOfTheStorageContainer(vm));
+    }
+
+    [Fact]
+    public void BuiltByYouFilter_ShowsOnlyTheContainersThePlayerBuilt()
+    {
+        var vm = CreateLoaded(save =>
+        {
+            save.WorldObjects.Add(new PCEdit.SaveFileHandler.Models.WorldObject { Id = 205_000_000, GId = "Container1", LinkedInventoryId = 40 });
+            save.Inventories.Add(new PCEdit.SaveFileHandler.Models.Inventory { Id = 40, WorldObjectIds = "", Size = 5 });
+            save.WorldObjects.Add(new PCEdit.SaveFileHandler.Models.WorldObject { Id = 101_464_942, GId = "Container1", LinkedInventoryId = 41 });
+            save.Inventories.Add(new PCEdit.SaveFileHandler.Models.Inventory { Id = 41, WorldObjectIds = "", Size = 5 });
+        });
+
+        vm.Filter = InventoryFilter.BuiltByYou;
+
+        Assert.Equal([40], vm.Groups.Select(g => g.InventoryId).ToArray());
+    }
+
+    [Fact]
     public void OpenFileCommand_Navigates()
     {
         var nav = new FakeNavigationService();
@@ -195,7 +350,7 @@ public sealed class InventoriesViewModelTests
         var localizer = new Localizer();
         var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
         var itemCatalog = new ItemCatalog();
-        var vm = new InventoriesViewModel(workspace, new InventoryEditor(workspace, itemCatalog, new LogisticsGroupCatalog(itemCatalog), localizer, new PlanetIndex(workspace)), nav, localizer);
+        var vm = new InventoriesViewModel(workspace, new InventoryEditor(workspace, itemCatalog, new LogisticsGroupCatalog(itemCatalog), localizer, new PlanetIndex(workspace)), nav, localizer, new FakeInventoryDisplayStore());
 
         vm.OpenFileCommand.Execute(null);
 

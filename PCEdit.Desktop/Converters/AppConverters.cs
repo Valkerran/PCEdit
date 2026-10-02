@@ -1,11 +1,8 @@
 using System.Globalization;
-using Avalonia;
 using Avalonia.Data;
 using Avalonia.Data.Converters;
-using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
-using Avalonia.Styling;
 using PCEdit.App.Core.Localization;
 using PCEdit.App.Core.Presentation;
 using PCEdit.App.Core.ViewModels;
@@ -19,8 +16,6 @@ public static class AppConverters
     public static readonly IValueConverter StringNotEmpty = new StringNotEmptyConverter();
     public static readonly IValueConverter DirtyStateText = new DirtyStateTextConverter();
     public static readonly IValueConverter VitalText = new VitalStatusTextConverter();
-    public static readonly IValueConverter VitalBrush = new VitalStatusColorConverter();
-    public static readonly IValueConverter StatusBrush = new StatusKindToColorConverter();
     public static readonly IValueConverter Icon = new IconPathConverter();
 }
 
@@ -77,17 +72,19 @@ public sealed class IconPathConverter : IValueConverter
         throw new NotSupportedException();
 }
 
-/// <summary>Two-way match between an <see cref="InventoryFilter"/> and a name (ConverterParameter),
-/// for binding a group of RadioButtons to the single filter property.</summary>
-public sealed class InventoryFilterConverter : IValueConverter
+/// <summary>Two-way match between any enum value and a member name (ConverterParameter), for
+/// binding a group of RadioButtons to one enum property - the Inventories type filter and the
+/// identical-items setting both use it.</summary>
+public sealed class EnumIsConverter : IValueConverter
 {
     public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture) =>
-        value is InventoryFilter f && parameter is string s &&
-        string.Equals(f.ToString(), s, StringComparison.OrdinalIgnoreCase);
+        value is Enum member && parameter is string name &&
+        string.Equals(member.ToString(), name, StringComparison.OrdinalIgnoreCase);
 
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture) =>
-        value is true && parameter is string s && Enum.TryParse<InventoryFilter>(s, ignoreCase: true, out var f)
-            ? f
+        value is true && parameter is string name && targetType.IsEnum
+            && Enum.TryParse(targetType, name, ignoreCase: true, out var member)
+            ? member
             : BindingOperations.DoNothing;
 }
 
@@ -132,35 +129,32 @@ public sealed class VitalStatusTextConverter : IValueConverter
         throw new NotSupportedException();
 }
 
-public sealed class VitalStatusColorConverter : IValueConverter
+/// <summary>
+/// True when a vital gauge value is at <see cref="Level"/> (ConverterParameter <c>HighIsBad</c> for
+/// toxicity), for binding a style class. The colour itself comes from a style with a
+/// DynamicResource, so it follows a live light/dark switch - a converter that resolved the brush
+/// once kept the old theme's colour, leaving vitals near-invisible after switching to dark.
+/// </summary>
+public sealed class VitalLevelIsConverter : IValueConverter
 {
-    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture) =>
-        ThemeBrush.Resolve(StatusPalette.KeyFor(VitalStatus.Classify(value, parameter)));
+    public VitalLevel Level { get; set; }
+
+    public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture) =>
+        VitalStatus.Classify(value, parameter) == Level;
 
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture) =>
         throw new NotSupportedException();
 }
 
-public sealed class StatusKindToColorConverter : IValueConverter
+/// <summary>True when a status message is of <see cref="Kind"/>, for binding a style class (see
+/// <see cref="VitalLevelIsConverter"/> for why it is not a colour).</summary>
+public sealed class StatusKindIsConverter : IValueConverter
 {
-    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture) =>
-        ThemeBrush.Resolve(StatusPalette.KeyFor(value as StatusKind? ?? StatusKind.Info));
+    public StatusKind Kind { get; set; }
+
+    public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture) =>
+        value is StatusKind kind && kind == Kind;
 
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture) =>
         throw new NotSupportedException();
-}
-
-internal static class ThemeBrush
-{
-    public static IBrush Resolve(string key)
-    {
-        var app = Application.Current;
-        var theme = app?.ActualThemeVariant ?? ThemeVariant.Default;
-        if (app is not null && app.TryGetResource(key, theme, out var res) && res is IBrush brush)
-        {
-            return brush;
-        }
-
-        return Brushes.Gray;
-    }
 }

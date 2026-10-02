@@ -30,6 +30,18 @@ public sealed record InventoryGroup
     /// </summary>
     public int? ContainerWorldObjectId { get; init; }
 
+    /// <summary>Who placed the inventory's owner - so players can spot what they built (issue #64).
+    /// <see cref="ContainerOrigin.Unknown"/> for a backpack, an unowned inventory, or a type the save
+    /// cannot settle; those cards carry no origin tag.</summary>
+    public ContainerOrigin Origin { get; init; }
+
+    // One flag per origin tag, so the view can pick the tag by visibility.
+    public bool IsBuilt => Origin == ContainerOrigin.Built;
+
+    public bool IsMapPlaced => Origin == ContainerOrigin.Map;
+
+    public bool IsWreck => Origin == ContainerOrigin.Wreck;
+
     /// <summary>The items the card lists: every item, or only the matching ones on a card
     /// narrowed by a search (see <see cref="NarrowTo"/>).</summary>
     public required List<InventoryItemView> Items { get; init; }
@@ -61,9 +73,76 @@ public sealed record InventoryGroup
     /// label already is "Inventory #N", so repeating it would say the same thing twice.</summary>
     public bool ShowInventoryIdCaption => Kind != InventoryKind.Other;
 
+    /// <summary>
+    /// The card's rows: <see cref="Items"/> grouped by stack key in the order each key first
+    /// appears, or one row per item when <see cref="ListEachItem"/> or an id search asks for it (up
+    /// to <see cref="MaxItemsListedOneByOne"/>). Built on each read, not
+    /// cached: a cache would be carried into the copy <see cref="NarrowTo"/> makes with
+    /// <c>with</c>, giving the narrowed card the unnarrowed rows. The view reads it once per card.
+    /// </summary>
+    public IReadOnlyList<InventoryStackView> Stacks => WantsRowPerItem && !IsGroupedForSize
+        ? Items.Select(item => new InventoryStackView(item.GId, item.DisplayName, item.IconFile, [item.WorldObjectId])).ToList()
+        : Items.GroupBy(item => item.StackKey, StringComparer.Ordinal)
+            .Select(stack =>
+            {
+                var first = stack.First();
+                return new InventoryStackView(first.GId, first.DisplayName, first.IconFile, stack.Select(i => i.WorldObjectId).ToList());
+            })
+            .ToList();
+
+    // Set by NarrowTo for an id search: the player is after particular items.
+    private bool OneRowPerItem { get; init; }
+
+    /// <summary>
+    /// The most items a card lists one row each. Past it the card groups whatever was asked: a row
+    /// per item on a stacking-mod chest built tens of thousands of controls and froze the page
+    /// for seconds (issue #64). A performance guard, not a game rule.
+    /// </summary>
+    public const int MaxItemsListedOneByOne = 500;
+
+    /// <summary>
+    /// One row per item rather than per stack, so each item's id shows at a glance. Set from the
+    /// "identical items" setting; <see cref="MaxItemsListedOneByOne"/> still applies.
+    /// </summary>
+    public bool ListEachItem { get; init; }
+
+    private bool WantsRowPerItem => ListEachItem || OneRowPerItem;
+
+    /// <summary>True when a row per item was asked for but the card is too big, so it is grouped -
+    /// the view says so, or it would look like the setting was ignored.</summary>
+    public bool IsGroupedForSize => WantsRowPerItem && Items.Count > MaxItemsListedOneByOne;
+
     public bool HasItems => TotalItemCount > 0;
 
     public string CapacityLabel => $"{TotalItemCount}/{Size}";
+
+    /// <summary>
+    /// The game loads at most this many items into one inventory and silently drops the rest
+    /// (akarnokd, Steam discussion 4333104955967772102; issue #64).
+    /// </summary>
+    private const int GameLoadCap = 8000;
+
+    /// <summary>Warn at 90% of <see cref="GameLoadCap"/>, while there is still room to act. A
+    /// repair never leaves an inventory holding more than this.</summary>
+    public const int NearLoadLimitThreshold = GameLoadCap * 9 / 10;
+
+    /// <summary>Measured on <see cref="TotalItemCount"/>, so a card narrowed by a search keeps its warning.</summary>
+    public InventoryFill Fill => TotalItemCount switch
+    {
+        > NearLoadLimitThreshold => InventoryFill.NearLoadLimit,
+        _ when IsOverCapacity => InventoryFill.OverFull,
+        _ => InventoryFill.Normal,
+    };
+
+    /// <summary>More items than slots - never produced by an unmodded game.</summary>
+    public bool IsOverCapacity => TotalItemCount > Size;
+
+    public bool NeedsAttention => Fill != InventoryFill.Normal;
+
+    // One flag per badge state, so the view can pick an icon and a localized word by visibility.
+    public bool IsOverFull => Fill == InventoryFill.OverFull;
+
+    public bool IsNearLoadLimit => Fill == InventoryFill.NearLoadLimit;
 
     /// <summary>True when a search narrowed the card to some of its items.</summary>
     public bool IsNarrowed => Items.Count < TotalItemCount;
@@ -88,9 +167,14 @@ public sealed record InventoryGroup
             return null;
         }
 
-        return matching.Count == Items.Count
-            ? this
-            : this with { Items = matching, TotalItemCount = TotalItemCount };
+        // An id search lists each match on its own row even when every item matched: the user is
+        // after particular items, and a stack row would hide which one a Move takes.
+        if (matching.Count == Items.Count && digits is null)
+        {
+            return this;
+        }
+
+        return this with { Items = matching, TotalItemCount = TotalItemCount, OneRowPerItem = digits is not null };
     }
 
     /// <summary>True when this card would be shown at all for a search term.</summary>

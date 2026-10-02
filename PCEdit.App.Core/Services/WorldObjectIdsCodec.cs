@@ -66,6 +66,16 @@ public static class WorldObjectIdsCodec
             ids.Select(id => id.ToString(CultureInfo.InvariantCulture)).Concat(unreadable));
     }
 
+    /// <summary>
+    /// The list rewritten to hold <paramref name="ids"/>, carrying through every entry of
+    /// <paramref name="original"/> that could not be read. Every path that rewrites an inventory's
+    /// list goes through here, so none can quietly delete what PCEdit did not understand.
+    /// </summary>
+    public static string Rewrite(string? original, IEnumerable<int> ids)
+    {
+        return Join(ids, ParseUnreadable(original));
+    }
+
     private static bool TryParseId(string token, out int id)
     {
         return int.TryParse(token, NumberStyles.Integer, CultureInfo.InvariantCulture, out id);
