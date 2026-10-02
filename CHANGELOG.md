@@ -43,12 +43,15 @@ than they should and the game stuttering or freezing. ([#64](https://github.com/
   the old theme's colours when the system switched between light and dark mode with PCEdit open,
   leaving the numbers nearly invisible in dark mode.
 
-- The new text is machine-translated in all 14 non-English languages.
+- The new text is machine-translated into the 14 other languages PCEdit ships (British English
+  and 13 others).
 
 - Applies to every platform (Linux, Windows and macOS) alike. No new dependencies, and no change
   to how PCEdit reads or writes saves: an unedited save still saves back byte for byte.
 
 ## v1.6.0
+
+Not published as a download of its own: this change first shipped in v1.7.0.
 
 - **Planet Crafter 2.103 is supported.** The save format did not change: a world saved by
   2.102 and then again by 2.103 has exactly the same structure, and PCEdit opens and saves 2.103
