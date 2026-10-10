@@ -5,7 +5,7 @@ namespace PCEdit.SaveFileHandler.Models;
 
 public sealed record PlayerData
 {
-    public long Id { get; init; }
+    public required long Id { get; init; }
 
     public required string Name { get; init; }
 

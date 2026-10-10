@@ -5,7 +5,7 @@ namespace PCEdit.SaveFileHandler.Models;
 
 public sealed record Inventory
 {
-    public int Id { get; init; }
+    public required int Id { get; init; }
 
     [JsonPropertyName("woIds")]
     public required string WorldObjectIds { get; init; }

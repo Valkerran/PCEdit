@@ -10,7 +10,7 @@ namespace PCEdit.SaveFileHandler.Models;
 [JsonConverter(typeof(WorldObjectConverter))]
 public sealed record WorldObject
 {
-    public int Id { get; init; }
+    public required int Id { get; init; }
 
     public required string GId { get; init; }
 

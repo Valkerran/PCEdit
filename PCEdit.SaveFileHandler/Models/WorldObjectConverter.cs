@@ -20,7 +20,7 @@ public sealed class WorldObjectConverter : JsonConverter<WorldObject>
         using var document = JsonDocument.ParseValue(ref reader);
         var element = document.RootElement;
 
-        int id = 0;
+        int? id = null;
         string? gId = null;
         int? linkedInventoryId = null, planet = null, growth = null, linkedWorldObjectId = null;
         string? linkedInventoryGroups = null, spawnedInstanceIds = null, position = null,
@@ -53,7 +53,7 @@ public sealed class WorldObjectConverter : JsonConverter<WorldObject>
 
         return new WorldObject
         {
-            Id = id,
+            Id = id ?? throw new JsonException("A world-object record is missing its required \"id\" key."),
             GId = gId ?? throw new JsonException("A world-object record is missing its required \"gId\" key."),
             LinkedInventoryId = linkedInventoryId,
             LinkedInventoryGroups = linkedInventoryGroups,

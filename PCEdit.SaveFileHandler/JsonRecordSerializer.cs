@@ -11,6 +11,9 @@ public sealed class JsonRecordSerializer : IJsonRecordSerializer
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
         Encoder = MinimalJsonEncoder.Instance,
+        // A null in a non-nullable property is malformed input, not a value to drop on the next
+        // save (issue #76).
+        RespectNullableAnnotations = true,
         Converters = { new GameDecimalConverter() }
     };
 
