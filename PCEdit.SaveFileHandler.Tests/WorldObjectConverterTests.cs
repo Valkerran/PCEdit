@@ -76,4 +76,18 @@ public sealed class WorldObjectConverterTests
         Assert.Throws<InvalidDataException>(() =>
             _serializer.Deserialize<WorldObject>("""{"gId":"Iron"}""", sectionIndex: 3));
     }
+
+    // The converter reads the record itself, so the serializer's duplicate check does not reach
+    // it; a second "id" used to replace the first silently (issue #126).
+    [Theory]
+    [InlineData("""{"id":1,"gId":"a","id":2}""", "id")]
+    [InlineData("""{"id":1,"gId":"a","pos":"1,2,3","pos":"4,5,6"}""", "pos")]
+    [InlineData("""{"id":1,"gId":"a","futureKey":1,"futureKey":2}""", "futureKey")]
+    public void Read_DuplicateKey_IsRejectedNamingTheKey(string json, string key)
+    {
+        var exception = Assert.Throws<InvalidDataException>(() =>
+            _serializer.Deserialize<WorldObject>(json, sectionIndex: 3, recordIndex: 0));
+
+        Assert.Contains($"\"{key}\" appears more than once", exception.Message);
+    }
 }

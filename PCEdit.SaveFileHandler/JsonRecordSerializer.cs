@@ -15,6 +15,9 @@ public sealed class JsonRecordSerializer : IJsonRecordSerializer
         // A null in a non-nullable property is malformed input, not a value to drop on the next
         // save (issue #76).
         RespectNullableAnnotations = true,
+        // A key written twice is malformed input, not a case for "last one wins": the save would
+        // lose the first value on the next write (issue #126).
+        AllowDuplicateProperties = false,
         Converters = { new GameNumberConverter() }
     };
 

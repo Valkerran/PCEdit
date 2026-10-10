@@ -127,4 +127,31 @@ public sealed class JsonRecordSerializerTests
 
         Assert.Throws<InvalidDataException>(() => _serializer.Deserialize<Models.PlayerData>(json, sectionIndex: 2));
     }
+
+    // A key written twice used to load with the last value winning, so the save lost the first
+    // one without a word (issue #126). Equal values are refused too: the record is still not
+    // what the game writes.
+    [Theory]
+    [InlineData("""{"id":1,"woIds":"","size":3,"size":9}""", "'size'")]
+    [InlineData("""{"id":1,"woIds":"","size":3,"size":3}""", "'size'")]
+    [InlineData("""{"id":1,"id":2,"woIds":"","size":3}""", "'id'")]
+    public void Deserialize_DuplicateKey_IsRejectedNamingTheKey(string json, string quotedKey)
+    {
+        var exception = Assert.Throws<InvalidDataException>(() =>
+            _serializer.Deserialize<Models.Inventory>(json, sectionIndex: 4, recordIndex: 0));
+
+        Assert.Contains("Duplicate property", exception.Message);
+        Assert.Contains(quotedKey, exception.Message);
+    }
+
+    [Fact]
+    public void Deserialize_DuplicateUnknownKey_IsRejected()
+    {
+        const string json = """{"id":1,"woIds":"","size":3,"futureKey":1,"futureKey":2}""";
+
+        var exception = Assert.Throws<InvalidDataException>(() =>
+            _serializer.Deserialize<Models.Inventory>(json, sectionIndex: 4, recordIndex: 0));
+
+        Assert.Contains("Duplicate property", exception.Message);
+    }
 }

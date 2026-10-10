@@ -22,6 +22,7 @@ public sealed class WorldObjectConverter : JsonConverter<WorldObject>
 
         foreach (var property in document.RootElement.EnumerateObject())
         {
+            RejectDuplicate(property, fields);
             fields.KeyOrder.Add(property.Name);
             try
             {
@@ -35,6 +36,16 @@ public sealed class WorldObjectConverter : JsonConverter<WorldObject>
         }
 
         return fields.ToWorldObject();
+    }
+
+    // The serializer's own duplicate check does not reach a converter that parses the record
+    // itself, so it is repeated here (issue #126). KeyOrder already holds the keys seen so far.
+    private static void RejectDuplicate(JsonProperty property, Fields fields)
+    {
+        if (fields.KeyOrder.Contains(property.Name))
+        {
+            throw new JsonException($"The world-object key \"{property.Name}\" appears more than once.");
+        }
     }
 
     private static void ReadKey(JsonProperty property, Fields fields)
