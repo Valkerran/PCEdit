@@ -14,7 +14,7 @@ public sealed partial class TeleportViewModel(
     IScreenReaderAnnouncer announcer,
     ILocalizer localizer,
     INavigationService navigation,
-    IPlanetIndex planetIndex) : ObservableObject, ILoadable
+    IPlanetIndex planetIndex) : ObservableObject, ILoadable, IRelocalizable
 {
     private readonly ISaveFileWorkspace _workspace = workspace;
     private readonly IScreenReaderAnnouncer _announcer = announcer;
@@ -354,4 +354,30 @@ public sealed partial class TeleportViewModel(
         planetId is not null ? planetId
         : planet is { } value ? _localizer.Format(LocKeys.Teleport_LandmarkPlanetHash, value)
         : _localizer[LocKeys.Teleport_LandmarkNoPlanetHash];
+
+    /// <summary>Swaps the translated "Other…" entry and the landmark labels; X/Y/Z, the custom
+    /// planet id and the selections stay as the user left them.</summary>
+    public void Relocalize()
+    {
+        var wasCustom = IsCustomPlanetId;
+        var index = PlanetIdOptions.IndexOf(_otherPlanetOption);
+        _otherPlanetOption = _localizer[LocKeys.Teleport_OtherPlanet];
+        if (index >= 0)
+        {
+            PlanetIdOptions[index] = _otherPlanetOption;
+        }
+
+        if (wasCustom)
+        {
+            SelectedPlanetId = _otherPlanetOption;
+        }
+
+        StatusMessage = null;
+        if (_workspace.Current is { } save)
+        {
+            _allLandmarks.Clear();
+            _allLandmarks.AddRange(FindLandmarks(save));
+            FilterLandmarks();
+        }
+    }
 }

@@ -146,4 +146,33 @@ public sealed class OverviewViewModelTests
 
         Assert.Equal(1, nav.OpenFileCount);
     }
+
+    // A language change used to rebuild every terraform card, discarding typed levels (issue #94).
+    [Fact]
+    public void Relocalize_KeepsTheTerraformCardsAndWhatWasTypedInThem_AndTranslatesTheRest()
+    {
+        var store = new FakeSaveFileStore();
+        store.Seed(Path, WorkspaceFixtures.Create());
+        var localizer = new Localizer();
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
+        workspace.Load(Path);
+        var vm = Create(workspace, localizer, new FakeNavigationService());
+        vm.Load();
+        var card = vm.Terraforms[0];
+        card.OxygenLevel = "42";
+        card.ApplyCommand.Execute(null);
+        card.HeatLevel = "typed, not applied";
+        var versionInEnglish = vm.GameVersionText;
+
+        localizer.SetCulture("de");
+        vm.Relocalize();
+
+        Assert.Same(card, vm.Terraforms[0]);
+        Assert.Equal("typed, not applied", card.HeatLevel);
+        Assert.True(card.IsExpanded);
+        Assert.Null(card.StatusMessage);
+        Assert.Equal(localizer[LocKeys.Terraform_HintExpanded], card.ExpandHint);
+        Assert.NotEqual(versionInEnglish, vm.GameVersionText);
+        Assert.Equal(localizer.Format(LocKeys.Overview_GameVersion, workspace.Current!.Metadata.Version), vm.GameVersionText);
+    }
 }

@@ -13,7 +13,7 @@ public sealed partial class OverviewViewModel(
     IScreenReaderAnnouncer announcer,
     ILocalizer localizer,
     INavigationService navigation,
-    IInventoryEditor inventoryEditor) : ObservableObject, ILoadable
+    IInventoryEditor inventoryEditor) : ObservableObject, ILoadable, IRelocalizable
 {
     private readonly ISaveFileWorkspace _workspace = workspace;
     private readonly IScreenReaderAnnouncer _announcer = announcer;
@@ -130,4 +130,24 @@ public sealed partial class OverviewViewModel(
 
     [RelayCommand]
     private Task OpenFile() => _navigation.GoToOpenFileAsync();
+
+    /// <summary>Rebuilds only what holds translated text. The terraform cards are kept as they
+    /// are, with whatever the user has typed into them.</summary>
+    public void Relocalize()
+    {
+        var save = _workspace.Current;
+        if (save is null)
+        {
+            return;
+        }
+
+        GameVersionText = _localizer.Format(LocKeys.Overview_GameVersion, save.Metadata.Version);
+        SummariseAttention();
+        Players.Clear();
+        AddPlayers(save);
+        foreach (var terraform in Terraforms)
+        {
+            terraform.Relocalize();
+        }
+    }
 }

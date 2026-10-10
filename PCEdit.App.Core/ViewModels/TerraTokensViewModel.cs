@@ -11,7 +11,7 @@ public sealed partial class TerraTokensViewModel(
     ISaveFileWorkspace workspace,
     IScreenReaderAnnouncer announcer,
     ILocalizer localizer,
-    INavigationService navigation) : ObservableObject, ILoadable
+    INavigationService navigation) : ObservableObject, ILoadable, IRelocalizable
 {
     private readonly ISaveFileWorkspace _workspace = workspace;
     private readonly IScreenReaderAnnouncer _announcer = announcer;
@@ -97,4 +97,7 @@ public sealed partial class TerraTokensViewModel(
 
     [RelayCommand]
     private Task OpenFile() => _navigation.GoToOpenFileAsync();
+
+    /// <summary>Nothing translated is baked in except the status line; the typed amount stays.</summary>
+    public void Relocalize() => StatusMessage = null;
 }

@@ -55,4 +55,19 @@ public sealed class TerraTokensViewModelTests
         vm.Load();
         return (vm, workspace, localizer);
     }
+
+    [Fact]
+    public void Relocalize_KeepsTheTypedAmount_AndClearsTheStatus()
+    {
+        var (vm, _, localizer) = Create();
+        vm.Amount = "oops";
+        vm.GrantCommand.Execute(null);
+        vm.Amount = "250";
+
+        localizer.SetCulture("de");
+        vm.Relocalize();
+
+        Assert.Equal("250", vm.Amount);
+        Assert.Null(vm.StatusMessage);
+    }
 }

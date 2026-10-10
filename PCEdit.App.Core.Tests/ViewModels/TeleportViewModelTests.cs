@@ -358,4 +358,54 @@ public sealed class TeleportViewModelTests
         Assert.Null(vm.StatusMessage);
         Assert.Equal("0", vm.X);
     }
+
+    // A language change used to reload the page, discarding typed coordinates (issue #94).
+    [Fact]
+    public void Relocalize_KeepsTypedInput_AndTranslatesTheOtherEntry()
+    {
+        var (vm, _, localizer) = CreateWithWorkspace();
+        vm.X = "123.5";
+        vm.CustomPlanetId = "Typed";
+
+        localizer.SetCulture("de");
+        vm.Relocalize();
+
+        Assert.Equal("123.5", vm.X);
+        Assert.Equal("Typed", vm.CustomPlanetId);
+        Assert.Equal(localizer[LocKeys.Teleport_OtherPlanet], vm.PlanetIdOptions.Last());
+        Assert.Equal("Prime", vm.SelectedPlanetId);
+    }
+
+    [Fact]
+    public void Relocalize_WithACustomPlanetSelected_KeepsItSelected_AndTeleportsToTheTypedId()
+    {
+        var (vm, workspace, localizer) = CreateWithWorkspace();
+        vm.SelectedPlanetId = localizer[LocKeys.Teleport_OtherPlanet];
+        vm.CustomPlanetId = "Aqualis";
+        vm.X = vm.Y = vm.Z = "1";
+
+        localizer.SetCulture("de");
+        vm.Relocalize();
+
+        Assert.True(vm.IsCustomPlanetId);
+        Assert.Equal(localizer[LocKeys.Teleport_OtherPlanet], vm.SelectedPlanetId);
+
+        vm.TeleportCommand.Execute(null);
+
+        Assert.Equal("Aqualis", workspace.Current!.Players.Single(p => p.Id == 1).PlanetId);
+    }
+
+    [Fact]
+    public void Relocalize_ClearsAStatusWrittenInTheOldLanguage()
+    {
+        var (vm, _, localizer) = CreateWithWorkspace();
+        vm.X = "1,5";
+        vm.TeleportCommand.Execute(null);
+        Assert.NotNull(vm.StatusMessage);
+
+        localizer.SetCulture("de");
+        vm.Relocalize();
+
+        Assert.Null(vm.StatusMessage);
+    }
 }

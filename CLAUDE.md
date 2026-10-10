@@ -241,7 +241,10 @@ root-rebuild-vs-list-replace pattern above and flip `IsDirty`. `Save` first copi
 **Page ViewModels re-read workspace state in a `Load()` method** (`ViewModels/ILoadable`) rather than
 caching it, so switching pages always reflects the latest in-memory edits. Page ViewModels are
 `Singleton` and the shell calls `Load()` only when a workspace-revision counter changed since that
-page last loaded (see `PCEdit.Desktop/ViewModels/MainWindowViewModel`).
+page last loaded (see `PCEdit.Desktop/ViewModels/MainWindowViewModel`). A page that holds typed input also implements `ViewModels/IRelocalizable`: on a language
+change the shell calls `Relocalize()` instead of `Load()`, so the page refreshes its translated text
+and keeps what the user entered (#94). Overview, Teleport and Terra Tokens do; the other pages are
+simply reloaded.
 
 **`Services/IInventoryEditor` (`InventoryEditor`)** holds inventory-item domain logic: an item is "in"
 an inventory when its `WorldObject.Id` appears in that `Inventory.WorldObjectIds` comma-string

@@ -72,13 +72,7 @@ public sealed partial class MainWindowViewModel : ObservableObject
             OnPropertyChanged(nameof(Title));
             OnPropertyChanged(nameof(DirtyText));
 
-            // {m:Loc} bindings re-read themselves, but localized text baked into page view-models
-            // (option lists, computed labels) only refreshes on Load() — force every page to reload.
-            _loadedAtRevision.Clear();
-            if (SelectedNavItem is not null)
-            {
-                Show(SelectedNavItem.Destination, force: true);
-            }
+            RefreshPagesForNewLanguage();
         };
 
         workspace.PropertyChanged += (_, e) =>
@@ -194,6 +188,36 @@ public sealed partial class MainWindowViewModel : ObservableObject
         _ => throw new ArgumentOutOfRangeException(nameof(destination), destination, null),
     };
 
+    /// <summary>
+    /// {m:Loc} bindings re-read themselves, but translated text baked into a page view model
+    /// (option lists, computed labels) does not. A page that holds typed input refreshes that
+    /// text itself and keeps the input (issue #94); every other page is reloaded when next shown.
+    /// </summary>
+    private void RefreshPagesForNewLanguage()
+    {
+        var onScreen = SelectedNavItem?.Destination;
+        foreach (var (destination, loadedRevision) in _loadedAtRevision.ToList())
+        {
+            // Every edit moves the revision on, so the page on screen is usually "behind" as soon
+            // as something has been applied from it. It is still the page to keep: reloading it
+            // is exactly what discards the input typed since.
+            var keep = destination == onScreen || loadedRevision == _workspaceRevision;
+            if (keep && ResolvePage(destination) is IRelocalizable page)
+            {
+                page.Relocalize();
+            }
+            else
+            {
+                _loadedAtRevision.Remove(destination);
+            }
+        }
+
+        if (SelectedNavItem is not null)
+        {
+            Show(SelectedNavItem.Destination);
+        }
+    }
+
     private void Show(NavDestination destination, bool force = false)
     {
         var vm = ResolvePage(destination);
@@ -211,19 +235,24 @@ public sealed partial class MainWindowViewModel : ObservableObject
             }
             catch (Exception ex)
             {
-                // A page that cannot be built must not take the app down with it. The file is
-                // already open by this point and any unsaved edits would go too, which is what
-                // made a single malformed field so expensive (issue #37).
-                //
-                // The revision is deliberately not recorded, so navigating back here tries again
-                // rather than showing a stale error forever.
-                System.Diagnostics.Trace.WriteLine($"Could not load the {destination} page: {ex}");
-                PageError = _localizer[LocKeys.Shell_PageLoadFailed];
-                _announcer.Announce(_localizer.Format(LocKeys.Announce_ErrorPrefix, PageError));
+                ReportPageLoadFailure(destination, ex);
             }
         }
 
         CurrentPage = vm;
+    }
+
+    /// <summary>
+    /// A page that cannot be built must not take the app down with it. The file is already open
+    /// by this point and any unsaved edits would go too, which is what made a single malformed
+    /// field so expensive (issue #37). The revision is deliberately not recorded, so navigating
+    /// back to the page tries again rather than showing a stale error forever.
+    /// </summary>
+    private void ReportPageLoadFailure(NavDestination destination, Exception ex)
+    {
+        System.Diagnostics.Trace.WriteLine($"Could not load the {destination} page: {ex}");
+        PageError = _localizer[LocKeys.Shell_PageLoadFailed];
+        _announcer.Announce(_localizer.Format(LocKeys.Announce_ErrorPrefix, PageError));
     }
 
     private void RefreshLabels()

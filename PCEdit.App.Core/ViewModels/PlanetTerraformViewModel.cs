@@ -168,4 +168,11 @@ public sealed partial class PlanetTerraformViewModel : ObservableObject
     /// the save diff shows only the edit (issue #85).</summary>
     private static GameNumber KeepIfUnchanged(GameNumber current, double edited) =>
         current.Value.Equals(edited) ? current : edited;
+
+    /// <summary>Called by the Overview page on a language change: the typed levels stay.</summary>
+    public void Relocalize()
+    {
+        StatusMessage = null;
+        OnPropertyChanged(nameof(ExpandHint));
+    }
 }
