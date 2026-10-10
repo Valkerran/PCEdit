@@ -11,11 +11,15 @@ public sealed class PlanetCrafterSaveFileStore(IPlanetCrafterSaveFileSerializer 
     // the file never had makes the game reject the save with a "file error", so Save preserves
     // whatever framing the file already on disk has instead of forcing a BOM (issue #12).
     // A path with no existing file (new save / "Save As") defaults to a BOM, matching the Steam
-    // game's own output. File.ReadAllText auto-detects and strips the BOM on the way in.
+    // game's own output. Load strips a leading BOM on the way in (see ReadUtf8).
     private static readonly byte[] Utf8Bom = [0xEF, 0xBB, 0xBF];
 
     private static readonly Encoding Utf8WithBom = new UTF8Encoding(encoderShouldEmitUTF8Identifier: true);
     private static readonly Encoding Utf8WithoutBom = new UTF8Encoding(encoderShouldEmitUTF8Identifier: false);
+
+    // Throws on a byte that is not UTF-8, rather than substituting U+FFFD: a substituted
+    // character would be written back over the original on the next save (issue #77).
+    private static readonly Encoding StrictUtf8 = new UTF8Encoding(encoderShouldEmitUTF8Identifier: false, throwOnInvalidBytes: true);
 
     // The edit goes to a sibling temp file that is then swapped in, so an interrupted write
     // cannot leave a truncated save behind: File.WriteAllText truncates the target before it
@@ -30,7 +34,23 @@ public sealed class PlanetCrafterSaveFileStore(IPlanetCrafterSaveFileSerializer 
     public PlanetCrafterSaveFile Load(string path)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(path);
-        return _serializer.Deserialize(File.ReadAllText(path));
+        return _serializer.Deserialize(ReadUtf8(path));
+    }
+
+    /// <summary>The file as text, minus a UTF-8 BOM. Anything that is not UTF-8 - including a
+    /// UTF-16 or UTF-32 file, whose BOM is itself invalid UTF-8 - is refused.</summary>
+    private static string ReadUtf8(string path)
+    {
+        var bytes = File.ReadAllBytes(path);
+        var start = bytes.AsSpan().StartsWith(Utf8Bom) ? Utf8Bom.Length : 0;
+        try
+        {
+            return StrictUtf8.GetString(bytes, start, bytes.Length - start);
+        }
+        catch (DecoderFallbackException exception)
+        {
+            throw new InvalidDataException("The save file is not valid UTF-8 text.", exception);
+        }
     }
 
     public void Save(string path, PlanetCrafterSaveFile saveFile)

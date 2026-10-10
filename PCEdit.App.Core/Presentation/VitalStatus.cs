@@ -18,7 +18,7 @@ public static class VitalStatus
 
     public static VitalLevel Classify(object? value, object? parameter)
     {
-        if (value is not decimal amount)
+        if (value is not double amount)
         {
             return VitalLevel.Ok;
         }

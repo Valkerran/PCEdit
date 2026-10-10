@@ -37,6 +37,7 @@
   "OpenFile_LoadingAnnounce": "Загрузка сохранения.",
   "OpenFile_Loaded": "{0} загружено.",
   "OpenFile_LoadFailed": "Не удалось загрузить этот файл. Возможно, это не действительное сохранение Planet Crafter.",
+  "OpenFile_LoadFailedDetail": "Не удалось загрузить этот файл. Возможно, это не действительное сохранение Planet Crafter. Подробности: {0}",
   "OpenFile_DiscardTitle": "Несохранённые изменения",
   "OpenFile_DiscardBody": "Загрузка нового файла отменит несохранённые изменения. Продолжить?",
   "Overview_Title": "Обзор",

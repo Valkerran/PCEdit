@@ -50,17 +50,9 @@ public sealed partial class OpenFileViewModel : ObservableObject
     [RelayCommand]
     private async Task PickAndLoadAsync()
     {
-        if (_workspace.IsDirty)
+        if (_workspace.IsDirty && !await ConfirmDiscardAsync())
         {
-            var confirmed = await _dialogs.ConfirmAsync(
-                _localizer[LocKeys.OpenFile_DiscardTitle],
-                _localizer[LocKeys.OpenFile_DiscardBody],
-                _localizer[LocKeys.Common_Discard],
-                _localizer[LocKeys.Common_Cancel]);
-            if (!confirmed)
-            {
-                return;
-            }
+            return;
         }
 
         IsBusy = true;
@@ -68,24 +60,50 @@ public sealed partial class OpenFileViewModel : ObservableObject
         _announcer.Announce(_localizer[LocKeys.OpenFile_LoadingAnnounce]);
         try
         {
-            var path = await _filePicker.PickSaveFileAsync(_localizer[LocKeys.OpenFile_PickerTitle]);
-            if (path is null)
-            {
-                return;
-            }
-
-            _workspace.Load(path);
-            SetStatus(StatusKind.Success, LocKeys.OpenFile_Loaded, Path.GetFileName(path));
-            await _navigation.GoToOverviewAsync();
+            await PickAndOpenAsync();
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Trace.WriteLine($"Could not load the save file: {ex}");
-            SetStatus(StatusKind.Error, LocKeys.OpenFile_LoadFailed);
+            ReportLoadFailure(ex);
         }
         finally
         {
             IsBusy = false;
+        }
+    }
+
+    private async Task PickAndOpenAsync()
+    {
+        var path = await _filePicker.PickSaveFileAsync(_localizer[LocKeys.OpenFile_PickerTitle]);
+        if (path is null)
+        {
+            return;
+        }
+
+        _workspace.Load(path);
+        SetStatus(StatusKind.Success, LocKeys.OpenFile_Loaded, Path.GetFileName(path));
+        await _navigation.GoToOverviewAsync();
+    }
+
+    private Task<bool> ConfirmDiscardAsync() => _dialogs.ConfirmAsync(
+        _localizer[LocKeys.OpenFile_DiscardTitle],
+        _localizer[LocKeys.OpenFile_DiscardBody],
+        _localizer[LocKeys.Common_Discard],
+        _localizer[LocKeys.Common_Cancel]);
+
+    private void ReportLoadFailure(Exception ex)
+    {
+        System.Diagnostics.Trace.WriteLine($"Could not load the save file: {ex}");
+
+        // Name what is broken: a refused save is otherwise a dead end (issue #115). Only an
+        // InvalidDataException's text is shown; the save layer writes it and it holds no paths.
+        if (ex is InvalidDataException)
+        {
+            SetStatus(StatusKind.Error, LocKeys.OpenFile_LoadFailedDetail, ex.Message);
+        }
+        else
+        {
+            SetStatus(StatusKind.Error, LocKeys.OpenFile_LoadFailed);
         }
     }
 

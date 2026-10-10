@@ -51,6 +51,26 @@ public sealed class JsonRecordSerializerTests
         Assert.Contains("empty", exception.Message);
     }
 
+    [Theory]
+    [InlineData(4, 1, "section 4 (inventories), record 2 is not valid")]
+    [InlineData(8, null, "section 8 (metadata) is not valid")]
+    public void Deserialize_Malformed_NamesTheSection(int section, int? record, string expected)
+    {
+        var exception = Assert.Throws<InvalidDataException>(() =>
+            _serializer.Deserialize<SampleRecord>("{not valid json", section, record));
+
+        Assert.Contains(expected, exception.Message);
+    }
+
+    [Fact]
+    public void Deserialize_UnknownSectionIndex_FallsBackToBareNumber()
+    {
+        var exception = Assert.Throws<InvalidDataException>(() =>
+            _serializer.Deserialize<SampleRecord>("{not valid json", sectionIndex: 42));
+
+        Assert.Contains("section 42 is not valid", exception.Message);
+    }
+
     [Fact]
     public void Deserialize_MalformedJson_ThrowsInvalidDataException_WrappingJsonException()
     {
@@ -58,7 +78,7 @@ public sealed class JsonRecordSerializerTests
             _serializer.Deserialize<SampleRecord>("{not valid json", sectionIndex: 3));
 
         Assert.Contains("section 3", exception.Message);
-        Assert.Contains("not valid JSON", exception.Message);
+        Assert.Contains("is not valid", exception.Message);
         Assert.IsType<System.Text.Json.JsonException>(exception.InnerException);
     }
 
@@ -79,5 +99,32 @@ public sealed class JsonRecordSerializerTests
 
         Assert.Contains("\"requiredValue\":\"hello\"", json);
         Assert.DoesNotContain("optionalValue", json);
+    }
+
+    // A null in a key the game always writes used to load, then vanish on save (issue #76).
+    [Theory]
+    [InlineData("""{"id":1,"woIds":null,"size":3}""")]
+    public void Deserialize_NullInARequiredStringKey_IsRejected(string json)
+    {
+        var exception = Assert.Throws<InvalidDataException>(() =>
+            _serializer.Deserialize<Models.Inventory>(json, sectionIndex: 4));
+
+        Assert.IsType<System.Text.Json.JsonException>(exception.InnerException);
+    }
+
+    // A missing id used to become 0 and be written back as "id":0 (issue #86).
+    [Theory]
+    [InlineData("""{"woIds":"","size":3}""")]
+    public void Deserialize_InventoryWithoutAnId_IsRejected(string json)
+    {
+        Assert.Throws<InvalidDataException>(() => _serializer.Deserialize<Models.Inventory>(json, sectionIndex: 4));
+    }
+
+    [Fact]
+    public void Deserialize_PlayerWithoutAnId_IsRejected()
+    {
+        const string json = """{"name":"a","playerPosition":"0,0,0","playerRotation":"0,0,0,1","planetId":"Prime"}""";
+
+        Assert.Throws<InvalidDataException>(() => _serializer.Deserialize<Models.PlayerData>(json, sectionIndex: 2));
     }
 }

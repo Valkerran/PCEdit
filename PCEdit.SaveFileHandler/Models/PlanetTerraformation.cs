@@ -7,19 +7,19 @@ public sealed record PlanetTerraformation
 {
     public required string PlanetId { get; init; }
 
-    public decimal UnitOxygenLevel { get; init; }
+    public GameNumber UnitOxygenLevel { get; init; }
 
-    public decimal UnitHeatLevel { get; init; }
+    public GameNumber UnitHeatLevel { get; init; }
 
-    public decimal UnitPressureLevel { get; init; }
+    public GameNumber UnitPressureLevel { get; init; }
 
-    public decimal UnitPlantsLevel { get; init; }
+    public GameNumber UnitPlantsLevel { get; init; }
 
-    public decimal UnitInsectsLevel { get; init; }
+    public GameNumber UnitInsectsLevel { get; init; }
 
-    public decimal UnitAnimalsLevel { get; init; }
+    public GameNumber UnitAnimalsLevel { get; init; }
 
-    public decimal UnitPurificationLevel { get; init; }
+    public GameNumber UnitPurificationLevel { get; init; }
 
     /// <summary>
     /// Any JSON keys the game writes that this model does not name — captured so a

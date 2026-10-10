@@ -37,6 +37,7 @@
   "OpenFile_LoadingAnnounce": "Cargando partida.",
   "OpenFile_Loaded": "{0} cargado.",
   "OpenFile_LoadFailed": "No se pudo cargar ese archivo. Puede que no sea una partida de Planet Crafter válida.",
+  "OpenFile_LoadFailedDetail": "No se pudo cargar ese archivo. Puede que no sea una partida de Planet Crafter válida. Detalles: {0}",
   "OpenFile_DiscardTitle": "Cambios sin guardar",
   "OpenFile_DiscardBody": "Cargar un archivo nuevo descartará tus cambios sin guardar. ¿Continuar?",
   "Overview_Title": "Resumen",

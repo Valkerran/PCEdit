@@ -17,8 +17,16 @@ internal sealed class FakeSaveFileStore : IPlanetCrafterSaveFileStore
         _filesByPath[path] = saveFile;
     }
 
+    /// <summary>Set to make <see cref="Load"/> throw, standing in for a refused file.</summary>
+    public Exception? LoadFailure { get; set; }
+
     public PlanetCrafterSaveFile Load(string path)
     {
+        if (LoadFailure is not null)
+        {
+            throw LoadFailure;
+        }
+
         LoadCallCount++;
         return _filesByPath[path];
     }

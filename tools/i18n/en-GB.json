@@ -37,6 +37,7 @@
   "OpenFile_LoadingAnnounce": "Loading save file.",
   "OpenFile_Loaded": "Loaded {0}.",
   "OpenFile_LoadFailed": "Couldn't load that file. It may not be a valid Planet Crafter save.",
+  "OpenFile_LoadFailedDetail": "Couldn't load that file. It may not be a valid Planet Crafter save. Details: {0}",
   "OpenFile_DiscardTitle": "Unsaved changes",
   "OpenFile_DiscardBody": "Loading a new file will discard your unsaved changes. Continue?",
   "Overview_Title": "Overview",

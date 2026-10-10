@@ -37,6 +37,7 @@
   "OpenFile_LoadingAnnounce": "Chargement de la sauvegarde.",
   "OpenFile_Loaded": "{0} chargé.",
   "OpenFile_LoadFailed": "Impossible de charger ce fichier. Ce n'est peut-être pas une sauvegarde Planet Crafter valide.",
+  "OpenFile_LoadFailedDetail": "Impossible de charger ce fichier. Ce n'est peut-être pas une sauvegarde Planet Crafter valide. Détails : {0}",
   "OpenFile_DiscardTitle": "Modifications non enregistrées",
   "OpenFile_DiscardBody": "Charger un nouveau fichier abandonnera vos modifications non enregistrées. Continuer ?",
   "Overview_Title": "Vue d'ensemble",

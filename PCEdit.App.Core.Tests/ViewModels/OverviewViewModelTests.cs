@@ -46,6 +46,16 @@ public sealed class OverviewViewModelTests
         Assert.Contains("terra tokens earned", alice.ProgressText);
     }
 
+    // A gauge past decimal's range used to be unloadable; once it loads, the Overview page
+    // must not throw converting it (issue #85).
+    [Fact]
+    public void Load_WithAHugeGauge_ShowsThePlayer()
+    {
+        var vm = CreateLoaded(adjust: save => save.Players[0] = save.Players[0] with { PlayerGaugeOxygen = 1E+30 });
+
+        Assert.Equal(1E+30, vm.Players[0].Oxygen);
+    }
+
     [Fact]
     public void Load_SurfacesTheGameVersionThatWroteTheSave()
     {

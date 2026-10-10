@@ -37,6 +37,7 @@
   "OpenFile_LoadingAnnounce": "Caricamento del salvataggio.",
   "OpenFile_Loaded": "{0} caricato.",
   "OpenFile_LoadFailed": "Impossibile caricare quel file. Potrebbe non essere un salvataggio di Planet Crafter valido.",
+  "OpenFile_LoadFailedDetail": "Impossibile caricare quel file. Potrebbe non essere un salvataggio di Planet Crafter valido. Dettagli: {0}",
   "OpenFile_DiscardTitle": "Modifiche non salvate",
   "OpenFile_DiscardBody": "Caricare un nuovo file ignorerà le modifiche non salvate. Continuare?",
   "Overview_Title": "Panoramica",

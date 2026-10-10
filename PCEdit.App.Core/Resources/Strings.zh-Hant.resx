@@ -49,6 +49,7 @@
   <data name="OpenFile_LoadingAnnounce" xml:space="preserve"><value>正在載入存檔。</value></data>
   <data name="OpenFile_Loaded" xml:space="preserve"><value>已載入 {0}。</value></data>
   <data name="OpenFile_LoadFailed" xml:space="preserve"><value>無法載入該檔案。它可能不是有效的 Planet Crafter 存檔。</value></data>
+  <data name="OpenFile_LoadFailedDetail" xml:space="preserve"><value>無法載入該檔案。它可能不是有效的 Planet Crafter 存檔。詳細資料：{0}</value></data>
   <data name="OpenFile_DiscardTitle" xml:space="preserve"><value>未儲存的變更</value></data>
   <data name="OpenFile_DiscardBody" xml:space="preserve"><value>載入新檔案將捨棄你未儲存的變更。是否繼續？</value></data>
   <data name="Overview_Title" xml:space="preserve"><value>概覽</value></data>

@@ -37,6 +37,7 @@
   "OpenFile_LoadingAnnounce": "セーブファイルを読み込み中。",
   "OpenFile_Loaded": "{0} を読み込みました。",
   "OpenFile_LoadFailed": "そのファイルを読み込めませんでした。有効な Planet Crafter のセーブではない可能性があります。",
+  "OpenFile_LoadFailedDetail": "そのファイルを読み込めませんでした。有効な Planet Crafter のセーブではない可能性があります。詳細: {0}",
   "OpenFile_DiscardTitle": "未保存の変更",
   "OpenFile_DiscardBody": "新しいファイルを読み込むと未保存の変更は破棄されます。続行しますか？",
   "Overview_Title": "概要",

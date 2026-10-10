@@ -29,29 +29,34 @@ internal static class JsonSaveFileComparer
 
         for (var section = 0; section < expectedSections.Length; section++)
         {
-            var expectedRecords = SplitRecords(expectedSections[section], section);
-            var actualRecords = SplitRecords(actualSections[section], section);
-
-            if (expectedRecords.Length != actualRecords.Length)
-            {
-                differences.Add($"section {section}: record count expected {expectedRecords.Length}, got {actualRecords.Length}");
-                continue;
-            }
-
-            for (var record = 0; record < expectedRecords.Length; record++)
-            {
-                using var expectedDoc = JsonDocument.Parse(expectedRecords[record]);
-                using var actualDoc = JsonDocument.Parse(actualRecords[record]);
-
-                CompareElement(
-                    expectedDoc.RootElement,
-                    actualDoc.RootElement,
-                    $"section {section} record {record}",
-                    differences);
-            }
+            DiffSection(expectedSections[section], actualSections[section], section, differences);
         }
 
         return differences;
+    }
+
+    private static void DiffSection(string expected, string actual, int section, List<string> differences)
+    {
+        var expectedRecords = SplitRecords(expected, section);
+        var actualRecords = SplitRecords(actual, section);
+
+        if (expectedRecords.Length != actualRecords.Length)
+        {
+            differences.Add($"section {section}: record count expected {expectedRecords.Length}, got {actualRecords.Length}");
+            return;
+        }
+
+        for (var record = 0; record < expectedRecords.Length; record++)
+        {
+            using var expectedDoc = JsonDocument.Parse(expectedRecords[record]);
+            using var actualDoc = JsonDocument.Parse(actualRecords[record]);
+
+            CompareElement(
+                expectedDoc.RootElement,
+                actualDoc.RootElement,
+                $"section {section} record {record}",
+                differences);
+        }
     }
 
     private static string[] SplitSections(string content)
@@ -92,50 +97,72 @@ internal static class JsonSaveFileComparer
         switch (expected.ValueKind)
         {
             case JsonValueKind.Object:
-                var expectedProps = expected.EnumerateObject().ToDictionary(p => p.Name, p => p.Value);
-                var actualProps = actual.EnumerateObject().ToDictionary(p => p.Name, p => p.Value);
-
-                foreach (var (name, value) in expectedProps)
-                {
-                    if (!actualProps.TryGetValue(name, out var actualValue))
-                    {
-                        differences.Add($"{path}: key '{name}' dropped (was {value.GetRawText()})");
-                        continue;
-                    }
-
-                    CompareElement(value, actualValue, $"{path}.{name}", differences);
-                }
-
-                foreach (var name in actualProps.Keys.Where(name => !expectedProps.ContainsKey(name)))
-                {
-                    differences.Add($"{path}: key '{name}' added ({actualProps[name].GetRawText()})");
-                }
-
+                CompareObject(expected, actual, path, differences);
                 break;
-
             case JsonValueKind.Array:
-                var expectedItems = expected.EnumerateArray().ToArray();
-                var actualItems = actual.EnumerateArray().ToArray();
-                if (expectedItems.Length != actualItems.Length)
-                {
-                    differences.Add($"{path}: array length expected {expectedItems.Length}, got {actualItems.Length}");
-                    break;
-                }
-
-                for (var i = 0; i < expectedItems.Length; i++)
-                {
-                    CompareElement(expectedItems[i], actualItems[i], $"{path}[{i}]", differences);
-                }
-
+                CompareArray(expected, actual, path, differences);
                 break;
-
             default:
-                if (expected.GetRawText() != actual.GetRawText())
-                {
-                    differences.Add($"{path}: value expected {expected.GetRawText()}, got {actual.GetRawText()}");
-                }
-
+                CompareValue(expected, actual, path, differences);
                 break;
+        }
+    }
+
+    private static void CompareObject(
+        JsonElement expected,
+        JsonElement actual,
+        string path,
+        List<string> differences)
+    {
+        var expectedProps = expected.EnumerateObject().ToDictionary(p => p.Name, p => p.Value);
+        var actualProps = actual.EnumerateObject().ToDictionary(p => p.Name, p => p.Value);
+
+        foreach (var (name, value) in expectedProps)
+        {
+            if (!actualProps.TryGetValue(name, out var actualValue))
+            {
+                differences.Add($"{path}: key '{name}' dropped (was {value.GetRawText()})");
+                continue;
+            }
+
+            CompareElement(value, actualValue, $"{path}.{name}", differences);
+        }
+
+        foreach (var name in actualProps.Keys.Where(name => !expectedProps.ContainsKey(name)))
+        {
+            differences.Add($"{path}: key '{name}' added ({actualProps[name].GetRawText()})");
+        }
+    }
+
+    private static void CompareArray(
+        JsonElement expected,
+        JsonElement actual,
+        string path,
+        List<string> differences)
+    {
+        var expectedItems = expected.EnumerateArray().ToArray();
+        var actualItems = actual.EnumerateArray().ToArray();
+        if (expectedItems.Length != actualItems.Length)
+        {
+            differences.Add($"{path}: array length expected {expectedItems.Length}, got {actualItems.Length}");
+            return;
+        }
+
+        for (var i = 0; i < expectedItems.Length; i++)
+        {
+            CompareElement(expectedItems[i], actualItems[i], $"{path}[{i}]", differences);
+        }
+    }
+
+    private static void CompareValue(
+        JsonElement expected,
+        JsonElement actual,
+        string path,
+        List<string> differences)
+    {
+        if (expected.GetRawText() != actual.GetRawText())
+        {
+            differences.Add($"{path}: value expected {expected.GetRawText()}, got {actual.GetRawText()}");
         }
     }
 }

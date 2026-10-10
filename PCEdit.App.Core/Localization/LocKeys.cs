@@ -41,6 +41,7 @@ public static class LocKeys
     public const string OpenFile_LoadingAnnounce = "OpenFile_LoadingAnnounce";
     public const string OpenFile_Loaded = "OpenFile_Loaded";
     public const string OpenFile_LoadFailed = "OpenFile_LoadFailed";
+    public const string OpenFile_LoadFailedDetail = "OpenFile_LoadFailedDetail";
 
     public const string Overview_PlayerLocation = "Overview_PlayerLocation";
     public const string Overview_PlayerProgress = "Overview_PlayerProgress";

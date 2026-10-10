@@ -82,10 +82,10 @@ public sealed partial class OverviewViewModel(
                     LocKeys.Overview_PlayerProgress,
                     player.TotalCraftedObjects.ToString(CultureInfo.CurrentCulture),
                     player.TotalTerraTokenEarned.ToString(CultureInfo.CurrentCulture)),
-                player.PlayerGaugeOxygen,
-                player.PlayerGaugeThirst,
-                player.PlayerGaugeHealth,
-                player.PlayerGaugeToxic));
+                player.PlayerGaugeOxygen.Value,
+                player.PlayerGaugeThirst.Value,
+                player.PlayerGaugeHealth.Value,
+                player.PlayerGaugeToxic.Value));
         }
     }
 

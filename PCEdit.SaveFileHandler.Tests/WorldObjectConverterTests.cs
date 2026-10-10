@@ -69,4 +69,11 @@ public sealed class WorldObjectConverterTests
 
         Assert.Equal("""{"id":1,"gId":"X","pos":"1,2,3"}""", _serializer.Serialize(edited));
     }
+
+    [Fact]
+    public void Read_RecordWithoutAnId_IsRejected()
+    {
+        Assert.Throws<InvalidDataException>(() =>
+            _serializer.Deserialize<WorldObject>("""{"gId":"Iron"}""", sectionIndex: 3));
+    }
 }

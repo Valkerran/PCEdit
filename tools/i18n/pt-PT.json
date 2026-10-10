@@ -37,6 +37,7 @@
   "OpenFile_LoadingAnnounce": "A carregar o jogo guardado.",
   "OpenFile_Loaded": "{0} carregado.",
   "OpenFile_LoadFailed": "Não foi possível carregar esse ficheiro. Pode não ser um jogo guardado do Planet Crafter válido.",
+  "OpenFile_LoadFailedDetail": "Não foi possível carregar esse ficheiro. Pode não ser um jogo guardado do Planet Crafter válido. Detalhes: {0}",
   "OpenFile_DiscardTitle": "Alterações não guardadas",
   "OpenFile_DiscardBody": "Carregar um novo ficheiro irá descartar as suas alterações não guardadas. Continuar?",
   "Overview_Title": "Resumo",

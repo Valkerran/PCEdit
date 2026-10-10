@@ -1,6 +1,7 @@
-using System.Globalization;
+using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using PCEdit.SaveFileHandler.Models;
 
 namespace PCEdit.SaveFileHandler;
 
@@ -11,20 +12,43 @@ public sealed class JsonRecordSerializer : IJsonRecordSerializer
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
         Encoder = MinimalJsonEncoder.Instance,
-        Converters = { new GameDecimalConverter() }
+        // A null in a non-nullable property is malformed input, not a value to drop on the next
+        // save (issue #76).
+        RespectNullableAnnotations = true,
+        Converters = { new GameNumberConverter() }
     };
 
-    public T Deserialize<T>(string content, int sectionIndex)
+    public T Deserialize<T>(string content, int sectionIndex, int? recordIndex = null)
     {
+        var section = SectionLabel(sectionIndex);
+        var where = recordIndex is null ? section : $"{section}, record {recordIndex + 1}";
         try
         {
             return JsonSerializer.Deserialize<T>(content.Trim(), Options)
-                ?? throw new InvalidDataException($"Save-file section {sectionIndex} is empty.");
+                ?? throw new InvalidDataException($"Save-file {where} is empty.");
         }
         catch (JsonException exception)
         {
-            throw new InvalidDataException($"Save-file section {sectionIndex} is not valid JSON.", exception);
+            throw new InvalidDataException($"Save-file {where} is not valid: {WithoutPosition(exception.Message)}", exception);
         }
+    }
+
+    // Order mirrors the section order in PlanetCrafterSaveFileSerializer.
+    private static readonly string[] SectionNames =
+    [
+        "unlocks", "terraformation", "players", "world objects", "inventories",
+        "statistics", "read messages", "story events", "metadata", "procedural instances"
+    ];
+
+    private static string SectionLabel(int index) =>
+        (uint)index < (uint)SectionNames.Length ? $"section {index} ({SectionNames[index]})" : $"section {index}";
+
+    // The reader's line and byte offsets count from the start of this one record, not the file, so
+    // in a large save they would read as a file position and mislead; section, record and path say where.
+    private static string WithoutPosition(string message)
+    {
+        var cut = message.IndexOf(" | LineNumber:", StringComparison.Ordinal);
+        return cut < 0 ? message : message[..cut] + ".";
     }
 
     public string Serialize<T>(T value)
@@ -32,25 +56,23 @@ public sealed class JsonRecordSerializer : IJsonRecordSerializer
         return JsonSerializer.Serialize(value, Options);
     }
 
-    /// <summary>
-    /// The game writes every decimal-valued field with a fractional part (<c>0.0</c>, <c>-1.0</c>,
-    /// <c>370.0</c>). System.Text.Json would drop the trailing <c>.0</c> from a whole number, which
-    /// shows up as noise in a load→save diff after an edit — so force at least one decimal place.
-    /// </summary>
-    private sealed class GameDecimalConverter : JsonConverter<decimal>
+    /// <summary>Reads a <see cref="GameNumber"/> keeping its exact text, and writes that text back
+    /// untouched; a number set in code is formatted by <see cref="GameNumber.ToString"/>.</summary>
+    private sealed class GameNumberConverter : JsonConverter<GameNumber>
     {
-        public override decimal Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-            => reader.GetDecimal();
-
-        public override void Write(Utf8JsonWriter writer, decimal value, JsonSerializerOptions options)
+        public override GameNumber Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            var text = value.ToString(CultureInfo.InvariantCulture);
-            if (!text.Contains('.'))
+            if (reader.TokenType != JsonTokenType.Number || !reader.TryGetDouble(out var value) || !double.IsFinite(value))
             {
-                text += ".0";
+                // No message on purpose: System.Text.Json appends "Path: $.key" only to a message-less JsonException.
+                throw new JsonException();
             }
 
-            writer.WriteRawValue(text);
+            var raw = reader.HasValueSequence ? Encoding.UTF8.GetString(reader.ValueSequence) : Encoding.UTF8.GetString(reader.ValueSpan);
+            return new GameNumber(value) { RawText = raw };
         }
+
+        public override void Write(Utf8JsonWriter writer, GameNumber value, JsonSerializerOptions options)
+            => writer.WriteRawValue(value.ToString());
     }
 }

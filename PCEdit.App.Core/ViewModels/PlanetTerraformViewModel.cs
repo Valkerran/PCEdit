@@ -9,12 +9,13 @@ namespace PCEdit.App.Core.ViewModels;
 
 public sealed partial class PlanetTerraformViewModel : ObservableObject
 {
-    private const decimal NotApplicable = -1m;
+    private const double NotApplicable = -1;
+    private const NumberStyles ParseStyle = NumberStyles.Number | NumberStyles.AllowExponent;
 
     private readonly ISaveFileWorkspace _workspace;
     private readonly IScreenReaderAnnouncer _announcer;
     private readonly ILocalizer _localizer;
-    private readonly decimal _originalPurificationLevel;
+    private readonly GameNumber _originalPurificationLevel;
 
     public PlanetTerraformViewModel(
         ISaveFileWorkspace workspace,
@@ -27,16 +28,16 @@ public sealed partial class PlanetTerraformViewModel : ObservableObject
         _localizer = localizer;
         PlanetId = terraformation.PlanetId;
         _originalPurificationLevel = terraformation.UnitPurificationLevel;
-        HasPurification = terraformation.UnitPurificationLevel != NotApplicable;
+        HasPurification = terraformation.UnitPurificationLevel.Value != NotApplicable;
 
-        OxygenLevel = terraformation.UnitOxygenLevel.ToString(CultureInfo.InvariantCulture);
-        HeatLevel = terraformation.UnitHeatLevel.ToString(CultureInfo.InvariantCulture);
-        PressureLevel = terraformation.UnitPressureLevel.ToString(CultureInfo.InvariantCulture);
-        PlantsLevel = terraformation.UnitPlantsLevel.ToString(CultureInfo.InvariantCulture);
-        InsectsLevel = terraformation.UnitInsectsLevel.ToString(CultureInfo.InvariantCulture);
-        AnimalsLevel = terraformation.UnitAnimalsLevel.ToString(CultureInfo.InvariantCulture);
+        OxygenLevel = terraformation.UnitOxygenLevel.ToString();
+        HeatLevel = terraformation.UnitHeatLevel.ToString();
+        PressureLevel = terraformation.UnitPressureLevel.ToString();
+        PlantsLevel = terraformation.UnitPlantsLevel.ToString();
+        InsectsLevel = terraformation.UnitInsectsLevel.ToString();
+        AnimalsLevel = terraformation.UnitAnimalsLevel.ToString();
         PurificationLevel = HasPurification
-            ? terraformation.UnitPurificationLevel.ToString(CultureInfo.InvariantCulture)
+            ? terraformation.UnitPurificationLevel.ToString()
             : string.Empty;
     }
 
@@ -108,13 +109,13 @@ public sealed partial class PlanetTerraformViewModel : ObservableObject
 
         _workspace.ReplaceTerraformation(PlanetId, terraformation => terraformation with
         {
-            UnitOxygenLevel = levels.Oxygen,
-            UnitHeatLevel = levels.Heat,
-            UnitPressureLevel = levels.Pressure,
-            UnitPlantsLevel = levels.Plants,
-            UnitInsectsLevel = levels.Insects,
-            UnitAnimalsLevel = levels.Animals,
-            UnitPurificationLevel = levels.Purification
+            UnitOxygenLevel = KeepIfUnchanged(terraformation.UnitOxygenLevel, levels.Oxygen),
+            UnitHeatLevel = KeepIfUnchanged(terraformation.UnitHeatLevel, levels.Heat),
+            UnitPressureLevel = KeepIfUnchanged(terraformation.UnitPressureLevel, levels.Pressure),
+            UnitPlantsLevel = KeepIfUnchanged(terraformation.UnitPlantsLevel, levels.Plants),
+            UnitInsectsLevel = KeepIfUnchanged(terraformation.UnitInsectsLevel, levels.Insects),
+            UnitAnimalsLevel = KeepIfUnchanged(terraformation.UnitAnimalsLevel, levels.Animals),
+            UnitPurificationLevel = KeepIfUnchanged(terraformation.UnitPurificationLevel, levels.Purification)
         });
 
         SetStatus(StatusKind.Success, _localizer.Format(LocKeys.Terraform_Updated, PlanetId));
@@ -128,24 +129,24 @@ public sealed partial class PlanetTerraformViewModel : ObservableObject
     }
 
     private bool TryParseLevels(
-        out (decimal Oxygen, decimal Heat, decimal Pressure, decimal Plants, decimal Insects, decimal Animals, decimal Purification) levels,
+        out (double Oxygen, double Heat, double Pressure, double Plants, double Insects, double Animals, double Purification) levels,
         out string? error)
     {
         levels = default;
 
-        if (!decimal.TryParse(OxygenLevel, NumberStyles.Number, CultureInfo.InvariantCulture, out var oxygen) ||
-            !decimal.TryParse(HeatLevel, NumberStyles.Number, CultureInfo.InvariantCulture, out var heat) ||
-            !decimal.TryParse(PressureLevel, NumberStyles.Number, CultureInfo.InvariantCulture, out var pressure) ||
-            !decimal.TryParse(PlantsLevel, NumberStyles.Number, CultureInfo.InvariantCulture, out var plants) ||
-            !decimal.TryParse(InsectsLevel, NumberStyles.Number, CultureInfo.InvariantCulture, out var insects) ||
-            !decimal.TryParse(AnimalsLevel, NumberStyles.Number, CultureInfo.InvariantCulture, out var animals))
+        if (!TryParseLevel(OxygenLevel, out var oxygen) ||
+            !TryParseLevel(HeatLevel, out var heat) ||
+            !TryParseLevel(PressureLevel, out var pressure) ||
+            !TryParseLevel(PlantsLevel, out var plants) ||
+            !TryParseLevel(InsectsLevel, out var insects) ||
+            !TryParseLevel(AnimalsLevel, out var animals))
         {
             error = _localizer[LocKeys.Terraform_InvalidLevels];
             return false;
         }
 
-        var purification = _originalPurificationLevel;
-        if (HasPurification && !decimal.TryParse(PurificationLevel, NumberStyles.Number, CultureInfo.InvariantCulture, out purification))
+        var purification = _originalPurificationLevel.Value;
+        if (HasPurification && !TryParseLevel(PurificationLevel, out purification))
         {
             error = _localizer[LocKeys.Terraform_InvalidPurification];
             return false;
@@ -155,4 +156,14 @@ public sealed partial class PlanetTerraformViewModel : ObservableObject
         error = null;
         return true;
     }
+
+    /// <summary>A level must be a finite number: NaN, Infinity and an overflowing "1e999" parse
+    /// but could not be written to a save.</summary>
+    private static bool TryParseLevel(string text, out double level) =>
+        double.TryParse(text, ParseStyle, CultureInfo.InvariantCulture, out level) && double.IsFinite(level);
+
+    /// <summary>The level as it was, when the player left it alone, so its exact text is kept and
+    /// the save diff shows only the edit (issue #85).</summary>
+    private static GameNumber KeepIfUnchanged(GameNumber current, double edited) =>
+        current.Value.Equals(edited) ? current : edited;
 }

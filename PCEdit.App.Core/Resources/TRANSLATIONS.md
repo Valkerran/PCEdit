@@ -108,6 +108,10 @@ tooltip and screen-reader help text) and `Inventories_FilterBuilt` (the filter c
 machine-translated. "Map" means placed in the game's map by the developers, not a planet: the
 page's world filter already uses "world" for planets, so keep the two words distinct.
 
+The malformed-save message (issue #115: say which section, record and key a refused save fails on)
+added `OpenFile_LoadFailedDetail` — machine-translated, the generic `OpenFile_LoadFailed` sentence
+plus "Details: {0}". `{0}` is the English diagnostic from the save layer and is not translated.
+
 | Culture | Language | Reviewed |
 |---|---|---|
 | en-US | English (United States) | n/a (source) |

@@ -1,3 +1,4 @@
+using System.Text;
 using PCEdit.SaveFileHandler.Tests.Fixtures;
 
 namespace PCEdit.SaveFileHandler.Tests;
@@ -231,4 +232,45 @@ public sealed class PlanetCrafterSaveFileStoreTests : IDisposable
 
         Assert.Throws<FileNotFoundException>(() => _store.Load(missingPath));
     }
+
+    // A Latin-1 byte (0xE9) inside a player's name used to load as U+FFFD and be written back
+    // over the original on the next save (issue #77). The byte goes inside a JSON string value,
+    // so the framing still splits and only the strict decoder can reject it.
+    [Fact]
+    public void Load_InvalidUtf8_IsRejected()
+    {
+        var bytes = Encoding.UTF8.GetBytes(SerializedFixture());
+        var marker = "\"name\":\""u8;
+        var markerEnd = bytes.AsSpan().IndexOf(marker);
+        Assert.True(markerEnd >= 0, "The fixture has no player name value to corrupt.");
+        markerEnd += marker.Length;
+
+        var corrupted = bytes.ToList();
+        corrupted.Insert(markerEnd, 0xE9);
+        File.WriteAllBytes(_tempFile, [.. corrupted]);
+
+        var exception = Assert.Throws<InvalidDataException>(() => _store.Load(_tempFile));
+        Assert.IsType<DecoderFallbackException>(exception.InnerException);
+    }
+
+    [Fact]
+    public void Load_Utf16File_IsRejected()
+    {
+        File.WriteAllText(_tempFile, SerializedFixture(), Encoding.Unicode);
+
+        Assert.Throws<InvalidDataException>(() => _store.Load(_tempFile));
+    }
+
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public void Load_Utf8WithOrWithoutBom_Loads(bool withBom)
+    {
+        File.WriteAllText(_tempFile, SerializedFixture(), new UTF8Encoding(withBom));
+
+        Assert.Single(_store.Load(_tempFile).WorldObjects);
+    }
+
+    private static string SerializedFixture() =>
+        new PlanetCrafterSaveFileSerializer(new JsonRecordSerializer()).Serialize(SaveFileFixtures.CreateFullyPopulated());
 }
