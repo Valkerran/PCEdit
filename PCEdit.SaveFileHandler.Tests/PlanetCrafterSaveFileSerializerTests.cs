@@ -271,6 +271,71 @@ public sealed class PlanetCrafterSaveFileSerializerTests
         Assert.Equal(content, _serializer.Serialize(roundTripped));
     }
 
+    // Player-typed text must come back exactly as written: the default encoder escaped every
+    // non-ASCII and HTML-sensitive character, so "Café & Bob's" came back as escapes (issue #70).
+    [Theory]
+    [InlineData("Café & Bob's +1")]
+    [InlineData("<b>日本</b>")]
+    [InlineData("rocket \U0001F680 \U00020000")]
+    [InlineData("del\u007f sep\u2028")]
+    public void RoundTrip_PlayerTypedText_IsWrittenWithoutEscapes(string text)
+    {
+        var original = SaveFileFixtures.CreateFullyPopulated();
+        original.WorldObjects[0] = original.WorldObjects[0] with { Text = text };
+        original.Players[0] = original.Players[0] with { Name = text };
+
+        var content = _serializer.Serialize(original);
+
+        Assert.Contains($"\"text\":\"{text}\"", content);
+        Assert.Contains($"\"name\":\"{text}\"", content);
+        Assert.Equal(content, _serializer.Serialize(_serializer.Deserialize(content)));
+    }
+
+    // A lone surrogate is not valid text; it must become U+FFFD, not truncate the string (issue #70).
+    [Theory]
+    [InlineData("lone#x", 0xD800, "lone\ufffdx")]
+    [InlineData("lo#ne", 0xDC00, "lo\ufffdne")]
+    [InlineData("end#", 0xD83D, "end\ufffd")]
+    public void Serialize_LoneSurrogateInText_KeepsTheRestOfTheString(string template, int surrogate, string expected)
+    {
+        // Built at run time: a lone surrogate in attribute metadata is mangled before the test runs.
+        var text = template.Replace('#', (char)surrogate);
+        var original = SaveFileFixtures.CreateFullyPopulated();
+        original.WorldObjects[0] = original.WorldObjects[0] with { Text = text };
+
+        var content = _serializer.Serialize(original);
+
+        Assert.Contains($"\"text\":\"{expected}\"", content);
+    }
+
+    [Fact]
+    public void RoundTrip_NonAsciiTextInAnUnknownKey_IsWrittenWithoutEscapes()
+    {
+        // A world object, because WorldObjectConverter replays unknown keys in place; the other
+        // models append ExtensionData last, so an injected key would move and mask the result.
+        var content = _serializer.Serialize(SaveFileFixtures.CreateFullyPopulated())
+            .Replace("\"gId\":", "\"note\":\"Café 日本 \U0001F680\",\"gId\":", StringComparison.Ordinal);
+
+        Assert.Contains("Café 日本 \U0001F680", content);
+        Assert.Equal(content, _serializer.Serialize(_serializer.Deserialize(content)));
+    }
+
+    [Theory]
+    [InlineData("quote\"", "quote\\\"")]
+    [InlineData("back\\slash", "back\\\\slash")]
+    [InlineData("tab\tline\n", "tab\\tline\\n")]
+    [InlineData("bell\u0007", "bell\\u0007")]
+    public void Serialize_CharactersJsonRequiresEscaped_AreStillEscaped(string text, string expected)
+    {
+        var original = SaveFileFixtures.CreateFullyPopulated();
+        original.WorldObjects[0] = original.WorldObjects[0] with { Text = text };
+
+        var content = _serializer.Serialize(original);
+
+        Assert.Contains($"\"text\":\"{expected}\"", content);
+        Assert.Equal(text, Assert.Single(_serializer.Deserialize(content).WorldObjects).Text);
+    }
+
     [Fact]
     public void Deserialize_StrayDelimiterAtARecordBoundary_FailsInsteadOfDroppingRecordsSilently()
     {

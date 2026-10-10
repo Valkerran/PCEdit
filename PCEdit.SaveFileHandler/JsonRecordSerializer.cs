@@ -10,6 +10,7 @@ public sealed class JsonRecordSerializer : IJsonRecordSerializer
     {
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+        Encoder = MinimalJsonEncoder.Instance,
         Converters = { new GameDecimalConverter() }
     };
 

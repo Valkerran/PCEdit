@@ -4,6 +4,24 @@ What changed in each release of PCEdit. Downloads for every version are on the
 [Releases page](https://github.com/Valkerran/PCEdit/releases); the newest is on the
 [latest release](https://github.com/Valkerran/PCEdit/releases/latest) page.
 
+## v1.7.1
+
+- **Fixed: names and labels with accents, symbols or emoji were rewritten when you saved.**
+  If a player name, a container label or a sign contained anything beyond plain English
+  letters and digits (an accented letter such as "é", Chinese, Japanese or Korean text, an
+  emoji, or one of `& < > ' +`), PCEdit wrote that character back in a coded form
+  (`Caf\u00E9` for "Café"), even when you had changed nothing. The text still meant the same
+  thing, but the file was no longer what the game had written. PCEdit now writes such text
+  exactly as the game does, so an unedited save with these characters saves back byte for
+  byte, as every other save already did.
+  ([#70](https://github.com/Valkerran/PCEdit/issues/70))
+
+- A save an earlier PCEdit already wrote in the coded form needs nothing from you: the next
+  time you save it with PCEdit, the text is written out plainly again.
+
+- Applies to every platform (Linux, Windows and macOS) alike. No new dependencies, and nothing
+  else about how saves are read or written has changed.
+
 ## v1.7.0
 
 Help for saves altered by an inventory-stacking mod, which can leave containers holding far more
