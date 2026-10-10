@@ -56,8 +56,11 @@
     <Style Selector="TextBlock.vitalCritical">
         <Setter Property="Foreground" Value="{DynamicResource StatusErrorText}" />
     </Style>
+    <!-- Wraps: a status can be a full sentence telling the user how to fix their input, and a
+         clipped one loses its end, which is where that advice is. -->
     <Style Selector="TextBlock.status">
         <Setter Property="FontSize" Value="14" />
+        <Setter Property="TextWrapping" Value="Wrap" />
         <Setter Property="Foreground" Value="{DynamicResource StatusInfoText}" />
     </Style>
     <Style Selector="TextBlock.status.success">
