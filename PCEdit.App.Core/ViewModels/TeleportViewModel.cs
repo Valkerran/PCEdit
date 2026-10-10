@@ -282,9 +282,9 @@ public sealed partial class TeleportViewModel(
             return;
         }
 
-        if (!decimal.TryParse(X, NumberStyles.Number, CultureInfo.InvariantCulture, out var x) ||
-            !decimal.TryParse(Y, NumberStyles.Number, CultureInfo.InvariantCulture, out var y) ||
-            !decimal.TryParse(Z, NumberStyles.Number, CultureInfo.InvariantCulture, out var z))
+        if (!NumberInput.TryParseDecimal(X, out var x) ||
+            !NumberInput.TryParseDecimal(Y, out var y) ||
+            !NumberInput.TryParseDecimal(Z, out var z))
         {
             SetStatus(StatusKind.Error, _localizer[LocKeys.Teleport_InvalidCoords]);
             return;

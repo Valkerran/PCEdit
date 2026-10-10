@@ -72,7 +72,7 @@ public sealed partial class TerraTokensViewModel(
             return;
         }
 
-        if (!int.TryParse(Amount, out var amount) || amount <= 0)
+        if (!NumberInput.TryParseWholeNumber(Amount, out var amount) || amount <= 0)
         {
             SetStatus(StatusKind.Error, _localizer[LocKeys.TerraTokens_InvalidAmount]);
             return;

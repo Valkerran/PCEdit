@@ -111,8 +111,8 @@
   <data name="Terraform_Purification" xml:space="preserve"><value>Purification</value></data>
   <data name="Terraform_HintCollapsed" xml:space="preserve"><value>Réduit. Activez pour développer.</value></data>
   <data name="Terraform_HintExpanded" xml:space="preserve"><value>Développé. Activez pour réduire.</value></data>
-  <data name="Terraform_InvalidLevels" xml:space="preserve"><value>Un ou plusieurs niveaux de terraformation ne sont pas des nombres valides.</value></data>
-  <data name="Terraform_InvalidPurification" xml:space="preserve"><value>Le niveau de purification n'est pas un nombre valide.</value></data>
+  <data name="Terraform_InvalidLevels" xml:space="preserve"><value>Chaque niveau de terraformation doit être un nombre supérieur ou égal à 0. Utilisez un point pour les décimales, par exemple 12.5.</value></data>
+  <data name="Terraform_InvalidPurification" xml:space="preserve"><value>Le niveau de purification doit être un nombre supérieur ou égal à 0. Utilisez un point pour les décimales, par exemple 12.5.</value></data>
   <data name="Terraform_Updated" xml:space="preserve"><value>Niveaux de terraformation mis à jour pour {0}.</value></data>
   <data name="Inventories_Title" xml:space="preserve"><value>Inventaires</value></data>
   <data name="Inventories_Heading" xml:space="preserve"><value>Inventaires</value></data>
@@ -245,7 +245,7 @@
   <data name="Teleport_PositionFromLandmark" xml:space="preserve"><value>Position définie depuis {0}. X {1}, Y {2}, Z {3}.</value></data>
   <data name="Teleport_ChoosePlayer" xml:space="preserve"><value>Choisissez un joueur à téléporter.</value></data>
   <data name="Teleport_ChoosePlanet" xml:space="preserve"><value>Saisissez ou choisissez un identifiant de planète.</value></data>
-  <data name="Teleport_InvalidCoords" xml:space="preserve"><value>X, Y et Z doivent être des nombres valides.</value></data>
+  <data name="Teleport_InvalidCoords" xml:space="preserve"><value>X, Y et Z doivent être des nombres. Utilisez un point pour les décimales, par exemple 12.5.</value></data>
   <data name="Teleport_Done" xml:space="preserve"><value>{0} téléporté vers {1} ({2}).</value></data>
   <data name="Teleport_LandmarkPlanetHash" xml:space="preserve"><value>hachage du monde {0}</value></data>
   <data name="Teleport_LandmarkNoPlanetHash" xml:space="preserve"><value>aucun hachage du monde enregistré</value></data>

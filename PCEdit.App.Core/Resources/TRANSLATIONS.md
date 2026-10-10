@@ -112,6 +112,13 @@ The malformed-save message (issue #115: say which section, record and key a refu
 added `OpenFile_LoadFailedDetail` — machine-translated, the generic `OpenFile_LoadFailed` sentence
 plus "Details: {0}". `{0}` is the English diagnostic from the save layer and is not translated.
 
+The number-input fix (issue #72: a comma was silently read as a thousands separator) reworded
+`Teleport_InvalidCoords`, `Terraform_InvalidLevels` and `Terraform_InvalidPurification` to say how to
+fix the input — machine-translated. The example `12.5` is written with a dot in **every** language,
+including those that normally write decimals with a comma: PCEdit shows and reads numbers with a
+dot, and telling the user so is the point of the message. Do not localize it to `12,5`;
+`LocalizationCatalogTests` requires the literal `12.5` in each.
+
 | Culture | Language | Reviewed |
 |---|---|---|
 | en-US | English (United States) | n/a (source) |

@@ -248,7 +248,7 @@ an inventory when its `WorldObject.Id` appears in that `Inventory.WorldObjectIds
 (`Services/WorldObjectIdsCodec`, which **skips entries it cannot read and carries them through a rewrite untouched** — a save can hold a non-int in that list, and dropping it on a move would be data loss, #37); `TryMoveItems` (with `TryMoveItem` as its one-item case) moves items from one inventory into another, all or none: it fails without changing anything unless they are all in one source and the destination has room for every one against its stored `Inventory.Size`, so PCEdit never makes an inventory over-full; moving *out of* an over-full one is always allowed. `BuildInventoryGroups` is O(n) — it
 pre-indexes world objects and container→inventory links (a real save has ~500 inventories /
 ~5000 world objects) and tags each `InventoryGroup` with an `InventoryKind` for the page's type
-filter, a `PlanetId` (via `IPlanetIndex`) for its world filter, and a `ContainerOrigin`. A machine's second (output) inventory is linked through `siIds`, not `liId`; `BuildContainerLookup` indexes both, `liId` winning. `Services/PositionCodec` handles the `"x,y,z"` string shared by `PlayerData.PlayerPosition` / `WorldObject.Position`; use `TryParse` for anything read out of a save — `Parse` throws and is only for a position already known to be well-formed.
+filter, a `PlanetId` (via `IPlanetIndex`) for its world filter, and a `ContainerOrigin`. A machine's second (output) inventory is linked through `siIds`, not `liId`; `BuildContainerLookup` indexes both, `liId` winning. `Services/PositionCodec` handles the `"x,y,z"` string shared by `PlayerData.PlayerPosition` / `WorldObject.Position`; use `TryParse` for anything read out of a save — `Parse` throws and is only for a position already known to be well-formed. `Services/NumberInput` is the one place typed numbers are parsed (Teleport X/Y/Z, terraform levels, the terra-token amount): invariant culture, `NumberStyles.Float`, so a comma is refused, not read as a thousands separator (#72). Do not parse user input with `NumberStyles.Number` or the current culture.
 
 **Over-full containers (issue #64).** An inventory-stacking mod keeps a container's `size` but lists every stacked item, leaving `count(woIds) > size`. The pieces:
 - `InventoryGroup.Fill` (`Models/InventoryFill`): over-full (more items than slots) or near the load limit (over 7,200 items, 90% of the game's 8,000-per-inventory load cap). It drives the capacity badge, the "Needs attention" filter and the Overview banner, which all count the same cards.
@@ -267,7 +267,9 @@ pre-formatted single sentences via `ILocalizer.Format` — no fragment concatena
 `OverviewViewModel.Terraforms` holds one `PlanetTerraformViewModel` per `save.Terraformations` entry,
 rendered as an accordion (header = planet id + a chevron rotated by `ChevronRotation`).
 `PlanetTerraformViewModel` treats `UnitPurificationLevel == -1` as "not applicable to this planet"
-(`HasPurification`) — hides that row and preserves the `-1` on apply.
+(`HasPurification`) — hides that row and preserves the `-1` on apply. A typed level must be 0 or
+more; a negative one is accepted only when it is what the save already holds, so such a save does
+not lock the planet's other levels (#72).
 
 Every `ILoadable` page VM (Overview / Inventories / TerraTokens / Teleport) takes `INavigationService`
 and exposes an `OpenFileCommand` for its "no file loaded" empty state; `TeleportViewModel` also has

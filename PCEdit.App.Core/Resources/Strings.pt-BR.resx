@@ -111,8 +111,8 @@
   <data name="Terraform_Purification" xml:space="preserve"><value>Purificação</value></data>
   <data name="Terraform_HintCollapsed" xml:space="preserve"><value>Recolhido. Ative para expandir.</value></data>
   <data name="Terraform_HintExpanded" xml:space="preserve"><value>Expandido. Ative para recolher.</value></data>
-  <data name="Terraform_InvalidLevels" xml:space="preserve"><value>Um ou mais níveis de terraformação não são um número válido.</value></data>
-  <data name="Terraform_InvalidPurification" xml:space="preserve"><value>O nível de purificação não é um número válido.</value></data>
+  <data name="Terraform_InvalidLevels" xml:space="preserve"><value>Cada nível de terraformação deve ser um número igual ou maior que 0. Use um ponto para os decimais, por exemplo 12.5.</value></data>
+  <data name="Terraform_InvalidPurification" xml:space="preserve"><value>O nível de purificação deve ser um número igual ou maior que 0. Use um ponto para os decimais, por exemplo 12.5.</value></data>
   <data name="Terraform_Updated" xml:space="preserve"><value>Níveis de terraformação atualizados para {0}.</value></data>
   <data name="Inventories_Title" xml:space="preserve"><value>Inventários</value></data>
   <data name="Inventories_Heading" xml:space="preserve"><value>Inventários</value></data>
@@ -245,7 +245,7 @@
   <data name="Teleport_PositionFromLandmark" xml:space="preserve"><value>Posição definida a partir de {0}. X {1}, Y {2}, Z {3}.</value></data>
   <data name="Teleport_ChoosePlayer" xml:space="preserve"><value>Escolha um jogador a teletransportar.</value></data>
   <data name="Teleport_ChoosePlanet" xml:space="preserve"><value>Digite ou escolha um ID de planeta.</value></data>
-  <data name="Teleport_InvalidCoords" xml:space="preserve"><value>X, Y e Z devem ser números válidos.</value></data>
+  <data name="Teleport_InvalidCoords" xml:space="preserve"><value>X, Y e Z devem ser números. Use um ponto para os decimais, por exemplo 12.5.</value></data>
   <data name="Teleport_Done" xml:space="preserve"><value>{0} teletransportado para {1} ({2}).</value></data>
   <data name="Teleport_LandmarkPlanetHash" xml:space="preserve"><value>hash do mundo {0}</value></data>
   <data name="Teleport_LandmarkNoPlanetHash" xml:space="preserve"><value>nenhum hash do mundo registrado</value></data>

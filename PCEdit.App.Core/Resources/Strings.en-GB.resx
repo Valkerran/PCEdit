@@ -111,8 +111,8 @@
   <data name="Terraform_Purification" xml:space="preserve"><value>Purification</value></data>
   <data name="Terraform_HintCollapsed" xml:space="preserve"><value>Collapsed. Activate to expand.</value></data>
   <data name="Terraform_HintExpanded" xml:space="preserve"><value>Expanded. Activate to collapse.</value></data>
-  <data name="Terraform_InvalidLevels" xml:space="preserve"><value>One or more terraform levels is not a valid number.</value></data>
-  <data name="Terraform_InvalidPurification" xml:space="preserve"><value>Purification level is not a valid number.</value></data>
+  <data name="Terraform_InvalidLevels" xml:space="preserve"><value>Each terraform level must be a number of 0 or more. Use a dot for decimals, for example 12.5.</value></data>
+  <data name="Terraform_InvalidPurification" xml:space="preserve"><value>The purification level must be a number of 0 or more. Use a dot for decimals, for example 12.5.</value></data>
   <data name="Terraform_Updated" xml:space="preserve"><value>Terraform levels updated for {0}.</value></data>
   <data name="Inventories_Title" xml:space="preserve"><value>Inventories</value></data>
   <data name="Inventories_Heading" xml:space="preserve"><value>Inventories</value></data>
@@ -245,7 +245,7 @@
   <data name="Teleport_PositionFromLandmark" xml:space="preserve"><value>Position set from {0}. X {1}, Y {2}, Z {3}.</value></data>
   <data name="Teleport_ChoosePlayer" xml:space="preserve"><value>Choose a player to teleport.</value></data>
   <data name="Teleport_ChoosePlanet" xml:space="preserve"><value>Enter or choose a planet id.</value></data>
-  <data name="Teleport_InvalidCoords" xml:space="preserve"><value>X, Y, and Z must be valid numbers.</value></data>
+  <data name="Teleport_InvalidCoords" xml:space="preserve"><value>X, Y and Z must be numbers. Use a dot for decimals, for example 12.5.</value></data>
   <data name="Teleport_Done" xml:space="preserve"><value>Teleported {0} to {1} ({2}).</value></data>
   <data name="Teleport_LandmarkPlanetHash" xml:space="preserve"><value>world hash {0}</value></data>
   <data name="Teleport_LandmarkNoPlanetHash" xml:space="preserve"><value>no world hash recorded</value></data>

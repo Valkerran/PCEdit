@@ -1,4 +1,3 @@
-using System.Globalization;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using PCEdit.App.Core.Localization;
@@ -10,12 +9,13 @@ namespace PCEdit.App.Core.ViewModels;
 public sealed partial class PlanetTerraformViewModel : ObservableObject
 {
     private const double NotApplicable = -1;
-    private const NumberStyles ParseStyle = NumberStyles.Number | NumberStyles.AllowExponent;
 
     private readonly ISaveFileWorkspace _workspace;
     private readonly IScreenReaderAnnouncer _announcer;
     private readonly ILocalizer _localizer;
-    private readonly GameNumber _originalPurificationLevel;
+    // The levels as the save holds them now: refreshed after every Apply, so "unchanged" in
+    // TryParseLevel never means a value that has since been replaced.
+    private PlanetTerraformation _saved;
 
     public PlanetTerraformViewModel(
         ISaveFileWorkspace workspace,
@@ -27,7 +27,7 @@ public sealed partial class PlanetTerraformViewModel : ObservableObject
         _announcer = announcer;
         _localizer = localizer;
         PlanetId = terraformation.PlanetId;
-        _originalPurificationLevel = terraformation.UnitPurificationLevel;
+        _saved = terraformation;
         HasPurification = terraformation.UnitPurificationLevel.Value != NotApplicable;
 
         OxygenLevel = terraformation.UnitOxygenLevel.ToString();
@@ -117,6 +117,7 @@ public sealed partial class PlanetTerraformViewModel : ObservableObject
             UnitAnimalsLevel = KeepIfUnchanged(terraformation.UnitAnimalsLevel, levels.Animals),
             UnitPurificationLevel = KeepIfUnchanged(terraformation.UnitPurificationLevel, levels.Purification)
         });
+        _saved = _workspace.Current!.Terraformations.First(terraformation => terraformation.PlanetId == PlanetId);
 
         SetStatus(StatusKind.Success, _localizer.Format(LocKeys.Terraform_Updated, PlanetId));
     }
@@ -134,19 +135,19 @@ public sealed partial class PlanetTerraformViewModel : ObservableObject
     {
         levels = default;
 
-        if (!TryParseLevel(OxygenLevel, out var oxygen) ||
-            !TryParseLevel(HeatLevel, out var heat) ||
-            !TryParseLevel(PressureLevel, out var pressure) ||
-            !TryParseLevel(PlantsLevel, out var plants) ||
-            !TryParseLevel(InsectsLevel, out var insects) ||
-            !TryParseLevel(AnimalsLevel, out var animals))
+        if (!TryParseLevel(OxygenLevel, _saved.UnitOxygenLevel, out var oxygen) ||
+            !TryParseLevel(HeatLevel, _saved.UnitHeatLevel, out var heat) ||
+            !TryParseLevel(PressureLevel, _saved.UnitPressureLevel, out var pressure) ||
+            !TryParseLevel(PlantsLevel, _saved.UnitPlantsLevel, out var plants) ||
+            !TryParseLevel(InsectsLevel, _saved.UnitInsectsLevel, out var insects) ||
+            !TryParseLevel(AnimalsLevel, _saved.UnitAnimalsLevel, out var animals))
         {
             error = _localizer[LocKeys.Terraform_InvalidLevels];
             return false;
         }
 
-        var purification = _originalPurificationLevel.Value;
-        if (HasPurification && !TryParseLevel(PurificationLevel, out purification))
+        var purification = _saved.UnitPurificationLevel.Value;
+        if (HasPurification && !TryParseLevel(PurificationLevel, _saved.UnitPurificationLevel, out purification))
         {
             error = _localizer[LocKeys.Terraform_InvalidPurification];
             return false;
@@ -157,10 +158,11 @@ public sealed partial class PlanetTerraformViewModel : ObservableObject
         return true;
     }
 
-    /// <summary>A level must be a finite number: NaN, Infinity and an overflowing "1e999" parse
-    /// but could not be written to a save.</summary>
-    private static bool TryParseLevel(string text, out double level) =>
-        double.TryParse(text, ParseStyle, CultureInfo.InvariantCulture, out level) && double.IsFinite(level);
+    /// <summary>A level is a finite number of 0 or more. A negative one is accepted only when it
+    /// is what the save already holds, so a save with such a value does not lock the planet's
+    /// other levels; -1 in particular is how a save marks "no purification" (issue #72).</summary>
+    private static bool TryParseLevel(string text, GameNumber original, out double level) =>
+        NumberInput.TryParseDouble(text, out level) && (level >= 0 || level.Equals(original.Value));
 
     /// <summary>The level as it was, when the player left it alone, so its exact text is kept and
     /// the save diff shows only the edit (issue #85).</summary>

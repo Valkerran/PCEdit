@@ -215,4 +215,58 @@ public sealed class TeleportViewModelTests
 
         Assert.False(vm.HasMultiplePlayers);
     }
+
+    private static (TeleportViewModel Vm, SaveFileWorkspace Workspace, Localizer Localizer) CreateWithWorkspace(
+        Action<PlanetCrafterSaveFile>? arrange = null)
+    {
+        var save = WorkspaceFixtures.Create(); // Alice (id 1) is on "Prime" at 0,0,0
+        arrange?.Invoke(save);
+        var store = new FakeSaveFileStore();
+        store.Seed(Path, save);
+        var localizer = new Localizer();
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
+        workspace.Load(Path);
+        var vm = new TeleportViewModel(workspace, new FakeScreenReaderAnnouncer(), localizer, new FakeNavigationService(), new PlanetIndex(workspace));
+        vm.Load();
+        return (vm, workspace, localizer);
+    }
+
+    // "-120,5" used to teleport the player to -1205 with a success message (issue #72).
+    [Theory]
+    [InlineData("-120,5")]
+    [InlineData("12,5")]
+    [InlineData("1,234.5")]
+    [InlineData("5-")]
+    [InlineData("")]
+    [InlineData("abc")]
+    public void Teleport_CoordinateThatIsNotAPlainNumber_IsRefused_AndThePlayerStaysPut(string x)
+    {
+        var (vm, workspace, localizer) = CreateWithWorkspace();
+        vm.X = x;
+        vm.Y = "1";
+        vm.Z = "1";
+
+        vm.TeleportCommand.Execute(null);
+
+        Assert.Equal(StatusKind.Error, vm.StatusKind);
+        Assert.Equal(localizer[LocKeys.Teleport_InvalidCoords], vm.StatusMessage);
+        Assert.Equal("0,0,0", workspace.Current!.Players.Single(p => p.Id == 1).PlayerPosition);
+        Assert.False(workspace.IsDirty);
+    }
+
+    [Theory]
+    [InlineData("-120.5", "-120.5")]
+    [InlineData(" 12.5 ", "12.5")]
+    [InlineData("1.5e2", "150")]
+    public void Teleport_PlainNumber_IsWritten(string x, string writtenX)
+    {
+        var (vm, workspace, _) = CreateWithWorkspace();
+        vm.X = x;
+        vm.Y = "1";
+        vm.Z = "1";
+
+        vm.TeleportCommand.Execute(null);
+
+        Assert.Equal($"{writtenX},1,1", workspace.Current!.Players.Single(p => p.Id == 1).PlayerPosition);
+    }
 }

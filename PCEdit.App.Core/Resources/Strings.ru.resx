@@ -111,8 +111,8 @@
   <data name="Terraform_Purification" xml:space="preserve"><value>Очистка</value></data>
   <data name="Terraform_HintCollapsed" xml:space="preserve"><value>Свёрнуто. Активируйте, чтобы развернуть.</value></data>
   <data name="Terraform_HintExpanded" xml:space="preserve"><value>Развёрнуто. Активируйте, чтобы свернуть.</value></data>
-  <data name="Terraform_InvalidLevels" xml:space="preserve"><value>Один или несколько уровней терраформирования не являются допустимым числом.</value></data>
-  <data name="Terraform_InvalidPurification" xml:space="preserve"><value>Уровень очистки не является допустимым числом.</value></data>
+  <data name="Terraform_InvalidLevels" xml:space="preserve"><value>Каждый уровень терраформирования должен быть числом не меньше 0. Используйте точку для десятичных дробей, например 12.5.</value></data>
+  <data name="Terraform_InvalidPurification" xml:space="preserve"><value>Уровень очистки должен быть числом не меньше 0. Используйте точку для десятичных дробей, например 12.5.</value></data>
   <data name="Terraform_Updated" xml:space="preserve"><value>Уровни терраформирования обновлены для {0}.</value></data>
   <data name="Inventories_Title" xml:space="preserve"><value>Инвентари</value></data>
   <data name="Inventories_Heading" xml:space="preserve"><value>Инвентари</value></data>
@@ -245,7 +245,7 @@
   <data name="Teleport_PositionFromLandmark" xml:space="preserve"><value>Позиция задана из {0}. X {1}, Y {2}, Z {3}.</value></data>
   <data name="Teleport_ChoosePlayer" xml:space="preserve"><value>Выберите игрока для телепортации.</value></data>
   <data name="Teleport_ChoosePlanet" xml:space="preserve"><value>Введите или выберите идентификатор планеты.</value></data>
-  <data name="Teleport_InvalidCoords" xml:space="preserve"><value>X, Y и Z должны быть допустимыми числами.</value></data>
+  <data name="Teleport_InvalidCoords" xml:space="preserve"><value>X, Y и Z должны быть числами. Используйте точку для десятичных дробей, например 12.5.</value></data>
   <data name="Teleport_Done" xml:space="preserve"><value>{0} телепортирован на {1} ({2}).</value></data>
   <data name="Teleport_LandmarkPlanetHash" xml:space="preserve"><value>хеш мира {0}</value></data>
   <data name="Teleport_LandmarkNoPlanetHash" xml:space="preserve"><value>хеш мира не записан</value></data>
