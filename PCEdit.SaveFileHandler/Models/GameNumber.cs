@@ -15,7 +15,11 @@ public readonly record struct GameNumber
     /// <exception cref="ArgumentOutOfRangeException">The value is NaN or infinite; it could not be written.</exception>
     public GameNumber(double value)
     {
-        ArgumentOutOfRangeException.ThrowIfNotEqual(double.IsFinite(value), true, nameof(value));
+        if (!double.IsFinite(value))
+        {
+            throw new ArgumentOutOfRangeException(nameof(value), value, "A game number must be finite.");
+        }
+
         Value = value;
     }
 

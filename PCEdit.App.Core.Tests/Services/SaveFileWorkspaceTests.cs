@@ -194,24 +194,7 @@ public sealed class SaveFileWorkspaceTests
         var before = workspace.Current!;
         var playersList = before.Players;
 
-        workspace.ReplacePlayer(1, p => new PCEdit.SaveFileHandler.Models.PlayerData
-        {
-            Id = p.Id,
-            Name = "Alice Renamed",
-            InventoryId = p.InventoryId,
-            EquipmentId = p.EquipmentId,
-            PlayerPosition = p.PlayerPosition,
-            PlayerRotation = p.PlayerRotation,
-            PlayerGaugeOxygen = p.PlayerGaugeOxygen,
-            PlayerGaugeThirst = p.PlayerGaugeThirst,
-            PlayerGaugeHealth = p.PlayerGaugeHealth,
-            PlayerGaugeToxic = p.PlayerGaugeToxic,
-            Host = p.Host,
-            PlanetId = p.PlanetId,
-            TotalCraftedObjects = p.TotalCraftedObjects,
-            TotalTerraTokenEarned = p.TotalTerraTokenEarned,
-            CameraView = p.CameraView
-        });
+        workspace.ReplacePlayer(1, p => p with { Name = "Alice Renamed" });
 
         // Root instance is unchanged; only the list element and IsDirty change.
         Assert.Same(before, workspace.Current);
