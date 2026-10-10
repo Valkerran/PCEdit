@@ -95,7 +95,15 @@ public sealed class WorldObjectConverter : JsonConverter<WorldObject>
         writer.WriteStartObject();
 
         var written = new HashSet<string>();
+        WriteInRecordedOrder(writer, value, written);
+        WriteKeysAddedInCode(writer, value, written);
+        WriteExtensionData(writer, value, written);
 
+        writer.WriteEndObject();
+    }
+
+    private static void WriteInRecordedOrder(Utf8JsonWriter writer, WorldObject value, HashSet<string> written)
+    {
         foreach (var key in value.KeyOrder ?? DefaultOrder)
         {
             if (written.Add(key))
@@ -103,9 +111,12 @@ public sealed class WorldObjectConverter : JsonConverter<WorldObject>
                 WriteKey(writer, key, value);
             }
         }
+    }
 
-        // Keys set in code after the record was read (an edit that added a field) aren't in the
-        // stored order — append them in the canonical position.
+    // Keys set in code after the record was read (an edit that added a field) aren't in the
+    // stored order — append them after the replayed keys, in `DefaultOrder`.
+    private static void WriteKeysAddedInCode(Utf8JsonWriter writer, WorldObject value, HashSet<string> written)
+    {
         foreach (var key in DefaultOrder)
         {
             if (!written.Contains(key) && HasValue(key, value) && written.Add(key))
@@ -113,20 +124,23 @@ public sealed class WorldObjectConverter : JsonConverter<WorldObject>
                 WriteKey(writer, key, value);
             }
         }
+    }
 
-        if (value.ExtensionData is not null)
+    private static void WriteExtensionData(Utf8JsonWriter writer, WorldObject value, HashSet<string> written)
+    {
+        if (value.ExtensionData is null)
         {
-            foreach (var (key, element) in value.ExtensionData)
-            {
-                if (written.Add(key))
-                {
-                    writer.WritePropertyName(key);
-                    element.WriteTo(writer);
-                }
-            }
+            return;
         }
 
-        writer.WriteEndObject();
+        foreach (var (key, element) in value.ExtensionData)
+        {
+            if (written.Add(key))
+            {
+                writer.WritePropertyName(key);
+                element.WriteTo(writer);
+            }
+        }
     }
 
     private static bool HasValue(string key, WorldObject o) => key switch
