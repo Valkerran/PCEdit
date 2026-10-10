@@ -154,4 +154,36 @@ public sealed class JsonRecordSerializerTests
 
         Assert.Contains("Duplicate property", exception.Message);
     }
+
+    // A null in an optional key used to load like an absent key and vanish on save (issue #125).
+    [Theory]
+    [InlineData("""{"id":1,"woIds":"","size":3,"priority":null}""", "priority")]
+    [InlineData("""{"id":1,"woIds":"","size":3,"demandGrps":null}""", "demandGrps")]
+    public void Deserialize_NullInAnOptionalKey_IsRejectedNamingTheKey(string json, string key)
+    {
+        var exception = Assert.Throws<InvalidDataException>(() =>
+            _serializer.Deserialize<Models.Inventory>(json, sectionIndex: 4, recordIndex: 0));
+
+        Assert.Contains($"\"{key}\" is null", exception.Message);
+    }
+
+    // A key no model names is carried through untouched, whatever it holds: a future game build
+    // may write one, and PCEdit has no business judging it.
+    [Fact]
+    public void RoundTrip_NullInAnUnknownKey_IsPreserved()
+    {
+        const string json = """{"id":1,"woIds":"","size":3,"futureKey":null}""";
+
+        Assert.Equal(json, _serializer.Serialize(_serializer.Deserialize<Models.Inventory>(json, sectionIndex: 4)));
+    }
+
+    // The check is on reading only: clearing an optional value in code must still serialize.
+    [Fact]
+    public void Serialize_OptionalKeySetToNullInCode_IsOmitted()
+    {
+        var read = _serializer.Deserialize<Models.Inventory>(
+            """{"id":1,"woIds":"","size":3,"priority":2}""", sectionIndex: 4);
+
+        Assert.Equal("""{"id":1,"woIds":"","size":3}""", _serializer.Serialize(read with { Priority = null }));
+    }
 }

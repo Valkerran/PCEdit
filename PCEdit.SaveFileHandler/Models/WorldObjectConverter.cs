@@ -22,6 +22,7 @@ public sealed class WorldObjectConverter : JsonConverter<WorldObject>
 
         foreach (var property in document.RootElement.EnumerateObject())
         {
+            RejectNull(property);
             RejectDuplicate(property, fields);
             fields.KeyOrder.Add(property.Name);
             try
@@ -45,6 +46,16 @@ public sealed class WorldObjectConverter : JsonConverter<WorldObject>
         if (fields.KeyOrder.Contains(property.Name))
         {
             throw new JsonException($"The world-object key \"{property.Name}\" appears more than once.");
+        }
+    }
+
+    // Only the keys the model names: an unknown key holding null goes to extension data and is
+    // written back as it came (issue #125).
+    private static void RejectNull(JsonProperty property)
+    {
+        if (property.Value.ValueKind == JsonValueKind.Null && DefaultOrder.Contains(property.Name))
+        {
+            throw new JsonException($"The world-object key \"{property.Name}\" is null.");
         }
     }
 

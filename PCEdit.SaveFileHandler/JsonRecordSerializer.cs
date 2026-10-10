@@ -1,6 +1,7 @@
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
 using PCEdit.SaveFileHandler.Models;
 
 namespace PCEdit.SaveFileHandler;
@@ -18,6 +19,7 @@ public sealed class JsonRecordSerializer : IJsonRecordSerializer
         // A key written twice is malformed input, not a case for "last one wins": the save would
         // lose the first value on the next write (issue #126).
         AllowDuplicateProperties = false,
+        TypeInfoResolver = new DefaultJsonTypeInfoResolver { Modifiers = { RejectNullValues } },
         Converters = { new GameNumberConverter() }
     };
 
@@ -57,6 +59,29 @@ public sealed class JsonRecordSerializer : IJsonRecordSerializer
     public string Serialize<T>(T value)
     {
         return JsonSerializer.Serialize(value, Options);
+    }
+
+    // System.Text.Json treats a null in a nullable property like an absent key, and
+    // WhenWritingNull then leaves the key out: the save loses it (issue #125). Refuse it on the
+    // way in. Extension data is left alone, so an unknown key holding null is still preserved.
+    private static void RejectNullValues(JsonTypeInfo typeInfo)
+    {
+        if (typeInfo.Kind != JsonTypeInfoKind.Object)
+        {
+            return;
+        }
+
+        foreach (var property in typeInfo.Properties)
+        {
+            if (property.IsExtensionData || property.Set is not { } set)
+            {
+                continue;
+            }
+
+            var key = property.Name;
+            property.Set = (target, value) => set(
+                target, value ?? throw new JsonException($"The key \"{key}\" is null."));
+        }
     }
 
     /// <summary>Reads a <see cref="GameNumber"/> keeping its exact text, and writes that text back

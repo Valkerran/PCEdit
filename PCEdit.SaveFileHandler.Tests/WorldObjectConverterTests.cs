@@ -90,4 +90,27 @@ public sealed class WorldObjectConverterTests
 
         Assert.Contains($"\"{key}\" appears more than once", exception.Message);
     }
+
+    // A string key holding null used to read as "absent" and be dropped on save; an int key
+    // holding null was refused, but as "the wrong type" (issue #125).
+    [Theory]
+    [InlineData("""{"id":1,"gId":"a","pos":null}""", "pos")]
+    [InlineData("""{"id":1,"gId":"a","liId":null}""", "liId")]
+    [InlineData("""{"id":1,"gId":null}""", "gId")]
+    [InlineData("""{"id":null,"gId":"a"}""", "id")]
+    public void Read_NullInAModelledKey_IsRejectedNamingTheKey(string json, string key)
+    {
+        var exception = Assert.Throws<InvalidDataException>(() =>
+            _serializer.Deserialize<WorldObject>(json, sectionIndex: 3, recordIndex: 0));
+
+        Assert.Contains($"\"{key}\" is null", exception.Message);
+    }
+
+    [Fact]
+    public void RoundTrip_NullInAnUnknownKey_IsPreserved()
+    {
+        const string json = """{"id":1,"gId":"a","futureKey":null,"pos":"1,2,3"}""";
+
+        Assert.Equal(json, _serializer.Serialize(_serializer.Deserialize<WorldObject>(json, sectionIndex: 3)));
+    }
 }
