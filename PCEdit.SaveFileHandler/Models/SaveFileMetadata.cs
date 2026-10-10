@@ -27,15 +27,15 @@ public sealed record SaveFileMetadata
 
     public bool RandomizeMineables { get; init; }
 
-    public decimal ModifierTerraformationPace { get; init; }
+    public GameNumber ModifierTerraformationPace { get; init; }
 
-    public decimal ModifierPowerConsumption { get; init; }
+    public GameNumber ModifierPowerConsumption { get; init; }
 
-    public decimal ModifierGaugeDrain { get; init; }
+    public GameNumber ModifierGaugeDrain { get; init; }
 
-    public decimal ModifierMeteoOccurence { get; init; }
+    public GameNumber ModifierMeteoOccurence { get; init; }
 
-    public decimal ModifierMultiplayerTerraformationFactor { get; init; }
+    public GameNumber ModifierMultiplayerTerraformationFactor { get; init; }
 
     public bool Modded { get; init; }
 

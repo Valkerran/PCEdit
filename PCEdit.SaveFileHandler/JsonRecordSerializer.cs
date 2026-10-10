@@ -1,6 +1,7 @@
-using System.Globalization;
+using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using PCEdit.SaveFileHandler.Models;
 
 namespace PCEdit.SaveFileHandler;
 
@@ -14,7 +15,7 @@ public sealed class JsonRecordSerializer : IJsonRecordSerializer
         // A null in a non-nullable property is malformed input, not a value to drop on the next
         // save (issue #76).
         RespectNullableAnnotations = true,
-        Converters = { new GameDecimalConverter() }
+        Converters = { new GameNumberConverter() }
     };
 
     public T Deserialize<T>(string content, int sectionIndex)
@@ -35,25 +36,22 @@ public sealed class JsonRecordSerializer : IJsonRecordSerializer
         return JsonSerializer.Serialize(value, Options);
     }
 
-    /// <summary>
-    /// The game writes every decimal-valued field with a fractional part (<c>0.0</c>, <c>-1.0</c>,
-    /// <c>370.0</c>). System.Text.Json would drop the trailing <c>.0</c> from a whole number, which
-    /// shows up as noise in a load→save diff after an edit — so force at least one decimal place.
-    /// </summary>
-    private sealed class GameDecimalConverter : JsonConverter<decimal>
+    /// <summary>Reads a <see cref="GameNumber"/> keeping its exact text, and writes that text back
+    /// untouched; a number set in code is formatted by <see cref="GameNumber.ToString"/>.</summary>
+    private sealed class GameNumberConverter : JsonConverter<GameNumber>
     {
-        public override decimal Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-            => reader.GetDecimal();
-
-        public override void Write(Utf8JsonWriter writer, decimal value, JsonSerializerOptions options)
+        public override GameNumber Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            var text = value.ToString(CultureInfo.InvariantCulture);
-            if (!text.Contains('.'))
+            if (reader.TokenType != JsonTokenType.Number || !reader.TryGetDouble(out var value) || !double.IsFinite(value))
             {
-                text += ".0";
+                throw new JsonException("Expected a finite number.");
             }
 
-            writer.WriteRawValue(text);
+            var raw = reader.HasValueSequence ? Encoding.UTF8.GetString(reader.ValueSequence) : Encoding.UTF8.GetString(reader.ValueSpan);
+            return new GameNumber(value) { RawText = raw };
         }
+
+        public override void Write(Utf8JsonWriter writer, GameNumber value, JsonSerializerOptions options)
+            => writer.WriteRawValue(value.ToString());
     }
 }

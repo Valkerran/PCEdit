@@ -112,7 +112,7 @@ public sealed class SaveFileWorkspaceTests
         workspace.ReplaceTerraformation("Prime", t => new PCEdit.SaveFileHandler.Models.PlanetTerraformation
         {
             PlanetId = t.PlanetId,
-            UnitOxygenLevel = 99m,
+            UnitOxygenLevel = 99,
             UnitHeatLevel = t.UnitHeatLevel,
             UnitPressureLevel = t.UnitPressureLevel,
             UnitPlantsLevel = t.UnitPlantsLevel,
@@ -164,7 +164,7 @@ public sealed class SaveFileWorkspaceTests
         workspace.ReplaceTerraformation("Prime", t => new PCEdit.SaveFileHandler.Models.PlanetTerraformation
         {
             PlanetId = t.PlanetId,
-            UnitOxygenLevel = 500m,
+            UnitOxygenLevel = 500,
             UnitHeatLevel = t.UnitHeatLevel,
             UnitPressureLevel = t.UnitPressureLevel,
             UnitPlantsLevel = t.UnitPlantsLevel,
@@ -175,7 +175,7 @@ public sealed class SaveFileWorkspaceTests
 
         Assert.Same(before, workspace.Current);
         Assert.Same(terraformationsList, workspace.Current!.Terraformations);
-        Assert.Equal(500m, workspace.Current.Terraformations.Single(t => t.PlanetId == "Prime").UnitOxygenLevel);
+        Assert.Equal(500, workspace.Current.Terraformations.Single(t => t.PlanetId == "Prime").UnitOxygenLevel);
         Assert.True(workspace.IsDirty);
     }
 

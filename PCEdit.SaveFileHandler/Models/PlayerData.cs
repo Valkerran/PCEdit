@@ -17,13 +17,13 @@ public sealed record PlayerData
 
     public required string PlayerRotation { get; init; }
 
-    public decimal PlayerGaugeOxygen { get; init; }
+    public GameNumber PlayerGaugeOxygen { get; init; }
 
-    public decimal PlayerGaugeThirst { get; init; }
+    public GameNumber PlayerGaugeThirst { get; init; }
 
-    public decimal PlayerGaugeHealth { get; init; }
+    public GameNumber PlayerGaugeHealth { get; init; }
 
-    public decimal PlayerGaugeToxic { get; init; }
+    public GameNumber PlayerGaugeToxic { get; init; }
 
     public bool Host { get; init; }
 
