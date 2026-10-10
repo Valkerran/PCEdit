@@ -58,7 +58,7 @@ public sealed class JsonRecordSerializerTests
             _serializer.Deserialize<SampleRecord>("{not valid json", sectionIndex: 3));
 
         Assert.Contains("section 3", exception.Message);
-        Assert.Contains("not valid JSON", exception.Message);
+        Assert.Contains("is not valid", exception.Message);
         Assert.IsType<System.Text.Json.JsonException>(exception.InnerException);
     }
 

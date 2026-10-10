@@ -37,6 +37,7 @@
   "OpenFile_LoadingAnnounce": "Spielstand wird geladen.",
   "OpenFile_Loaded": "{0} geladen.",
   "OpenFile_LoadFailed": "Diese Datei konnte nicht geladen werden. Möglicherweise ist es kein gültiger Planet-Crafter-Spielstand.",
+  "OpenFile_LoadFailedDetail": "Diese Datei konnte nicht geladen werden. Möglicherweise ist es kein gültiger Planet-Crafter-Spielstand. Details: {0}",
   "OpenFile_DiscardTitle": "Nicht gespeicherte Änderungen",
   "OpenFile_DiscardBody": "Beim Laden einer neuen Datei gehen deine nicht gespeicherten Änderungen verloren. Fortfahren?",
   "Overview_Title": "Übersicht",

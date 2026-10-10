@@ -23,6 +23,38 @@ public sealed class PlanetCrafterSaveFileSerializerTests
     }
 
     [Fact]
+    public void Deserialize_BadRecord_NamesTheSectionRecordAndKey()
+    {
+        var original = SaveFileFixtures.CreateEmpty();
+        original.Inventories.Add(new Models.Inventory { Id = 1, WorldObjectIds = "", Size = 1 });
+        original.Inventories.Add(new Models.Inventory { Id = 2, WorldObjectIds = "", Size = 1 });
+        var content = _serializer.Serialize(original).Replace("\"id\":2", "\"id\":\"two\"", StringComparison.Ordinal);
+
+        var exception = Assert.Throws<InvalidDataException>(() => _serializer.Deserialize(content));
+
+        Assert.Contains("section 4", exception.Message);
+        Assert.Contains("record 2", exception.Message);
+        Assert.Contains("$.id", exception.Message);
+        Assert.DoesNotContain("LineNumber", exception.Message);
+        Assert.DoesNotContain("BytePositionInLine", exception.Message);
+        Assert.EndsWith("Path: $.id.", exception.Message);
+    }
+
+    [Fact]
+    public void Deserialize_BadWorldObjectKey_NamesTheKey()
+    {
+        var original = SaveFileFixtures.CreateEmpty();
+        original.WorldObjects.Add(new Models.WorldObject { Id = 1, GId = "Iron" });
+        var content = _serializer.Serialize(original).Replace("\"id\":1", "\"id\":\"one\"", StringComparison.Ordinal);
+
+        var exception = Assert.Throws<InvalidDataException>(() => _serializer.Deserialize(content));
+
+        Assert.Contains("record 1", exception.Message);
+        Assert.Contains("\"id\"", exception.Message);
+        Assert.EndsWith("wrong type.", exception.Message);
+    }
+
+    [Fact]
     public void Serialize_NullSaveFile_ThrowsArgumentNullException()
     {
         Assert.Throws<ArgumentNullException>(() => _serializer.Serialize(null!));

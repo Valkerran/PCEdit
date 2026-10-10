@@ -37,6 +37,7 @@
   "OpenFile_LoadingAnnounce": "Kayıt yükleniyor.",
   "OpenFile_Loaded": "{0} yüklendi.",
   "OpenFile_LoadFailed": "Bu dosya yüklenemedi. Geçerli bir Planet Crafter kaydı olmayabilir.",
+  "OpenFile_LoadFailedDetail": "Bu dosya yüklenemedi. Geçerli bir Planet Crafter kaydı olmayabilir. Ayrıntılar: {0}",
   "OpenFile_DiscardTitle": "Kaydedilmemiş değişiklikler",
   "OpenFile_DiscardBody": "Yeni bir dosya yüklemek kaydedilmemiş değişikliklerinizi yok sayar. Devam edilsin mi?",
   "Overview_Title": "Genel Bakış",

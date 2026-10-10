@@ -37,6 +37,7 @@
   "OpenFile_LoadingAnnounce": "正在載入存檔。",
   "OpenFile_Loaded": "已載入 {0}。",
   "OpenFile_LoadFailed": "無法載入該檔案。它可能不是有效的 Planet Crafter 存檔。",
+  "OpenFile_LoadFailedDetail": "無法載入該檔案。它可能不是有效的 Planet Crafter 存檔。詳細資料：{0}",
   "OpenFile_DiscardTitle": "未儲存的變更",
   "OpenFile_DiscardBody": "載入新檔案將捨棄你未儲存的變更。是否繼續？",
   "Overview_Title": "概覽",

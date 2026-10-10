@@ -49,6 +49,7 @@
   <data name="OpenFile_LoadingAnnounce" xml:space="preserve"><value>Carregando o save.</value></data>
   <data name="OpenFile_Loaded" xml:space="preserve"><value>{0} carregado.</value></data>
   <data name="OpenFile_LoadFailed" xml:space="preserve"><value>Não foi possível carregar esse arquivo. Pode não ser um save válido do Planet Crafter.</value></data>
+  <data name="OpenFile_LoadFailedDetail" xml:space="preserve"><value>Não foi possível carregar esse arquivo. Pode não ser um save válido do Planet Crafter. Detalhes: {0}</value></data>
   <data name="OpenFile_DiscardTitle" xml:space="preserve"><value>Alterações não salvas</value></data>
   <data name="OpenFile_DiscardBody" xml:space="preserve"><value>Carregar um novo arquivo descartará suas alterações não salvas. Continuar?</value></data>
   <data name="Overview_Title" xml:space="preserve"><value>Visão geral</value></data>

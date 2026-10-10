@@ -18,17 +18,26 @@ public sealed class JsonRecordSerializer : IJsonRecordSerializer
         Converters = { new GameNumberConverter() }
     };
 
-    public T Deserialize<T>(string content, int sectionIndex)
+    public T Deserialize<T>(string content, int sectionIndex, int? recordIndex = null)
     {
+        var where = recordIndex is null ? $"section {sectionIndex}" : $"section {sectionIndex}, record {recordIndex + 1}";
         try
         {
             return JsonSerializer.Deserialize<T>(content.Trim(), Options)
-                ?? throw new InvalidDataException($"Save-file section {sectionIndex} is empty.");
+                ?? throw new InvalidDataException($"Save-file {where} is empty.");
         }
         catch (JsonException exception)
         {
-            throw new InvalidDataException($"Save-file section {sectionIndex} is not valid JSON.", exception);
+            throw new InvalidDataException($"Save-file {where} is not valid: {WithoutPosition(exception.Message)}", exception);
         }
+    }
+
+    // The reader's line and byte offsets count from the start of this one record, not the file, so
+    // in a large save they would read as a file position and mislead; section, record and path say where.
+    private static string WithoutPosition(string message)
+    {
+        var cut = message.IndexOf(" | LineNumber:", StringComparison.Ordinal);
+        return cut < 0 ? message : message[..cut] + ".";
     }
 
     public string Serialize<T>(T value)

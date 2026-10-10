@@ -10,7 +10,10 @@ internal sealed class FakeFilePickerService : IFilePickerService
 
     public List<string> SuggestedPaths { get; } = [];
 
-    public Task<string?> PickSaveFileAsync(string pickerTitle) => Task.FromResult<string?>(null);
+    /// <summary>What the open-file picker returns; null stands in for the user cancelling.</summary>
+    public string? PickResult { get; set; }
+
+    public Task<string?> PickSaveFileAsync(string pickerTitle) => Task.FromResult(PickResult);
 
     public Task<string?> PickSaveCopyPathAsync(string pickerTitle, string suggestedPath)
     {

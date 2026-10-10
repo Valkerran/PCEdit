@@ -18,57 +18,75 @@ public sealed class WorldObjectConverter : JsonConverter<WorldObject>
     public override WorldObject Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         using var document = JsonDocument.ParseValue(ref reader);
-        var element = document.RootElement;
+        var fields = new Fields();
 
-        int? id = null;
-        string? gId = null;
-        int? linkedInventoryId = null, planet = null, growth = null, linkedWorldObjectId = null;
-        string? linkedInventoryGroups = null, spawnedInstanceIds = null, position = null,
-            rotation = null, mineableCount = null, color = null, panelSettings = null, text = null;
-        var keyOrder = new List<string>();
-        Dictionary<string, JsonElement>? extension = null;
-
-        foreach (var property in element.EnumerateObject())
+        foreach (var property in document.RootElement.EnumerateObject())
         {
-            keyOrder.Add(property.Name);
-            switch (property.Name)
+            fields.KeyOrder.Add(property.Name);
+            try
             {
-                case "id": id = property.Value.GetInt32(); break;
-                case "gId": gId = property.Value.GetString(); break;
-                case "liId": linkedInventoryId = property.Value.GetInt32(); break;
-                case "liGrps": linkedInventoryGroups = property.Value.GetString(); break;
-                case "siIds": spawnedInstanceIds = property.Value.GetString(); break;
-                case "pos": position = property.Value.GetString(); break;
-                case "rot": rotation = property.Value.GetString(); break;
-                case "planet": planet = property.Value.GetInt32(); break;
-                case "grwth": growth = property.Value.GetInt32(); break;
-                case "count": mineableCount = property.Value.GetString(); break;
-                case "color": color = property.Value.GetString(); break;
-                case "pnls": panelSettings = property.Value.GetString(); break;
-                case "linkedWo": linkedWorldObjectId = property.Value.GetInt32(); break;
-                case "text": text = property.Value.GetString(); break;
-                default: (extension ??= [])[property.Name] = property.Value.Clone(); break;
+                ReadKey(property, fields);
+            }
+            catch (Exception exception) when (exception is InvalidOperationException or FormatException)
+            {
+                // GetInt32/GetString throw these on a value of the wrong type; say which key.
+                throw new JsonException($"The world-object key \"{property.Name}\" has the wrong type.", exception);
             }
         }
 
-        return new WorldObject
+        return fields.ToWorldObject();
+    }
+
+    private static void ReadKey(JsonProperty property, Fields fields)
+    {
+        var value = property.Value;
+        switch (property.Name)
         {
-            Id = id ?? throw new JsonException("A world-object record is missing its required \"id\" key."),
-            GId = gId ?? throw new JsonException("A world-object record is missing its required \"gId\" key."),
-            LinkedInventoryId = linkedInventoryId,
-            LinkedInventoryGroups = linkedInventoryGroups,
-            SpawnedInstanceIds = spawnedInstanceIds,
-            Position = position,
-            Rotation = rotation,
-            Planet = planet,
-            Growth = growth,
-            MineableCount = mineableCount,
-            Color = color,
-            PanelSettings = panelSettings,
-            LinkedWorldObjectId = linkedWorldObjectId,
-            Text = text,
-            ExtensionData = extension,
-            KeyOrder = keyOrder
+            case "id": fields.Id = value.GetInt32(); break;
+            case "gId": fields.GId = value.GetString(); break;
+            case "liId": fields.LinkedInventoryId = value.GetInt32(); break;
+            case "liGrps": fields.LinkedInventoryGroups = value.GetString(); break;
+            case "siIds": fields.SpawnedInstanceIds = value.GetString(); break;
+            case "pos": fields.Position = value.GetString(); break;
+            case "rot": fields.Rotation = value.GetString(); break;
+            case "planet": fields.Planet = value.GetInt32(); break;
+            case "grwth": fields.Growth = value.GetInt32(); break;
+            case "count": fields.MineableCount = value.GetString(); break;
+            case "color": fields.Color = value.GetString(); break;
+            case "pnls": fields.PanelSettings = value.GetString(); break;
+            case "linkedWo": fields.LinkedWorldObjectId = value.GetInt32(); break;
+            case "text": fields.Text = value.GetString(); break;
+            default: (fields.Extension ??= [])[property.Name] = value.Clone(); break;
+        }
+    }
+
+    /// <summary>The values read from one record, collected before the model is built.</summary>
+    private sealed class Fields
+    {
+        public int? Id, LinkedInventoryId, Planet, Growth, LinkedWorldObjectId;
+        public string? GId, LinkedInventoryGroups, SpawnedInstanceIds, Position, Rotation,
+            MineableCount, Color, PanelSettings, Text;
+        public Dictionary<string, JsonElement>? Extension;
+        public List<string> KeyOrder { get; } = [];
+
+        public WorldObject ToWorldObject() => new()
+        {
+            Id = Id ?? throw new JsonException("A world-object record is missing its required \"id\" key."),
+            GId = GId ?? throw new JsonException("A world-object record is missing its required \"gId\" key."),
+            LinkedInventoryId = LinkedInventoryId,
+            LinkedInventoryGroups = LinkedInventoryGroups,
+            SpawnedInstanceIds = SpawnedInstanceIds,
+            Position = Position,
+            Rotation = Rotation,
+            Planet = Planet,
+            Growth = Growth,
+            MineableCount = MineableCount,
+            Color = Color,
+            PanelSettings = PanelSettings,
+            LinkedWorldObjectId = LinkedWorldObjectId,
+            Text = Text,
+            ExtensionData = Extension,
+            KeyOrder = KeyOrder
         };
     }
 

@@ -49,6 +49,7 @@
   <data name="OpenFile_LoadingAnnounce" xml:space="preserve"><value>Chargement de la sauvegarde.</value></data>
   <data name="OpenFile_Loaded" xml:space="preserve"><value>{0} chargé.</value></data>
   <data name="OpenFile_LoadFailed" xml:space="preserve"><value>Impossible de charger ce fichier. Ce n'est peut-être pas une sauvegarde Planet Crafter valide.</value></data>
+  <data name="OpenFile_LoadFailedDetail" xml:space="preserve"><value>Impossible de charger ce fichier. Ce n'est peut-être pas une sauvegarde Planet Crafter valide. Détails : {0}</value></data>
   <data name="OpenFile_DiscardTitle" xml:space="preserve"><value>Modifications non enregistrées</value></data>
   <data name="OpenFile_DiscardBody" xml:space="preserve"><value>Charger un nouveau fichier abandonnera vos modifications non enregistrées. Continuer ?</value></data>
   <data name="Overview_Title" xml:space="preserve"><value>Vue d'ensemble</value></data>

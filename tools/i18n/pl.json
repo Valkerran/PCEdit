@@ -37,6 +37,7 @@
   "OpenFile_LoadingAnnounce": "Wczytywanie zapisu.",
   "OpenFile_Loaded": "Wczytano {0}.",
   "OpenFile_LoadFailed": "Nie można wczytać tego pliku. Może to nie być prawidłowy zapis Planet Crafter.",
+  "OpenFile_LoadFailedDetail": "Nie można wczytać tego pliku. Może to nie być prawidłowy zapis Planet Crafter. Szczegóły: {0}",
   "OpenFile_DiscardTitle": "Niezapisane zmiany",
   "OpenFile_DiscardBody": "Wczytanie nowego pliku spowoduje odrzucenie niezapisanych zmian. Kontynuować?",
   "Overview_Title": "Przegląd",

@@ -115,7 +115,7 @@ public sealed class PlanetCrafterSaveFileSerializer(IJsonRecordSerializer jsonRe
         return RecordSplitter.Split(section)
             .Select(record => record.Trim())
             .Where(record => record.Length > 0)
-            .Select(record => _jsonRecordSerializer.Deserialize<T>(record, sectionIndex))
+            .Select((record, index) => _jsonRecordSerializer.Deserialize<T>(record, sectionIndex, index))
             .ToList();
     }
 
