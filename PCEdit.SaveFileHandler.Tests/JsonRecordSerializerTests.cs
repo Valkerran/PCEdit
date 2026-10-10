@@ -123,9 +123,13 @@ public sealed class JsonRecordSerializerTests
     [Fact]
     public void Deserialize_PlayerWithoutAnId_IsRejected()
     {
-        const string json = """{"name":"a","playerPosition":"0,0,0","playerRotation":"0,0,0,1","planetId":"Prime"}""";
+        const string json =
+            """{"name":"a","inventoryId":1,"equipmentId":2,"playerPosition":"0,0,0","playerRotation":"0,0,0,1","playerGaugeOxygen":1.0,"playerGaugeThirst":1.0,"playerGaugeHealth":1.0,"playerGaugeToxic":0.0,"host":true,"planetId":"Prime","totalCraftedObjects":0,"totalTerraTokenEarned":0,"cameraView":0}""";
 
-        Assert.Throws<InvalidDataException>(() => _serializer.Deserialize<Models.PlayerData>(json, sectionIndex: 2));
+        var exception = Assert.Throws<InvalidDataException>(() =>
+            _serializer.Deserialize<Models.PlayerData>(json, sectionIndex: 2));
+
+        Assert.Contains("'id'", exception.Message);
     }
 
     // A key written twice used to load with the last value winning, so the save lost the first
@@ -185,5 +189,46 @@ public sealed class JsonRecordSerializerTests
             """{"id":1,"woIds":"","size":3,"priority":2}""", sectionIndex: 4);
 
         Assert.Equal("""{"id":1,"woIds":"","size":3}""", _serializer.Serialize(read with { Priority = null }));
+    }
+
+    // A key the game always writes used to default to 0 when absent and be written back, so the
+    // save gained a value it never had; for purification that 0 claims a stage the planet may
+    // not have, since -1 is what marks "not applicable" (issue #127).
+    [Theory]
+    [InlineData("""{"id":1,"woIds":""}""", "'size'")]
+    [InlineData("""{"id":1,"woIds":"","demandGrps":"A","supplyGrps":"B","priority":1}""", "'size'")]
+    public void Deserialize_InventoryWithoutASize_IsRejectedNamingTheKey(string json, string quotedKey)
+    {
+        var exception = Assert.Throws<InvalidDataException>(() =>
+            _serializer.Deserialize<Models.Inventory>(json, sectionIndex: 4, recordIndex: 0));
+
+        Assert.Contains("missing required properties", exception.Message);
+        Assert.Contains(quotedKey, exception.Message);
+    }
+
+    [Fact]
+    public void Deserialize_TerraformationWithoutAPurificationLevel_IsRejectedNamingTheKey()
+    {
+        const string json =
+            """{"planetId":"Prime","unitOxygenLevel":1.0,"unitHeatLevel":1.0,"unitPressureLevel":1.0,"unitPlantsLevel":1.0,"unitInsectsLevel":1.0,"unitAnimalsLevel":1.0}""";
+
+        var exception = Assert.Throws<InvalidDataException>(() =>
+            _serializer.Deserialize<Models.PlanetTerraformation>(json, sectionIndex: 1, recordIndex: 0));
+
+        Assert.Contains("'unitPurificationLevel'", exception.Message);
+    }
+
+    // The optional keys stay optional: a pre-2.102 save has no logisticsPaused, and most
+    // inventories have no logistics keys.
+    [Fact]
+    public void Deserialize_RecordsWithoutTheirOptionalKeys_StillLoad()
+    {
+        var unlocks = _serializer.Deserialize<Models.SaveFileUnlocks>(
+            """{"terraTokens":10,"allTimeTerraTokens":20,"unlockedGroups":"A","openedInstanceSeed":0,"openedInstanceTimeLeft":0}""",
+            sectionIndex: 0);
+        var inventory = _serializer.Deserialize<Models.Inventory>("""{"id":1,"woIds":"","size":3}""", sectionIndex: 4);
+
+        Assert.Null(unlocks.LogisticsPaused);
+        Assert.Null(inventory.Priority);
     }
 }

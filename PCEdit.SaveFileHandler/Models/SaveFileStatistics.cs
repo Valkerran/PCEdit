@@ -5,10 +5,13 @@ namespace PCEdit.SaveFileHandler.Models;
 
 public sealed record SaveFileStatistics
 {
+    [JsonRequired]
     public int CraftedObjects { get; init; }
 
+    [JsonRequired]
     public int TotalSaveFileLoad { get; init; }
 
+    [JsonRequired]
     public int TotalSaveFileTime { get; init; }
 
     /// <summary>

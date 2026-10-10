@@ -7,6 +7,7 @@ public sealed record ReadMessage
 {
     public required string StringId { get; init; }
 
+    [JsonRequired]
     public bool IsRead { get; init; }
 
     /// <summary>

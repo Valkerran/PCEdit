@@ -10,6 +10,7 @@ public sealed record Inventory
     [JsonPropertyName("woIds")]
     public required string WorldObjectIds { get; init; }
 
+    [JsonRequired]
     public int Size { get; init; }
 
     [JsonPropertyName("demandGrps")]
