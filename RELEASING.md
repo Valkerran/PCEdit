@@ -94,8 +94,8 @@ Rules the pipelines enforce:
    sat at v1.3.0 through five releases and how the AppImage file name was documented wrongly
    in every release until v1.5.0.
 
-6. **Bump again for development** (optional but tidy): raise `<VersionPrefix>` to the next
-   planned version on `main` so pre-release builds are not stamped with the shipped version.
+Do **not** bump `<VersionPrefix>` again after the release. It changes only in the PR that
+makes the next release (step 1), together with that release's changelog entry.
 
 ## Local packaging (for testing — do not ship these)
 
