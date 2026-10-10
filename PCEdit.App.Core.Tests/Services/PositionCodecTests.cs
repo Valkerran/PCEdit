@@ -63,4 +63,14 @@ public sealed class PositionCodecTests
         Assert.Equal(1.32m, y);
         Assert.Equal(682.76m, z);
     }
+
+    // The game writes a component close to zero in exponent notation; such a position used to be
+    // unreadable, which dropped the landmark from the Teleport page (issue #84).
+    [Theory]
+    [InlineData("1.2E-05,3,-4.5e+02", 0.000012, 3, -450)]
+    public void TryParse_ExponentNotation_IsRead(string position, double x, double y, double z)
+    {
+        Assert.True(PositionCodec.TryParse(position, out var parsed));
+        Assert.Equal(((decimal)x, (decimal)y, (decimal)z), parsed);
+    }
 }

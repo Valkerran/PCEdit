@@ -58,6 +58,6 @@ public static class PositionCodec
 
     private static bool TryParseComponent(string value, out decimal component)
     {
-        return decimal.TryParse(value, NumberStyles.Number, CultureInfo.InvariantCulture, out component);
+        return decimal.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out component);
     }
 }
