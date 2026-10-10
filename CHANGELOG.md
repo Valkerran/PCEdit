@@ -4,6 +4,50 @@ What changed in each release of PCEdit. Downloads for every version are on the
 [Releases page](https://github.com/Valkerran/PCEdit/releases); the newest is on the
 [latest release](https://github.com/Valkerran/PCEdit/releases/latest) page.
 
+## v1.7.2
+
+PCEdit now keeps more of a save exactly as the game wrote it, and refuses a damaged save with
+a message saying what is wrong instead of opening it and quietly changing it.
+
+- **Fixed: a `|` in a name or label stopped the save from opening.** A container label, sign
+  or player name containing `|` (as in "Iron | Cobalt") made PCEdit refuse to open the save at
+  all. Those saves now open, and save back unchanged.
+  ([#71](https://github.com/Valkerran/PCEdit/issues/71))
+
+- **Fixed: numbers are written back exactly as the game wrote them.** Terraform levels, player
+  vitals and world modifiers that you did not edit could be rewritten in a different form when
+  you saved (`-0.0` became `0.0`, `1E-05` became `0.00001`), and a save holding a very large
+  level (past about 10²⁸) would not open at all. PCEdit now keeps each number's original text,
+  and editing one terraform level no longer touches the others.
+  ([#85](https://github.com/Valkerran/PCEdit/issues/85))
+
+- **Changed: the terraform level boxes show each number as the save holds it.** A whole number
+  now appears as `5.0`, not `5`, and a level the game wrote as `1E+30` shows that way. You can
+  type a level in either form.
+
+- **Fixed: landmarks with a position in exponent notation were missing from the Teleport page.**
+  The game writes a coordinate very close to zero as, for example, `1.2E-05`; PCEdit could not
+  read it and left that landmark out.
+  ([#84](https://github.com/Valkerran/PCEdit/issues/84))
+
+- **Changed: a damaged save is refused, and the message says where.** Three kinds of damage
+  used to load, and were then made permanent the next time you saved:
+  text that is not valid UTF-8 was replaced with "�"
+  ([#77](https://github.com/Valkerran/PCEdit/issues/77)), an empty value where the game always
+  writes one was dropped ([#76](https://github.com/Valkerran/PCEdit/issues/76)), and a record
+  with no id was given the id 0 ([#86](https://github.com/Valkerran/PCEdit/issues/86)). PCEdit
+  now declines to open such a file and tells you which section, record and key is at fault
+  ("section 4 (inventories), record 2 … Path: $.id"), so there is something to fix or to put in a bug report
+  ([#115](https://github.com/Valkerran/PCEdit/issues/115)). The game writes none of these:
+  30 real saves from Steam and Xbox / PC Game Pass (game versions 2.008 to 2.103, modded ones
+  included) all still open and save back byte for byte. A save file stored as UTF-16 is refused
+  too; the game never writes one.
+
+- The new message is machine-translated into the 14 other languages PCEdit ships. The technical
+  detail after "Details:" is in English in every language.
+
+- Applies to every platform (Linux, Windows and macOS) alike. No new dependencies.
+
 ## v1.7.1
 
 - **Fixed: names and labels with accents, symbols or emoji were rewritten when you saved.**
