@@ -218,10 +218,7 @@ public sealed partial class SaveFileWorkspace : ObservableObject, ISaveFileWorks
 
     public int GrantTerraTokens(long playerId, int amount)
     {
-        if (amount <= 0)
-        {
-            throw new ArgumentOutOfRangeException(nameof(amount), amount, "The amount to grant must be positive.");
-        }
+        ThrowIfCannotGrant(playerId, amount);
 
         // All three of these are int in the save format. The addition was unchecked, so a large
         // grant wrapped straight to a negative balance and was written into the player's file -
@@ -244,6 +241,21 @@ public sealed partial class SaveFileWorkspace : ObservableObject, ISaveFileWorks
         });
 
         return granted;
+    }
+
+    // Everything is checked before anything changes: the unlocks used to be updated, and the
+    // file marked dirty, before ReplacePlayer noticed a stale player id and threw (issue #89).
+    private void ThrowIfCannotGrant(long playerId, int amount)
+    {
+        if (amount <= 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(amount), amount, "The amount to grant must be positive.");
+        }
+
+        if (!RequireCurrent().Players.Exists(player => player.Id == playerId))
+        {
+            throw new InvalidOperationException($"Player {playerId} was not found in the loaded save.");
+        }
     }
 
     /// <summary>Adds without overflowing - an int field cannot hold more than int.MaxValue.</summary>
