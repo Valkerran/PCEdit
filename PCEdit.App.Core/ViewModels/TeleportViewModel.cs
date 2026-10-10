@@ -147,12 +147,8 @@ public sealed partial class TeleportViewModel(
             return;
         }
 
-        StatusMessage = null;
-        StatusKind = StatusKind.Info;
-        if (!ResetToPlayer(player))
-        {
-            SetStatus(StatusKind.Error, _localizer.Format(LocKeys.Teleport_PositionUnreadable, player.Name));
-        }
+        ClearStatus();
+        ResetToPlayer(player);
     }
 
     /// <summary>Points the world and X/Y/Z at where the player currently is. False when the
@@ -162,21 +158,36 @@ public sealed partial class TeleportViewModel(
     {
         SelectedPlanetId = PlanetIdOptions.Contains(player.PlanetId) ? player.PlanetId : _otherPlanetOption;
         CustomPlanetId = player.PlanetId;
+        return ShowPlayerPosition(player);
+    }
+
+    /// <summary>
+    /// Puts the player's saved position into X/Y/Z. A position the game did not write - a
+    /// hand-edited or corrupt save - must not bring the page down (issue #37), and must not leave
+    /// other coordinates standing either: the boxes are emptied and the status says why.
+    /// </summary>
+    private bool ShowPlayerPosition(PlayerData player)
+    {
         if (ApplyPosition(player.PlayerPosition))
         {
             return true;
         }
 
         X = Y = Z = string.Empty;
+        var message = _localizer.Format(LocKeys.Teleport_PositionUnreadable, player.Name);
+        if (StatusMessage != message)
+        {
+            // One reset can reach here twice, through the destination change and then directly.
+            SetStatus(StatusKind.Error, message);
+        }
+
         return false;
     }
 
-    private void ApplyPlayerPosition(PlayerData player)
+    private void ClearStatus()
     {
-        // A position the game did not write - a hand-edited or corrupt save. Leaving the boxes as
-        // they are is the whole fix: this runs from Load, so throwing here brought the app down
-        // after the file had already opened successfully (issue #37).
-        ApplyPosition(player.PlayerPosition);
+        StatusMessage = null;
+        StatusKind = StatusKind.Info;
     }
 
     /// <summary>Puts a save-file position into the X/Y/Z boxes, ignoring one it cannot read.</summary>
@@ -195,6 +206,8 @@ public sealed partial class TeleportViewModel(
 
     partial void OnSelectedPlanetIdChanged(string? value)
     {
+        // Whatever the status said was about the previous destination.
+        ClearStatus();
         OnPropertyChanged(nameof(IsCustomPlanetId));
         FilterLandmarks();
         AlignCoordinatesToDestination();
@@ -222,7 +235,7 @@ public sealed partial class TeleportViewModel(
 
         if (string.Equals(SelectedPlanetId, player.PlanetId, StringComparison.OrdinalIgnoreCase))
         {
-            ApplyPlayerPosition(player);
+            ShowPlayerPosition(player);
             return;
         }
 
@@ -279,9 +292,9 @@ public sealed partial class TeleportViewModel(
             return;
         }
 
+        ClearStatus();
         if (!ResetToPlayer(player))
         {
-            SetStatus(StatusKind.Error, _localizer.Format(LocKeys.Teleport_PositionUnreadable, player.Name));
             return;
         }
 
@@ -372,7 +385,7 @@ public sealed partial class TeleportViewModel(
             SelectedPlanetId = _otherPlanetOption;
         }
 
-        StatusMessage = null;
+        ClearStatus();
         if (_workspace.Current is { } save)
         {
             _allLandmarks.Clear();

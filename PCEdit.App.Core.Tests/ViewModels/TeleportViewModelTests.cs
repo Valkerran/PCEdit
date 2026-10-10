@@ -157,30 +157,15 @@ public sealed class TeleportViewModelTests
     [Fact]
     public void MultiplayerSave_EditsOnlyTheSelectedPlayer_AndFormFollowsThePlayer()
     {
-        // Alice (id 1) on Prime, Bob (id 2) on Aqualis.
-        var save = WorkspaceFixtures.CreateMultiWorld();
-        var ai = save.Players.FindIndex(p => p.Name == "Alice");
-        var bi = save.Players.FindIndex(p => p.Name == "Bob");
-        save.Players[ai] = save.Players[ai] with { PlayerPosition = "1,1,1" };
-        save.Players[bi] = save.Players[bi] with { PlayerPosition = "2,2,2" };
-
-        var store = new FakeSaveFileStore();
-        store.Seed(Path, save);
-        var localizer = new Localizer();
-        var ws = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
-        ws.Load(Path);
-        var vm = new TeleportViewModel(ws, new FakeScreenReaderAnnouncer(), localizer, new FakeNavigationService(), new PlanetIndex(ws));
-        vm.Load();
+        var (vm, ws) = CreateMultiplayer();
 
         // Form starts on the first player.
         Assert.Equal("Alice", vm.SelectedPlayer!.Name);
-        Assert.Equal("Prime", vm.SelectedPlanetId);
-        Assert.Equal(("1", "1", "1"), (vm.X, vm.Y, vm.Z));
+        AssertFormShows(vm, "Prime", "1");
 
         // Switch to Bob — the whole form re-initialises from Bob.
         vm.SelectedPlayer = vm.Players.Single(p => p.Name == "Bob");
-        Assert.Equal("Aqualis", vm.SelectedPlanetId);
-        Assert.Equal(("2", "2", "2"), (vm.X, vm.Y, vm.Z));
+        AssertFormShows(vm, "Aqualis", "2");
 
         // Teleport Bob to Prime.
         vm.SelectedPlanetId = "Prime";
@@ -194,10 +179,35 @@ public sealed class TeleportViewModelTests
 
         // Back to Alice — form shows Alice's still-unchanged state.
         vm.SelectedPlayer = vm.Players.Single(p => p.Name == "Alice");
-        Assert.Equal("Prime", vm.SelectedPlanetId);
-        Assert.Equal(("1", "1", "1"), (vm.X, vm.Y, vm.Z));
+        AssertFormShows(vm, "Prime", "1");
 
         Assert.True(vm.HasMultiplePlayers);
+    }
+
+    /// <summary>The form's world, and the same value in each of X, Y and Z.</summary>
+    private static void AssertFormShows(TeleportViewModel vm, string planetId, string coordinate)
+    {
+        Assert.Equal(planetId, vm.SelectedPlanetId);
+        Assert.Equal((coordinate, coordinate, coordinate), (vm.X, vm.Y, vm.Z));
+    }
+
+    /// <summary>Alice (id 1) on Prime at 1,1,1 and Bob (id 2) on Aqualis at 2,2,2.</summary>
+    private static (TeleportViewModel Vm, SaveFileWorkspace Workspace) CreateMultiplayer()
+    {
+        var save = WorkspaceFixtures.CreateMultiWorld();
+        var ai = save.Players.FindIndex(p => p.Name == "Alice");
+        var bi = save.Players.FindIndex(p => p.Name == "Bob");
+        save.Players[ai] = save.Players[ai] with { PlayerPosition = "1,1,1" };
+        save.Players[bi] = save.Players[bi] with { PlayerPosition = "2,2,2" };
+
+        var store = new FakeSaveFileStore();
+        store.Seed(Path, save);
+        var localizer = new Localizer();
+        var ws = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
+        ws.Load(Path);
+        var vm = new TeleportViewModel(ws, new FakeScreenReaderAnnouncer(), localizer, new FakeNavigationService(), new PlanetIndex(ws));
+        vm.Load();
+        return (vm, ws);
     }
 
     [Fact]
@@ -407,5 +417,77 @@ public sealed class TeleportViewModelTests
         vm.Relocalize();
 
         Assert.Null(vm.StatusMessage);
+    }
+
+    private static void AddAqualisWithAnArrivalPod(PlanetCrafterSaveFile save)
+    {
+        save.Terraformations.Add(new PlanetTerraformation { PlanetId = "Aqualis" });
+        save.WorldObjects.Add(new WorldObject
+        {
+            Id = 503, GId = "EscapePodInterplanetary", Position = "42,0,42", Planet = PlanetHash.Of("Aqualis")
+        });
+    }
+
+    // Picking another world fills in its arrival point. Coming back to the player's own world
+    // must not leave those coordinates in the boxes when the player's position cannot be read:
+    // Teleport would write the other world's coordinates onto this one (issue #92).
+    [Fact]
+    public void ReturningToThePlayersWorld_WithAnUnreadablePosition_EmptiesTheCoordinates_AndSaysWhy()
+    {
+        var (vm, _, localizer) = CreateWithWorkspace(save =>
+        {
+            AddAqualisWithAnArrivalPod(save);
+            save.Players[0] = save.Players[0] with { PlayerPosition = "not,a,position" };
+        });
+        vm.SelectedPlanetId = "Aqualis";
+        Assert.Equal("42", vm.X);
+
+        vm.SelectedPlanetId = "Prime";
+
+        Assert.Equal((string.Empty, string.Empty, string.Empty), (vm.X, vm.Y, vm.Z));
+        Assert.Equal(StatusKind.Error, vm.StatusKind);
+        Assert.Equal(localizer.Format(LocKeys.Teleport_PositionUnreadable, "Alice"), vm.StatusMessage);
+    }
+
+    // "Aimed at Aqualis" used to stay on screen after the destination went back to the player's
+    // own world and the coordinates with it.
+    [Fact]
+    public void ChangingTheDestination_ClearsTheStatusAboutThePreviousOne()
+    {
+        var (vm, _, _) = CreateWithWorkspace(AddAqualisWithAnArrivalPod);
+        vm.SelectedPlanetId = "Aqualis";
+        Assert.NotNull(vm.StatusMessage);
+
+        vm.SelectedPlanetId = "Prime";
+
+        Assert.Null(vm.StatusMessage);
+        Assert.Equal("0", vm.X);
+    }
+
+    // What the real dropdown does when its selected entry is replaced: it clears the selection
+    // (writing null back) before the view model assigns the translated entry. A headless run of
+    // the real view showed this order; the test reproduces it, since no view is loaded here.
+    [Fact]
+    public void Relocalize_WhenTheDropdownClearsItsSelectionFirst_StillKeepsTheCustomPlanetAndCoordinates()
+    {
+        var (vm, workspace, localizer) = CreateWithWorkspace();
+        vm.SelectedPlanetId = localizer[LocKeys.Teleport_OtherPlanet];
+        vm.CustomPlanetId = "Aqualis";
+        vm.X = vm.Y = vm.Z = "7";
+        vm.PlanetIdOptions.CollectionChanged += (_, change) =>
+        {
+            if (change.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Replace)
+            {
+                vm.SelectedPlanetId = null;
+            }
+        };
+
+        localizer.SetCulture("de");
+        vm.Relocalize();
+
+        Assert.True(vm.IsCustomPlanetId);
+        Assert.Equal(("7", "7", "7"), (vm.X, vm.Y, vm.Z));
+        vm.TeleportCommand.Execute(null);
+        Assert.Equal("Aqualis", workspace.Current!.Players.Single(p => p.Id == 1).PlanetId);
     }
 }

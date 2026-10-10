@@ -212,9 +212,11 @@ public sealed partial class MainWindowViewModel : ObservableObject
             }
         }
 
-        if (SelectedNavItem is not null)
+        // Only when the page on screen was dropped above. Show would otherwise reload a kept
+        // page that is behind the revision, which is the reload this method exists to avoid.
+        if (onScreen is { } destinationOnScreen && !_loadedAtRevision.ContainsKey(destinationOnScreen))
         {
-            Show(SelectedNavItem.Destination);
+            Show(destinationOnScreen);
         }
     }
 
@@ -251,6 +253,7 @@ public sealed partial class MainWindowViewModel : ObservableObject
     private void ReportPageLoadFailure(NavDestination destination, Exception ex)
     {
         System.Diagnostics.Trace.WriteLine($"Could not load the {destination} page: {ex}");
+        _loadedAtRevision.Remove(destination);
         PageError = _localizer[LocKeys.Shell_PageLoadFailed];
         _announcer.Announce(_localizer.Format(LocKeys.Announce_ErrorPrefix, PageError));
     }
