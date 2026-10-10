@@ -51,7 +51,7 @@ public sealed class GameNumberFormatTests
     [InlineData("1e400")]
     public void BadNumber_ErrorNamesTheKey(string value)
     {
-        var json = $$"""{"planetId":"Prime","unitOxygenLevel":{{value}}}""";
+        var json = $$"""{"planetId":"Prime","unitOxygenLevel":{{value}},"unitHeatLevel":0.0,"unitPressureLevel":0.0,"unitPlantsLevel":0.0,"unitInsectsLevel":0.0,"unitAnimalsLevel":0.0,"unitPurificationLevel":-1.0}""";
 
         var exception = Assert.Throws<InvalidDataException>(() => _serializer.Deserialize<PlanetTerraformation>(json, sectionIndex: 1, recordIndex: 0));
 
@@ -63,7 +63,7 @@ public sealed class GameNumberFormatTests
     [InlineData("\"12\"")]
     public void NonFiniteOrNonNumericValue_IsRejected(string value)
     {
-        var json = $$"""{"planetId":"Prime","unitOxygenLevel":{{value}}}""";
+        var json = $$"""{"planetId":"Prime","unitOxygenLevel":{{value}},"unitHeatLevel":0.0,"unitPressureLevel":0.0,"unitPlantsLevel":0.0,"unitInsectsLevel":0.0,"unitAnimalsLevel":0.0,"unitPurificationLevel":-1.0}""";
 
         Assert.Throws<InvalidDataException>(() => _serializer.Deserialize<PlanetTerraformation>(json, sectionIndex: 1));
     }

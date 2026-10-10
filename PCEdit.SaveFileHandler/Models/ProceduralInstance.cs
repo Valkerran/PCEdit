@@ -5,12 +5,16 @@ namespace PCEdit.SaveFileHandler.Models;
 
 public sealed record ProceduralInstance
 {
+    [JsonRequired]
     public int Owner { get; init; }
 
+    [JsonRequired]
     public int Planet { get; init; }
 
+    [JsonRequired]
     public int Index { get; init; }
 
+    [JsonRequired]
     public int Seed { get; init; }
 
     [JsonPropertyName("pos")]
@@ -19,6 +23,7 @@ public sealed record ProceduralInstance
     [JsonPropertyName("rot")]
     public required string Rotation { get; init; }
 
+    [JsonRequired]
     [JsonPropertyName("wrecksWOGenerated")]
     public bool WrecksWorldObjectsGenerated { get; init; }
 
@@ -28,6 +33,7 @@ public sealed record ProceduralInstance
     [JsonPropertyName("woIdsDropped")]
     public required string WorldObjectIdsDropped { get; init; }
 
+    [JsonRequired]
     public int Version { get; init; }
 
     /// <summary>

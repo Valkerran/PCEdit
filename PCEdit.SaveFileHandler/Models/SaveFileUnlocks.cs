@@ -5,14 +5,18 @@ namespace PCEdit.SaveFileHandler.Models;
 
 public sealed record SaveFileUnlocks
 {
+    [JsonRequired]
     public int TerraTokens { get; init; }
 
+    [JsonRequired]
     public int AllTimeTerraTokens { get; init; }
 
     public required string UnlockedGroups { get; init; }
 
+    [JsonRequired]
     public int OpenedInstanceSeed { get; init; }
 
+    [JsonRequired]
     public int OpenedInstanceTimeLeft { get; init; }
 
     /// <summary>

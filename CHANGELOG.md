@@ -4,6 +4,38 @@ What changed in each release of PCEdit. Downloads for every version are on the
 [Releases page](https://github.com/Valkerran/PCEdit/releases); the newest is on the
 [latest release](https://github.com/Valkerran/PCEdit/releases/latest) page.
 
+## v1.7.3
+
+Three more ways a damaged save could be opened and quietly changed are closed. As in v1.7.2,
+PCEdit now refuses such a file and says which section, record and key is at fault.
+
+- **Changed: a record that names the same key twice is refused.** PCEdit used to keep the last
+  value and drop the other when you saved.
+  ([#126](https://github.com/Valkerran/PCEdit/issues/126))
+
+- **Changed: an empty (`null`) value is refused in any key PCEdit knows.** v1.7.2 did this for
+  the keys the game always writes; an optional key holding `null` was still read as if the key
+  were not there, and left out when you saved.
+  ([#125](https://github.com/Valkerran/PCEdit/issues/125))
+
+- **Changed: a record missing a value the game always writes is refused.** PCEdit used to fill
+  in `0` (or "off" for a yes/no setting) and write it back, so the save gained a value it never
+  had. For a planet's purification
+  level that mattered: `0` says the planet has a purification stage, where the game uses `-1`
+  for a planet that has none.
+  ([#127](https://github.com/Valkerran/PCEdit/issues/127))
+
+- The game writes none of these. 30 real saves from Steam and Xbox / PC Game Pass (game versions
+  2.008 to 2.103, modded ones included) all still open and save back byte for byte. If PCEdit
+  refuses a save the game itself loads, please
+  [open an issue](https://github.com/Valkerran/PCEdit/issues) with the message it shows.
+
+- **If you have a save last played in a game version older than 2.008:** it has not been
+  checked, and may lack a value that later versions always write, in which case PCEdit will now
+  decline it. Load it in the current game and save it once, then open it in PCEdit.
+
+- Applies to every platform (Linux, Windows and macOS) alike. No new dependencies.
+
 ## v1.7.2
 
 PCEdit now keeps more of a save exactly as the game wrote it, and refuses a damaged save with

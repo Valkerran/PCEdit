@@ -7,18 +7,25 @@ public sealed record PlanetTerraformation
 {
     public required string PlanetId { get; init; }
 
+    [JsonRequired]
     public GameNumber UnitOxygenLevel { get; init; }
 
+    [JsonRequired]
     public GameNumber UnitHeatLevel { get; init; }
 
+    [JsonRequired]
     public GameNumber UnitPressureLevel { get; init; }
 
+    [JsonRequired]
     public GameNumber UnitPlantsLevel { get; init; }
 
+    [JsonRequired]
     public GameNumber UnitInsectsLevel { get; init; }
 
+    [JsonRequired]
     public GameNumber UnitAnimalsLevel { get; init; }
 
+    [JsonRequired]
     public GameNumber UnitPurificationLevel { get; init; }
 
     /// <summary>
