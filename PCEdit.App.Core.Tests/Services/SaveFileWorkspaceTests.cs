@@ -374,4 +374,19 @@ public sealed class SaveFileWorkspaceTests
 
         Assert.Throws<InvalidOperationException>(() => workspace.GrantTerraTokens(12345, 10));
     }
+
+    // The unlocks were updated and the file marked dirty before the missing player was noticed,
+    // so a stale id left half a grant behind (issue #89).
+    [Fact]
+    public void GrantTerraTokens_UnknownPlayer_ChangesNothing()
+    {
+        var (workspace, _) = CreateLoadedWorkspace();
+        var before = workspace.Current!.Unlocks;
+
+        Assert.Throws<InvalidOperationException>(() => workspace.GrantTerraTokens(999, 5));
+
+        Assert.Equal(before.TerraTokens, workspace.Current!.Unlocks.TerraTokens);
+        Assert.Equal(before.AllTimeTerraTokens, workspace.Current.Unlocks.AllTimeTerraTokens);
+        Assert.False(workspace.IsDirty);
+    }
 }

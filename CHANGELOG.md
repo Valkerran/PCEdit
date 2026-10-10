@@ -4,6 +4,44 @@ What changed in each release of PCEdit. Downloads for every version are on the
 [Releases page](https://github.com/Valkerran/PCEdit/releases); the newest is on the
 [latest release](https://github.com/Valkerran/PCEdit/releases/latest) page.
 
+## v1.7.4
+
+Numbers you type now mean exactly what they show, or PCEdit says why not.
+
+- **Fixed: a comma in a number was silently misread.** Typing `-120,5` as a Teleport
+  coordinate moved the player to `-1205`, and a terraform level of `1,5` was saved as `15`,
+  both with a success message. PCEdit shows and reads numbers with a dot, whatever language it
+  is set to; a number with a comma is now refused, and the message says to use a dot (for
+  example `12.5`). If you teleported a player or set a level using a comma in an earlier
+  version, check the value: it may be ten or more times what you meant.
+  ([#72](https://github.com/Valkerran/PCEdit/issues/72))
+
+- **Fixed: terraform levels can no longer be set below zero.** In particular, typing `-1` for
+  purification made that row disappear for good the next time the save was opened.
+
+- **Fixed: Teleport could use coordinates or a world you did not choose.** If a player's saved
+  position cannot be read, the X, Y and Z boxes are now emptied and PCEdit says so, instead of
+  keeping another player's or another world's numbers and reporting success. Reopening the
+  page always resets the form to the selected player. Spaces around a planet id you type
+  yourself are ignored.
+  ([#92](https://github.com/Valkerran/PCEdit/issues/92),
+  [#93](https://github.com/Valkerran/PCEdit/issues/93),
+  [#97](https://github.com/Valkerran/PCEdit/issues/97))
+
+- **Fixed: changing the language no longer throws away what you were typing.** Terraform
+  levels, Teleport coordinates and a terra-token amount you had entered but not yet applied
+  used to vanish when you switched language.
+  ([#94](https://github.com/Valkerran/PCEdit/issues/94))
+
+- **Fixed:** granting terra tokens to a player that is no longer in the save changed the
+  balance and then failed; it now changes nothing.
+  ([#89](https://github.com/Valkerran/PCEdit/issues/89))
+
+- The changed and new messages are machine-translated into the 14 other languages PCEdit ships.
+
+- Applies to every platform (Linux, Windows and macOS) alike. No new dependencies, and no change
+  to how PCEdit reads or writes saves.
+
 ## v1.7.3
 
 Three more ways a damaged save could be opened and quietly changed are closed. As in v1.7.2,

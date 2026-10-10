@@ -166,4 +166,20 @@ public sealed class LocalizationCatalogTests
             Assert.Contains(Localizer.SupportedLocales, l => l.CultureName == culture);
         }
     }
+
+    // The three "not a number" messages must tell the user how to fix it, in every language; the
+    // example itself is language-neutral, so it can be required verbatim (issue #72).
+    [Theory]
+    [InlineData(LocKeys.Teleport_InvalidCoords)]
+    [InlineData(LocKeys.Terraform_InvalidLevels)]
+    [InlineData(LocKeys.Terraform_InvalidPurification)]
+    public void NumberErrorMessages_ShowTheExpectedFormat_InEveryLanguage(string key)
+    {
+        var localizer = new Localizer();
+        foreach (var locale in Localizer.SupportedLocales)
+        {
+            localizer.SetCulture(locale.CultureName);
+            Assert.Contains("12.5", localizer[key]);
+        }
+    }
 }

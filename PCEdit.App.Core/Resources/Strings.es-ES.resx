@@ -111,8 +111,8 @@
   <data name="Terraform_Purification" xml:space="preserve"><value>Purificación</value></data>
   <data name="Terraform_HintCollapsed" xml:space="preserve"><value>Contraído. Actívalo para expandir.</value></data>
   <data name="Terraform_HintExpanded" xml:space="preserve"><value>Expandido. Actívalo para contraer.</value></data>
-  <data name="Terraform_InvalidLevels" xml:space="preserve"><value>Uno o más niveles de terraformación no son un número válido.</value></data>
-  <data name="Terraform_InvalidPurification" xml:space="preserve"><value>El nivel de purificación no es un número válido.</value></data>
+  <data name="Terraform_InvalidLevels" xml:space="preserve"><value>Cada nivel de terraformación debe ser un número igual o mayor que 0. Usa un punto para los decimales, por ejemplo 12.5.</value></data>
+  <data name="Terraform_InvalidPurification" xml:space="preserve"><value>El nivel de purificación debe ser un número igual o mayor que 0. Usa un punto para los decimales, por ejemplo 12.5.</value></data>
   <data name="Terraform_Updated" xml:space="preserve"><value>Niveles de terraformación actualizados para {0}.</value></data>
   <data name="Inventories_Title" xml:space="preserve"><value>Inventarios</value></data>
   <data name="Inventories_Heading" xml:space="preserve"><value>Inventarios</value></data>
@@ -236,6 +236,7 @@
   <data name="Teleport_Teleport" xml:space="preserve"><value>Teletransportar</value></data>
   <data name="Teleport_UseCurrentPosition" xml:space="preserve"><value>Restablecer a la posición actual del jugador</value></data>
   <data name="Teleport_PositionReset" xml:space="preserve"><value>Posición restablecida a la ubicación actual de {0}.</value></data>
+  <data name="Teleport_PositionUnreadable" xml:space="preserve"><value>No se puede leer la posición guardada de {0}. Introduce X, Y y Z manualmente.</value></data>
   <data name="Teleport_LandmarksHeading" xml:space="preserve"><value>Puntos de referencia</value></data>
   <data name="Teleport_LandmarksHelp" xml:space="preserve"><value>Elige un punto de referencia para rellenar X / Y / Z a partir de su posición.</value></data>
   <data name="Teleport_NoLandmarks" xml:space="preserve"><value>No hay puntos de referencia disponibles.</value></data>
@@ -245,7 +246,7 @@
   <data name="Teleport_PositionFromLandmark" xml:space="preserve"><value>Posición establecida desde {0}. X {1}, Y {2}, Z {3}.</value></data>
   <data name="Teleport_ChoosePlayer" xml:space="preserve"><value>Elige un jugador a teletransportar.</value></data>
   <data name="Teleport_ChoosePlanet" xml:space="preserve"><value>Introduce o elige un id. de planeta.</value></data>
-  <data name="Teleport_InvalidCoords" xml:space="preserve"><value>X, Y y Z deben ser números válidos.</value></data>
+  <data name="Teleport_InvalidCoords" xml:space="preserve"><value>X, Y y Z deben ser números. Usa un punto para los decimales, por ejemplo 12.5.</value></data>
   <data name="Teleport_Done" xml:space="preserve"><value>{0} teletransportado a {1} ({2}).</value></data>
   <data name="Teleport_LandmarkPlanetHash" xml:space="preserve"><value>hash del mundo {0}</value></data>
   <data name="Teleport_LandmarkNoPlanetHash" xml:space="preserve"><value>sin hash del mundo registrado</value></data>

@@ -14,7 +14,7 @@ public sealed partial class TeleportViewModel(
     IScreenReaderAnnouncer announcer,
     ILocalizer localizer,
     INavigationService navigation,
-    IPlanetIndex planetIndex) : ObservableObject, ILoadable
+    IPlanetIndex planetIndex) : ObservableObject, ILoadable, IRelocalizable
 {
     private readonly ISaveFileWorkspace _workspace = workspace;
     private readonly IScreenReaderAnnouncer _announcer = announcer;
@@ -22,7 +22,10 @@ public sealed partial class TeleportViewModel(
     private readonly INavigationService _navigation = navigation;
     private readonly IPlanetIndex _planetIndex = planetIndex;
 
-    private string OtherPlanetOption => _localizer[LocKeys.Teleport_OtherPlanet];
+    // The "Other…" entry as it stands in PlanetIdOptions. A field, not a lookup: comparing the
+    // selection with the current translation made a language change turn a custom-planet
+    // selection into a literal planet id (issue #93).
+    private string _otherPlanetOption = localizer[LocKeys.Teleport_OtherPlanet];
 
     public bool IsLoaded => _workspace.IsLoaded;
 
@@ -63,13 +66,13 @@ public sealed partial class TeleportViewModel(
     [ObservableProperty]
     private bool _showAllWorldLandmarks;
 
-    public bool IsCustomPlanetId => SelectedPlanetId == OtherPlanetOption;
+    public bool IsCustomPlanetId => SelectedPlanetId == _otherPlanetOption;
 
     /// <summary>A multiplayer save — the per-player / host-only caveat is worth showing.</summary>
     public bool HasMultiplePlayers => Players.Count > 1;
 
     /// <summary>Only worth offering the "all worlds" landmark toggle on a multi-world save.</summary>
-    public bool ShowWorldLandmarkFilter => PlanetIdOptions.Count(o => o != OtherPlanetOption) > 1;
+    public bool ShowWorldLandmarkFilter => PlanetIdOptions.Count(o => o != _otherPlanetOption) > 1;
 
     public void Load()
     {
@@ -98,13 +101,17 @@ public sealed partial class TeleportViewModel(
             PlanetIdOptions.Add(planetId);
         }
 
-        PlanetIdOptions.Add(OtherPlanetOption);
+        _otherPlanetOption = _localizer[LocKeys.Teleport_OtherPlanet];
+        PlanetIdOptions.Add(_otherPlanetOption);
         OnPropertyChanged(nameof(ShowWorldLandmarkFilter));
         OnPropertyChanged(nameof(HasMultiplePlayers));
 
         _allLandmarks.AddRange(FindLandmarks(save));
         FilterLandmarks();
 
+        // Cleared first: the option for the same player is equal to the one already selected, and
+        // an equal value would skip the change handler that resets the form (issue #93).
+        SelectedPlayer = null;
         SelectedPlayer = Players.FirstOrDefault();
     }
 
@@ -140,23 +147,47 @@ public sealed partial class TeleportViewModel(
             return;
         }
 
+        ClearStatus();
         ResetToPlayer(player);
     }
 
-    /// <summary>Points the world and X/Y/Z at where the player currently is.</summary>
-    private void ResetToPlayer(PlayerData player)
+    /// <summary>Points the world and X/Y/Z at where the player currently is. False when the
+    /// player's saved position cannot be read; the boxes are then emptied, because whatever they
+    /// held belongs to another player or world and must not be teleported to (issue #92).</summary>
+    private bool ResetToPlayer(PlayerData player)
     {
-        SelectedPlanetId = PlanetIdOptions.Contains(player.PlanetId) ? player.PlanetId : OtherPlanetOption;
+        SelectedPlanetId = PlanetIdOptions.Contains(player.PlanetId) ? player.PlanetId : _otherPlanetOption;
         CustomPlanetId = player.PlanetId;
-        ApplyPlayerPosition(player);
+        return ShowPlayerPosition(player);
     }
 
-    private void ApplyPlayerPosition(PlayerData player)
+    /// <summary>
+    /// Puts the player's saved position into X/Y/Z. A position the game did not write - a
+    /// hand-edited or corrupt save - must not bring the page down (issue #37), and must not leave
+    /// other coordinates standing either: the boxes are emptied and the status says why.
+    /// </summary>
+    private bool ShowPlayerPosition(PlayerData player)
     {
-        // A position the game did not write - a hand-edited or corrupt save. Leaving the boxes as
-        // they are is the whole fix: this runs from Load, so throwing here brought the app down
-        // after the file had already opened successfully (issue #37).
-        ApplyPosition(player.PlayerPosition);
+        if (ApplyPosition(player.PlayerPosition))
+        {
+            return true;
+        }
+
+        X = Y = Z = string.Empty;
+        var message = _localizer.Format(LocKeys.Teleport_PositionUnreadable, player.Name);
+        if (StatusMessage != message)
+        {
+            // One reset can reach here twice, through the destination change and then directly.
+            SetStatus(StatusKind.Error, message);
+        }
+
+        return false;
+    }
+
+    private void ClearStatus()
+    {
+        StatusMessage = null;
+        StatusKind = StatusKind.Info;
     }
 
     /// <summary>Puts a save-file position into the X/Y/Z boxes, ignoring one it cannot read.</summary>
@@ -175,6 +206,8 @@ public sealed partial class TeleportViewModel(
 
     partial void OnSelectedPlanetIdChanged(string? value)
     {
+        // Whatever the status said was about the previous destination.
+        ClearStatus();
         OnPropertyChanged(nameof(IsCustomPlanetId));
         FilterLandmarks();
         AlignCoordinatesToDestination();
@@ -202,7 +235,7 @@ public sealed partial class TeleportViewModel(
 
         if (string.Equals(SelectedPlanetId, player.PlanetId, StringComparison.OrdinalIgnoreCase))
         {
-            ApplyPlayerPosition(player);
+            ShowPlayerPosition(player);
             return;
         }
 
@@ -259,7 +292,12 @@ public sealed partial class TeleportViewModel(
             return;
         }
 
-        ResetToPlayer(player);
+        ClearStatus();
+        if (!ResetToPlayer(player))
+        {
+            return;
+        }
+
         SetStatus(StatusKind.Success, _localizer.Format(LocKeys.Teleport_PositionReset, SelectedPlayer.Name));
     }
 
@@ -275,16 +313,16 @@ public sealed partial class TeleportViewModel(
             return;
         }
 
-        var planetId = IsCustomPlanetId ? CustomPlanetId : SelectedPlanetId;
+        var planetId = (IsCustomPlanetId ? CustomPlanetId : SelectedPlanetId)?.Trim();
         if (string.IsNullOrWhiteSpace(planetId))
         {
             SetStatus(StatusKind.Error, _localizer[LocKeys.Teleport_ChoosePlanet]);
             return;
         }
 
-        if (!decimal.TryParse(X, NumberStyles.Number, CultureInfo.InvariantCulture, out var x) ||
-            !decimal.TryParse(Y, NumberStyles.Number, CultureInfo.InvariantCulture, out var y) ||
-            !decimal.TryParse(Z, NumberStyles.Number, CultureInfo.InvariantCulture, out var z))
+        if (!NumberInput.TryParseDecimal(X, out var x) ||
+            !NumberInput.TryParseDecimal(Y, out var y) ||
+            !NumberInput.TryParseDecimal(Z, out var z))
         {
             SetStatus(StatusKind.Error, _localizer[LocKeys.Teleport_InvalidCoords]);
             return;
@@ -329,4 +367,30 @@ public sealed partial class TeleportViewModel(
         planetId is not null ? planetId
         : planet is { } value ? _localizer.Format(LocKeys.Teleport_LandmarkPlanetHash, value)
         : _localizer[LocKeys.Teleport_LandmarkNoPlanetHash];
+
+    /// <summary>Swaps the translated "Other…" entry and the landmark labels; X/Y/Z, the custom
+    /// planet id and the selections stay as the user left them.</summary>
+    public void Relocalize()
+    {
+        var wasCustom = IsCustomPlanetId;
+        var index = PlanetIdOptions.IndexOf(_otherPlanetOption);
+        _otherPlanetOption = _localizer[LocKeys.Teleport_OtherPlanet];
+        if (index >= 0)
+        {
+            PlanetIdOptions[index] = _otherPlanetOption;
+        }
+
+        if (wasCustom)
+        {
+            SelectedPlanetId = _otherPlanetOption;
+        }
+
+        ClearStatus();
+        if (_workspace.Current is { } save)
+        {
+            _allLandmarks.Clear();
+            _allLandmarks.AddRange(FindLandmarks(save));
+            FilterLandmarks();
+        }
+    }
 }

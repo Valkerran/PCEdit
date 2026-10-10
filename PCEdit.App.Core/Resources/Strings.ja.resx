@@ -111,8 +111,8 @@
   <data name="Terraform_Purification" xml:space="preserve"><value>浄化</value></data>
   <data name="Terraform_HintCollapsed" xml:space="preserve"><value>折りたたみ中。展開するには有効化してください。</value></data>
   <data name="Terraform_HintExpanded" xml:space="preserve"><value>展開中。折りたたむには有効化してください。</value></data>
-  <data name="Terraform_InvalidLevels" xml:space="preserve"><value>1 つ以上のテラフォーミング値が有効な数値ではありません。</value></data>
-  <data name="Terraform_InvalidPurification" xml:space="preserve"><value>浄化値が有効な数値ではありません。</value></data>
+  <data name="Terraform_InvalidLevels" xml:space="preserve"><value>各テラフォーミング値は 0 以上の数値である必要があります。小数点にはピリオドを使用してください (例: 12.5)。</value></data>
+  <data name="Terraform_InvalidPurification" xml:space="preserve"><value>浄化値は 0 以上の数値である必要があります。小数点にはピリオドを使用してください (例: 12.5)。</value></data>
   <data name="Terraform_Updated" xml:space="preserve"><value>{0} のテラフォーミング値を更新しました。</value></data>
   <data name="Inventories_Title" xml:space="preserve"><value>インベントリ</value></data>
   <data name="Inventories_Heading" xml:space="preserve"><value>インベントリ</value></data>
@@ -236,6 +236,7 @@
   <data name="Teleport_Teleport" xml:space="preserve"><value>テレポート</value></data>
   <data name="Teleport_UseCurrentPosition" xml:space="preserve"><value>プレイヤーの現在位置に戻す</value></data>
   <data name="Teleport_PositionReset" xml:space="preserve"><value>位置を {0} の現在地にリセットしました。</value></data>
+  <data name="Teleport_PositionUnreadable" xml:space="preserve"><value>{0} の保存された位置を読み取れません。X、Y、Z を自分で入力してください。</value></data>
   <data name="Teleport_LandmarksHeading" xml:space="preserve"><value>ランドマーク</value></data>
   <data name="Teleport_LandmarksHelp" xml:space="preserve"><value>ランドマークを選ぶと、その位置から X / Y / Z が入力されます。</value></data>
   <data name="Teleport_NoLandmarks" xml:space="preserve"><value>利用できるランドマークがありません。</value></data>
@@ -245,7 +246,7 @@
   <data name="Teleport_PositionFromLandmark" xml:space="preserve"><value>{0} から位置を設定しました。X {1}、Y {2}、Z {3}。</value></data>
   <data name="Teleport_ChoosePlayer" xml:space="preserve"><value>テレポートするプレイヤーを選択してください。</value></data>
   <data name="Teleport_ChoosePlanet" xml:space="preserve"><value>惑星 ID を入力または選択してください。</value></data>
-  <data name="Teleport_InvalidCoords" xml:space="preserve"><value>X、Y、Z は有効な数値である必要があります。</value></data>
+  <data name="Teleport_InvalidCoords" xml:space="preserve"><value>X、Y、Z は数値である必要があります。小数点にはピリオドを使用してください (例: 12.5)。</value></data>
   <data name="Teleport_Done" xml:space="preserve"><value>{0} を {1} にテレポートしました（{2}）。</value></data>
   <data name="Teleport_LandmarkPlanetHash" xml:space="preserve"><value>ワールドハッシュ {0}</value></data>
   <data name="Teleport_LandmarkNoPlanetHash" xml:space="preserve"><value>ワールドハッシュは記録されていません</value></data>

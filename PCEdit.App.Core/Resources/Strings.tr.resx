@@ -111,8 +111,8 @@
   <data name="Terraform_Purification" xml:space="preserve"><value>Arıtma</value></data>
   <data name="Terraform_HintCollapsed" xml:space="preserve"><value>Daraltıldı. Genişletmek için etkinleştirin.</value></data>
   <data name="Terraform_HintExpanded" xml:space="preserve"><value>Genişletildi. Daraltmak için etkinleştirin.</value></data>
-  <data name="Terraform_InvalidLevels" xml:space="preserve"><value>Bir veya daha fazla terraform seviyesi geçerli bir sayı değil.</value></data>
-  <data name="Terraform_InvalidPurification" xml:space="preserve"><value>Arıtma seviyesi geçerli bir sayı değil.</value></data>
+  <data name="Terraform_InvalidLevels" xml:space="preserve"><value>Her terraform seviyesi 0 veya daha büyük bir sayı olmalıdır. Ondalıklar için nokta kullanın, örneğin 12.5.</value></data>
+  <data name="Terraform_InvalidPurification" xml:space="preserve"><value>Arıtma seviyesi 0 veya daha büyük bir sayı olmalıdır. Ondalıklar için nokta kullanın, örneğin 12.5.</value></data>
   <data name="Terraform_Updated" xml:space="preserve"><value>{0} için terraform seviyeleri güncellendi.</value></data>
   <data name="Inventories_Title" xml:space="preserve"><value>Envanterler</value></data>
   <data name="Inventories_Heading" xml:space="preserve"><value>Envanterler</value></data>
@@ -236,6 +236,7 @@
   <data name="Teleport_Teleport" xml:space="preserve"><value>Işınla</value></data>
   <data name="Teleport_UseCurrentPosition" xml:space="preserve"><value>Oyuncunun mevcut konumuna sıfırla</value></data>
   <data name="Teleport_PositionReset" xml:space="preserve"><value>Konum, {0} adlı oyuncunun mevcut konumuna sıfırlandı.</value></data>
+  <data name="Teleport_PositionUnreadable" xml:space="preserve"><value>{0} adlı oyuncunun kayıtlı konumu okunamıyor. X, Y ve Z değerlerini kendiniz girin.</value></data>
   <data name="Teleport_LandmarksHeading" xml:space="preserve"><value>Yer İşaretleri</value></data>
   <data name="Teleport_LandmarksHelp" xml:space="preserve"><value>X / Y / Z değerlerini konumundan doldurmak için bir işaret noktası seçin.</value></data>
   <data name="Teleport_NoLandmarks" xml:space="preserve"><value>Kullanılabilir yer işareti yok.</value></data>
@@ -245,7 +246,7 @@
   <data name="Teleport_PositionFromLandmark" xml:space="preserve"><value>Konum {0} ögesinden ayarlandı. X {1}, Y {2}, Z {3}.</value></data>
   <data name="Teleport_ChoosePlayer" xml:space="preserve"><value>Işınlanacak bir oyuncu seçin.</value></data>
   <data name="Teleport_ChoosePlanet" xml:space="preserve"><value>Bir gezegen kimliği girin veya seçin.</value></data>
-  <data name="Teleport_InvalidCoords" xml:space="preserve"><value>X, Y ve Z geçerli sayılar olmalıdır.</value></data>
+  <data name="Teleport_InvalidCoords" xml:space="preserve"><value>X, Y ve Z sayı olmalıdır. Ondalıklar için nokta kullanın, örneğin 12.5.</value></data>
   <data name="Teleport_Done" xml:space="preserve"><value>{0}, {1} gezegenine ışınlandı ({2}).</value></data>
   <data name="Teleport_LandmarkPlanetHash" xml:space="preserve"><value>dünya karması {0}</value></data>
   <data name="Teleport_LandmarkNoPlanetHash" xml:space="preserve"><value>dünya karması kaydedilmemiş</value></data>
