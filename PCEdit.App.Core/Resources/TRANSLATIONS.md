@@ -119,6 +119,10 @@ including those that normally write decimals with a comma: PCEdit shows and read
 dot, and telling the user so is the point of the message. Do not localize it to `12,5`;
 `LocalizationCatalogTests` requires the literal `12.5` in each.
 
+The Teleport fixes (issue #92: a player whose saved position cannot be read) added
+`Teleport_PositionUnreadable` — machine-translated, phrased to match each language's existing
+`Teleport_PositionReset` (the same way of referring to the player, `{0}`).
+
 | Culture | Language | Reviewed |
 |---|---|---|
 | en-US | English (United States) | n/a (source) |

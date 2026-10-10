@@ -236,6 +236,7 @@
   <data name="Teleport_Teleport" xml:space="preserve"><value>Teleport</value></data>
   <data name="Teleport_UseCurrentPosition" xml:space="preserve"><value>Reset to player's current position</value></data>
   <data name="Teleport_PositionReset" xml:space="preserve"><value>Position reset to {0}'s current location.</value></data>
+  <data name="Teleport_PositionUnreadable" xml:space="preserve"><value>{0}'s saved position can't be read. Enter X, Y and Z yourself.</value></data>
   <data name="Teleport_LandmarksHeading" xml:space="preserve"><value>Landmarks</value></data>
   <data name="Teleport_LandmarksHelp" xml:space="preserve"><value>Pick a landmark to fill X / Y / Z from its position.</value></data>
   <data name="Teleport_NoLandmarks" xml:space="preserve"><value>No landmarks available.</value></data>

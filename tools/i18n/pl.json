@@ -200,6 +200,7 @@
   "SelectInv_Search": "Szukaj miejsc docelowych według nazwy lub ID",
   "Teleport_UseCurrentPosition": "Przywróć do bieżącej pozycji gracza",
   "Teleport_PositionReset": "Pozycja przywrócona do bieżącej lokalizacji gracza {0}.",
+  "Teleport_PositionUnreadable": "Nie można odczytać zapisanej pozycji gracza {0}. Wprowadź X, Y i Z samodzielnie.",
   "Inventories_LogisticsSummary": "Popyt {0} · Podaż {1} · Priorytet {2}",
   "Inventories_EditLogistics": "Popyt i podaż…",
   "Inventories_EditLogisticsA11y": "Edytuj grupy popytu i podaży dla {0}",

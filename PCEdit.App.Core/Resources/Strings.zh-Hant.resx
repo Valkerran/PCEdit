@@ -236,6 +236,7 @@
   <data name="Teleport_Teleport" xml:space="preserve"><value>傳送</value></data>
   <data name="Teleport_UseCurrentPosition" xml:space="preserve"><value>重設為玩家目前位置</value></data>
   <data name="Teleport_PositionReset" xml:space="preserve"><value>位置已重設為 {0} 的目前位置。</value></data>
+  <data name="Teleport_PositionUnreadable" xml:space="preserve"><value>無法讀取 {0} 的已儲存位置。請自行輸入 X、Y 和 Z。</value></data>
   <data name="Teleport_LandmarksHeading" xml:space="preserve"><value>地標</value></data>
   <data name="Teleport_LandmarksHelp" xml:space="preserve"><value>選擇一個地標，以其位置填入 X / Y / Z。</value></data>
   <data name="Teleport_NoLandmarks" xml:space="preserve"><value>沒有可用的地標。</value></data>

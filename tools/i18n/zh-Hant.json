@@ -200,6 +200,7 @@
   "SelectInv_Search": "依名稱或 ID 搜尋目的地",
   "Teleport_UseCurrentPosition": "重設為玩家目前位置",
   "Teleport_PositionReset": "位置已重設為 {0} 的目前位置。",
+  "Teleport_PositionUnreadable": "無法讀取 {0} 的已儲存位置。請自行輸入 X、Y 和 Z。",
   "Inventories_LogisticsSummary": "需求 {0} · 供應 {1} · 優先順序 {2}",
   "Inventories_EditLogistics": "需求與供應…",
   "Inventories_EditLogisticsA11y": "編輯 {0} 的需求與供應群組",

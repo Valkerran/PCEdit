@@ -200,6 +200,7 @@
   "SelectInv_Search": "Hedefleri ada veya kimliğe göre ara",
   "Teleport_UseCurrentPosition": "Oyuncunun mevcut konumuna sıfırla",
   "Teleport_PositionReset": "Konum, {0} adlı oyuncunun mevcut konumuna sıfırlandı.",
+  "Teleport_PositionUnreadable": "{0} adlı oyuncunun kayıtlı konumu okunamıyor. X, Y ve Z değerlerini kendiniz girin.",
   "Inventories_LogisticsSummary": "Talep {0} · Arz {1} · Öncelik {2}",
   "Inventories_EditLogistics": "Talep ve arz…",
   "Inventories_EditLogisticsA11y": "{0} için talep ve arz gruplarını düzenle",

@@ -236,6 +236,7 @@
   <data name="Teleport_Teleport" xml:space="preserve"><value>Işınla</value></data>
   <data name="Teleport_UseCurrentPosition" xml:space="preserve"><value>Oyuncunun mevcut konumuna sıfırla</value></data>
   <data name="Teleport_PositionReset" xml:space="preserve"><value>Konum, {0} adlı oyuncunun mevcut konumuna sıfırlandı.</value></data>
+  <data name="Teleport_PositionUnreadable" xml:space="preserve"><value>{0} adlı oyuncunun kayıtlı konumu okunamıyor. X, Y ve Z değerlerini kendiniz girin.</value></data>
   <data name="Teleport_LandmarksHeading" xml:space="preserve"><value>Yer İşaretleri</value></data>
   <data name="Teleport_LandmarksHelp" xml:space="preserve"><value>X / Y / Z değerlerini konumundan doldurmak için bir işaret noktası seçin.</value></data>
   <data name="Teleport_NoLandmarks" xml:space="preserve"><value>Kullanılabilir yer işareti yok.</value></data>

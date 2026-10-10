@@ -99,6 +99,7 @@ public static class LocKeys
 
     public const string Teleport_PositionFromLandmark = "Teleport_PositionFromLandmark";
     public const string Teleport_PositionReset = "Teleport_PositionReset";
+    public const string Teleport_PositionUnreadable = "Teleport_PositionUnreadable";
     public const string Teleport_ChoosePlayer = "Teleport_ChoosePlayer";
     public const string Teleport_ChoosePlanet = "Teleport_ChoosePlanet";
     public const string Teleport_InvalidCoords = "Teleport_InvalidCoords";

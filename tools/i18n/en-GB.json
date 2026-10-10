@@ -200,6 +200,7 @@
   "SelectInv_Search": "Search destinations by name or ID",
   "Teleport_UseCurrentPosition": "Reset to player's current position",
   "Teleport_PositionReset": "Position reset to {0}'s current location.",
+  "Teleport_PositionUnreadable": "{0}'s saved position can't be read. Enter X, Y and Z yourself.",
   "Inventories_LogisticsSummary": "Demand {0} · Supply {1} · Priority {2}",
   "Inventories_EditLogistics": "Demand & supply…",
   "Inventories_EditLogisticsA11y": "Edit demand and supply groups for {0}",

@@ -269,4 +269,93 @@ public sealed class TeleportViewModelTests
 
         Assert.Equal($"{writtenX},1,1", workspace.Current!.Players.Single(p => p.Id == 1).PlayerPosition);
     }
+
+    // " Aqualis " used to be written as typed and matched no planet (issue #97).
+    [Fact]
+    public void Teleport_CustomPlanetId_IsTrimmed()
+    {
+        var (vm, workspace, localizer) = CreateWithWorkspace();
+        vm.SelectedPlanetId = localizer[LocKeys.Teleport_OtherPlanet];
+        vm.CustomPlanetId = " Aqualis ";
+        vm.X = vm.Y = vm.Z = "1";
+
+        vm.TeleportCommand.Execute(null);
+
+        Assert.Equal("Aqualis", workspace.Current!.Players.Single(p => p.Id == 1).PlanetId);
+    }
+
+    // Load() assigned a player option equal to the one already selected, so the change handler
+    // never ran and the form kept whatever was in it (issue #93).
+    [Fact]
+    public void Load_Again_ResetsTheFormToThePlayer()
+    {
+        var (vm, _, _) = CreateWithWorkspace();
+        vm.X = "999";
+        vm.SelectedPlanetId = "Somewhere";
+
+        vm.Load();
+
+        Assert.Equal("0", vm.X);
+        Assert.Equal("Prime", vm.SelectedPlanetId);
+    }
+
+    // IsCustomPlanetId compared the selection with the *current* translation of "Other…", so a
+    // language change turned a custom-planet selection into a literal planet id (issue #93).
+    [Fact]
+    public void IsCustomPlanetId_DoesNotDependOnTheCurrentLanguage()
+    {
+        var (vm, _, localizer) = CreateWithWorkspace();
+        vm.SelectedPlanetId = localizer[LocKeys.Teleport_OtherPlanet];
+
+        localizer.SetCulture("de");
+
+        Assert.True(vm.IsCustomPlanetId);
+    }
+
+    // The boxes used to keep whatever they held - another player's or another world's
+    // coordinates - and "Use current position" still reported success (issue #92).
+    [Fact]
+    public void Load_PlayerWithAnUnreadablePosition_EmptiesTheCoordinates_AndSaysWhy()
+    {
+        var (vm, _, localizer) = CreateWithWorkspace(save =>
+            save.Players[0] = save.Players[0] with { PlayerPosition = "not,a,position" });
+
+        Assert.Equal(string.Empty, vm.X);
+        Assert.Equal(string.Empty, vm.Y);
+        Assert.Equal(string.Empty, vm.Z);
+        Assert.Equal(StatusKind.Error, vm.StatusKind);
+        Assert.Equal(localizer.Format(LocKeys.Teleport_PositionUnreadable, "Alice"), vm.StatusMessage);
+    }
+
+    [Fact]
+    public void UseCurrentPosition_WithAnUnreadablePosition_ReportsAnError_AndCannotBeTeleportedTo()
+    {
+        var (vm, workspace, localizer) = CreateWithWorkspace(save =>
+            save.Players[0] = save.Players[0] with { PlayerPosition = "not,a,position" });
+        vm.X = vm.Y = vm.Z = "42";
+
+        vm.UseCurrentPositionCommand.Execute(null);
+
+        Assert.Equal(StatusKind.Error, vm.StatusKind);
+        Assert.Equal(localizer.Format(LocKeys.Teleport_PositionUnreadable, "Alice"), vm.StatusMessage);
+        Assert.Equal(string.Empty, vm.X);
+
+        vm.TeleportCommand.Execute(null);
+
+        Assert.Equal("not,a,position", workspace.Current!.Players.Single(p => p.Id == 1).PlayerPosition);
+        Assert.False(workspace.IsDirty);
+    }
+
+    [Fact]
+    public void SelectingAnotherPlayer_ClearsThePreviousStatus()
+    {
+        var (vm, _, _) = CreateWithWorkspace(save =>
+            save.Players[0] = save.Players[0] with { PlayerPosition = "not,a,position" });
+        Assert.Equal(StatusKind.Error, vm.StatusKind);
+
+        vm.SelectedPlayer = vm.Players[1]; // Bob's position is readable
+
+        Assert.Null(vm.StatusMessage);
+        Assert.Equal("0", vm.X);
+    }
 }

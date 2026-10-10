@@ -236,6 +236,7 @@
   <data name="Teleport_Teleport" xml:space="preserve"><value>Teletrasporta</value></data>
   <data name="Teleport_UseCurrentPosition" xml:space="preserve"><value>Ripristina alla posizione attuale del giocatore</value></data>
   <data name="Teleport_PositionReset" xml:space="preserve"><value>Posizione ripristinata alla posizione attuale di {0}.</value></data>
+  <data name="Teleport_PositionUnreadable" xml:space="preserve"><value>Impossibile leggere la posizione salvata di {0}. Inserisci X, Y e Z manualmente.</value></data>
   <data name="Teleport_LandmarksHeading" xml:space="preserve"><value>Punti di riferimento</value></data>
   <data name="Teleport_LandmarksHelp" xml:space="preserve"><value>Scegli un punto di riferimento per compilare X / Y / Z dalla sua posizione.</value></data>
   <data name="Teleport_NoLandmarks" xml:space="preserve"><value>Nessun punto di riferimento disponibile.</value></data>

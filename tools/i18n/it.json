@@ -200,6 +200,7 @@
   "SelectInv_Search": "Cerca destinazioni per nome o ID",
   "Teleport_UseCurrentPosition": "Ripristina alla posizione attuale del giocatore",
   "Teleport_PositionReset": "Posizione ripristinata alla posizione attuale di {0}.",
+  "Teleport_PositionUnreadable": "Impossibile leggere la posizione salvata di {0}. Inserisci X, Y e Z manualmente.",
   "Inventories_LogisticsSummary": "Domanda {0} · Offerta {1} · Priorità {2}",
   "Inventories_EditLogistics": "Domanda e offerta…",
   "Inventories_EditLogisticsA11y": "Modifica i gruppi di domanda e offerta di {0}",

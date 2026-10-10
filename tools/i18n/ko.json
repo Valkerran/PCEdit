@@ -200,6 +200,7 @@
   "SelectInv_Search": "이름 또는 ID로 대상 검색",
   "Teleport_UseCurrentPosition": "플레이어의 현재 위치로 초기화",
   "Teleport_PositionReset": "위치를 {0}의 현재 위치로 초기화했습니다.",
+  "Teleport_PositionUnreadable": "{0}의 저장된 위치를 읽을 수 없습니다. X, Y, Z를 직접 입력하세요.",
   "Inventories_LogisticsSummary": "수요 {0} · 공급 {1} · 우선순위 {2}",
   "Inventories_EditLogistics": "수요 및 공급…",
   "Inventories_EditLogisticsA11y": "{0}의 수요 및 공급 그룹 편집",

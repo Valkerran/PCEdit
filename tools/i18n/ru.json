@@ -200,6 +200,7 @@
   "SelectInv_Search": "Поиск мест назначения по имени или ID",
   "Teleport_UseCurrentPosition": "Сбросить к текущей позиции игрока",
   "Teleport_PositionReset": "Позиция сброшена к текущему местоположению игрока {0}.",
+  "Teleport_PositionUnreadable": "Не удалось прочитать сохранённую позицию игрока {0}. Введите X, Y и Z вручную.",
   "Inventories_LogisticsSummary": "Спрос {0} · Поставка {1} · Приоритет {2}",
   "Inventories_EditLogistics": "Спрос и поставка…",
   "Inventories_EditLogisticsA11y": "Изменить группы спроса и поставки для {0}",

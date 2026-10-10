@@ -236,6 +236,7 @@
   <data name="Teleport_Teleport" xml:space="preserve"><value>テレポート</value></data>
   <data name="Teleport_UseCurrentPosition" xml:space="preserve"><value>プレイヤーの現在位置に戻す</value></data>
   <data name="Teleport_PositionReset" xml:space="preserve"><value>位置を {0} の現在地にリセットしました。</value></data>
+  <data name="Teleport_PositionUnreadable" xml:space="preserve"><value>{0} の保存された位置を読み取れません。X、Y、Z を自分で入力してください。</value></data>
   <data name="Teleport_LandmarksHeading" xml:space="preserve"><value>ランドマーク</value></data>
   <data name="Teleport_LandmarksHelp" xml:space="preserve"><value>ランドマークを選ぶと、その位置から X / Y / Z が入力されます。</value></data>
   <data name="Teleport_NoLandmarks" xml:space="preserve"><value>利用できるランドマークがありません。</value></data>

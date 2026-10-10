@@ -200,6 +200,7 @@
   "SelectInv_Search": "名前または ID で移動先を検索",
   "Teleport_UseCurrentPosition": "プレイヤーの現在位置に戻す",
   "Teleport_PositionReset": "位置を {0} の現在地にリセットしました。",
+  "Teleport_PositionUnreadable": "{0} の保存された位置を読み取れません。X、Y、Z を自分で入力してください。",
   "Inventories_LogisticsSummary": "需要 {0} · 供給 {1} · 優先度 {2}",
   "Inventories_EditLogistics": "需要と供給…",
   "Inventories_EditLogisticsA11y": "{0} の需要グループと供給グループを編集",

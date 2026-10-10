@@ -22,7 +22,10 @@ public sealed partial class TeleportViewModel(
     private readonly INavigationService _navigation = navigation;
     private readonly IPlanetIndex _planetIndex = planetIndex;
 
-    private string OtherPlanetOption => _localizer[LocKeys.Teleport_OtherPlanet];
+    // The "Other…" entry as it stands in PlanetIdOptions. A field, not a lookup: comparing the
+    // selection with the current translation made a language change turn a custom-planet
+    // selection into a literal planet id (issue #93).
+    private string _otherPlanetOption = localizer[LocKeys.Teleport_OtherPlanet];
 
     public bool IsLoaded => _workspace.IsLoaded;
 
@@ -63,13 +66,13 @@ public sealed partial class TeleportViewModel(
     [ObservableProperty]
     private bool _showAllWorldLandmarks;
 
-    public bool IsCustomPlanetId => SelectedPlanetId == OtherPlanetOption;
+    public bool IsCustomPlanetId => SelectedPlanetId == _otherPlanetOption;
 
     /// <summary>A multiplayer save — the per-player / host-only caveat is worth showing.</summary>
     public bool HasMultiplePlayers => Players.Count > 1;
 
     /// <summary>Only worth offering the "all worlds" landmark toggle on a multi-world save.</summary>
-    public bool ShowWorldLandmarkFilter => PlanetIdOptions.Count(o => o != OtherPlanetOption) > 1;
+    public bool ShowWorldLandmarkFilter => PlanetIdOptions.Count(o => o != _otherPlanetOption) > 1;
 
     public void Load()
     {
@@ -98,13 +101,17 @@ public sealed partial class TeleportViewModel(
             PlanetIdOptions.Add(planetId);
         }
 
-        PlanetIdOptions.Add(OtherPlanetOption);
+        _otherPlanetOption = _localizer[LocKeys.Teleport_OtherPlanet];
+        PlanetIdOptions.Add(_otherPlanetOption);
         OnPropertyChanged(nameof(ShowWorldLandmarkFilter));
         OnPropertyChanged(nameof(HasMultiplePlayers));
 
         _allLandmarks.AddRange(FindLandmarks(save));
         FilterLandmarks();
 
+        // Cleared first: the option for the same player is equal to the one already selected, and
+        // an equal value would skip the change handler that resets the form (issue #93).
+        SelectedPlayer = null;
         SelectedPlayer = Players.FirstOrDefault();
     }
 
@@ -140,15 +147,28 @@ public sealed partial class TeleportViewModel(
             return;
         }
 
-        ResetToPlayer(player);
+        StatusMessage = null;
+        StatusKind = StatusKind.Info;
+        if (!ResetToPlayer(player))
+        {
+            SetStatus(StatusKind.Error, _localizer.Format(LocKeys.Teleport_PositionUnreadable, player.Name));
+        }
     }
 
-    /// <summary>Points the world and X/Y/Z at where the player currently is.</summary>
-    private void ResetToPlayer(PlayerData player)
+    /// <summary>Points the world and X/Y/Z at where the player currently is. False when the
+    /// player's saved position cannot be read; the boxes are then emptied, because whatever they
+    /// held belongs to another player or world and must not be teleported to (issue #92).</summary>
+    private bool ResetToPlayer(PlayerData player)
     {
-        SelectedPlanetId = PlanetIdOptions.Contains(player.PlanetId) ? player.PlanetId : OtherPlanetOption;
+        SelectedPlanetId = PlanetIdOptions.Contains(player.PlanetId) ? player.PlanetId : _otherPlanetOption;
         CustomPlanetId = player.PlanetId;
-        ApplyPlayerPosition(player);
+        if (ApplyPosition(player.PlayerPosition))
+        {
+            return true;
+        }
+
+        X = Y = Z = string.Empty;
+        return false;
     }
 
     private void ApplyPlayerPosition(PlayerData player)
@@ -259,7 +279,12 @@ public sealed partial class TeleportViewModel(
             return;
         }
 
-        ResetToPlayer(player);
+        if (!ResetToPlayer(player))
+        {
+            SetStatus(StatusKind.Error, _localizer.Format(LocKeys.Teleport_PositionUnreadable, player.Name));
+            return;
+        }
+
         SetStatus(StatusKind.Success, _localizer.Format(LocKeys.Teleport_PositionReset, SelectedPlayer.Name));
     }
 
@@ -275,7 +300,7 @@ public sealed partial class TeleportViewModel(
             return;
         }
 
-        var planetId = IsCustomPlanetId ? CustomPlanetId : SelectedPlanetId;
+        var planetId = (IsCustomPlanetId ? CustomPlanetId : SelectedPlanetId)?.Trim();
         if (string.IsNullOrWhiteSpace(planetId))
         {
             SetStatus(StatusKind.Error, _localizer[LocKeys.Teleport_ChoosePlanet]);

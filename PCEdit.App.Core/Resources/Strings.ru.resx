@@ -236,6 +236,7 @@
   <data name="Teleport_Teleport" xml:space="preserve"><value>Телепортировать</value></data>
   <data name="Teleport_UseCurrentPosition" xml:space="preserve"><value>Сбросить к текущей позиции игрока</value></data>
   <data name="Teleport_PositionReset" xml:space="preserve"><value>Позиция сброшена к текущему местоположению игрока {0}.</value></data>
+  <data name="Teleport_PositionUnreadable" xml:space="preserve"><value>Не удалось прочитать сохранённую позицию игрока {0}. Введите X, Y и Z вручную.</value></data>
   <data name="Teleport_LandmarksHeading" xml:space="preserve"><value>Ориентиры</value></data>
   <data name="Teleport_LandmarksHelp" xml:space="preserve"><value>Выберите ориентир, чтобы заполнить X / Y / Z из его позиции.</value></data>
   <data name="Teleport_NoLandmarks" xml:space="preserve"><value>Ориентиры недоступны.</value></data>
