@@ -7,7 +7,6 @@ public sealed class PlanetCrafterSaveFileSerializer(IJsonRecordSerializer jsonRe
     : IPlanetCrafterSaveFileSerializer
 {
     private const char SectionDelimiter = '@';
-    private const char RecordDelimiter = '|';
     private const int RequiredSectionCount = 10;
 
     // The game frames the file as: a leading CR, the 10 sections joined by "\r@\r", and a
@@ -30,6 +29,12 @@ public sealed class PlanetCrafterSaveFileSerializer(IJsonRecordSerializer jsonRe
     // Lookaround rather than a consuming match, so two separators sharing a line break - what
     // an empty section between them looks like - are both still found.
     private static readonly Regex SectionSplitter = new(@"(?<=[\r\n])@(?=[\r\n])", RegexOptions.Compiled);
+
+    // Records in a list section are joined by "|\n". Matching the '|' only where a line break
+    // follows it leaves a '|' inside a JSON string alone - a raw line break cannot occur inside
+    // one - which is where player-typed text puts it. Splitting on the bare character made a
+    // label like "a|b" stop the whole save from opening (issue #71), as '@' once did (#38).
+    private static readonly Regex RecordSplitter = new(@"\|(?=[ \t]*[\r\n])", RegexOptions.Compiled);
 
     private readonly IJsonRecordSerializer _jsonRecordSerializer 
         = jsonRecordSerializer ?? throw new ArgumentNullException(nameof(jsonRecordSerializer));
@@ -107,8 +112,9 @@ public sealed class PlanetCrafterSaveFileSerializer(IJsonRecordSerializer jsonRe
 
     private List<T> DeserializeRecords<T>(string section, int sectionIndex)
     {
-        return section
-            .Split(RecordDelimiter, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+        return RecordSplitter.Split(section)
+            .Select(record => record.Trim())
+            .Where(record => record.Length > 0)
             .Select(record => _jsonRecordSerializer.Deserialize<T>(record, sectionIndex))
             .ToList();
     }

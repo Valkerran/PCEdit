@@ -271,6 +271,68 @@ public sealed class PlanetCrafterSaveFileSerializerTests
         Assert.Equal(content, _serializer.Serialize(roundTripped));
     }
 
+    // '|' joins records, but a player could type one into a label. Splitting on the bare
+    // character made the whole save refuse to open (issue #71), the same class as #38.
+    [Theory]
+    [InlineData("a|b")]
+    [InlineData("a|")]
+    [InlineData("|")]
+    [InlineData("a|\nb")]
+    public void RoundTrip_ContainerLabelContainingTheRecordDelimiter_IsPreserved(string label)
+    {
+        var original = SaveFileFixtures.CreateFullyPopulated();
+        original.WorldObjects[0] = original.WorldObjects[0] with { Text = label };
+
+        var content = _serializer.Serialize(original);
+        var roundTripped = _serializer.Deserialize(content);
+
+        Assert.Equal(label, Assert.Single(roundTripped.WorldObjects).Text);
+        Assert.Equal(content, _serializer.Serialize(roundTripped));
+    }
+
+    [Theory]
+    [InlineData("\r\n")]
+    [InlineData("\n")]
+    public void Deserialize_OtherLineEndingsInTheFraming_StillParse(string lineBreak)
+    {
+        var original = SaveFileFixtures.CreateFullyPopulated();
+        original.WorldObjects.Add(original.WorldObjects[0] with { Id = 2002 });
+
+        var serialized = _serializer.Serialize(original);
+        Assert.Contains("|\n", serialized, StringComparison.Ordinal);
+
+        var content = serialized
+            .Replace("\r@\r", $"{lineBreak}@{lineBreak}", StringComparison.Ordinal)
+            .Replace("|\n", $"|{lineBreak}", StringComparison.Ordinal);
+
+        Assert.Equal(2, _serializer.Deserialize(content).WorldObjects.Count);
+    }
+
+    // The label sits beside a real record boundary, so both the '|' inside the string and the
+    // '|' that joins the two records must be handled correctly in the same section.
+    [Fact]
+    public void RoundTrip_LabelContainingTheRecordDelimiter_BesideARealRecordBoundary_KeepsBothRecords()
+    {
+        var original = SaveFileFixtures.CreateFullyPopulated();
+        original.WorldObjects[0] = original.WorldObjects[0] with { Text = "a|b" };
+        original.WorldObjects.Add(original.WorldObjects[0] with { Id = 2002, Text = null });
+
+        var content = _serializer.Serialize(original);
+        var roundTripped = _serializer.Deserialize(content);
+
+        Assert.Equal(2, roundTripped.WorldObjects.Count);
+        Assert.Equal("a|b", roundTripped.WorldObjects[0].Text);
+        Assert.Equal(content, _serializer.Serialize(roundTripped));
+    }
+
+    [Fact]
+    public void Deserialize_MissingTrailingTerminator_StillParses()
+    {
+        var content = _serializer.Serialize(SaveFileFixtures.CreateFullyPopulated());
+
+        Assert.Single(_serializer.Deserialize(content[..^2]).WorldObjects);
+    }
+
     // Player-typed text must come back exactly as written: the default encoder escaped every
     // non-ASCII and HTML-sensitive character, so "Café & Bob's" came back as escapes (issue #70).
     [Theory]
