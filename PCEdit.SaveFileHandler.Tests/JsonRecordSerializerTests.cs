@@ -51,6 +51,26 @@ public sealed class JsonRecordSerializerTests
         Assert.Contains("empty", exception.Message);
     }
 
+    [Theory]
+    [InlineData(4, 1, "section 4 (inventories), record 2 is not valid")]
+    [InlineData(8, null, "section 8 (metadata) is not valid")]
+    public void Deserialize_Malformed_NamesTheSection(int section, int? record, string expected)
+    {
+        var exception = Assert.Throws<InvalidDataException>(() =>
+            _serializer.Deserialize<SampleRecord>("{not valid json", section, record));
+
+        Assert.Contains(expected, exception.Message);
+    }
+
+    [Fact]
+    public void Deserialize_UnknownSectionIndex_FallsBackToBareNumber()
+    {
+        var exception = Assert.Throws<InvalidDataException>(() =>
+            _serializer.Deserialize<SampleRecord>("{not valid json", sectionIndex: 42));
+
+        Assert.Contains("section 42 is not valid", exception.Message);
+    }
+
     [Fact]
     public void Deserialize_MalformedJson_ThrowsInvalidDataException_WrappingJsonException()
     {

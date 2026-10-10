@@ -46,6 +46,19 @@ public sealed class GameNumberFormatTests
     }
 
     [Theory]
+    [InlineData("\"abc\"")]
+    [InlineData("null")]
+    [InlineData("1e400")]
+    public void BadNumber_ErrorNamesTheKey(string value)
+    {
+        var json = $$"""{"planetId":"Prime","unitOxygenLevel":{{value}}}""";
+
+        var exception = Assert.Throws<InvalidDataException>(() => _serializer.Deserialize<PlanetTerraformation>(json, sectionIndex: 1, recordIndex: 0));
+
+        Assert.Contains("$.unitOxygenLevel", exception.Message);
+    }
+
+    [Theory]
     [InlineData("1e400")]
     [InlineData("\"12\"")]
     public void NonFiniteOrNonNumericValue_IsRejected(string value)

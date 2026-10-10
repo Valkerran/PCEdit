@@ -29,6 +29,7 @@
 
             <TextBlock HorizontalAlignment="Center"
                        Text="{Binding StatusMessage}"
+                       TextWrapping="Wrap"
                        IsVisible="{Binding StatusMessage, Converter={StaticResource StringNotEmpty}}"
                        Classes="status"
                        Classes.success="{Binding StatusKind, Converter={StaticResource StatusIsSuccess}}"

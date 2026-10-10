@@ -20,7 +20,8 @@ public sealed class JsonRecordSerializer : IJsonRecordSerializer
 
     public T Deserialize<T>(string content, int sectionIndex, int? recordIndex = null)
     {
-        var where = recordIndex is null ? $"section {sectionIndex}" : $"section {sectionIndex}, record {recordIndex + 1}";
+        var section = SectionLabel(sectionIndex);
+        var where = recordIndex is null ? section : $"{section}, record {recordIndex + 1}";
         try
         {
             return JsonSerializer.Deserialize<T>(content.Trim(), Options)
@@ -31,6 +32,16 @@ public sealed class JsonRecordSerializer : IJsonRecordSerializer
             throw new InvalidDataException($"Save-file {where} is not valid: {WithoutPosition(exception.Message)}", exception);
         }
     }
+
+    // Order mirrors the section order in PlanetCrafterSaveFileSerializer.
+    private static readonly string[] SectionNames =
+    [
+        "unlocks", "terraformation", "players", "world objects", "inventories",
+        "statistics", "read messages", "story events", "metadata", "procedural instances"
+    ];
+
+    private static string SectionLabel(int index) =>
+        (uint)index < (uint)SectionNames.Length ? $"section {index} ({SectionNames[index]})" : $"section {index}";
 
     // The reader's line and byte offsets count from the start of this one record, not the file, so
     // in a large save they would read as a file position and mislead; section, record and path say where.
@@ -53,7 +64,8 @@ public sealed class JsonRecordSerializer : IJsonRecordSerializer
         {
             if (reader.TokenType != JsonTokenType.Number || !reader.TryGetDouble(out var value) || !double.IsFinite(value))
             {
-                throw new JsonException("Expected a finite number.");
+                // No message on purpose: System.Text.Json appends "Path: $.key" only to a message-less JsonException.
+                throw new JsonException();
             }
 
             var raw = reader.HasValueSequence ? Encoding.UTF8.GetString(reader.ValueSequence) : Encoding.UTF8.GetString(reader.ValueSpan);
