@@ -22,17 +22,20 @@ public sealed class WorldObjectConverter : JsonConverter<WorldObject>
 
         foreach (var property in document.RootElement.EnumerateObject())
         {
-            RejectNull(property);
-            RejectDuplicate(property, fields);
-            fields.KeyOrder.Add(property.Name);
+            // JsonProperty.Name builds a new string on every access, and this runs for every key
+            // of every world object in the save, so it is read once.
+            var name = property.Name;
+            RejectNull(name, property.Value);
+            RejectDuplicate(name, fields);
+            fields.KeyOrder.Add(name);
             try
             {
-                ReadKey(property, fields);
+                ReadKey(name, property.Value, fields);
             }
             catch (Exception exception) when (exception is InvalidOperationException or FormatException)
             {
                 // GetInt32/GetString throw these on a value of the wrong type; say which key.
-                throw new JsonException($"The world-object key \"{property.Name}\" has the wrong type.", exception);
+                throw new JsonException($"The world-object key \"{name}\" has the wrong type.", exception);
             }
         }
 
@@ -41,28 +44,27 @@ public sealed class WorldObjectConverter : JsonConverter<WorldObject>
 
     // The serializer's own duplicate check does not reach a converter that parses the record
     // itself, so it is repeated here (issue #126). KeyOrder already holds the keys seen so far.
-    private static void RejectDuplicate(JsonProperty property, Fields fields)
+    private static void RejectDuplicate(string name, Fields fields)
     {
-        if (fields.KeyOrder.Contains(property.Name))
+        if (fields.KeyOrder.Contains(name))
         {
-            throw new JsonException($"The world-object key \"{property.Name}\" appears more than once.");
+            throw new JsonException($"The world-object key \"{name}\" appears more than once.");
         }
     }
 
     // Only the keys the model names: an unknown key holding null goes to extension data and is
     // written back as it came (issue #125).
-    private static void RejectNull(JsonProperty property)
+    private static void RejectNull(string name, JsonElement value)
     {
-        if (property.Value.ValueKind == JsonValueKind.Null && DefaultOrder.Contains(property.Name))
+        if (value.ValueKind == JsonValueKind.Null && DefaultOrder.Contains(name))
         {
-            throw new JsonException($"The world-object key \"{property.Name}\" is null.");
+            throw new JsonException($"The world-object key \"{name}\" is null.");
         }
     }
 
-    private static void ReadKey(JsonProperty property, Fields fields)
+    private static void ReadKey(string name, JsonElement value, Fields fields)
     {
-        var value = property.Value;
-        switch (property.Name)
+        switch (name)
         {
             case "id": fields.Id = value.GetInt32(); break;
             case "gId": fields.GId = value.GetString(); break;
@@ -78,7 +80,7 @@ public sealed class WorldObjectConverter : JsonConverter<WorldObject>
             case "pnls": fields.PanelSettings = value.GetString(); break;
             case "linkedWo": fields.LinkedWorldObjectId = value.GetInt32(); break;
             case "text": fields.Text = value.GetString(); break;
-            default: (fields.Extension ??= [])[property.Name] = value.Clone(); break;
+            default: (fields.Extension ??= [])[name] = value.Clone(); break;
         }
     }
 
