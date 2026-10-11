@@ -23,6 +23,8 @@
   <data name="Shell_SaveHint" xml:space="preserve"><value>Записывает изменения обратно в файл сохранения на диске</value></data>
   <data name="Shell_NavA11y" xml:space="preserve"><value>Основная навигация</value></data>
   <data name="Shell_PageLoadFailed" xml:space="preserve"><value>Не удалось загрузить эту страницу. Файл по-прежнему открыт, несохранённые изменения не потеряны.</value></data>
+  <data name="Error_UnexpectedTitle" xml:space="preserve"><value>Непредвиденная ошибка</value></data>
+  <data name="Error_UnexpectedBody" xml:space="preserve"><value>Что-то пошло не так, но PCEdit продолжает работать, и ваше сохранение по-прежнему открыто. Если что-то выглядит неправильно, перезапустите PCEdit. Подробности записаны в: {0}</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>Открыть файл</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>Обзор</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>Инвентари</value></data>
@@ -35,6 +37,11 @@
   <data name="Save_OkAnnounce" xml:space="preserve"><value>Файл сохранения записан.</value></data>
   <data name="Save_Failed" xml:space="preserve"><value>Не удалось сохранить. Ваш файл не изменён.</value></data>
   <data name="Save_FailedAnnounce" xml:space="preserve"><value>Ошибка: не удалось сохранить. Ваш файл не изменён.</value></data>
+  <data name="Save_FailedNoPermission" xml:space="preserve"><value>Не удалось сохранить: файл доступен только для чтения или у PCEdit нет прав на запись в это место. Ваш файл не изменён.</value></data>
+  <data name="Save_ChangedOnDisk" xml:space="preserve"><value>Не сохранено: файл на диске изменился после того, как PCEdit его открыл.</value></data>
+  <data name="Save_ChangedTitle" xml:space="preserve"><value>Файл сохранения изменился</value></data>
+  <data name="Save_ChangedBody" xml:space="preserve"><value>Этот файл сохранения был изменён или удалён после того, как PCEdit его открыл: возможно, игра перезаписала его. При перезаписи то, что сейчас на диске, будет заменено тем, что открыто в PCEdit. Перед этим PCEdit попытается сделать резервную копию текущего файла.</value></data>
+  <data name="Save_ChangedOverwrite" xml:space="preserve"><value>Перезаписать</value></data>
   <data name="Announce_ErrorPrefix" xml:space="preserve"><value>Ошибка: {0}</value></data>
   <data name="OpenFile_Title" xml:space="preserve"><value>Открыть файл</value></data>
   <data name="OpenFile_Heading" xml:space="preserve"><value>Редактор сохранений Planet Crafter</value></data>
@@ -87,6 +94,7 @@
   <data name="Repair_Done" xml:space="preserve"><value>Удалено предметов: {0}. Исправленная копия сохранена как {1} и сейчас открыта; исходное сохранение не изменено.</value></data>
   <data name="Repair_Failed" xml:space="preserve"><value>Не удалось записать исправленную копию. Ничего не изменено: исходное сохранение снова открыто.</value></data>
   <data name="Repair_FailedTitle" xml:space="preserve"><value>Исправление не удалось</value></data>
+  <data name="Repair_FailedClosed" xml:space="preserve"><value>Не удалось записать исправленную копию и снова открыть исходное сохранение. На диск ничего не записано. Сохранение закрыто: откройте его снова, чтобы продолжить.</value></data>
   <data name="Repair_MoveFirstHeading" xml:space="preserve"><value>Сначала переместить в свободное хранилище</value></data>
   <data name="Repair_MoveFirstHint" xml:space="preserve"><value>Отметьте типы предметов, которые нужно сохранить, начиная с самых важных. Перед удалением они попадут в свободные ячейки ваших ящиков и шкафчиков в том же мире; то, что не поместится, будет удалено.</value></data>
   <data name="Repair_FreeSlots" xml:space="preserve"><value>Свободных ячеек в вашем хранилище: {0}.</value></data>

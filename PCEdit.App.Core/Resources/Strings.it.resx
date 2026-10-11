@@ -23,6 +23,8 @@
   <data name="Shell_SaveHint" xml:space="preserve"><value>Riscrive le tue modifiche nel file di salvataggio sul disco</value></data>
   <data name="Shell_NavA11y" xml:space="preserve"><value>Navigazione principale</value></data>
   <data name="Shell_PageLoadFailed" xml:space="preserve"><value>Impossibile caricare questa pagina. Il file è ancora aperto e le modifiche non salvate sono al sicuro.</value></data>
+  <data name="Error_UnexpectedTitle" xml:space="preserve"><value>Errore imprevisto</value></data>
+  <data name="Error_UnexpectedBody" xml:space="preserve"><value>Qualcosa è andato storto, ma PCEdit è ancora in esecuzione e il salvataggio è ancora aperto. Se qualcosa non va, riavvia PCEdit. I dettagli sono stati salvati in: {0}</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>Apri file</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>Panoramica</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>Inventari</value></data>
@@ -35,6 +37,11 @@
   <data name="Save_OkAnnounce" xml:space="preserve"><value>File di salvataggio scritto.</value></data>
   <data name="Save_Failed" xml:space="preserve"><value>Salvataggio non riuscito. Il file non è stato modificato.</value></data>
   <data name="Save_FailedAnnounce" xml:space="preserve"><value>Errore: salvataggio non riuscito. Il file non è stato modificato.</value></data>
+  <data name="Save_FailedNoPermission" xml:space="preserve"><value>Salvataggio non riuscito: il file è di sola lettura oppure PCEdit non ha il permesso di scrivere in quella posizione. Il file non è stato modificato.</value></data>
+  <data name="Save_ChangedOnDisk" xml:space="preserve"><value>Non salvato: il file è cambiato sul disco dopo che PCEdit lo ha aperto.</value></data>
+  <data name="Save_ChangedTitle" xml:space="preserve"><value>Il file di salvataggio è cambiato</value></data>
+  <data name="Save_ChangedBody" xml:space="preserve"><value>Questo file di salvataggio è stato modificato o rimosso dopo che PCEdit lo ha aperto: il gioco potrebbe averlo sovrascritto. Sovrascrivendo, ciò che ora si trova sul disco viene sostituito con ciò che PCEdit ha aperto. Prima PCEdit prova a conservare una copia del file attuale.</value></data>
+  <data name="Save_ChangedOverwrite" xml:space="preserve"><value>Sovrascrivi</value></data>
   <data name="Announce_ErrorPrefix" xml:space="preserve"><value>Errore: {0}</value></data>
   <data name="OpenFile_Title" xml:space="preserve"><value>Apri file</value></data>
   <data name="OpenFile_Heading" xml:space="preserve"><value>Editor dei salvataggi di Planet Crafter</value></data>
@@ -87,6 +94,7 @@
   <data name="Repair_Done" xml:space="preserve"><value>Oggetti rimossi: {0}. La copia riparata è salvata come {1} ed è ora aperta; il salvataggio originale è invariato.</value></data>
   <data name="Repair_Failed" xml:space="preserve"><value>Impossibile scrivere la copia riparata. Non è stato modificato nulla: il salvataggio originale è di nuovo aperto.</value></data>
   <data name="Repair_FailedTitle" xml:space="preserve"><value>Riparazione non riuscita</value></data>
+  <data name="Repair_FailedClosed" xml:space="preserve"><value>Impossibile scrivere la copia riparata e impossibile riaprire il salvataggio originale. Non è stato scritto nulla sul disco. Il salvataggio è stato chiuso: aprilo di nuovo per continuare.</value></data>
   <data name="Repair_MoveFirstHeading" xml:space="preserve"><value>Sposta prima nello spazio libero</value></data>
   <data name="Repair_MoveFirstHint" xml:space="preserve"><value>Spunta i tipi di oggetto da tenere, i più importanti per primi. Vanno negli slot liberi delle tue casse e armadietti sullo stesso mondo prima che venga rimosso qualcosa; ciò che non entra viene rimosso.</value></data>
   <data name="Repair_FreeSlots" xml:space="preserve"><value>Slot liberi nel tuo deposito: {0}.</value></data>

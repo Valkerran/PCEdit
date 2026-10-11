@@ -23,6 +23,8 @@
   <data name="Shell_SaveHint" xml:space="preserve"><value>Grava as suas alterações no ficheiro de jogo guardado no disco</value></data>
   <data name="Shell_NavA11y" xml:space="preserve"><value>Navegação principal</value></data>
   <data name="Shell_PageLoadFailed" xml:space="preserve"><value>Não foi possível carregar esta página. O ficheiro continua aberto e as alterações não guardadas estão seguras.</value></data>
+  <data name="Error_UnexpectedTitle" xml:space="preserve"><value>Erro inesperado</value></data>
+  <data name="Error_UnexpectedBody" xml:space="preserve"><value>Algo correu mal, mas o PCEdit continua a funcionar e o seu jogo guardado continua aberto. Se algo parecer errado, reinicie o PCEdit. Os detalhes foram escritos em: {0}</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>Abrir ficheiro</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>Resumo</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>Inventários</value></data>
@@ -35,6 +37,11 @@
   <data name="Save_OkAnnounce" xml:space="preserve"><value>Ficheiro de jogo guardado escrito.</value></data>
   <data name="Save_Failed" xml:space="preserve"><value>Falha ao guardar. O seu ficheiro não foi alterado.</value></data>
   <data name="Save_FailedAnnounce" xml:space="preserve"><value>Erro: falha ao guardar. O seu ficheiro não foi alterado.</value></data>
+  <data name="Save_FailedNoPermission" xml:space="preserve"><value>Falha ao guardar: o ficheiro é só de leitura ou o PCEdit não tem permissão para escrever nesse local. O seu ficheiro não foi alterado.</value></data>
+  <data name="Save_ChangedOnDisk" xml:space="preserve"><value>Não guardado: o ficheiro mudou no disco depois de o PCEdit o abrir.</value></data>
+  <data name="Save_ChangedTitle" xml:space="preserve"><value>O ficheiro guardado foi alterado</value></data>
+  <data name="Save_ChangedBody" xml:space="preserve"><value>Este ficheiro guardado foi alterado ou removido depois de o PCEdit o abrir: o jogo pode ter guardado por cima. Substituir troca o que está agora no disco pelo que o PCEdit tem aberto. Antes disso, o PCEdit tenta guardar uma cópia do ficheiro atual.</value></data>
+  <data name="Save_ChangedOverwrite" xml:space="preserve"><value>Substituir</value></data>
   <data name="Announce_ErrorPrefix" xml:space="preserve"><value>Erro: {0}</value></data>
   <data name="OpenFile_Title" xml:space="preserve"><value>Abrir ficheiro</value></data>
   <data name="OpenFile_Heading" xml:space="preserve"><value>Editor de jogos guardados do Planet Crafter</value></data>
@@ -87,6 +94,7 @@
   <data name="Repair_Done" xml:space="preserve"><value>Itens removidos: {0}. A cópia reparada foi guardada como {1} e está agora aberta; o jogo guardado original não foi alterado.</value></data>
   <data name="Repair_Failed" xml:space="preserve"><value>Não foi possível escrever a cópia reparada. Nada foi alterado: o jogo guardado original está aberto novamente.</value></data>
   <data name="Repair_FailedTitle" xml:space="preserve"><value>A reparação falhou</value></data>
+  <data name="Repair_FailedClosed" xml:space="preserve"><value>Não foi possível escrever a cópia reparada nem reabrir o jogo guardado original. Nada foi escrito no disco. O jogo guardado foi fechado: abra-o novamente para continuar.</value></data>
   <data name="Repair_MoveFirstHeading" xml:space="preserve"><value>Mover primeiro para o armazenamento livre</value></data>
   <data name="Repair_MoveFirstHint" xml:space="preserve"><value>Marque os tipos de item a manter, os mais importantes primeiro. Vão para os espaços livres das suas próprias caixas e cacifos no mesmo mundo antes de algo ser removido; o que não couber é removido.</value></data>
   <data name="Repair_FreeSlots" xml:space="preserve"><value>Espaços livres no seu armazenamento: {0}.</value></data>

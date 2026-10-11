@@ -23,6 +23,11 @@
   "Save_OkAnnounce": "Archivo de partida escrito.",
   "Save_Failed": "Error al guardar. Tu archivo no se ha modificado.",
   "Save_FailedAnnounce": "Error: error al guardar. Tu archivo no se ha modificado.",
+  "Save_FailedNoPermission": "Error al guardar: el archivo es de solo lectura o PCEdit no tiene permiso para escribir ahí. Tu archivo no se ha modificado.",
+  "Save_ChangedOnDisk": "No se ha guardado: el archivo cambió en el disco después de que PCEdit lo abriera.",
+  "Save_ChangedTitle": "El archivo de guardado ha cambiado",
+  "Save_ChangedBody": "Este archivo de guardado se modificó o se eliminó después de que PCEdit lo abriera: puede que el juego haya guardado encima. Al sobrescribir, lo que hay ahora en el disco se sustituye por lo que PCEdit tiene abierto. Antes, PCEdit intenta hacer una copia de seguridad del archivo actual.",
+  "Save_ChangedOverwrite": "Sobrescribir",
   "Announce_ErrorPrefix": "Error: {0}",
   "OpenFile_Title": "Abrir archivo",
   "OpenFile_Heading": "Editor de partidas de Planet Crafter",
@@ -180,6 +185,7 @@
   "Repair_Done": "Objetos eliminados: {0}. La copia reparada se ha guardado como {1} y ahora está abierta; la partida original no ha cambiado.",
   "Repair_Failed": "No se pudo escribir la copia reparada. No se ha cambiado nada: la partida original vuelve a estar abierta.",
   "Repair_FailedTitle": "La reparación ha fallado",
+  "Repair_FailedClosed": "No se pudo escribir la copia reparada ni volver a abrir la partida original. No se ha escrito nada en el disco. La partida se ha cerrado: ábrela de nuevo para continuar.",
   "Repair_MoveFirstHeading": "Mover primero al almacenamiento libre",
   "Repair_MoveFirstHint": "Marca los tipos de objeto que quieres conservar, los más importantes primero. Van a los huecos libres de tus propias cajas y taquillas del mismo mundo antes de eliminar nada; lo que no quepa se elimina.",
   "Repair_FreeSlots": "Huecos libres en tu almacenamiento: {0}.",
@@ -259,6 +265,8 @@
   "About_SaveLocationsHeading": "Dónde guarda el juego tus partidas",
   "About_SaveLocationsNote": "Xbox nombra cada partida con una cadena aleatoria que cambia cada vez que se escribe. En Linux, sustituye ~/.steam/steam por la carpeta de tu biblioteca de Steam si el juego está en otra unidad.",
   "Shell_PageLoadFailed": "No se ha podido cargar esta página. El archivo sigue abierto y los cambios sin guardar están a salvo.",
+  "Error_UnexpectedTitle": "Error inesperado",
+  "Error_UnexpectedBody": "Algo ha fallado, pero PCEdit sigue en marcha y tu partida sigue abierta. Si algo no va bien, reinicia PCEdit. Los detalles se han guardado en: {0}",
   "About_BackupsHeading": "Copias de seguridad automáticas",
   "About_BackupsNote": "La primera vez que PCEdit guarda un archivo tras abrirlo, copia aquí el original. Se conservan las cinco copias más recientes de cada partida guardada."
 }

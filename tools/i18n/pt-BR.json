@@ -23,6 +23,11 @@
   "Save_OkAnnounce": "Arquivo de save gravado.",
   "Save_Failed": "Falha ao salvar. Seu arquivo não foi alterado.",
   "Save_FailedAnnounce": "Erro: falha ao salvar. Seu arquivo não foi alterado.",
+  "Save_FailedNoPermission": "Falha ao salvar: o arquivo é somente leitura ou o PCEdit não tem permissão para gravar nesse local. Seu arquivo não foi alterado.",
+  "Save_ChangedOnDisk": "Não salvo: o arquivo mudou no disco depois que o PCEdit o abriu.",
+  "Save_ChangedTitle": "O arquivo de save foi alterado",
+  "Save_ChangedBody": "Este arquivo de save foi alterado ou removido depois que o PCEdit o abriu: o jogo pode ter salvado por cima. Sobrescrever substitui o que está no disco agora pelo que o PCEdit tem aberto. Antes disso, o PCEdit tenta guardar uma cópia do arquivo atual.",
+  "Save_ChangedOverwrite": "Sobrescrever",
   "Announce_ErrorPrefix": "Erro: {0}",
   "OpenFile_Title": "Abrir arquivo",
   "OpenFile_Heading": "Editor de saves do Planet Crafter",
@@ -180,6 +185,7 @@
   "Repair_Done": "Itens removidos: {0}. A cópia reparada foi salva como {1} e agora está aberta; o save original não foi alterado.",
   "Repair_Failed": "Não foi possível gravar a cópia reparada. Nada foi alterado: o save original está aberto novamente.",
   "Repair_FailedTitle": "Falha no reparo",
+  "Repair_FailedClosed": "Não foi possível gravar a cópia reparada nem reabrir o save original. Nada foi gravado no disco. O save foi fechado: abra-o novamente para continuar.",
   "Repair_MoveFirstHeading": "Mover primeiro para o armazenamento livre",
   "Repair_MoveFirstHint": "Marque os tipos de item a manter, os mais importantes primeiro. Eles vão para os espaços livres das suas próprias caixas e armários no mesmo mundo antes de algo ser removido; o que não couber é removido.",
   "Repair_FreeSlots": "Espaços livres no seu armazenamento: {0}.",
@@ -259,6 +265,8 @@
   "About_SaveLocationsHeading": "Onde o jogo guarda seus saves",
   "About_SaveLocationsNote": "O Xbox dá a cada save um nome aleatório que muda a cada gravação. No Linux, substitua ~/.steam/steam pela pasta da sua biblioteca Steam se o jogo estiver em outra unidade.",
   "Shell_PageLoadFailed": "Não foi possível carregar esta página. O arquivo continua aberto e as alterações não salvas estão seguras.",
+  "Error_UnexpectedTitle": "Erro inesperado",
+  "Error_UnexpectedBody": "Algo deu errado, mas o PCEdit continua em execução e seu save continua aberto. Se algo parecer errado, reinicie o PCEdit. Os detalhes foram gravados em: {0}",
   "About_BackupsHeading": "Backups automáticos",
   "About_BackupsNote": "Na primeira vez que o PCEdit salva um arquivo depois de abri-lo, o original é copiado para cá antes. São mantidas as cinco cópias mais recentes de cada save."
 }

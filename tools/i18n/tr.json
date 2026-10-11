@@ -23,6 +23,11 @@
   "Save_OkAnnounce": "Kayıt dosyası yazıldı.",
   "Save_Failed": "Kaydetme başarısız oldu. Dosyanız değiştirilmedi.",
   "Save_FailedAnnounce": "Hata: kaydetme başarısız oldu. Dosyanız değiştirilmedi.",
+  "Save_FailedNoPermission": "Kaydetme başarısız oldu: dosya salt okunur veya PCEdit'in oraya yazma izni yok. Dosyanız değiştirilmedi.",
+  "Save_ChangedOnDisk": "Kaydedilmedi: PCEdit dosyayı açtıktan sonra diskteki dosya değişti.",
+  "Save_ChangedTitle": "Kayıt dosyası değişti",
+  "Save_ChangedBody": "Bu kayıt dosyası, PCEdit onu açtıktan sonra değiştirildi veya kaldırıldı: oyun üzerine kaydetmiş olabilir. Üzerine yazmak, şu anda diskte olanı PCEdit'te açık olanla değiştirir. PCEdit önce geçerli dosyanın bir yedeğini almayı dener.",
+  "Save_ChangedOverwrite": "Üzerine yaz",
   "Announce_ErrorPrefix": "Hata: {0}",
   "OpenFile_Title": "Dosya Aç",
   "OpenFile_Heading": "Planet Crafter Kayıt Düzenleyici",
@@ -180,6 +185,7 @@
   "Repair_Done": "Kaldırılan eşya: {0}. Onarılmış kopya {1} olarak kaydedildi ve şu an açık; özgün kayıt değişmedi.",
   "Repair_Failed": "Onarılmış kopya yazılamadı. Hiçbir şey değişmedi: özgün kayıt yeniden açık.",
   "Repair_FailedTitle": "Onarım başarısız",
+  "Repair_FailedClosed": "Onarılmış kopya yazılamadı ve özgün kayıt yeniden açılamadı. Diske hiçbir şey yazılmadı. Kayıt kapatıldı: devam etmek için yeniden açın.",
   "Repair_MoveFirstHeading": "Önce boş depolamaya taşı",
   "Repair_MoveFirstHint": "Tutmak istediğiniz eşya türlerini işaretleyin, en önemlisi önce. Hiçbir şey kaldırılmadan önce aynı dünyadaki kendi sandık ve dolaplarınızın boş yuvalarına giderler; sığmayanlar kaldırılır.",
   "Repair_FreeSlots": "Deponuzdaki boş yuva: {0}.",
@@ -259,6 +265,8 @@
   "About_SaveLocationsHeading": "Oyunun kayıtlarını sakladığı yer",
   "About_SaveLocationsNote": "Xbox her kaydı, her yazıldığında değişen rastgele bir dizeyle adlandırır. Linux'ta oyun başka bir sürücüdeyse ~/.steam/steam yerine Steam kitaplık klasörünüzü yazın.",
   "Shell_PageLoadFailed": "Bu sayfa yüklenemedi. Dosyanız hâlâ açık ve kaydedilmemiş değişiklikleriniz güvende.",
+  "Error_UnexpectedTitle": "Beklenmeyen hata",
+  "Error_UnexpectedBody": "Bir şeyler ters gitti, ancak PCEdit çalışmaya devam ediyor ve kaydınız hâlâ açık. Bir şey yanlış görünüyorsa PCEdit'i yeniden başlatın. Ayrıntılar şuraya yazıldı: {0}",
   "About_BackupsHeading": "Otomatik yedekler",
   "About_BackupsNote": "PCEdit bir dosyayı açtıktan sonra ilk kez kaydettiğinde, önce özgün dosyayı buraya kopyalar. Her kayıt için en yeni beş kopya saklanır."
 }

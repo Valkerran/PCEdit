@@ -23,6 +23,8 @@
   <data name="Shell_SaveHint" xml:space="preserve"><value>Düzenlemelerinizi diskteki kayıt dosyasına geri yazar</value></data>
   <data name="Shell_NavA11y" xml:space="preserve"><value>Ana gezinme</value></data>
   <data name="Shell_PageLoadFailed" xml:space="preserve"><value>Bu sayfa yüklenemedi. Dosyanız hâlâ açık ve kaydedilmemiş değişiklikleriniz güvende.</value></data>
+  <data name="Error_UnexpectedTitle" xml:space="preserve"><value>Beklenmeyen hata</value></data>
+  <data name="Error_UnexpectedBody" xml:space="preserve"><value>Bir şeyler ters gitti, ancak PCEdit çalışmaya devam ediyor ve kaydınız hâlâ açık. Bir şey yanlış görünüyorsa PCEdit'i yeniden başlatın. Ayrıntılar şuraya yazıldı: {0}</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>Dosya Aç</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>Genel Bakış</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>Envanterler</value></data>
@@ -35,6 +37,11 @@
   <data name="Save_OkAnnounce" xml:space="preserve"><value>Kayıt dosyası yazıldı.</value></data>
   <data name="Save_Failed" xml:space="preserve"><value>Kaydetme başarısız oldu. Dosyanız değiştirilmedi.</value></data>
   <data name="Save_FailedAnnounce" xml:space="preserve"><value>Hata: kaydetme başarısız oldu. Dosyanız değiştirilmedi.</value></data>
+  <data name="Save_FailedNoPermission" xml:space="preserve"><value>Kaydetme başarısız oldu: dosya salt okunur veya PCEdit'in oraya yazma izni yok. Dosyanız değiştirilmedi.</value></data>
+  <data name="Save_ChangedOnDisk" xml:space="preserve"><value>Kaydedilmedi: PCEdit dosyayı açtıktan sonra diskteki dosya değişti.</value></data>
+  <data name="Save_ChangedTitle" xml:space="preserve"><value>Kayıt dosyası değişti</value></data>
+  <data name="Save_ChangedBody" xml:space="preserve"><value>Bu kayıt dosyası, PCEdit onu açtıktan sonra değiştirildi veya kaldırıldı: oyun üzerine kaydetmiş olabilir. Üzerine yazmak, şu anda diskte olanı PCEdit'te açık olanla değiştirir. PCEdit önce geçerli dosyanın bir yedeğini almayı dener.</value></data>
+  <data name="Save_ChangedOverwrite" xml:space="preserve"><value>Üzerine yaz</value></data>
   <data name="Announce_ErrorPrefix" xml:space="preserve"><value>Hata: {0}</value></data>
   <data name="OpenFile_Title" xml:space="preserve"><value>Dosya Aç</value></data>
   <data name="OpenFile_Heading" xml:space="preserve"><value>Planet Crafter Kayıt Düzenleyici</value></data>
@@ -87,6 +94,7 @@
   <data name="Repair_Done" xml:space="preserve"><value>Kaldırılan eşya: {0}. Onarılmış kopya {1} olarak kaydedildi ve şu an açık; özgün kayıt değişmedi.</value></data>
   <data name="Repair_Failed" xml:space="preserve"><value>Onarılmış kopya yazılamadı. Hiçbir şey değişmedi: özgün kayıt yeniden açık.</value></data>
   <data name="Repair_FailedTitle" xml:space="preserve"><value>Onarım başarısız</value></data>
+  <data name="Repair_FailedClosed" xml:space="preserve"><value>Onarılmış kopya yazılamadı ve özgün kayıt yeniden açılamadı. Diske hiçbir şey yazılmadı. Kayıt kapatıldı: devam etmek için yeniden açın.</value></data>
   <data name="Repair_MoveFirstHeading" xml:space="preserve"><value>Önce boş depolamaya taşı</value></data>
   <data name="Repair_MoveFirstHint" xml:space="preserve"><value>Tutmak istediğiniz eşya türlerini işaretleyin, en önemlisi önce. Hiçbir şey kaldırılmadan önce aynı dünyadaki kendi sandık ve dolaplarınızın boş yuvalarına giderler; sığmayanlar kaldırılır.</value></data>
   <data name="Repair_FreeSlots" xml:space="preserve"><value>Deponuzdaki boş yuva: {0}.</value></data>

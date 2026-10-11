@@ -23,6 +23,11 @@
   "Save_OkAnnounce": "Save file written.",
   "Save_Failed": "Save failed. Your file was not changed.",
   "Save_FailedAnnounce": "Error: save failed. Your file was not changed.",
+  "Save_FailedNoPermission": "Save failed: the file is read-only, or PCEdit is not allowed to write there. Your file was not changed.",
+  "Save_ChangedOnDisk": "Not saved: the file changed on disk after PCEdit opened it.",
+  "Save_ChangedTitle": "The save file has changed",
+  "Save_ChangedBody": "This save file was changed or removed after PCEdit opened it: the game may have saved over it. Overwriting replaces what is on disk now with what PCEdit has open. PCEdit tries to back up the current file first.",
+  "Save_ChangedOverwrite": "Overwrite",
   "Announce_ErrorPrefix": "Error: {0}",
   "OpenFile_Title": "Open File",
   "OpenFile_Heading": "Planet Crafter Save Editor",
@@ -180,6 +185,7 @@
   "Repair_Done": "Items removed: {0}. The repaired copy is saved as {1} and is now open; the original save is unchanged.",
   "Repair_Failed": "The repaired copy could not be written. Nothing was changed: the original save is open again.",
   "Repair_FailedTitle": "Repair failed",
+  "Repair_FailedClosed": "The repaired copy could not be written, and the original save could not be reopened. Nothing was written to disk. The save has been closed: open it again to continue.",
   "Repair_MoveFirstHeading": "Move into free storage first",
   "Repair_MoveFirstHint": "Tick the item types to keep, most important first. They go into free slots in your own Storage Crates and Lockers on the same world before anything is removed; whatever does not fit is removed.",
   "Repair_FreeSlots": "Free slots in your storage: {0}.",
@@ -259,6 +265,8 @@
   "About_SaveLocationsHeading": "Where the game keeps your saves",
   "About_SaveLocationsNote": "Xbox names each save with a random string that changes every time it is written. On Linux, replace ~/.steam/steam with your Steam library folder if the game lives on another drive.",
   "Shell_PageLoadFailed": "This page could not be loaded. Your file is still open and any unsaved changes are safe.",
+  "Error_UnexpectedTitle": "Unexpected error",
+  "Error_UnexpectedBody": "Something went wrong, but PCEdit is still running and your save is still open. If anything looks wrong, restart PCEdit. Details were written to: {0}",
   "About_BackupsHeading": "Automatic backups",
   "About_BackupsNote": "The first time PCEdit saves a file after you open it, the original is copied here first. The five most recent copies of each save are kept."
 }

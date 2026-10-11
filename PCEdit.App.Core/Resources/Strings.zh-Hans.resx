@@ -23,6 +23,8 @@
   <data name="Shell_SaveHint" xml:space="preserve"><value>将你的修改写回磁盘上的存档文件</value></data>
   <data name="Shell_NavA11y" xml:space="preserve"><value>主导航</value></data>
   <data name="Shell_PageLoadFailed" xml:space="preserve"><value>无法加载此页面。文件仍处于打开状态，未保存的更改不会丢失。</value></data>
+  <data name="Error_UnexpectedTitle" xml:space="preserve"><value>意外错误</value></data>
+  <data name="Error_UnexpectedBody" xml:space="preserve"><value>出现了问题，但 PCEdit 仍在运行，你的存档仍处于打开状态。如果有异常，请重新启动 PCEdit。详细信息已写入：{0}</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>打开文件</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>概览</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>库存</value></data>
@@ -35,6 +37,11 @@
   <data name="Save_OkAnnounce" xml:space="preserve"><value>存档文件已写入。</value></data>
   <data name="Save_Failed" xml:space="preserve"><value>保存失败。你的文件未被更改。</value></data>
   <data name="Save_FailedAnnounce" xml:space="preserve"><value>错误：保存失败。你的文件未被更改。</value></data>
+  <data name="Save_FailedNoPermission" xml:space="preserve"><value>保存失败：文件为只读，或 PCEdit 无权写入该位置。你的文件未被更改。</value></data>
+  <data name="Save_ChangedOnDisk" xml:space="preserve"><value>未保存：PCEdit 打开文件后，磁盘上的文件发生了变化。</value></data>
+  <data name="Save_ChangedTitle" xml:space="preserve"><value>存档文件已更改</value></data>
+  <data name="Save_ChangedBody" xml:space="preserve"><value>PCEdit 打开此存档文件后，它被更改或删除了：可能是游戏覆盖了它。覆盖会用 PCEdit 中打开的内容替换磁盘上现有的内容。PCEdit 会先尝试备份当前文件。</value></data>
+  <data name="Save_ChangedOverwrite" xml:space="preserve"><value>覆盖</value></data>
   <data name="Announce_ErrorPrefix" xml:space="preserve"><value>错误：{0}</value></data>
   <data name="OpenFile_Title" xml:space="preserve"><value>打开文件</value></data>
   <data name="OpenFile_Heading" xml:space="preserve"><value>Planet Crafter 存档编辑器</value></data>
@@ -87,6 +94,7 @@
   <data name="Repair_Done" xml:space="preserve"><value>已移除的物品：{0}。修复后的副本已保存为 {1} 并已打开；原始存档未被更改。</value></data>
   <data name="Repair_Failed" xml:space="preserve"><value>无法写入修复后的副本。未做任何更改：原始存档已重新打开。</value></data>
   <data name="Repair_FailedTitle" xml:space="preserve"><value>修复失败</value></data>
+  <data name="Repair_FailedClosed" xml:space="preserve"><value>无法写入修复后的副本，也无法重新打开原始存档。未向磁盘写入任何内容。存档已关闭：请重新打开以继续。</value></data>
   <data name="Repair_MoveFirstHeading" xml:space="preserve"><value>先移到空闲存储</value></data>
   <data name="Repair_MoveFirstHint" xml:space="preserve"><value>勾选要保留的物品类型，最重要的放前面。在移除任何物品之前，它们会被放入同一世界中你自己的储物箱和储物柜的空格；放不下的会被移除。</value></data>
   <data name="Repair_FreeSlots" xml:space="preserve"><value>存储中的空格：{0}。</value></data>

@@ -23,6 +23,11 @@
   "Save_OkAnnounce": "存檔檔案已寫入。",
   "Save_Failed": "儲存失敗。你的檔案未被變更。",
   "Save_FailedAnnounce": "錯誤：儲存失敗。你的檔案未被變更。",
+  "Save_FailedNoPermission": "儲存失敗：檔案為唯讀，或 PCEdit 無權寫入該位置。你的檔案未被變更。",
+  "Save_ChangedOnDisk": "未儲存：PCEdit 開啟檔案後，磁碟上的檔案已變更。",
+  "Save_ChangedTitle": "存檔檔案已變更",
+  "Save_ChangedBody": "PCEdit 開啟此存檔檔案後，它已被變更或刪除：可能是遊戲覆寫了它。覆寫會以 PCEdit 中開啟的內容取代磁碟上現有的內容。PCEdit 會先嘗試備份目前的檔案。",
+  "Save_ChangedOverwrite": "覆寫",
   "Announce_ErrorPrefix": "錯誤：{0}",
   "OpenFile_Title": "開啟檔案",
   "OpenFile_Heading": "Planet Crafter 存檔編輯器",
@@ -180,6 +185,7 @@
   "Repair_Done": "已移除的物品：{0}。修復後的副本已儲存為 {1} 並已開啟；原始存檔未被變更。",
   "Repair_Failed": "無法寫入修復後的副本。未做任何變更：原始存檔已重新開啟。",
   "Repair_FailedTitle": "修復失敗",
+  "Repair_FailedClosed": "無法寫入修復後的副本，也無法重新開啟原始存檔。未向磁碟寫入任何內容。存檔已關閉：請重新開啟以繼續。",
   "Repair_MoveFirstHeading": "先移到空閒儲存",
   "Repair_MoveFirstHint": "勾選要保留的物品類型，最重要的放前面。在移除任何物品之前，它們會被放入同一世界中你自己的儲物箱和儲物櫃的空格；放不下的會被移除。",
   "Repair_FreeSlots": "儲存中的空格：{0}。",
@@ -259,6 +265,8 @@
   "About_SaveLocationsHeading": "遊戲存檔的位置",
   "About_SaveLocationsNote": "Xbox 為每個存檔使用隨機字串命名，每次寫入時都會改變。在 Linux 上，如果遊戲位於其他磁碟機，請將 ~/.steam/steam 替換為你的 Steam 程式庫資料夾。",
   "Shell_PageLoadFailed": "無法載入此頁面。檔案仍然開啟，未儲存的變更不會遺失。",
+  "Error_UnexpectedTitle": "未預期的錯誤",
+  "Error_UnexpectedBody": "發生了問題，但 PCEdit 仍在執行，你的存檔仍然開啟。如果有異常，請重新啟動 PCEdit。詳細資訊已寫入：{0}",
   "About_BackupsHeading": "自動備份",
   "About_BackupsNote": "開啟檔案後首次儲存時，PCEdit 會先將原始檔案複製到這裡。每個存檔最多保留五份最新副本。"
 }

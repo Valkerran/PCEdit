@@ -23,6 +23,11 @@
   "Save_OkAnnounce": "Ficheiro de jogo guardado escrito.",
   "Save_Failed": "Falha ao guardar. O seu ficheiro não foi alterado.",
   "Save_FailedAnnounce": "Erro: falha ao guardar. O seu ficheiro não foi alterado.",
+  "Save_FailedNoPermission": "Falha ao guardar: o ficheiro é só de leitura ou o PCEdit não tem permissão para escrever nesse local. O seu ficheiro não foi alterado.",
+  "Save_ChangedOnDisk": "Não guardado: o ficheiro mudou no disco depois de o PCEdit o abrir.",
+  "Save_ChangedTitle": "O ficheiro guardado foi alterado",
+  "Save_ChangedBody": "Este ficheiro guardado foi alterado ou removido depois de o PCEdit o abrir: o jogo pode ter guardado por cima. Substituir troca o que está agora no disco pelo que o PCEdit tem aberto. Antes disso, o PCEdit tenta guardar uma cópia do ficheiro atual.",
+  "Save_ChangedOverwrite": "Substituir",
   "Announce_ErrorPrefix": "Erro: {0}",
   "OpenFile_Title": "Abrir ficheiro",
   "OpenFile_Heading": "Editor de jogos guardados do Planet Crafter",
@@ -180,6 +185,7 @@
   "Repair_Done": "Itens removidos: {0}. A cópia reparada foi guardada como {1} e está agora aberta; o jogo guardado original não foi alterado.",
   "Repair_Failed": "Não foi possível escrever a cópia reparada. Nada foi alterado: o jogo guardado original está aberto novamente.",
   "Repair_FailedTitle": "A reparação falhou",
+  "Repair_FailedClosed": "Não foi possível escrever a cópia reparada nem reabrir o jogo guardado original. Nada foi escrito no disco. O jogo guardado foi fechado: abra-o novamente para continuar.",
   "Repair_MoveFirstHeading": "Mover primeiro para o armazenamento livre",
   "Repair_MoveFirstHint": "Marque os tipos de item a manter, os mais importantes primeiro. Vão para os espaços livres das suas próprias caixas e cacifos no mesmo mundo antes de algo ser removido; o que não couber é removido.",
   "Repair_FreeSlots": "Espaços livres no seu armazenamento: {0}.",
@@ -259,6 +265,8 @@
   "About_SaveLocationsHeading": "Onde o jogo guarda os teus jogos guardados",
   "About_SaveLocationsNote": "O Xbox atribui a cada jogo guardado um nome aleatório que muda sempre que é escrito. No Linux, substitui ~/.steam/steam pela pasta da tua biblioteca Steam se o jogo estiver noutra unidade.",
   "Shell_PageLoadFailed": "Não foi possível carregar esta página. O ficheiro continua aberto e as alterações não guardadas estão seguras.",
+  "Error_UnexpectedTitle": "Erro inesperado",
+  "Error_UnexpectedBody": "Algo correu mal, mas o PCEdit continua a funcionar e o seu jogo guardado continua aberto. Se algo parecer errado, reinicie o PCEdit. Os detalhes foram escritos em: {0}",
   "About_BackupsHeading": "Cópias de segurança automáticas",
   "About_BackupsNote": "Na primeira vez que o PCEdit guarda um ficheiro depois de o abrir, copia primeiro o original para aqui. São mantidas as cinco cópias mais recentes de cada jogo guardado."
 }

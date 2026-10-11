@@ -23,6 +23,8 @@
   <data name="Shell_SaveHint" xml:space="preserve"><value>Writes your edits back to the save file on disk</value></data>
   <data name="Shell_NavA11y" xml:space="preserve"><value>Main navigation</value></data>
   <data name="Shell_PageLoadFailed" xml:space="preserve"><value>This page could not be loaded. Your file is still open and any unsaved changes are safe.</value></data>
+  <data name="Error_UnexpectedTitle" xml:space="preserve"><value>Unexpected error</value></data>
+  <data name="Error_UnexpectedBody" xml:space="preserve"><value>Something went wrong, but PCEdit is still running and your save is still open. If anything looks wrong, restart PCEdit. Details were written to: {0}</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>Open File</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>Overview</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>Inventories</value></data>
@@ -35,6 +37,11 @@
   <data name="Save_OkAnnounce" xml:space="preserve"><value>Save file written.</value></data>
   <data name="Save_Failed" xml:space="preserve"><value>Save failed. Your file was not changed.</value></data>
   <data name="Save_FailedAnnounce" xml:space="preserve"><value>Error: save failed. Your file was not changed.</value></data>
+  <data name="Save_FailedNoPermission" xml:space="preserve"><value>Save failed: the file is read-only, or PCEdit is not allowed to write there. Your file was not changed.</value></data>
+  <data name="Save_ChangedOnDisk" xml:space="preserve"><value>Not saved: the file changed on disk after PCEdit opened it.</value></data>
+  <data name="Save_ChangedTitle" xml:space="preserve"><value>The save file has changed</value></data>
+  <data name="Save_ChangedBody" xml:space="preserve"><value>This save file was changed or removed after PCEdit opened it: the game may have saved over it. Overwriting replaces what is on disk now with what PCEdit has open. PCEdit tries to back up the current file first.</value></data>
+  <data name="Save_ChangedOverwrite" xml:space="preserve"><value>Overwrite</value></data>
   <data name="Announce_ErrorPrefix" xml:space="preserve"><value>Error: {0}</value></data>
   <data name="OpenFile_Title" xml:space="preserve"><value>Open File</value></data>
   <data name="OpenFile_Heading" xml:space="preserve"><value>Planet Crafter Save Editor</value></data>
@@ -87,6 +94,7 @@
   <data name="Repair_Done" xml:space="preserve"><value>Items removed: {0}. The repaired copy is saved as {1} and is now open; the original save is unchanged.</value></data>
   <data name="Repair_Failed" xml:space="preserve"><value>The repaired copy could not be written. Nothing was changed: the original save is open again.</value></data>
   <data name="Repair_FailedTitle" xml:space="preserve"><value>Repair failed</value></data>
+  <data name="Repair_FailedClosed" xml:space="preserve"><value>The repaired copy could not be written, and the original save could not be reopened. Nothing was written to disk. The save has been closed: open it again to continue.</value></data>
   <data name="Repair_MoveFirstHeading" xml:space="preserve"><value>Move into free storage first</value></data>
   <data name="Repair_MoveFirstHint" xml:space="preserve"><value>Tick the item types to keep, most important first. They go into free slots in your own Storage Crates and Lockers on the same world before anything is removed; whatever does not fit is removed.</value></data>
   <data name="Repair_FreeSlots" xml:space="preserve"><value>Free slots in your storage: {0}.</value></data>

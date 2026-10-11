@@ -4,6 +4,57 @@ What changed in each release of PCEdit. Downloads for every version are on the
 [Releases page](https://github.com/Valkerran/PCEdit/releases); the newest is on the
 [latest release](https://github.com/Valkerran/PCEdit/releases/latest) page.
 
+## v1.8.0
+
+PCEdit is more careful about what it writes over, and no longer disappears when something
+unexpected goes wrong.
+
+- **New: PCEdit asks before saving over a file that changed behind its back.** If the game (or
+  anything else) rewrote or removed the save after you opened it in PCEdit, saving used to
+  replace that newer file without a word. PCEdit now tells you and asks whether to overwrite.
+  If you do, it first backs up the file as it is now, so the game's newer progress is kept too.
+  ([#116](https://github.com/Valkerran/PCEdit/issues/116))
+
+- **New: an unexpected error no longer closes the app.** PCEdit shows a message, stays open
+  with your save and unsaved edits intact, and writes the details to a log file:
+  `%LocalAppData%\PCEdit\pcedit.log` on Windows, `~/.local/share/PCEdit/pcedit.log` on Linux,
+  `~/Library/Application Support/PCEdit/pcedit.log` on macOS. The log stays on your computer;
+  it contains file paths, so look it over before attaching it to a bug report.
+  ([#74](https://github.com/Valkerran/PCEdit/issues/74))
+
+- **Fixed: the repair could leave repaired data one Save away from your original.** If the
+  repaired copy could not be written and the original could not be reopened either (a removed
+  drive, a cloud folder that went offline), PCEdit crashed. It now closes the save and says so.
+  ([#73](https://github.com/Valkerran/PCEdit/issues/73))
+
+- **Fixed (Linux, macOS): a repaired copy could overwrite the original through a linked
+  folder.** Steam on Linux reaches the same save folder by two paths; saving the copy through
+  the other one, under the same name, got past the "a copy must not replace its original"
+  check. ([#78](https://github.com/Valkerran/PCEdit/issues/78))
+
+- **Fixed (Linux, macOS): read-only and linked save files.** PCEdit replaced a save you had
+  made read-only, and turned a save that was a symbolic link into a plain file, leaving the
+  linked file unchanged. A read-only save is now refused with a message that says why, a
+  linked save is written where it really lives, and a save keeps its permissions. Windows
+  already refused read-only files; it now shows the same message.
+  ([#87](https://github.com/Valkerran/PCEdit/issues/87))
+
+- **Fixed: settings could be lost.** A crash while writing `settings.json` could reset your
+  language and bring the disclaimer back, and with two PCEdit windows open each one undid the
+  other's setting changes. ([#100](https://github.com/Valkerran/PCEdit/issues/100))
+
+- **Fixed: backups of same-named saves interfered with each other.** Saves with the same file
+  name in different folders (a Steam and a Game Pass `Survival-1.json`, say) shared one limit
+  of five backups, so editing one could delete the untouched copy of the other. Each save now
+  has its own five. Backups made by earlier versions keep their old names and are no longer
+  cleaned up automatically; delete them yourself when you no longer want them.
+  ([#101](https://github.com/Valkerran/PCEdit/issues/101))
+
+- **Fixed: two PCEdit windows saving the same file at once** could make both fail.
+  ([#88](https://github.com/Valkerran/PCEdit/issues/88))
+
+No change to download size or requirements on any platform.
+
 ## v1.7.4
 
 Numbers you type now mean exactly what they show, or PCEdit says why not.

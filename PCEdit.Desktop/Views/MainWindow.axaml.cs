@@ -77,10 +77,11 @@ public partial class MainWindow : Window
 
         if (!_disclaimerChecked && _disclaimerGate is { HasAcknowledged: false })
         {
-            await _dialogs!.ShowDisclaimerAsync(
-                _localizer![LocKeys.Disclaimer_Title],
-                _localizer[LocKeys.Disclaimer_Body],
-                _localizer[LocKeys.Disclaimer_Acknowledge]);
+            if (!await TryShowDisclaimerAsync())
+            {
+                return;
+            }
+
             _disclaimerGate.Acknowledge();
         }
 
@@ -89,6 +90,29 @@ public partial class MainWindow : Window
         // Build the other pages' views now, while the app is idle, so the first navigation to each
         // isn't a visible stall (XAML load + template JIT happens here instead of on the click).
         Dispatcher.UIThread.Post(PrewarmPageViews, DispatcherPriority.Background);
+    }
+
+    /// <summary>
+    /// The disclaimer is a gate: unexpected errors no longer end the app, so one raised while
+    /// showing it would otherwise leave PCEdit usable without it ever having been seen.
+    /// </summary>
+    private async Task<bool> TryShowDisclaimerAsync()
+    {
+        try
+        {
+            await _dialogs!.ShowDisclaimerAsync(
+                _localizer![LocKeys.Disclaimer_Title],
+                _localizer[LocKeys.Disclaimer_Body],
+                _localizer[LocKeys.Disclaimer_Acknowledge]);
+            return true;
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Trace.WriteLine($"Could not show the disclaimer: {ex}");
+            _forceClose = true;
+            Close();
+            return false;
+        }
     }
 
     private void PrewarmPageViews()

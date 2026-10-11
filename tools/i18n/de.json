@@ -23,6 +23,11 @@
   "Save_OkAnnounce": "Spielstanddatei geschrieben.",
   "Save_Failed": "Speichern fehlgeschlagen. Deine Datei wurde nicht geändert.",
   "Save_FailedAnnounce": "Fehler: Speichern fehlgeschlagen. Deine Datei wurde nicht geändert.",
+  "Save_FailedNoPermission": "Speichern fehlgeschlagen: Die Datei ist schreibgeschützt oder PCEdit darf dort nicht schreiben. Deine Datei wurde nicht geändert.",
+  "Save_ChangedOnDisk": "Nicht gespeichert: Die Datei wurde auf dem Datenträger geändert, nachdem PCEdit sie geöffnet hat.",
+  "Save_ChangedTitle": "Die Spielstanddatei wurde geändert",
+  "Save_ChangedBody": "Diese Spielstanddatei wurde geändert oder entfernt, nachdem PCEdit sie geöffnet hat: Möglicherweise hat das Spiel sie überschrieben. Beim Überschreiben wird der aktuelle Inhalt auf dem Datenträger durch den in PCEdit geöffneten Stand ersetzt. PCEdit versucht vorher, die aktuelle Datei zu sichern.",
+  "Save_ChangedOverwrite": "Überschreiben",
   "Announce_ErrorPrefix": "Fehler: {0}",
   "OpenFile_Title": "Datei öffnen",
   "OpenFile_Heading": "Planet Crafter Spielstand-Editor",
@@ -180,6 +185,7 @@
   "Repair_Done": "Entfernte Gegenstände: {0}. Die reparierte Kopie ist als {1} gespeichert und jetzt geöffnet; der ursprüngliche Spielstand ist unverändert.",
   "Repair_Failed": "Die reparierte Kopie konnte nicht geschrieben werden. Es wurde nichts geändert: Der ursprüngliche Spielstand ist wieder geöffnet.",
   "Repair_FailedTitle": "Reparatur fehlgeschlagen",
+  "Repair_FailedClosed": "Die reparierte Kopie konnte nicht geschrieben und der ursprüngliche Spielstand nicht wieder geöffnet werden. Es wurde nichts auf den Datenträger geschrieben. Der Spielstand wurde geschlossen: Öffne ihn erneut, um fortzufahren.",
   "Repair_MoveFirstHeading": "Zuerst in freien Lagerplatz verschieben",
   "Repair_MoveFirstHint": "Haken Sie die Gegenstandsarten an, die Sie behalten möchten, die wichtigsten zuerst. Sie kommen vor dem Entfernen in freie Plätze Ihrer eigenen Lagerkisten und Schränke auf derselben Welt; was nicht passt, wird entfernt.",
   "Repair_FreeSlots": "Freie Plätze in Ihrem Lager: {0}.",
@@ -259,6 +265,8 @@
   "About_SaveLocationsHeading": "Wo das Spiel deine Spielstände ablegt",
   "About_SaveLocationsNote": "Xbox benennt jeden Spielstand mit einer zufälligen Zeichenfolge, die sich bei jedem Speichern ändert. Ersetze unter Linux ~/.steam/steam durch deinen Steam-Bibliotheksordner, falls das Spiel auf einem anderen Laufwerk liegt.",
   "Shell_PageLoadFailed": "Diese Seite konnte nicht geladen werden. Ihre Datei ist weiterhin geöffnet und nicht gespeicherte Änderungen sind sicher.",
+  "Error_UnexpectedTitle": "Unerwarteter Fehler",
+  "Error_UnexpectedBody": "Etwas ist schiefgegangen, aber PCEdit läuft weiter und dein Spielstand ist noch geöffnet. Wenn etwas nicht stimmt, starte PCEdit neu. Details wurden gespeichert unter: {0}",
   "About_BackupsHeading": "Automatische Sicherungen",
   "About_BackupsNote": "Wenn PCEdit eine Datei nach dem Öffnen zum ersten Mal speichert, wird das Original zuvor hierher kopiert. Die fünf neuesten Kopien jedes Spielstands werden aufbewahrt."
 }

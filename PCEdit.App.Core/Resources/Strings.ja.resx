@@ -23,6 +23,8 @@
   <data name="Shell_SaveHint" xml:space="preserve"><value>編集内容をディスク上のセーブファイルに書き戻します</value></data>
   <data name="Shell_NavA11y" xml:space="preserve"><value>メインナビゲーション</value></data>
   <data name="Shell_PageLoadFailed" xml:space="preserve"><value>このページを読み込めませんでした。ファイルは開いたままで、未保存の変更も失われていません。</value></data>
+  <data name="Error_UnexpectedTitle" xml:space="preserve"><value>予期しないエラー</value></data>
+  <data name="Error_UnexpectedBody" xml:space="preserve"><value>問題が発生しましたが、PCEdit は動作を続けており、セーブも開いたままです。動作がおかしい場合は PCEdit を再起動してください。詳細の保存先: {0}</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>ファイルを開く</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>概要</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>インベントリ</value></data>
@@ -35,6 +37,11 @@
   <data name="Save_OkAnnounce" xml:space="preserve"><value>セーブファイルを書き込みました。</value></data>
   <data name="Save_Failed" xml:space="preserve"><value>保存に失敗しました。ファイルは変更されていません。</value></data>
   <data name="Save_FailedAnnounce" xml:space="preserve"><value>エラー: 保存に失敗しました。ファイルは変更されていません。</value></data>
+  <data name="Save_FailedNoPermission" xml:space="preserve"><value>保存に失敗しました。ファイルが読み取り専用か、PCEdit にその場所への書き込み権限がありません。ファイルは変更されていません。</value></data>
+  <data name="Save_ChangedOnDisk" xml:space="preserve"><value>保存されていません。PCEdit が開いた後に、ディスク上のファイルが変更されました。</value></data>
+  <data name="Save_ChangedTitle" xml:space="preserve"><value>セーブファイルが変更されました</value></data>
+  <data name="Save_ChangedBody" xml:space="preserve"><value>このセーブファイルは、PCEdit が開いた後に変更または削除されました。ゲームが上書き保存した可能性があります。上書きすると、現在ディスクにある内容が PCEdit で開いている内容に置き換わります。PCEdit はその前に現在のファイルのバックアップを試みます。</value></data>
+  <data name="Save_ChangedOverwrite" xml:space="preserve"><value>上書き</value></data>
   <data name="Announce_ErrorPrefix" xml:space="preserve"><value>エラー: {0}</value></data>
   <data name="OpenFile_Title" xml:space="preserve"><value>ファイルを開く</value></data>
   <data name="OpenFile_Heading" xml:space="preserve"><value>Planet Crafter セーブエディター</value></data>
@@ -87,6 +94,7 @@
   <data name="Repair_Done" xml:space="preserve"><value>削除したアイテム: {0}。修復したコピーを {1} として保存し、現在開いています。元のセーブは変更されていません。</value></data>
   <data name="Repair_Failed" xml:space="preserve"><value>修復したコピーを書き込めませんでした。何も変更されていません。元のセーブを再び開いています。</value></data>
   <data name="Repair_FailedTitle" xml:space="preserve"><value>修復に失敗しました</value></data>
+  <data name="Repair_FailedClosed" xml:space="preserve"><value>修復したコピーを書き込めず、元のセーブも再び開けませんでした。ディスクには何も書き込まれていません。セーブを閉じました。続けるにはもう一度開いてください。</value></data>
   <data name="Repair_MoveFirstHeading" xml:space="preserve"><value>先に空きストレージへ移動</value></data>
   <data name="Repair_MoveFirstHint" xml:space="preserve"><value>残したいアイテムの種類にチェックを入れてください (重要なものから順に)。削除の前に、同じワールドにある自分のストレージ箱やロッカーの空きスロットへ移動します。入りきらない分は削除されます。</value></data>
   <data name="Repair_FreeSlots" xml:space="preserve"><value>ストレージの空きスロット: {0}。</value></data>

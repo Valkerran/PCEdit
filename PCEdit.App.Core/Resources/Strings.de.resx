@@ -23,6 +23,8 @@
   <data name="Shell_SaveHint" xml:space="preserve"><value>Schreibt deine Änderungen zurück in die Spielstanddatei auf dem Datenträger</value></data>
   <data name="Shell_NavA11y" xml:space="preserve"><value>Hauptnavigation</value></data>
   <data name="Shell_PageLoadFailed" xml:space="preserve"><value>Diese Seite konnte nicht geladen werden. Ihre Datei ist weiterhin geöffnet und nicht gespeicherte Änderungen sind sicher.</value></data>
+  <data name="Error_UnexpectedTitle" xml:space="preserve"><value>Unerwarteter Fehler</value></data>
+  <data name="Error_UnexpectedBody" xml:space="preserve"><value>Etwas ist schiefgegangen, aber PCEdit läuft weiter und dein Spielstand ist noch geöffnet. Wenn etwas nicht stimmt, starte PCEdit neu. Details wurden gespeichert unter: {0}</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>Datei öffnen</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>Übersicht</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>Inventare</value></data>
@@ -35,6 +37,11 @@
   <data name="Save_OkAnnounce" xml:space="preserve"><value>Spielstanddatei geschrieben.</value></data>
   <data name="Save_Failed" xml:space="preserve"><value>Speichern fehlgeschlagen. Deine Datei wurde nicht geändert.</value></data>
   <data name="Save_FailedAnnounce" xml:space="preserve"><value>Fehler: Speichern fehlgeschlagen. Deine Datei wurde nicht geändert.</value></data>
+  <data name="Save_FailedNoPermission" xml:space="preserve"><value>Speichern fehlgeschlagen: Die Datei ist schreibgeschützt oder PCEdit darf dort nicht schreiben. Deine Datei wurde nicht geändert.</value></data>
+  <data name="Save_ChangedOnDisk" xml:space="preserve"><value>Nicht gespeichert: Die Datei wurde auf dem Datenträger geändert, nachdem PCEdit sie geöffnet hat.</value></data>
+  <data name="Save_ChangedTitle" xml:space="preserve"><value>Die Spielstanddatei wurde geändert</value></data>
+  <data name="Save_ChangedBody" xml:space="preserve"><value>Diese Spielstanddatei wurde geändert oder entfernt, nachdem PCEdit sie geöffnet hat: Möglicherweise hat das Spiel sie überschrieben. Beim Überschreiben wird der aktuelle Inhalt auf dem Datenträger durch den in PCEdit geöffneten Stand ersetzt. PCEdit versucht vorher, die aktuelle Datei zu sichern.</value></data>
+  <data name="Save_ChangedOverwrite" xml:space="preserve"><value>Überschreiben</value></data>
   <data name="Announce_ErrorPrefix" xml:space="preserve"><value>Fehler: {0}</value></data>
   <data name="OpenFile_Title" xml:space="preserve"><value>Datei öffnen</value></data>
   <data name="OpenFile_Heading" xml:space="preserve"><value>Planet Crafter Spielstand-Editor</value></data>
@@ -87,6 +94,7 @@
   <data name="Repair_Done" xml:space="preserve"><value>Entfernte Gegenstände: {0}. Die reparierte Kopie ist als {1} gespeichert und jetzt geöffnet; der ursprüngliche Spielstand ist unverändert.</value></data>
   <data name="Repair_Failed" xml:space="preserve"><value>Die reparierte Kopie konnte nicht geschrieben werden. Es wurde nichts geändert: Der ursprüngliche Spielstand ist wieder geöffnet.</value></data>
   <data name="Repair_FailedTitle" xml:space="preserve"><value>Reparatur fehlgeschlagen</value></data>
+  <data name="Repair_FailedClosed" xml:space="preserve"><value>Die reparierte Kopie konnte nicht geschrieben und der ursprüngliche Spielstand nicht wieder geöffnet werden. Es wurde nichts auf den Datenträger geschrieben. Der Spielstand wurde geschlossen: Öffne ihn erneut, um fortzufahren.</value></data>
   <data name="Repair_MoveFirstHeading" xml:space="preserve"><value>Zuerst in freien Lagerplatz verschieben</value></data>
   <data name="Repair_MoveFirstHint" xml:space="preserve"><value>Haken Sie die Gegenstandsarten an, die Sie behalten möchten, die wichtigsten zuerst. Sie kommen vor dem Entfernen in freie Plätze Ihrer eigenen Lagerkisten und Schränke auf derselben Welt; was nicht passt, wird entfernt.</value></data>
   <data name="Repair_FreeSlots" xml:space="preserve"><value>Freie Plätze in Ihrem Lager: {0}.</value></data>

@@ -23,6 +23,11 @@
   "Save_OkAnnounce": "저장 파일을 기록했습니다.",
   "Save_Failed": "저장에 실패했습니다. 파일이 변경되지 않았습니다.",
   "Save_FailedAnnounce": "오류: 저장에 실패했습니다. 파일이 변경되지 않았습니다.",
+  "Save_FailedNoPermission": "저장에 실패했습니다. 파일이 읽기 전용이거나 PCEdit에 해당 위치에 쓸 권한이 없습니다. 파일이 변경되지 않았습니다.",
+  "Save_ChangedOnDisk": "저장되지 않았습니다. PCEdit에서 연 뒤에 디스크의 파일이 변경되었습니다.",
+  "Save_ChangedTitle": "세이브 파일이 변경되었습니다",
+  "Save_ChangedBody": "PCEdit에서 연 뒤에 이 세이브 파일이 변경되거나 삭제되었습니다. 게임이 덮어썼을 수 있습니다. 덮어쓰면 지금 디스크에 있는 내용이 PCEdit에 열려 있는 내용으로 바뀝니다. PCEdit는 먼저 현재 파일의 백업을 시도합니다.",
+  "Save_ChangedOverwrite": "덮어쓰기",
   "Announce_ErrorPrefix": "오류: {0}",
   "OpenFile_Title": "파일 열기",
   "OpenFile_Heading": "Planet Crafter 저장 편집기",
@@ -180,6 +185,7 @@
   "Repair_Done": "제거한 아이템: {0}. 복구된 사본을 {1}(으)로 저장했고 지금 열려 있습니다. 원본 세이브는 바뀌지 않았습니다.",
   "Repair_Failed": "복구된 사본을 쓸 수 없었습니다. 아무것도 바뀌지 않았으며 원본 세이브가 다시 열려 있습니다.",
   "Repair_FailedTitle": "복구 실패",
+  "Repair_FailedClosed": "복구된 사본을 쓸 수 없었고 원본 세이브도 다시 열 수 없었습니다. 디스크에는 아무것도 기록되지 않았습니다. 세이브를 닫았습니다. 계속하려면 다시 여세요.",
   "Repair_MoveFirstHeading": "먼저 빈 저장 공간으로 옮기기",
   "Repair_MoveFirstHint": "남길 아이템 종류를 중요한 순서대로 선택하세요. 제거하기 전에 같은 월드에 있는 내 보관 상자와 사물함의 빈 칸으로 옮기며, 들어가지 않는 것은 제거됩니다.",
   "Repair_FreeSlots": "저장 공간의 빈 칸: {0}.",
@@ -259,6 +265,8 @@
   "About_SaveLocationsHeading": "게임이 세이브를 저장하는 위치",
   "About_SaveLocationsNote": "Xbox는 각 세이브에 저장할 때마다 바뀌는 무작위 문자열로 이름을 붙입니다. Linux에서 게임이 다른 드라이브에 있으면 ~/.steam/steam을 Steam 라이브러리 폴더로 바꾸세요.",
   "Shell_PageLoadFailed": "이 페이지를 불러오지 못했습니다. 파일은 계속 열려 있으며 저장하지 않은 변경 사항은 안전합니다.",
+  "Error_UnexpectedTitle": "예기치 않은 오류",
+  "Error_UnexpectedBody": "문제가 발생했지만 PCEdit는 계속 실행 중이며 세이브도 열려 있습니다. 이상해 보이면 PCEdit를 다시 시작하세요. 자세한 내용이 기록된 위치: {0}",
   "About_BackupsHeading": "자동 백업",
   "About_BackupsNote": "파일을 연 뒤 PCEdit이 처음 저장할 때 원본을 먼저 이곳에 복사합니다. 각 저장 파일마다 최근 사본 다섯 개가 보관됩니다."
 }

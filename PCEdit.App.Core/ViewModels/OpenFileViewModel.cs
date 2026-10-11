@@ -34,6 +34,15 @@ public sealed partial class OpenFileViewModel : ObservableObject
 
         // The status line stays visible across a language change, so re-render it from its key.
         _localizer.CultureChanged += (_, _) => OnPropertyChanged(nameof(StatusMessage));
+
+        // A save can be closed from elsewhere (a failed repair): "Loaded ..." must not outlive it.
+        _workspace.PropertyChanged += (_, e) =>
+        {
+            if (e.PropertyName == nameof(ISaveFileWorkspace.IsLoaded) && !_workspace.IsLoaded)
+            {
+                SetStatus(StatusKind.Info, null);
+            }
+        };
     }
 
     [ObservableProperty]

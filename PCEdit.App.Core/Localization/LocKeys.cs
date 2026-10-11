@@ -18,6 +18,8 @@ public static class LocKeys
 
     public const string Shell_Title = "Shell_Title";
     public const string Shell_PageLoadFailed = "Shell_PageLoadFailed";
+    public const string Error_UnexpectedTitle = "Error_UnexpectedTitle";
+    public const string Error_UnexpectedBody = "Error_UnexpectedBody";
     public const string Nav_OpenFile = "Nav_OpenFile";
     public const string Nav_Overview = "Nav_Overview";
     public const string Nav_Inventories = "Nav_Inventories";
@@ -34,6 +36,11 @@ public static class LocKeys
     public const string Save_OkAnnounce = "Save_OkAnnounce";
     public const string Save_Failed = "Save_Failed";
     public const string Save_FailedAnnounce = "Save_FailedAnnounce";
+    public const string Save_FailedNoPermission = "Save_FailedNoPermission";
+    public const string Save_ChangedOnDisk = "Save_ChangedOnDisk";
+    public const string Save_ChangedTitle = "Save_ChangedTitle";
+    public const string Save_ChangedBody = "Save_ChangedBody";
+    public const string Save_ChangedOverwrite = "Save_ChangedOverwrite";
 
     public const string OpenFile_DiscardTitle = "OpenFile_DiscardTitle";
     public const string OpenFile_DiscardBody = "OpenFile_DiscardBody";
@@ -55,6 +62,7 @@ public static class LocKeys
     public const string Repair_Done = "Repair_Done";
     public const string Repair_Failed = "Repair_Failed";
     public const string Repair_FailedTitle = "Repair_FailedTitle";
+    public const string Repair_FailedClosed = "Repair_FailedClosed";
     public const string Repair_FreeSlots = "Repair_FreeSlots";
     public const string Repair_PreviewMoved = "Repair_PreviewMoved";
     public const string Repair_DoneMoved = "Repair_DoneMoved";

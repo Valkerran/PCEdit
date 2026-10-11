@@ -23,6 +23,11 @@
   "Save_OkAnnounce": "Plik zapisu został zapisany.",
   "Save_Failed": "Zapis nie powiódł się. Plik nie został zmieniony.",
   "Save_FailedAnnounce": "Błąd: zapis nie powiódł się. Plik nie został zmieniony.",
+  "Save_FailedNoPermission": "Zapis nie powiódł się: plik jest tylko do odczytu albo PCEdit nie ma uprawnień do zapisu w tym miejscu. Plik nie został zmieniony.",
+  "Save_ChangedOnDisk": "Nie zapisano: plik zmienił się na dysku po otwarciu go w PCEdit.",
+  "Save_ChangedTitle": "Plik zapisu został zmieniony",
+  "Save_ChangedBody": "Ten plik zapisu został zmieniony lub usunięty po otwarciu go w PCEdit: możliwe, że gra go nadpisała. Nadpisanie zastąpi to, co jest teraz na dysku, tym, co jest otwarte w PCEdit. PCEdit najpierw spróbuje zachować kopię obecnego pliku.",
+  "Save_ChangedOverwrite": "Nadpisz",
   "Announce_ErrorPrefix": "Błąd: {0}",
   "OpenFile_Title": "Otwórz plik",
   "OpenFile_Heading": "Edytor zapisów Planet Crafter",
@@ -180,6 +185,7 @@
   "Repair_Done": "Usunięte przedmioty: {0}. Naprawiona kopia została zapisana jako {1} i jest teraz otwarta; oryginalny zapis pozostał bez zmian.",
   "Repair_Failed": "Nie udało się zapisać naprawionej kopii. Nic nie zostało zmienione: oryginalny zapis jest ponownie otwarty.",
   "Repair_FailedTitle": "Naprawa nie powiodła się",
+  "Repair_FailedClosed": "Nie udało się zapisać naprawionej kopii ani ponownie otworzyć oryginalnego zapisu. Nic nie zostało zapisane na dysku. Zapis został zamknięty: otwórz go ponownie, aby kontynuować.",
   "Repair_MoveFirstHeading": "Najpierw przenieś do wolnego miejsca",
   "Repair_MoveFirstHint": "Zaznacz rodzaje przedmiotów do zachowania, najważniejsze najpierw. Trafią do wolnych miejsc w Twoich skrzyniach i szafkach na tym samym świecie, zanim cokolwiek zostanie usunięte; to, co się nie zmieści, zostanie usunięte.",
   "Repair_FreeSlots": "Wolne miejsca w Twoim magazynie: {0}.",
@@ -259,6 +265,8 @@
   "About_SaveLocationsHeading": "Gdzie gra przechowuje zapisy",
   "About_SaveLocationsNote": "Xbox nadaje każdemu zapisowi losowy ciąg znaków, który zmienia się przy każdym zapisie. W systemie Linux zastąp ~/.steam/steam folderem swojej biblioteki Steam, jeśli gra znajduje się na innym dysku.",
   "Shell_PageLoadFailed": "Nie udało się wczytać tej strony. Plik jest nadal otwarty, a niezapisane zmiany są bezpieczne.",
+  "Error_UnexpectedTitle": "Nieoczekiwany błąd",
+  "Error_UnexpectedBody": "Coś poszło nie tak, ale PCEdit nadal działa, a zapis jest wciąż otwarty. Jeśli coś wygląda nie tak, uruchom PCEdit ponownie. Szczegóły zapisano w: {0}",
   "About_BackupsHeading": "Automatyczne kopie zapasowe",
   "About_BackupsNote": "Przy pierwszym zapisie pliku po jego otwarciu PCEdit najpierw kopiuje tutaj oryginał. Przechowywanych jest pięć najnowszych kopii każdego zapisu."
 }

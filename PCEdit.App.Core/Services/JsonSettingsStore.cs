@@ -1,28 +1,28 @@
 using System.Text.Json;
 using PCEdit.App.Core.Localization;
 using PCEdit.App.Core.Models;
-using PCEdit.App.Core.Services;
+using PCEdit.SaveFileHandler;
 
-namespace PCEdit.Desktop.Platform;
+namespace PCEdit.App.Core.Services;
 
 /// <summary>
 /// File-backed persistence for the UI language, disclaimer acknowledgement and how the Inventories
-/// page shows identical items, stored at
-/// <c>&lt;ApplicationData&gt;/PCEdit/settings.json</c> (e.g. <c>~/.config/PCEdit</c> on Linux).
+/// page shows identical items. The UI head says where the file lives.
 /// </summary>
 public sealed class JsonSettingsStore : ILanguageStore, IDisclaimerGate, IInventoryDisplayStore
 {
-    private static readonly string SettingsPath = Path.Combine(
-        Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData, Environment.SpecialFolderOption.Create),
-        "PCEdit",
-        "settings.json");
-
     private static readonly JsonSerializerOptions JsonOptions = new() { WriteIndented = true };
 
     private readonly object _gate = new();
+    private readonly string _path;
     private Settings _settings;
 
-    public JsonSettingsStore() => _settings = Read();
+    public JsonSettingsStore(string settingsPath)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(settingsPath);
+        _path = Path.GetFullPath(settingsPath);
+        _settings = ReadOr(new Settings());
+    }
 
     public string? GetSavedCulture() =>
         string.IsNullOrWhiteSpace(_settings.UiCulture) ? null : _settings.UiCulture;
@@ -48,11 +48,14 @@ public sealed class JsonSettingsStore : ILanguageStore, IDisclaimerGate, IInvent
     {
         lock (_gate)
         {
-            _settings = change(_settings);
+            // Start from the file, not from what this window read at startup: another PCEdit
+            // window may have saved a different setting since (issue #100). Two windows writing
+            // in the same instant can still race; that is not worth a cross-process lock.
+            _settings = change(ReadOr(_settings));
             try
             {
-                Directory.CreateDirectory(Path.GetDirectoryName(SettingsPath)!);
-                File.WriteAllText(SettingsPath, JsonSerializer.Serialize(_settings, JsonOptions));
+                Directory.CreateDirectory(Path.GetDirectoryName(_path)!);
+                AtomicFile.WriteAllBytes(_path, JsonSerializer.SerializeToUtf8Bytes(_settings, JsonOptions));
             }
             catch (Exception ex)
             {
@@ -61,17 +64,20 @@ public sealed class JsonSettingsStore : ILanguageStore, IDisclaimerGate, IInvent
         }
     }
 
-    private static Settings Read()
+    /// <summary>The settings on disk, or <paramref name="fallback"/> when there is no file or it
+    /// cannot be read - the file is hand-editable, and a broken one must not stop the app. Read as
+    /// text, which drops the byte-order mark some editors add; the JSON reader refuses one.</summary>
+    private Settings ReadOr(Settings fallback)
     {
         try
         {
-            return File.Exists(SettingsPath)
-                ? JsonSerializer.Deserialize<Settings>(File.ReadAllText(SettingsPath)) ?? new Settings()
-                : new Settings();
+            return File.Exists(_path)
+                ? JsonSerializer.Deserialize<Settings>(File.ReadAllText(_path)) ?? fallback
+                : fallback;
         }
-        catch
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or JsonException)
         {
-            return new Settings();
+            return fallback;
         }
     }
 

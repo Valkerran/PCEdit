@@ -23,6 +23,11 @@
   "Save_OkAnnounce": "Fichier de sauvegarde écrit.",
   "Save_Failed": "Échec de l'enregistrement. Votre fichier n'a pas été modifié.",
   "Save_FailedAnnounce": "Erreur : échec de l'enregistrement. Votre fichier n'a pas été modifié.",
+  "Save_FailedNoPermission": "Échec de l'enregistrement : le fichier est en lecture seule ou PCEdit n'a pas le droit d'écrire à cet endroit. Votre fichier n'a pas été modifié.",
+  "Save_ChangedOnDisk": "Non enregistré : le fichier a changé sur le disque après son ouverture par PCEdit.",
+  "Save_ChangedTitle": "Le fichier de sauvegarde a changé",
+  "Save_ChangedBody": "Ce fichier de sauvegarde a été modifié ou supprimé après son ouverture par PCEdit : le jeu l'a peut-être réécrit. Écraser remplace ce qui se trouve maintenant sur le disque par ce que PCEdit a ouvert. PCEdit tente d'abord de conserver une copie du fichier actuel.",
+  "Save_ChangedOverwrite": "Écraser",
   "Announce_ErrorPrefix": "Erreur : {0}",
   "OpenFile_Title": "Ouvrir un fichier",
   "OpenFile_Heading": "Éditeur de sauvegarde Planet Crafter",
@@ -180,6 +185,7 @@
   "Repair_Done": "Objets supprimés : {0}. La copie réparée est enregistrée sous {1} et est maintenant ouverte ; la sauvegarde d'origine est inchangée.",
   "Repair_Failed": "La copie réparée n'a pas pu être écrite. Rien n'a été modifié : la sauvegarde d'origine est de nouveau ouverte.",
   "Repair_FailedTitle": "Échec de la réparation",
+  "Repair_FailedClosed": "La copie réparée n'a pas pu être écrite et la sauvegarde d'origine n'a pas pu être rouverte. Rien n'a été écrit sur le disque. La sauvegarde a été fermée : rouvrez-la pour continuer.",
   "Repair_MoveFirstHeading": "Déplacer d'abord vers le stockage libre",
   "Repair_MoveFirstHint": "Cochez les types d'objets à garder, les plus importants en premier. Ils vont dans les emplacements libres de vos propres caisses et casiers sur le même monde avant toute suppression ; ce qui ne tient pas est supprimé.",
   "Repair_FreeSlots": "Emplacements libres dans votre stockage : {0}.",
@@ -259,6 +265,8 @@
   "About_SaveLocationsHeading": "Où le jeu conserve vos sauvegardes",
   "About_SaveLocationsNote": "Xbox nomme chaque sauvegarde avec une chaîne aléatoire qui change à chaque écriture. Sous Linux, remplacez ~/.steam/steam par le dossier de votre bibliothèque Steam si le jeu est sur un autre disque.",
   "Shell_PageLoadFailed": "Impossible de charger cette page. Votre fichier reste ouvert et vos modifications non enregistrées sont intactes.",
+  "Error_UnexpectedTitle": "Erreur inattendue",
+  "Error_UnexpectedBody": "Un problème est survenu, mais PCEdit fonctionne toujours et votre sauvegarde est encore ouverte. Si quelque chose semble anormal, redémarrez PCEdit. Les détails ont été enregistrés dans : {0}",
   "About_BackupsHeading": "Sauvegardes automatiques",
   "About_BackupsNote": "Lors du premier enregistrement suivant l'ouverture d'un fichier, PCEdit en copie d'abord l'original ici. Les cinq copies les plus récentes de chaque sauvegarde sont conservées."
 }

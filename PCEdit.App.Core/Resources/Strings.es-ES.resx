@@ -23,6 +23,8 @@
   <data name="Shell_SaveHint" xml:space="preserve"><value>Escribe tus cambios de nuevo en el archivo de partida del disco</value></data>
   <data name="Shell_NavA11y" xml:space="preserve"><value>Navegación principal</value></data>
   <data name="Shell_PageLoadFailed" xml:space="preserve"><value>No se ha podido cargar esta página. El archivo sigue abierto y los cambios sin guardar están a salvo.</value></data>
+  <data name="Error_UnexpectedTitle" xml:space="preserve"><value>Error inesperado</value></data>
+  <data name="Error_UnexpectedBody" xml:space="preserve"><value>Algo ha fallado, pero PCEdit sigue en marcha y tu partida sigue abierta. Si algo no va bien, reinicia PCEdit. Los detalles se han guardado en: {0}</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>Abrir archivo</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>Resumen</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>Inventarios</value></data>
@@ -35,6 +37,11 @@
   <data name="Save_OkAnnounce" xml:space="preserve"><value>Archivo de partida escrito.</value></data>
   <data name="Save_Failed" xml:space="preserve"><value>Error al guardar. Tu archivo no se ha modificado.</value></data>
   <data name="Save_FailedAnnounce" xml:space="preserve"><value>Error: error al guardar. Tu archivo no se ha modificado.</value></data>
+  <data name="Save_FailedNoPermission" xml:space="preserve"><value>Error al guardar: el archivo es de solo lectura o PCEdit no tiene permiso para escribir ahí. Tu archivo no se ha modificado.</value></data>
+  <data name="Save_ChangedOnDisk" xml:space="preserve"><value>No se ha guardado: el archivo cambió en el disco después de que PCEdit lo abriera.</value></data>
+  <data name="Save_ChangedTitle" xml:space="preserve"><value>El archivo de guardado ha cambiado</value></data>
+  <data name="Save_ChangedBody" xml:space="preserve"><value>Este archivo de guardado se modificó o se eliminó después de que PCEdit lo abriera: puede que el juego haya guardado encima. Al sobrescribir, lo que hay ahora en el disco se sustituye por lo que PCEdit tiene abierto. Antes, PCEdit intenta hacer una copia de seguridad del archivo actual.</value></data>
+  <data name="Save_ChangedOverwrite" xml:space="preserve"><value>Sobrescribir</value></data>
   <data name="Announce_ErrorPrefix" xml:space="preserve"><value>Error: {0}</value></data>
   <data name="OpenFile_Title" xml:space="preserve"><value>Abrir archivo</value></data>
   <data name="OpenFile_Heading" xml:space="preserve"><value>Editor de partidas de Planet Crafter</value></data>
@@ -87,6 +94,7 @@
   <data name="Repair_Done" xml:space="preserve"><value>Objetos eliminados: {0}. La copia reparada se ha guardado como {1} y ahora está abierta; la partida original no ha cambiado.</value></data>
   <data name="Repair_Failed" xml:space="preserve"><value>No se pudo escribir la copia reparada. No se ha cambiado nada: la partida original vuelve a estar abierta.</value></data>
   <data name="Repair_FailedTitle" xml:space="preserve"><value>La reparación ha fallado</value></data>
+  <data name="Repair_FailedClosed" xml:space="preserve"><value>No se pudo escribir la copia reparada ni volver a abrir la partida original. No se ha escrito nada en el disco. La partida se ha cerrado: ábrela de nuevo para continuar.</value></data>
   <data name="Repair_MoveFirstHeading" xml:space="preserve"><value>Mover primero al almacenamiento libre</value></data>
   <data name="Repair_MoveFirstHint" xml:space="preserve"><value>Marca los tipos de objeto que quieres conservar, los más importantes primero. Van a los huecos libres de tus propias cajas y taquillas del mismo mundo antes de eliminar nada; lo que no quepa se elimina.</value></data>
   <data name="Repair_FreeSlots" xml:space="preserve"><value>Huecos libres en tu almacenamiento: {0}.</value></data>

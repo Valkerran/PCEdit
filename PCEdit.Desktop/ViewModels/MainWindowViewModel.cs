@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using System.Globalization;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
 using PCEdit.App.Core.Localization;
 using PCEdit.App.Core.Services;
@@ -32,6 +33,7 @@ public sealed partial class MainWindowViewModel : ObservableObject
     private readonly ILocalizer _localizer;
     private readonly ILanguageStore _languageStore;
     private readonly IScreenReaderAnnouncer _announcer;
+    private readonly IDialogService _dialogs;
 
     // Skip a page's Load() when nothing it reads has changed since it last loaded.
     private readonly Dictionary<NavDestination, int> _loadedAtRevision = new();
@@ -46,12 +48,14 @@ public sealed partial class MainWindowViewModel : ObservableObject
         ILocalizer localizer,
         ILanguageStore languageStore,
         ISaveFileWorkspace workspace,
-        IScreenReaderAnnouncer announcer)
+        IScreenReaderAnnouncer announcer,
+        IDialogService dialogs)
     {
         _services = services;
         _localizer = localizer;
         _languageStore = languageStore;
         _announcer = announcer;
+        _dialogs = dialogs;
         Workspace = workspace;
 
         NavItems =
@@ -80,6 +84,7 @@ public sealed partial class MainWindowViewModel : ObservableObject
             if (e.PropertyName is nameof(ISaveFileWorkspace.IsDirty) or null)
             {
                 OnPropertyChanged(nameof(DirtyText));
+                SaveCommand.NotifyCanExecuteChanged();
             }
 
             if (e.PropertyName is nameof(ISaveFileWorkspace.Current)
@@ -97,6 +102,33 @@ public sealed partial class MainWindowViewModel : ObservableObject
 
     public string DirtyText =>
         _localizer[Workspace.IsDirty ? LocKeys.Dirty_Unsaved : LocKeys.Dirty_Saved];
+
+    private bool CanSave => Workspace.IsDirty;
+
+    /// <summary>
+    /// Saves, after asking first when the file changed on disk since PCEdit opened it - the game
+    /// may have saved over it, and writing now would discard that (issue #116).
+    /// </summary>
+    [RelayCommand(CanExecute = nameof(CanSave))]
+    private async Task SaveAsync()
+    {
+        if (Workspace.HasChangedOnDisk)
+        {
+            var overwrite = await _dialogs.ConfirmAsync(
+                _localizer[LocKeys.Save_ChangedTitle],
+                _localizer[LocKeys.Save_ChangedBody],
+                _localizer[LocKeys.Save_ChangedOverwrite],
+                _localizer[LocKeys.Common_Cancel]);
+            if (!overwrite)
+            {
+                return;
+            }
+
+            Workspace.AcceptDiskChange();
+        }
+
+        Workspace.Save();
+    }
 
     public ObservableCollection<NavItem> NavItems { get; }
 

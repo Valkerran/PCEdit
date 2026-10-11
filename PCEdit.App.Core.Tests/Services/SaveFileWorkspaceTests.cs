@@ -389,4 +389,98 @@ public sealed class SaveFileWorkspaceTests
         Assert.Equal(before.AllTimeTerraTokens, workspace.Current.Unlocks.AllTimeTerraTokens);
         Assert.False(workspace.IsDirty);
     }
+
+    [Fact]
+    public void Close_UnloadsTheSave_AndForgetsUnsavedEdits()
+    {
+        var (workspace, _) = CreateLoadedWorkspace();
+        workspace.GrantTerraTokens(1, 1);
+
+        workspace.Close();
+
+        Assert.False(workspace.IsLoaded);
+        Assert.Null(workspace.FilePath);
+        Assert.False(workspace.IsDirty);
+        Assert.Null(workspace.SaveStatus);
+    }
+
+    [Fact]
+    public void Save_WhenTheFileChangedOnDisk_IsRefused_AndSaysSo()
+    {
+        // The game saved while PCEdit had the file open: writing now would silently discard
+        // that newer progress (issue #116).
+        var (workspace, store, backups) = CreateLoadedWorkspaceWithBackups();
+        store.FingerprintValue = "the game saved";
+
+        Assert.True(workspace.HasChangedOnDisk);
+        workspace.Save();
+
+        Assert.Equal(0, store.SaveCallCount);
+        Assert.Empty(backups.BackedUpPaths);
+        Assert.True(workspace.IsDirty);
+        Assert.Equal(new Localizer()[LocKeys.Save_ChangedOnDisk], workspace.SaveStatus);
+    }
+
+    [Fact]
+    public void AcceptDiskChange_ThenSave_BacksUpTheNewerFile_AndWrites()
+    {
+        var (workspace, store, backups) = CreateLoadedWorkspaceWithBackups();
+        workspace.Save();
+        workspace.GrantTerraTokens(1, 1);
+        store.FingerprintValue = "the game saved";
+
+        workspace.AcceptDiskChange();
+        workspace.Save();
+
+        // The first backup holds the file as PCEdit found it; what is on disk now is the game's
+        // newer save, which nothing else has a copy of.
+        Assert.Equal(2, backups.BackedUpPaths.Count);
+        Assert.Equal(2, store.SaveCallCount);
+        Assert.False(workspace.IsDirty);
+    }
+
+    [Fact]
+    public void Save_Twice_IsNotStoppedByItsOwnWrite()
+    {
+        var (workspace, store, _) = CreateLoadedWorkspaceWithBackups();
+
+        workspace.Save();
+        workspace.GrantTerraTokens(1, 1);
+        workspace.Save();
+
+        Assert.False(workspace.HasChangedOnDisk);
+        Assert.Equal(2, store.SaveCallCount);
+    }
+
+    [Fact]
+    public void SaveCopy_ThenSave_IsNotStoppedByTheCopy()
+    {
+        var (workspace, store, _) = CreateLoadedWorkspaceWithBackups();
+
+        workspace.SaveCopy(@"C:\fake\copy.txt");
+        workspace.GrantTerraTokens(1, 1);
+        workspace.Save();
+
+        Assert.Equal(1, store.SaveCallCount);
+    }
+
+    [Fact]
+    public void Save_WhenTheFileIsReadOnly_SaysSo()
+    {
+        var (workspace, store, _) = CreateLoadedWorkspaceWithBackups();
+        store.SaveFailure = new UnauthorizedAccessException("'save.txt' is read-only.");
+
+        workspace.Save();
+
+        Assert.True(workspace.IsDirty);
+        Assert.Equal(new Localizer()[LocKeys.Save_FailedNoPermission], workspace.SaveStatus);
+    }
+
+    [Fact]
+    public void WithNothingLoaded_NothingHasChangedOnDisk()
+    {
+        var workspace = new SaveFileWorkspace(new FakeSaveFileStore(), new FakeScreenReaderAnnouncer(), new Localizer(), new FakeSaveBackupService());
+
+        Assert.False(workspace.HasChangedOnDisk);
+    }
 }
