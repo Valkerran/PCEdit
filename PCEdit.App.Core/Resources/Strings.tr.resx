@@ -23,6 +23,8 @@
   <data name="Shell_SaveHint" xml:space="preserve"><value>Düzenlemelerinizi diskteki kayıt dosyasına geri yazar</value></data>
   <data name="Shell_NavA11y" xml:space="preserve"><value>Ana gezinme</value></data>
   <data name="Shell_PageLoadFailed" xml:space="preserve"><value>Bu sayfa yüklenemedi. Dosyanız hâlâ açık ve kaydedilmemiş değişiklikleriniz güvende.</value></data>
+  <data name="Error_UnexpectedTitle" xml:space="preserve"><value>Beklenmeyen hata</value></data>
+  <data name="Error_UnexpectedBody" xml:space="preserve"><value>Bir şeyler ters gitti, ancak PCEdit çalışmaya devam ediyor ve kaydınız hâlâ açık. Bir şey yanlış görünüyorsa PCEdit'i yeniden başlatın. Ayrıntılar şuraya yazıldı: {0}</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>Dosya Aç</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>Genel Bakış</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>Envanterler</value></data>

@@ -79,6 +79,8 @@
   <data name="Shell_SaveHint" xml:space="preserve"><value>Writes your edits back to the save file on disk</value></data>
   <data name="Shell_NavA11y" xml:space="preserve"><value>Main navigation</value></data>
   <data name="Shell_PageLoadFailed" xml:space="preserve"><value>This page could not be loaded. Your file is still open and any unsaved changes are safe.</value></data>
+  <data name="Error_UnexpectedTitle" xml:space="preserve"><value>Unexpected error</value></data>
+  <data name="Error_UnexpectedBody" xml:space="preserve"><value>Something went wrong, but PCEdit is still running and your save is still open. If anything looks wrong, restart PCEdit. Details were written to: {0}</value></data>
 
   <data name="Nav_OpenFile" xml:space="preserve"><value>Open File</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>Overview</value></data>

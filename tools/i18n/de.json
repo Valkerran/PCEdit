@@ -265,6 +265,8 @@
   "About_SaveLocationsHeading": "Wo das Spiel deine Spielstände ablegt",
   "About_SaveLocationsNote": "Xbox benennt jeden Spielstand mit einer zufälligen Zeichenfolge, die sich bei jedem Speichern ändert. Ersetze unter Linux ~/.steam/steam durch deinen Steam-Bibliotheksordner, falls das Spiel auf einem anderen Laufwerk liegt.",
   "Shell_PageLoadFailed": "Diese Seite konnte nicht geladen werden. Ihre Datei ist weiterhin geöffnet und nicht gespeicherte Änderungen sind sicher.",
+  "Error_UnexpectedTitle": "Unerwarteter Fehler",
+  "Error_UnexpectedBody": "Etwas ist schiefgegangen, aber PCEdit läuft weiter und dein Spielstand ist noch geöffnet. Wenn etwas nicht stimmt, starte PCEdit neu. Details wurden gespeichert unter: {0}",
   "About_BackupsHeading": "Automatische Sicherungen",
   "About_BackupsNote": "Wenn PCEdit eine Datei nach dem Öffnen zum ersten Mal speichert, wird das Original zuvor hierher kopiert. Die fünf neuesten Kopien jedes Spielstands werden aufbewahrt."
 }

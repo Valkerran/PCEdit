@@ -23,6 +23,8 @@
   <data name="Shell_SaveHint" xml:space="preserve"><value>Escribe tus cambios de nuevo en el archivo de partida del disco</value></data>
   <data name="Shell_NavA11y" xml:space="preserve"><value>Navegación principal</value></data>
   <data name="Shell_PageLoadFailed" xml:space="preserve"><value>No se ha podido cargar esta página. El archivo sigue abierto y los cambios sin guardar están a salvo.</value></data>
+  <data name="Error_UnexpectedTitle" xml:space="preserve"><value>Error inesperado</value></data>
+  <data name="Error_UnexpectedBody" xml:space="preserve"><value>Algo ha fallado, pero PCEdit sigue en marcha y tu partida sigue abierta. Si algo no va bien, reinicia PCEdit. Los detalles se han guardado en: {0}</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>Abrir archivo</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>Resumen</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>Inventarios</value></data>

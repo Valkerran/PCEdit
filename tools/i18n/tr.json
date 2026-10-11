@@ -265,6 +265,8 @@
   "About_SaveLocationsHeading": "Oyunun kayıtlarını sakladığı yer",
   "About_SaveLocationsNote": "Xbox her kaydı, her yazıldığında değişen rastgele bir dizeyle adlandırır. Linux'ta oyun başka bir sürücüdeyse ~/.steam/steam yerine Steam kitaplık klasörünüzü yazın.",
   "Shell_PageLoadFailed": "Bu sayfa yüklenemedi. Dosyanız hâlâ açık ve kaydedilmemiş değişiklikleriniz güvende.",
+  "Error_UnexpectedTitle": "Beklenmeyen hata",
+  "Error_UnexpectedBody": "Bir şeyler ters gitti, ancak PCEdit çalışmaya devam ediyor ve kaydınız hâlâ açık. Bir şey yanlış görünüyorsa PCEdit'i yeniden başlatın. Ayrıntılar şuraya yazıldı: {0}",
   "About_BackupsHeading": "Otomatik yedekler",
   "About_BackupsNote": "PCEdit bir dosyayı açtıktan sonra ilk kez kaydettiğinde, önce özgün dosyayı buraya kopyalar. Her kayıt için en yeni beş kopya saklanır."
 }

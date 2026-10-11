@@ -265,6 +265,8 @@
   "About_SaveLocationsHeading": "Dove il gioco conserva i salvataggi",
   "About_SaveLocationsNote": "Xbox assegna a ogni salvataggio un nome casuale che cambia a ogni scrittura. Su Linux, sostituisci ~/.steam/steam con la cartella della tua libreria Steam se il gioco si trova su un'altra unità.",
   "Shell_PageLoadFailed": "Impossibile caricare questa pagina. Il file è ancora aperto e le modifiche non salvate sono al sicuro.",
+  "Error_UnexpectedTitle": "Errore imprevisto",
+  "Error_UnexpectedBody": "Qualcosa è andato storto, ma PCEdit è ancora in esecuzione e il salvataggio è ancora aperto. Se qualcosa non va, riavvia PCEdit. I dettagli sono stati salvati in: {0}",
   "About_BackupsHeading": "Backup automatici",
   "About_BackupsNote": "La prima volta che PCEdit salva un file dopo averlo aperto, l'originale viene prima copiato qui. Vengono conservate le cinque copie più recenti di ogni salvataggio."
 }

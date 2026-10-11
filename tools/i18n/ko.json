@@ -265,6 +265,8 @@
   "About_SaveLocationsHeading": "게임이 세이브를 저장하는 위치",
   "About_SaveLocationsNote": "Xbox는 각 세이브에 저장할 때마다 바뀌는 무작위 문자열로 이름을 붙입니다. Linux에서 게임이 다른 드라이브에 있으면 ~/.steam/steam을 Steam 라이브러리 폴더로 바꾸세요.",
   "Shell_PageLoadFailed": "이 페이지를 불러오지 못했습니다. 파일은 계속 열려 있으며 저장하지 않은 변경 사항은 안전합니다.",
+  "Error_UnexpectedTitle": "예기치 않은 오류",
+  "Error_UnexpectedBody": "문제가 발생했지만 PCEdit는 계속 실행 중이며 세이브도 열려 있습니다. 이상해 보이면 PCEdit를 다시 시작하세요. 자세한 내용이 기록된 위치: {0}",
   "About_BackupsHeading": "자동 백업",
   "About_BackupsNote": "파일을 연 뒤 PCEdit이 처음 저장할 때 원본을 먼저 이곳에 복사합니다. 각 저장 파일마다 최근 사본 다섯 개가 보관됩니다."
 }

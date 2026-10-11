@@ -23,6 +23,8 @@
   <data name="Shell_SaveHint" xml:space="preserve"><value>Записывает изменения обратно в файл сохранения на диске</value></data>
   <data name="Shell_NavA11y" xml:space="preserve"><value>Основная навигация</value></data>
   <data name="Shell_PageLoadFailed" xml:space="preserve"><value>Не удалось загрузить эту страницу. Файл по-прежнему открыт, несохранённые изменения не потеряны.</value></data>
+  <data name="Error_UnexpectedTitle" xml:space="preserve"><value>Непредвиденная ошибка</value></data>
+  <data name="Error_UnexpectedBody" xml:space="preserve"><value>Что-то пошло не так, но PCEdit продолжает работать, и ваше сохранение по-прежнему открыто. Если что-то выглядит неправильно, перезапустите PCEdit. Подробности записаны в: {0}</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>Открыть файл</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>Обзор</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>Инвентари</value></data>

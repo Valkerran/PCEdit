@@ -23,6 +23,8 @@
   <data name="Shell_SaveHint" xml:space="preserve"><value>将你的修改写回磁盘上的存档文件</value></data>
   <data name="Shell_NavA11y" xml:space="preserve"><value>主导航</value></data>
   <data name="Shell_PageLoadFailed" xml:space="preserve"><value>无法加载此页面。文件仍处于打开状态，未保存的更改不会丢失。</value></data>
+  <data name="Error_UnexpectedTitle" xml:space="preserve"><value>意外错误</value></data>
+  <data name="Error_UnexpectedBody" xml:space="preserve"><value>出现了问题，但 PCEdit 仍在运行，你的存档仍处于打开状态。如果有异常，请重新启动 PCEdit。详细信息已写入：{0}</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>打开文件</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>概览</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>库存</value></data>

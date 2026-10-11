@@ -23,6 +23,8 @@
   <data name="Shell_SaveHint" xml:space="preserve"><value>Grava as suas alterações no ficheiro de jogo guardado no disco</value></data>
   <data name="Shell_NavA11y" xml:space="preserve"><value>Navegação principal</value></data>
   <data name="Shell_PageLoadFailed" xml:space="preserve"><value>Não foi possível carregar esta página. O ficheiro continua aberto e as alterações não guardadas estão seguras.</value></data>
+  <data name="Error_UnexpectedTitle" xml:space="preserve"><value>Erro inesperado</value></data>
+  <data name="Error_UnexpectedBody" xml:space="preserve"><value>Algo correu mal, mas o PCEdit continua a funcionar e o seu jogo guardado continua aberto. Se algo parecer errado, reinicie o PCEdit. Os detalhes foram escritos em: {0}</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>Abrir ficheiro</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>Resumo</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>Inventários</value></data>

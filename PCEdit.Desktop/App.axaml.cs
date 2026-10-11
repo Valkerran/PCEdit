@@ -1,6 +1,8 @@
+using System.Diagnostics;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using Avalonia.Threading;
 using Microsoft.Extensions.DependencyInjection;
 using PCEdit.App.Core.Localization;
 using PCEdit.App.Core.Services;
@@ -20,12 +22,18 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
+        LogFile.Start(AppPaths.Log);
+        LogWhatCannotBeRecovered();
+
         Services = BuildServices();
 
         // The Translate markup extension binds to Loc.Instance, which is the object we register in DI.
         var localizer = Services.GetRequiredService<ILocalizer>();
         var languageStore = Services.GetRequiredService<ILanguageStore>();
         localizer.SetCulture(LanguageStartup.ResolveCulture(languageStore, localizer.AvailableLocales));
+
+        KeepRunningAfterAnUnexpectedError(new UnexpectedErrorReporter(
+            Services.GetRequiredService<IDialogService>(), localizer, AppPaths.Log));
 
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
@@ -38,14 +46,59 @@ public partial class App : Application
         base.OnFrameworkInitializationCompleted();
     }
 
+    /// <summary>Off the UI thread there is nothing to hand the error to, so it is only logged:
+    /// the first of these ends the process whatever is done here.</summary>
+    private static void LogWhatCannotBeRecovered()
+    {
+        AppDomain.CurrentDomain.UnhandledException += (_, e) =>
+            Trace.WriteLine($"{DateTime.UtcNow:O} Fatal error: {e.ExceptionObject}");
+        TaskScheduler.UnobservedTaskException += (_, e) =>
+        {
+            Trace.WriteLine($"{DateTime.UtcNow:O} Unobserved task error: {e.Exception}");
+            e.SetObserved();
+        };
+    }
+
+    /// <summary>
+    /// An exception escaping a command or an event handler on the UI thread used to end the
+    /// process, taking the open save's unsaved edits with it and leaving nothing to diagnose
+    /// (issue #74). It is now logged and shown, and the app carries on.
+    /// </summary>
+    private static void KeepRunningAfterAnUnexpectedError(UnexpectedErrorReporter reporter)
+    {
+        Dispatcher.UIThread.UnhandledException += (_, e) =>
+        {
+            e.Handled = true;
+            _ = reporter.ReportAsync(e.Exception);
+        };
+    }
+
     private static IServiceProvider BuildServices()
     {
         var services = new ServiceCollection();
+        AddSaveFileServices(services);
+        AddPlatformServices(services);
+        AddViewModels(services);
+        return services.BuildServiceProvider();
+    }
 
+    private static void AddSaveFileServices(ServiceCollection services)
+    {
         services.AddSingleton<IJsonRecordSerializer, JsonRecordSerializer>();
         services.AddSingleton<IPlanetCrafterSaveFileSerializer, PlanetCrafterSaveFileSerializer>();
         services.AddSingleton<IPlanetCrafterSaveFileStore, PlanetCrafterSaveFileStore>();
 
+        services.AddSingleton<IItemCatalog, ItemCatalog>();
+        services.AddSingleton<ILogisticsGroupCatalog, LogisticsGroupCatalog>();
+        services.AddSingleton<ISaveBackupService>(_ => new FileSaveBackupService(AppPaths.Backups));
+        services.AddSingleton<ISaveFileWorkspace, SaveFileWorkspace>();
+        services.AddSingleton<IPlanetIndex, PlanetIndex>();
+        services.AddSingleton<IInventoryEditor, InventoryEditor>();
+        services.AddSingleton<IOverflowRepair, OverflowRepair>();
+    }
+
+    private static void AddPlatformServices(ServiceCollection services)
+    {
         services.AddSingleton<ILocalizer>(Loc.Instance);
         services.AddSingleton(_ => new JsonSettingsStore(AppPaths.Settings));
         services.AddSingleton<ILanguageStore>(sp => sp.GetRequiredService<JsonSettingsStore>());
@@ -55,19 +108,15 @@ public partial class App : Application
 
         services.AddSingleton<MainWindowAccessor>();
         services.AddSingleton<IScreenReaderAnnouncer, AvaloniaScreenReaderAnnouncer>();
-        services.AddSingleton<IItemCatalog, ItemCatalog>();
-        services.AddSingleton<ILogisticsGroupCatalog, LogisticsGroupCatalog>();
-        services.AddSingleton<ISaveBackupService>(_ => new FileSaveBackupService(AppPaths.Backups));
-        services.AddSingleton<ISaveFileWorkspace, SaveFileWorkspace>();
-        services.AddSingleton<IPlanetIndex, PlanetIndex>();
-        services.AddSingleton<IInventoryEditor, InventoryEditor>();
-        services.AddSingleton<IOverflowRepair, OverflowRepair>();
         services.AddSingleton<IFilePickerService, AvaloniaFilePickerService>();
 
         services.AddSingleton<AvaloniaNavigationService>();
         services.AddSingleton<INavigationService>(sp => sp.GetRequiredService<AvaloniaNavigationService>());
         services.AddSingleton<IDialogService, AvaloniaDialogService>();
+    }
 
+    private static void AddViewModels(ServiceCollection services)
+    {
         services.AddSingleton<MainWindowViewModel>();
         services.AddSingleton<MainWindow>();
 
@@ -84,7 +133,5 @@ public partial class App : Application
         services.AddTransient<SelectInventoryViewModel>();
         services.AddTransient<LogisticsEditorViewModel>();
         services.AddTransient<RepairViewModel>();
-
-        return services.BuildServiceProvider();
     }
 }

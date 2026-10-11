@@ -265,6 +265,8 @@
   "About_SaveLocationsHeading": "游戏存档的位置",
   "About_SaveLocationsNote": "Xbox 为每个存档使用随机字符串命名，每次写入时都会改变。在 Linux 上，如果游戏位于其他驱动器，请将 ~/.steam/steam 替换为你的 Steam 库文件夹。",
   "Shell_PageLoadFailed": "无法加载此页面。文件仍处于打开状态，未保存的更改不会丢失。",
+  "Error_UnexpectedTitle": "意外错误",
+  "Error_UnexpectedBody": "出现了问题，但 PCEdit 仍在运行，你的存档仍处于打开状态。如果有异常，请重新启动 PCEdit。详细信息已写入：{0}",
   "About_BackupsHeading": "自动备份",
   "About_BackupsNote": "打开文件后首次保存时，PCEdit 会先将原始文件复制到此处。每个存档最多保留五个最新副本。"
 }

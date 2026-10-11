@@ -23,6 +23,8 @@
   <data name="Shell_SaveHint" xml:space="preserve"><value>편집 내용을 디스크의 저장 파일에 다시 씁니다</value></data>
   <data name="Shell_NavA11y" xml:space="preserve"><value>기본 탐색</value></data>
   <data name="Shell_PageLoadFailed" xml:space="preserve"><value>이 페이지를 불러오지 못했습니다. 파일은 계속 열려 있으며 저장하지 않은 변경 사항은 안전합니다.</value></data>
+  <data name="Error_UnexpectedTitle" xml:space="preserve"><value>예기치 않은 오류</value></data>
+  <data name="Error_UnexpectedBody" xml:space="preserve"><value>문제가 발생했지만 PCEdit는 계속 실행 중이며 세이브도 열려 있습니다. 이상해 보이면 PCEdit를 다시 시작하세요. 자세한 내용이 기록된 위치: {0}</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>파일 열기</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>개요</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>인벤토리</value></data>

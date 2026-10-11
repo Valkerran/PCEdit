@@ -265,6 +265,8 @@
   "About_SaveLocationsHeading": "Gdzie gra przechowuje zapisy",
   "About_SaveLocationsNote": "Xbox nadaje każdemu zapisowi losowy ciąg znaków, który zmienia się przy każdym zapisie. W systemie Linux zastąp ~/.steam/steam folderem swojej biblioteki Steam, jeśli gra znajduje się na innym dysku.",
   "Shell_PageLoadFailed": "Nie udało się wczytać tej strony. Plik jest nadal otwarty, a niezapisane zmiany są bezpieczne.",
+  "Error_UnexpectedTitle": "Nieoczekiwany błąd",
+  "Error_UnexpectedBody": "Coś poszło nie tak, ale PCEdit nadal działa, a zapis jest wciąż otwarty. Jeśli coś wygląda nie tak, uruchom PCEdit ponownie. Szczegóły zapisano w: {0}",
   "About_BackupsHeading": "Automatyczne kopie zapasowe",
   "About_BackupsNote": "Przy pierwszym zapisie pliku po jego otwarciu PCEdit najpierw kopiuje tutaj oryginał. Przechowywanych jest pięć najnowszych kopii każdego zapisu."
 }

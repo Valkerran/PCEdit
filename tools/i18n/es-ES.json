@@ -265,6 +265,8 @@
   "About_SaveLocationsHeading": "Dónde guarda el juego tus partidas",
   "About_SaveLocationsNote": "Xbox nombra cada partida con una cadena aleatoria que cambia cada vez que se escribe. En Linux, sustituye ~/.steam/steam por la carpeta de tu biblioteca de Steam si el juego está en otra unidad.",
   "Shell_PageLoadFailed": "No se ha podido cargar esta página. El archivo sigue abierto y los cambios sin guardar están a salvo.",
+  "Error_UnexpectedTitle": "Error inesperado",
+  "Error_UnexpectedBody": "Algo ha fallado, pero PCEdit sigue en marcha y tu partida sigue abierta. Si algo no va bien, reinicia PCEdit. Los detalles se han guardado en: {0}",
   "About_BackupsHeading": "Copias de seguridad automáticas",
   "About_BackupsNote": "La primera vez que PCEdit guarda un archivo tras abrirlo, copia aquí el original. Se conservan las cinco copias más recientes de cada partida guardada."
 }

@@ -265,6 +265,8 @@
   "About_SaveLocationsHeading": "Where the game keeps your saves",
   "About_SaveLocationsNote": "Xbox names each save with a random string that changes every time it is written. On Linux, replace ~/.steam/steam with your Steam library folder if the game lives on another drive.",
   "Shell_PageLoadFailed": "This page could not be loaded. Your file is still open and any unsaved changes are safe.",
+  "Error_UnexpectedTitle": "Unexpected error",
+  "Error_UnexpectedBody": "Something went wrong, but PCEdit is still running and your save is still open. If anything looks wrong, restart PCEdit. Details were written to: {0}",
   "About_BackupsHeading": "Automatic backups",
   "About_BackupsNote": "The first time PCEdit saves a file after you open it, the original is copied here first. The five most recent copies of each save are kept."
 }

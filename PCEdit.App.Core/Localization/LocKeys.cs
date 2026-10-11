@@ -18,6 +18,8 @@ public static class LocKeys
 
     public const string Shell_Title = "Shell_Title";
     public const string Shell_PageLoadFailed = "Shell_PageLoadFailed";
+    public const string Error_UnexpectedTitle = "Error_UnexpectedTitle";
+    public const string Error_UnexpectedBody = "Error_UnexpectedBody";
     public const string Nav_OpenFile = "Nav_OpenFile";
     public const string Nav_Overview = "Nav_Overview";
     public const string Nav_Inventories = "Nav_Inventories";

@@ -23,6 +23,8 @@
   <data name="Shell_SaveHint" xml:space="preserve"><value>編集内容をディスク上のセーブファイルに書き戻します</value></data>
   <data name="Shell_NavA11y" xml:space="preserve"><value>メインナビゲーション</value></data>
   <data name="Shell_PageLoadFailed" xml:space="preserve"><value>このページを読み込めませんでした。ファイルは開いたままで、未保存の変更も失われていません。</value></data>
+  <data name="Error_UnexpectedTitle" xml:space="preserve"><value>予期しないエラー</value></data>
+  <data name="Error_UnexpectedBody" xml:space="preserve"><value>問題が発生しましたが、PCEdit は動作を続けており、セーブも開いたままです。動作がおかしい場合は PCEdit を再起動してください。詳細の保存先: {0}</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>ファイルを開く</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>概要</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>インベントリ</value></data>

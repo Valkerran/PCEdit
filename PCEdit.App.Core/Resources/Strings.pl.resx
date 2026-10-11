@@ -23,6 +23,8 @@
   <data name="Shell_SaveHint" xml:space="preserve"><value>Zapisuje zmiany z powrotem do pliku zapisu na dysku</value></data>
   <data name="Shell_NavA11y" xml:space="preserve"><value>Nawigacja główna</value></data>
   <data name="Shell_PageLoadFailed" xml:space="preserve"><value>Nie udało się wczytać tej strony. Plik jest nadal otwarty, a niezapisane zmiany są bezpieczne.</value></data>
+  <data name="Error_UnexpectedTitle" xml:space="preserve"><value>Nieoczekiwany błąd</value></data>
+  <data name="Error_UnexpectedBody" xml:space="preserve"><value>Coś poszło nie tak, ale PCEdit nadal działa, a zapis jest wciąż otwarty. Jeśli coś wygląda nie tak, uruchom PCEdit ponownie. Szczegóły zapisano w: {0}</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>Otwórz plik</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>Przegląd</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>Ekwipunki</value></data>

@@ -265,6 +265,8 @@
   "About_SaveLocationsHeading": "Onde o jogo guarda os teus jogos guardados",
   "About_SaveLocationsNote": "O Xbox atribui a cada jogo guardado um nome aleatório que muda sempre que é escrito. No Linux, substitui ~/.steam/steam pela pasta da tua biblioteca Steam se o jogo estiver noutra unidade.",
   "Shell_PageLoadFailed": "Não foi possível carregar esta página. O ficheiro continua aberto e as alterações não guardadas estão seguras.",
+  "Error_UnexpectedTitle": "Erro inesperado",
+  "Error_UnexpectedBody": "Algo correu mal, mas o PCEdit continua a funcionar e o seu jogo guardado continua aberto. Se algo parecer errado, reinicie o PCEdit. Os detalhes foram escritos em: {0}",
   "About_BackupsHeading": "Cópias de segurança automáticas",
   "About_BackupsNote": "Na primeira vez que o PCEdit guarda um ficheiro depois de o abrir, copia primeiro o original para aqui. São mantidas as cinco cópias mais recentes de cada jogo guardado."
 }

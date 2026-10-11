@@ -23,6 +23,8 @@
   <data name="Shell_SaveHint" xml:space="preserve"><value>Schreibt deine Änderungen zurück in die Spielstanddatei auf dem Datenträger</value></data>
   <data name="Shell_NavA11y" xml:space="preserve"><value>Hauptnavigation</value></data>
   <data name="Shell_PageLoadFailed" xml:space="preserve"><value>Diese Seite konnte nicht geladen werden. Ihre Datei ist weiterhin geöffnet und nicht gespeicherte Änderungen sind sicher.</value></data>
+  <data name="Error_UnexpectedTitle" xml:space="preserve"><value>Unerwarteter Fehler</value></data>
+  <data name="Error_UnexpectedBody" xml:space="preserve"><value>Etwas ist schiefgegangen, aber PCEdit läuft weiter und dein Spielstand ist noch geöffnet. Wenn etwas nicht stimmt, starte PCEdit neu. Details wurden gespeichert unter: {0}</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>Datei öffnen</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>Übersicht</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>Inventare</value></data>

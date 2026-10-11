@@ -23,6 +23,8 @@
   <data name="Shell_SaveHint" xml:space="preserve"><value>Grava suas edições de volta no arquivo de save no disco</value></data>
   <data name="Shell_NavA11y" xml:space="preserve"><value>Navegação principal</value></data>
   <data name="Shell_PageLoadFailed" xml:space="preserve"><value>Não foi possível carregar esta página. O arquivo continua aberto e as alterações não salvas estão seguras.</value></data>
+  <data name="Error_UnexpectedTitle" xml:space="preserve"><value>Erro inesperado</value></data>
+  <data name="Error_UnexpectedBody" xml:space="preserve"><value>Algo deu errado, mas o PCEdit continua em execução e seu save continua aberto. Se algo parecer errado, reinicie o PCEdit. Os detalhes foram gravados em: {0}</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>Abrir arquivo</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>Visão geral</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>Inventários</value></data>
