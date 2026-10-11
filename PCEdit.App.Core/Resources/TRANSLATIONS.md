@@ -123,6 +123,12 @@ The Teleport fixes (issue #92: a player whose saved position cannot be read) add
 `Teleport_PositionUnreadable` — machine-translated, phrased to match each language's existing
 `Teleport_PositionReset` (the same way of referring to the player, `{0}`).
 
+The safe file I/O work (issues #73, #74, #87, #116) added `Save_FailedNoPermission`,
+`Save_ChangedOnDisk`, `Save_ChangedTitle`, `Save_ChangedBody`, `Save_ChangedOverwrite`,
+`Repair_FailedClosed`, `Error_UnexpectedTitle` and `Error_UnexpectedBody` — machine-translated,
+phrased to match each language's existing `Save_Failed` and `Repair_Failed`. `{0}` in
+`Error_UnexpectedBody` is the path of the log file and is not translated.
+
 | Culture | Language | Reviewed |
 |---|---|---|
 | en-US | English (United States) | n/a (source) |
