@@ -47,7 +47,7 @@ public partial class App : Application
         services.AddSingleton<IPlanetCrafterSaveFileStore, PlanetCrafterSaveFileStore>();
 
         services.AddSingleton<ILocalizer>(Loc.Instance);
-        services.AddSingleton<JsonSettingsStore>();
+        services.AddSingleton(_ => new JsonSettingsStore(AppPaths.Settings));
         services.AddSingleton<ILanguageStore>(sp => sp.GetRequiredService<JsonSettingsStore>());
         services.AddSingleton<IDisclaimerGate>(sp => sp.GetRequiredService<JsonSettingsStore>());
         services.AddSingleton<IInventoryDisplayStore>(sp => sp.GetRequiredService<JsonSettingsStore>());
@@ -57,7 +57,7 @@ public partial class App : Application
         services.AddSingleton<IScreenReaderAnnouncer, AvaloniaScreenReaderAnnouncer>();
         services.AddSingleton<IItemCatalog, ItemCatalog>();
         services.AddSingleton<ILogisticsGroupCatalog, LogisticsGroupCatalog>();
-        services.AddSingleton<ISaveBackupService, LocalFileSaveBackupService>();
+        services.AddSingleton<ISaveBackupService>(_ => new FileSaveBackupService(AppPaths.Backups));
         services.AddSingleton<ISaveFileWorkspace, SaveFileWorkspace>();
         services.AddSingleton<IPlanetIndex, PlanetIndex>();
         services.AddSingleton<IInventoryEditor, InventoryEditor>();
