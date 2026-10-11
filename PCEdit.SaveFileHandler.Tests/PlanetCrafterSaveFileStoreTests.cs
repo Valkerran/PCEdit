@@ -10,9 +10,6 @@ public sealed class PlanetCrafterSaveFileStoreTests : IDisposable
 
     private readonly string _copyFile = Path.Combine(Path.GetTempPath(), $"pcedit-test-{Guid.NewGuid():N}-copy.txt");
 
-    /// <summary>Where Save stages its write before swapping it in.</summary>
-    private string TempPath => _tempFile + ".pcedit-tmp";
-
     public void Dispose()
     {
         if (File.Exists(_tempFile))
@@ -23,16 +20,6 @@ public sealed class PlanetCrafterSaveFileStoreTests : IDisposable
         if (File.Exists(_copyFile))
         {
             File.Delete(_copyFile);
-        }
-
-        // A completed save leaves nothing here; one test occupies the path on purpose.
-        if (Directory.Exists(TempPath))
-        {
-            Directory.Delete(TempPath, recursive: true);
-        }
-        else if (File.Exists(TempPath))
-        {
-            File.Delete(TempPath);
         }
     }
 
@@ -190,7 +177,7 @@ public sealed class PlanetCrafterSaveFileStoreTests : IDisposable
     {
         _store.Save(_tempFile, SaveFileFixtures.CreateEmpty());
 
-        Assert.False(File.Exists(TempPath));
+        Assert.Empty(LeftoverTempFiles());
     }
 
     [Fact]
@@ -200,29 +187,43 @@ public sealed class PlanetCrafterSaveFileStoreTests : IDisposable
 
         _store.Save(_tempFile, _store.Load(_tempFile));
 
-        Assert.False(File.Exists(TempPath));
+        Assert.Empty(LeftoverTempFiles());
     }
 
+    // Filtered in code: a "name.*" search pattern also matches "name" itself.
+    private string[] LeftoverTempFiles() =>
+        [.. Directory.EnumerateFiles(Path.GetTempPath())
+            .Where(path => Path.GetFileName(path).StartsWith(Path.GetFileName(_tempFile) + ".", StringComparison.Ordinal))];
+
     [Fact]
-    public void Save_WhenTheWriteFails_LeavesTheExistingSaveByteIdentical()
+    public void SaveCopy_OntoTheOriginalThroughASymlinkedDirectory_IsRefused()
     {
-        // Save used to be a File.WriteAllText straight over the target, which truncates it before
-        // writing a byte - so anything that went wrong in between left the player with a ruined
-        // save and no copy anywhere (issue #36).
-        var source = Path.Combine(AppContext.BaseDirectory, "TestData", "mini-save.json");
-        var original = File.ReadAllBytes(source);
-        File.WriteAllBytes(_tempFile, original);
+        if (OperatingSystem.IsWindows())
+        {
+            return; // creating a symlink needs a privilege there
+        }
 
-        // Occupy the staging path with a directory so the write cannot succeed. This stands in for
-        // any interrupted write - full disk, permissions, power loss - which cannot be provoked
-        // portably but reaches the target file the same way.
-        Directory.CreateDirectory(TempPath);
+        // Steam on Linux: ~/.steam/steam is a link to ~/.local/share/Steam. Opening through one
+        // spelling and saving the copy through the other used to overwrite the original (#78).
+        var root = Directory.CreateDirectory(Path.Combine(Path.GetTempPath(), $"pcedit-link-{Guid.NewGuid():N}")).FullName;
+        try
+        {
+            var real = Directory.CreateDirectory(Path.Combine(root, "real")).FullName;
+            var link = Path.Combine(root, "link");
+            Directory.CreateSymbolicLink(link, real);
+            var original = Path.Combine(real, "save.json");
+            _store.Save(original, SaveFileFixtures.CreateEmpty());
+            var before = File.ReadAllBytes(original);
 
-        // The exact type differs by platform (UnauthorizedAccessException / IOException); that the
-        // save reports failure at all is the point, and that the file below is untouched.
-        Assert.ThrowsAny<Exception>(() => _store.Save(_tempFile, SaveFileFixtures.CreateEmpty()));
+            Assert.Throws<ArgumentException>(() =>
+                _store.SaveCopy(original, Path.Combine(link, "save.json"), SaveFileFixtures.CreateFullyPopulated()));
 
-        Assert.Equal(original, File.ReadAllBytes(_tempFile));
+            Assert.Equal(before, File.ReadAllBytes(original));
+        }
+        finally
+        {
+            Directory.Delete(root, recursive: true);
+        }
     }
 
     [Fact]
