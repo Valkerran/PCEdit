@@ -87,6 +87,7 @@
   <data name="Repair_Done" xml:space="preserve"><value>Objetos eliminados: {0}. La copia reparada se ha guardado como {1} y ahora está abierta; la partida original no ha cambiado.</value></data>
   <data name="Repair_Failed" xml:space="preserve"><value>No se pudo escribir la copia reparada. No se ha cambiado nada: la partida original vuelve a estar abierta.</value></data>
   <data name="Repair_FailedTitle" xml:space="preserve"><value>La reparación ha fallado</value></data>
+  <data name="Repair_FailedClosed" xml:space="preserve"><value>No se pudo escribir la copia reparada ni volver a abrir la partida original. No se ha escrito nada en el disco. La partida se ha cerrado: ábrela de nuevo para continuar.</value></data>
   <data name="Repair_MoveFirstHeading" xml:space="preserve"><value>Mover primero al almacenamiento libre</value></data>
   <data name="Repair_MoveFirstHint" xml:space="preserve"><value>Marca los tipos de objeto que quieres conservar, los más importantes primero. Van a los huecos libres de tus propias cajas y taquillas del mismo mundo antes de eliminar nada; lo que no quepa se elimina.</value></data>
   <data name="Repair_FreeSlots" xml:space="preserve"><value>Huecos libres en tu almacenamiento: {0}.</value></data>

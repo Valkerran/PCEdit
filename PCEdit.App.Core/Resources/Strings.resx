@@ -148,6 +148,7 @@
   <data name="Repair_Done" xml:space="preserve"><value>Items removed: {0}. The repaired copy is saved as {1} and is now open; the original save is unchanged.</value></data>
   <data name="Repair_Failed" xml:space="preserve"><value>The repaired copy could not be written. Nothing was changed: the original save is open again.</value></data>
   <data name="Repair_FailedTitle" xml:space="preserve"><value>Repair failed</value></data>
+  <data name="Repair_FailedClosed" xml:space="preserve"><value>The repaired copy could not be written, and the original save could not be reopened. Nothing was written to disk. The save has been closed: open it again to continue.</value></data>
   <data name="Repair_MoveFirstHeading" xml:space="preserve"><value>Move into free storage first</value></data>
   <data name="Repair_MoveFirstHint" xml:space="preserve"><value>Tick the item types to keep, most important first. They go into free slots in your own Storage Crates and Lockers on the same world before anything is removed; whatever does not fit is removed.</value></data>
   <data name="Repair_FreeSlots" xml:space="preserve"><value>Free slots in your storage: {0}.</value></data>

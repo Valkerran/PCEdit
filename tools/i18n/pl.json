@@ -180,6 +180,7 @@
   "Repair_Done": "Usunięte przedmioty: {0}. Naprawiona kopia została zapisana jako {1} i jest teraz otwarta; oryginalny zapis pozostał bez zmian.",
   "Repair_Failed": "Nie udało się zapisać naprawionej kopii. Nic nie zostało zmienione: oryginalny zapis jest ponownie otwarty.",
   "Repair_FailedTitle": "Naprawa nie powiodła się",
+  "Repair_FailedClosed": "Nie udało się zapisać naprawionej kopii ani ponownie otworzyć oryginalnego zapisu. Nic nie zostało zapisane na dysku. Zapis został zamknięty: otwórz go ponownie, aby kontynuować.",
   "Repair_MoveFirstHeading": "Najpierw przenieś do wolnego miejsca",
   "Repair_MoveFirstHint": "Zaznacz rodzaje przedmiotów do zachowania, najważniejsze najpierw. Trafią do wolnych miejsc w Twoich skrzyniach i szafkach na tym samym świecie, zanim cokolwiek zostanie usunięte; to, co się nie zmieści, zostanie usunięte.",
   "Repair_FreeSlots": "Wolne miejsca w Twoim magazynie: {0}.",

@@ -180,6 +180,7 @@
   "Repair_Done": "Itens removidos: {0}. A cópia reparada foi guardada como {1} e está agora aberta; o jogo guardado original não foi alterado.",
   "Repair_Failed": "Não foi possível escrever a cópia reparada. Nada foi alterado: o jogo guardado original está aberto novamente.",
   "Repair_FailedTitle": "A reparação falhou",
+  "Repair_FailedClosed": "Não foi possível escrever a cópia reparada nem reabrir o jogo guardado original. Nada foi escrito no disco. O jogo guardado foi fechado: abra-o novamente para continuar.",
   "Repair_MoveFirstHeading": "Mover primeiro para o armazenamento livre",
   "Repair_MoveFirstHint": "Marque os tipos de item a manter, os mais importantes primeiro. Vão para os espaços livres das suas próprias caixas e cacifos no mesmo mundo antes de algo ser removido; o que não couber é removido.",
   "Repair_FreeSlots": "Espaços livres no seu armazenamento: {0}.",

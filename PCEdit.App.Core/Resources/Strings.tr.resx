@@ -87,6 +87,7 @@
   <data name="Repair_Done" xml:space="preserve"><value>Kaldırılan eşya: {0}. Onarılmış kopya {1} olarak kaydedildi ve şu an açık; özgün kayıt değişmedi.</value></data>
   <data name="Repair_Failed" xml:space="preserve"><value>Onarılmış kopya yazılamadı. Hiçbir şey değişmedi: özgün kayıt yeniden açık.</value></data>
   <data name="Repair_FailedTitle" xml:space="preserve"><value>Onarım başarısız</value></data>
+  <data name="Repair_FailedClosed" xml:space="preserve"><value>Onarılmış kopya yazılamadı ve özgün kayıt yeniden açılamadı. Diske hiçbir şey yazılmadı. Kayıt kapatıldı: devam etmek için yeniden açın.</value></data>
   <data name="Repair_MoveFirstHeading" xml:space="preserve"><value>Önce boş depolamaya taşı</value></data>
   <data name="Repair_MoveFirstHint" xml:space="preserve"><value>Tutmak istediğiniz eşya türlerini işaretleyin, en önemlisi önce. Hiçbir şey kaldırılmadan önce aynı dünyadaki kendi sandık ve dolaplarınızın boş yuvalarına giderler; sığmayanlar kaldırılır.</value></data>
   <data name="Repair_FreeSlots" xml:space="preserve"><value>Deponuzdaki boş yuva: {0}.</value></data>

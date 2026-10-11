@@ -87,6 +87,7 @@
   <data name="Repair_Done" xml:space="preserve"><value>Objets supprimés : {0}. La copie réparée est enregistrée sous {1} et est maintenant ouverte ; la sauvegarde d'origine est inchangée.</value></data>
   <data name="Repair_Failed" xml:space="preserve"><value>La copie réparée n'a pas pu être écrite. Rien n'a été modifié : la sauvegarde d'origine est de nouveau ouverte.</value></data>
   <data name="Repair_FailedTitle" xml:space="preserve"><value>Échec de la réparation</value></data>
+  <data name="Repair_FailedClosed" xml:space="preserve"><value>La copie réparée n'a pas pu être écrite et la sauvegarde d'origine n'a pas pu être rouverte. Rien n'a été écrit sur le disque. La sauvegarde a été fermée : rouvrez-la pour continuer.</value></data>
   <data name="Repair_MoveFirstHeading" xml:space="preserve"><value>Déplacer d'abord vers le stockage libre</value></data>
   <data name="Repair_MoveFirstHint" xml:space="preserve"><value>Cochez les types d'objets à garder, les plus importants en premier. Ils vont dans les emplacements libres de vos propres caisses et casiers sur le même monde avant toute suppression ; ce qui ne tient pas est supprimé.</value></data>
   <data name="Repair_FreeSlots" xml:space="preserve"><value>Emplacements libres dans votre stockage : {0}.</value></data>

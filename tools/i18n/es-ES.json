@@ -180,6 +180,7 @@
   "Repair_Done": "Objetos eliminados: {0}. La copia reparada se ha guardado como {1} y ahora está abierta; la partida original no ha cambiado.",
   "Repair_Failed": "No se pudo escribir la copia reparada. No se ha cambiado nada: la partida original vuelve a estar abierta.",
   "Repair_FailedTitle": "La reparación ha fallado",
+  "Repair_FailedClosed": "No se pudo escribir la copia reparada ni volver a abrir la partida original. No se ha escrito nada en el disco. La partida se ha cerrado: ábrela de nuevo para continuar.",
   "Repair_MoveFirstHeading": "Mover primero al almacenamiento libre",
   "Repair_MoveFirstHint": "Marca los tipos de objeto que quieres conservar, los más importantes primero. Van a los huecos libres de tus propias cajas y taquillas del mismo mundo antes de eliminar nada; lo que no quepa se elimina.",
   "Repair_FreeSlots": "Huecos libres en tu almacenamiento: {0}.",

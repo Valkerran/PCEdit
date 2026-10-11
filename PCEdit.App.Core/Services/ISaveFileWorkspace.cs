@@ -17,6 +17,9 @@ public interface ISaveFileWorkspace : INotifyPropertyChanged
 
     void Load(string path);
 
+    /// <summary>Unloads the save and discards any unsaved edits. Nothing is written.</summary>
+    void Close();
+
     void Save();
 
     /// <summary>

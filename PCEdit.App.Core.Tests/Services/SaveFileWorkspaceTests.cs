@@ -389,4 +389,18 @@ public sealed class SaveFileWorkspaceTests
         Assert.Equal(before.AllTimeTerraTokens, workspace.Current.Unlocks.AllTimeTerraTokens);
         Assert.False(workspace.IsDirty);
     }
+
+    [Fact]
+    public void Close_UnloadsTheSave_AndForgetsUnsavedEdits()
+    {
+        var (workspace, _) = CreateLoadedWorkspace();
+        workspace.GrantTerraTokens(1, 1);
+
+        workspace.Close();
+
+        Assert.False(workspace.IsLoaded);
+        Assert.Null(workspace.FilePath);
+        Assert.False(workspace.IsDirty);
+        Assert.Null(workspace.SaveStatus);
+    }
 }

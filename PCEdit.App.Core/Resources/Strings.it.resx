@@ -87,6 +87,7 @@
   <data name="Repair_Done" xml:space="preserve"><value>Oggetti rimossi: {0}. La copia riparata è salvata come {1} ed è ora aperta; il salvataggio originale è invariato.</value></data>
   <data name="Repair_Failed" xml:space="preserve"><value>Impossibile scrivere la copia riparata. Non è stato modificato nulla: il salvataggio originale è di nuovo aperto.</value></data>
   <data name="Repair_FailedTitle" xml:space="preserve"><value>Riparazione non riuscita</value></data>
+  <data name="Repair_FailedClosed" xml:space="preserve"><value>Impossibile scrivere la copia riparata e impossibile riaprire il salvataggio originale. Non è stato scritto nulla sul disco. Il salvataggio è stato chiuso: aprilo di nuovo per continuare.</value></data>
   <data name="Repair_MoveFirstHeading" xml:space="preserve"><value>Sposta prima nello spazio libero</value></data>
   <data name="Repair_MoveFirstHint" xml:space="preserve"><value>Spunta i tipi di oggetto da tenere, i più importanti per primi. Vanno negli slot liberi delle tue casse e armadietti sullo stesso mondo prima che venga rimosso qualcosa; ciò che non entra viene rimosso.</value></data>
   <data name="Repair_FreeSlots" xml:space="preserve"><value>Slot liberi nel tuo deposito: {0}.</value></data>

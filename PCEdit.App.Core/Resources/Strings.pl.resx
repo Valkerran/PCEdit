@@ -87,6 +87,7 @@
   <data name="Repair_Done" xml:space="preserve"><value>Usunięte przedmioty: {0}. Naprawiona kopia została zapisana jako {1} i jest teraz otwarta; oryginalny zapis pozostał bez zmian.</value></data>
   <data name="Repair_Failed" xml:space="preserve"><value>Nie udało się zapisać naprawionej kopii. Nic nie zostało zmienione: oryginalny zapis jest ponownie otwarty.</value></data>
   <data name="Repair_FailedTitle" xml:space="preserve"><value>Naprawa nie powiodła się</value></data>
+  <data name="Repair_FailedClosed" xml:space="preserve"><value>Nie udało się zapisać naprawionej kopii ani ponownie otworzyć oryginalnego zapisu. Nic nie zostało zapisane na dysku. Zapis został zamknięty: otwórz go ponownie, aby kontynuować.</value></data>
   <data name="Repair_MoveFirstHeading" xml:space="preserve"><value>Najpierw przenieś do wolnego miejsca</value></data>
   <data name="Repair_MoveFirstHint" xml:space="preserve"><value>Zaznacz rodzaje przedmiotów do zachowania, najważniejsze najpierw. Trafią do wolnych miejsc w Twoich skrzyniach i szafkach na tym samym świecie, zanim cokolwiek zostanie usunięte; to, co się nie zmieści, zostanie usunięte.</value></data>
   <data name="Repair_FreeSlots" xml:space="preserve"><value>Wolne miejsca w Twoim magazynie: {0}.</value></data>

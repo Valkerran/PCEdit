@@ -79,6 +79,15 @@ public sealed partial class SaveFileWorkspace : ObservableObject, ISaveFileWorks
         SetSaveStatus(null);
     }
 
+    public void Close()
+    {
+        Current = null;
+        FilePath = null;
+        IsDirty = false;
+        _backedUpSinceLoad = false;
+        SetSaveStatus(null);
+    }
+
     [RelayCommand(CanExecute = nameof(IsDirty))]
     public void Save()
     {

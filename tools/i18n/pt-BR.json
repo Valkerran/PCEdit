@@ -180,6 +180,7 @@
   "Repair_Done": "Itens removidos: {0}. A cópia reparada foi salva como {1} e agora está aberta; o save original não foi alterado.",
   "Repair_Failed": "Não foi possível gravar a cópia reparada. Nada foi alterado: o save original está aberto novamente.",
   "Repair_FailedTitle": "Falha no reparo",
+  "Repair_FailedClosed": "Não foi possível gravar a cópia reparada nem reabrir o save original. Nada foi gravado no disco. O save foi fechado: abra-o novamente para continuar.",
   "Repair_MoveFirstHeading": "Mover primeiro para o armazenamento livre",
   "Repair_MoveFirstHint": "Marque os tipos de item a manter, os mais importantes primeiro. Eles vão para os espaços livres das suas próprias caixas e armários no mesmo mundo antes de algo ser removido; o que não couber é removido.",
   "Repair_FreeSlots": "Espaços livres no seu armazenamento: {0}.",

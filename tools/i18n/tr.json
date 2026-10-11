@@ -180,6 +180,7 @@
   "Repair_Done": "Kaldırılan eşya: {0}. Onarılmış kopya {1} olarak kaydedildi ve şu an açık; özgün kayıt değişmedi.",
   "Repair_Failed": "Onarılmış kopya yazılamadı. Hiçbir şey değişmedi: özgün kayıt yeniden açık.",
   "Repair_FailedTitle": "Onarım başarısız",
+  "Repair_FailedClosed": "Onarılmış kopya yazılamadı ve özgün kayıt yeniden açılamadı. Diske hiçbir şey yazılmadı. Kayıt kapatıldı: devam etmek için yeniden açın.",
   "Repair_MoveFirstHeading": "Önce boş depolamaya taşı",
   "Repair_MoveFirstHint": "Tutmak istediğiniz eşya türlerini işaretleyin, en önemlisi önce. Hiçbir şey kaldırılmadan önce aynı dünyadaki kendi sandık ve dolaplarınızın boş yuvalarına giderler; sığmayanlar kaldırılır.",
   "Repair_FreeSlots": "Deponuzdaki boş yuva: {0}.",

@@ -87,6 +87,7 @@
   <data name="Repair_Done" xml:space="preserve"><value>削除したアイテム: {0}。修復したコピーを {1} として保存し、現在開いています。元のセーブは変更されていません。</value></data>
   <data name="Repair_Failed" xml:space="preserve"><value>修復したコピーを書き込めませんでした。何も変更されていません。元のセーブを再び開いています。</value></data>
   <data name="Repair_FailedTitle" xml:space="preserve"><value>修復に失敗しました</value></data>
+  <data name="Repair_FailedClosed" xml:space="preserve"><value>修復したコピーを書き込めず、元のセーブも再び開けませんでした。ディスクには何も書き込まれていません。セーブを閉じました。続けるにはもう一度開いてください。</value></data>
   <data name="Repair_MoveFirstHeading" xml:space="preserve"><value>先に空きストレージへ移動</value></data>
   <data name="Repair_MoveFirstHint" xml:space="preserve"><value>残したいアイテムの種類にチェックを入れてください (重要なものから順に)。削除の前に、同じワールドにある自分のストレージ箱やロッカーの空きスロットへ移動します。入りきらない分は削除されます。</value></data>
   <data name="Repair_FreeSlots" xml:space="preserve"><value>ストレージの空きスロット: {0}。</value></data>

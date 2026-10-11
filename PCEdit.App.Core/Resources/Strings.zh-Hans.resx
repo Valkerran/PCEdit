@@ -87,6 +87,7 @@
   <data name="Repair_Done" xml:space="preserve"><value>已移除的物品：{0}。修复后的副本已保存为 {1} 并已打开；原始存档未被更改。</value></data>
   <data name="Repair_Failed" xml:space="preserve"><value>无法写入修复后的副本。未做任何更改：原始存档已重新打开。</value></data>
   <data name="Repair_FailedTitle" xml:space="preserve"><value>修复失败</value></data>
+  <data name="Repair_FailedClosed" xml:space="preserve"><value>无法写入修复后的副本，也无法重新打开原始存档。未向磁盘写入任何内容。存档已关闭：请重新打开以继续。</value></data>
   <data name="Repair_MoveFirstHeading" xml:space="preserve"><value>先移到空闲存储</value></data>
   <data name="Repair_MoveFirstHint" xml:space="preserve"><value>勾选要保留的物品类型，最重要的放前面。在移除任何物品之前，它们会被放入同一世界中你自己的储物箱和储物柜的空格；放不下的会被移除。</value></data>
   <data name="Repair_FreeSlots" xml:space="preserve"><value>存储中的空格：{0}。</value></data>

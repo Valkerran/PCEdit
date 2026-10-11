@@ -23,7 +23,8 @@ public sealed class RepairViewModelTests
     // Bob's one-slot inventory (20) holding two items: one to remove at 1x.
     private static Rig Create(
         Action<SaveFileWorkspace>? beforeOpening = null,
-        Action<PCEdit.SaveFileHandler.Models.PlanetCrafterSaveFile>? adjust = null)
+        Action<PCEdit.SaveFileHandler.Models.PlanetCrafterSaveFile>? adjust = null,
+        Func<IOverflowRepair, IOverflowRepair>? wrapRepair = null)
     {
         var store = new FakeSaveFileStore();
         var save = WorkspaceFixtures.Create();
@@ -38,7 +39,8 @@ public sealed class RepairViewModelTests
         var navigation = new FakeNavigationService();
         var dialogs = new FakeDialogService();
         var announcer = new FakeScreenReaderAnnouncer();
-        var vm = new RepairViewModel(new OverflowRepair(workspace, new ItemCatalog()), workspace, picker, announcer, navigation, dialogs, localizer);
+        IOverflowRepair repair = new OverflowRepair(workspace, new ItemCatalog());
+        var vm = new RepairViewModel(wrapRepair?.Invoke(repair) ?? repair, workspace, picker, announcer, navigation, dialogs, localizer);
         vm.Initialize();
         return new Rig(vm, workspace, store, picker, navigation, dialogs, announcer);
     }
@@ -230,5 +232,54 @@ public sealed class RepairViewModelTests
         Assert.False(rig.Workspace.IsDirty);
         Assert.Single(rig.Dialogs.Errors);
         Assert.Equal(0, rig.Navigation.CloseModalCount);
+    }
+
+    [Fact]
+    public async Task Repair_WhenTheCopyFails_AndTheOriginalCannotBeReopened_ClosesTheSave()
+    {
+        // Read-only target folder and the original on a drive that has gone away: the reload
+        // used to throw out of the command, leaving the repaired save loaded against the
+        // original's path with Save enabled (issue #73).
+        var rig = Create();
+        rig.Store.FailSaveCopy = true;
+        rig.Store.LoadFailure = new IOException("The drive is gone.");
+
+        await rig.Vm.RepairCommand.ExecuteAsync(null);
+
+        Assert.False(rig.Workspace.IsLoaded);
+        Assert.Null(rig.Workspace.FilePath);
+        Assert.False(rig.Workspace.IsDirty);
+        Assert.Equal(1, rig.Navigation.CloseModalCount);
+        Assert.Equal(1, rig.Navigation.OpenFileCount);
+        Assert.Equal(new Localizer()[LocKeys.Repair_FailedClosed], Assert.Single(rig.Dialogs.Errors).Message);
+    }
+
+    /// <summary>A repair that changes the save in memory and then fails.</summary>
+    private sealed class FailsPartWay(IOverflowRepair inner) : IOverflowRepair
+    {
+        public RepairPlan Plan(int multiple, IReadOnlyList<string>? moveFirst = null) => inner.Plan(multiple, moveFirst);
+
+        public RepairPlan Apply(int multiple, IReadOnlyList<string>? moveFirst = null)
+        {
+            inner.Apply(multiple, moveFirst);
+            throw new InvalidOperationException("Simulated failure part-way through.");
+        }
+    }
+
+    [Fact]
+    public async Task Repair_WhenApplyingItFails_ReopensTheOriginal()
+    {
+        // Apply used to run outside the try, so a failure in it left the half-repaired save
+        // loaded and dirty against the original's path.
+        var rig = Create(wrapRepair: inner => new FailsPartWay(inner));
+        var loadsBefore = rig.Store.LoadCallCount;
+
+        await rig.Vm.RepairCommand.ExecuteAsync(null);
+
+        Assert.Equal(loadsBefore + 1, rig.Store.LoadCallCount);
+        Assert.Equal(Original, rig.Workspace.FilePath);
+        Assert.False(rig.Workspace.IsDirty);
+        Assert.Empty(rig.Store.Copies);
+        Assert.Single(rig.Dialogs.Errors);
     }
 }

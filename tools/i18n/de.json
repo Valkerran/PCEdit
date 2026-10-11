@@ -180,6 +180,7 @@
   "Repair_Done": "Entfernte Gegenstände: {0}. Die reparierte Kopie ist als {1} gespeichert und jetzt geöffnet; der ursprüngliche Spielstand ist unverändert.",
   "Repair_Failed": "Die reparierte Kopie konnte nicht geschrieben werden. Es wurde nichts geändert: Der ursprüngliche Spielstand ist wieder geöffnet.",
   "Repair_FailedTitle": "Reparatur fehlgeschlagen",
+  "Repair_FailedClosed": "Die reparierte Kopie konnte nicht geschrieben und der ursprüngliche Spielstand nicht wieder geöffnet werden. Es wurde nichts auf den Datenträger geschrieben. Der Spielstand wurde geschlossen: Öffne ihn erneut, um fortzufahren.",
   "Repair_MoveFirstHeading": "Zuerst in freien Lagerplatz verschieben",
   "Repair_MoveFirstHint": "Haken Sie die Gegenstandsarten an, die Sie behalten möchten, die wichtigsten zuerst. Sie kommen vor dem Entfernen in freie Plätze Ihrer eigenen Lagerkisten und Schränke auf derselben Welt; was nicht passt, wird entfernt.",
   "Repair_FreeSlots": "Freie Plätze in Ihrem Lager: {0}.",

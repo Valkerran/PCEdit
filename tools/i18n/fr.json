@@ -180,6 +180,7 @@
   "Repair_Done": "Objets supprimés : {0}. La copie réparée est enregistrée sous {1} et est maintenant ouverte ; la sauvegarde d'origine est inchangée.",
   "Repair_Failed": "La copie réparée n'a pas pu être écrite. Rien n'a été modifié : la sauvegarde d'origine est de nouveau ouverte.",
   "Repair_FailedTitle": "Échec de la réparation",
+  "Repair_FailedClosed": "La copie réparée n'a pas pu être écrite et la sauvegarde d'origine n'a pas pu être rouverte. Rien n'a été écrit sur le disque. La sauvegarde a été fermée : rouvrez-la pour continuer.",
   "Repair_MoveFirstHeading": "Déplacer d'abord vers le stockage libre",
   "Repair_MoveFirstHint": "Cochez les types d'objets à garder, les plus importants en premier. Ils vont dans les emplacements libres de vos propres caisses et casiers sur le même monde avant toute suppression ; ce qui ne tient pas est supprimé.",
   "Repair_FreeSlots": "Emplacements libres dans votre stockage : {0}.",

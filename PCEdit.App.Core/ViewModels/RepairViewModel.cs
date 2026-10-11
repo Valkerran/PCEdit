@@ -182,9 +182,10 @@ public sealed partial class RepairViewModel(
             return; // nothing has been touched yet
         }
 
-        var done = repair.Apply(Multiple, TickedInOrder());
+        RepairPlan done;
         try
         {
+            done = repair.Apply(Multiple, TickedInOrder());
             workspace.SaveCopy(target);
         }
         catch (Exception ex)
@@ -200,13 +201,42 @@ public sealed partial class RepairViewModel(
 
     /// <summary>
     /// The repair only exists in memory; reopening the original undoes it, so the player is never
-    /// left editing a half-repaired save that a later Save would write over the original.
+    /// left editing a half-repaired save that a later Save would write over the original. If the
+    /// original cannot be reopened either, the save is closed: with nothing loaded, nothing can
+    /// be written over it (issue #73).
     /// </summary>
     private async Task UndoFailedRepairAsync(string original)
     {
-        workspace.Load(original);
-        Refresh();
-        var message = localizer[LocKeys.Repair_Failed];
+        if (TryReopen(original))
+        {
+            Refresh();
+            await ReportFailureAsync(LocKeys.Repair_Failed);
+            return;
+        }
+
+        workspace.Close();
+        await navigation.CloseModalAsync();
+        await navigation.GoToOpenFileAsync();
+        await ReportFailureAsync(LocKeys.Repair_FailedClosed);
+    }
+
+    private bool TryReopen(string original)
+    {
+        try
+        {
+            workspace.Load(original);
+            return true;
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Trace.WriteLine($"Could not reopen '{original}' after a failed repair: {ex}");
+            return false;
+        }
+    }
+
+    private async Task ReportFailureAsync(string messageKey)
+    {
+        var message = localizer[messageKey];
         announcer.Announce(localizer.Format(LocKeys.Announce_ErrorPrefix, message));
         await dialogs.ShowErrorAsync(localizer[LocKeys.Repair_FailedTitle], message);
     }

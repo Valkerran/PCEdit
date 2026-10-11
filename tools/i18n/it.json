@@ -180,6 +180,7 @@
   "Repair_Done": "Oggetti rimossi: {0}. La copia riparata è salvata come {1} ed è ora aperta; il salvataggio originale è invariato.",
   "Repair_Failed": "Impossibile scrivere la copia riparata. Non è stato modificato nulla: il salvataggio originale è di nuovo aperto.",
   "Repair_FailedTitle": "Riparazione non riuscita",
+  "Repair_FailedClosed": "Impossibile scrivere la copia riparata e impossibile riaprire il salvataggio originale. Non è stato scritto nulla sul disco. Il salvataggio è stato chiuso: aprilo di nuovo per continuare.",
   "Repair_MoveFirstHeading": "Sposta prima nello spazio libero",
   "Repair_MoveFirstHint": "Spunta i tipi di oggetto da tenere, i più importanti per primi. Vanno negli slot liberi delle tue casse e armadietti sullo stesso mondo prima che venga rimosso qualcosa; ciò che non entra viene rimosso.",
   "Repair_FreeSlots": "Slot liberi nel tuo deposito: {0}.",

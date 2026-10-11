@@ -87,6 +87,7 @@
   <data name="Repair_Done" xml:space="preserve"><value>Удалено предметов: {0}. Исправленная копия сохранена как {1} и сейчас открыта; исходное сохранение не изменено.</value></data>
   <data name="Repair_Failed" xml:space="preserve"><value>Не удалось записать исправленную копию. Ничего не изменено: исходное сохранение снова открыто.</value></data>
   <data name="Repair_FailedTitle" xml:space="preserve"><value>Исправление не удалось</value></data>
+  <data name="Repair_FailedClosed" xml:space="preserve"><value>Не удалось записать исправленную копию и снова открыть исходное сохранение. На диск ничего не записано. Сохранение закрыто: откройте его снова, чтобы продолжить.</value></data>
   <data name="Repair_MoveFirstHeading" xml:space="preserve"><value>Сначала переместить в свободное хранилище</value></data>
   <data name="Repair_MoveFirstHint" xml:space="preserve"><value>Отметьте типы предметов, которые нужно сохранить, начиная с самых важных. Перед удалением они попадут в свободные ячейки ваших ящиков и шкафчиков в том же мире; то, что не поместится, будет удалено.</value></data>
   <data name="Repair_FreeSlots" xml:space="preserve"><value>Свободных ячеек в вашем хранилище: {0}.</value></data>
