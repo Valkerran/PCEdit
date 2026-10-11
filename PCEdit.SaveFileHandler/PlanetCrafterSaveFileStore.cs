@@ -30,6 +30,15 @@ public sealed class PlanetCrafterSaveFileStore(IPlanetCrafterSaveFileSerializer 
         return _serializer.Deserialize(ReadUtf8(path));
     }
 
+    public string? Fingerprint(string path)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(path);
+
+        // The real file: a link's own size and time do not change when what it points at does.
+        var info = new FileInfo(RealPath.Of(path));
+        return info.Exists ? $"{info.Length}:{info.LastWriteTimeUtc.Ticks}" : null;
+    }
+
     /// <summary>The file as text, minus a UTF-8 BOM. Anything that is not UTF-8 - including a
     /// UTF-16 or UTF-32 file, whose BOM is itself invalid UTF-8 - is refused.</summary>
     private static string ReadUtf8(string path)

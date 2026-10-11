@@ -35,6 +35,11 @@
   <data name="Save_OkAnnounce" xml:space="preserve"><value>Archivo de partida escrito.</value></data>
   <data name="Save_Failed" xml:space="preserve"><value>Error al guardar. Tu archivo no se ha modificado.</value></data>
   <data name="Save_FailedAnnounce" xml:space="preserve"><value>Error: error al guardar. Tu archivo no se ha modificado.</value></data>
+  <data name="Save_FailedNoPermission" xml:space="preserve"><value>Error al guardar: el archivo es de solo lectura o PCEdit no tiene permiso para escribir ahí. Tu archivo no se ha modificado.</value></data>
+  <data name="Save_ChangedOnDisk" xml:space="preserve"><value>No se ha guardado: el archivo cambió en el disco después de que PCEdit lo abriera.</value></data>
+  <data name="Save_ChangedTitle" xml:space="preserve"><value>El archivo de guardado ha cambiado</value></data>
+  <data name="Save_ChangedBody" xml:space="preserve"><value>Este archivo de guardado se modificó o se eliminó después de que PCEdit lo abriera: puede que el juego haya guardado encima. Al sobrescribir, lo que hay ahora en el disco se sustituye por lo que PCEdit tiene abierto. Antes, PCEdit intenta hacer una copia de seguridad del archivo actual.</value></data>
+  <data name="Save_ChangedOverwrite" xml:space="preserve"><value>Sobrescribir</value></data>
   <data name="Announce_ErrorPrefix" xml:space="preserve"><value>Error: {0}</value></data>
   <data name="OpenFile_Title" xml:space="preserve"><value>Abrir archivo</value></data>
   <data name="OpenFile_Heading" xml:space="preserve"><value>Editor de partidas de Planet Crafter</value></data>

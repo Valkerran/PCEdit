@@ -35,6 +35,11 @@
   <data name="Save_OkAnnounce" xml:space="preserve"><value>セーブファイルを書き込みました。</value></data>
   <data name="Save_Failed" xml:space="preserve"><value>保存に失敗しました。ファイルは変更されていません。</value></data>
   <data name="Save_FailedAnnounce" xml:space="preserve"><value>エラー: 保存に失敗しました。ファイルは変更されていません。</value></data>
+  <data name="Save_FailedNoPermission" xml:space="preserve"><value>保存に失敗しました。ファイルが読み取り専用か、PCEdit にその場所への書き込み権限がありません。ファイルは変更されていません。</value></data>
+  <data name="Save_ChangedOnDisk" xml:space="preserve"><value>保存されていません。PCEdit が開いた後に、ディスク上のファイルが変更されました。</value></data>
+  <data name="Save_ChangedTitle" xml:space="preserve"><value>セーブファイルが変更されました</value></data>
+  <data name="Save_ChangedBody" xml:space="preserve"><value>このセーブファイルは、PCEdit が開いた後に変更または削除されました。ゲームが上書き保存した可能性があります。上書きすると、現在ディスクにある内容が PCEdit で開いている内容に置き換わります。PCEdit はその前に現在のファイルのバックアップを試みます。</value></data>
+  <data name="Save_ChangedOverwrite" xml:space="preserve"><value>上書き</value></data>
   <data name="Announce_ErrorPrefix" xml:space="preserve"><value>エラー: {0}</value></data>
   <data name="OpenFile_Title" xml:space="preserve"><value>ファイルを開く</value></data>
   <data name="OpenFile_Heading" xml:space="preserve"><value>Planet Crafter セーブエディター</value></data>

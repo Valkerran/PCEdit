@@ -35,6 +35,11 @@
   <data name="Save_OkAnnounce" xml:space="preserve"><value>Arquivo de save gravado.</value></data>
   <data name="Save_Failed" xml:space="preserve"><value>Falha ao salvar. Seu arquivo não foi alterado.</value></data>
   <data name="Save_FailedAnnounce" xml:space="preserve"><value>Erro: falha ao salvar. Seu arquivo não foi alterado.</value></data>
+  <data name="Save_FailedNoPermission" xml:space="preserve"><value>Falha ao salvar: o arquivo é somente leitura ou o PCEdit não tem permissão para gravar nesse local. Seu arquivo não foi alterado.</value></data>
+  <data name="Save_ChangedOnDisk" xml:space="preserve"><value>Não salvo: o arquivo mudou no disco depois que o PCEdit o abriu.</value></data>
+  <data name="Save_ChangedTitle" xml:space="preserve"><value>O arquivo de save foi alterado</value></data>
+  <data name="Save_ChangedBody" xml:space="preserve"><value>Este arquivo de save foi alterado ou removido depois que o PCEdit o abriu: o jogo pode ter salvado por cima. Sobrescrever substitui o que está no disco agora pelo que o PCEdit tem aberto. Antes disso, o PCEdit tenta guardar uma cópia do arquivo atual.</value></data>
+  <data name="Save_ChangedOverwrite" xml:space="preserve"><value>Sobrescrever</value></data>
   <data name="Announce_ErrorPrefix" xml:space="preserve"><value>Erro: {0}</value></data>
   <data name="OpenFile_Title" xml:space="preserve"><value>Abrir arquivo</value></data>
   <data name="OpenFile_Heading" xml:space="preserve"><value>Editor de saves do Planet Crafter</value></data>

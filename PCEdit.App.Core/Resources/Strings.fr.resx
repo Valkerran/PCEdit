@@ -35,6 +35,11 @@
   <data name="Save_OkAnnounce" xml:space="preserve"><value>Fichier de sauvegarde écrit.</value></data>
   <data name="Save_Failed" xml:space="preserve"><value>Échec de l'enregistrement. Votre fichier n'a pas été modifié.</value></data>
   <data name="Save_FailedAnnounce" xml:space="preserve"><value>Erreur : échec de l'enregistrement. Votre fichier n'a pas été modifié.</value></data>
+  <data name="Save_FailedNoPermission" xml:space="preserve"><value>Échec de l'enregistrement : le fichier est en lecture seule ou PCEdit n'a pas le droit d'écrire à cet endroit. Votre fichier n'a pas été modifié.</value></data>
+  <data name="Save_ChangedOnDisk" xml:space="preserve"><value>Non enregistré : le fichier a changé sur le disque après son ouverture par PCEdit.</value></data>
+  <data name="Save_ChangedTitle" xml:space="preserve"><value>Le fichier de sauvegarde a changé</value></data>
+  <data name="Save_ChangedBody" xml:space="preserve"><value>Ce fichier de sauvegarde a été modifié ou supprimé après son ouverture par PCEdit : le jeu l'a peut-être réécrit. Écraser remplace ce qui se trouve maintenant sur le disque par ce que PCEdit a ouvert. PCEdit tente d'abord de conserver une copie du fichier actuel.</value></data>
+  <data name="Save_ChangedOverwrite" xml:space="preserve"><value>Écraser</value></data>
   <data name="Announce_ErrorPrefix" xml:space="preserve"><value>Erreur : {0}</value></data>
   <data name="OpenFile_Title" xml:space="preserve"><value>Ouvrir un fichier</value></data>
   <data name="OpenFile_Heading" xml:space="preserve"><value>Éditeur de sauvegarde Planet Crafter</value></data>

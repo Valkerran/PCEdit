@@ -272,6 +272,44 @@ public sealed class PlanetCrafterSaveFileStoreTests : IDisposable
         Assert.Single(_store.Load(_tempFile).WorldObjects);
     }
 
+    [Fact]
+    public void Fingerprint_OfAMissingFile_IsNull()
+    {
+        Assert.Null(_store.Fingerprint(_tempFile));
+    }
+
+    [Fact]
+    public void Fingerprint_IsStableUntilTheFileChanges()
+    {
+        _store.Save(_tempFile, SaveFileFixtures.CreateEmpty());
+        var before = _store.Fingerprint(_tempFile);
+
+        Assert.Equal(before, _store.Fingerprint(_tempFile));
+
+        File.AppendAllText(_tempFile, " "); // the game saving over it, in miniature
+        Assert.NotEqual(before, _store.Fingerprint(_tempFile));
+    }
+
+    [Fact]
+    public void Fingerprint_OfALinkedSave_ChangesWhenTheRealFileDoes()
+    {
+        if (OperatingSystem.IsWindows())
+        {
+            return; // creating a symlink needs a privilege there
+        }
+
+        // Same length, so only the real file's write time can give the change away - the link
+        // itself is never touched.
+        File.WriteAllText(_tempFile, "one");
+        File.SetLastWriteTimeUtc(_tempFile, new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc));
+        File.CreateSymbolicLink(_copyFile, _tempFile);
+        var before = _store.Fingerprint(_copyFile);
+
+        File.WriteAllText(_tempFile, "two");
+
+        Assert.NotEqual(before, _store.Fingerprint(_copyFile));
+    }
+
     private static string SerializedFixture() =>
         new PlanetCrafterSaveFileSerializer(new JsonRecordSerializer()).Serialize(SaveFileFixtures.CreateFullyPopulated());
 }

@@ -35,6 +35,11 @@
   <data name="Save_OkAnnounce" xml:space="preserve"><value>File di salvataggio scritto.</value></data>
   <data name="Save_Failed" xml:space="preserve"><value>Salvataggio non riuscito. Il file non è stato modificato.</value></data>
   <data name="Save_FailedAnnounce" xml:space="preserve"><value>Errore: salvataggio non riuscito. Il file non è stato modificato.</value></data>
+  <data name="Save_FailedNoPermission" xml:space="preserve"><value>Salvataggio non riuscito: il file è di sola lettura oppure PCEdit non ha il permesso di scrivere in quella posizione. Il file non è stato modificato.</value></data>
+  <data name="Save_ChangedOnDisk" xml:space="preserve"><value>Non salvato: il file è cambiato sul disco dopo che PCEdit lo ha aperto.</value></data>
+  <data name="Save_ChangedTitle" xml:space="preserve"><value>Il file di salvataggio è cambiato</value></data>
+  <data name="Save_ChangedBody" xml:space="preserve"><value>Questo file di salvataggio è stato modificato o rimosso dopo che PCEdit lo ha aperto: il gioco potrebbe averlo sovrascritto. Sovrascrivendo, ciò che ora si trova sul disco viene sostituito con ciò che PCEdit ha aperto. Prima PCEdit prova a conservare una copia del file attuale.</value></data>
+  <data name="Save_ChangedOverwrite" xml:space="preserve"><value>Sovrascrivi</value></data>
   <data name="Announce_ErrorPrefix" xml:space="preserve"><value>Errore: {0}</value></data>
   <data name="OpenFile_Title" xml:space="preserve"><value>Apri file</value></data>
   <data name="OpenFile_Heading" xml:space="preserve"><value>Editor dei salvataggi di Planet Crafter</value></data>

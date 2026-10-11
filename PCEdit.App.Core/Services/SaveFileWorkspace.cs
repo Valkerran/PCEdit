@@ -1,5 +1,4 @@
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 using PCEdit.App.Core.Localization;
 using PCEdit.SaveFileHandler;
 using PCEdit.SaveFileHandler.Models;
@@ -16,6 +15,9 @@ public sealed partial class SaveFileWorkspace : ObservableObject, ISaveFileWorks
     // Whether the file currently loaded has been copied aside yet. Reset by Load, so each newly
     // opened file gets exactly one attempt on its first save.
     private bool _backedUpSinceLoad;
+
+    // The file as PCEdit last read or wrote it; see HasChangedOnDisk.
+    private string? _fingerprint;
 
     // The save status is held as a resource key so it re-renders when the UI language changes.
     private string? _saveStatusKey;
@@ -41,7 +43,6 @@ public sealed partial class SaveFileWorkspace : ObservableObject, ISaveFileWorks
     private string? _filePath;
 
     [ObservableProperty]
-    [NotifyCanExecuteChangedFor(nameof(SaveCommand))]
     private bool _isDirty;
 
     public string? SaveStatus => _saveStatusKey is null ? null : _localizer[_saveStatusKey];
@@ -72,23 +73,33 @@ public sealed partial class SaveFileWorkspace : ObservableObject, ISaveFileWorks
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(path);
 
+        // Taken before the read: a write that lands during the load then shows as a change,
+        // which errs towards asking.
+        var fingerprint = _store.Fingerprint(path);
         Current = _store.Load(path);
         FilePath = path;
         IsDirty = false;
+        _fingerprint = fingerprint;
         _backedUpSinceLoad = false;
         SetSaveStatus(null);
     }
 
-    public void Close()
+    public bool HasChangedOnDisk => FilePath is not null && _store.Fingerprint(FilePath) != _fingerprint;
+
+    public void AcceptDiskChange()
     {
-        Current = null;
-        FilePath = null;
-        IsDirty = false;
+        if (FilePath is null)
+        {
+            return;
+        }
+
+        _fingerprint = _store.Fingerprint(FilePath);
+
+        // What is on disk now is not the file backed up at the first save, and nothing else
+        // holds a copy of it.
         _backedUpSinceLoad = false;
-        SetSaveStatus(null);
     }
 
-    [RelayCommand(CanExecute = nameof(IsDirty))]
     public void Save()
     {
         if (Current is null || FilePath is null)
@@ -96,13 +107,20 @@ public sealed partial class SaveFileWorkspace : ObservableObject, ISaveFileWorks
             throw new InvalidOperationException("No save file is loaded.");
         }
 
+        if (HasChangedOnDisk)
+        {
+            ReportSaveRefused(LocKeys.Save_ChangedOnDisk);
+            return;
+        }
+
         try
         {
-            BackUpOnce(FilePath);
-            _store.Save(FilePath, Current);
-            IsDirty = false;
-            SetSaveStatus(LocKeys.Save_Ok);
-            _announcer.Announce(_localizer[LocKeys.Save_OkAnnounce]);
+            WriteToDisk(FilePath, Current);
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            System.Diagnostics.Trace.WriteLine($"Not allowed to save '{FilePath}': {ex}");
+            ReportSaveRefused(LocKeys.Save_FailedNoPermission);
         }
         catch (Exception ex)
         {
@@ -110,6 +128,32 @@ public sealed partial class SaveFileWorkspace : ObservableObject, ISaveFileWorks
             SetSaveStatus(LocKeys.Save_Failed);
             _announcer.Announce(_localizer[LocKeys.Save_FailedAnnounce]);
         }
+    }
+
+    private void WriteToDisk(string path, PlanetCrafterSaveFile save)
+    {
+        BackUpOnce(path);
+        _store.Save(path, save);
+        _fingerprint = _store.Fingerprint(path);
+        IsDirty = false;
+        SetSaveStatus(LocKeys.Save_Ok);
+        _announcer.Announce(_localizer[LocKeys.Save_OkAnnounce]);
+    }
+
+    private void ReportSaveRefused(string key)
+    {
+        SetSaveStatus(key);
+        _announcer.Announce(_localizer.Format(LocKeys.Announce_ErrorPrefix, _localizer[key]));
+    }
+
+    public void Close()
+    {
+        Current = null;
+        FilePath = null;
+        IsDirty = false;
+        _fingerprint = null;
+        _backedUpSinceLoad = false;
+        SetSaveStatus(null);
     }
 
     public void SaveCopy(string targetPath)
@@ -122,6 +166,7 @@ public sealed partial class SaveFileWorkspace : ObservableObject, ISaveFileWorks
 
         _store.SaveCopy(FilePath, targetPath, Current);
         FilePath = targetPath;
+        _fingerprint = _store.Fingerprint(targetPath);
         IsDirty = false;
 
         // The copy is PCEdit's own output: nothing in it needs preserving. The pristine save is

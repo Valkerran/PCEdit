@@ -34,6 +34,11 @@ public static class LocKeys
     public const string Save_OkAnnounce = "Save_OkAnnounce";
     public const string Save_Failed = "Save_Failed";
     public const string Save_FailedAnnounce = "Save_FailedAnnounce";
+    public const string Save_FailedNoPermission = "Save_FailedNoPermission";
+    public const string Save_ChangedOnDisk = "Save_ChangedOnDisk";
+    public const string Save_ChangedTitle = "Save_ChangedTitle";
+    public const string Save_ChangedBody = "Save_ChangedBody";
+    public const string Save_ChangedOverwrite = "Save_ChangedOverwrite";
 
     public const string OpenFile_DiscardTitle = "OpenFile_DiscardTitle";
     public const string OpenFile_DiscardBody = "OpenFile_DiscardBody";

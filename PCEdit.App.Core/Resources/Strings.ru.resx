@@ -35,6 +35,11 @@
   <data name="Save_OkAnnounce" xml:space="preserve"><value>Файл сохранения записан.</value></data>
   <data name="Save_Failed" xml:space="preserve"><value>Не удалось сохранить. Ваш файл не изменён.</value></data>
   <data name="Save_FailedAnnounce" xml:space="preserve"><value>Ошибка: не удалось сохранить. Ваш файл не изменён.</value></data>
+  <data name="Save_FailedNoPermission" xml:space="preserve"><value>Не удалось сохранить: файл доступен только для чтения или у PCEdit нет прав на запись в это место. Ваш файл не изменён.</value></data>
+  <data name="Save_ChangedOnDisk" xml:space="preserve"><value>Не сохранено: файл на диске изменился после того, как PCEdit его открыл.</value></data>
+  <data name="Save_ChangedTitle" xml:space="preserve"><value>Файл сохранения изменился</value></data>
+  <data name="Save_ChangedBody" xml:space="preserve"><value>Этот файл сохранения был изменён или удалён после того, как PCEdit его открыл: возможно, игра перезаписала его. При перезаписи то, что сейчас на диске, будет заменено тем, что открыто в PCEdit. Перед этим PCEdit попытается сделать резервную копию текущего файла.</value></data>
+  <data name="Save_ChangedOverwrite" xml:space="preserve"><value>Перезаписать</value></data>
   <data name="Announce_ErrorPrefix" xml:space="preserve"><value>Ошибка: {0}</value></data>
   <data name="OpenFile_Title" xml:space="preserve"><value>Открыть файл</value></data>
   <data name="OpenFile_Heading" xml:space="preserve"><value>Редактор сохранений Planet Crafter</value></data>

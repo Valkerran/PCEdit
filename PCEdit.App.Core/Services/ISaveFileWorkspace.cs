@@ -23,6 +23,18 @@ public interface ISaveFileWorkspace : INotifyPropertyChanged
     void Save();
 
     /// <summary>
+    /// Whether the file was rewritten or removed by something else after PCEdit last read or
+    /// wrote it - typically the game saving. <see cref="Save"/> refuses while this is true.
+    /// </summary>
+    bool HasChangedOnDisk { get; }
+
+    /// <summary>
+    /// The player chose to overwrite what is on disk now: the next <see cref="Save"/> goes
+    /// ahead, after backing up the file as it is now.
+    /// </summary>
+    void AcceptDiskChange();
+
+    /// <summary>
     /// Writes the loaded save to a new file and carries on from there, so later saves go to the
     /// copy and the file it was loaded from is never written. Throws if the copy cannot be written,
     /// leaving the workspace on the original file.

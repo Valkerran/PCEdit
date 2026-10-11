@@ -35,6 +35,11 @@
   <data name="Save_OkAnnounce" xml:space="preserve"><value>存檔檔案已寫入。</value></data>
   <data name="Save_Failed" xml:space="preserve"><value>儲存失敗。你的檔案未被變更。</value></data>
   <data name="Save_FailedAnnounce" xml:space="preserve"><value>錯誤：儲存失敗。你的檔案未被變更。</value></data>
+  <data name="Save_FailedNoPermission" xml:space="preserve"><value>儲存失敗：檔案為唯讀，或 PCEdit 無權寫入該位置。你的檔案未被變更。</value></data>
+  <data name="Save_ChangedOnDisk" xml:space="preserve"><value>未儲存：PCEdit 開啟檔案後，磁碟上的檔案已變更。</value></data>
+  <data name="Save_ChangedTitle" xml:space="preserve"><value>存檔檔案已變更</value></data>
+  <data name="Save_ChangedBody" xml:space="preserve"><value>PCEdit 開啟此存檔檔案後，它已被變更或刪除：可能是遊戲覆寫了它。覆寫會以 PCEdit 中開啟的內容取代磁碟上現有的內容。PCEdit 會先嘗試備份目前的檔案。</value></data>
+  <data name="Save_ChangedOverwrite" xml:space="preserve"><value>覆寫</value></data>
   <data name="Announce_ErrorPrefix" xml:space="preserve"><value>錯誤：{0}</value></data>
   <data name="OpenFile_Title" xml:space="preserve"><value>開啟檔案</value></data>
   <data name="OpenFile_Heading" xml:space="preserve"><value>Planet Crafter 存檔編輯器</value></data>

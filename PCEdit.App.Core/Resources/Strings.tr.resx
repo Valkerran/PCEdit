@@ -35,6 +35,11 @@
   <data name="Save_OkAnnounce" xml:space="preserve"><value>Kayıt dosyası yazıldı.</value></data>
   <data name="Save_Failed" xml:space="preserve"><value>Kaydetme başarısız oldu. Dosyanız değiştirilmedi.</value></data>
   <data name="Save_FailedAnnounce" xml:space="preserve"><value>Hata: kaydetme başarısız oldu. Dosyanız değiştirilmedi.</value></data>
+  <data name="Save_FailedNoPermission" xml:space="preserve"><value>Kaydetme başarısız oldu: dosya salt okunur veya PCEdit'in oraya yazma izni yok. Dosyanız değiştirilmedi.</value></data>
+  <data name="Save_ChangedOnDisk" xml:space="preserve"><value>Kaydedilmedi: PCEdit dosyayı açtıktan sonra diskteki dosya değişti.</value></data>
+  <data name="Save_ChangedTitle" xml:space="preserve"><value>Kayıt dosyası değişti</value></data>
+  <data name="Save_ChangedBody" xml:space="preserve"><value>Bu kayıt dosyası, PCEdit onu açtıktan sonra değiştirildi veya kaldırıldı: oyun üzerine kaydetmiş olabilir. Üzerine yazmak, şu anda diskte olanı PCEdit'te açık olanla değiştirir. PCEdit önce geçerli dosyanın bir yedeğini almayı dener.</value></data>
+  <data name="Save_ChangedOverwrite" xml:space="preserve"><value>Üzerine yaz</value></data>
   <data name="Announce_ErrorPrefix" xml:space="preserve"><value>Hata: {0}</value></data>
   <data name="OpenFile_Title" xml:space="preserve"><value>Dosya Aç</value></data>
   <data name="OpenFile_Heading" xml:space="preserve"><value>Planet Crafter Kayıt Düzenleyici</value></data>

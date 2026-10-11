@@ -80,7 +80,7 @@
                                        Text="{Binding DirtyText}" />
                             <Button Classes="accent"
                                     Content="{m:Loc Common_Save}"
-                                    Command="{Binding Workspace.SaveCommand}"
+                                    Command="{Binding SaveCommand}"
                                     ToolTip.Tip="{m:Loc Shell_SaveHint}"
                                     HotKey="Ctrl+S" />
                         </StackPanel>

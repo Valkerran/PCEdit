@@ -35,6 +35,11 @@
   <data name="Save_OkAnnounce" xml:space="preserve"><value>Plik zapisu został zapisany.</value></data>
   <data name="Save_Failed" xml:space="preserve"><value>Zapis nie powiódł się. Plik nie został zmieniony.</value></data>
   <data name="Save_FailedAnnounce" xml:space="preserve"><value>Błąd: zapis nie powiódł się. Plik nie został zmieniony.</value></data>
+  <data name="Save_FailedNoPermission" xml:space="preserve"><value>Zapis nie powiódł się: plik jest tylko do odczytu albo PCEdit nie ma uprawnień do zapisu w tym miejscu. Plik nie został zmieniony.</value></data>
+  <data name="Save_ChangedOnDisk" xml:space="preserve"><value>Nie zapisano: plik zmienił się na dysku po otwarciu go w PCEdit.</value></data>
+  <data name="Save_ChangedTitle" xml:space="preserve"><value>Plik zapisu został zmieniony</value></data>
+  <data name="Save_ChangedBody" xml:space="preserve"><value>Ten plik zapisu został zmieniony lub usunięty po otwarciu go w PCEdit: możliwe, że gra go nadpisała. Nadpisanie zastąpi to, co jest teraz na dysku, tym, co jest otwarte w PCEdit. PCEdit najpierw spróbuje zachować kopię obecnego pliku.</value></data>
+  <data name="Save_ChangedOverwrite" xml:space="preserve"><value>Nadpisz</value></data>
   <data name="Announce_ErrorPrefix" xml:space="preserve"><value>Błąd: {0}</value></data>
   <data name="OpenFile_Title" xml:space="preserve"><value>Otwórz plik</value></data>
   <data name="OpenFile_Heading" xml:space="preserve"><value>Edytor zapisów Planet Crafter</value></data>

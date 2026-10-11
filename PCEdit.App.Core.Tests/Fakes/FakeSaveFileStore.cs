@@ -31,10 +31,25 @@ internal sealed class FakeSaveFileStore : IPlanetCrafterSaveFileStore
         return _filesByPath[path];
     }
 
+    /// <summary>What <see cref="Fingerprint"/> reports. Set it to stand in for the game writing
+    /// the file behind PCEdit's back; PCEdit's own writes change it too, as on a real disk.</summary>
+    public string? FingerprintValue { get; set; } = "as loaded";
+
+    public string? Fingerprint(string path) => FingerprintValue;
+
+    /// <summary>Set to make <see cref="Save"/> throw.</summary>
+    public Exception? SaveFailure { get; set; }
+
     public void Save(string path, PlanetCrafterSaveFile saveFile)
     {
+        if (SaveFailure is not null)
+        {
+            throw SaveFailure;
+        }
+
         SaveCallCount++;
         _filesByPath[path] = saveFile;
+        FingerprintValue = $"after save {SaveCallCount}";
     }
 
     /// <summary>Every <see cref="SaveCopy"/> that succeeded, as (source, target).</summary>
@@ -51,6 +66,7 @@ internal sealed class FakeSaveFileStore : IPlanetCrafterSaveFileStore
         }
 
         Copies.Add((sourcePath, targetPath));
+        FingerprintValue = $"after copy {Copies.Count}";
         _filesByPath[targetPath] = saveFile;
     }
 

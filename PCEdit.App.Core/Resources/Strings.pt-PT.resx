@@ -35,6 +35,11 @@
   <data name="Save_OkAnnounce" xml:space="preserve"><value>Ficheiro de jogo guardado escrito.</value></data>
   <data name="Save_Failed" xml:space="preserve"><value>Falha ao guardar. O seu ficheiro não foi alterado.</value></data>
   <data name="Save_FailedAnnounce" xml:space="preserve"><value>Erro: falha ao guardar. O seu ficheiro não foi alterado.</value></data>
+  <data name="Save_FailedNoPermission" xml:space="preserve"><value>Falha ao guardar: o ficheiro é só de leitura ou o PCEdit não tem permissão para escrever nesse local. O seu ficheiro não foi alterado.</value></data>
+  <data name="Save_ChangedOnDisk" xml:space="preserve"><value>Não guardado: o ficheiro mudou no disco depois de o PCEdit o abrir.</value></data>
+  <data name="Save_ChangedTitle" xml:space="preserve"><value>O ficheiro guardado foi alterado</value></data>
+  <data name="Save_ChangedBody" xml:space="preserve"><value>Este ficheiro guardado foi alterado ou removido depois de o PCEdit o abrir: o jogo pode ter guardado por cima. Substituir troca o que está agora no disco pelo que o PCEdit tem aberto. Antes disso, o PCEdit tenta guardar uma cópia do ficheiro atual.</value></data>
+  <data name="Save_ChangedOverwrite" xml:space="preserve"><value>Substituir</value></data>
   <data name="Announce_ErrorPrefix" xml:space="preserve"><value>Erro: {0}</value></data>
   <data name="OpenFile_Title" xml:space="preserve"><value>Abrir ficheiro</value></data>
   <data name="OpenFile_Heading" xml:space="preserve"><value>Editor de jogos guardados do Planet Crafter</value></data>

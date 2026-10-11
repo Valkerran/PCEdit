@@ -35,6 +35,11 @@
   <data name="Save_OkAnnounce" xml:space="preserve"><value>Spielstanddatei geschrieben.</value></data>
   <data name="Save_Failed" xml:space="preserve"><value>Speichern fehlgeschlagen. Deine Datei wurde nicht geändert.</value></data>
   <data name="Save_FailedAnnounce" xml:space="preserve"><value>Fehler: Speichern fehlgeschlagen. Deine Datei wurde nicht geändert.</value></data>
+  <data name="Save_FailedNoPermission" xml:space="preserve"><value>Speichern fehlgeschlagen: Die Datei ist schreibgeschützt oder PCEdit darf dort nicht schreiben. Deine Datei wurde nicht geändert.</value></data>
+  <data name="Save_ChangedOnDisk" xml:space="preserve"><value>Nicht gespeichert: Die Datei wurde auf dem Datenträger geändert, nachdem PCEdit sie geöffnet hat.</value></data>
+  <data name="Save_ChangedTitle" xml:space="preserve"><value>Die Spielstanddatei wurde geändert</value></data>
+  <data name="Save_ChangedBody" xml:space="preserve"><value>Diese Spielstanddatei wurde geändert oder entfernt, nachdem PCEdit sie geöffnet hat: Möglicherweise hat das Spiel sie überschrieben. Beim Überschreiben wird der aktuelle Inhalt auf dem Datenträger durch den in PCEdit geöffneten Stand ersetzt. PCEdit versucht vorher, die aktuelle Datei zu sichern.</value></data>
+  <data name="Save_ChangedOverwrite" xml:space="preserve"><value>Überschreiben</value></data>
   <data name="Announce_ErrorPrefix" xml:space="preserve"><value>Fehler: {0}</value></data>
   <data name="OpenFile_Title" xml:space="preserve"><value>Datei öffnen</value></data>
   <data name="OpenFile_Heading" xml:space="preserve"><value>Planet Crafter Spielstand-Editor</value></data>

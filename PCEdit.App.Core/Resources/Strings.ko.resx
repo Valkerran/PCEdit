@@ -35,6 +35,11 @@
   <data name="Save_OkAnnounce" xml:space="preserve"><value>저장 파일을 기록했습니다.</value></data>
   <data name="Save_Failed" xml:space="preserve"><value>저장에 실패했습니다. 파일이 변경되지 않았습니다.</value></data>
   <data name="Save_FailedAnnounce" xml:space="preserve"><value>오류: 저장에 실패했습니다. 파일이 변경되지 않았습니다.</value></data>
+  <data name="Save_FailedNoPermission" xml:space="preserve"><value>저장에 실패했습니다. 파일이 읽기 전용이거나 PCEdit에 해당 위치에 쓸 권한이 없습니다. 파일이 변경되지 않았습니다.</value></data>
+  <data name="Save_ChangedOnDisk" xml:space="preserve"><value>저장되지 않았습니다. PCEdit에서 연 뒤에 디스크의 파일이 변경되었습니다.</value></data>
+  <data name="Save_ChangedTitle" xml:space="preserve"><value>세이브 파일이 변경되었습니다</value></data>
+  <data name="Save_ChangedBody" xml:space="preserve"><value>PCEdit에서 연 뒤에 이 세이브 파일이 변경되거나 삭제되었습니다. 게임이 덮어썼을 수 있습니다. 덮어쓰면 지금 디스크에 있는 내용이 PCEdit에 열려 있는 내용으로 바뀝니다. PCEdit는 먼저 현재 파일의 백업을 시도합니다.</value></data>
+  <data name="Save_ChangedOverwrite" xml:space="preserve"><value>덮어쓰기</value></data>
   <data name="Announce_ErrorPrefix" xml:space="preserve"><value>오류: {0}</value></data>
   <data name="OpenFile_Title" xml:space="preserve"><value>파일 열기</value></data>
   <data name="OpenFile_Heading" xml:space="preserve"><value>Planet Crafter 저장 편집기</value></data>

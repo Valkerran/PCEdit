@@ -94,6 +94,11 @@
   <data name="Save_OkAnnounce" xml:space="preserve"><value>Save file written.</value></data>
   <data name="Save_Failed" xml:space="preserve"><value>Save failed. Your file was not changed.</value></data>
   <data name="Save_FailedAnnounce" xml:space="preserve"><value>Error: save failed. Your file was not changed.</value></data>
+  <data name="Save_FailedNoPermission" xml:space="preserve"><value>Save failed: the file is read-only, or PCEdit is not allowed to write there. Your file was not changed.</value></data>
+  <data name="Save_ChangedOnDisk" xml:space="preserve"><value>Not saved: the file changed on disk after PCEdit opened it.</value></data>
+  <data name="Save_ChangedTitle" xml:space="preserve"><value>The save file has changed</value></data>
+  <data name="Save_ChangedBody" xml:space="preserve"><value>This save file was changed or removed after PCEdit opened it: the game may have saved over it. Overwriting replaces what is on disk now with what PCEdit has open. PCEdit tries to back up the current file first.</value></data>
+  <data name="Save_ChangedOverwrite" xml:space="preserve"><value>Overwrite</value></data>
   <data name="Announce_ErrorPrefix" xml:space="preserve"><value>Error: {0}</value></data>
 
   <data name="OpenFile_Title" xml:space="preserve"><value>Open File</value></data>

@@ -35,6 +35,11 @@
   <data name="Save_OkAnnounce" xml:space="preserve"><value>存档文件已写入。</value></data>
   <data name="Save_Failed" xml:space="preserve"><value>保存失败。你的文件未被更改。</value></data>
   <data name="Save_FailedAnnounce" xml:space="preserve"><value>错误：保存失败。你的文件未被更改。</value></data>
+  <data name="Save_FailedNoPermission" xml:space="preserve"><value>保存失败：文件为只读，或 PCEdit 无权写入该位置。你的文件未被更改。</value></data>
+  <data name="Save_ChangedOnDisk" xml:space="preserve"><value>未保存：PCEdit 打开文件后，磁盘上的文件发生了变化。</value></data>
+  <data name="Save_ChangedTitle" xml:space="preserve"><value>存档文件已更改</value></data>
+  <data name="Save_ChangedBody" xml:space="preserve"><value>PCEdit 打开此存档文件后，它被更改或删除了：可能是游戏覆盖了它。覆盖会用 PCEdit 中打开的内容替换磁盘上现有的内容。PCEdit 会先尝试备份当前文件。</value></data>
+  <data name="Save_ChangedOverwrite" xml:space="preserve"><value>覆盖</value></data>
   <data name="Announce_ErrorPrefix" xml:space="preserve"><value>错误：{0}</value></data>
   <data name="OpenFile_Title" xml:space="preserve"><value>打开文件</value></data>
   <data name="OpenFile_Heading" xml:space="preserve"><value>Planet Crafter 存档编辑器</value></data>

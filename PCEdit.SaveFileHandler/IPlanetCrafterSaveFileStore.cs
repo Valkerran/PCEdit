@@ -6,6 +6,13 @@ public interface IPlanetCrafterSaveFileStore
 {
     PlanetCrafterSaveFile Load(string path);
 
+    /// <summary>
+    /// A value that changes whenever the file at <paramref name="path"/> is rewritten - its size
+    /// and last-write time - or null when there is no file. For noticing that something else
+    /// wrote the save after it was loaded; it is not a content hash.
+    /// </summary>
+    string? Fingerprint(string path);
+
     void Save(string path, PlanetCrafterSaveFile saveFile);
 
     /// <summary>
