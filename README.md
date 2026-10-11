@@ -120,8 +120,9 @@ dotnet run --project PCEdit.Desktop/PCEdit.Desktop.csproj
 ## Privacy
 
 PCEdit works entirely offline. It reads and writes the save files you point it at, plus its own
-settings and backup folders, and makes no network connections — there is no update check, no
-crash reporting and no analytics.
+settings and backup folders and a small log file for unexpected errors, and makes no network
+connections — there is no update check, no crash reporting and no analytics. The log stays on your
+computer; it contains file paths, so look it over before attaching it to a bug report.
 
 Building from source does not phone home either. Avalonia, the UI framework, normally reports
 each build to its authors; PCEdit excludes that component, and CI fails if it ever returns. If
