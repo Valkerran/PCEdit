@@ -32,6 +32,30 @@ public sealed class OpenFileViewModelTests
         Assert.Equal(new Localizer()[LocKeys.OpenFile_LoadFailed], vm.StatusMessage);
     }
 
+    [Fact]
+    public async Task WhenTheSaveIsClosed_TheLoadedMessageGoesToo()
+    {
+        // A failed repair can close the save and send the player back here; "Loaded ..." beside
+        // "No file loaded" would contradict the error they were just shown.
+        var store = new FakeSaveFileStore();
+        store.Seed("/saves/Standard-1.json", Fixtures.WorkspaceFixtures.Create());
+        var localizer = new Localizer();
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
+        var vm = new OpenFileViewModel(
+            workspace,
+            new FakeFilePickerService { PickResult = "/saves/Standard-1.json" },
+            new FakeScreenReaderAnnouncer(),
+            new FakeNavigationService(),
+            new FakeDialogService(),
+            localizer);
+        await vm.PickAndLoadCommand.ExecuteAsync(null);
+        Assert.NotNull(vm.StatusMessage);
+
+        workspace.Close();
+
+        Assert.Null(vm.StatusMessage);
+    }
+
     private static OpenFileViewModel Create(Exception loadFailure)
     {
         var store = new FakeSaveFileStore { LoadFailure = loadFailure };

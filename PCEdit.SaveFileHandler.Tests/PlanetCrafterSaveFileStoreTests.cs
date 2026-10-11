@@ -310,6 +310,20 @@ public sealed class PlanetCrafterSaveFileStoreTests : IDisposable
         Assert.NotEqual(before, _store.Fingerprint(_copyFile));
     }
 
+    [Fact]
+    public void Save_OverALoadedGamePassSaveThatHasSinceBeenRemoved_StaysBomLess()
+    {
+        // The player is asked before a removed save is written back. With nothing on disk to
+        // probe, the framing used to default to a BOM - which the Game Pass build rejects.
+        File.WriteAllBytes(_tempFile, new UTF8Encoding(false).GetBytes(SerializedFixture()));
+        var loaded = _store.Load(_tempFile);
+        File.Delete(_tempFile);
+
+        _store.Save(_tempFile, loaded);
+
+        Assert.NotEqual(0xEF, File.ReadAllBytes(_tempFile)[0]);
+    }
+
     private static string SerializedFixture() =>
         new PlanetCrafterSaveFileSerializer(new JsonRecordSerializer()).Serialize(SaveFileFixtures.CreateFullyPopulated());
 }

@@ -92,4 +92,23 @@ public sealed class FileSaveBackupServiceTests : IDisposable
         Assert.True(File.Exists(old));
         Assert.Equal(6, Backups().Length); // the old one + the newest 5
     }
+
+    [Fact]
+    public void ABackupOfAReadOnlySave_CanStillBePruned()
+    {
+        // The copy carries the read-only flag with it, and on Windows a read-only file cannot
+        // be deleted - so those backups would never be cleaned up.
+        var save = SaveIn("a");
+        File.SetAttributes(save, FileAttributes.ReadOnly);
+        try
+        {
+            Service().BackUp(save);
+
+            Assert.False(File.GetAttributes(Assert.Single(Backups())).HasFlag(FileAttributes.ReadOnly));
+        }
+        finally
+        {
+            File.SetAttributes(save, FileAttributes.Normal);
+        }
+    }
 }

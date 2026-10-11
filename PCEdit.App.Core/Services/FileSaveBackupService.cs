@@ -38,7 +38,12 @@ public sealed class FileSaveBackupService(string backupDirectory, Func<DateTime>
         var stamp = _utcNow().ToString("yyyyMMdd-HHmmss-fff", CultureInfo.InvariantCulture);
         var prefix = PrefixFor(savePath);
 
-        File.Copy(savePath, Path.Combine(DirectoryPath, prefix + stamp + BackupExtension), overwrite: false);
+        var backup = Path.Combine(DirectoryPath, prefix + stamp + BackupExtension);
+        File.Copy(savePath, backup, overwrite: false);
+
+        // The copy carries a read-only flag with it, and Windows will not delete a read-only
+        // file - Prune would leave that backup behind for good.
+        File.SetAttributes(backup, FileAttributes.Normal);
 
         Prune(prefix);
     }

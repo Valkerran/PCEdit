@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using PCEdit.App.Core.Services;
 
 namespace PCEdit.Desktop.Platform;
 
@@ -8,6 +9,7 @@ namespace PCEdit.Desktop.Platform;
 /// </summary>
 internal static class LogFile
 {
+    // Roughly: the limit is applied at start-up in bytes and during a session in characters.
     private const long MaxBytes = 1024 * 1024;
 
     public static void Start(string path)
@@ -23,8 +25,9 @@ internal static class LogFile
                 File.Move(path, path + ".old", overwrite: true);
             }
 
-            Trace.Listeners.Add(new TextWriterTraceListener(path));
-            Trace.AutoFlush = true;
+            // Shared for writing, so a second PCEdit window can log to the same file.
+            var file = new FileStream(path, FileMode.Append, FileAccess.Write, FileShare.ReadWrite);
+            Trace.Listeners.Add(new QuietTraceListener(new StreamWriter(file), MaxBytes));
             Trace.WriteLine($"{DateTime.UtcNow:O} PCEdit started.");
         }
         catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)

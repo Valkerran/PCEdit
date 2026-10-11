@@ -65,13 +65,14 @@ public sealed class JsonSettingsStore : ILanguageStore, IDisclaimerGate, IInvent
     }
 
     /// <summary>The settings on disk, or <paramref name="fallback"/> when there is no file or it
-    /// cannot be read - the file is hand-editable, and a broken one must not stop the app.</summary>
+    /// cannot be read - the file is hand-editable, and a broken one must not stop the app. Read as
+    /// text, which drops the byte-order mark some editors add; the JSON reader refuses one.</summary>
     private Settings ReadOr(Settings fallback)
     {
         try
         {
             return File.Exists(_path)
-                ? JsonSerializer.Deserialize<Settings>(File.ReadAllBytes(_path)) ?? fallback
+                ? JsonSerializer.Deserialize<Settings>(File.ReadAllText(_path)) ?? fallback
                 : fallback;
         }
         catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or JsonException)

@@ -62,4 +62,15 @@ public sealed class JsonSettingsStoreTests : IDisposable
         store.SaveCulture("it");
         Assert.Equal("it", new JsonSettingsStore(SettingsPath).GetSavedCulture());
     }
+
+    [Fact]
+    public void AFileSavedWithAByteOrderMark_IsStillRead()
+    {
+        // Some editors add one when the file is edited by hand. Reading it as broken would
+        // bring the disclaimer back and reset the language.
+        Directory.CreateDirectory(Path.GetDirectoryName(SettingsPath)!);
+        File.WriteAllText(SettingsPath, """{ "UiCulture": "pl" }""", new System.Text.UTF8Encoding(encoderShouldEmitUTF8Identifier: true));
+
+        Assert.Equal("pl", new JsonSettingsStore(SettingsPath).GetSavedCulture());
+    }
 }

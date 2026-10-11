@@ -11,7 +11,7 @@ public sealed class PlanetCrafterSaveFileStore(IPlanetCrafterSaveFileSerializer 
     // the file never had makes the game reject the save with a "file error", so Save preserves
     // whatever framing the file already on disk has instead of forcing a BOM (issue #12).
     // A path with no existing file (new save / "Save As") defaults to a BOM, matching the Steam
-    // game's own output. Load strips a leading BOM on the way in (see ReadUtf8).
+    // game's own output. Load strips a leading BOM on the way in (see DecodeUtf8).
     private static readonly byte[] Utf8Bom = [0xEF, 0xBB, 0xBF];
 
     private static readonly Encoding Utf8WithBom = new UTF8Encoding(encoderShouldEmitUTF8Identifier: true);
@@ -24,10 +24,17 @@ public sealed class PlanetCrafterSaveFileStore(IPlanetCrafterSaveFileSerializer 
     private readonly IPlanetCrafterSaveFileSerializer _serializer
         = serializer ?? throw new ArgumentNullException(nameof(serializer));
 
+    // Whether each file this store has loaded began with a BOM, by full path. Only consulted
+    // when the file is no longer there to probe: see FileStartsWithBom.
+    private readonly Dictionary<string, bool> _loadedWithBom = new(StringComparer.Ordinal);
+
     public PlanetCrafterSaveFile Load(string path)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(path);
-        return _serializer.Deserialize(ReadUtf8(path));
+
+        var bytes = File.ReadAllBytes(path);
+        _loadedWithBom[Path.GetFullPath(path)] = bytes.AsSpan().StartsWith(Utf8Bom);
+        return _serializer.Deserialize(DecodeUtf8(bytes));
     }
 
     public string? Fingerprint(string path)
@@ -39,11 +46,10 @@ public sealed class PlanetCrafterSaveFileStore(IPlanetCrafterSaveFileSerializer 
         return info.Exists ? $"{info.Length}:{info.LastWriteTimeUtc.Ticks}" : null;
     }
 
-    /// <summary>The file as text, minus a UTF-8 BOM. Anything that is not UTF-8 - including a
+    /// <summary>The file's bytes as text, minus a UTF-8 BOM. Anything that is not UTF-8 - including a
     /// UTF-16 or UTF-32 file, whose BOM is itself invalid UTF-8 - is refused.</summary>
-    private static string ReadUtf8(string path)
+    private static string DecodeUtf8(byte[] bytes)
     {
-        var bytes = File.ReadAllBytes(path);
         var start = bytes.AsSpan().StartsWith(Utf8Bom) ? Utf8Bom.Length : 0;
         try
         {
@@ -104,12 +110,14 @@ public sealed class PlanetCrafterSaveFileStore(IPlanetCrafterSaveFileSerializer 
     }
 
     // Only the Steam save carries a UTF-8 BOM. A file that does not exist yet is treated as
-    // BOM-prefixed so a brand-new save matches the Steam game's output.
-    private static bool FileStartsWithBom(string path)
+    // BOM-prefixed so a brand-new save matches the Steam game's output - unless this store loaded
+    // it and it has been removed since, when it is written back as it was: a Game Pass save
+    // that gained a BOM would be rejected by the game.
+    private bool FileStartsWithBom(string path)
     {
         if (!File.Exists(path))
         {
-            return true;
+            return _loadedWithBom.GetValueOrDefault(Path.GetFullPath(path), true);
         }
 
         Span<byte> head = stackalloc byte[3];
