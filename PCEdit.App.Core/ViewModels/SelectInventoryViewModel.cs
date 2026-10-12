@@ -11,13 +11,11 @@ public sealed partial class SelectInventoryViewModel(
     IInventoryEditor inventoryEditor,
     IScreenReaderAnnouncer announcer,
     INavigationService navigation,
-    IDialogService dialogs,
     ILocalizer localizer) : ObservableObject
 {
     private readonly IInventoryEditor _inventoryEditor = inventoryEditor;
     private readonly IScreenReaderAnnouncer _announcer = announcer;
     private readonly INavigationService _navigation = navigation;
-    private readonly IDialogService _dialogs = dialogs;
     private readonly ILocalizer _localizer = localizer;
 
     // The stack to move from, in the save's order; a single item is a stack of one.
@@ -109,7 +107,6 @@ public sealed partial class SelectInventoryViewModel(
             StatusKind = StatusKind.Error;
             StatusMessage = message;
             _announcer.Announce(_localizer, StatusKind.Error, message);
-            await _dialogs.ShowErrorAsync(_localizer[LocKeys.SelectInv_MoveFailedTitle], message);
             return;
         }
 

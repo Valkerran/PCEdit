@@ -39,7 +39,6 @@
   <data name="Save_OkAnnounce" xml:space="preserve"><value>Arquivo de save gravado.</value></data>
   <data name="Save_OkNoBackup" xml:space="preserve"><value>Salvo, mas o PCEdit não conseguiu fazer antes a cópia de backup.</value></data>
   <data name="Save_Failed" xml:space="preserve"><value>Falha ao salvar. Seu arquivo não foi alterado.</value></data>
-  <data name="Save_FailedAnnounce" xml:space="preserve"><value>Erro: falha ao salvar. Seu arquivo não foi alterado.</value></data>
   <data name="Save_FailedNoPermission" xml:space="preserve"><value>Falha ao salvar: o arquivo é somente leitura ou o PCEdit não tem permissão para gravar nesse local. Seu arquivo não foi alterado.</value></data>
   <data name="Save_ChangedOnDisk" xml:space="preserve"><value>Não salvo: o arquivo mudou no disco depois que o PCEdit o abriu.</value></data>
   <data name="Save_ChangedTitle" xml:space="preserve"><value>O arquivo de save foi alterado</value></data>
@@ -184,7 +183,6 @@
   <data name="SelectInv_Heading" xml:space="preserve"><value>Escolha um inventário de destino</value></data>
   <data name="SelectInv_Search" xml:space="preserve"><value>Pesquisar destinos por nome ou ID</value></data>
   <data name="SelectInv_None" xml:space="preserve"><value>Não há outros inventários disponíveis.</value></data>
-  <data name="SelectInv_MoveFailedTitle" xml:space="preserve"><value>Falha ao mover</value></data>
   <data name="SelectInv_MoveIncomplete" xml:space="preserve"><value>Não foi possível concluir a movimentação.</value></data>
   <data name="SelectInv_Moved" xml:space="preserve"><value>Item movido para {0}.</value></data>
   <data name="Inventories_LogisticsSummary" xml:space="preserve"><value>Demanda {0} · Fornecimento {1} · Prioridade {2}</value></data>
