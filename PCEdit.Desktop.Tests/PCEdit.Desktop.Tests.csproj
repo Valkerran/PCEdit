@@ -16,8 +16,8 @@
          project's build would import Avalonia's build-time telemetry task. -->
     <PackageReference Include="Avalonia.BuildServices" Version="11.3.2" ExcludeAssets="all" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.10.1" />
-    <PackageReference Include="xunit.v3" Version="3.2.2" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="4.0.0" />
+    <PackageReference Include="xunit.v3" Version="4.0.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="4.0.1" />
   </ItemGroup>
 
   <ItemGroup>
