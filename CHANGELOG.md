@@ -4,6 +4,17 @@ What changed in each release of PCEdit. Downloads for every version are on the
 [Releases page](https://github.com/Valkerran/PCEdit/releases); the newest is on the
 [latest release](https://github.com/Valkerran/PCEdit/releases/latest) page.
 
+## v1.8.3
+
+A maintenance update: nothing in PCEdit itself changes.
+
+- **Updated the UI toolkit** PCEdit is built on (Avalonia 12.1.3 to 12.1.4). This is the
+  toolkit's own bug-fix release, with small fixes to how text is drawn and to where keyboard
+  focus goes when a pop-up closes. PCEdit's screens, features and save handling are the same as
+  in v1.8.2.
+
+Applies to every platform alike. No new dependencies.
+
 ## v1.8.2
 
 PCEdit now reports problems the same way everywhere.
