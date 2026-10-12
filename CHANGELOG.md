@@ -4,6 +4,22 @@ What changed in each release of PCEdit. Downloads for every version are on the
 [Releases page](https://github.com/Valkerran/PCEdit/releases); the newest is on the
 [latest release](https://github.com/Valkerran/PCEdit/releases/latest) page.
 
+## v1.8.2
+
+PCEdit now reports problems the same way everywhere.
+
+- **Changed: a save that failed looks like one.** The message beside the Save button was shown
+  in the same blue whether it said "Saved." or "Save failed". It is now green for a save that
+  worked and red for one that did not, including a save that was refused or has no backup.
+
+- **Changed: a move that cannot be made is reported once.** The Move dialog showed the reason
+  in red and then opened a second message saying the same thing. Only the first remains, so
+  you can pick another destination straight away.
+
+- Screen readers now hear every error introduced the same way ("Error: ...").
+
+Applies to every platform alike. No change to download size or requirements.
+
 ## v1.8.1
 
 PCEdit now tells you about two failures it used to keep to itself.

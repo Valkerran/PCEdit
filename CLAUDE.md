@@ -238,7 +238,29 @@ implementations of a handful of interfaces.
 holding the loaded `PlanetCrafterSaveFile`, its path, `IsDirty`, and `SaveStatus`. ViewModels never
 build a modified model themselves; they call `MutateUnlocks` / `ReplaceTerraformation` /
 `ReplacePlayer` / `ReplaceInventory` / `GrantTerraTokens`, which apply the
-root-rebuild-vs-list-replace pattern above and flip `IsDirty`. `Save` first copies the file aside via `ISaveBackupService`, once per load rather than once per save — by the second save the file on disk is already PCEdit's own output, and the pristine copy is the only one that cannot be reconstructed. A failed backup is traced and the save proceeds, with the status `Save_OkNoBackup` in place of `Save_Ok` so the player knows the safety copy is missing: refusing the user's edit because a safety copy failed inverts the priority. Note the backups deliberately sit under `LocalApplicationData`, **not** the `ApplicationData` holding `settings.json` — on Windows that is the roaming profile, and megabytes of save copies should not sync between machines. `SaveCopy(path)` writes the loaded save to a new file and switches `FilePath` to it, so later saves go to the copy and the file it came from is never written (the repair, below, depends on this); it marks the backup as taken, since the copy is PCEdit's own output. `RemoveWorldObjects(ids)` deletes world-object records - callers take the items out of every inventory first. `Close()` unloads the save and discards unsaved edits. The workspace records the store's `Fingerprint` at load and after each of its own writes: `HasChangedOnDisk` is true when something else rewrote or removed the file since, and `Save` refuses while it is. `Save` is a plain method, not a command: the shell's `MainWindowViewModel.SaveCommand` asks Overwrite / Cancel first, then calls `AcceptDiskChange()`, which also re-arms the once-per-load backup so the game's newer file is copied aside before it is overwritten (#116). A save refused for permissions (`UnauthorizedAccessException`, which is what a read-only file gives) gets its own status, `Save_FailedNoPermission`.
+root-rebuild-vs-list-replace pattern above and flip `IsDirty`. `Save` first copies the file aside via `ISaveBackupService`, once per load rather than once per save — by the second save the file on disk is already PCEdit's own output, and the pristine copy is the only one that cannot be reconstructed. A failed backup is traced and the save proceeds, with the status `Save_OkNoBackup` in place of `Save_Ok`, as an error, so the player knows the safety copy is missing: refusing the user's edit because a safety copy failed inverts the priority. Note the backups deliberately sit under `LocalApplicationData`, **not** the `ApplicationData` holding `settings.json` — on Windows that is the roaming profile, and megabytes of save copies should not sync between machines. `SaveCopy(path)` writes the loaded save to a new file and switches `FilePath` to it, so later saves go to the copy and the file it came from is never written (the repair, below, depends on this); it marks the backup as taken, since the copy is PCEdit's own output. `RemoveWorldObjects(ids)` deletes world-object records - callers take the items out of every inventory first. `Close()` unloads the save and discards unsaved edits. The workspace records the store's `Fingerprint` at load and after each of its own writes: `HasChangedOnDisk` is true when something else rewrote or removed the file since, and `Save` refuses while it is. `Save` is a plain method, not a command: the shell's `MainWindowViewModel.SaveCommand` asks Overwrite / Cancel first, then calls `AcceptDiskChange()`, which also re-arms the once-per-load backup so the game's newer file is copied aside before it is overwritten (#116). A save refused for permissions (`UnauthorizedAccessException`, which is what a read-only file gives) gets its own status, `Save_FailedNoPermission`.
+
+**Reporting errors to the user.** A new error picks its surface from this table; a dialog and a
+status line never report the same failure.
+
+| Situation | Surface |
+|---|---|
+| The user's own input was refused and can be corrected in place | Status line on the page (`StatusKind` + `StatusMessage` on the view model) |
+| The outcome of Save, good or bad | Header status, coloured by `ISaveFileWorkspace.SaveStatusKind` |
+| Something failed that the user did not directly ask for, or that changed what is open | Error dialog (`IDialogService.ShowErrorAsync`) |
+| A page could not be shown | Banner under the header (`MainWindowViewModel.PageError`) |
+
+Every status is announced through `IScreenReaderAnnouncer.Announce(localizer, kind, message)`
+(`Services/ScreenReaderAnnouncerExtensions`), the only place the "Error: " prefix is added: an
+error must not depend on colour alone. `SaveStatusKind` is `Success` for "Saved." and `Error` for a
+save that failed, was refused, or went ahead without its backup; the header binds it to the
+`status` / `success` / `error` style classes, so never give that `TextBlock` a local `Foreground`.
+The banner needs no key: a page whose `Load()` failed is not marked loaded, so a language change
+retries it and reports again in the new language.
+The announcer speaks through a live region in the main window, which a screen reader may not read
+while a modal has the focus: a status line inside a modal that is the only report of an error (the
+Move dialog's) is a live region itself (`AutomationProperties.LiveSetting`), and its view model
+clears the message before each attempt so a repeated failure is still a change.
 
 **Page ViewModels re-read workspace state in a `Load()` method** (`ViewModels/ILoadable`) rather than
 caching it, so switching pages always reflects the latest in-memory edits. Page ViewModels are

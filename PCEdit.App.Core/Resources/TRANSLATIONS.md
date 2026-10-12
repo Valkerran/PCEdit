@@ -132,6 +132,10 @@ phrased to match each language's existing `Save_Failed` and `Repair_Failed`. `{0
 The visible-failure fixes (v1.8.1) added `Save_OkNoBackup`, `Settings_WriteFailedTitle` and `Settings_WriteFailed` —
 machine-translated, `Save_OkNoBackup` opening with each language's existing `Save_Ok` word.
 
+The consistent error reporting (v1.8.2, issue #134) removed `Save_FailedAnnounce` (a failed save is
+now announced as `Announce_ErrorPrefix` around `Save_Failed`) and `SelectInv_MoveFailedTitle` (the
+dialog it titled is gone).
+
 | Culture | Language | Reviewed |
 |---|---|---|
 | en-US | English (United States) | n/a (source) |
