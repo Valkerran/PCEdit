@@ -103,4 +103,9 @@
         <ProjectReference Include="..\PCEdit.App.Core\PCEdit.App.Core.csproj" />
     </ItemGroup>
 
+    <!-- The headless UI tests reach App.BuildServices and AppPaths.RootOverride. -->
+    <ItemGroup>
+        <InternalsVisibleTo Include="PCEdit.Desktop.Tests" />
+    </ItemGroup>
+
 </Project>

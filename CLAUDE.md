@@ -15,6 +15,7 @@ levels, and teleport a player.
 | **PCEdit.Desktop** | `net10.0` | The UI head (Linux + Windows + macOS) — Avalonia. Published as a Linux AppImage. |
 | **PCEdit.SaveFileHandler.Tests** | `net10.0` | xUnit — serializer / round-trip. |
 | **PCEdit.App.Core.Tests** | `net10.0` | xUnit — ViewModels, services, localization-catalog parity. |
+| **PCEdit.Desktop.Tests** | `net10.0` | xUnit **v3** + Avalonia headless — the real main window and dialogs, no display. |
 
 `PCEdit.App.Core` keeps a strict UI-framework-agnostic boundary (platform concerns sit behind
 interfaces) — a legacy of when a second, MAUI mobile head shared it. That head has been removed;
@@ -103,6 +104,7 @@ dotnet build PCEdit.SaveFileHandler/PCEdit.SaveFileHandler.csproj
 # Tests:
 dotnet test PCEdit.SaveFileHandler.Tests/PCEdit.SaveFileHandler.Tests.csproj
 dotnet test PCEdit.App.Core.Tests/PCEdit.App.Core.Tests.csproj
+dotnet test PCEdit.Desktop.Tests/PCEdit.Desktop.Tests.csproj    # headless UI tests
 
 # Run the desktop app (Linux, Windows, macOS):
 dotnet run --project PCEdit.Desktop/PCEdit.Desktop.csproj
@@ -127,7 +129,7 @@ every build for the same reason — see Packaging.
 truth for every project's version. See `RELEASING.md` for the bump→merge→tag flow and the rules
 the pipelines enforce.
 
-CI (`.github/workflows/ci.yml`) restores in locked mode, runs the two test projects, builds
+CI (`.github/workflows/ci.yml`) restores in locked mode, runs the three test projects, builds
 `PCEdit.Desktop`, fails if the Avalonia build-telemetry targets are imported, checks a `linux-x64`
 publish carries app-local ICU, and fails if the localization satellites, the AppStream metadata or
 the item catalog are out of sync with their generators. `lock-files-cross-os` repeats the locked
@@ -349,6 +351,23 @@ are referenced by name from the styles and views, always as `DynamicResource` �
 `Styles/Controls.axaml` holds the type scale (`h1` hero / `pageHeading` / `h2` section / `caption` /
 `micro`) and `Border.headingRule` (the green bar left of every section heading). Inter is the
 app-wide font (`Program.cs` `WithInterFont()`).
+
+**UI tests (`PCEdit.Desktop.Tests`).** Each test builds a `UiHarness`: fresh services from
+`App.BuildServices` (its `configure` callback registers last, so it replaces a default with a
+fake), a private data root through `AppPaths.RootOverride` so nothing reads or writes the real
+settings, backups or log, and a `Localizer` of its own. Text a view model provides follows that
+localizer; text bound in XAML with `{m:Loc}` stays on the process-wide `Loc.Instance`, so assert
+language changes on view-model text. Dialogs are real `MessageDialog` windows, found through
+`Window.OwnedWindows`; `Pump()` runs the UI thread's queue. The app's keep-running handler marks
+an exception on the UI thread as handled, which would let a broken test pass, so the harness
+records them and fails the test on dispose unless it set `ExpectUnexpectedError`. The headless
+runner makes a new `App` for every test, which is why `LogFile.Start` is once-per-process and why
+the assembly disables test parallelization: the harness redirects process-wide state, and a plain
+`[Fact]` would otherwise run beside it. Controls the
+tests look up carry an `x:Name` (`PageTitle`, `SaveStatusText`, `SaveButton`, `PageErrorText`):
+keep those names. The project is on xUnit v3 because the headless package is built on it and
+cannot be mixed with xUnit 2; the other two test projects stay on 2. It carries the same
+`Avalonia.BuildServices` exclusion as the app, and CI's telemetry guard checks both.
 
 XAML notes:
 - Avalonia 12 uses `xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"` (**not** `2009`).

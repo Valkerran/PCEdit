@@ -34,21 +34,30 @@ jobs:
       - name: Build — PCEdit.Desktop
         run: dotnet build PCEdit.Desktop/PCEdit.Desktop.csproj -c Release --no-restore
 
+      # Headless: Avalonia's test platform needs no display. This project is on xUnit v3 (the
+      # headless package is built on it); the other two test projects stay on xUnit 2.
+      - name: Test — PCEdit.Desktop (headless UI)
+        run: dotnet test PCEdit.Desktop.Tests/PCEdit.Desktop.Tests.csproj -c Release --no-restore
+
       # Nothing in a build log shows that the Avalonia build-time telemetry task is absent, so
       # a dropped or stale PackageReference would silently restore it. See the comment on the
       # Avalonia.BuildServices reference in PCEdit.Desktop.csproj.
+      # Both projects that reference Avalonia: the UI tests pull it in through the headless
+      # package, so they need the same exclusion as the app itself.
       - name: Desktop build has Avalonia telemetry excluded
         shell: bash
         run: |
           set -euo pipefail
-          f=PCEdit.Desktop/obj/PCEdit.Desktop.csproj.nuget.g.targets
-          if [[ ! -f "$f" ]]; then
-            echo "::error::$f not found - did the PCEdit.Desktop build step run?"; exit 1
-          fi
-          if grep -qi 'buildservices' "$f"; then
-            echo "::error file=PCEdit.Desktop/PCEdit.Desktop.csproj::Avalonia.BuildServices targets are imported again - the build-time telemetry opt-out has been lost. Restore the ExcludeAssets=\"all\" PackageReference."
-            exit 1
-          fi
+          for project in PCEdit.Desktop PCEdit.Desktop.Tests; do
+            f=$project/obj/$project.csproj.nuget.g.targets
+            if [[ ! -f "$f" ]]; then
+              echo "::error::$f not found - did the $project restore run?"; exit 1
+            fi
+            if grep -qi 'buildservices' "$f"; then
+              echo "::error file=$project/$project.csproj::Avalonia.BuildServices targets are imported again - the build-time telemetry opt-out has been lost. Restore the ExcludeAssets=\"all\" PackageReference."
+              exit 1
+            fi
+          done
           echo ">> Avalonia.BuildServices targets are not imported; build-time telemetry is off."
 
       # The AppImage is only assembled at release time, so guard the ICU wiring here:
