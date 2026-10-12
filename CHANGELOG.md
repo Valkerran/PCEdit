@@ -4,6 +4,26 @@ What changed in each release of PCEdit. Downloads for every version are on the
 [Releases page](https://github.com/Valkerran/PCEdit/releases); the newest is on the
 [latest release](https://github.com/Valkerran/PCEdit/releases/latest) page.
 
+## v1.8.1
+
+PCEdit now tells you about two failures it used to keep to itself.
+
+- **Fixed: a save with no backup still said only "Saved."** PCEdit copies your save aside
+  before it first writes over it. If that copy cannot be made (the backups folder is full or
+  not writable, say), the save still goes ahead, as before, but the message now reads "Saved,
+  but PCEdit could not make its backup copy first." so you know the safety copy is not there.
+
+- **Fixed: a setting that could not be saved looked as if it had been.** If PCEdit cannot write
+  its settings file, a language change (or the "Identical items" choice) still applies until
+  you close PCEdit, and then is gone. PCEdit now tells you so in a message.
+
+- An item icon that fails to load is now recorded in the log file. Nothing changes on screen:
+  the row is shown without its icon, as before.
+
+- The new messages are machine-translated into the 14 other languages PCEdit ships.
+
+Applies to every platform alike. No change to download size or requirements.
+
 ## v1.8.0
 
 PCEdit is more careful about what it writes over, and no longer disappears when something

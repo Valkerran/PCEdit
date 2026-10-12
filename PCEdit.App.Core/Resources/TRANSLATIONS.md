@@ -129,6 +129,9 @@ The safe file I/O work (issues #73, #74, #87, #116) added `Save_FailedNoPermissi
 phrased to match each language's existing `Save_Failed` and `Repair_Failed`. `{0}` in
 `Error_UnexpectedBody` is the path of the log file and is not translated.
 
+The visible-failure fixes (v1.8.1) added `Save_OkNoBackup`, `Settings_WriteFailedTitle` and `Settings_WriteFailed` —
+machine-translated, `Save_OkNoBackup` opening with each language's existing `Save_Ok` word.
+
 | Culture | Language | Reviewed |
 |---|---|---|
 | en-US | English (United States) | n/a (source) |
