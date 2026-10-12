@@ -16,7 +16,7 @@ namespace PCEdit.Desktop;
 
 public partial class App : Application
 {
-    public IServiceProvider Services { get; private set; } = default!;
+    public IServiceProvider Services { get; internal set; } = default!;
 
     public override void Initialize() => AvaloniaXamlLoader.Load(this);
 
@@ -32,8 +32,7 @@ public partial class App : Application
         var languageStore = Services.GetRequiredService<ILanguageStore>();
         localizer.SetCulture(LanguageStartup.ResolveCulture(languageStore, localizer.AvailableLocales));
 
-        KeepRunningAfterAnUnexpectedError(new UnexpectedErrorReporter(
-            Services.GetRequiredService<IDialogService>(), localizer, AppPaths.Log));
+        KeepRunningAfterAnUnexpectedError();
 
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
@@ -62,23 +61,36 @@ public partial class App : Application
     /// <summary>
     /// An exception escaping a command or an event handler on the UI thread used to end the
     /// process, taking the open save's unsaved edits with it and leaving nothing to diagnose
-    /// (issue #74). It is now logged and shown, and the app carries on.
+    /// (issue #74). It is now logged and shown, and the app carries on. The reporter is taken
+    /// from <see cref="Services"/> when the error happens, not captured here, so it always shows
+    /// its dialog over the window that is current.
     /// </summary>
-    private static void KeepRunningAfterAnUnexpectedError(UnexpectedErrorReporter reporter)
+    private void KeepRunningAfterAnUnexpectedError()
     {
         Dispatcher.UIThread.UnhandledException += (_, e) =>
         {
             e.Handled = true;
-            _ = reporter.ReportAsync(e.Exception);
+            try
+            {
+                _ = Services.GetRequiredService<UnexpectedErrorReporter>().ReportAsync(e.Exception);
+            }
+            catch (Exception ex)
+            {
+                // Nothing may escape this handler: that would end the process it exists to keep.
+                Trace.WriteLine($"{DateTime.UtcNow:O} Could not report an unexpected error: {ex}; the error was: {e.Exception}");
+            }
         };
     }
 
-    private static IServiceProvider BuildServices()
+    /// <param name="configure">Registrations added last, so they replace the defaults. The UI
+    /// tests use it to swap in fakes; the app passes nothing.</param>
+    internal static IServiceProvider BuildServices(Action<IServiceCollection>? configure = null)
     {
         var services = new ServiceCollection();
         AddSaveFileServices(services);
         AddPlatformServices(services);
         AddViewModels(services);
+        configure?.Invoke(services);
         return services.BuildServiceProvider();
     }
 
@@ -113,6 +125,8 @@ public partial class App : Application
         services.AddSingleton<AvaloniaNavigationService>();
         services.AddSingleton<INavigationService>(sp => sp.GetRequiredService<AvaloniaNavigationService>());
         services.AddSingleton<IDialogService, AvaloniaDialogService>();
+        services.AddSingleton(sp => new UnexpectedErrorReporter(
+            sp.GetRequiredService<IDialogService>(), sp.GetRequiredService<ILocalizer>(), AppPaths.Log));
     }
 
     private static void AddViewModels(ServiceCollection services)

@@ -71,16 +71,16 @@
                     <!-- The title keeps its natural width; a long save status wraps in what is
                          left instead of squeezing the title to one letter per line. -->
                     <Grid ColumnDefinitions="Auto,*,Auto,Auto" ColumnSpacing="14">
-                        <TextBlock Grid.Column="0" Classes="pageHeading" VerticalAlignment="Center"
+                        <TextBlock x:Name="PageTitle" Grid.Column="0" Classes="pageHeading" VerticalAlignment="Center"
                                    Text="{Binding SelectedNavItem.Label}" />
-                        <TextBlock Grid.Column="1" VerticalAlignment="Center" FontSize="12.5"
+                        <TextBlock x:Name="SaveStatusText" Grid.Column="1" VerticalAlignment="Center" FontSize="12.5"
                                    TextWrapping="Wrap"
                                    Foreground="{DynamicResource StatusInfoText}"
                                    Text="{Binding Workspace.SaveStatus}"
                                    IsVisible="{Binding Workspace.SaveStatus, Converter={StaticResource StringNotEmpty}}" />
                         <TextBlock Grid.Column="2" VerticalAlignment="Center" Classes="caption"
                                    Text="{Binding DirtyText}" />
-                        <Button Grid.Column="3" Classes="accent" VerticalAlignment="Center"
+                        <Button x:Name="SaveButton" Grid.Column="3" Classes="accent" VerticalAlignment="Center"
                                 Content="{m:Loc Common_Save}"
                                 Command="{Binding SaveCommand}"
                                 ToolTip.Tip="{m:Loc Shell_SaveHint}"
@@ -99,7 +99,7 @@
                         BorderBrush="{DynamicResource Divider}" BorderThickness="0,0,0,1"
                         Padding="24,12"
                         IsVisible="{Binding PageError, Converter={StaticResource StringNotEmpty}}">
-                    <TextBlock Text="{Binding PageError}" TextWrapping="Wrap"
+                    <TextBlock x:Name="PageErrorText" Text="{Binding PageError}" TextWrapping="Wrap"
                                Foreground="{DynamicResource StatusErrorText}" />
                 </Border>
 
