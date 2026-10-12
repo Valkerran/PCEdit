@@ -21,6 +21,7 @@
   "Dirty_Saved": "所有更改已保存",
   "Save_Ok": "已保存。",
   "Save_OkAnnounce": "存档文件已写入。",
+  "Save_OkNoBackup": "已保存，但 PCEdit 未能事先创建备份副本。",
   "Save_Failed": "保存失败。你的文件未被更改。",
   "Save_FailedAnnounce": "错误：保存失败。你的文件未被更改。",
   "Save_FailedNoPermission": "保存失败：文件为只读，或 PCEdit 无权写入该位置。你的文件未被更改。",
@@ -267,6 +268,8 @@
   "Shell_PageLoadFailed": "无法加载此页面。文件仍处于打开状态，未保存的更改不会丢失。",
   "Error_UnexpectedTitle": "意外错误",
   "Error_UnexpectedBody": "出现了问题，但 PCEdit 仍在运行，你的存档仍处于打开状态。如果有异常，请重新启动 PCEdit。详细信息已写入：{0}",
+  "Settings_WriteFailedTitle": "设置未保存",
+  "Settings_WriteFailed": "无法保存你的设置。下次启动 PCEdit 时，它们将恢复为之前的值。",
   "About_BackupsHeading": "自动备份",
   "About_BackupsNote": "打开文件后首次保存时，PCEdit 会先将原始文件复制到此处。每个存档最多保留五个最新副本。"
 }

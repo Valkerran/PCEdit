@@ -20,6 +20,8 @@ public static class LocKeys
     public const string Shell_PageLoadFailed = "Shell_PageLoadFailed";
     public const string Error_UnexpectedTitle = "Error_UnexpectedTitle";
     public const string Error_UnexpectedBody = "Error_UnexpectedBody";
+    public const string Settings_WriteFailedTitle = "Settings_WriteFailedTitle";
+    public const string Settings_WriteFailed = "Settings_WriteFailed";
     public const string Nav_OpenFile = "Nav_OpenFile";
     public const string Nav_Overview = "Nav_Overview";
     public const string Nav_Inventories = "Nav_Inventories";
@@ -34,6 +36,7 @@ public static class LocKeys
 
     public const string Save_Ok = "Save_Ok";
     public const string Save_OkAnnounce = "Save_OkAnnounce";
+    public const string Save_OkNoBackup = "Save_OkNoBackup";
     public const string Save_Failed = "Save_Failed";
     public const string Save_FailedAnnounce = "Save_FailedAnnounce";
     public const string Save_FailedNoPermission = "Save_FailedNoPermission";

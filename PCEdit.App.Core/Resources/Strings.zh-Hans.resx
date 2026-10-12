@@ -25,6 +25,8 @@
   <data name="Shell_PageLoadFailed" xml:space="preserve"><value>无法加载此页面。文件仍处于打开状态，未保存的更改不会丢失。</value></data>
   <data name="Error_UnexpectedTitle" xml:space="preserve"><value>意外错误</value></data>
   <data name="Error_UnexpectedBody" xml:space="preserve"><value>出现了问题，但 PCEdit 仍在运行，你的存档仍处于打开状态。如果有异常，请重新启动 PCEdit。详细信息已写入：{0}</value></data>
+  <data name="Settings_WriteFailedTitle" xml:space="preserve"><value>设置未保存</value></data>
+  <data name="Settings_WriteFailed" xml:space="preserve"><value>无法保存你的设置。下次启动 PCEdit 时，它们将恢复为之前的值。</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>打开文件</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>概览</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>库存</value></data>
@@ -35,6 +37,7 @@
   <data name="Dirty_Saved" xml:space="preserve"><value>所有更改已保存</value></data>
   <data name="Save_Ok" xml:space="preserve"><value>已保存。</value></data>
   <data name="Save_OkAnnounce" xml:space="preserve"><value>存档文件已写入。</value></data>
+  <data name="Save_OkNoBackup" xml:space="preserve"><value>已保存，但 PCEdit 未能事先创建备份副本。</value></data>
   <data name="Save_Failed" xml:space="preserve"><value>保存失败。你的文件未被更改。</value></data>
   <data name="Save_FailedAnnounce" xml:space="preserve"><value>错误：保存失败。你的文件未被更改。</value></data>
   <data name="Save_FailedNoPermission" xml:space="preserve"><value>保存失败：文件为只读，或 PCEdit 无权写入该位置。你的文件未被更改。</value></data>

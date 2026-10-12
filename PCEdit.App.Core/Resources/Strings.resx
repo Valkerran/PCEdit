@@ -81,6 +81,8 @@
   <data name="Shell_PageLoadFailed" xml:space="preserve"><value>This page could not be loaded. Your file is still open and any unsaved changes are safe.</value></data>
   <data name="Error_UnexpectedTitle" xml:space="preserve"><value>Unexpected error</value></data>
   <data name="Error_UnexpectedBody" xml:space="preserve"><value>Something went wrong, but PCEdit is still running and your save is still open. If anything looks wrong, restart PCEdit. Details were written to: {0}</value></data>
+  <data name="Settings_WriteFailedTitle" xml:space="preserve"><value>Settings not saved</value></data>
+  <data name="Settings_WriteFailed" xml:space="preserve"><value>Your settings could not be saved. They will be back to their previous values the next time PCEdit starts.</value></data>
 
   <data name="Nav_OpenFile" xml:space="preserve"><value>Open File</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>Overview</value></data>
@@ -94,6 +96,7 @@
 
   <data name="Save_Ok" xml:space="preserve"><value>Saved.</value></data>
   <data name="Save_OkAnnounce" xml:space="preserve"><value>Save file written.</value></data>
+  <data name="Save_OkNoBackup" xml:space="preserve"><value>Saved, but PCEdit could not make its backup copy first.</value></data>
   <data name="Save_Failed" xml:space="preserve"><value>Save failed. Your file was not changed.</value></data>
   <data name="Save_FailedAnnounce" xml:space="preserve"><value>Error: save failed. Your file was not changed.</value></data>
   <data name="Save_FailedNoPermission" xml:space="preserve"><value>Save failed: the file is read-only, or PCEdit is not allowed to write there. Your file was not changed.</value></data>

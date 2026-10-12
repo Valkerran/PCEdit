@@ -21,6 +21,7 @@
   "Dirty_Saved": "Todas as alterações guardadas",
   "Save_Ok": "Guardado.",
   "Save_OkAnnounce": "Ficheiro de jogo guardado escrito.",
+  "Save_OkNoBackup": "Guardado, mas o PCEdit não conseguiu fazer antes a cópia de segurança.",
   "Save_Failed": "Falha ao guardar. O seu ficheiro não foi alterado.",
   "Save_FailedAnnounce": "Erro: falha ao guardar. O seu ficheiro não foi alterado.",
   "Save_FailedNoPermission": "Falha ao guardar: o ficheiro é só de leitura ou o PCEdit não tem permissão para escrever nesse local. O seu ficheiro não foi alterado.",
@@ -267,6 +268,8 @@
   "Shell_PageLoadFailed": "Não foi possível carregar esta página. O ficheiro continua aberto e as alterações não guardadas estão seguras.",
   "Error_UnexpectedTitle": "Erro inesperado",
   "Error_UnexpectedBody": "Algo correu mal, mas o PCEdit continua a funcionar e o seu jogo guardado continua aberto. Se algo parecer errado, reinicie o PCEdit. Os detalhes foram escritos em: {0}",
+  "Settings_WriteFailedTitle": "Definições não guardadas",
+  "Settings_WriteFailed": "Não foi possível guardar as suas definições. Voltarão aos valores anteriores da próxima vez que o PCEdit for iniciado.",
   "About_BackupsHeading": "Cópias de segurança automáticas",
   "About_BackupsNote": "Na primeira vez que o PCEdit guarda um ficheiro depois de o abrir, copia primeiro o original para aqui. São mantidas as cinco cópias mais recentes de cada jogo guardado."
 }

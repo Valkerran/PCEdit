@@ -21,6 +21,7 @@
   "Dirty_Saved": "Toutes les modifications sont enregistrées",
   "Save_Ok": "Enregistré.",
   "Save_OkAnnounce": "Fichier de sauvegarde écrit.",
+  "Save_OkNoBackup": "Enregistré, mais PCEdit n'a pas pu faire sa copie de sauvegarde au préalable.",
   "Save_Failed": "Échec de l'enregistrement. Votre fichier n'a pas été modifié.",
   "Save_FailedAnnounce": "Erreur : échec de l'enregistrement. Votre fichier n'a pas été modifié.",
   "Save_FailedNoPermission": "Échec de l'enregistrement : le fichier est en lecture seule ou PCEdit n'a pas le droit d'écrire à cet endroit. Votre fichier n'a pas été modifié.",
@@ -267,6 +268,8 @@
   "Shell_PageLoadFailed": "Impossible de charger cette page. Votre fichier reste ouvert et vos modifications non enregistrées sont intactes.",
   "Error_UnexpectedTitle": "Erreur inattendue",
   "Error_UnexpectedBody": "Un problème est survenu, mais PCEdit fonctionne toujours et votre sauvegarde est encore ouverte. Si quelque chose semble anormal, redémarrez PCEdit. Les détails ont été enregistrés dans : {0}",
+  "Settings_WriteFailedTitle": "Paramètres non enregistrés",
+  "Settings_WriteFailed": "Vos paramètres n'ont pas pu être enregistrés. Ils reprendront leurs valeurs précédentes au prochain démarrage de PCEdit.",
   "About_BackupsHeading": "Sauvegardes automatiques",
   "About_BackupsNote": "Lors du premier enregistrement suivant l'ouverture d'un fichier, PCEdit en copie d'abord l'original ici. Les cinq copies les plus récentes de chaque sauvegarde sont conservées."
 }

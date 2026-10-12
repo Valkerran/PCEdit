@@ -25,6 +25,8 @@
   <data name="Shell_PageLoadFailed" xml:space="preserve"><value>Nie udało się wczytać tej strony. Plik jest nadal otwarty, a niezapisane zmiany są bezpieczne.</value></data>
   <data name="Error_UnexpectedTitle" xml:space="preserve"><value>Nieoczekiwany błąd</value></data>
   <data name="Error_UnexpectedBody" xml:space="preserve"><value>Coś poszło nie tak, ale PCEdit nadal działa, a zapis jest wciąż otwarty. Jeśli coś wygląda nie tak, uruchom PCEdit ponownie. Szczegóły zapisano w: {0}</value></data>
+  <data name="Settings_WriteFailedTitle" xml:space="preserve"><value>Nie zapisano ustawień</value></data>
+  <data name="Settings_WriteFailed" xml:space="preserve"><value>Nie udało się zapisać ustawień. Przy następnym uruchomieniu PCEdit wrócą do poprzednich wartości.</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>Otwórz plik</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>Przegląd</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>Ekwipunki</value></data>
@@ -35,6 +37,7 @@
   <data name="Dirty_Saved" xml:space="preserve"><value>Wszystkie zmiany zapisane</value></data>
   <data name="Save_Ok" xml:space="preserve"><value>Zapisano.</value></data>
   <data name="Save_OkAnnounce" xml:space="preserve"><value>Plik zapisu został zapisany.</value></data>
+  <data name="Save_OkNoBackup" xml:space="preserve"><value>Zapisano, ale PCEdit nie mógł wcześniej utworzyć kopii zapasowej.</value></data>
   <data name="Save_Failed" xml:space="preserve"><value>Zapis nie powiódł się. Plik nie został zmieniony.</value></data>
   <data name="Save_FailedAnnounce" xml:space="preserve"><value>Błąd: zapis nie powiódł się. Plik nie został zmieniony.</value></data>
   <data name="Save_FailedNoPermission" xml:space="preserve"><value>Zapis nie powiódł się: plik jest tylko do odczytu albo PCEdit nie ma uprawnień do zapisu w tym miejscu. Plik nie został zmieniony.</value></data>

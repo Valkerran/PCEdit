@@ -34,6 +34,7 @@ public sealed partial class MainWindowViewModel : ObservableObject
     private readonly ILanguageStore _languageStore;
     private readonly IScreenReaderAnnouncer _announcer;
     private readonly IDialogService _dialogs;
+    private bool _settingsDialogOpen;
 
     // Skip a page's Load() when nothing it reads has changed since it last loaded.
     private readonly Dictionary<NavDestination, int> _loadedAtRevision = new();
@@ -49,13 +50,15 @@ public sealed partial class MainWindowViewModel : ObservableObject
         ILanguageStore languageStore,
         ISaveFileWorkspace workspace,
         IScreenReaderAnnouncer announcer,
-        IDialogService dialogs)
+        IDialogService dialogs,
+        JsonSettingsStore settings)
     {
         _services = services;
         _localizer = localizer;
         _languageStore = languageStore;
         _announcer = announcer;
         _dialogs = dialogs;
+        settings.WriteFailed += OnSettingsWriteFailed;
         Workspace = workspace;
 
         NavItems =
@@ -288,6 +291,31 @@ public sealed partial class MainWindowViewModel : ObservableObject
         _loadedAtRevision.Remove(destination);
         PageError = _localizer[LocKeys.Shell_PageLoadFailed];
         _announcer.Announce(_localizer.Format(LocKeys.Announce_ErrorPrefix, PageError));
+    }
+
+    /// <summary>
+    /// A setting that could not be written still applies until PCEdit closes, so nothing on
+    /// screen would give the failure away. One dialog at a time: several settings can fail in a
+    /// row while the first is still open.
+    /// </summary>
+    private async void OnSettingsWriteFailed(object? sender, EventArgs e)
+    {
+        if (_settingsDialogOpen)
+        {
+            return;
+        }
+
+        _settingsDialogOpen = true;
+        try
+        {
+            var message = _localizer[LocKeys.Settings_WriteFailed];
+            _announcer.Announce(_localizer.Format(LocKeys.Announce_ErrorPrefix, message));
+            await _dialogs.ShowErrorAsync(_localizer[LocKeys.Settings_WriteFailedTitle], message);
+        }
+        finally
+        {
+            _settingsDialogOpen = false;
+        }
     }
 
     private void RefreshLabels()

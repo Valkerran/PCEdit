@@ -25,6 +25,8 @@
   <data name="Shell_PageLoadFailed" xml:space="preserve"><value>Impossibile caricare questa pagina. Il file è ancora aperto e le modifiche non salvate sono al sicuro.</value></data>
   <data name="Error_UnexpectedTitle" xml:space="preserve"><value>Errore imprevisto</value></data>
   <data name="Error_UnexpectedBody" xml:space="preserve"><value>Qualcosa è andato storto, ma PCEdit è ancora in esecuzione e il salvataggio è ancora aperto. Se qualcosa non va, riavvia PCEdit. I dettagli sono stati salvati in: {0}</value></data>
+  <data name="Settings_WriteFailedTitle" xml:space="preserve"><value>Impostazioni non salvate</value></data>
+  <data name="Settings_WriteFailed" xml:space="preserve"><value>Impossibile salvare le impostazioni. Al prossimo avvio di PCEdit torneranno ai valori precedenti.</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>Apri file</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>Panoramica</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>Inventari</value></data>
@@ -35,6 +37,7 @@
   <data name="Dirty_Saved" xml:space="preserve"><value>Tutte le modifiche salvate</value></data>
   <data name="Save_Ok" xml:space="preserve"><value>Salvato.</value></data>
   <data name="Save_OkAnnounce" xml:space="preserve"><value>File di salvataggio scritto.</value></data>
+  <data name="Save_OkNoBackup" xml:space="preserve"><value>Salvato, ma PCEdit non è riuscito a creare prima la copia di backup.</value></data>
   <data name="Save_Failed" xml:space="preserve"><value>Salvataggio non riuscito. Il file non è stato modificato.</value></data>
   <data name="Save_FailedAnnounce" xml:space="preserve"><value>Errore: salvataggio non riuscito. Il file non è stato modificato.</value></data>
   <data name="Save_FailedNoPermission" xml:space="preserve"><value>Salvataggio non riuscito: il file è di sola lettura oppure PCEdit non ha il permesso di scrivere in quella posizione. Il file non è stato modificato.</value></data>

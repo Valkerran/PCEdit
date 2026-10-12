@@ -21,6 +21,7 @@
   "Dirty_Saved": "All changes saved",
   "Save_Ok": "Saved.",
   "Save_OkAnnounce": "Save file written.",
+  "Save_OkNoBackup": "Saved, but PCEdit could not make its backup copy first.",
   "Save_Failed": "Save failed. Your file was not changed.",
   "Save_FailedAnnounce": "Error: save failed. Your file was not changed.",
   "Save_FailedNoPermission": "Save failed: the file is read-only, or PCEdit is not allowed to write there. Your file was not changed.",
@@ -267,6 +268,8 @@
   "Shell_PageLoadFailed": "This page could not be loaded. Your file is still open and any unsaved changes are safe.",
   "Error_UnexpectedTitle": "Unexpected error",
   "Error_UnexpectedBody": "Something went wrong, but PCEdit is still running and your save is still open. If anything looks wrong, restart PCEdit. Details were written to: {0}",
+  "Settings_WriteFailedTitle": "Settings not saved",
+  "Settings_WriteFailed": "Your settings could not be saved. They will be back to their previous values the next time PCEdit starts.",
   "About_BackupsHeading": "Automatic backups",
   "About_BackupsNote": "The first time PCEdit saves a file after you open it, the original is copied here first. The five most recent copies of each save are kept."
 }

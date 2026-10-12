@@ -483,4 +483,33 @@ public sealed class SaveFileWorkspaceTests
 
         Assert.False(workspace.HasChangedOnDisk);
     }
+
+    [Fact]
+    public void Save_WhenTheBackupFails_StillSaves_ButSaysThereIsNoBackup()
+    {
+        // The save goes ahead by design, but "Saved." alone would leave the player believing
+        // the safety copy exists.
+        var (workspace, store, backups) = CreateLoadedWorkspaceWithBackups();
+        backups.ThrowOnBackUp = new IOException("The backup folder is not writable.");
+
+        workspace.Save();
+
+        Assert.Equal(1, store.SaveCallCount);
+        Assert.False(workspace.IsDirty);
+        Assert.Equal(new Localizer()[LocKeys.Save_OkNoBackup], workspace.SaveStatus);
+    }
+
+    [Fact]
+    public void Save_AfterTheOneWithoutABackup_SaysOnlySaved()
+    {
+        // The backup is attempted once per load, so there is nothing new to report later.
+        var (workspace, _, backups) = CreateLoadedWorkspaceWithBackups();
+        backups.ThrowOnBackUp = new IOException("The backup folder is not writable.");
+        workspace.Save();
+        workspace.GrantTerraTokens(1, 1);
+
+        workspace.Save();
+
+        Assert.Equal(new Localizer()[LocKeys.Save_Ok], workspace.SaveStatus);
+    }
 }

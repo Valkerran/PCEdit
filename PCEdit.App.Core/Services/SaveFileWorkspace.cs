@@ -132,12 +132,14 @@ public sealed partial class SaveFileWorkspace : ObservableObject, ISaveFileWorks
 
     private void WriteToDisk(string path, PlanetCrafterSaveFile save)
     {
-        BackUpOnce(path);
+        var backedUp = BackUpOnce(path);
         _store.Save(path, save);
         _fingerprint = _store.Fingerprint(path);
         IsDirty = false;
-        SetSaveStatus(LocKeys.Save_Ok);
-        _announcer.Announce(_localizer[LocKeys.Save_OkAnnounce]);
+
+        // "Saved." alone would leave the player believing the safety copy exists.
+        SetSaveStatus(backedUp ? LocKeys.Save_Ok : LocKeys.Save_OkNoBackup);
+        _announcer.Announce(_localizer[backedUp ? LocKeys.Save_OkAnnounce : LocKeys.Save_OkNoBackup]);
     }
 
     private void ReportSaveRefused(string key)
@@ -186,11 +188,12 @@ public sealed partial class SaveFileWorkspace : ObservableObject, ISaveFileWorks
     /// A failed backup never blocks the save. Refusing to write the player's edit because a
     /// safety copy could not be taken inverts the priority - the edit is what they asked for.
     /// </remarks>
-    private void BackUpOnce(string path)
+    /// <returns>False only when a backup was attempted just now and failed.</returns>
+    private bool BackUpOnce(string path)
     {
         if (_backedUpSinceLoad)
         {
-            return;
+            return true;
         }
 
         _backedUpSinceLoad = true;
@@ -198,10 +201,12 @@ public sealed partial class SaveFileWorkspace : ObservableObject, ISaveFileWorks
         try
         {
             _backups.BackUp(path);
+            return true;
         }
         catch (Exception ex)
         {
             System.Diagnostics.Trace.WriteLine($"Could not back up '{path}': {ex}");
+            return false;
         }
     }
 

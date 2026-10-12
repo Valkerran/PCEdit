@@ -73,4 +73,32 @@ public sealed class JsonSettingsStoreTests : IDisposable
 
         Assert.Equal("pl", new JsonSettingsStore(SettingsPath).GetSavedCulture());
     }
+
+    [Fact]
+    public void AWriteThatFails_IsReported_AndTheSettingStillAppliesForNow()
+    {
+        // A file where the settings folder should be: the write cannot succeed.
+        Directory.CreateDirectory(_directory);
+        File.WriteAllText(Path.Combine(_directory, "PCEdit"), "in the way");
+        var store = new JsonSettingsStore(SettingsPath);
+        var failures = 0;
+        store.WriteFailed += (_, _) => failures++;
+
+        store.SaveCulture("fr");
+
+        Assert.Equal(1, failures);
+        Assert.Equal("fr", store.GetSavedCulture());
+    }
+
+    [Fact]
+    public void AWriteThatSucceeds_ReportsNothing()
+    {
+        var store = new JsonSettingsStore(SettingsPath);
+        var failures = 0;
+        store.WriteFailed += (_, _) => failures++;
+
+        store.SaveCulture("fr");
+
+        Assert.Equal(0, failures);
+    }
 }

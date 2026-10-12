@@ -21,6 +21,7 @@
   "Dirty_Saved": "Tüm değişiklikler kaydedildi",
   "Save_Ok": "Kaydedildi.",
   "Save_OkAnnounce": "Kayıt dosyası yazıldı.",
+  "Save_OkNoBackup": "Kaydedildi, ancak PCEdit önce yedek kopyasını oluşturamadı.",
   "Save_Failed": "Kaydetme başarısız oldu. Dosyanız değiştirilmedi.",
   "Save_FailedAnnounce": "Hata: kaydetme başarısız oldu. Dosyanız değiştirilmedi.",
   "Save_FailedNoPermission": "Kaydetme başarısız oldu: dosya salt okunur veya PCEdit'in oraya yazma izni yok. Dosyanız değiştirilmedi.",
@@ -267,6 +268,8 @@
   "Shell_PageLoadFailed": "Bu sayfa yüklenemedi. Dosyanız hâlâ açık ve kaydedilmemiş değişiklikleriniz güvende.",
   "Error_UnexpectedTitle": "Beklenmeyen hata",
   "Error_UnexpectedBody": "Bir şeyler ters gitti, ancak PCEdit çalışmaya devam ediyor ve kaydınız hâlâ açık. Bir şey yanlış görünüyorsa PCEdit'i yeniden başlatın. Ayrıntılar şuraya yazıldı: {0}",
+  "Settings_WriteFailedTitle": "Ayarlar kaydedilmedi",
+  "Settings_WriteFailed": "Ayarlarınız kaydedilemedi. PCEdit bir sonraki açılışında önceki değerlerine dönecekler.",
   "About_BackupsHeading": "Otomatik yedekler",
   "About_BackupsNote": "PCEdit bir dosyayı açtıktan sonra ilk kez kaydettiğinde, önce özgün dosyayı buraya kopyalar. Her kayıt için en yeni beş kopya saklanır."
 }

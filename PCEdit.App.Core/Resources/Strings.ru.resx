@@ -25,6 +25,8 @@
   <data name="Shell_PageLoadFailed" xml:space="preserve"><value>Не удалось загрузить эту страницу. Файл по-прежнему открыт, несохранённые изменения не потеряны.</value></data>
   <data name="Error_UnexpectedTitle" xml:space="preserve"><value>Непредвиденная ошибка</value></data>
   <data name="Error_UnexpectedBody" xml:space="preserve"><value>Что-то пошло не так, но PCEdit продолжает работать, и ваше сохранение по-прежнему открыто. Если что-то выглядит неправильно, перезапустите PCEdit. Подробности записаны в: {0}</value></data>
+  <data name="Settings_WriteFailedTitle" xml:space="preserve"><value>Настройки не сохранены</value></data>
+  <data name="Settings_WriteFailed" xml:space="preserve"><value>Не удалось сохранить настройки. При следующем запуске PCEdit они вернутся к прежним значениям.</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>Открыть файл</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>Обзор</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>Инвентари</value></data>
@@ -35,6 +37,7 @@
   <data name="Dirty_Saved" xml:space="preserve"><value>Все изменения сохранены</value></data>
   <data name="Save_Ok" xml:space="preserve"><value>Сохранено.</value></data>
   <data name="Save_OkAnnounce" xml:space="preserve"><value>Файл сохранения записан.</value></data>
+  <data name="Save_OkNoBackup" xml:space="preserve"><value>Сохранено, но PCEdit не смог сначала сделать резервную копию.</value></data>
   <data name="Save_Failed" xml:space="preserve"><value>Не удалось сохранить. Ваш файл не изменён.</value></data>
   <data name="Save_FailedAnnounce" xml:space="preserve"><value>Ошибка: не удалось сохранить. Ваш файл не изменён.</value></data>
   <data name="Save_FailedNoPermission" xml:space="preserve"><value>Не удалось сохранить: файл доступен только для чтения или у PCEdit нет прав на запись в это место. Ваш файл не изменён.</value></data>

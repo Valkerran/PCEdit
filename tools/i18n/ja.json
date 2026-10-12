@@ -21,6 +21,7 @@
   "Dirty_Saved": "すべての変更を保存しました",
   "Save_Ok": "保存しました。",
   "Save_OkAnnounce": "セーブファイルを書き込みました。",
+  "Save_OkNoBackup": "保存しましたが、PCEdit は事前のバックアップコピーを作成できませんでした。",
   "Save_Failed": "保存に失敗しました。ファイルは変更されていません。",
   "Save_FailedAnnounce": "エラー: 保存に失敗しました。ファイルは変更されていません。",
   "Save_FailedNoPermission": "保存に失敗しました。ファイルが読み取り専用か、PCEdit にその場所への書き込み権限がありません。ファイルは変更されていません。",
@@ -267,6 +268,8 @@
   "Shell_PageLoadFailed": "このページを読み込めませんでした。ファイルは開いたままで、未保存の変更も失われていません。",
   "Error_UnexpectedTitle": "予期しないエラー",
   "Error_UnexpectedBody": "問題が発生しましたが、PCEdit は動作を続けており、セーブも開いたままです。動作がおかしい場合は PCEdit を再起動してください。詳細の保存先: {0}",
+  "Settings_WriteFailedTitle": "設定を保存できませんでした",
+  "Settings_WriteFailed": "設定を保存できませんでした。次回 PCEdit を起動すると、以前の値に戻ります。",
   "About_BackupsHeading": "自動バックアップ",
   "About_BackupsNote": "ファイルを開いた後にPCEditが初めて保存するとき、元のファイルがまずここにコピーされます。各セーブデータにつき最新5件の複製が保持されます。"
 }
