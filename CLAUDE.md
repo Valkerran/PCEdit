@@ -132,8 +132,9 @@ the pipelines enforce.
 CI (`.github/workflows/ci.yml`) restores in locked mode, runs the three test projects, builds
 `PCEdit.Desktop`, fails if the Avalonia build-telemetry targets are imported, checks a `linux-x64`
 publish carries app-local ICU, and fails if the localization satellites, the AppStream metadata or
-the item catalog are out of sync with their generators. `lock-files-cross-os` repeats the locked
-restore on Windows and macOS runners, and `version-guard` fails if `<VersionPrefix>` is malformed or
+the item catalog are out of sync with their generators. `test-cross-os` repeats the locked
+restore and runs the same three test projects on Windows and macOS runners (the Linux-only checks
+stay in `build-test`), and `version-guard` fails if `<VersionPrefix>` is malformed or
 behind the latest release tag. Dependabot (`.github/dependabot.yml`) proposes NuGet and Actions
 updates weekly; if one misses a lock file (dependabot-core#13950), CI fails it with `NU1004` — run
 `dotnet restore` on the branch and commit the lock. `release.yml` runs on a `vX.Y.Z`
