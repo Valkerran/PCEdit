@@ -30,7 +30,11 @@
         </StackPanel>
 
         <StackPanel DockPanel.Dock="Bottom" Spacing="12" Margin="0,12,0,0">
-            <TextBlock Text="{Binding StatusMessage}"
+            <!-- A failed move is reported only here. The app's announcer speaks through a region
+                 in the main window, which may not be read while this dialog has the focus. -->
+            <TextBlock x:Name="StatusText"
+                       AutomationProperties.LiveSetting="Assertive"
+                       Text="{Binding StatusMessage}"
                        IsVisible="{Binding StatusMessage, Converter={StaticResource StringNotEmpty}}"
                        Classes="status"
                        Classes.success="{Binding StatusKind, Converter={StaticResource StatusIsSuccess}}"

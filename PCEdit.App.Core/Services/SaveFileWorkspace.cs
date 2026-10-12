@@ -179,6 +179,9 @@ public sealed partial class SaveFileWorkspace : ObservableObject, ISaveFileWorks
         _store.SaveCopy(FilePath, targetPath, Current);
         FilePath = targetPath;
         _fingerprint = _store.Fingerprint(targetPath);
+
+        // Whatever the header said was about the file this came from.
+        SetSaveStatus(null);
         IsDirty = false;
 
         // The copy is PCEdit's own output: nothing in it needs preserving. The pristine save is

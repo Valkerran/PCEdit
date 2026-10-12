@@ -99,6 +99,10 @@ public sealed partial class SelectInventoryViewModel(
     [RelayCommand]
     private async Task SelectAsync(InventoryOptionView destination)
     {
+        // Cleared first, so a second failure with the same reason is still a change: on screen,
+        // and for the live region that reads this line out.
+        StatusMessage = null;
+
         // The last of the stack, as the game takes overflow from the end.
         var result = _inventoryEditor.TryMoveItems(_stack.TakeLast(Quantity).ToList(), destination.InventoryId);
         if (!result.Success)

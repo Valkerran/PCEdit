@@ -568,4 +568,34 @@ public sealed class SaveFileWorkspaceTests
         Assert.Equal(StatusKind.Error, workspace.SaveStatusKind);
         Assert.Equal("Error: " + workspace.SaveStatus, Assert.Single(announcer.Announcements));
     }
+
+    [Fact]
+    public void AnEditAfterASave_ClearsTheSavedStatusAndItsKind()
+    {
+        // "Saved." in green must not outlive the edit that makes it untrue.
+        var (workspace, _, _, _) = CreateLoadedWorkspaceWithAnnouncer();
+        workspace.Save();
+        Assert.Equal(StatusKind.Success, workspace.SaveStatusKind);
+
+        workspace.GrantTerraTokens(1, 1);
+
+        Assert.Null(workspace.SaveStatus);
+        Assert.Equal(StatusKind.Info, workspace.SaveStatusKind);
+    }
+
+    [Fact]
+    public void SaveCopy_ClearsAStatusThatWasAboutTheFileItCameFrom()
+    {
+        // "Saved, but ... no backup" is about the original; after the switch to the copy it
+        // would sit in the header, in red, describing a file that is no longer the open one.
+        var (workspace, _, backups, _) = CreateLoadedWorkspaceWithAnnouncer();
+        backups.ThrowOnBackUp = new IOException("no room");
+        workspace.Save();
+        Assert.Equal(StatusKind.Error, workspace.SaveStatusKind);
+
+        workspace.SaveCopy(@"C:\fake\copy.txt");
+
+        Assert.Null(workspace.SaveStatus);
+        Assert.Equal(StatusKind.Info, workspace.SaveStatusKind);
+    }
 }

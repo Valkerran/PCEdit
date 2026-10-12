@@ -225,4 +225,28 @@ public sealed class SelectInventoryViewModelTests
         Assert.StartsWith("Error: ", Assert.Single(announcer.Announcements));
         Assert.Equal("200,201", workspace.Current!.Inventories.Single(i => i.Id == 10).WorldObjectIds);
     }
+
+    [Fact]
+    public async Task TheSameFailedMoveTwice_IsReportedTwice()
+    {
+        // With one status line and no dialog, a second identical failure would otherwise change
+        // nothing on screen and give assistive technology nothing new to read.
+        var (vm, _, announcer) = CreateFor([200, 201]);
+        vm.Quantity = 2;
+        var bobsOneSlot = vm.FilteredOptions.Single(option => option.InventoryId == 20);
+        var statusChanges = 0;
+        vm.PropertyChanged += (_, e) =>
+        {
+            if (e.PropertyName == nameof(vm.StatusMessage) && vm.StatusMessage is not null)
+            {
+                statusChanges++;
+            }
+        };
+
+        await vm.SelectCommand.ExecuteAsync(bobsOneSlot);
+        await vm.SelectCommand.ExecuteAsync(bobsOneSlot);
+
+        Assert.Equal(2, statusChanges);
+        Assert.Equal(2, announcer.Announcements.Count);
+    }
 }
