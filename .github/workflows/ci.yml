@@ -80,10 +80,15 @@ jobs:
             deploy/com.valkerran.pcedit.metainfo.xml \
             PCEdit.App.Core/Data/ItemCatalog.json
 
-  # The lock files are generated on Linux, and the Release workflow restores them in locked mode
-  # on Windows and macOS runners too. A graph that resolved differently per OS would otherwise
-  # surface only mid-release; this catches it on the PR. (build-test covers Linux.)
-  lock-files-cross-os:
+  # The same three suites as build-test, on the other two platforms the app ships for: file
+  # attributes, locks, path forms and links all behave differently there, and several fixes
+  # shipped with those behaviours unverified (issue #140).
+  #
+  # The locked restore is also the cross-OS lock-file check. The lock files are generated on
+  # Linux, and the Release workflow restores them in locked mode on Windows and macOS runners
+  # too: a graph that resolved differently per OS would otherwise surface only mid-release.
+  # The Linux-only checks (app-local ICU, generator drift, telemetry guard) stay in build-test.
+  test-cross-os:
     strategy:
       fail-fast: false
       matrix:
@@ -100,6 +105,15 @@ jobs:
 
       - name: Restore (locked)
         run: dotnet restore PCEdit.slnx
+
+      - name: Test — PCEdit.SaveFileHandler
+        run: dotnet test PCEdit.SaveFileHandler.Tests/PCEdit.SaveFileHandler.Tests.csproj -c Release --no-restore
+
+      - name: Test — PCEdit.App.Core
+        run: dotnet test PCEdit.App.Core.Tests/PCEdit.App.Core.Tests.csproj -c Release --no-restore
+
+      - name: Test — PCEdit.Desktop (headless UI)
+        run: dotnet test PCEdit.Desktop.Tests/PCEdit.Desktop.Tests.csproj -c Release --no-restore
 
   version-guard:
     runs-on: ubuntu-latest
