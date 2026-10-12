@@ -31,6 +31,11 @@ updates:
       # the runtime is told to load, and a bump changes the AppImage size - upgrade it by
       # hand and re-run the distro matrix (deploy/README.md), not from a bot PR.
       - dependency-name: Microsoft.ICU.ICU4C.Runtime*
+      # A major of xunit.v3 is a migration, not a bump: 4.x moves to Microsoft.Testing.Platform
+      # 2.x, which does not run under the classic `dotnet test` on the .NET 10 SDK, and
+      # Avalonia.Headless.XUnit is built against 3.x (PR #138). Minor and patch updates still come.
+      - dependency-name: xunit.v3
+        update-types: ["version-update:semver-major"]
 
   - package-ecosystem: github-actions
     directory: /
