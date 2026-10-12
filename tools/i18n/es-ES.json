@@ -21,6 +21,7 @@
   "Dirty_Saved": "Todos los cambios guardados",
   "Save_Ok": "Guardado.",
   "Save_OkAnnounce": "Archivo de partida escrito.",
+  "Save_OkNoBackup": "Guardado, pero PCEdit no pudo hacer antes su copia de seguridad.",
   "Save_Failed": "Error al guardar. Tu archivo no se ha modificado.",
   "Save_FailedAnnounce": "Error: error al guardar. Tu archivo no se ha modificado.",
   "Save_FailedNoPermission": "Error al guardar: el archivo es de solo lectura o PCEdit no tiene permiso para escribir ahí. Tu archivo no se ha modificado.",
@@ -267,6 +268,8 @@
   "Shell_PageLoadFailed": "No se ha podido cargar esta página. El archivo sigue abierto y los cambios sin guardar están a salvo.",
   "Error_UnexpectedTitle": "Error inesperado",
   "Error_UnexpectedBody": "Algo ha fallado, pero PCEdit sigue en marcha y tu partida sigue abierta. Si algo no va bien, reinicia PCEdit. Los detalles se han guardado en: {0}",
+  "Settings_WriteFailedTitle": "Ajustes no guardados",
+  "Settings_WriteFailed": "No se pudieron guardar tus ajustes. La próxima vez que se inicie PCEdit volverán a sus valores anteriores.",
   "About_BackupsHeading": "Copias de seguridad automáticas",
   "About_BackupsNote": "La primera vez que PCEdit guarda un archivo tras abrirlo, copia aquí el original. Se conservan las cinco copias más recientes de cada partida guardada."
 }

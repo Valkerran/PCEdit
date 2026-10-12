@@ -25,6 +25,8 @@
   <data name="Shell_PageLoadFailed" xml:space="preserve"><value>Bu sayfa yüklenemedi. Dosyanız hâlâ açık ve kaydedilmemiş değişiklikleriniz güvende.</value></data>
   <data name="Error_UnexpectedTitle" xml:space="preserve"><value>Beklenmeyen hata</value></data>
   <data name="Error_UnexpectedBody" xml:space="preserve"><value>Bir şeyler ters gitti, ancak PCEdit çalışmaya devam ediyor ve kaydınız hâlâ açık. Bir şey yanlış görünüyorsa PCEdit'i yeniden başlatın. Ayrıntılar şuraya yazıldı: {0}</value></data>
+  <data name="Settings_WriteFailedTitle" xml:space="preserve"><value>Ayarlar kaydedilmedi</value></data>
+  <data name="Settings_WriteFailed" xml:space="preserve"><value>Ayarlarınız kaydedilemedi. PCEdit bir sonraki açılışında önceki değerlerine dönecekler.</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>Dosya Aç</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>Genel Bakış</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>Envanterler</value></data>
@@ -35,6 +37,7 @@
   <data name="Dirty_Saved" xml:space="preserve"><value>Tüm değişiklikler kaydedildi</value></data>
   <data name="Save_Ok" xml:space="preserve"><value>Kaydedildi.</value></data>
   <data name="Save_OkAnnounce" xml:space="preserve"><value>Kayıt dosyası yazıldı.</value></data>
+  <data name="Save_OkNoBackup" xml:space="preserve"><value>Kaydedildi, ancak PCEdit önce yedek kopyasını oluşturamadı.</value></data>
   <data name="Save_Failed" xml:space="preserve"><value>Kaydetme başarısız oldu. Dosyanız değiştirilmedi.</value></data>
   <data name="Save_FailedAnnounce" xml:space="preserve"><value>Hata: kaydetme başarısız oldu. Dosyanız değiştirilmedi.</value></data>
   <data name="Save_FailedNoPermission" xml:space="preserve"><value>Kaydetme başarısız oldu: dosya salt okunur veya PCEdit'in oraya yazma izni yok. Dosyanız değiştirilmedi.</value></data>

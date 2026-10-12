@@ -25,6 +25,8 @@
   <data name="Shell_PageLoadFailed" xml:space="preserve"><value>Não foi possível carregar esta página. O ficheiro continua aberto e as alterações não guardadas estão seguras.</value></data>
   <data name="Error_UnexpectedTitle" xml:space="preserve"><value>Erro inesperado</value></data>
   <data name="Error_UnexpectedBody" xml:space="preserve"><value>Algo correu mal, mas o PCEdit continua a funcionar e o seu jogo guardado continua aberto. Se algo parecer errado, reinicie o PCEdit. Os detalhes foram escritos em: {0}</value></data>
+  <data name="Settings_WriteFailedTitle" xml:space="preserve"><value>Definições não guardadas</value></data>
+  <data name="Settings_WriteFailed" xml:space="preserve"><value>Não foi possível guardar as suas definições. Voltarão aos valores anteriores da próxima vez que o PCEdit for iniciado.</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>Abrir ficheiro</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>Resumo</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>Inventários</value></data>
@@ -35,6 +37,7 @@
   <data name="Dirty_Saved" xml:space="preserve"><value>Todas as alterações guardadas</value></data>
   <data name="Save_Ok" xml:space="preserve"><value>Guardado.</value></data>
   <data name="Save_OkAnnounce" xml:space="preserve"><value>Ficheiro de jogo guardado escrito.</value></data>
+  <data name="Save_OkNoBackup" xml:space="preserve"><value>Guardado, mas o PCEdit não conseguiu fazer antes a cópia de segurança.</value></data>
   <data name="Save_Failed" xml:space="preserve"><value>Falha ao guardar. O seu ficheiro não foi alterado.</value></data>
   <data name="Save_FailedAnnounce" xml:space="preserve"><value>Erro: falha ao guardar. O seu ficheiro não foi alterado.</value></data>
   <data name="Save_FailedNoPermission" xml:space="preserve"><value>Falha ao guardar: o ficheiro é só de leitura ou o PCEdit não tem permissão para escrever nesse local. O seu ficheiro não foi alterado.</value></data>

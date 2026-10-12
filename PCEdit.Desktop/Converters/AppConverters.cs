@@ -57,8 +57,10 @@ public sealed class IconPathConverter : IValueConverter
                 // small size is far cheaper to decode, scale and hold than a full-res bitmap.
                 bitmap = Bitmap.DecodeToWidth(stream, 64, BitmapInterpolationMode.HighQuality);
             }
-            catch
+            catch (Exception ex)
             {
+                // The row is shown without its icon. Cached below, so this is logged once per icon.
+                System.Diagnostics.Trace.WriteLine($"Could not load the icon '{file}': {ex}");
                 bitmap = null;
             }
 

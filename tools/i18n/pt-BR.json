@@ -21,6 +21,7 @@
   "Dirty_Saved": "Todas as alterações salvas",
   "Save_Ok": "Salvo.",
   "Save_OkAnnounce": "Arquivo de save gravado.",
+  "Save_OkNoBackup": "Salvo, mas o PCEdit não conseguiu fazer antes a cópia de backup.",
   "Save_Failed": "Falha ao salvar. Seu arquivo não foi alterado.",
   "Save_FailedAnnounce": "Erro: falha ao salvar. Seu arquivo não foi alterado.",
   "Save_FailedNoPermission": "Falha ao salvar: o arquivo é somente leitura ou o PCEdit não tem permissão para gravar nesse local. Seu arquivo não foi alterado.",
@@ -267,6 +268,8 @@
   "Shell_PageLoadFailed": "Não foi possível carregar esta página. O arquivo continua aberto e as alterações não salvas estão seguras.",
   "Error_UnexpectedTitle": "Erro inesperado",
   "Error_UnexpectedBody": "Algo deu errado, mas o PCEdit continua em execução e seu save continua aberto. Se algo parecer errado, reinicie o PCEdit. Os detalhes foram gravados em: {0}",
+  "Settings_WriteFailedTitle": "Configurações não salvas",
+  "Settings_WriteFailed": "Não foi possível salvar suas configurações. Elas voltarão aos valores anteriores na próxima vez que o PCEdit for iniciado.",
   "About_BackupsHeading": "Backups automáticos",
   "About_BackupsNote": "Na primeira vez que o PCEdit salva um arquivo depois de abri-lo, o original é copiado para cá antes. São mantidas as cinco cópias mais recentes de cada save."
 }

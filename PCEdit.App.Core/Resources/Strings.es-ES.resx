@@ -25,6 +25,8 @@
   <data name="Shell_PageLoadFailed" xml:space="preserve"><value>No se ha podido cargar esta página. El archivo sigue abierto y los cambios sin guardar están a salvo.</value></data>
   <data name="Error_UnexpectedTitle" xml:space="preserve"><value>Error inesperado</value></data>
   <data name="Error_UnexpectedBody" xml:space="preserve"><value>Algo ha fallado, pero PCEdit sigue en marcha y tu partida sigue abierta. Si algo no va bien, reinicia PCEdit. Los detalles se han guardado en: {0}</value></data>
+  <data name="Settings_WriteFailedTitle" xml:space="preserve"><value>Ajustes no guardados</value></data>
+  <data name="Settings_WriteFailed" xml:space="preserve"><value>No se pudieron guardar tus ajustes. La próxima vez que se inicie PCEdit volverán a sus valores anteriores.</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>Abrir archivo</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>Resumen</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>Inventarios</value></data>
@@ -35,6 +37,7 @@
   <data name="Dirty_Saved" xml:space="preserve"><value>Todos los cambios guardados</value></data>
   <data name="Save_Ok" xml:space="preserve"><value>Guardado.</value></data>
   <data name="Save_OkAnnounce" xml:space="preserve"><value>Archivo de partida escrito.</value></data>
+  <data name="Save_OkNoBackup" xml:space="preserve"><value>Guardado, pero PCEdit no pudo hacer antes su copia de seguridad.</value></data>
   <data name="Save_Failed" xml:space="preserve"><value>Error al guardar. Tu archivo no se ha modificado.</value></data>
   <data name="Save_FailedAnnounce" xml:space="preserve"><value>Error: error al guardar. Tu archivo no se ha modificado.</value></data>
   <data name="Save_FailedNoPermission" xml:space="preserve"><value>Error al guardar: el archivo es de solo lectura o PCEdit no tiene permiso para escribir ahí. Tu archivo no se ha modificado.</value></data>

@@ -24,6 +24,12 @@ public sealed class JsonSettingsStore : ILanguageStore, IDisclaimerGate, IInvent
         _settings = ReadOr(new Settings());
     }
 
+    /// <summary>
+    /// Raised when a setting could not be written. It still applies until PCEdit closes, so
+    /// without this the player would only find out when it is gone at the next start.
+    /// </summary>
+    public event EventHandler? WriteFailed;
+
     public string? GetSavedCulture() =>
         string.IsNullOrWhiteSpace(_settings.UiCulture) ? null : _settings.UiCulture;
 
@@ -46,6 +52,7 @@ public sealed class JsonSettingsStore : ILanguageStore, IDisclaimerGate, IInvent
 
     private void Mutate(Func<Settings, Settings> change)
     {
+        var written = true;
         lock (_gate)
         {
             // Start from the file, not from what this window read at startup: another PCEdit
@@ -60,7 +67,14 @@ public sealed class JsonSettingsStore : ILanguageStore, IDisclaimerGate, IInvent
             catch (Exception ex)
             {
                 System.Diagnostics.Trace.WriteLine($"Could not write settings: {ex}");
+                written = false;
             }
+        }
+
+        // Outside the lock: a listener may show a dialog, and must not do so while holding it.
+        if (!written)
+        {
+            WriteFailed?.Invoke(this, EventArgs.Empty);
         }
     }
 

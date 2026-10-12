@@ -21,6 +21,7 @@
   "Dirty_Saved": "Tutte le modifiche salvate",
   "Save_Ok": "Salvato.",
   "Save_OkAnnounce": "File di salvataggio scritto.",
+  "Save_OkNoBackup": "Salvato, ma PCEdit non è riuscito a creare prima la copia di backup.",
   "Save_Failed": "Salvataggio non riuscito. Il file non è stato modificato.",
   "Save_FailedAnnounce": "Errore: salvataggio non riuscito. Il file non è stato modificato.",
   "Save_FailedNoPermission": "Salvataggio non riuscito: il file è di sola lettura oppure PCEdit non ha il permesso di scrivere in quella posizione. Il file non è stato modificato.",
@@ -267,6 +268,8 @@
   "Shell_PageLoadFailed": "Impossibile caricare questa pagina. Il file è ancora aperto e le modifiche non salvate sono al sicuro.",
   "Error_UnexpectedTitle": "Errore imprevisto",
   "Error_UnexpectedBody": "Qualcosa è andato storto, ma PCEdit è ancora in esecuzione e il salvataggio è ancora aperto. Se qualcosa non va, riavvia PCEdit. I dettagli sono stati salvati in: {0}",
+  "Settings_WriteFailedTitle": "Impostazioni non salvate",
+  "Settings_WriteFailed": "Impossibile salvare le impostazioni. Al prossimo avvio di PCEdit torneranno ai valori precedenti.",
   "About_BackupsHeading": "Backup automatici",
   "About_BackupsNote": "La prima volta che PCEdit salva un file dopo averlo aperto, l'originale viene prima copiato qui. Vengono conservate le cinque copie più recenti di ogni salvataggio."
 }

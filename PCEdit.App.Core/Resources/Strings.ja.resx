@@ -25,6 +25,8 @@
   <data name="Shell_PageLoadFailed" xml:space="preserve"><value>このページを読み込めませんでした。ファイルは開いたままで、未保存の変更も失われていません。</value></data>
   <data name="Error_UnexpectedTitle" xml:space="preserve"><value>予期しないエラー</value></data>
   <data name="Error_UnexpectedBody" xml:space="preserve"><value>問題が発生しましたが、PCEdit は動作を続けており、セーブも開いたままです。動作がおかしい場合は PCEdit を再起動してください。詳細の保存先: {0}</value></data>
+  <data name="Settings_WriteFailedTitle" xml:space="preserve"><value>設定を保存できませんでした</value></data>
+  <data name="Settings_WriteFailed" xml:space="preserve"><value>設定を保存できませんでした。次回 PCEdit を起動すると、以前の値に戻ります。</value></data>
   <data name="Nav_OpenFile" xml:space="preserve"><value>ファイルを開く</value></data>
   <data name="Nav_Overview" xml:space="preserve"><value>概要</value></data>
   <data name="Nav_Inventories" xml:space="preserve"><value>インベントリ</value></data>
@@ -35,6 +37,7 @@
   <data name="Dirty_Saved" xml:space="preserve"><value>すべての変更を保存しました</value></data>
   <data name="Save_Ok" xml:space="preserve"><value>保存しました。</value></data>
   <data name="Save_OkAnnounce" xml:space="preserve"><value>セーブファイルを書き込みました。</value></data>
+  <data name="Save_OkNoBackup" xml:space="preserve"><value>保存しましたが、PCEdit は事前のバックアップコピーを作成できませんでした。</value></data>
   <data name="Save_Failed" xml:space="preserve"><value>保存に失敗しました。ファイルは変更されていません。</value></data>
   <data name="Save_FailedAnnounce" xml:space="preserve"><value>エラー: 保存に失敗しました。ファイルは変更されていません。</value></data>
   <data name="Save_FailedNoPermission" xml:space="preserve"><value>保存に失敗しました。ファイルが読み取り専用か、PCEdit にその場所への書き込み権限がありません。ファイルは変更されていません。</value></data>

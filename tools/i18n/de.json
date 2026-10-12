@@ -21,6 +21,7 @@
   "Dirty_Saved": "Alle Änderungen gespeichert",
   "Save_Ok": "Gespeichert.",
   "Save_OkAnnounce": "Spielstanddatei geschrieben.",
+  "Save_OkNoBackup": "Gespeichert, aber PCEdit konnte vorher keine Sicherungskopie anlegen.",
   "Save_Failed": "Speichern fehlgeschlagen. Deine Datei wurde nicht geändert.",
   "Save_FailedAnnounce": "Fehler: Speichern fehlgeschlagen. Deine Datei wurde nicht geändert.",
   "Save_FailedNoPermission": "Speichern fehlgeschlagen: Die Datei ist schreibgeschützt oder PCEdit darf dort nicht schreiben. Deine Datei wurde nicht geändert.",
@@ -267,6 +268,8 @@
   "Shell_PageLoadFailed": "Diese Seite konnte nicht geladen werden. Ihre Datei ist weiterhin geöffnet und nicht gespeicherte Änderungen sind sicher.",
   "Error_UnexpectedTitle": "Unerwarteter Fehler",
   "Error_UnexpectedBody": "Etwas ist schiefgegangen, aber PCEdit läuft weiter und dein Spielstand ist noch geöffnet. Wenn etwas nicht stimmt, starte PCEdit neu. Details wurden gespeichert unter: {0}",
+  "Settings_WriteFailedTitle": "Einstellungen nicht gespeichert",
+  "Settings_WriteFailed": "Deine Einstellungen konnten nicht gespeichert werden. Beim nächsten Start von PCEdit gelten wieder die vorherigen Werte.",
   "About_BackupsHeading": "Automatische Sicherungen",
   "About_BackupsNote": "Wenn PCEdit eine Datei nach dem Öffnen zum ersten Mal speichert, wird das Original zuvor hierher kopiert. Die fünf neuesten Kopien jedes Spielstands werden aufbewahrt."
 }
