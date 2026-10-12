@@ -129,6 +129,9 @@ every build for the same reason — see Packaging.
 truth for every project's version. See `RELEASING.md` for the bump→merge→tag flow and the rules
 the pipelines enforce.
 
+Both workflows set `DOTNET_CLI_TELEMETRY_OPTOUT=1` for every job: the README says building does not
+phone home, so the project's own pipelines opt out of the SDK's telemetry too (#143).
+
 CI (`.github/workflows/ci.yml`) restores in locked mode, runs the three test projects, builds
 `PCEdit.Desktop`, fails if the Avalonia build-telemetry targets are imported, checks a `linux-x64`
 publish carries app-local ICU, and fails if the localization satellites, the AppStream metadata or
@@ -389,7 +392,11 @@ the assembly disables test parallelization: the harness redirects process-wide s
 `[Fact]` would otherwise run beside it. Controls the
 tests look up carry an `x:Name` (`PageTitle`, `SaveStatusText`, `SaveButton`, `PageErrorText`):
 keep those names. The project is on xUnit v3 because the headless package is built on it and
-cannot be mixed with xUnit 2; the other two test projects stay on 2. It carries the same
+cannot be mixed with xUnit 2; the other two test projects stay on 2. It references
+**`xunit.v3.mtp-off`, not `xunit.v3`**: the plain package pulls in Microsoft.Testing.Platform and
+its telemetry extension, which the README promises is not there. Nothing uses that platform (the
+tests run through `xunit.runner.visualstudio`), so it is out of the graph entirely, and CI fails
+if any lock file names `Microsoft.Testing.Extensions.Telemetry` (#143). It carries the same
 `Avalonia.BuildServices` exclusion as the app, and CI's telemetry guard checks both.
 
 XAML notes:
