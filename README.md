@@ -125,9 +125,12 @@ connections — there is no update check, no crash reporting and no analytics. T
 computer; it contains file paths, so look it over before attaching it to a bug report.
 
 Building from source does not phone home either. Avalonia, the UI framework, normally reports
-each build to its authors; PCEdit excludes that component, and CI fails if it ever returns. If
-you build other .NET projects, note that the .NET SDK reports builds separately — opt out with
-`DOTNET_CLI_TELEMETRY_OPTOUT=1`.
+each build to its authors; PCEdit excludes that component, and CI fails if it ever returns.
+Running the tests is the same: the test framework's optional reporting package is kept out of
+the project altogether, and CI fails if it ever returns. One
+thing is outside the project's control: the .NET SDK itself reports the commands you run, for
+any project including this one. Opt out with `DOTNET_CLI_TELEMETRY_OPTOUT=1`; PCEdit's own CI
+and release builds set it.
 
 ## Project layout
 

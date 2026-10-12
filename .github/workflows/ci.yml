@@ -8,6 +8,11 @@ on:
 permissions:
   contents: read
 
+# The .NET SDK reports each command it runs to Microsoft unless told not to. The README says
+# building PCEdit does not phone home, so the project's own pipelines must not either.
+env:
+  DOTNET_CLI_TELEMETRY_OPTOUT: 1
+
 jobs:
   build-test:
     runs-on: ubuntu-22.04
@@ -59,6 +64,20 @@ jobs:
             fi
           done
           echo ">> Avalonia.BuildServices targets are not imported; build-time telemetry is off."
+
+      # The UI tests use xunit.v3.mtp-off so that Microsoft.Testing.Platform, and the telemetry
+      # extension it brings, are not in the dependency graph at all (issue #143). A lock file is
+      # the exact record of that graph, so this fails if a package change lets it back in -
+      # for example a bump that swaps xunit.v3.mtp-off for plain xunit.v3.
+      - name: No test-platform telemetry package in any lock file
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -l 'Microsoft\.Testing\.Extensions\.Telemetry' */packages.lock.json; then
+            echo "::error::Microsoft.Testing.Extensions.Telemetry is in the lock file(s) listed above. Use an xunit.v3 *.mtp-off package, or remove whatever pulled in Microsoft.Testing.Platform."
+            exit 1
+          fi
+          echo ">> No lock file names Microsoft.Testing.Extensions.Telemetry."
 
       # The AppImage is only assembled at release time, so guard the ICU wiring here:
       # without it the Linux build FailFasts at startup on a distro with no system libicu.

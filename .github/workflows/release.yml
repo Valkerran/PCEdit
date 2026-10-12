@@ -23,6 +23,11 @@ on:
 permissions:
   contents: read
 
+# The .NET SDK reports each command it runs to Microsoft unless told not to. The README says
+# building PCEdit does not phone home, so the project's own pipelines must not either.
+env:
+  DOTNET_CLI_TELEMETRY_OPTOUT: 1
+
 jobs:
   version:
     runs-on: ubuntu-latest

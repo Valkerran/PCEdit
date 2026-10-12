@@ -16,7 +16,12 @@
          project's build would import Avalonia's build-time telemetry task. -->
     <PackageReference Include="Avalonia.BuildServices" Version="11.3.2" ExcludeAssets="all" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.10.1" />
-    <PackageReference Include="xunit.v3" Version="3.2.2" />
+    <!-- xunit.v3.mtp-off, not xunit.v3: the plain package brings in Microsoft.Testing.Platform
+         and with it Microsoft.Testing.Extensions.Telemetry. Nothing here uses that platform
+         (the tests run through xunit.runner.visualstudio), so it is left out of the graph
+         altogether rather than switched off by an environment variable someone has to remember
+         (issue #143). CI fails if any lock file names the telemetry package again. -->
+    <PackageReference Include="xunit.v3.mtp-off" Version="3.2.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="4.0.1" />
   </ItemGroup>
 
