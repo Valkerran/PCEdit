@@ -12,6 +12,7 @@ updates:
       - /PCEdit.Desktop
       - /PCEdit.SaveFileHandler.Tests
       - /PCEdit.App.Core.Tests
+      - /PCEdit.Desktop.Tests
     schedule:
       interval: weekly
     groups:
