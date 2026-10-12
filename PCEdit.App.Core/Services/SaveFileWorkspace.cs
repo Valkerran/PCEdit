@@ -1,5 +1,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using PCEdit.App.Core.Localization;
+using PCEdit.App.Core.ViewModels;
 using PCEdit.SaveFileHandler;
 using PCEdit.SaveFileHandler.Models;
 
@@ -49,10 +50,14 @@ public sealed partial class SaveFileWorkspace : ObservableObject, ISaveFileWorks
 
     public bool IsLoaded => Current is not null;
 
-    private void SetSaveStatus(string? key)
+    public StatusKind SaveStatusKind { get; private set; }
+
+    private void SetSaveStatus(string? key, StatusKind kind = StatusKind.Info)
     {
         _saveStatusKey = key;
+        SaveStatusKind = kind;
         OnPropertyChanged(nameof(SaveStatus));
+        OnPropertyChanged(nameof(SaveStatusKind));
     }
 
     partial void OnCurrentChanged(PlanetCrafterSaveFile? value)
@@ -109,7 +114,7 @@ public sealed partial class SaveFileWorkspace : ObservableObject, ISaveFileWorks
 
         if (HasChangedOnDisk)
         {
-            ReportSaveRefused(LocKeys.Save_ChangedOnDisk);
+            ReportSaveProblem(LocKeys.Save_ChangedOnDisk);
             return;
         }
 
@@ -120,13 +125,12 @@ public sealed partial class SaveFileWorkspace : ObservableObject, ISaveFileWorks
         catch (UnauthorizedAccessException ex)
         {
             System.Diagnostics.Trace.WriteLine($"Not allowed to save '{FilePath}': {ex}");
-            ReportSaveRefused(LocKeys.Save_FailedNoPermission);
+            ReportSaveProblem(LocKeys.Save_FailedNoPermission);
         }
         catch (Exception ex)
         {
             System.Diagnostics.Trace.WriteLine($"Could not save '{FilePath}': {ex}");
-            SetSaveStatus(LocKeys.Save_Failed);
-            _announcer.Announce(_localizer[LocKeys.Save_FailedAnnounce]);
+            ReportSaveProblem(LocKeys.Save_Failed);
         }
     }
 
@@ -137,15 +141,21 @@ public sealed partial class SaveFileWorkspace : ObservableObject, ISaveFileWorks
         _fingerprint = _store.Fingerprint(path);
         IsDirty = false;
 
+        if (backedUp)
+        {
+            SetSaveStatus(LocKeys.Save_Ok, StatusKind.Success);
+            _announcer.Announce(_localizer[LocKeys.Save_OkAnnounce]);
+            return;
+        }
+
         // "Saved." alone would leave the player believing the safety copy exists.
-        SetSaveStatus(backedUp ? LocKeys.Save_Ok : LocKeys.Save_OkNoBackup);
-        _announcer.Announce(_localizer[backedUp ? LocKeys.Save_OkAnnounce : LocKeys.Save_OkNoBackup]);
+        ReportSaveProblem(LocKeys.Save_OkNoBackup);
     }
 
-    private void ReportSaveRefused(string key)
+    private void ReportSaveProblem(string key)
     {
-        SetSaveStatus(key);
-        _announcer.Announce(_localizer.Format(LocKeys.Announce_ErrorPrefix, _localizer[key]));
+        SetSaveStatus(key, StatusKind.Error);
+        _announcer.Announce(_localizer, StatusKind.Error, _localizer[key]);
     }
 
     public void Close()
@@ -169,6 +179,9 @@ public sealed partial class SaveFileWorkspace : ObservableObject, ISaveFileWorks
         _store.SaveCopy(FilePath, targetPath, Current);
         FilePath = targetPath;
         _fingerprint = _store.Fingerprint(targetPath);
+
+        // Whatever the header said was about the file this came from.
+        SetSaveStatus(null);
         IsDirty = false;
 
         // The copy is PCEdit's own output: nothing in it needs preserving. The pristine save is

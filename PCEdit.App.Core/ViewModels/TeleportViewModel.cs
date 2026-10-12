@@ -344,7 +344,7 @@ public sealed partial class TeleportViewModel(
     {
         StatusKind = kind;
         StatusMessage = message;
-        _announcer.Announce(kind == StatusKind.Error ? _localizer.Format(LocKeys.Announce_ErrorPrefix, message) : message);
+        _announcer.Announce(_localizer, kind, message);
     }
 
     private List<LandmarkOption> FindLandmarks(PlanetCrafterSaveFile save)

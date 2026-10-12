@@ -38,7 +38,6 @@ public static class LocKeys
     public const string Save_OkAnnounce = "Save_OkAnnounce";
     public const string Save_OkNoBackup = "Save_OkNoBackup";
     public const string Save_Failed = "Save_Failed";
-    public const string Save_FailedAnnounce = "Save_FailedAnnounce";
     public const string Save_FailedNoPermission = "Save_FailedNoPermission";
     public const string Save_ChangedOnDisk = "Save_ChangedOnDisk";
     public const string Save_ChangedTitle = "Save_ChangedTitle";
@@ -95,7 +94,6 @@ public static class LocKeys
     public const string Inv_DestNoRoom = "Inv_DestNoRoom";
     public const string SelectInv_MovedMany = "SelectInv_MovedMany";
 
-    public const string SelectInv_MoveFailedTitle = "SelectInv_MoveFailedTitle";
     public const string SelectInv_MoveIncomplete = "SelectInv_MoveIncomplete";
     public const string SelectInv_Moved = "SelectInv_Moved";
 

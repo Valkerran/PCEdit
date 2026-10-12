@@ -29,7 +29,7 @@ public sealed class SelectInventoryViewModelTests
         var itemCatalog = new ItemCatalog();
         var editor = new InventoryEditor(workspace, itemCatalog, new LogisticsGroupCatalog(itemCatalog), localizer, new PlanetIndex(workspace));
         var announcer = new FakeScreenReaderAnnouncer();
-        var vm = new SelectInventoryViewModel(editor, announcer, new FakeNavigationService(), new FakeDialogService(), localizer);
+        var vm = new SelectInventoryViewModel(editor, announcer, new FakeNavigationService(), localizer);
         vm.Initialize(stack);
         return (vm, workspace, announcer);
     }
@@ -198,5 +198,55 @@ public sealed class SelectInventoryViewModelTests
 
         Assert.Empty(vm.FilteredOptions);
         Assert.True(vm.HasNoDestinations);
+    }
+
+    [Fact]
+    public async Task AFailedMove_IsReportedInTheDialogItself_NotInASecondOne()
+    {
+        // The player fixes it right there by picking another destination. A second dialog on
+        // top of this one used to say the same sentence again; the view model no longer has a
+        // dialog service to open one with.
+        var store = new FakeSaveFileStore();
+        store.Seed(Path, WorkspaceFixtures.Create());
+        var localizer = new Localizer();
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
+        workspace.Load(Path);
+        var itemCatalog = new ItemCatalog();
+        var editor = new InventoryEditor(workspace, itemCatalog, new LogisticsGroupCatalog(itemCatalog), localizer, new PlanetIndex(workspace));
+        var announcer = new FakeScreenReaderAnnouncer();
+        var vm = new SelectInventoryViewModel(editor, announcer, new FakeNavigationService(), localizer);
+        vm.Initialize([200, 201]);
+        vm.Quantity = 2;
+        var bobsOneSlot = vm.FilteredOptions.Single(option => option.InventoryId == 20);
+
+        await vm.SelectCommand.ExecuteAsync(bobsOneSlot);
+
+        Assert.Equal(StatusKind.Error, vm.StatusKind);
+        Assert.StartsWith("Error: ", Assert.Single(announcer.Announcements));
+        Assert.Equal("200,201", workspace.Current!.Inventories.Single(i => i.Id == 10).WorldObjectIds);
+    }
+
+    [Fact]
+    public async Task TheSameFailedMoveTwice_IsReportedTwice()
+    {
+        // With one status line and no dialog, a second identical failure would otherwise change
+        // nothing on screen and give assistive technology nothing new to read.
+        var (vm, _, announcer) = CreateFor([200, 201]);
+        vm.Quantity = 2;
+        var bobsOneSlot = vm.FilteredOptions.Single(option => option.InventoryId == 20);
+        var statusChanges = 0;
+        vm.PropertyChanged += (_, e) =>
+        {
+            if (e.PropertyName == nameof(vm.StatusMessage) && vm.StatusMessage is not null)
+            {
+                statusChanges++;
+            }
+        };
+
+        await vm.SelectCommand.ExecuteAsync(bobsOneSlot);
+        await vm.SelectCommand.ExecuteAsync(bobsOneSlot);
+
+        Assert.Equal(2, statusChanges);
+        Assert.Equal(2, announcer.Announcements.Count);
     }
 }

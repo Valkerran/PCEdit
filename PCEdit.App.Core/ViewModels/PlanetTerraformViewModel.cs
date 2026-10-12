@@ -126,7 +126,7 @@ public sealed partial class PlanetTerraformViewModel : ObservableObject
     {
         StatusKind = kind;
         StatusMessage = message;
-        _announcer.Announce(kind == StatusKind.Error ? _localizer.Format(LocKeys.Announce_ErrorPrefix, message) : message);
+        _announcer.Announce(_localizer, kind, message);
     }
 
     private bool TryParseLevels(

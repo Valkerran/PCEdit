@@ -75,7 +75,9 @@
                                    Text="{Binding SelectedNavItem.Label}" />
                         <TextBlock x:Name="SaveStatusText" Grid.Column="1" VerticalAlignment="Center" FontSize="12.5"
                                    TextWrapping="Wrap"
-                                   Foreground="{DynamicResource StatusInfoText}"
+                                   Classes="status"
+                                   Classes.success="{Binding Workspace.SaveStatusKind, Converter={StaticResource StatusIsSuccess}}"
+                                   Classes.error="{Binding Workspace.SaveStatusKind, Converter={StaticResource StatusIsError}}"
                                    Text="{Binding Workspace.SaveStatus}"
                                    IsVisible="{Binding Workspace.SaveStatus, Converter={StaticResource StringNotEmpty}}" />
                         <TextBlock Grid.Column="2" VerticalAlignment="Center" Classes="caption"

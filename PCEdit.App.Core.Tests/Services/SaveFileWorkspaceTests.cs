@@ -2,6 +2,7 @@ using PCEdit.App.Core.Localization;
 using PCEdit.App.Core.Services;
 using PCEdit.App.Core.Tests.Fakes;
 using PCEdit.App.Core.Tests.Fixtures;
+using PCEdit.App.Core.ViewModels;
 
 namespace PCEdit.App.Core.Tests.Services;
 
@@ -511,5 +512,90 @@ public sealed class SaveFileWorkspaceTests
         workspace.Save();
 
         Assert.Equal(new Localizer()[LocKeys.Save_Ok], workspace.SaveStatus);
+    }
+
+    private static (SaveFileWorkspace Workspace, FakeSaveFileStore Store, FakeSaveBackupService Backups, FakeScreenReaderAnnouncer Announcer)
+        CreateLoadedWorkspaceWithAnnouncer()
+    {
+        var store = new FakeSaveFileStore();
+        store.Seed(Path, WorkspaceFixtures.Create());
+        var backups = new FakeSaveBackupService();
+        var announcer = new FakeScreenReaderAnnouncer();
+        var workspace = new SaveFileWorkspace(store, announcer, new Localizer(), backups);
+        workspace.Load(Path);
+        workspace.GrantTerraTokens(1, 1);
+        return (workspace, store, backups, announcer);
+    }
+
+    [Fact]
+    public void Save_WhenItSucceeds_IsASuccess()
+    {
+        var (workspace, _, _, _) = CreateLoadedWorkspaceWithAnnouncer();
+
+        workspace.Save();
+
+        Assert.Equal(StatusKind.Success, workspace.SaveStatusKind);
+    }
+
+    [Fact]
+    public void Save_WhenItFails_IsAnnouncedOnce_WithTheErrorPrefix()
+    {
+        var (workspace, store, _, announcer) = CreateLoadedWorkspaceWithAnnouncer();
+        store.SaveFailure = new IOException("disk full");
+
+        workspace.Save();
+
+        Assert.Equal(StatusKind.Error, workspace.SaveStatusKind);
+        Assert.Equal("Error: " + new Localizer()[LocKeys.Save_Failed], Assert.Single(announcer.Announcements));
+    }
+
+    [Theory]
+    [InlineData("read-only")]
+    [InlineData("changed")]
+    [InlineData("no backup")]
+    public void ASaveThatWasRefusedOrHasNoBackup_IsAnError_AnnouncedWithThePrefix(string situation)
+    {
+        var (workspace, store, backups, announcer) = CreateLoadedWorkspaceWithAnnouncer();
+        switch (situation)
+        {
+            case "read-only": store.SaveFailure = new UnauthorizedAccessException(); break;
+            case "changed": store.FingerprintValue = "the game saved"; break;
+            default: backups.ThrowOnBackUp = new IOException("no room"); break;
+        }
+
+        workspace.Save();
+
+        Assert.Equal(StatusKind.Error, workspace.SaveStatusKind);
+        Assert.Equal("Error: " + workspace.SaveStatus, Assert.Single(announcer.Announcements));
+    }
+
+    [Fact]
+    public void AnEditAfterASave_ClearsTheSavedStatusAndItsKind()
+    {
+        // "Saved." in green must not outlive the edit that makes it untrue.
+        var (workspace, _, _, _) = CreateLoadedWorkspaceWithAnnouncer();
+        workspace.Save();
+        Assert.Equal(StatusKind.Success, workspace.SaveStatusKind);
+
+        workspace.GrantTerraTokens(1, 1);
+
+        Assert.Null(workspace.SaveStatus);
+        Assert.Equal(StatusKind.Info, workspace.SaveStatusKind);
+    }
+
+    [Fact]
+    public void SaveCopy_ClearsAStatusThatWasAboutTheFileItCameFrom()
+    {
+        // "Saved, but ... no backup" is about the original; after the switch to the copy it
+        // would sit in the header, in red, describing a file that is no longer the open one.
+        var (workspace, _, backups, _) = CreateLoadedWorkspaceWithAnnouncer();
+        backups.ThrowOnBackUp = new IOException("no room");
+        workspace.Save();
+        Assert.Equal(StatusKind.Error, workspace.SaveStatusKind);
+
+        workspace.SaveCopy(@"C:\fake\copy.txt");
+
+        Assert.Null(workspace.SaveStatus);
+        Assert.Equal(StatusKind.Info, workspace.SaveStatusKind);
     }
 }

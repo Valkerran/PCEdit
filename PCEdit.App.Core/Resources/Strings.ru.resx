@@ -39,7 +39,6 @@
   <data name="Save_OkAnnounce" xml:space="preserve"><value>Файл сохранения записан.</value></data>
   <data name="Save_OkNoBackup" xml:space="preserve"><value>Сохранено, но PCEdit не смог сначала сделать резервную копию.</value></data>
   <data name="Save_Failed" xml:space="preserve"><value>Не удалось сохранить. Ваш файл не изменён.</value></data>
-  <data name="Save_FailedAnnounce" xml:space="preserve"><value>Ошибка: не удалось сохранить. Ваш файл не изменён.</value></data>
   <data name="Save_FailedNoPermission" xml:space="preserve"><value>Не удалось сохранить: файл доступен только для чтения или у PCEdit нет прав на запись в это место. Ваш файл не изменён.</value></data>
   <data name="Save_ChangedOnDisk" xml:space="preserve"><value>Не сохранено: файл на диске изменился после того, как PCEdit его открыл.</value></data>
   <data name="Save_ChangedTitle" xml:space="preserve"><value>Файл сохранения изменился</value></data>
@@ -184,7 +183,6 @@
   <data name="SelectInv_Heading" xml:space="preserve"><value>Выберите целевой инвентарь</value></data>
   <data name="SelectInv_Search" xml:space="preserve"><value>Поиск мест назначения по имени или ID</value></data>
   <data name="SelectInv_None" xml:space="preserve"><value>Других инвентарей нет.</value></data>
-  <data name="SelectInv_MoveFailedTitle" xml:space="preserve"><value>Не удалось переместить</value></data>
   <data name="SelectInv_MoveIncomplete" xml:space="preserve"><value>Не удалось завершить перемещение.</value></data>
   <data name="SelectInv_Moved" xml:space="preserve"><value>Предмет перемещён в {0}.</value></data>
   <data name="Inventories_LogisticsSummary" xml:space="preserve"><value>Спрос {0} · Поставка {1} · Приоритет {2}</value></data>

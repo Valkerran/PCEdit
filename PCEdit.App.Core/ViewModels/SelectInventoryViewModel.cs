@@ -11,13 +11,11 @@ public sealed partial class SelectInventoryViewModel(
     IInventoryEditor inventoryEditor,
     IScreenReaderAnnouncer announcer,
     INavigationService navigation,
-    IDialogService dialogs,
     ILocalizer localizer) : ObservableObject
 {
     private readonly IInventoryEditor _inventoryEditor = inventoryEditor;
     private readonly IScreenReaderAnnouncer _announcer = announcer;
     private readonly INavigationService _navigation = navigation;
-    private readonly IDialogService _dialogs = dialogs;
     private readonly ILocalizer _localizer = localizer;
 
     // The stack to move from, in the save's order; a single item is a stack of one.
@@ -101,6 +99,10 @@ public sealed partial class SelectInventoryViewModel(
     [RelayCommand]
     private async Task SelectAsync(InventoryOptionView destination)
     {
+        // Cleared first, so a second failure with the same reason is still a change: on screen,
+        // and for the live region that reads this line out.
+        StatusMessage = null;
+
         // The last of the stack, as the game takes overflow from the end.
         var result = _inventoryEditor.TryMoveItems(_stack.TakeLast(Quantity).ToList(), destination.InventoryId);
         if (!result.Success)
@@ -108,8 +110,7 @@ public sealed partial class SelectInventoryViewModel(
             var message = result.ErrorMessage ?? _localizer[LocKeys.SelectInv_MoveIncomplete];
             StatusKind = StatusKind.Error;
             StatusMessage = message;
-            _announcer.Announce(_localizer.Format(LocKeys.Announce_ErrorPrefix, message));
-            await _dialogs.ShowErrorAsync(_localizer[LocKeys.SelectInv_MoveFailedTitle], message);
+            _announcer.Announce(_localizer, StatusKind.Error, message);
             return;
         }
 

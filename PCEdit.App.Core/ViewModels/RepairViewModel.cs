@@ -237,7 +237,7 @@ public sealed partial class RepairViewModel(
     private async Task ReportFailureAsync(string messageKey)
     {
         var message = localizer[messageKey];
-        announcer.Announce(localizer.Format(LocKeys.Announce_ErrorPrefix, message));
+        announcer.Announce(localizer, StatusKind.Error, message);
         await dialogs.ShowErrorAsync(localizer[LocKeys.Repair_FailedTitle], message);
     }
 
