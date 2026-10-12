@@ -290,7 +290,7 @@ public sealed partial class MainWindowViewModel : ObservableObject
         System.Diagnostics.Trace.WriteLine($"Could not load the {destination} page: {ex}");
         _loadedAtRevision.Remove(destination);
         PageError = _localizer[LocKeys.Shell_PageLoadFailed];
-        _announcer.Announce(_localizer.Format(LocKeys.Announce_ErrorPrefix, PageError));
+        _announcer.Announce(_localizer, StatusKind.Error, PageError);
     }
 
     /// <summary>
@@ -309,7 +309,7 @@ public sealed partial class MainWindowViewModel : ObservableObject
         try
         {
             var message = _localizer[LocKeys.Settings_WriteFailed];
-            _announcer.Announce(_localizer.Format(LocKeys.Announce_ErrorPrefix, message));
+            _announcer.Announce(_localizer, StatusKind.Error, message);
             await _dialogs.ShowErrorAsync(_localizer[LocKeys.Settings_WriteFailedTitle], message);
         }
         finally

@@ -108,7 +108,7 @@ public sealed partial class SelectInventoryViewModel(
             var message = result.ErrorMessage ?? _localizer[LocKeys.SelectInv_MoveIncomplete];
             StatusKind = StatusKind.Error;
             StatusMessage = message;
-            _announcer.Announce(_localizer.Format(LocKeys.Announce_ErrorPrefix, message));
+            _announcer.Announce(_localizer, StatusKind.Error, message);
             await _dialogs.ShowErrorAsync(_localizer[LocKeys.SelectInv_MoveFailedTitle], message);
             return;
         }

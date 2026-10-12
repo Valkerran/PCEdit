@@ -129,8 +129,6 @@ public sealed partial class OpenFileViewModel : ObservableObject
         }
 
         var message = _localizer.Format(key, _statusArgs);
-        _announcer.Announce(kind == StatusKind.Error
-            ? _localizer.Format(LocKeys.Announce_ErrorPrefix, message)
-            : message);
+        _announcer.Announce(_localizer, kind, message);
     }
 }
