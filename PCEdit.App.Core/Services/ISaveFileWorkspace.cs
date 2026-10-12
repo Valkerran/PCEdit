@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using PCEdit.App.Core.ViewModels;
 using PCEdit.SaveFileHandler.Models;
 
 namespace PCEdit.App.Core.Services;
@@ -14,6 +15,10 @@ public interface ISaveFileWorkspace : INotifyPropertyChanged
     bool IsDirty { get; }
 
     string? SaveStatus { get; }
+
+    /// <summary>Whether <see cref="SaveStatus"/> reports a success or a problem, so the header
+    /// can show it by more than its wording.</summary>
+    StatusKind SaveStatusKind { get; }
 
     void Load(string path);
 
