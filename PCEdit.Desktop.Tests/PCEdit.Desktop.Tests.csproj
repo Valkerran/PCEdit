@@ -15,7 +15,7 @@
     <!-- Same exclusion, for the same reason, as in PCEdit.Desktop.csproj: without it this
          project's build would import Avalonia's build-time telemetry task. -->
     <PackageReference Include="Avalonia.BuildServices" Version="11.3.2" ExcludeAssets="all" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.10.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.11.0" />
     <!-- xunit.v3.mtp-off, not xunit.v3: the plain package brings in Microsoft.Testing.Platform
          and with it Microsoft.Testing.Extensions.Telemetry. Nothing here uses that platform
          (the tests run through xunit.runner.visualstudio), so it is left out of the graph
