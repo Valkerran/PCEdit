@@ -85,8 +85,7 @@
                         <Button x:Name="SaveButton" Grid.Column="3" Classes="accent" VerticalAlignment="Center"
                                 Content="{m:Loc Common_Save}"
                                 Command="{Binding SaveCommand}"
-                                ToolTip.Tip="{m:Loc Shell_SaveHint}"
-                                HotKey="Ctrl+S" />
+                                ToolTip.Tip="{m:Loc Shell_SaveHint}" />
                     </Grid>
                 </Border>
 

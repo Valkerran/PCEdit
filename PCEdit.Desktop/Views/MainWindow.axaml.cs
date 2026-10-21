@@ -1,6 +1,7 @@
 using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
 using PCEdit.App.Core.Localization;
@@ -43,6 +44,11 @@ public partial class MainWindow : Window
         {
             avaloniaAnnouncer.Sink = message => _liveRegion.Text = message;
         }
+
+        // The platform's command key: Cmd on macOS, Ctrl elsewhere. Avalonia does not map Ctrl to
+        // Cmd, so a hard-coded Ctrl+S did nothing for a Mac user (#106).
+        var commandKey = Application.Current?.PlatformSettings?.HotkeyConfiguration.CommandModifiers ?? KeyModifiers.Control;
+        KeyBindings.Add(new KeyBinding { Gesture = new KeyGesture(Key.S, commandKey), Command = viewModel.SaveCommand });
 
         Opened += OnOpened;
         Closing += OnClosing;
