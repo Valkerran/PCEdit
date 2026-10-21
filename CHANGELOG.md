@@ -4,6 +4,14 @@ What changed in each release of PCEdit. Downloads for every version are on the
 [Releases page](https://github.com/Valkerran/PCEdit/releases); the newest is on the
 [latest release](https://github.com/Valkerran/PCEdit/releases/latest) page.
 
+## v1.8.4
+
+- **Fixed: Cmd+S saves on macOS.** The save shortcut was Ctrl+S on every platform, so on a Mac
+  the usual Cmd+S did nothing and only the Save button worked. It is now Cmd+S on macOS and
+  still Ctrl+S on Linux and Windows.
+
+Only macOS behaves differently; Linux and Windows are unchanged. No new dependencies.
+
 ## v1.8.3
 
 A maintenance update: nothing in PCEdit itself changes.
