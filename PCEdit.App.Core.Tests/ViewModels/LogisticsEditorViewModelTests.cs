@@ -39,6 +39,42 @@ public sealed class LogisticsEditorViewModelTests
     }
 
     [Fact]
+    public async Task SelectAll_PreservesSavedAndTypedUnknownGroups_OnBothLists()
+    {
+        var (vm, workspace, _) = Create();
+        workspace.ReplaceInventory(30, inventory => inventory with
+        {
+            DemandGroups = "FutureDemand,Iron",
+            SupplyGroups = "FutureSupply"
+        });
+        vm.Initialize(30);
+        vm.DemandGroupText = "TypedDemand";
+        vm.AddDemandGroupCommand.Execute(null);
+        vm.SupplyGroupText = "TypedSupply";
+        vm.AddSupplyGroupCommand.Execute(null);
+
+        vm.SelectAllDemandCommand.Execute(null);
+        vm.SelectAllSupplyCommand.Execute(null);
+        vm.SelectAllDemandCommand.Execute(null);
+        vm.SelectAllSupplyCommand.Execute(null);
+        await vm.ApplyCommand.ExecuteAsync(null);
+
+        var inventory = workspace.Current!.Inventories.Single(i => i.Id == 30);
+        var demand = GroupListCodec.Parse(inventory.DemandGroups);
+        var supply = GroupListCodec.Parse(inventory.SupplyGroups);
+        Assert.Contains("FutureDemand", demand);
+        Assert.Contains("TypedDemand", demand);
+        Assert.Contains("FutureSupply", supply);
+        Assert.Contains("TypedSupply", supply);
+        Assert.All(vm.DemandGroupOptions, group => Assert.Contains(group.Id, demand));
+        Assert.All(vm.SupplyGroupOptions, group => Assert.Contains(group.Id, supply));
+        Assert.Equal(demand.Count, demand.Distinct().Count());
+        Assert.Equal(supply.Count, supply.Distinct().Count());
+        Assert.True(vm.DemandIsEverything);
+        Assert.True(vm.SupplyIsEverything);
+    }
+
+    [Fact]
     public void Initialize_LoadsCurrentGroupsAndPriority()
     {
         var (vm, _, _) = Create();

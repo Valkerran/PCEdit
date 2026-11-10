@@ -63,14 +63,16 @@ public sealed class OverflowRepair(ISaveFileWorkspace workspace, IItemCatalog it
             worldObjects.TryAdd(worldObject.Id, worldObject);
         }
 
+        // Removing an id removes every record bearing it: protect it if any record owns storage.
+        var inventoryOwners = save.WorldObjects.Where(OwnsAnInventory).Select(item => item.Id).ToHashSet();
         var excess = save.Inventories
-            .Select(inventory => (inventory.Id, Excess: PickExcess(inventory, multiple, worldObjects)))
+            .Select(inventory => (inventory.Id, Excess: PickExcess(inventory, multiple, worldObjects, inventoryOwners)))
             .Where(e => e.Excess.Count > 0)
             .ToList();
 
         var storage = FreeStorage.Find(save, worldObjects);
         var moved = PlaceTickedTypes(excess, moveFirst, storage, worldObjects);
-        var removed = excess.SelectMany(e => e.Excess).Where(id => !moved.Contains(id)).ToList();
+        var removed = excess.SelectMany(e => e.Excess).Distinct().Where(id => !moved.Contains(id)).ToList();
         var leaving = excess.Select(e => (e.Id, e.Excess.ToHashSet())).ToList();
         return new Decision(excess, leaving, removed, moved.Count, storage, worldObjects);
     }
@@ -89,7 +91,7 @@ public sealed class OverflowRepair(ISaveFileWorkspace workspace, IItemCatalog it
         {
             foreach (var (inventoryId, id) in byType.GetValueOrDefault(gId) ?? [])
             {
-                if (storage.TryPlace(inventoryId, id, gId))
+                if (!moved.Contains(id) && storage.TryPlace(inventoryId, id, gId))
                 {
                     moved.Add(id);
                 }
@@ -127,16 +129,18 @@ public sealed class OverflowRepair(ISaveFileWorkspace workspace, IItemCatalog it
 
     /// <summary>The items over one inventory's limit, in the inventory's own order - the last
     /// ones, skipping any that own an inventory - or none if it is within its limit.</summary>
-    private static List<int> PickExcess(Inventory inventory, int multiple, IReadOnlyDictionary<int, WorldObject> worldObjects)
+    private static List<int> PickExcess(Inventory inventory, int multiple,
+        IReadOnlyDictionary<int, WorldObject> worldObjects, IReadOnlySet<int> inventoryOwners)
     {
-        // Counted as the Inventories page counts: ids that name an existing item.
-        var items = WorldObjectIdsCodec.Parse(inventory.WorldObjectIds).Where(worldObjects.ContainsKey).ToList();
+        // Only existing items count. Repeated references to one item must not make a
+        // retained item look like excess: leaving removes every occurrence of a picked id.
+        var items = WorldObjectIdsCodec.Parse(inventory.WorldObjectIds).Where(worldObjects.ContainsKey).Distinct().ToList();
         var limit = (int)Math.Min((long)inventory.Size * multiple, InventoryGroup.NearLoadLimitThreshold);
         var over = items.Count - limit;
         var picked = new List<int>();
         for (var i = items.Count - 1; i >= 0 && picked.Count < over; i--)
         {
-            if (!OwnsAnInventory(worldObjects[items[i]]))
+            if (!inventoryOwners.Contains(items[i]))
             {
                 picked.Add(items[i]);
             }
@@ -170,6 +174,7 @@ public sealed class OverflowRepair(ISaveFileWorkspace workspace, IItemCatalog it
             .ToList();
         var excessByType = decision.Excess
             .SelectMany(e => e.Excess)
+            .Distinct()
             .GroupBy(id => decision.WorldObjects[id].GId, StringComparer.Ordinal)
             .Select(g => new ExcessType(g.Key, DisplayName(g.Key), g.Count()))
             .OrderByDescending(t => t.Count)

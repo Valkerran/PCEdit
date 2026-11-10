@@ -118,7 +118,7 @@ public sealed partial class LogisticsEditorViewModel(
     [RelayCommand]
     private void SelectAllDemand()
     {
-        Replace(DemandGroups, _groupCatalog.DemandGroups.Select(g => g.Id));
+        AddKnown(DemandGroups, _groupCatalog.DemandGroups);
     }
 
     [RelayCommand]
@@ -151,7 +151,7 @@ public sealed partial class LogisticsEditorViewModel(
     [RelayCommand]
     private void SelectAllSupply()
     {
-        Replace(SupplyGroups, _groupCatalog.SupplyGroups.Select(g => g.Id));
+        AddKnown(SupplyGroups, _groupCatalog.SupplyGroups);
     }
 
     [RelayCommand]
@@ -215,6 +215,16 @@ public sealed partial class LogisticsEditorViewModel(
         foreach (var id in ids)
         {
             AddUnique(target, _groupCatalog.Resolve(id));
+        }
+
+        NotifyListsChanged();
+    }
+
+    private void AddKnown(ObservableCollection<LogisticsGroupInfo> target, IEnumerable<LogisticsGroupInfo> groups)
+    {
+        foreach (var group in groups)
+        {
+            AddUnique(target, group);
         }
 
         NotifyListsChanged();
