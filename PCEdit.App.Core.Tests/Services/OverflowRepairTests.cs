@@ -35,6 +35,89 @@ public sealed class OverflowRepairTests
     };
 
     [Fact]
+    public void Apply_RepeatedIdWithinAnInventory_DoesNotRemoveTheRetainedItem()
+    {
+        var (repair, workspace) = CreateLoaded(save =>
+        {
+            FillContainer30(2, size: 1)(save);
+            var index = save.Inventories.FindIndex(i => i.Id == 30);
+            save.Inventories[index] = save.Inventories[index] with { WorldObjectIds = "1000,1001,1000" };
+        });
+
+        var preview = repair.Plan(1);
+        var done = repair.Apply(1);
+
+        Assert.Equal(1, preview.ItemCount);
+        Assert.Equal(preview.ItemCount, done.ItemCount);
+        Assert.Equal("1000,1000", IdsOf(workspace, 30));
+        Assert.Contains(workspace.Current!.WorldObjects, item => item.Id == 1000);
+        Assert.DoesNotContain(workspace.Current.WorldObjects, item => item.Id == 1001);
+    }
+
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void Apply_SharedExcessId_IsCountedAndPlacedOnlyOnce(bool move)
+    {
+        var (repair, workspace) = CreateLoaded(All(
+            FillContainer30(2, size: 1),
+            save => save.Inventories.Add(new Inventory { Id = 50, Size = 1, WorldObjectIds = "1000,1001" }),
+            Crate(500, 40, size: 3)));
+
+        var types = move ? new[] { "Iron" } : Array.Empty<string>();
+        var preview = repair.Plan(1, types);
+        var done = repair.Apply(1, types);
+
+        Assert.Equal(1, Assert.Single(preview.ExcessByType).Count);
+        Assert.Equal((preview.ItemCount, preview.MovedCount), (done.ItemCount, done.MovedCount));
+        Assert.Equal((move ? 0 : 1, move ? 1 : 0), (done.ItemCount, done.MovedCount));
+        Assert.Equal("1000", IdsOf(workspace, 30));
+        Assert.Equal("1000", IdsOf(workspace, 50));
+        Assert.Equal(move ? "1001" : "", IdsOf(workspace, 40));
+    }
+
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void Apply_ProtectsInventoryOwnershipInALaterDuplicateRecord(bool output)
+    {
+        var (repair, workspace) = CreateLoaded(save =>
+        {
+            FillContainer30(2, size: 1)(save);
+            save.Inventories.Add(new Inventory { Id = 50, Size = 1, WorldObjectIds = "" });
+            save.WorldObjects.Add(new WorldObject
+            {
+                Id = 1001, GId = "Machine",
+                LinkedInventoryId = output ? null : 50,
+                SpawnedInstanceIds = output ? "50" : null
+            });
+        });
+
+        repair.Apply(1);
+
+        Assert.Equal("1001", IdsOf(workspace, 30));
+        Assert.Equal(2, workspace.Current!.WorldObjects.Count(item => item.Id == 1001));
+        Assert.Contains(workspace.Current.Inventories, inventory => inventory.Id == 50);
+    }
+
+    [Fact]
+    public void Apply_MultipleOwnersOfOneCrate_DoNotDoubleItsCapacity()
+    {
+        var (repair, workspace) = CreateLoaded(All(
+            FillContainer30(4, size: 1),
+            Crate(500, 40, size: 1),
+            save => save.WorldObjects.Add(new WorldObject { Id = 501, GId = "Container1", LinkedInventoryId = 40 })));
+
+        var preview = repair.Plan(1, ["Iron"]);
+        var done = repair.Apply(1, ["Iron"]);
+
+        Assert.Equal(1, preview.FreeSlots);
+        Assert.Equal((1, 2), (done.MovedCount, done.ItemCount));
+        Assert.Equal("1001", IdsOf(workspace, 40));
+        Assert.Equal("1000", IdsOf(workspace, 30));
+    }
+
+    [Fact]
     public void Plan_OfAnUnmoddedSave_RemovesNothing()
     {
         var (repair, _) = CreateLoaded();

@@ -42,11 +42,13 @@ internal sealed class FreeStorage
         var storage = new FreeStorage(PlanetOfEachInventory(save));
         var inventories = save.Inventories.GroupBy(i => i.Id).ToDictionary(g => g.Key, g => g.First());
         var wreckIds = ContainerOrigins.WreckIds(save);
+        var addedInventories = new HashSet<int>();
         foreach (var owner in save.WorldObjects)
         {
             if (owner.LinkedInventoryId is { } inventoryId && GeneralStorage.Contains(owner.GId)
                 && !PlacedByTheGame(owner, wreckIds)
-                && inventories.TryGetValue(inventoryId, out var inventory) && inventory.Priority is null)
+                && inventories.TryGetValue(inventoryId, out var inventory) && inventory.Priority is null
+                && addedInventories.Add(inventoryId))
             {
                 storage.Add(inventory, owner.Planet, worldObjects);
             }
