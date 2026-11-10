@@ -4,6 +4,27 @@ What changed in each release of PCEdit. Downloads for every version are on the
 [Releases page](https://github.com/Valkerran/PCEdit/releases); the newest is on the
 [latest release](https://github.com/Valkerran/PCEdit/releases/latest) page.
 
+## v1.8.5
+
+- **Fixed: logistics “Select all” keeps groups the catalog does not know.** Groups from a
+  newer game version, a mod, or an id you typed yourself now stay in both the demand and supply
+  lists when you select every known group. ([#75](https://github.com/Valkerran/PCEdit/issues/75))
+
+- **Fixed: error and confirmation messages open over the dialog you are using.** A message
+  raised from Repair or another open dialog now belongs to that dialog, so it appears in front
+  and closing it leaves the original dialog open.
+  ([#79](https://github.com/Valkerran/PCEdit/issues/79))
+
+- **Fixed: repair handles repeated item ids more carefully in damaged saves.** A repeated
+  reference no longer causes a retained item to be removed as overflow, and an excess item
+  listed in several containers is counted and moved only once. If any record with an item's
+  id owns an inventory, repair keeps that item. Storage shared by several container records
+  contributes its free slots only once, so rescued items cannot overfill it.
+  ([#82](https://github.com/Valkerran/PCEdit/issues/82),
+  [#83](https://github.com/Valkerran/PCEdit/issues/83))
+
+Applies to Linux, Windows and macOS alike. No new dependencies or changes to requirements.
+
 ## v1.8.4
 
 - **Fixed: Cmd+S saves on macOS.** The save shortcut was Ctrl+S on every platform, so on a Mac
