@@ -15,7 +15,7 @@ public sealed class AvaloniaDialogService(MainWindowAccessor mainWindow, ILocali
         {
             // Buttons are laid out left-to-right; the last one is primary. Cancel first, Accept last.
             var dialog = new MessageDialog(title, message, [cancelText, acceptText]);
-            var clicked = await dialog.ShowAsync(_mainWindow.Require());
+            var clicked = await dialog.ShowAsync(_mainWindow.ActiveWindow());
             return clicked == 1;
         });
 
@@ -23,13 +23,13 @@ public sealed class AvaloniaDialogService(MainWindowAccessor mainWindow, ILocali
         Dispatcher.UIThread.InvokeAsync(async () =>
         {
             var dialog = new MessageDialog(title, message, [_localizer[LocKeys.Common_Ok]]);
-            await dialog.ShowAsync(_mainWindow.Require());
+            await dialog.ShowAsync(_mainWindow.ActiveWindow());
         });
 
     public Task ShowDisclaimerAsync(string title, string body, string acknowledgeText) =>
         Dispatcher.UIThread.InvokeAsync(async () =>
         {
             var dialog = new MessageDialog(title, body, [acknowledgeText]);
-            await dialog.ShowAsync(_mainWindow.Require());
+            await dialog.ShowAsync(_mainWindow.ActiveWindow());
         });
 }
