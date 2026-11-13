@@ -4,6 +4,12 @@ What changed in each release of PCEdit. Downloads for every version are on the
 [Releases page](https://github.com/Valkerran/PCEdit/releases); the newest is on the
 [latest release](https://github.com/Valkerran/PCEdit/releases/latest) page.
 
+## v1.8.6
+
+- Updated Avalonia from 12.1.4 to 12.1.6.
+- Raised the minimum macOS version to 12.0 (Monterey) to match Avalonia’s native
+  requirements, and updated packaging and documentation accordingly.
+
 ## v1.8.5
 
 - **Fixed: logistics “Select all” keeps groups the catalog does not know.** Groups from a

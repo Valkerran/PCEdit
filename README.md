@@ -53,7 +53,7 @@ For CJK menus, install your distro's Noto CJK font package.
 
 **Windows:** Just grab the appropriate zip file, extract and run PCEdit.exe
 
-**MacOs:** This is untested at the moment as I do not have access to a Mac.
+**macOS:** Requires macOS 12.0 (Monterey) or later. This is untested at the moment as I do not have access to a Mac.
 
 The UI ships in 15 languages (English (US/UK), French, German, Spanish, Simplified &
 Traditional Chinese, Russian, Polish, Portuguese (PT/BR), Korean, Japanese, Italian,

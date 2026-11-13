@@ -235,7 +235,7 @@ right-click → **Open**, or:
 xattr -dr com.apple.quarantine /Applications/PCEdit.app
 ```
 
-This is called out in the Release body. `LSMinimumSystemVersion` is 11.0.
+This is called out in the Release body. `LSMinimumSystemVersion` is 12.0 (macOS Monterey), matching Avalonia’s native minimum.
 
 ## Tested on
 

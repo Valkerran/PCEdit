@@ -69,7 +69,8 @@ Rules the pipelines enforce:
 
    ### macOS
 
-   The macOS `.zip` contains an **unsigned** `PCEdit.app`. On first launch, right-click the
+   Requires macOS 12.0 (Monterey) or later. The macOS `.zip` contains an **unsigned**
+   `PCEdit.app`. On first launch, right-click the
    app and choose **Open** (or run `xattr -dr com.apple.quarantine PCEdit.app`).
    ```
 
