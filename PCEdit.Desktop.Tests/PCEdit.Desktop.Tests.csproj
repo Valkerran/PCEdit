@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
-    <!-- xUnit v3 test projects are executables. This project alone is on v3: the Avalonia
-         headless test package is built on it and cannot be mixed with xUnit 2. -->
+    <!-- xUnit v3 test projects are executables. Keep this project on 3.2.2 until
+         Avalonia’s headless runner supports the xUnit 4 extensibility APIs. -->
     <OutputType>Exe</OutputType>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>

@@ -39,8 +39,8 @@ jobs:
       - name: Build — PCEdit.Desktop
         run: dotnet build PCEdit.Desktop/PCEdit.Desktop.csproj -c Release --no-restore
 
-      # Headless: Avalonia's test platform needs no display. This project is on xUnit v3 (the
-      # headless package is built on it); the other two test projects stay on xUnit 2.
+      # Headless: Avalonia's test platform needs no display. Desktop tests remain on xUnit
+      # 3.2.2 for runner compatibility; the non-UI tests use xUnit 4.0.3.
       - name: Test — PCEdit.Desktop (headless UI)
         run: dotnet test PCEdit.Desktop.Tests/PCEdit.Desktop.Tests.csproj -c Release --no-restore
 
