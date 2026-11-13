@@ -85,6 +85,8 @@ else
     [ -n "$_v" ] && VERSION_ARG=(--app-version "$_v")
 fi
 
+# Only artifacts from this invocation may be copied and ICU-verified (#108).
+rm -rf "$SCRIPT_DIR/OUT"
 echo ">> Building AppImage (linux-x64, self-contained)"
 pupnet "$CONF" \
     --kind appimage \

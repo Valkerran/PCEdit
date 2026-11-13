@@ -37,10 +37,21 @@ Rules the pipelines enforce:
   release.
 - **Release** refuses to build if a pushed tag `vX.Y.Z` disagrees with `<VersionPrefix>`, or if
   a manual run targets a version whose tag already exists, or if a manual run is not on `main`.
+  Every release commit must already be merged into `main`. Tag and manual releases share a
+  concurrency group, and the full Linux, Windows and macOS CI checks must pass on the exact
+  release commit before packaging or publishing begins.
 
 ## Cutting a release
 
 1. **Bump the version.** Edit `<VersionPrefix>` in `Directory.Build.props` (semver: `MAJOR.MINOR.PATCH`).
+   Regenerate project-reference metadata in the lock files (a plain restore does not update it):
+
+   ```bash
+   dotnet restore PCEdit.slnx --force-evaluate
+   python3 tools/ci/check_lock_versions.py
+   ```
+
+   Commit the lock files with the version bump. CI checks these recorded project versions.
    Open a PR, get CI green, merge to `main`.
 
 2. **Trigger the Release workflow** — either:
