@@ -98,11 +98,4 @@
     <lang percentage="100">zh_Hant</lang>
     <lang percentage="100">tr</lang>
   </languages>
-  <releases>
-    <release version="1.0.0" date="2026-08-28">
-      <description>
-        <p>First public release: the Avalonia desktop build, packaged as a self-contained AppImage.</p>
-      </description>
-    </release>
-  </releases>
 </component>

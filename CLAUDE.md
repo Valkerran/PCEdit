@@ -120,7 +120,10 @@ deploy/build-macos.sh osx-arm64   # macOS .app zip   (osx-x64 | osx-arm64)
 **NuGet lock files**: every project commits a `packages.lock.json`, and restore is locked
 wherever `CI=true` (`Directory.Build.props`), so CI fails with `NU1004` if the graph drifts.
 **Changing a `PackageReference` means running `dotnet restore` and committing the updated lock
-files with it.** The lock files describe a restore with no RuntimeIdentifier, so never publish
+files with it.** After changing `<VersionPrefix>`, run
+`dotnet restore PCEdit.slnx --force-evaluate` and commit the updated lock files too;
+`python3 tools/ci/check_lock_versions.py` checks the project-reference versions that locked
+restore does not validate (issue #148). The lock files describe a restore with no RuntimeIdentifier, so never publish
 with an implicit RID-specific restore: `dotnet restore` first, then `dotnet publish -r <rid>
 --no-restore` (the `deploy/` scripts already do). The app-local ICU package is referenced for
 every build for the same reason — see Packaging.

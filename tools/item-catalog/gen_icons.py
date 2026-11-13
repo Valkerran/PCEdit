@@ -6,9 +6,9 @@ pictogram, so it reads on both the light and dark inventory-card backgrounds and
 mirrors the game's item-tile look. These SVGs are the source; the committed
 <name>.png beside each one is rasterised from it out of band.
 """
-import os
+from pathlib import Path
 
-OUT = "PCEdit.Desktop/Assets/Icons"
+OUT = Path(__file__).resolve().parents[2] / "PCEdit.Desktop/Assets/Icons"
 
 # name -> (background colour, inner glyph markup drawn in white on a 64x64 canvas)
 ICONS = {
@@ -81,9 +81,9 @@ SVG = ('<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" '
 
 
 def main():
-    os.makedirs(OUT, exist_ok=True)
+    OUT.mkdir(parents=True, exist_ok=True)
     for name, (bg, glyph) in ICONS.items():
-        path = os.path.join(OUT, name + ".svg")
+        path = OUT / (name + ".svg")
         with open(path, "w", encoding="utf-8", newline="\n") as fh:
             fh.write(SVG.format(bg=bg, glyph=glyph))
     print(f"wrote {len(ICONS)} icons to {OUT}")

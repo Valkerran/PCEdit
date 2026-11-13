@@ -14,13 +14,13 @@ import pathlib
 import sys
 from xml.sax.saxutils import escape
 
+from gen_satellites import read_neutral
+
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 I18N = ROOT / "tools" / "i18n"
 OUT = ROOT / "deploy" / "com.valkerran.pcedit.metainfo.xml"
 
 APP_ID = "com.valkerran.pcedit"
-RELEASE_VERSION = "1.0.0"
-RELEASE_DATE = "2026-08-28"
 
 # culture -> AppStream xml:lang. en-US is the neutral/default (no xml:lang attribute).
 LOCALES = {
@@ -41,21 +41,10 @@ LOCALES = {
     "tr": "tr",
 }
 
-# Canonical en-US strings (mirror PCEdit.App.Core/Resources/Strings.resx).
-EN = {
-    "Shell_Title": "Planet Crafter Save Editor",
-    "About_Tagline": "A save-file editor for The Planet Crafter.",
-    "OpenFile_Intro": (
-        "Open a Planet Crafter save file to view and edit players, world terraforming, "
-        "inventories, terra tokens, and teleport locations."
-    ),
-    "Disclaimer_Body": (
-        "PCEdit edits Planet Crafter save files directly, and a bad edit can corrupt a save "
-        "and lose progress. PCEdit copies your save aside before it first writes to it, but "
-        "treat that as a safety net rather than a substitute: keep your own backup as well. "
-        "This software is provided as is, without warranty of any kind."
-    ),
-}
+# Read the neutral catalog so English and translation fallbacks cannot drift.
+KEYS = ("Shell_Title", "About_Tagline", "OpenFile_Intro", "Disclaimer_Body")
+NEUTRAL = dict(read_neutral())
+EN = {key: NEUTRAL[key] for key in KEYS}
 
 DESC_KEYS = ("About_Tagline", "OpenFile_Intro", "Disclaimer_Body")
 
@@ -124,15 +113,6 @@ def main() -> int:
         code = "en" if culture == "en-US" else xl
         w(f'    <lang percentage="100">{code}</lang>')
     w("  </languages>")
-
-    w("  <releases>")
-    w(f'    <release version="{RELEASE_VERSION}" date="{RELEASE_DATE}">')
-    w("      <description>")
-    w("        <p>First public release: the Avalonia desktop build, packaged as a "
-      "self-contained AppImage.</p>")
-    w("      </description>")
-    w("    </release>")
-    w("  </releases>")
 
     w("</component>")
 

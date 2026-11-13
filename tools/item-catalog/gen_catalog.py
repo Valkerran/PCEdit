@@ -7,6 +7,9 @@ this script writes the JSON the app embeds. Re-run after editing the tables.
 """
 import json
 import collections
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
 
 CATEGORIES = collections.OrderedDict([
     ("ore",        {"displayName": "Ore & Minerals",     "icon": "cat_ore.png"}),
@@ -895,7 +898,7 @@ def main():
     out["items"] = collections.OrderedDict(sorted(items.items(), key=lambda kv: kv[0].lower()))
 
     text = json.dumps(out, indent=2)
-    path = "PCEdit.App.Core/Data/ItemCatalog.json"
+    path = ROOT / "PCEdit.App.Core/Data/ItemCatalog.json"
     with open(path, "w", encoding="utf-8", newline="\n") as fh:
         fh.write(text + "\n")
     print(f"wrote {path}: {len(items)} items, {len(CATEGORIES)} categories")
