@@ -21,6 +21,8 @@
          (the tests run through xunit.runner.visualstudio), so it is left out of the graph
          altogether rather than switched off by an environment variable someone has to remember
          (issue #143). CI fails if any lock file names the telemetry package again. -->
+    <!-- Pinned until Avalonia headless supports xUnit 4; remove the matching Dependabot ignore
+         when resolved: https://github.com/AvaloniaUI/Avalonia/issues/22072 -->
     <PackageReference Include="xunit.v3.mtp-off" Version="3.2.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="4.0.1" />
   </ItemGroup>

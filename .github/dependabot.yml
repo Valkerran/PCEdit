@@ -12,14 +12,13 @@ updates:
       - /PCEdit.Desktop
       - /PCEdit.SaveFileHandler.Tests
       - /PCEdit.App.Core.Tests
-      - /PCEdit.Desktop.Tests
     schedule:
       interval: weekly
     groups:
-      # The Avalonia packages must move in lockstep.
+      # Group Avalonia package updates within this scope.
       avalonia:
         patterns: ["Avalonia*"]
-      # Both test projects pin the same test stack. Without a group covering majors, each
+      # The non-UI test projects pin the same test stack. Without a group covering majors, each
       # major bump arrived as one PR per project directory, and merging just one would
       # leave the two projects on different majors.
       test-tooling:
@@ -31,13 +30,25 @@ updates:
       # the runtime is told to load, and a bump changes the AppImage size - upgrade it by
       # hand and re-run the distro matrix (deploy/README.md), not from a bot PR.
       - dependency-name: Microsoft.ICU.ICU4C.Runtime*
-      # A major of xunit.v3 is a migration, not a bump: 4.x reorganises the packages around
-      # Microsoft.Testing.Platform 2.x, which does not run under the classic `dotnet test` on the
-      # .NET 10 SDK, and Avalonia.Headless.XUnit is built against 3.x (PR #138). The pattern
-      # covers xunit.v3.mtp-off, the variant the UI tests reference (issue #143). Minor and
-      # patch updates still come.
+
+  # Separate scope so the headless runner's xUnit pin does not hold back non-UI tests.
+  - package-ecosystem: nuget
+    directory: /PCEdit.Desktop.Tests
+    schedule:
+      interval: weekly
+    groups:
+      avalonia:
+        patterns: ["Avalonia*"]
+      test-tooling:
+        patterns: ["xunit*", "Microsoft.NET.Test.Sdk"]
+      nuget-minor-and-patch:
+        update-types: [minor, patch]
+    ignore:
+      - dependency-name: Microsoft.ICU.ICU4C.Runtime*
+      # Keep xUnit at 3.2.2 until Avalonia's headless runner supports xUnit 4.
+      # https://github.com/AvaloniaUI/Avalonia/issues/22072
+      # Remove this ignore when upgrading the runner and xUnit together.
       - dependency-name: xunit.v3*
-        update-types: ["version-update:semver-major"]
 
   - package-ecosystem: github-actions
     directory: /
