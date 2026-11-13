@@ -4,6 +4,13 @@ What changed in each release of PCEdit. Downloads for every version are on the
 [Releases page](https://github.com/Valkerran/PCEdit/releases); the newest is on the
 [latest release](https://github.com/Valkerran/PCEdit/releases/latest) page.
 
+## v1.8.7
+
+- Release builds now require passing checks on Linux, Windows and macOS and a commit
+  already merged into main before packaging and publishing.
+- Linux store listings now use the app’s current English text and no longer advertise
+  a frozen 1.0.0 release entry. Local AppImage builds discard stale packaging output.
+
 ## v1.8.6
 
 - Updated Avalonia from 12.1.4 to 12.1.6.
