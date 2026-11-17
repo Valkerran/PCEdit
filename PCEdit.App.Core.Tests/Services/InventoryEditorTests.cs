@@ -62,6 +62,94 @@ public sealed class InventoryEditorTests
         Assert.Equal(2, groups.Single(g => g.InventoryId == 10).Items.Count);
     }
 
+    // Issue #90: the card, the Move dialog and the move's room check count an inventory's items
+    // one way - ids naming an existing world object, a repeated id once - as the repair does.
+
+    [Fact]
+    public void BuildInventoryGroups_CountsARepeatedIdOnce()
+    {
+        var (editor, _) = CreateLoadedEditor(save => SetIdList(save, 10, "200,200,201"));
+
+        var alice = editor.BuildInventoryGroups().Single(g => g.InventoryId == 10);
+
+        Assert.Equal([200, 201], alice.Items.Select(i => i.WorldObjectId));
+        Assert.Equal("2/5", alice.CapacityLabel);
+    }
+
+    [Fact]
+    public void GetDestinationOptions_DoesNotCountDanglingOrRepeatedIds()
+    {
+        var (editor, _) = CreateLoadedEditor(save =>
+        {
+            SetIdList(save, 20, "999");     // size 1, the id names no world object
+            SetIdList(save, 30, "202,202"); // size 3
+        });
+
+        var options = editor.GetDestinationOptions(worldObjectId: 200);
+
+        var dangling = options.Single(o => o.InventoryId == 20);
+        Assert.Equal(0, dangling.Count);
+        Assert.False(dangling.IsFull);
+        Assert.Equal(1, options.Single(o => o.InventoryId == 30).Count);
+    }
+
+    [Fact]
+    public void TryMoveItems_IntoAnInventoryHoldingOnlyADanglingId_HasRoom()
+    {
+        // The card reads 0/1; refusing the move as full contradicted it.
+        var (editor, workspace) = CreateLoadedEditor(save => SetIdList(save, 20, "999"));
+
+        var result = editor.TryMoveItems([200], destinationInventoryId: 20);
+
+        Assert.True(result.Success);
+        Assert.Equal("999,200", workspace.Current!.Inventories.Single(i => i.Id == 20).WorldObjectIds);
+    }
+
+    // Issue #91: on a corrupt save an item can be listed in the source and the destination both.
+
+    [Fact]
+    public void TryMoveItems_OfAnItemTheDestinationAlreadyLists_DoesNotListItTwice()
+    {
+        // 30 is full (2 of 2) but already lists 200, so the move needs no slot.
+        var (editor, workspace) = CreateLoadedEditor(save =>
+        {
+            SetIdList(save, 30, "202,200");
+            var index = save.Inventories.FindIndex(i => i.Id == 30);
+            save.Inventories[index] = save.Inventories[index] with { Size = 2 };
+        });
+
+        var result = editor.TryMoveItems([200], destinationInventoryId: 30);
+
+        Assert.True(result.Success);
+        Assert.Equal("201", workspace.Current!.Inventories.Single(i => i.Id == 10).WorldObjectIds);
+        Assert.Equal("202,200", workspace.Current!.Inventories.Single(i => i.Id == 30).WorldObjectIds);
+    }
+
+    [Fact]
+    public void TryMoveItems_WhenTheDestinationComesFirstInTheSave_FindsTheRealSource()
+    {
+        // 202 lives in 30 and is also listed in 10, which the save lists first.
+        var (editor, workspace) = CreateLoadedEditor(save => SetIdList(save, 10, "200,201,202"));
+
+        var result = editor.TryMoveItems([202], destinationInventoryId: 10);
+
+        Assert.True(result.Success);
+        Assert.Equal("", workspace.Current!.Inventories.Single(i => i.Id == 30).WorldObjectIds);
+        Assert.Equal("200,201,202", workspace.Current!.Inventories.Single(i => i.Id == 10).WorldObjectIds);
+    }
+
+    [Fact]
+    public void TryMoveItems_IntoTheOnlyInventoryListingIt_IsRefusedAsAlreadyThere()
+    {
+        var (editor, workspace) = CreateLoadedEditor();
+
+        var result = editor.TryMoveItems([200], destinationInventoryId: 10);
+
+        Assert.False(result.Success);
+        Assert.Equal(new Localizer()[LocKeys.Inv_AlreadyThere], result.ErrorMessage);
+        Assert.False(workspace.IsDirty);
+    }
+
     [Fact]
     public void TryMoveItems_MovesEveryGivenItem_KeepingTheirOrder()
     {
@@ -220,6 +308,45 @@ public sealed class InventoryEditorTests
         Assert.Equal(9, workspace.Current!.Inventories.Single(i => i.Id == 30).Priority);
     }
 
+    // Issue #96: an Apply that changes nothing must not mark the save edited or rewrite its text.
+
+    [Fact]
+    public void UpdateLogistics_WithNothingChanged_LeavesTheSaveUntouched()
+    {
+        var (editor, workspace) = CreateLogisticsEditor(); // Iron,Cobalt / Magnesium / 2
+
+        editor.UpdateLogistics(30, ["Iron", "Cobalt"], ["Magnesium"], priority: 2);
+
+        Assert.False(workspace.IsDirty);
+    }
+
+    [Fact]
+    public void UpdateLogistics_WithNothingChanged_KeepsTheStoredTextAsItWas()
+    {
+        // The editor shows "Iron, Iron ,Cobalt" as two groups; writing them back would tidy the text.
+        var (editor, workspace) = CreateLogisticsEditor(demandGroups: "Iron, Iron ,Cobalt");
+
+        editor.UpdateLogistics(30, ["Iron", "Cobalt"], ["Magnesium"], priority: 2);
+
+        Assert.Equal("Iron, Iron ,Cobalt", workspace.Current!.Inventories.Single(i => i.Id == 30).DemandGroups);
+        Assert.False(workspace.IsDirty);
+    }
+
+    [Theory]
+    [InlineData(new[] { "Iron", "Cobalt" }, 3)]   // only the priority
+    [InlineData(new[] { "Cobalt", "Iron" }, 2)]   // only the order
+    public void UpdateLogistics_WithAnyChange_Writes(string[] demand, int priority)
+    {
+        var (editor, workspace) = CreateLogisticsEditor();
+
+        editor.UpdateLogistics(30, demand, ["Magnesium"], priority);
+
+        var inventory = workspace.Current!.Inventories.Single(i => i.Id == 30);
+        Assert.Equal(string.Join(",", demand), inventory.DemandGroups);
+        Assert.Equal(priority, inventory.Priority);
+        Assert.True(workspace.IsDirty);
+    }
+
     [Fact]
     public void UpdateLogistics_OnAPlainInventory_Throws()
     {
@@ -228,14 +355,15 @@ public sealed class InventoryEditorTests
         Assert.Throws<InvalidOperationException>(() => editor.UpdateLogistics(10, [], [], priority: 0));
     }
 
-    private static (InventoryEditor Editor, SaveFileWorkspace Workspace) CreateLogisticsEditor()
+    private static (InventoryEditor Editor, SaveFileWorkspace Workspace) CreateLogisticsEditor(
+        string demandGroups = "Iron,Cobalt")
     {
         var store = new FakeSaveFileStore();
         var save = WorkspaceFixtures.Create();
         var index = save.Inventories.FindIndex(i => i.Id == 30);
         save.Inventories[index] = save.Inventories[index] with
         {
-            DemandGroups = "Iron,Cobalt",
+            DemandGroups = demandGroups,
             SupplyGroups = "Magnesium",
             Priority = 2
         };

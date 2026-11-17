@@ -308,6 +308,17 @@ public sealed class OverflowRepairTests
     }
 
     [Fact]
+    public void ACrateListingOneItemTwice_CountsItOnce()
+    {
+        // Free slots are counted as the card counts items (issue #90): 5 slots, one Cobalt listed
+        // twice, so 4 free - not 3.
+        var (repair, _) = CreateLoaded(All(
+            FillContainer30(6), save => Cobalt(save, 600), Crate(500, 40, size: 5, contents: "600,600")));
+
+        Assert.Equal(4, repair.Plan(multiple: 1).FreeSlots);
+    }
+
+    [Fact]
     public void OnlyStorageCrates_AreDestinations()
     {
         // Alice's equipment (11) and the orphan inventory (99) have room, but they are not storage.

@@ -81,7 +81,7 @@ internal sealed class FreeStorage
 
     private void Add(Inventory inventory, int? planet, IReadOnlyDictionary<int, WorldObject> worldObjects)
     {
-        var items = WorldObjectIdsCodec.Parse(inventory.WorldObjectIds).Where(worldObjects.ContainsKey).ToList();
+        var items = InventoryContents.HeldIds(inventory, worldObjects);
         var crate = new Crate(inventory.Id, planet) { Free = inventory.Size - items.Count };
         if (crate.Free <= 0)
         {

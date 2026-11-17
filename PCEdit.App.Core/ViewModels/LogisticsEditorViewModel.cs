@@ -98,14 +98,9 @@ public sealed partial class LogisticsEditorViewModel(
     [RelayCommand]
     private void AddDemandGroup()
     {
-        if (TryResolveGroup(DemandGroupToAdd, DemandGroupText, out var group))
-        {
-            AddUnique(DemandGroups, group);
-        }
-
+        AddAll(DemandGroups, ResolveGroups(DemandGroupToAdd, DemandGroupText));
         DemandGroupToAdd = null;
         DemandGroupText = string.Empty;
-        NotifyListsChanged();
     }
 
     [RelayCommand]
@@ -118,7 +113,7 @@ public sealed partial class LogisticsEditorViewModel(
     [RelayCommand]
     private void SelectAllDemand()
     {
-        AddKnown(DemandGroups, _groupCatalog.DemandGroups);
+        AddAll(DemandGroups, _groupCatalog.DemandGroups);
     }
 
     [RelayCommand]
@@ -131,14 +126,9 @@ public sealed partial class LogisticsEditorViewModel(
     [RelayCommand]
     private void AddSupplyGroup()
     {
-        if (TryResolveGroup(SupplyGroupToAdd, SupplyGroupText, out var group))
-        {
-            AddUnique(SupplyGroups, group);
-        }
-
+        AddAll(SupplyGroups, ResolveGroups(SupplyGroupToAdd, SupplyGroupText));
         SupplyGroupToAdd = null;
         SupplyGroupText = string.Empty;
-        NotifyListsChanged();
     }
 
     [RelayCommand]
@@ -151,7 +141,7 @@ public sealed partial class LogisticsEditorViewModel(
     [RelayCommand]
     private void SelectAllSupply()
     {
-        AddKnown(SupplyGroups, _groupCatalog.SupplyGroups);
+        AddAll(SupplyGroups, _groupCatalog.SupplyGroups);
     }
 
     [RelayCommand]
@@ -177,24 +167,10 @@ public sealed partial class LogisticsEditorViewModel(
     [RelayCommand]
     private async Task CancelAsync() => await _navigation.CloseModalAsync();
 
-    private bool TryResolveGroup(LogisticsGroupInfo? picked, string typed, out LogisticsGroupInfo group)
-    {
-        if (picked is not null)
-        {
-            group = picked;
-            return true;
-        }
-
-        var id = typed.Trim();
-        if (id.Length > 0)
-        {
-            group = _groupCatalog.Resolve(id);
-            return true;
-        }
-
-        group = null!;
-        return false;
-    }
+    /// <summary>The picked group, or else each id typed - split on commas as the save splits
+    /// them, so a typed "A,B" is the two groups it would become on reload (issue #96).</summary>
+    private IEnumerable<LogisticsGroupInfo> ResolveGroups(LogisticsGroupInfo? picked, string typed) =>
+        picked is not null ? [picked] : GroupListCodec.Parse(typed).Select(_groupCatalog.Resolve);
 
     private static bool IsEverything(
         IEnumerable<LogisticsGroupInfo> groups,
@@ -220,7 +196,7 @@ public sealed partial class LogisticsEditorViewModel(
         NotifyListsChanged();
     }
 
-    private void AddKnown(ObservableCollection<LogisticsGroupInfo> target, IEnumerable<LogisticsGroupInfo> groups)
+    private void AddAll(ObservableCollection<LogisticsGroupInfo> target, IEnumerable<LogisticsGroupInfo> groups)
     {
         foreach (var group in groups)
         {

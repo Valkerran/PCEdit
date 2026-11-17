@@ -99,11 +99,11 @@ public sealed class UiHarness : IDisposable
         Pump();
     }
 
-    /// <summary>Copies the small fixture save into this test's folder and opens it.</summary>
-    public string LoadSave()
+    /// <summary>Copies a fixture save (the small one unless named) into this test's folder and opens it.</summary>
+    public string LoadSave(string fixture = "mini-save.json")
     {
         var path = Path.Combine(Root, "Survival-1.json");
-        File.Copy(Path.Combine(AppContext.BaseDirectory, "TestData", "mini-save.json"), path);
+        File.Copy(Path.Combine(AppContext.BaseDirectory, "TestData", fixture), path);
         Workspace.Load(path);
         Pump();
         return path;

@@ -4,6 +4,30 @@ What changed in each release of PCEdit. Downloads for every version are on the
 [Releases page](https://github.com/Valkerran/PCEdit/releases); the newest is on the
 [latest release](https://github.com/Valkerran/PCEdit/releases/latest) page.
 
+## v1.8.8
+
+- **Fixed: Move agrees with the card about how full a container is.** A container whose list
+  names an item that no longer exists, or names the same item twice, could read 11/12 on its
+  card while Move refused it as full. The card, the Move dialog and Repair now all count only
+  real items, each once. ([#90](https://github.com/Valkerran/PCEdit/issues/90))
+
+- **Fixed: moving an item in a damaged save no longer lists it twice.** When a save lists an
+  item in two containers, moving it to the other one now leaves it listed there once, uses no
+  extra slot, and is no longer refused as "already there".
+  ([#91](https://github.com/Valkerran/PCEdit/issues/91))
+
+- **Fixed: the Inventories world filter stays on your world.** After a move or a logistics
+  edit the page no longer jumps back to "All worlds"; it only does if that world is gone from
+  the save. The page also refreshes faster on large saves.
+  ([#95](https://github.com/Valkerran/PCEdit/issues/95))
+
+- **Fixed: logistics group ids typed with commas.** Typing `A,B` in the logistics editor now
+  adds the two groups it saves as, instead of one entry that split in two after saving — so you
+  can paste several ids at once. Clicking Apply without changing anything no longer marks the
+  save as edited. ([#96](https://github.com/Valkerran/PCEdit/issues/96))
+
+Applies to Linux, Windows and macOS alike. No new dependencies or changes to requirements.
+
 ## v1.8.7
 
 - Release builds now require passing checks on Linux, Windows and macOS and a commit

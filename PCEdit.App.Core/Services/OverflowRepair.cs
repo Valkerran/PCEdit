@@ -134,7 +134,7 @@ public sealed class OverflowRepair(ISaveFileWorkspace workspace, IItemCatalog it
     {
         // Only existing items count. Repeated references to one item must not make a
         // retained item look like excess: leaving removes every occurrence of a picked id.
-        var items = WorldObjectIdsCodec.Parse(inventory.WorldObjectIds).Where(worldObjects.ContainsKey).Distinct().ToList();
+        var items = InventoryContents.HeldIds(inventory, worldObjects);
         var limit = (int)Math.Min((long)inventory.Size * multiple, InventoryGroup.NearLoadLimitThreshold);
         var over = items.Count - limit;
         var picked = new List<int>();

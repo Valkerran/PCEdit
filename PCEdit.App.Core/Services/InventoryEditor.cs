@@ -42,8 +42,7 @@ public sealed class InventoryEditor(
                     Size = inventory.Size,
                     Logistics = logistics,
                     LogisticsSummary = logistics is null ? null : FormatLogisticsSummary(logistics),
-                    Items = WorldObjectIdsCodec.Parse(inventory.WorldObjectIds)
-                        .Where(worldObjectsById.ContainsKey)
+                    Items = InventoryContents.HeldIds(inventory, worldObjectsById)
                         .Select(id => ToItemView(worldObjectsById[id], inventory.Id))
                         .ToList()
                 };
@@ -112,6 +111,7 @@ public sealed class InventoryEditor(
         var save = RequireCurrent();
         var sourceInventoryId = FindOwningInventory(save, worldObjectId)?.Id;
         var containersByInventoryId = BuildContainerLookup(save);
+        var worldObjectsById = IndexWorldObjects(save);
 
         return save.Inventories
             .Where(inventory => inventory.Id != sourceInventoryId)
@@ -121,7 +121,7 @@ public sealed class InventoryEditor(
                 return new InventoryOptionView(
                     inventory.Id,
                     label,
-                    WorldObjectIdsCodec.Parse(inventory.WorldObjectIds).Count,
+                    InventoryContents.HeldIds(inventory, worldObjectsById).Count,
                     inventory.Size,
                     kind,
                     containersByInventoryId.TryGetValue(inventory.Id, out var container) ? container.Id : null);
@@ -134,13 +134,9 @@ public sealed class InventoryEditor(
 
     public MoveItemResult TryMoveItems(IReadOnlyList<int> worldObjectIds, int destinationInventoryId)
     {
-        if (worldObjectIds.Count == 0 || worldObjectIds.Distinct().Count() != worldObjectIds.Count)
-        {
-            throw new ArgumentException("Expected one or more distinct world object ids.", nameof(worldObjectIds));
-        }
-
+        RequireDistinctIds(worldObjectIds);
         var save = RequireCurrent();
-        var source = FindOwningInventory(save, worldObjectIds[0]);
+        var source = FindOwningInventory(save, worldObjectIds[0], preferOtherThan: destinationInventoryId);
         if (source is null || !HoldsAll(source, worldObjectIds))
         {
             return MoveItemResult.Fail(_localizer[LocKeys.Inv_NotInInventory]);
@@ -157,13 +153,22 @@ public sealed class InventoryEditor(
             return MoveItemResult.Fail(_localizer[LocKeys.Inv_DestNotFound]);
         }
 
-        if (DescribeLackOfRoom(destination, worldObjectIds.Count) is { } noRoom)
+        var arriving = NotListedIn(destination, worldObjectIds).Count;
+        if (DescribeLackOfRoom(destination, IndexWorldObjects(save), arriving) is { } noRoom)
         {
             return MoveItemResult.Fail(noRoom);
         }
 
         MoveAll(source.Id, destination.Id, worldObjectIds);
         return MoveItemResult.Ok();
+    }
+
+    private static void RequireDistinctIds(IReadOnlyList<int> worldObjectIds)
+    {
+        if (worldObjectIds.Count == 0 || worldObjectIds.Distinct().Count() != worldObjectIds.Count)
+        {
+            throw new ArgumentException("Expected one or more distinct world object ids.", nameof(worldObjectIds));
+        }
     }
 
     private static bool HoldsAll(Inventory inventory, IReadOnlyList<int> worldObjectIds)
@@ -175,11 +180,18 @@ public sealed class InventoryEditor(
     /// <summary>
     /// Why the destination cannot take <paramref name="count"/> more items, or null when it can.
     /// Its stored size is the limit - the game builds a fresh inventory with one item per slot,
-    /// and PCEdit must never be the thing that makes one over-full (issue #64).
+    /// and PCEdit must never be the thing that makes one over-full (issue #64). Items are counted
+    /// as the card counts them (<see cref="InventoryContents.HeldIds"/>, issue #90).
     /// </summary>
-    private string? DescribeLackOfRoom(Inventory destination, int count)
+    private string? DescribeLackOfRoom(
+        Inventory destination, IReadOnlyDictionary<int, WorldObject> worldObjectsById, int count)
     {
-        var held = WorldObjectIdsCodec.Parse(destination.WorldObjectIds).Count;
+        if (count == 0)
+        {
+            return null;
+        }
+
+        var held = InventoryContents.HeldIds(destination, worldObjectsById).Count;
         var free = destination.Size - held;
         if (free <= 0)
         {
@@ -189,7 +201,8 @@ public sealed class InventoryEditor(
         return free < count ? _localizer.Format(LocKeys.Inv_DestNoRoom, free, count) : null;
     }
 
-    /// <summary>Removes the items from the source and appends them, in order, to the destination.</summary>
+    /// <summary>Removes the items from the source and appends them, in order, to the destination -
+    /// except any it already lists, which would otherwise end up there twice (issue #91).</summary>
     private void MoveAll(int sourceInventoryId, int destinationInventoryId, IReadOnlyList<int> worldObjectIds)
     {
         var moving = worldObjectIds.ToHashSet();
@@ -199,7 +212,14 @@ public sealed class InventoryEditor(
 
         _workspace.ReplaceInventory(destinationInventoryId, inventory => WithWorldObjectIds(
             inventory,
-            WorldObjectIdsCodec.Parse(inventory.WorldObjectIds).Concat(worldObjectIds)));
+            WorldObjectIdsCodec.Parse(inventory.WorldObjectIds).Concat(NotListedIn(inventory, worldObjectIds))));
+    }
+
+    /// <summary>The given ids the inventory does not list yet, in their given order.</summary>
+    private static List<int> NotListedIn(Inventory inventory, IReadOnlyList<int> worldObjectIds)
+    {
+        var listed = WorldObjectIdsCodec.Parse(inventory.WorldObjectIds).ToHashSet();
+        return worldObjectIds.Where(id => !listed.Contains(id)).ToList();
     }
 
     public LogisticsContainerView? GetLogisticsContainer(int inventoryId)
@@ -226,6 +246,12 @@ public sealed class InventoryEditor(
         ArgumentNullException.ThrowIfNull(demandGroupIds);
         ArgumentNullException.ThrowIfNull(supplyGroupIds);
 
+        var current = RequireCurrent().Inventories.FirstOrDefault(i => i.Id == inventoryId);
+        if (current is not null && HasLogistics(current, demandGroupIds, supplyGroupIds, priority))
+        {
+            return;
+        }
+
         _workspace.ReplaceInventory(inventoryId, inventory =>
         {
             if (inventory.Priority is null)
@@ -241,6 +267,20 @@ public sealed class InventoryEditor(
             };
         });
     }
+
+    /// <summary>Whether the inventory already holds exactly this config, as the editor reads it.
+    /// Writing it back anyway would mark the save edited and tidy text nobody changed (issue #96).
+    /// A plain inventory has no priority, so it never matches.</summary>
+    private static bool HasLogistics(Inventory inventory, IReadOnlyList<string> demandGroupIds,
+        IReadOnlyList<string> supplyGroupIds, int priority)
+    {
+        return inventory.Priority == priority
+            && SameGroups(inventory.DemandGroups, demandGroupIds)
+            && SameGroups(inventory.SupplyGroups, supplyGroupIds);
+    }
+
+    private static bool SameGroups(string? stored, IReadOnlyList<string> groupIds) =>
+        GroupListCodec.Join(GroupListCodec.Parse(stored)) == GroupListCodec.Join(groupIds);
 
     private LogisticsConfig? ReadLogistics(Inventory inventory)
     {
@@ -289,9 +329,16 @@ public sealed class InventoryEditor(
         return inventory with { WorldObjectIds = WorldObjectIdsCodec.Rewrite(inventory.WorldObjectIds, ids) };
     }
 
-    private static Inventory? FindOwningInventory(PlanetCrafterSaveFile save, int worldObjectId)
+    /// <summary>The inventory listing the item. A corrupt save can list it in two; a move then
+    /// passes its destination as <paramref name="preferOtherThan"/>, so the source found is the
+    /// other one rather than wherever the save happens to list first (issue #91).</summary>
+    private static Inventory? FindOwningInventory(
+        PlanetCrafterSaveFile save, int worldObjectId, int? preferOtherThan = null)
     {
-        return save.Inventories.FirstOrDefault(i => WorldObjectIdsCodec.Parse(i.WorldObjectIds).Contains(worldObjectId));
+        return save.Inventories
+            .Where(i => WorldObjectIdsCodec.Parse(i.WorldObjectIds).Contains(worldObjectId))
+            .OrderBy(i => i.Id == preferOtherThan) // stable: otherwise keeps the save's order
+            .FirstOrDefault();
     }
 
     private (string Label, InventoryKind Kind, string? PlanetId) DescribeInventory(
