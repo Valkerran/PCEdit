@@ -83,18 +83,31 @@ public sealed partial class InventoriesViewModel(
         _ => AttentionCount == 0,
     };
 
+    // Set while Load resets the filters, so the change handlers leave the filtering to its end:
+    // one pass over a large save instead of up to three (issue #95).
+    private bool _loading;
+
     public void Load()
     {
-        OnPropertyChanged(nameof(IsLoaded));
-        _allGroups = _workspace.IsLoaded ? _inventoryEditor.BuildInventoryGroups() : [];
-        AttentionCount = _allGroups.Count(g => g.NeedsAttention);
-        OnPropertyChanged(nameof(AttentionCount));
-        if (AttentionCount == 0 && Filter == InventoryFilter.NeedsAttention)
+        _loading = true;
+        try
         {
-            // The view hides the chip when nothing is flagged; don't strand the user on it.
-            Filter = InventoryFilter.All;
+            OnPropertyChanged(nameof(IsLoaded));
+            _allGroups = _workspace.IsLoaded ? _inventoryEditor.BuildInventoryGroups() : [];
+            AttentionCount = _allGroups.Count(g => g.NeedsAttention);
+            OnPropertyChanged(nameof(AttentionCount));
+            if (AttentionCount == 0 && Filter == InventoryFilter.NeedsAttention)
+            {
+                // The view hides the chip when nothing is flagged; don't strand the user on it.
+                Filter = InventoryFilter.All;
+            }
+            RebuildWorldOptions();
         }
-        RebuildWorldOptions();
+        finally
+        {
+            _loading = false;
+        }
+
         ApplyFilter();
     }
 
@@ -104,8 +117,11 @@ public sealed partial class InventoriesViewModel(
 
     partial void OnSelectedWorldChanged(WorldFilterOption? value) => ApplyFilter();
 
+    /// <summary>Rebuilds the world options from the save and keeps the selected world when it is
+    /// still there - the shell reloads the page after every Move or logistics edit (issue #95).</summary>
     private void RebuildWorldOptions()
     {
+        var previous = SelectedWorld;
         WorldOptions.Clear();
         WorldOptions.Add(WorldFilterOption.All(_localizer[LocKeys.Inventories_WorldAll]));
 
@@ -124,8 +140,18 @@ public sealed partial class InventoriesViewModel(
             WorldOptions.Add(WorldFilterOption.Unknown(_localizer[LocKeys.Inventories_WorldUnknown]));
         }
 
-        SelectedWorld = WorldOptions[0];
+        Reselect(previous);
         OnPropertyChanged(nameof(ShowWorldFilter));
+    }
+
+    /// <summary>Selects the rebuilt option picking the same worlds as <paramref name="previous"/>,
+    /// or "All worlds" when that world is gone.</summary>
+    private void Reselect(WorldFilterOption? previous)
+    {
+        // Through null first, so the selection is always one of the rebuilt options: the rebuilt
+        // option equals the old one by value, so assigning it directly would keep the old instance.
+        SelectedWorld = null;
+        SelectedWorld = WorldOptions.FirstOrDefault(o => o.PicksSameWorldsAs(previous)) ?? WorldOptions[0];
     }
 
     /// <summary>The type filter chips: which cards the selected <see cref="Filter"/> keeps.</summary>
@@ -141,6 +167,11 @@ public sealed partial class InventoriesViewModel(
 
     private void ApplyFilter()
     {
+        if (_loading)
+        {
+            return;
+        }
+
         var term = Query.Trim().ToLowerInvariant();
         var passesFilter = TypeFilter();
         var world = SelectedWorld;

@@ -132,7 +132,7 @@
                                  IsChecked="{Binding StackingMode, Converter={StaticResource EnumIs}, ConverterParameter=Never, Mode=TwoWay}" />
                 </StackPanel>
 
-                <ComboBox ItemsSource="{Binding WorldOptions}" SelectedItem="{Binding SelectedWorld}"
+                <ComboBox x:Name="WorldFilter" ItemsSource="{Binding WorldOptions}" SelectedItem="{Binding SelectedWorld}"
                           IsVisible="{Binding ShowWorldFilter}"
                           HorizontalAlignment="Left" MinWidth="200"
                           AutomationProperties.Name="{m:Loc Inventories_FilterWorldA11y}">

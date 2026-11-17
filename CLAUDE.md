@@ -395,7 +395,8 @@ records them and fails the test on dispose unless it set `ExpectUnexpectedError`
 runner makes a new `App` for every test, which is why `LogFile.Start` is once-per-process and why
 the assembly disables test parallelization: the harness redirects process-wide state, and a plain
 `[Fact]` would otherwise run beside it. Controls the
-tests look up carry an `x:Name` (`PageTitle`, `SaveStatusText`, `SaveButton`, `PageErrorText`):
+tests look up carry an `x:Name` (`PageTitle`, `SaveStatusText`, `SaveButton`, `PageErrorText`,
+and `WorldFilter` on the Inventories page, found through the visual tree since it sits in the page's own name scope):
 keep those names. The project is on xUnit v3 because the headless package is built on it and
 cannot be mixed with xUnit 2; the other two test projects stay on 2. It references
 **`xunit.v3.mtp-off`, not `xunit.v3`**: the plain package pulls in Microsoft.Testing.Platform and

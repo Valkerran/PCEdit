@@ -13,6 +13,13 @@ public sealed record WorldFilterOption(string? PlanetId, string Label, bool IsAl
 
     public static WorldFilterOption ForPlanet(string planetId) => new(planetId, planetId, false);
 
+    /// <summary>Whether <paramref name="other"/> picks the same worlds. The label is left out: it is
+    /// translated, so the same choice rebuilt after a language change has a different one.</summary>
+    public bool PicksSameWorldsAs(WorldFilterOption? other) =>
+        other is not null
+        && IsAll == other.IsAll
+        && string.Equals(PlanetId, other.PlanetId, StringComparison.OrdinalIgnoreCase);
+
     /// <summary>Does an inventory/landmark with this (possibly null) world id pass this filter?</summary>
     public bool Accepts(string? worldPlanetId) =>
         IsAll

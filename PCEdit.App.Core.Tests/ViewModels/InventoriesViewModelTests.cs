@@ -48,7 +48,9 @@ public sealed class InventoriesViewModelTests
         Assert.Equal([10, 11], vm.Groups.Select(g => g.InventoryId).OrderBy(id => id).ToArray());
     }
 
-    private static InventoriesViewModel CreateLoadedMultiWorld()
+    private static InventoriesViewModel CreateLoadedMultiWorld() => CreateLoadedMultiWorldWithWorkspace().Vm;
+
+    private static (InventoriesViewModel Vm, SaveFileWorkspace Workspace) CreateLoadedMultiWorldWithWorkspace()
     {
         var store = new FakeSaveFileStore();
         store.Seed(Path, WorkspaceFixtures.CreateMultiWorld());
@@ -58,7 +60,64 @@ public sealed class InventoriesViewModelTests
         var itemCatalog = new ItemCatalog();
         var vm = new InventoriesViewModel(workspace, new InventoryEditor(workspace, itemCatalog, new LogisticsGroupCatalog(itemCatalog), localizer, new PlanetIndex(workspace)), new FakeNavigationService(), localizer, new FakeInventoryDisplayStore());
         vm.Load();
-        return vm;
+        return (vm, workspace);
+    }
+
+    // Issue #95: the shell reloads the page after every Move or logistics edit, which used to put
+    // the world filter back to "All worlds".
+
+    [Fact]
+    public void Load_AgainKeepsTheSelectedWorld()
+    {
+        var vm = CreateLoadedMultiWorld();
+        vm.SelectedWorld = vm.WorldOptions.Single(o => o.PlanetId == "Aqualis");
+
+        vm.Load();
+
+        Assert.Equal("Aqualis", vm.SelectedWorld?.PlanetId);
+        Assert.Same(vm.SelectedWorld, vm.WorldOptions.Single(o => o.PlanetId == "Aqualis"));
+        Assert.Equal([20, 21, 30], vm.Groups.Select(g => g.InventoryId).OrderBy(id => id).ToArray());
+    }
+
+    [Fact]
+    public void Load_AgainKeepsTheUnknownWorldOption()
+    {
+        var vm = CreateLoadedMultiWorld();
+        vm.SelectedWorld = vm.WorldOptions.Single(o => o is { IsAll: false, PlanetId: null });
+
+        vm.Load();
+
+        Assert.Equal([99], vm.Groups.Select(g => g.InventoryId).ToArray());
+    }
+
+    [Fact]
+    public void Load_WhenTheSelectedWorldIsGone_FallsBackToAllWorlds()
+    {
+        var (vm, workspace) = CreateLoadedMultiWorldWithWorkspace();
+        vm.SelectedWorld = vm.WorldOptions.Single(o => o.PlanetId == "Aqualis");
+        var save = workspace.Current!;
+        var bob = save.Players.FindIndex(p => p.Id == 2);
+        save.Players[bob] = save.Players[bob] with { PlanetId = "Prime" };
+        var container = save.WorldObjects.FindIndex(w => w.Id == 100);
+        save.WorldObjects[container] = save.WorldObjects[container] with { Planet = null };
+
+        vm.Load();
+
+        Assert.True(vm.SelectedWorld?.IsAll);
+        Assert.Equal(6, vm.Groups.Count);
+    }
+
+    [Fact]
+    public void Load_FiltersTheListOnce()
+    {
+        var vm = CreateLoadedMultiWorld();
+        vm.SelectedWorld = vm.WorldOptions.Single(o => o.PlanetId == "Aqualis");
+        var assignments = 0;
+        vm.PropertyChanged += (_, e) => assignments += e.PropertyName == nameof(vm.Groups) ? 1 : 0;
+
+        vm.Load();
+
+        Assert.Equal(1, assignments);
     }
 
     [Fact]
