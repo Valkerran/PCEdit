@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using PCEdit.App.Core.Localization;
 using PCEdit.App.Core.Services;
 using PCEdit.Desktop.Platform;
+using PCEdit.Desktop.Views;
 
 namespace PCEdit.Desktop.Tests;
 
@@ -62,6 +63,33 @@ public sealed class ShellSmokeTests
         Assert.False(ui.Services.GetRequiredService<JsonSettingsStore>().HasAcknowledged);
         Assert.True(ui.Window.IsVisible);
     }
+
+    [AvaloniaFact]
+    public void ASecondCloseRequest_WhileTheDiscardPromptIsOpen_DoesNotOpenAnother()
+    {
+        // Taskbar Close, a repeated Alt+F4 or a session-end request while the prompt is up (#102).
+        using var ui = new UiHarness();
+        ui.LoadSave();
+        ui.MakeAnEdit();
+
+        ui.Window.Close();
+        ui.Pump();
+        ui.Window.Close();
+        ui.Pump();
+
+        // A second prompt would open over the first (dialogs belong to the innermost window), so
+        // count every open dialog, not just the main window's own.
+        var prompt = Assert.Single(AllDialogs(ui.Window));
+        ui.Click(prompt, 0); // Keep editing
+        Assert.True(ui.Window.IsVisible);
+
+        ui.Window.Close(); // the guard is cleared: a later close asks again
+        ui.Pump();
+        Assert.Single(AllDialogs(ui.Window));
+    }
+
+    private static IEnumerable<MessageDialog> AllDialogs(Window owner) =>
+        owner.OwnedWindows.SelectMany(w => AllDialogs(w).Prepend(w as MessageDialog)).OfType<MessageDialog>();
 
     [AvaloniaFact]
     public void EditingALoadedSave_EnablesSave_AndSavingWritesTheFile()

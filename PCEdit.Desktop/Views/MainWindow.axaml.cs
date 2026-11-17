@@ -19,6 +19,7 @@ public partial class MainWindow : Window
     private readonly TextBlock _liveRegion;
     private bool _disclaimerChecked;
     private bool _forceClose;
+    private bool _closePromptOpen;
 
     // Design-time / XAML previewer.
     public MainWindow()
@@ -64,16 +65,29 @@ public partial class MainWindow : Window
 
         e.Cancel = true;
 
-        var discard = await _dialogs.ConfirmAsync(
-            _localizer[LocKeys.Quit_DiscardTitle],
-            _localizer[LocKeys.Quit_DiscardBody],
-            _localizer[LocKeys.Common_CloseWithoutSaving],
-            _localizer[LocKeys.Common_KeepEditing]);
-
-        if (discard)
+        // One prompt at a time: a taskbar Close, a repeated Alt+F4 or a session-end request while
+        // it is up would otherwise stack a second one over it (#102).
+        if (!_closePromptOpen && await AskToDiscardAsync())
         {
             _forceClose = true;
             Close();
+        }
+    }
+
+    private async Task<bool> AskToDiscardAsync()
+    {
+        _closePromptOpen = true;
+        try
+        {
+            return await _dialogs!.ConfirmAsync(
+                _localizer![LocKeys.Quit_DiscardTitle],
+                _localizer[LocKeys.Quit_DiscardBody],
+                _localizer[LocKeys.Common_CloseWithoutSaving],
+                _localizer[LocKeys.Common_KeepEditing]);
+        }
+        finally
+        {
+            _closePromptOpen = false;
         }
     }
 
