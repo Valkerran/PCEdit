@@ -105,6 +105,51 @@ public sealed class InventoryEditorTests
         Assert.Equal("999,200", workspace.Current!.Inventories.Single(i => i.Id == 20).WorldObjectIds);
     }
 
+    // Issue #91: on a corrupt save an item can be listed in the source and the destination both.
+
+    [Fact]
+    public void TryMoveItems_OfAnItemTheDestinationAlreadyLists_DoesNotListItTwice()
+    {
+        // 30 is full (2 of 2) but already lists 200, so the move needs no slot.
+        var (editor, workspace) = CreateLoadedEditor(save =>
+        {
+            SetIdList(save, 30, "202,200");
+            var index = save.Inventories.FindIndex(i => i.Id == 30);
+            save.Inventories[index] = save.Inventories[index] with { Size = 2 };
+        });
+
+        var result = editor.TryMoveItems([200], destinationInventoryId: 30);
+
+        Assert.True(result.Success);
+        Assert.Equal("201", workspace.Current!.Inventories.Single(i => i.Id == 10).WorldObjectIds);
+        Assert.Equal("202,200", workspace.Current!.Inventories.Single(i => i.Id == 30).WorldObjectIds);
+    }
+
+    [Fact]
+    public void TryMoveItems_WhenTheDestinationComesFirstInTheSave_FindsTheRealSource()
+    {
+        // 202 lives in 30 and is also listed in 10, which the save lists first.
+        var (editor, workspace) = CreateLoadedEditor(save => SetIdList(save, 10, "200,201,202"));
+
+        var result = editor.TryMoveItems([202], destinationInventoryId: 10);
+
+        Assert.True(result.Success);
+        Assert.Equal("", workspace.Current!.Inventories.Single(i => i.Id == 30).WorldObjectIds);
+        Assert.Equal("200,201,202", workspace.Current!.Inventories.Single(i => i.Id == 10).WorldObjectIds);
+    }
+
+    [Fact]
+    public void TryMoveItems_IntoTheOnlyInventoryListingIt_IsRefusedAsAlreadyThere()
+    {
+        var (editor, workspace) = CreateLoadedEditor();
+
+        var result = editor.TryMoveItems([200], destinationInventoryId: 10);
+
+        Assert.False(result.Success);
+        Assert.Equal(new Localizer()[LocKeys.Inv_AlreadyThere], result.ErrorMessage);
+        Assert.False(workspace.IsDirty);
+    }
+
     [Fact]
     public void TryMoveItems_MovesEveryGivenItem_KeepingTheirOrder()
     {
