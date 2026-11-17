@@ -131,7 +131,7 @@
         "dependencies": {
           "CommunityToolkit.Mvvm": "[8.4.2, )",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "[11.0.0, )",
-          "PCEdit.SaveFileHandler": "[1.8.8, )"
+          "PCEdit.SaveFileHandler": "[1.8.9, )"
         }
       },
       "pcedit.savefilehandler": {

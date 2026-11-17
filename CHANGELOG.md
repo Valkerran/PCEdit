@@ -4,6 +4,37 @@ What changed in each release of PCEdit. Downloads for every version are on the
 [Releases page](https://github.com/Valkerran/PCEdit/releases); the newest is on the
 [latest release](https://github.com/Valkerran/PCEdit/releases/latest) page.
 
+## v1.8.9
+
+- **Fixed: Escape closes the Move, Logistics and Repair dialogs.** Like their Cancel button, and
+  without changing anything. In the logistics editor, Escape in an open suggestion list still
+  closes just the list first. ([#105](https://github.com/Valkerran/PCEdit/issues/105))
+
+- **Fixed: screen readers can tell what every control in those dialogs does.** The logistics
+  editor's "Everything" clear buttons and its two "Add a group" boxes are now named separately for
+  demand and supply, and the Move dialog's search box is named instead of relying on its
+  placeholder text. ([#80](https://github.com/Valkerran/PCEdit/issues/80),
+  [#104](https://github.com/Valkerran/PCEdit/issues/104))
+
+- **Fixed: a repeated message is read out again.** Doing the same thing twice in a row — moving
+  two identical items, say — now announces it both times instead of only the first.
+  ([#103](https://github.com/Valkerran/PCEdit/issues/103))
+
+- **Fixed: closing the disclaimer is not agreeing to it.** Only clicking its button counts. If you
+  close it with the window's ✕ or Escape, PCEdit carries on and shows it again next time.
+  ([#99](https://github.com/Valkerran/PCEdit/issues/99))
+
+- **Fixed: one "unsaved changes" prompt at a time.** Asking to close again while that prompt is
+  open — a second Alt+F4, the taskbar's Close — no longer stacks another prompt on top.
+  ([#102](https://github.com/Valkerran/PCEdit/issues/102))
+
+- **Fixed: choosing a file that is not on this computer says so.** Picking a save, or a place for
+  the repaired copy, from a location with no local path used to do nothing, as if you had
+  cancelled; PCEdit now tells you to choose a file on a local drive.
+  ([#107](https://github.com/Valkerran/PCEdit/issues/107))
+
+Applies to Linux, Windows and macOS alike. No new dependencies or changes to requirements.
+
 ## v1.8.8
 
 - **Fixed: Move agrees with the card about how full a container is.** A container whose list
