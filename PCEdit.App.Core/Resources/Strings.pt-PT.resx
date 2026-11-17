@@ -209,6 +209,10 @@
   <data name="Logistics_Clear" xml:space="preserve"><value>Limpar</value></data>
   <data name="Logistics_Everything" xml:space="preserve"><value>Tudo</value></data>
   <data name="Logistics_RemoveA11y" xml:space="preserve"><value>Remover {0}</value></data>
+  <data name="Logistics_ClearDemandA11y" xml:space="preserve"><value>Remover todos os grupos de procura</value></data>
+  <data name="Logistics_ClearSupplyA11y" xml:space="preserve"><value>Remover todos os grupos de fornecimento</value></data>
+  <data name="Logistics_AddDemandA11y" xml:space="preserve"><value>Adicionar um grupo de procura</value></data>
+  <data name="Logistics_AddSupplyA11y" xml:space="preserve"><value>Adicionar um grupo de fornecimento</value></data>
   <data name="Logistics_EmptyList" xml:space="preserve"><value>Nenhum</value></data>
   <data name="Logistics_CustomBadge" xml:space="preserve"><value>personal.</value></data>
   <data name="Logistics_Apply" xml:space="preserve"><value>Aplicar</value></data>

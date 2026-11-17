@@ -209,6 +209,10 @@
   <data name="Logistics_Clear" xml:space="preserve"><value>クリア</value></data>
   <data name="Logistics_Everything" xml:space="preserve"><value>すべて</value></data>
   <data name="Logistics_RemoveA11y" xml:space="preserve"><value>{0} を削除</value></data>
+  <data name="Logistics_ClearDemandA11y" xml:space="preserve"><value>すべての需要グループを削除</value></data>
+  <data name="Logistics_ClearSupplyA11y" xml:space="preserve"><value>すべての供給グループを削除</value></data>
+  <data name="Logistics_AddDemandA11y" xml:space="preserve"><value>需要グループを追加</value></data>
+  <data name="Logistics_AddSupplyA11y" xml:space="preserve"><value>供給グループを追加</value></data>
   <data name="Logistics_EmptyList" xml:space="preserve"><value>なし</value></data>
   <data name="Logistics_CustomBadge" xml:space="preserve"><value>カスタム</value></data>
   <data name="Logistics_Apply" xml:space="preserve"><value>適用</value></data>
