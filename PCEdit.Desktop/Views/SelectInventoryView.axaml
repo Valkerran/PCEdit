@@ -39,7 +39,7 @@
                        Classes="status"
                        Classes.success="{Binding StatusKind, Converter={StaticResource StatusIsSuccess}}"
                        Classes.error="{Binding StatusKind, Converter={StaticResource StatusIsError}}" />
-            <Button HorizontalAlignment="Left" Content="{m:Loc Common_Cancel}" Command="{Binding CancelCommand}" />
+            <Button HorizontalAlignment="Left" Content="{m:Loc Common_Cancel}" Command="{Binding CancelCommand}" IsCancel="True" />
         </StackPanel>
 
         <ScrollViewer>
