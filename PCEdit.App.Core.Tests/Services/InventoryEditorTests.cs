@@ -308,6 +308,45 @@ public sealed class InventoryEditorTests
         Assert.Equal(9, workspace.Current!.Inventories.Single(i => i.Id == 30).Priority);
     }
 
+    // Issue #96: an Apply that changes nothing must not mark the save edited or rewrite its text.
+
+    [Fact]
+    public void UpdateLogistics_WithNothingChanged_LeavesTheSaveUntouched()
+    {
+        var (editor, workspace) = CreateLogisticsEditor(); // Iron,Cobalt / Magnesium / 2
+
+        editor.UpdateLogistics(30, ["Iron", "Cobalt"], ["Magnesium"], priority: 2);
+
+        Assert.False(workspace.IsDirty);
+    }
+
+    [Fact]
+    public void UpdateLogistics_WithNothingChanged_KeepsTheStoredTextAsItWas()
+    {
+        // The editor shows "Iron, Iron ,Cobalt" as two groups; writing them back would tidy the text.
+        var (editor, workspace) = CreateLogisticsEditor(demandGroups: "Iron, Iron ,Cobalt");
+
+        editor.UpdateLogistics(30, ["Iron", "Cobalt"], ["Magnesium"], priority: 2);
+
+        Assert.Equal("Iron, Iron ,Cobalt", workspace.Current!.Inventories.Single(i => i.Id == 30).DemandGroups);
+        Assert.False(workspace.IsDirty);
+    }
+
+    [Theory]
+    [InlineData(new[] { "Iron", "Cobalt" }, 3)]   // only the priority
+    [InlineData(new[] { "Cobalt", "Iron" }, 2)]   // only the order
+    public void UpdateLogistics_WithAnyChange_Writes(string[] demand, int priority)
+    {
+        var (editor, workspace) = CreateLogisticsEditor();
+
+        editor.UpdateLogistics(30, demand, ["Magnesium"], priority);
+
+        var inventory = workspace.Current!.Inventories.Single(i => i.Id == 30);
+        Assert.Equal(string.Join(",", demand), inventory.DemandGroups);
+        Assert.Equal(priority, inventory.Priority);
+        Assert.True(workspace.IsDirty);
+    }
+
     [Fact]
     public void UpdateLogistics_OnAPlainInventory_Throws()
     {
@@ -316,14 +355,15 @@ public sealed class InventoryEditorTests
         Assert.Throws<InvalidOperationException>(() => editor.UpdateLogistics(10, [], [], priority: 0));
     }
 
-    private static (InventoryEditor Editor, SaveFileWorkspace Workspace) CreateLogisticsEditor()
+    private static (InventoryEditor Editor, SaveFileWorkspace Workspace) CreateLogisticsEditor(
+        string demandGroups = "Iron,Cobalt")
     {
         var store = new FakeSaveFileStore();
         var save = WorkspaceFixtures.Create();
         var index = save.Inventories.FindIndex(i => i.Id == 30);
         save.Inventories[index] = save.Inventories[index] with
         {
-            DemandGroups = "Iron,Cobalt",
+            DemandGroups = demandGroups,
             SupplyGroups = "Magnesium",
             Priority = 2
         };

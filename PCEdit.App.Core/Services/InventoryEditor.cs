@@ -246,6 +246,12 @@ public sealed class InventoryEditor(
         ArgumentNullException.ThrowIfNull(demandGroupIds);
         ArgumentNullException.ThrowIfNull(supplyGroupIds);
 
+        var current = RequireCurrent().Inventories.FirstOrDefault(i => i.Id == inventoryId);
+        if (current is not null && HasLogistics(current, demandGroupIds, supplyGroupIds, priority))
+        {
+            return;
+        }
+
         _workspace.ReplaceInventory(inventoryId, inventory =>
         {
             if (inventory.Priority is null)
@@ -261,6 +267,20 @@ public sealed class InventoryEditor(
             };
         });
     }
+
+    /// <summary>Whether the inventory already holds exactly this config, as the editor reads it.
+    /// Writing it back anyway would mark the save edited and tidy text nobody changed (issue #96).
+    /// A plain inventory has no priority, so it never matches.</summary>
+    private static bool HasLogistics(Inventory inventory, IReadOnlyList<string> demandGroupIds,
+        IReadOnlyList<string> supplyGroupIds, int priority)
+    {
+        return inventory.Priority == priority
+            && SameGroups(inventory.DemandGroups, demandGroupIds)
+            && SameGroups(inventory.SupplyGroups, supplyGroupIds);
+    }
+
+    private static bool SameGroups(string? stored, IReadOnlyList<string> groupIds) =>
+        GroupListCodec.Join(GroupListCodec.Parse(stored)) == GroupListCodec.Join(groupIds);
 
     private LogisticsConfig? ReadLogistics(Inventory inventory)
     {

@@ -144,6 +144,44 @@ public sealed class LogisticsEditorViewModelTests
         Assert.Empty(vm.DemandGroupText);
     }
 
+    // Issue #96: a typed id holding a comma showed as one group but saved as two.
+
+    [Fact]
+    public void AddDemandGroup_TypedWithCommas_AddsEachIdAsItsOwnGroup()
+    {
+        var (vm, _, _) = Create(); // Iron, Cobalt
+        vm.Initialize(30);
+
+        vm.DemandGroupText = "Titanium, ,SomeModId,Iron";
+        vm.AddDemandGroupCommand.Execute(null);
+
+        Assert.Equal(["Iron", "Cobalt", "Titanium", "SomeModId"], vm.DemandGroups.Select(g => g.Id));
+    }
+
+    [Fact]
+    public void AddSupplyGroup_TypedWithCommas_AddsEachIdAsItsOwnGroup()
+    {
+        var (vm, _, _) = Create();
+        vm.Initialize(30);
+
+        vm.SupplyGroupText = "Titanium,Silicon";
+        vm.AddSupplyGroupCommand.Execute(null);
+
+        Assert.Equal(["Titanium", "Silicon"], vm.SupplyGroups.Select(g => g.Id));
+    }
+
+    [Fact]
+    public async Task Apply_WithoutChangingAnything_LeavesTheSaveUnedited()
+    {
+        var (vm, workspace, nav) = Create();
+        vm.Initialize(30);
+
+        await vm.ApplyCommand.ExecuteAsync(null);
+
+        Assert.False(workspace.IsDirty);
+        Assert.Equal(1, nav.CloseModalCount);
+    }
+
     [Fact]
     public void AddDemandGroup_Duplicate_IsIgnored()
     {
