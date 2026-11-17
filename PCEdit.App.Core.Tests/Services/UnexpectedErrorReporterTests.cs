@@ -30,7 +30,7 @@ public sealed class UnexpectedErrorReporterTests
         public Task<bool> ConfirmAsync(string title, string message, string acceptText, string cancelText) =>
             Task.FromResult(false);
 
-        public Task ShowDisclaimerAsync(string title, string body, string acknowledgeText) => Task.CompletedTask;
+        public Task<bool> ShowDisclaimerAsync(string title, string body, string acknowledgeText) => Task.FromResult(true);
     }
 
     [Fact]

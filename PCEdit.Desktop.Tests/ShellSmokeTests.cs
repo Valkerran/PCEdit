@@ -49,6 +49,21 @@ public sealed class ShellSmokeTests
     }
 
     [AvaloniaFact]
+    public void ClosingTheDisclaimerWithoutItsButton_DoesNotCountAsAcknowledging()
+    {
+        // The title-bar X or Escape: the user saw it but did not say "I understand", so it shows
+        // again next launch. The app stays usable meanwhile (#99).
+        using var ui = new UiHarness(acknowledgeDisclaimer: false);
+
+        Assert.Single(ui.Dialogs).Close();
+        ui.Pump();
+
+        Assert.Empty(ui.Dialogs);
+        Assert.False(ui.Services.GetRequiredService<JsonSettingsStore>().HasAcknowledged);
+        Assert.True(ui.Window.IsVisible);
+    }
+
+    [AvaloniaFact]
     public void EditingALoadedSave_EnablesSave_AndSavingWritesTheFile()
     {
         using var ui = new UiHarness();

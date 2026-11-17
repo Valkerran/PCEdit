@@ -17,7 +17,8 @@ public interface IDialogService
 
     /// <summary>
     /// Shows the blocking "use at your own risk" disclaimer with a single acknowledge button.
-    /// Returns when the user acknowledges.
+    /// Returns <c>true</c> when the user clicks it, <c>false</c> when the dialog was closed some
+    /// other way (the title-bar X, Escape) - which is not an acknowledgement (#99).
     /// </summary>
-    Task ShowDisclaimerAsync(string title, string body, string acknowledgeText);
+    Task<bool> ShowDisclaimerAsync(string title, string body, string acknowledgeText);
 }

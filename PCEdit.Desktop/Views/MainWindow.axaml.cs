@@ -81,14 +81,9 @@ public partial class MainWindow : Window
     {
         Opened -= OnOpened;
 
-        if (!_disclaimerChecked && _disclaimerGate is { HasAcknowledged: false })
+        if (!_disclaimerChecked && _disclaimerGate is { HasAcknowledged: false } && !await TryShowDisclaimerAsync())
         {
-            if (!await TryShowDisclaimerAsync())
-            {
-                return;
-            }
-
-            _disclaimerGate.Acknowledge();
+            return;
         }
 
         _disclaimerChecked = true;
@@ -99,17 +94,25 @@ public partial class MainWindow : Window
     }
 
     /// <summary>
-    /// The disclaimer is a gate: unexpected errors no longer end the app, so one raised while
-    /// showing it would otherwise leave PCEdit usable without it ever having been seen.
+    /// Shows the disclaimer and records it as acknowledged only when its button was clicked: a
+    /// dismissed one was seen but not agreed to, so it shows again next launch (#99). Returns
+    /// false when it could not be shown at all. The disclaimer is a gate: unexpected errors no
+    /// longer end the app, so one raised while showing it would otherwise leave PCEdit usable
+    /// without it ever having been seen.
     /// </summary>
     private async Task<bool> TryShowDisclaimerAsync()
     {
         try
         {
-            await _dialogs!.ShowDisclaimerAsync(
+            var acknowledged = await _dialogs!.ShowDisclaimerAsync(
                 _localizer![LocKeys.Disclaimer_Title],
                 _localizer[LocKeys.Disclaimer_Body],
                 _localizer[LocKeys.Disclaimer_Acknowledge]);
+            if (acknowledged)
+            {
+                _disclaimerGate!.Acknowledge();
+            }
+
             return true;
         }
         catch (Exception ex)
