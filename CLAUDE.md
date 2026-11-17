@@ -327,7 +327,7 @@ container's `Planet`) and is `null` for orphan inventories.
 | `IFilePickerService` | `AvaloniaFilePickerService` (`IStorageProvider`: open, and the save-as for a repaired copy, owned by the active window so it opens over the repair dialog). Returns a `FilePick`, not a path: a pick with no local path (a portal or remote location) is `FilePick.NotLocal`, which Open File reports on its status line and Repair in its error dialog, rather than looking like Cancel (#107). Picked storage items are disposed |
 | `INavigationService` | `AvaloniaNavigationService` (drives `MainWindowViewModel` + a modal `Window`) |
 | `IDialogService` | `AvaloniaDialogService` (`MessageDialog` window) |
-| `IScreenReaderAnnouncer` | `AvaloniaScreenReaderAnnouncer` (hidden live-region `TextBlock`) |
+| `IScreenReaderAnnouncer` | `AvaloniaScreenReaderAnnouncer` (hidden live-region `TextBlock`; a live region speaks only on a change, so a repeated message is cleared and set again on the next tick, and a newer message overtakes a pending repeat, #103) |
 | `IAppVersionInfo` | `AvaloniaAppVersionInfo` |
 | `ILanguageStore`, `IDisclaimerGate`, `IInventoryDisplayStore` | `JsonSettingsStore` in `PCEdit.App.Core/Services` (`~/.config/PCEdit/settings.json`; an unreadable stored value falls back to the default; re-reads the file before each change and writes through `AtomicFile`, #100; a failed write raises `WriteFailed`, which `MainWindowViewModel` shows in an error dialog, one at a time, since the setting still applies for the session and nothing else would give the failure away) |
 | `ISaveBackupService` | `FileSaveBackupService` in `PCEdit.App.Core/Services` (`<LocalApplicationData>/PCEdit/backups`; names are `name.<hash8 of the save's full path>.<yyyyMMdd-HHmmss-fff>.bak`, five kept per save; backups in the older hash-less format are never pruned, #101) |
@@ -370,8 +370,11 @@ Ctrl+S elsewhere; Avalonia does not map Ctrl to Cmd, #106), row 1 an **error ban
 shown only when `MainWindowViewModel.PageError` is set (a page's `Load()` threw — the shell catches
 it so a malformed save cannot take the app down with the file still open, #37), row 2 a
 `ContentControl` bound to `CurrentPage`. `MainWindow.axaml.cs` handles `Closing`: if `Workspace.IsDirty` it cancels
-the close and shows the `Quit_Discard*` confirm dialog. On first open the disclaimer dialog shows if
-`!IDisclaimerGate.HasAcknowledged`; the other page views are pre-built at `Background` priority so
+the close and shows the `Quit_Discard*` confirm dialog - one at a time: a close request while it is open is
+cancelled and ignored (#102). On first open the disclaimer dialog shows if
+`!IDisclaimerGate.HasAcknowledged`, and is acknowledged only when its button is clicked
+(`IDialogService.ShowDisclaimerAsync` returns whether it was); closed any other way it shows again next
+launch (#99). The other page views are pre-built at `Background` priority so
 first navigation isn't a stall.
 
 Palette / theme: `App.axaml` defines colour tokens (`SurfacePage`, `SurfaceCard`, `BrandFill`,
@@ -389,7 +392,9 @@ fake), a private data root through `AppPaths.RootOverride` so nothing reads or w
 settings, backups or log, and a `Localizer` of its own. Text a view model provides follows that
 localizer; text bound in XAML with `{m:Loc}` stays on the process-wide `Loc.Instance`, so assert
 language changes on view-model text. Dialogs are real `MessageDialog` windows, found through
-`Window.OwnedWindows`; `Pump()` runs the UI thread's queue. The app's keep-running handler marks
+`Window.OwnedWindows`. A dialog opens over the innermost open window (`MainWindowAccessor.ActiveWindow()`),
+so one raised while another dialog is up belongs to that dialog, not the main window: `ui.Dialogs` lists only
+the main window's own, so count nested ones when that matters (`ShellSmokeTests.AllDialogs`). `Pump()` runs the UI thread's queue. The app's keep-running handler marks
 an exception on the UI thread as handled, which would let a broken test pass, so the harness
 records them and fails the test on dispose unless it set `ExpectUnexpectedError`. The headless
 runner makes a new `App` for every test, which is why `LogFile.Start` is once-per-process and why
