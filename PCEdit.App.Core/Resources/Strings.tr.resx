@@ -55,6 +55,7 @@
   <data name="OpenFile_LoadingInline" xml:space="preserve"><value>Kayıt yükleniyor…</value></data>
   <data name="OpenFile_LoadingA11y" xml:space="preserve"><value>Kayıt yükleniyor</value></data>
   <data name="OpenFile_PickerTitle" xml:space="preserve"><value>Bir Planet Crafter kayıt dosyası seçin</value></data>
+  <data name="FilePicker_NotLocal" xml:space="preserve"><value>PCEdit yalnızca bu bilgisayardaki dosyaları kullanabilir. Yerel bir sürücüdeki bir dosyayı seçin.</value></data>
   <data name="OpenFile_LoadingAnnounce" xml:space="preserve"><value>Kayıt yükleniyor.</value></data>
   <data name="OpenFile_Loaded" xml:space="preserve"><value>{0} yüklendi.</value></data>
   <data name="OpenFile_LoadFailed" xml:space="preserve"><value>Bu dosya yüklenemedi. Geçerli bir Planet Crafter kaydı olmayabilir.</value></data>
@@ -209,6 +210,10 @@
   <data name="Logistics_Clear" xml:space="preserve"><value>Temizle</value></data>
   <data name="Logistics_Everything" xml:space="preserve"><value>Her şey</value></data>
   <data name="Logistics_RemoveA11y" xml:space="preserve"><value>{0} öğesini kaldır</value></data>
+  <data name="Logistics_ClearDemandA11y" xml:space="preserve"><value>Tüm talep gruplarını kaldır</value></data>
+  <data name="Logistics_ClearSupplyA11y" xml:space="preserve"><value>Tüm arz gruplarını kaldır</value></data>
+  <data name="Logistics_AddDemandA11y" xml:space="preserve"><value>Talep grubu ekle</value></data>
+  <data name="Logistics_AddSupplyA11y" xml:space="preserve"><value>Arz grubu ekle</value></data>
   <data name="Logistics_EmptyList" xml:space="preserve"><value>Yok</value></data>
   <data name="Logistics_CustomBadge" xml:space="preserve"><value>özel</value></data>
   <data name="Logistics_Apply" xml:space="preserve"><value>Uygula</value></data>

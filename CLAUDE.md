@@ -324,7 +324,7 @@ container's `Planet`) and is `null` for orphan inventories.
 
 | Interface | Avalonia impl |
 |---|---|
-| `IFilePickerService` | `AvaloniaFilePickerService` (`IStorageProvider`: open, and the save-as for a repaired copy, owned by the active window so it opens over the repair dialog) |
+| `IFilePickerService` | `AvaloniaFilePickerService` (`IStorageProvider`: open, and the save-as for a repaired copy, owned by the active window so it opens over the repair dialog). Returns a `FilePick`, not a path: a pick with no local path (a portal or remote location) is `FilePick.NotLocal`, which Open File reports on its status line and Repair in its error dialog, rather than looking like Cancel (#107). Picked storage items are disposed |
 | `INavigationService` | `AvaloniaNavigationService` (drives `MainWindowViewModel` + a modal `Window`) |
 | `IDialogService` | `AvaloniaDialogService` (`MessageDialog` window) |
 | `IScreenReaderAnnouncer` | `AvaloniaScreenReaderAnnouncer` (hidden live-region `TextBlock`) |

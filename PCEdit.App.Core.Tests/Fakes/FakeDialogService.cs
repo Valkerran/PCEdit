@@ -17,5 +17,5 @@ internal sealed class FakeDialogService : IDialogService
         return Task.CompletedTask;
     }
 
-    public Task ShowDisclaimerAsync(string title, string body, string acknowledgeText) => Task.CompletedTask;
+    public Task<bool> ShowDisclaimerAsync(string title, string body, string acknowledgeText) => Task.FromResult(true);
 }

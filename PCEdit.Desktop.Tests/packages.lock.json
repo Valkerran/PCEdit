@@ -357,7 +357,7 @@
           "CommunityToolkit.Mvvm": "[8.4.2, )",
           "Microsoft.Extensions.DependencyInjection": "[11.0.0, )",
           "Microsoft.ICU.ICU4C.Runtime.linux-x64": "[72.1.0.3, )",
-          "PCEdit.App.Core": "[1.8.8, )"
+          "PCEdit.App.Core": "[1.8.9, )"
         }
       },
       "pcedit.app.core": {
@@ -365,7 +365,7 @@
         "dependencies": {
           "CommunityToolkit.Mvvm": "[8.4.2, )",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "[11.0.0, )",
-          "PCEdit.SaveFileHandler": "[1.8.8, )"
+          "PCEdit.SaveFileHandler": "[1.8.9, )"
         }
       },
       "pcedit.savefilehandler": {

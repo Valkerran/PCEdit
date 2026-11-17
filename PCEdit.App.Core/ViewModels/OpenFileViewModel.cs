@@ -83,8 +83,14 @@ public sealed partial class OpenFileViewModel : ObservableObject
 
     private async Task PickAndOpenAsync()
     {
-        var path = await _filePicker.PickSaveFileAsync(_localizer[LocKeys.OpenFile_PickerTitle]);
-        if (path is null)
+        var pick = await _filePicker.PickSaveFileAsync(_localizer[LocKeys.OpenFile_PickerTitle]);
+        if (pick.IsNotLocal)
+        {
+            SetStatus(StatusKind.Error, LocKeys.FilePicker_NotLocal);
+            return;
+        }
+
+        if (pick.Path is not { } path)
         {
             return;
         }

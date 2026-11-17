@@ -55,6 +55,7 @@
   <data name="OpenFile_LoadingInline" xml:space="preserve"><value>Chargement de la sauvegarde…</value></data>
   <data name="OpenFile_LoadingA11y" xml:space="preserve"><value>Chargement de la sauvegarde</value></data>
   <data name="OpenFile_PickerTitle" xml:space="preserve"><value>Sélectionnez un fichier de sauvegarde Planet Crafter</value></data>
+  <data name="FilePicker_NotLocal" xml:space="preserve"><value>PCEdit ne peut utiliser que des fichiers présents sur cet ordinateur. Choisissez un fichier sur un disque local.</value></data>
   <data name="OpenFile_LoadingAnnounce" xml:space="preserve"><value>Chargement de la sauvegarde.</value></data>
   <data name="OpenFile_Loaded" xml:space="preserve"><value>{0} chargé.</value></data>
   <data name="OpenFile_LoadFailed" xml:space="preserve"><value>Impossible de charger ce fichier. Ce n'est peut-être pas une sauvegarde Planet Crafter valide.</value></data>
@@ -209,6 +210,10 @@
   <data name="Logistics_Clear" xml:space="preserve"><value>Effacer</value></data>
   <data name="Logistics_Everything" xml:space="preserve"><value>Tout</value></data>
   <data name="Logistics_RemoveA11y" xml:space="preserve"><value>Retirer {0}</value></data>
+  <data name="Logistics_ClearDemandA11y" xml:space="preserve"><value>Retirer tous les groupes de demande</value></data>
+  <data name="Logistics_ClearSupplyA11y" xml:space="preserve"><value>Retirer tous les groupes d’offre</value></data>
+  <data name="Logistics_AddDemandA11y" xml:space="preserve"><value>Ajouter un groupe de demande</value></data>
+  <data name="Logistics_AddSupplyA11y" xml:space="preserve"><value>Ajouter un groupe d’offre</value></data>
   <data name="Logistics_EmptyList" xml:space="preserve"><value>Aucun</value></data>
   <data name="Logistics_CustomBadge" xml:space="preserve"><value>perso.</value></data>
   <data name="Logistics_Apply" xml:space="preserve"><value>Appliquer</value></data>

@@ -14,7 +14,8 @@
                 <Border Classes="headingRule" />
                 <TextBlock Text="{m:Loc SelectInv_Heading}" Classes="h2" VerticalAlignment="Center" />
             </StackPanel>
-            <TextBox Text="{Binding Query, Mode=TwoWay}" PlaceholderText="{m:Loc SelectInv_Search}" />
+            <TextBox Text="{Binding Query, Mode=TwoWay}" PlaceholderText="{m:Loc SelectInv_Search}"
+                     AutomationProperties.Name="{m:Loc SelectInv_Search}" />
             <!-- Moving part of a stack (issue #64): only shown when there is more than one item.
                  Destinations without room for the chosen quantity are disabled below. -->
             <StackPanel Orientation="Horizontal" Spacing="10" IsVisible="{Binding IsStack}">
@@ -39,7 +40,7 @@
                        Classes="status"
                        Classes.success="{Binding StatusKind, Converter={StaticResource StatusIsSuccess}}"
                        Classes.error="{Binding StatusKind, Converter={StaticResource StatusIsError}}" />
-            <Button HorizontalAlignment="Left" Content="{m:Loc Common_Cancel}" Command="{Binding CancelCommand}" />
+            <Button HorizontalAlignment="Left" Content="{m:Loc Common_Cancel}" Command="{Binding CancelCommand}" IsCancel="True" />
         </StackPanel>
 
         <ScrollViewer>

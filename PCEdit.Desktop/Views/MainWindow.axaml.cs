@@ -19,6 +19,7 @@ public partial class MainWindow : Window
     private readonly TextBlock _liveRegion;
     private bool _disclaimerChecked;
     private bool _forceClose;
+    private bool _closePromptOpen;
 
     // Design-time / XAML previewer.
     public MainWindow()
@@ -64,16 +65,29 @@ public partial class MainWindow : Window
 
         e.Cancel = true;
 
-        var discard = await _dialogs.ConfirmAsync(
-            _localizer[LocKeys.Quit_DiscardTitle],
-            _localizer[LocKeys.Quit_DiscardBody],
-            _localizer[LocKeys.Common_CloseWithoutSaving],
-            _localizer[LocKeys.Common_KeepEditing]);
-
-        if (discard)
+        // One prompt at a time: a taskbar Close, a repeated Alt+F4 or a session-end request while
+        // it is up would otherwise stack a second one over it (#102).
+        if (!_closePromptOpen && await AskToDiscardAsync())
         {
             _forceClose = true;
             Close();
+        }
+    }
+
+    private async Task<bool> AskToDiscardAsync()
+    {
+        _closePromptOpen = true;
+        try
+        {
+            return await _dialogs!.ConfirmAsync(
+                _localizer![LocKeys.Quit_DiscardTitle],
+                _localizer[LocKeys.Quit_DiscardBody],
+                _localizer[LocKeys.Common_CloseWithoutSaving],
+                _localizer[LocKeys.Common_KeepEditing]);
+        }
+        finally
+        {
+            _closePromptOpen = false;
         }
     }
 
@@ -81,14 +95,9 @@ public partial class MainWindow : Window
     {
         Opened -= OnOpened;
 
-        if (!_disclaimerChecked && _disclaimerGate is { HasAcknowledged: false })
+        if (!_disclaimerChecked && _disclaimerGate is { HasAcknowledged: false } && !await TryShowDisclaimerAsync())
         {
-            if (!await TryShowDisclaimerAsync())
-            {
-                return;
-            }
-
-            _disclaimerGate.Acknowledge();
+            return;
         }
 
         _disclaimerChecked = true;
@@ -99,17 +108,25 @@ public partial class MainWindow : Window
     }
 
     /// <summary>
-    /// The disclaimer is a gate: unexpected errors no longer end the app, so one raised while
-    /// showing it would otherwise leave PCEdit usable without it ever having been seen.
+    /// Shows the disclaimer and records it as acknowledged only when its button was clicked: a
+    /// dismissed one was seen but not agreed to, so it shows again next launch (#99). Returns
+    /// false when it could not be shown at all. The disclaimer is a gate: unexpected errors no
+    /// longer end the app, so one raised while showing it would otherwise leave PCEdit usable
+    /// without it ever having been seen.
     /// </summary>
     private async Task<bool> TryShowDisclaimerAsync()
     {
         try
         {
-            await _dialogs!.ShowDisclaimerAsync(
+            var acknowledged = await _dialogs!.ShowDisclaimerAsync(
                 _localizer![LocKeys.Disclaimer_Title],
                 _localizer[LocKeys.Disclaimer_Body],
                 _localizer[LocKeys.Disclaimer_Acknowledge]);
+            if (acknowledged)
+            {
+                _disclaimerGate!.Acknowledge();
+            }
+
             return true;
         }
         catch (Exception ex)

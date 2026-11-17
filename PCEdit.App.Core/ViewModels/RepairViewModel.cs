@@ -174,10 +174,7 @@ public sealed partial class RepairViewModel(
     private async Task RepairAsync()
     {
         var original = workspace.FilePath ?? throw new InvalidOperationException("No save file is loaded.");
-        var target = await filePicker.PickSaveCopyPathAsync(
-            localizer[LocKeys.Repair_SaveTitle],
-            SaveCopyName.Suggest(original, File.Exists));
-        if (target is null)
+        if (await PickTargetAsync(original) is not { } target)
         {
             return; // nothing has been touched yet
         }
@@ -232,6 +229,21 @@ public sealed partial class RepairViewModel(
             System.Diagnostics.Trace.WriteLine($"Could not reopen '{original}' after a failed repair: {ex}");
             return false;
         }
+    }
+
+    /// <summary>Where to write the repaired copy, or null when the user cancelled or chose a
+    /// location that is not on this computer - which is reported, not passed off as Cancel (#107).</summary>
+    private async Task<string?> PickTargetAsync(string original)
+    {
+        var pick = await filePicker.PickSaveCopyPathAsync(
+            localizer[LocKeys.Repair_SaveTitle],
+            SaveCopyName.Suggest(original, File.Exists));
+        if (pick.IsNotLocal)
+        {
+            await ReportFailureAsync(LocKeys.FilePicker_NotLocal);
+        }
+
+        return pick.Path;
     }
 
     private async Task ReportFailureAsync(string messageKey)

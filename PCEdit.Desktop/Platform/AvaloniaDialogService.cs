@@ -26,10 +26,10 @@ public sealed class AvaloniaDialogService(MainWindowAccessor mainWindow, ILocali
             await dialog.ShowAsync(_mainWindow.ActiveWindow());
         });
 
-    public Task ShowDisclaimerAsync(string title, string body, string acknowledgeText) =>
+    public Task<bool> ShowDisclaimerAsync(string title, string body, string acknowledgeText) =>
         Dispatcher.UIThread.InvokeAsync(async () =>
         {
             var dialog = new MessageDialog(title, body, [acknowledgeText]);
-            await dialog.ShowAsync(_mainWindow.ActiveWindow());
+            return await dialog.ShowAsync(_mainWindow.ActiveWindow()) == 0;
         });
 }

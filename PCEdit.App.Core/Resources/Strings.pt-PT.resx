@@ -55,6 +55,7 @@
   <data name="OpenFile_LoadingInline" xml:space="preserve"><value>A carregar o jogo guardado…</value></data>
   <data name="OpenFile_LoadingA11y" xml:space="preserve"><value>A carregar o jogo guardado</value></data>
   <data name="OpenFile_PickerTitle" xml:space="preserve"><value>Selecione um ficheiro de jogo guardado do Planet Crafter</value></data>
+  <data name="FilePicker_NotLocal" xml:space="preserve"><value>O PCEdit só pode utilizar ficheiros deste computador. Escolha um ficheiro numa unidade local.</value></data>
   <data name="OpenFile_LoadingAnnounce" xml:space="preserve"><value>A carregar o jogo guardado.</value></data>
   <data name="OpenFile_Loaded" xml:space="preserve"><value>{0} carregado.</value></data>
   <data name="OpenFile_LoadFailed" xml:space="preserve"><value>Não foi possível carregar esse ficheiro. Pode não ser um jogo guardado do Planet Crafter válido.</value></data>
@@ -209,6 +210,10 @@
   <data name="Logistics_Clear" xml:space="preserve"><value>Limpar</value></data>
   <data name="Logistics_Everything" xml:space="preserve"><value>Tudo</value></data>
   <data name="Logistics_RemoveA11y" xml:space="preserve"><value>Remover {0}</value></data>
+  <data name="Logistics_ClearDemandA11y" xml:space="preserve"><value>Remover todos os grupos de procura</value></data>
+  <data name="Logistics_ClearSupplyA11y" xml:space="preserve"><value>Remover todos os grupos de fornecimento</value></data>
+  <data name="Logistics_AddDemandA11y" xml:space="preserve"><value>Adicionar um grupo de procura</value></data>
+  <data name="Logistics_AddSupplyA11y" xml:space="preserve"><value>Adicionar um grupo de fornecimento</value></data>
   <data name="Logistics_EmptyList" xml:space="preserve"><value>Nenhum</value></data>
   <data name="Logistics_CustomBadge" xml:space="preserve"><value>personal.</value></data>
   <data name="Logistics_Apply" xml:space="preserve"><value>Aplicar</value></data>

@@ -42,7 +42,7 @@
 
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Spacing="8" Margin="0,14,0,0">
             <Button Classes="accent" Content="{m:Loc Logistics_Apply}" Command="{Binding ApplyCommand}" />
-            <Button Content="{m:Loc Common_Cancel}" Command="{Binding CancelCommand}" />
+            <Button Content="{m:Loc Common_Cancel}" Command="{Binding CancelCommand}" IsCancel="True" />
         </StackPanel>
 
         <ScrollViewer>
@@ -80,7 +80,8 @@
                     <Border Classes="chip" HorizontalAlignment="Left" IsVisible="{Binding DemandIsEverything}">
                         <StackPanel Orientation="Horizontal" Spacing="6">
                             <TextBlock Text="{m:Loc Logistics_Everything}" FontWeight="SemiBold" VerticalAlignment="Center" />
-                            <Button Classes="link" Content="✕" Padding="2,0" MinWidth="0" Command="{Binding ClearDemandCommand}" />
+                            <Button Classes="link" Content="✕" Padding="2,0" MinWidth="0" Command="{Binding ClearDemandCommand}"
+                                    AutomationProperties.Name="{m:Loc Logistics_ClearDemandA11y}" />
                         </StackPanel>
                     </Border>
                     <ItemsControl ItemsSource="{Binding DemandGroups}" IsVisible="{Binding !DemandIsEverything}">
@@ -111,7 +112,8 @@
                                          SelectedItem="{Binding DemandGroupToAdd, Mode=TwoWay}"
                                          Text="{Binding DemandGroupText, Mode=TwoWay}"
                                          FilterMode="ContainsOrdinal"
-                                         PlaceholderText="{m:Loc Logistics_AddPlaceholder}" />
+                                         PlaceholderText="{m:Loc Logistics_AddPlaceholder}"
+                                         AutomationProperties.Name="{m:Loc Logistics_AddDemandA11y}" />
                         <Button Grid.Column="1" Content="{m:Loc Logistics_Add}" Command="{Binding AddDemandGroupCommand}" />
                     </Grid>
                 </StackPanel>
@@ -132,7 +134,8 @@
                     <Border Classes="chip" HorizontalAlignment="Left" IsVisible="{Binding SupplyIsEverything}">
                         <StackPanel Orientation="Horizontal" Spacing="6">
                             <TextBlock Text="{m:Loc Logistics_Everything}" FontWeight="SemiBold" VerticalAlignment="Center" />
-                            <Button Classes="link" Content="✕" Padding="2,0" MinWidth="0" Command="{Binding ClearSupplyCommand}" />
+                            <Button Classes="link" Content="✕" Padding="2,0" MinWidth="0" Command="{Binding ClearSupplyCommand}"
+                                    AutomationProperties.Name="{m:Loc Logistics_ClearSupplyA11y}" />
                         </StackPanel>
                     </Border>
                     <ItemsControl ItemsSource="{Binding SupplyGroups}" IsVisible="{Binding !SupplyIsEverything}">
@@ -163,7 +166,8 @@
                                          SelectedItem="{Binding SupplyGroupToAdd, Mode=TwoWay}"
                                          Text="{Binding SupplyGroupText, Mode=TwoWay}"
                                          FilterMode="ContainsOrdinal"
-                                         PlaceholderText="{m:Loc Logistics_AddPlaceholder}" />
+                                         PlaceholderText="{m:Loc Logistics_AddPlaceholder}"
+                                         AutomationProperties.Name="{m:Loc Logistics_AddSupplyA11y}" />
                         <Button Grid.Column="1" Content="{m:Loc Logistics_Add}" Command="{Binding AddSupplyGroupCommand}" />
                     </Grid>
                 </StackPanel>
