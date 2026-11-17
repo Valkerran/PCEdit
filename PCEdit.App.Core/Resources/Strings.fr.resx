@@ -55,6 +55,7 @@
   <data name="OpenFile_LoadingInline" xml:space="preserve"><value>Chargement de la sauvegarde…</value></data>
   <data name="OpenFile_LoadingA11y" xml:space="preserve"><value>Chargement de la sauvegarde</value></data>
   <data name="OpenFile_PickerTitle" xml:space="preserve"><value>Sélectionnez un fichier de sauvegarde Planet Crafter</value></data>
+  <data name="FilePicker_NotLocal" xml:space="preserve"><value>PCEdit ne peut utiliser que des fichiers présents sur cet ordinateur. Choisissez un fichier sur un disque local.</value></data>
   <data name="OpenFile_LoadingAnnounce" xml:space="preserve"><value>Chargement de la sauvegarde.</value></data>
   <data name="OpenFile_Loaded" xml:space="preserve"><value>{0} chargé.</value></data>
   <data name="OpenFile_LoadFailed" xml:space="preserve"><value>Impossible de charger ce fichier. Ce n'est peut-être pas une sauvegarde Planet Crafter valide.</value></data>

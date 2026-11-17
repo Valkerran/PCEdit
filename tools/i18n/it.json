@@ -39,6 +39,7 @@
   "OpenFile_LoadingInline": "Caricamento del salvataggio…",
   "OpenFile_LoadingA11y": "Caricamento del salvataggio",
   "OpenFile_PickerTitle": "Seleziona un file di salvataggio di Planet Crafter",
+  "FilePicker_NotLocal": "PCEdit può usare solo file presenti su questo computer. Scegli un file su un'unità locale.",
   "OpenFile_LoadingAnnounce": "Caricamento del salvataggio.",
   "OpenFile_Loaded": "{0} caricato.",
   "OpenFile_LoadFailed": "Impossibile caricare quel file. Potrebbe non essere un salvataggio di Planet Crafter valido.",

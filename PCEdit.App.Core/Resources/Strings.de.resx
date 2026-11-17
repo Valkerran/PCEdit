@@ -55,6 +55,7 @@
   <data name="OpenFile_LoadingInline" xml:space="preserve"><value>Spielstand wird geladen…</value></data>
   <data name="OpenFile_LoadingA11y" xml:space="preserve"><value>Spielstand wird geladen</value></data>
   <data name="OpenFile_PickerTitle" xml:space="preserve"><value>Wähle eine Planet-Crafter-Spielstanddatei</value></data>
+  <data name="FilePicker_NotLocal" xml:space="preserve"><value>PCEdit kann nur Dateien auf diesem Computer verwenden. Wähle eine Datei auf einem lokalen Laufwerk.</value></data>
   <data name="OpenFile_LoadingAnnounce" xml:space="preserve"><value>Spielstand wird geladen.</value></data>
   <data name="OpenFile_Loaded" xml:space="preserve"><value>{0} geladen.</value></data>
   <data name="OpenFile_LoadFailed" xml:space="preserve"><value>Diese Datei konnte nicht geladen werden. Möglicherweise ist es kein gültiger Planet-Crafter-Spielstand.</value></data>

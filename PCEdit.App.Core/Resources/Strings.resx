@@ -115,6 +115,7 @@
   <data name="OpenFile_LoadingInline" xml:space="preserve"><value>Loading save file…</value></data>
   <data name="OpenFile_LoadingA11y" xml:space="preserve"><value>Loading save file</value></data>
   <data name="OpenFile_PickerTitle" xml:space="preserve"><value>Select a Planet Crafter save file</value></data>
+  <data name="FilePicker_NotLocal" xml:space="preserve"><value>PCEdit can only use files on this computer. Choose a file on a local drive.</value></data>
   <data name="OpenFile_LoadingAnnounce" xml:space="preserve"><value>Loading save file.</value></data>
   <data name="OpenFile_Loaded" xml:space="preserve"><value>Loaded {0}.</value></data>
   <data name="OpenFile_LoadFailed" xml:space="preserve"><value>Couldn't load that file. It may not be a valid Planet Crafter save.</value></data>

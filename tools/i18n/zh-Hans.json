@@ -39,6 +39,7 @@
   "OpenFile_LoadingInline": "正在加载存档…",
   "OpenFile_LoadingA11y": "正在加载存档",
   "OpenFile_PickerTitle": "选择一个 Planet Crafter 存档文件",
+  "FilePicker_NotLocal": "PCEdit 只能使用此计算机上的文件。请选择本地驱动器上的文件。",
   "OpenFile_LoadingAnnounce": "正在加载存档。",
   "OpenFile_Loaded": "已加载 {0}。",
   "OpenFile_LoadFailed": "无法加载该文件。它可能不是有效的 Planet Crafter 存档。",

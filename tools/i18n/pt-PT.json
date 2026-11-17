@@ -39,6 +39,7 @@
   "OpenFile_LoadingInline": "A carregar o jogo guardado…",
   "OpenFile_LoadingA11y": "A carregar o jogo guardado",
   "OpenFile_PickerTitle": "Selecione um ficheiro de jogo guardado do Planet Crafter",
+  "FilePicker_NotLocal": "O PCEdit só pode utilizar ficheiros deste computador. Escolha um ficheiro numa unidade local.",
   "OpenFile_LoadingAnnounce": "A carregar o jogo guardado.",
   "OpenFile_Loaded": "{0} carregado.",
   "OpenFile_LoadFailed": "Não foi possível carregar esse ficheiro. Pode não ser um jogo guardado do Planet Crafter válido.",

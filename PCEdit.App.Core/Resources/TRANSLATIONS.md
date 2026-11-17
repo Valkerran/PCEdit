@@ -140,7 +140,9 @@ The dialog accessibility pass (v1.8.9, issues #80 and #104) added
 `Logistics_{ClearDemand,ClearSupply,AddDemand,AddSupply}A11y` — screen-reader names only, never
 shown — machine-translated with each language's existing words from `Logistics_DemandHeading` /
 `Logistics_SupplyHeading`, so demand and supply stay told apart. The Move dialog's search box
-reuses `SelectInv_Search` as its name.
+reuses `SelectInv_Search` as its name. Issue #107 added `FilePicker_NotLocal`, shown when a picked
+file or save location has no path on this computer — machine-translated in each language's
+existing register (the du / tú / vous choice of its `OpenFile_DiscardBody`).
 
 | Culture | Language | Reviewed |
 |---|---|---|

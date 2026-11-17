@@ -39,6 +39,7 @@
   "OpenFile_LoadingInline": "Cargando partida…",
   "OpenFile_LoadingA11y": "Cargando partida",
   "OpenFile_PickerTitle": "Selecciona un archivo de partida de Planet Crafter",
+  "FilePicker_NotLocal": "PCEdit solo puede usar archivos de este equipo. Elige un archivo de una unidad local.",
   "OpenFile_LoadingAnnounce": "Cargando partida.",
   "OpenFile_Loaded": "{0} cargado.",
   "OpenFile_LoadFailed": "No se pudo cargar ese archivo. Puede que no sea una partida de Planet Crafter válida.",

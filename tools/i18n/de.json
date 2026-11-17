@@ -39,6 +39,7 @@
   "OpenFile_LoadingInline": "Spielstand wird geladen…",
   "OpenFile_LoadingA11y": "Spielstand wird geladen",
   "OpenFile_PickerTitle": "Wähle eine Planet-Crafter-Spielstanddatei",
+  "FilePicker_NotLocal": "PCEdit kann nur Dateien auf diesem Computer verwenden. Wähle eine Datei auf einem lokalen Laufwerk.",
   "OpenFile_LoadingAnnounce": "Spielstand wird geladen.",
   "OpenFile_Loaded": "{0} geladen.",
   "OpenFile_LoadFailed": "Diese Datei konnte nicht geladen werden. Möglicherweise ist es kein gültiger Planet-Crafter-Spielstand.",

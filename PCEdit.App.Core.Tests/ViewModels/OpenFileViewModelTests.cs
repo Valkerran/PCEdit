@@ -32,6 +32,43 @@ public sealed class OpenFileViewModelTests
         Assert.Equal(new Localizer()[LocKeys.OpenFile_LoadFailed], vm.StatusMessage);
     }
 
+    // A file with no path on this computer used to come back like Cancel: picked, then nothing (#107).
+    [Fact]
+    public async Task PickAndLoad_AFileNotOnThisComputer_SaysSo()
+    {
+        var store = new FakeSaveFileStore();
+        var localizer = new Localizer();
+        var workspace = new SaveFileWorkspace(store, new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
+        var navigation = new FakeNavigationService();
+        var vm = new OpenFileViewModel(
+            workspace,
+            new FakeFilePickerService { PickNotLocal = true },
+            new FakeScreenReaderAnnouncer(),
+            navigation,
+            new FakeDialogService(),
+            localizer);
+
+        await vm.PickAndLoadCommand.ExecuteAsync(null);
+
+        Assert.Equal(StatusKind.Error, vm.StatusKind);
+        Assert.Equal(localizer[LocKeys.FilePicker_NotLocal], vm.StatusMessage);
+        Assert.False(workspace.IsLoaded);
+    }
+
+    [Fact]
+    public async Task PickAndLoad_Cancelled_SaysNothing()
+    {
+        var localizer = new Localizer();
+        var workspace = new SaveFileWorkspace(new FakeSaveFileStore(), new FakeScreenReaderAnnouncer(), localizer, new FakeSaveBackupService());
+        var vm = new OpenFileViewModel(
+            workspace, new FakeFilePickerService(), new FakeScreenReaderAnnouncer(),
+            new FakeNavigationService(), new FakeDialogService(), localizer);
+
+        await vm.PickAndLoadCommand.ExecuteAsync(null);
+
+        Assert.Null(vm.StatusMessage);
+    }
+
     [Fact]
     public async Task WhenTheSaveIsClosed_TheLoadedMessageGoesToo()
     {

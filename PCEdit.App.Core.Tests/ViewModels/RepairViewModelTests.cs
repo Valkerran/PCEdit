@@ -219,6 +219,22 @@ public sealed class RepairViewModelTests
     }
 
     [Fact]
+    public async Task Repair_WhenThePickedLocationIsNotOnThisComputer_SaysSo_AndChangesNothing()
+    {
+        // Reported through the Repair dialog's own error surface, as its other failures are (#107).
+        var rig = Create();
+        rig.Picker.SaveCopyNotLocal = true;
+
+        await rig.Vm.RepairCommand.ExecuteAsync(null);
+
+        var error = Assert.Single(rig.Dialogs.Errors);
+        Assert.Equal(new Localizer()[LocKeys.FilePicker_NotLocal], error.Message);
+        Assert.Equal("200,201", IdsOf(rig.Workspace, 20));
+        Assert.Empty(rig.Store.Copies);
+        Assert.Equal(0, rig.Navigation.CloseModalCount);
+    }
+
+    [Fact]
     public async Task Repair_WhenTheCopyCannotBeWritten_ReopensTheOriginal_AndSaysSo()
     {
         var rig = Create();

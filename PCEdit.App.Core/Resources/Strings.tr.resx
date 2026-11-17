@@ -55,6 +55,7 @@
   <data name="OpenFile_LoadingInline" xml:space="preserve"><value>Kayıt yükleniyor…</value></data>
   <data name="OpenFile_LoadingA11y" xml:space="preserve"><value>Kayıt yükleniyor</value></data>
   <data name="OpenFile_PickerTitle" xml:space="preserve"><value>Bir Planet Crafter kayıt dosyası seçin</value></data>
+  <data name="FilePicker_NotLocal" xml:space="preserve"><value>PCEdit yalnızca bu bilgisayardaki dosyaları kullanabilir. Yerel bir sürücüdeki bir dosyayı seçin.</value></data>
   <data name="OpenFile_LoadingAnnounce" xml:space="preserve"><value>Kayıt yükleniyor.</value></data>
   <data name="OpenFile_Loaded" xml:space="preserve"><value>{0} yüklendi.</value></data>
   <data name="OpenFile_LoadFailed" xml:space="preserve"><value>Bu dosya yüklenemedi. Geçerli bir Planet Crafter kaydı olmayabilir.</value></data>

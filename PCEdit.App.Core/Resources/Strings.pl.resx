@@ -55,6 +55,7 @@
   <data name="OpenFile_LoadingInline" xml:space="preserve"><value>Wczytywanie zapisu…</value></data>
   <data name="OpenFile_LoadingA11y" xml:space="preserve"><value>Wczytywanie zapisu</value></data>
   <data name="OpenFile_PickerTitle" xml:space="preserve"><value>Wybierz plik zapisu Planet Crafter</value></data>
+  <data name="FilePicker_NotLocal" xml:space="preserve"><value>PCEdit może używać tylko plików na tym komputerze. Wybierz plik na dysku lokalnym.</value></data>
   <data name="OpenFile_LoadingAnnounce" xml:space="preserve"><value>Wczytywanie zapisu.</value></data>
   <data name="OpenFile_Loaded" xml:space="preserve"><value>Wczytano {0}.</value></data>
   <data name="OpenFile_LoadFailed" xml:space="preserve"><value>Nie można wczytać tego pliku. Może to nie być prawidłowy zapis Planet Crafter.</value></data>

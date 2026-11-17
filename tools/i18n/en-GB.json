@@ -39,6 +39,7 @@
   "OpenFile_LoadingInline": "Loading save file…",
   "OpenFile_LoadingA11y": "Loading save file",
   "OpenFile_PickerTitle": "Select a Planet Crafter save file",
+  "FilePicker_NotLocal": "PCEdit can only use files on this computer. Choose a file on a local drive.",
   "OpenFile_LoadingAnnounce": "Loading save file.",
   "OpenFile_Loaded": "Loaded {0}.",
   "OpenFile_LoadFailed": "Couldn't load that file. It may not be a valid Planet Crafter save.",

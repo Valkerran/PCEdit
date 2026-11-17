@@ -39,6 +39,7 @@
   "OpenFile_LoadingInline": "Загрузка сохранения…",
   "OpenFile_LoadingA11y": "Загрузка сохранения",
   "OpenFile_PickerTitle": "Выберите файл сохранения Planet Crafter",
+  "FilePicker_NotLocal": "PCEdit может работать только с файлами на этом компьютере. Выберите файл на локальном диске.",
   "OpenFile_LoadingAnnounce": "Загрузка сохранения.",
   "OpenFile_Loaded": "{0} загружено.",
   "OpenFile_LoadFailed": "Не удалось загрузить этот файл. Возможно, это не действительное сохранение Planet Crafter.",

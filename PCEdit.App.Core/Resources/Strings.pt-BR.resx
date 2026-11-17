@@ -55,6 +55,7 @@
   <data name="OpenFile_LoadingInline" xml:space="preserve"><value>Carregando o save…</value></data>
   <data name="OpenFile_LoadingA11y" xml:space="preserve"><value>Carregando o save</value></data>
   <data name="OpenFile_PickerTitle" xml:space="preserve"><value>Selecione um arquivo de save do Planet Crafter</value></data>
+  <data name="FilePicker_NotLocal" xml:space="preserve"><value>O PCEdit só pode usar arquivos deste computador. Escolha um arquivo em uma unidade local.</value></data>
   <data name="OpenFile_LoadingAnnounce" xml:space="preserve"><value>Carregando o save.</value></data>
   <data name="OpenFile_Loaded" xml:space="preserve"><value>{0} carregado.</value></data>
   <data name="OpenFile_LoadFailed" xml:space="preserve"><value>Não foi possível carregar esse arquivo. Pode não ser um save válido do Planet Crafter.</value></data>

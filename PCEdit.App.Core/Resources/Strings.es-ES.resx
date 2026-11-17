@@ -55,6 +55,7 @@
   <data name="OpenFile_LoadingInline" xml:space="preserve"><value>Cargando partida…</value></data>
   <data name="OpenFile_LoadingA11y" xml:space="preserve"><value>Cargando partida</value></data>
   <data name="OpenFile_PickerTitle" xml:space="preserve"><value>Selecciona un archivo de partida de Planet Crafter</value></data>
+  <data name="FilePicker_NotLocal" xml:space="preserve"><value>PCEdit solo puede usar archivos de este equipo. Elige un archivo de una unidad local.</value></data>
   <data name="OpenFile_LoadingAnnounce" xml:space="preserve"><value>Cargando partida.</value></data>
   <data name="OpenFile_Loaded" xml:space="preserve"><value>{0} cargado.</value></data>
   <data name="OpenFile_LoadFailed" xml:space="preserve"><value>No se pudo cargar ese archivo. Puede que no sea una partida de Planet Crafter válida.</value></data>

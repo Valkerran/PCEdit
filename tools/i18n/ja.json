@@ -39,6 +39,7 @@
   "OpenFile_LoadingInline": "セーブファイルを読み込み中…",
   "OpenFile_LoadingA11y": "セーブファイルを読み込み中",
   "OpenFile_PickerTitle": "Planet Crafter のセーブファイルを選択してください",
+  "FilePicker_NotLocal": "PCEdit はこのコンピューター上のファイルしか使用できません。ローカル ドライブ上のファイルを選んでください。",
   "OpenFile_LoadingAnnounce": "セーブファイルを読み込み中。",
   "OpenFile_Loaded": "{0} を読み込みました。",
   "OpenFile_LoadFailed": "そのファイルを読み込めませんでした。有効な Planet Crafter のセーブではない可能性があります。",
