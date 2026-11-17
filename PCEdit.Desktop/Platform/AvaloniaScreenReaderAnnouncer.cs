@@ -11,6 +11,9 @@ namespace PCEdit.Desktop.Platform;
 /// </summary>
 public sealed class AvaloniaScreenReaderAnnouncer : IScreenReaderAnnouncer
 {
+    // The last message handed to the sink; only touched on the UI thread.
+    private string? _last;
+
     public Action<string>? Sink { get; set; }
 
     public void Announce(string? message)
@@ -22,11 +25,36 @@ public sealed class AvaloniaScreenReaderAnnouncer : IScreenReaderAnnouncer
 
         if (Dispatcher.UIThread.CheckAccess())
         {
-            Sink(message);
+            Deliver(message);
         }
         else
         {
-            Dispatcher.UIThread.Post(() => Sink?.Invoke(message));
+            Dispatcher.UIThread.Post(() => Deliver(message));
         }
+    }
+
+    /// <summary>
+    /// A live region speaks only when its text changes, so the same message twice in a row was
+    /// heard once (#103). A repeat is cleared first and set again on the next tick - unless a newer
+    /// message has taken its place by then.
+    /// </summary>
+    private void Deliver(string message)
+    {
+        var repeat = message == _last;
+        _last = message;
+        if (!repeat)
+        {
+            Sink?.Invoke(message);
+            return;
+        }
+
+        Sink?.Invoke(string.Empty);
+        Dispatcher.UIThread.Post(() =>
+        {
+            if (_last == message)
+            {
+                Sink?.Invoke(message);
+            }
+        });
     }
 }
