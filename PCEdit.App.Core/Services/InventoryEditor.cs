@@ -42,8 +42,7 @@ public sealed class InventoryEditor(
                     Size = inventory.Size,
                     Logistics = logistics,
                     LogisticsSummary = logistics is null ? null : FormatLogisticsSummary(logistics),
-                    Items = WorldObjectIdsCodec.Parse(inventory.WorldObjectIds)
-                        .Where(worldObjectsById.ContainsKey)
+                    Items = InventoryContents.HeldIds(inventory, worldObjectsById)
                         .Select(id => ToItemView(worldObjectsById[id], inventory.Id))
                         .ToList()
                 };
@@ -112,6 +111,7 @@ public sealed class InventoryEditor(
         var save = RequireCurrent();
         var sourceInventoryId = FindOwningInventory(save, worldObjectId)?.Id;
         var containersByInventoryId = BuildContainerLookup(save);
+        var worldObjectsById = IndexWorldObjects(save);
 
         return save.Inventories
             .Where(inventory => inventory.Id != sourceInventoryId)
@@ -121,7 +121,7 @@ public sealed class InventoryEditor(
                 return new InventoryOptionView(
                     inventory.Id,
                     label,
-                    WorldObjectIdsCodec.Parse(inventory.WorldObjectIds).Count,
+                    InventoryContents.HeldIds(inventory, worldObjectsById).Count,
                     inventory.Size,
                     kind,
                     containersByInventoryId.TryGetValue(inventory.Id, out var container) ? container.Id : null);
@@ -157,7 +157,7 @@ public sealed class InventoryEditor(
             return MoveItemResult.Fail(_localizer[LocKeys.Inv_DestNotFound]);
         }
 
-        if (DescribeLackOfRoom(destination, worldObjectIds.Count) is { } noRoom)
+        if (DescribeLackOfRoom(destination, IndexWorldObjects(save), worldObjectIds.Count) is { } noRoom)
         {
             return MoveItemResult.Fail(noRoom);
         }
@@ -175,11 +175,13 @@ public sealed class InventoryEditor(
     /// <summary>
     /// Why the destination cannot take <paramref name="count"/> more items, or null when it can.
     /// Its stored size is the limit - the game builds a fresh inventory with one item per slot,
-    /// and PCEdit must never be the thing that makes one over-full (issue #64).
+    /// and PCEdit must never be the thing that makes one over-full (issue #64). Items are counted
+    /// as the card counts them (<see cref="InventoryContents.HeldIds"/>, issue #90).
     /// </summary>
-    private string? DescribeLackOfRoom(Inventory destination, int count)
+    private string? DescribeLackOfRoom(
+        Inventory destination, IReadOnlyDictionary<int, WorldObject> worldObjectsById, int count)
     {
-        var held = WorldObjectIdsCodec.Parse(destination.WorldObjectIds).Count;
+        var held = InventoryContents.HeldIds(destination, worldObjectsById).Count;
         var free = destination.Size - held;
         if (free <= 0)
         {

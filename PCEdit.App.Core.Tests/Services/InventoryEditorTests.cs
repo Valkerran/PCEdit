@@ -62,6 +62,49 @@ public sealed class InventoryEditorTests
         Assert.Equal(2, groups.Single(g => g.InventoryId == 10).Items.Count);
     }
 
+    // Issue #90: the card, the Move dialog and the move's room check count an inventory's items
+    // one way - ids naming an existing world object, a repeated id once - as the repair does.
+
+    [Fact]
+    public void BuildInventoryGroups_CountsARepeatedIdOnce()
+    {
+        var (editor, _) = CreateLoadedEditor(save => SetIdList(save, 10, "200,200,201"));
+
+        var alice = editor.BuildInventoryGroups().Single(g => g.InventoryId == 10);
+
+        Assert.Equal([200, 201], alice.Items.Select(i => i.WorldObjectId));
+        Assert.Equal("2/5", alice.CapacityLabel);
+    }
+
+    [Fact]
+    public void GetDestinationOptions_DoesNotCountDanglingOrRepeatedIds()
+    {
+        var (editor, _) = CreateLoadedEditor(save =>
+        {
+            SetIdList(save, 20, "999");     // size 1, the id names no world object
+            SetIdList(save, 30, "202,202"); // size 3
+        });
+
+        var options = editor.GetDestinationOptions(worldObjectId: 200);
+
+        var dangling = options.Single(o => o.InventoryId == 20);
+        Assert.Equal(0, dangling.Count);
+        Assert.False(dangling.IsFull);
+        Assert.Equal(1, options.Single(o => o.InventoryId == 30).Count);
+    }
+
+    [Fact]
+    public void TryMoveItems_IntoAnInventoryHoldingOnlyADanglingId_HasRoom()
+    {
+        // The card reads 0/1; refusing the move as full contradicted it.
+        var (editor, workspace) = CreateLoadedEditor(save => SetIdList(save, 20, "999"));
+
+        var result = editor.TryMoveItems([200], destinationInventoryId: 20);
+
+        Assert.True(result.Success);
+        Assert.Equal("999,200", workspace.Current!.Inventories.Single(i => i.Id == 20).WorldObjectIds);
+    }
+
     [Fact]
     public void TryMoveItems_MovesEveryGivenItem_KeepingTheirOrder()
     {
